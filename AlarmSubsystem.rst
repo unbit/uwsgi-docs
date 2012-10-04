@@ -32,12 +32,11 @@ To define an alarm you use the option --alarm
 
 (remember to quote ONLY when you are defining alarms on the command line)
 
-{{{
-#!ini
-[uwsgi]
-alarm = mailme cmd:mail -s 'uWSGI alarm' -a 'From: foobar@example.com' admin@example.com
-alarm = cachefull signal:17
-}}}
+.. code-block:: ini
+   [uwsgi]
+   alarm = mailme cmd:mail -s 'uWSGI alarm' -a 'From: foobar@example.com' admin@example.com
+   alarm = cachefull signal:17
+   
 
 here we define to alarm: mailme and cachefull. The first one invokes the 'mail' command to send the logline to a mail address
 the second one generate a uwsgi signal.
