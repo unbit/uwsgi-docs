@@ -24,7 +24,7 @@ Currently the following plugins are available in the main distribution:
    'xmpp' send the log line via XMPP/jabber
 
 
-To define an alarm you use the option **--alarm*
+To define an alarm you use the option **--alarm**
 
 .. parsed-literal::
    --alarm "<name> <plugin>:<opts>"
@@ -33,7 +33,7 @@ To define an alarm you use the option **--alarm*
 (remember to quote ONLY when you are defining alarms on the command line)
 
 .. code-block:: ini
-
+   
    [uwsgi]
    alarm = mailme cmd:mail -s 'uWSGI alarm' -a 'From: foobar@example.com' admin@example.com
    alarm = cachefull signal:17
@@ -44,12 +44,14 @@ the second one generate a uwsgi signal.
 
 We now need to add rules to trigger alarms:
 
-.. code block:: ini
+.. code-block:: ini
+   
    [uwsgi]
    alarm = mailme cmd:mail -s 'uWSGI alarm' -a 'From: foobar@example.com' admin@example.com
    alarm = cachefull signal:17
    log-alarm = cachefull,mailme uWSGI listen queue of socket
    log-alarm = mailme HARAKIRI ON WORKER
+
 
 
 the syntax of log-alarm is
@@ -71,8 +73,8 @@ how many things you can do with such a simple system.
 
 Want an example ?
 
-
-.. code block:: ini
+.. code-block:: ini
+   
    [uwsgi]
    alarm = jabber xmpp:foobar@jabber.xxx;mysecretpassword;admin@jabber.xxx,admin2@jabber.xxx
    log-alarm = jabber ^TERRIBLE ALARM
@@ -80,7 +82,8 @@ Want an example ?
 
 now in your app you only need to
 
-.. code block:: python
+.. code-block:: python
+
    print "TERRIBLE ALARM the world exploded !!!"
 
 
@@ -90,7 +93,8 @@ Another example ?
 
 Check this Rack middleware
 
-.. code block:: ruby
+.. code-block:: rb
+
    class UploadCheck
      def initialize(app)
        @app = app       
