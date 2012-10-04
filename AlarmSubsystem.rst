@@ -29,7 +29,7 @@ To define an alarm you use the option --alarm
 (remember to quote ONLY when you are defining alarms on the command line)
 
 {{{
-##!ini
+#!ini
 [uwsgi]
 alarm = mailme cmd:mail -s 'uWSGI alarm' -a 'From: foobar@example.com' admin@example.com
 alarm = cachefull signal:17
@@ -41,7 +41,7 @@ the second one generate a uwsgi signal.
 We now need to add rules to trigger alarms:
 
 {{{
-##!ini
+#!ini
 [uwsgi]
 alarm = mailme cmd:mail -s 'uWSGI alarm' -a 'From: foobar@example.com' admin@example.com
 alarm = cachefull signal:17
@@ -66,7 +66,7 @@ how many things you can do with such a simple system.
 Want an example ?
 
 {{{
-##!ini
+#!ini
 [uwsgi]
 alarm = jabber xmpp:foobar@jabber.xxx;mysecretpassword;admin@jabber.xxx,admin2@jabber.xxx
 log-alarm = jabber ^TERRIBLE ALARM
@@ -75,7 +75,7 @@ log-alarm = jabber ^TERRIBLE ALARM
 now in your app you only need to
 
 {{{
-##!py
+#!py
 print "TERRIBLE ALARM the world exploded !!!"
 }}}
 
