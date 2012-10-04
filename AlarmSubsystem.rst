@@ -16,19 +16,19 @@ You can define an unlimited number of alarms. Each alarm has a unique name, and 
 
 Currently the following plugins are available in the main distribution:
 
-{{{
-'cmd' run a command passing the log line to the stdin
-'signal' generate a uwsgi signal
-'mule' send the log line to a mule
-'curl' pass the log line to a curl url (http,https and smtp are supported)
-'xmpp' send the log line via XMPP/jabber
-}}}
+.. code block::
+   'cmd' run a command passing the log line to the stdin
+   'signal' generate a uwsgi signal
+   'mule' send the log line to a mule
+   'curl' pass the log line to a curl url (http,https and smtp are supported)
+   'xmpp' send the log line via XMPP/jabber
+
 
 To define an alarm you use the option --alarm
 
-{{{
---alarm "<name> <plugin>:<opts>"
-}}}
+.. code block::
+   --alarm "<name> <plugin>:<opts>"
+
 
 (remember to quote ONLY when you are defining alarms on the command line)
 
