@@ -16,7 +16,7 @@ You can define an unlimited number of alarms. Each alarm has a unique name, and 
 
 Currently the following plugins are available in the main distribution:
 
-.. code block::
+.. parsed-literal::
    'cmd' run a command passing the log line to the stdin
    'signal' generate a uwsgi signal
    'mule' send the log line to a mule
@@ -24,9 +24,9 @@ Currently the following plugins are available in the main distribution:
    'xmpp' send the log line via XMPP/jabber
 
 
-To define an alarm you use the option --alarm
+To define an alarm you use the option **--alarm*
 
-.. code block::
+.. parsed-literal::
    --alarm "<name> <plugin>:<opts>"
 
 
@@ -44,20 +44,19 @@ the second one generate a uwsgi signal.
 
 We now need to add rules to trigger alarms:
 
-{{{
-#!ini
-[uwsgi]
-alarm = mailme cmd:mail -s 'uWSGI alarm' -a 'From: foobar@example.com' admin@example.com
-alarm = cachefull signal:17
-log-alarm = cachefull,mailme uWSGI listen queue of socket
-log-alarm = mailme HARAKIRI ON WORKER
-}}}
+.. code block:: ini
+   [uwsgi]
+   alarm = mailme cmd:mail -s 'uWSGI alarm' -a 'From: foobar@example.com' admin@example.com
+   alarm = cachefull signal:17
+   log-alarm = cachefull,mailme uWSGI listen queue of socket
+   log-alarm = mailme HARAKIRI ON WORKER
+
 
 the syntax of log-alarm is
 
-{{{
---log-alarm "<name> <regexp>"
-}}}
+.. parsed-literal::
+   --log-alarm "<name> <regexp>"
+
 
 So in our previous example we defined two conditions (via regexp applied to logs), the first one will trigger both the alarms when the listen queue is full, while the second
 will invoke only the 'mailme' one when a harakiri on a worker is running.
@@ -72,19 +71,18 @@ how many things you can do with such a simple system.
 
 Want an example ?
 
-{{{
-#!ini
-[uwsgi]
-alarm = jabber xmpp:foobar@jabber.xxx;mysecretpassword;admin@jabber.xxx,admin2@jabber.xxx
-log-alarm = jabber ^TERRIBLE ALARM
-}}}
+
+.. code block:: ini
+   [uwsgi]
+   alarm = jabber xmpp:foobar@jabber.xxx;mysecretpassword;admin@jabber.xxx,admin2@jabber.xxx
+   log-alarm = jabber ^TERRIBLE ALARM
+
 
 now in your app you only need to
 
-{{{
-#!py
-print "TERRIBLE ALARM the world exploded !!!"
-}}}
+.. code block:: python
+   print "TERRIBLE ALARM the world exploded !!!"
+
 
 to send a jabber message to admin@jabber.xxx and admin2@jabber.xxx without adding overhead to your app (as alarms are triggered by one or more threads in the master, without bothering workers).
 
@@ -92,21 +90,20 @@ Another example ?
 
 Check this Rack middleware
 
-{{{
-#!rb
-class UploadCheck
-  def initialize(app)
-    @app = app       
-  end                
+.. code block:: ruby
+   class UploadCheck
+     def initialize(app)
+       @app = app       
+     end                
+   
+     def call(env)
+       if env['REQUEST_METHOD'] == 'POST' and env['PATH_INFO'] == '/upload'
+         puts "TERRIBLE ALARM an upload has been made"
+       end   
+       @app.call(env)   
+     end                
+   end               
 
-  def call(env)
-    if env['REQUEST_METHOD'] == 'POST' and env['PATH_INFO'] == '/upload'
-      puts "TERRIBLE ALARM an upload has been made"
-    end   
-    @app.call(env)   
-  end                
-end               
-}}}
 
 ******
 Protecting from bad rules
@@ -135,9 +132,9 @@ Available plugins and their syntax
 
 run a shell command (logline is passed to the stdin)
 
-{{{
-cmd:<command>
-}}} 
+.. parsed-literal::
+   cmd:<command>
+ 
 
 === signal ===
 
