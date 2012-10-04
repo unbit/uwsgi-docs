@@ -1,6 +1,6 @@
-==
+======
 The uWSGI alarm subsystem (from 1.3) 
-==
+======
 
 Starting from 1.3, uWSGI includes an alarm system to allow the developer/sysadmin to 'announce' special conditions of your app via various channels.
 
