@@ -59,4 +59,35 @@ Managing 2 **mongodb** instances (smart mode)
    smart-attach-daemon = /tmp/mongo1.pid mongod --pidfilepath /tmp/mongo1.pid --dbpath foo1 --port 50001
    smart-attach-daemon = /tmp/mongo2.pid mongod --pidfilepath /tmp/mongo2.pid --dbpath foo2 --port 50002
 
-Managing **PostgreSQL**
+Managing **PostgreSQL** dedicated-instance (cluster in /db/foobar1)
+
+.. code-block:: ini
+
+   [uwsgi]
+   master = true
+   socket = :3031
+   smart-attach-daemon = /db/foobar1/postmaster.pid /usr/lib/postgresql/9.1/bin/postgres -D /db/foobar1
+
+Managing **celery**
+
+.. code-block:: ini
+
+   [uwsgi]
+   master = true
+   socket = :3031
+   smart-attach-daemon = /tmp/celery.pid celery -A tasks worker --pidfile=/tmp/celery.pid
+
+Managing **delayed_job**
+
+.. code-block:: ini
+
+   [uwsgi]
+   master = true
+   socket = :3031
+   env = RAILS_ENV=production
+   rbrequire = bundler/setup
+   rack = config.ru
+   chdir = /var/apps/foobar
+   smart-attach-daemon = %(chdir)/tmp/pids/delayed_job.pid %(chdir)/script/delayed_job start
+
+
