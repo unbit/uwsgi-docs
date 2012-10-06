@@ -32,7 +32,7 @@ Examples
 
 Managing a memcached instance in 'dumb' mode (whenever uWSGI is stopped/reloaded memcached is destroyed)
 
-.. code-block: ini
+.. code-block:: ini
 
    [uwsgi]
    master = true
@@ -43,7 +43,7 @@ Managing a memcached instance in 'smart' mode (memcached survives uWSGI stop/rea
 
 
 
-.. code-block: ini
+.. code-block:: ini
 
    [uwsgi]
    master = true
