@@ -30,7 +30,7 @@ Very few daemons/applications requires that feature, but it could be useful for 
 Examples
 ******
 
-Managing a memcached instance in 'dumb' mode (whenever uWSGI is stopped/reloaded memcached is destroyed)
+Managing a **memcached** instance in 'dumb' mode (whenever uWSGI is stopped/reloaded memcached is destroyed)
 
 .. code-block:: ini
 
@@ -39,8 +39,7 @@ Managing a memcached instance in 'dumb' mode (whenever uWSGI is stopped/reloaded
    socket = :3031
    attach-daemon = memcached -p 11311 -u roberto
 
-Managing a memcached instance in 'smart' mode (memcached survives uWSGI stop/realod)
-
+Managing a **memcached** instance in 'smart' mode (memcached survives uWSGI stop/realod)
 
 
 .. code-block:: ini
@@ -49,3 +48,15 @@ Managing a memcached instance in 'smart' mode (memcached survives uWSGI stop/rea
    master = true
    socket = :3031
    smart-attach-daemon = /tmp/memcached.pid memcached -p 11311 -d -P /tmp/memcached.pid -u roberto
+
+Managing 2 **mongodb** instances (smart mode)
+
+.. code-block:: ini
+
+   [uwsgi]
+   master = true
+   socket = :3031
+   smart-attach-daemon = /tmp/mongo1.pid mongod --pidfilepath /tmp/mongo1.pid --dbpath foo1 --port 50001
+   smart-attach-daemon = /tmp/mongo2.pid mongod --pidfilepath /tmp/mongo2.pid --dbpath foo2 --port 50002
+
+Managing **PostgreSQL**
