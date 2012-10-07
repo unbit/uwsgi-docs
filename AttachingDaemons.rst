@@ -1,14 +1,13 @@
-======
+
 Managing external daemons/services with uWSGI (1.3.1)
-======
+=====================================================
 
 uWSGI can easily monitor external processes, allowing you to increase reliability and usability of your multi-tier apps.
 
 For example you can manage services like memcached, redis, celery, delayed_job or even a dedicate postgresql instance.
 
-******
 Kind of services
-******
+****************
 
 Currently uWSGI supports 3 kinds of processes:
 
@@ -26,9 +25,9 @@ The last kind of processes is an 'expansion' of the second one. If your process 
 Very few daemons/applications requires that feature, but it could be useful for tiny prototype applications or simply bad-designed ones.
 
 
-******
+
 Examples
-******
+********
 
 Managing a **memcached** instance in 'dumb' mode (whenever uWSGI is stopped/reloaded memcached is destroyed)
 
