@@ -21,6 +21,25 @@ To get started with uWSGI, take a look at the :doc:`Install` page. Then continue
   The mailing list is the best source for help regarding uWSGI.
 
 
+Table of Contents
+=================
+
+
+.. toctree::
+   :maxdepth: 1
+
+   Download
+   LanguagesAndPlatforms
+   WebServers
+   FAQ
+   Configuration
+   Options
+   AlarmSubsystem
+   AttachingDaemons
+
+
+.. include:: LanguagesAndPlatforms.rst
+
 .. include:: FeatureOverview.rst
 
 Contact
@@ -45,22 +64,6 @@ We will give credit to everyone who wants to sponsor new features.
 
 See the `old uWSGI site<http://projects.unbit.it/uwsgi/#Donateifyouwant>` for the donation link.
 You can also `donate via GitTip<https://www.gittip.com/unbit/>`.
-
-Table of Contents
-=================
-
-
-.. toctree::
-   :maxdepth: 1
-
-   Download
-   LanguagesAndPlatforms
-   WebServers
-   FAQ
-   Configuration
-   AlarmSubsystem
-   AttachingDaemons
-
 
 Indices and tables
 ==================
