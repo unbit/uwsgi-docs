@@ -92,7 +92,7 @@ Managing **delayed_job**
 Managing **dropbear**
 
 When using namespace option you can attach dropbear daemon (lightweight ssh server) to allow you direct access to system inside namespace.
-This requires that /dev/pts filesystem is mounted inside namespace and that the user your workers will be running as will have access to /etc/dropbear directory inside namespace.
+This requires that */dev/pts* filesystem is mounted inside namespace and that the user your workers will be running as will have access to */etc/dropbear* directory inside namespace.
 
 .. code-block:: ini
 
