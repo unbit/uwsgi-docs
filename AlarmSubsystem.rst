@@ -138,7 +138,7 @@ run a shell command (logline is passed to the stdin)
    cmd:<command>
  
 
-=== signal ===
+**signal**
 
 raise a [wiki:SignalFramework] uwsgi signal
 
@@ -146,7 +146,7 @@ raise a [wiki:SignalFramework] uwsgi signal
 signal:[signum]
 }}}
 
-=== mule ===
+**mule**
 
 send the logline to a mule waiting for [wiki:Mules messages]
 
