@@ -130,7 +130,8 @@ run in a thread (like the curl and xmpp one), while the simple ones (like signal
 Available plugins and their syntax
 **********************************
 
-**cmd**
+cmd
+^^^
 
 run a shell command (logline is passed to the stdin)
 
@@ -138,21 +139,21 @@ run a shell command (logline is passed to the stdin)
    cmd:<command>
  
 
-**signal**
+signal
+^^^^^^
 
 raise a [wiki:SignalFramework] uwsgi signal
 
-{{{
-signal:[signum]
-}}}
+.. parsed-literal::
+   signal:[signum]
 
-**mule**
+mule
+^^^^
 
 send the logline to a mule waiting for [wiki:Mules messages]
 
-{{{
-mule:[mule_id]
-}}}
+.. parsed-literal::
+   mule:[mule_id]
 
 
 curl
@@ -161,11 +162,11 @@ curl
 Send logline to a curl url. This is not compiled in by default, so if you need to build it just run
 
 .. parsed-literal::
-python uwsgiconfig.py --plugin plugins/alarm_curl
+   python uwsgiconfig.py --plugin plugins/alarm_curl
 
 
 .. parsed-literal::
-curl:<url>[;opt1=val1;opt2=val2]
+   curl:<url>[;opt1=val1;opt2=val2]
 
 
 url is a standard curl url, while the options currently exposed are
@@ -208,11 +209,11 @@ xmpp
 Probably the most funny one. You neeg libgloox to build it (apt-get install gloox-dev)
 
 .. parsed-literal::
-python uwsgiconfig.py --plugin plugins/alarm_xmpp
+   python uwsgiconfig.py --plugin plugins/alarm_xmpp
 
 
 .. parsed-literal::
-xmpp:<jid>;<password>;<recipients>
+   xmpp:<jid>;<password>;<recipients>
 
 
 you can set multiple recipients using ',' as delimiter
