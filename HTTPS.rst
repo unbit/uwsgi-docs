@@ -33,14 +33,15 @@ The ``https`` option takes an optional fourth argument you can use to specify th
 
 .. code-block:: ini
 
-  [uwsgi]
-  master = true
-  shared-socket = 0.0.0.0:443
-  uid = www-data
-  gid = www-data
-  
-  https = =0,foobar.crt,foobar.key,HIGH
-  http-to = /tmp/uwsgi.sock
+   [uwsgi]
+   master = true
+   shared-socket = 0.0.0.0:443
+   uid = www-data
+   gid = www-data
+   
+   https = =0,foobar.crt,foobar.key,HIGH
+   http-to = /tmp/uwsgi.sock
+
 
 This will set all of the `HIGH`est ciphers (whenever possible) for your SSL/TLS transactions.
 
