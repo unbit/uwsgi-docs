@@ -1,4 +1,4 @@
-HTTPS support (from 1.3-dev)
+HTTPS support (from 1.3)
 ============================
 
 Use the ``https <socket>,<certificate>,<key>`` option. This option may be specified multiple times.
@@ -28,7 +28,7 @@ uWSGI will bind to 443 on any IP, then drop privileges to those of ``roberto``, 
 Setting SSL/TLS ciphers
 -----------------------
 
-The ``https`` option takes an optional fourth argument you can use to specify the OpenSSL cipher suite::
+The ``https`` option takes an optional fourth argument you can use to specify the OpenSSL cipher suite
 
 .. code-block:: ini
 
@@ -73,7 +73,7 @@ Create a key and a CSR for your client, sign it with your CA and package it as P
   openssl pkcs12 -export -in client.crt -inkey client.key -name "Client 01" -out client.p12
 
 
-Then configure uWSGI for certificate client authentication::
+Then configure uWSGI for certificate client authentication
 
 .. code-block:: ini
 
