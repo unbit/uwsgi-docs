@@ -2,7 +2,7 @@ Current Core Features
 =====================
 
  * Written totally in C
- * Very fast (and simple) communication protocol for webservers integration (:doc:`Apache2`, :doc:`Nginx`, :doc:`Cherokee` and :doc:`Lighttpd` etc.)
+ * Very fast (and simple) communication protocol for webservers integration (:doc:`Apache`, :doc:`Nginx`, :doc:`Cherokee` and :doc:`Lighttpd` etc.)
  * Low memory footprint (thanks to evil premature optimizations)
  * Support for multiple application in the same process/domain
  * A master process manager that will allows you to automatically respawn processes and monitor the stack status. See :doc:`ProcessManagement`.

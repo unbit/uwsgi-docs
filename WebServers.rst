@@ -3,23 +3,29 @@ Web server integration
 
 uWSGI supports several methods of integrating with web servers. It is also capable of serving HTTP requests by itself.
 
-:doc:`Cherokee`
+Cherokee
 --------------
+
+.. seealso:: :doc:`Cherokee`
 
 The Cherokee webserver officially supports uWSGI.
 Cherokee is fast and lightweight, has a beautiful admin interface and a great community.
 Their support for uWSGI has been awesome since the beginning and we recommend its use in most situations.
 The userbase of the Cherokee uWSGI handler is probably the biggest of all. The Cherokee uWSGI handler is commercially supported by Unbit.
 
-:doc:`Nginx`
+Nginx
 ------------
+
+.. seealso:: :doc:`Nginx`
 
 The uWSGI module is included in the official Nginx distribution since version 0.8.40. A version supporting Nginx 0.7.x  is maintained in the uWSGI package.
 
 This is a stable handler commercially supported by Unbit.
 
-:doc:`Apache2`
---------------
+Apache
+------
+
+.. seealso:: :doc:`Apache`
 
 The Apache2 `mod_uwsgi` module was the first web server integration module developed for uWSGI.
 It is stable but could be better integrated with the Apache API.
@@ -30,8 +36,13 @@ Since uWSGI 0.9.6-dev a second Apache2 module called `mod_Ruwsgi` is included. I
 
 During the 1.2 development cycle, another module called `mod_proxy_uwsgi` has been added. In the near future this should be the best choice for Apache based deployments.
 
+
+
 Mongrel2
 --------
+
+.. seealso:: :doc:`Mongrel2`
+
 
 Support for the `Mongrel2 Project<http://mongrel2.org/>` has been available since 0.9.8-dev via the :doc:`ZeroMQ` protocol plugin.
 
