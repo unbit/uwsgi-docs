@@ -15,6 +15,7 @@ First generate your server key, certificate signing request, and self-sign the c
 
 Then start the server using the SSL certificate and key just generated::
 
+::
   uwsgi --master --https 0.0.0.0:8443,foobar.crt,foobar.key
 
 As port 443, the port normally used by HTTPS, is privileged (ie. non-root processes may not bind to it), you can use the shared socket mechanism and drop privileges after binding like thus::
