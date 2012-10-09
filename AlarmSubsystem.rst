@@ -1,4 +1,3 @@
-
 The uWSGI alarm subsystem (from 1.3) 
 ====================================
 
@@ -131,7 +130,7 @@ run in a thread (like the curl and xmpp one), while the simple ones (like signal
 Available plugins and their syntax
 **********************************
 
-=== cmd ===
+**cmd**
 
 run a shell command (logline is passed to the stdin)
 
