@@ -232,15 +232,20 @@ speech
 ^^^^^^
 
 A joke plugin for OSX, used mainly for showing objective-c integration with uWSGI.
-It simply uses the speechsyntesizer to 'announce' the alarm
+It simply uses the speechsynthesizer to 'announce' the alarm
+
+.. parsed-literal::
+   python uwsgiconfig.py --plugin plugins/alarm_speech
 
 .. code-block:: ini
 
    [uwsgi]
    plugins = alarm_speech
+   http-socket = :8080
    alarm = say speech:
    log-alarm = say .*
 
+turn on your amplifiers, run uWSGI and start listening...
 
 ******
 Notes
