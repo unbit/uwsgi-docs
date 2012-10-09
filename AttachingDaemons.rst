@@ -89,17 +89,4 @@ Managing **delayed_job**
    chdir = /var/apps/foobar
    smart-attach-daemon = %(chdir)/tmp/pids/delayed_job.pid %(chdir)/script/delayed_job start
 
-Managing **dropbear**
-
-When using namespace option you can attach dropbear daemon (lightweight ssh server) to allow you direct access to system inside namespace.
-This requires that */dev/pts* filesystem is mounted inside namespace and that the user your workers will be running as will have access to */etc/dropbear* directory inside namespace.
-
-.. code-block:: ini
-
-   [uwsgi]
-   namespace = /ns/001/:testns
-   namespace-keep-mount = /dev/pts
-   socket = :3031
-   exec-as-root = chown -R www-data /etc/dropbear
-   attach-daemon = /usr/sbin/dropbear -j -k -p 1022 -E -F -I 300
 
