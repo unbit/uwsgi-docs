@@ -209,19 +209,19 @@ Probably the most funny one. You neeg libgloox to build it (apt-get install gloo
 python uwsgiconfig.py --plugin plugins/alarm_xmpp
 }}}
 
-{{{
+.. literal::
 xmpp:<jid>;<password>;<recipients>
-}}}
+
 
 you can set multiple recipients using ',' as delimiter
 
 
-{{{
-#!ini
-[uwsgi]
-plugins = alarm_xmpp
-alarm = jabber xmpp:app@example.it;secret1;foo1@foo.it,foo2@foo.it
-}}}
+.. code-block:: ini
+
+   [uwsgi]
+   plugins = alarm_xmpp
+   alarm = jabber xmpp:app@example.it;secret1;foo1@foo.it,foo2@foo.it
+
 
 A very funny thing about the xmpp plugin is that you will se the jabber account of your app going down when your app dies...
 
