@@ -32,13 +32,25 @@ Table of Contents
    LanguagesAndPlatforms
    WebServers
    FAQ
+   ThingsToKnow
    Configuration
    Options
+   Vars
+   Protocol
    AlarmSubsystem
    AttachingDaemons
 
-
-.. include:: LanguagesAndPlatforms.rst
+Web Server support
+==================
+   
+.. toctree::
+   :maxdepth: 1
+ 
+   Apache
+   Cherokee
+   HTTP
+   Lighttpd
+   Nginx
 
 .. include:: FeatureOverview.rst
 
@@ -72,3 +84,14 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
+.. toctree::
+   :hidden:
+
+   FeatureOverview
+   HTTPS
+   LDAP
+   examples/README
+   tutorials/README
+   tips_and_tricks/README
+   README
+   
