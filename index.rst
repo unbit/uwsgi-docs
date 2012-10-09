@@ -5,7 +5,7 @@ uWSGI is a fast, self-healing and developer/sysadmin-friendly application contai
 
 Born as a WSGI-only server, over time it has evolved in a complete stack for networked/:doc:`clustered<Clustering>` web applications, implementing :doc:`message/object passing<CustomRouting>`, :doc:`caching<Caching>`, :doc:`RPC` and :doc:`process management<ProcessManagement>`.
 
-It uses the :doc:`uwsgi<Protocol>` protocol for all the networking/interprocess communications. The :doc:`Nginx` and :doc:`Cherokee` servers natively support the uwsgi protocol. Modules are available for other popular servers, including :doc:`Apache`. uWSGI can also speak other protocols, such as :doc:`HTTP`, :doc:`Mongrel2` and :doc:`FastCGI`.
+It uses the :doc:`uwsgi<Protocol>` protocol for all the networking/interprocess communications. The :doc:`Nginx<Nginx>` and :doc:`Cherokee<Cherokee>` servers natively support the uwsgi protocol. Modules are available for other popular servers, including :doc:`Apache<Apache>`. uWSGI can also speak other protocols, such as :doc:`HTTP<HTTP>`, ZeroMQ for :doc:`Mongrel2` and :doc:`FastCGI`.
 
 uWSGI can be run in preforking, threaded, :doc:`asynchronous/evented<Async>` and :doc:`green thread/coroutine<GreenThread>` modes. Various forms of green threads/coroutines are supported, including :doc:`uGreen`, Greenlet, Stackless, :doc:`Gevent` and :doc:`FiberLoop`.
 
