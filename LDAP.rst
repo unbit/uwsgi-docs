@@ -20,7 +20,7 @@ An example LDIF dump
 
 This is an LDIF dump of an OpenLDAP server with a `uWSGIConfig` entry, running a Trac instance.
 
-..
+.. code-block:: ldif
 
   dn: dc=projects,dc=unbit,dc=it
   objectclass: uWSGIConfig
