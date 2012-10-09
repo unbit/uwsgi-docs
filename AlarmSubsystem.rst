@@ -155,61 +155,63 @@ mule:[mule_id]
 }}}
 
 
-=== curl ===
+curl
+^^^^
 
 Send logline to a curl url. This is not compiled in by default, so if you need to build it just run
 
-{{{
+.. parsed-literal::
 python uwsgiconfig.py --plugin plugins/alarm_curl
-}}}
 
-{{{
+
+.. parsed-literal::
 curl:<url>[;opt1=val1;opt2=val2]
-}}}
+
 
 url is a standard curl url, while the options currently exposed are
 
-{{{
-#!c
-"url"
-"mail_to"
-"mail_from"
-"subject"
-"ssl"
-"auth_user"
-"auth_pass"
-"method"
-"timeout"
-"conn_timeout"
-}}}
+.. code-block:: c
+
+   "url"
+   "mail_to"
+   "mail_from"
+   "subject"
+   "ssl"
+   "auth_user"
+   "auth_pass"
+   "method"
+   "timeout"
+   "conn_timeout"
+
 
 so, for sending mail via SMTP AUTH:
 
-{{{
-#!ini
-[uwsgi]
-plugins = alarm_curl
-alarm = test curl:smtp://mail.example.com;mail_to=admin@example.com;mail_from=uwsgi@example.com;auth_user=uwsgi;auth_pass=secret;subject=alarm from uWSGI !!!
-}}}
+.. code-block:: ini
+
+   [uwsgi]
+   plugins = alarm_curl
+   alarm = test curl:smtp://mail.example.com;mail_to=admin@example.com;mail_from=uwsgi@example.com;auth_user=uwsgi;auth_pass=secret;subject=alarm from uWSGI !!!
+
 
 or to POST the logline to an http server protected with basic auth
 
-{{{
-#!ini
-[uwsgi]
-plugins = alarm_curl
-alarm = test2 curl:http://192.168.173.6:9191/argh;auth_user=topogigio;auth_pass=foobar
-}}}
+.. code-block:: ini
 
-=== xmpp ===
+   [uwsgi]
+   plugins = alarm_curl
+   alarm = test2 curl:http://192.168.173.6:9191/argh;auth_user=topogigio;auth_pass=foobar
+
+
+xmpp
+^^^^
 
 Probably the most funny one. You neeg libgloox to build it (apt-get install gloox-dev)
 
-{{{
+.. parsed-literal::
 python uwsgiconfig.py --plugin plugins/alarm_xmpp
-}}}
 
-.. literal::
+
+.. parsed-literal::
 xmpp:<jid>;<password>;<recipients>
 
 
