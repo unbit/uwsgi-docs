@@ -124,6 +124,10 @@ Process Management
 Process Management - Emperor
 ----------------------------
 
+.. seealso::
+
+   :doc:`Emperor`
+
 .. list-table::
    :header-rows: 1
    
@@ -191,6 +195,10 @@ Process Management - Emperor
 Process Management - Zerg
 -------------------------
 
+.. seealso::
+
+   :doc:`Zerg`
+
 .. list-table::
    :header-rows: 1
    
@@ -250,15 +258,16 @@ Debugging
 Configuration
 -------------
 
+.. seealso::
+
+   :doc:`Configuration`
+
 .. list-table::
    :header-rows: 1
    
    * - Option
      - Argument
      - Description
-   * - ``xml``, ``xmlconfig``
-     - string
-     - Load XML file as configuration. This option may be set with ``-x`` from the command line.
    * - ``set``
      - string
      - Set a custom placeholder for configuration.
@@ -268,27 +277,6 @@ Configuration
    * - ``inherit``
      - string
      - Use the specified file as configuration template.
-   * - ``ini``
-     - number
-     - Load config from ini file.
-   * - ``yaml``, ``yal``
-     - string
-     - Load config from yaml file. This option may be set with ``-y`` from the command line.
-   * - ``json``, ``js``
-     - string
-     - Load config from json file. This option may be set with ``-j`` from the command line.
-   * - ``sqlite3``, ``sqlite``
-     - number
-     - Load config from sqlite3 db.
-   * - ``ldap``
-     - number
-     - Load configuration from ldap server.
-   * - ``ldap-schema``
-     - \
-     - Dump uWSGI ldap schema.
-   * - ``ldap-schema-ldif``
-     - \
-     - Dump uWSGI ldap schema in ldif format.
    * - ``plugins``, ``plugin``
      - number
      - Load uWSGI plugins.
@@ -302,11 +290,42 @@ Configuration
      - \
      - Try to automatically load plugins when unknown options are found.
    * - ``dlopen``
-     - number
+     - string
      - Blindly load a shared library.
+   * - ``ini``
+     - number
+     - Load config from ini file.
+   * - ``xml``, ``xmlconfig``
+     - string
+     - Load XML file as configuration. This option may be set with ``-x`` from the command line.
+   * - ``yaml``, ``yal``
+     - string
+     - Load config from yaml file. This option may be set with ``-y`` from the command line.
+   * - ``json``, ``js``
+     - string
+     - Load config from json file. This option may be set with ``-j`` from the command line.
+   * - ``sqlite3``, ``sqlite``
+     - number
+     - Load config from sqlite3 db.
+   * - ``ldap``
+     - number
+     - Load configuration from ldap server.
+       See :doc:`LDAP` for more information.
+   * - ``ldap-schema``
+     - \
+     - Dump uWSGI ldap schema.
+       See :doc:`LDAP` for more information.
+   * - ``ldap-schema-ldif``
+     - \
+     - Dump uWSGI ldap schema in ldif format.
+       See :doc:`LDAP` for more information.
 
-Option logic
+Config logic
 ------------
+
+.. seealso::
+
+   :doc:`ConfigLogic`
 
 .. list-table::
    :header-rows: 1
@@ -328,7 +347,7 @@ Option logic
      - Check for lack of option.
    * - ``if-env``, ``ifenv``
      - string
-     - Check for environment variable).
+     - Check for environment variable.
    * - ``if-not-env``
      - string
      - Check for lack of environment variable.
@@ -362,6 +381,10 @@ Option logic
 
 Logging
 -------
+
+.. seealso::
+
+   :doc:`Logging`
 
 .. list-table::
    :header-rows: 1
@@ -796,6 +819,10 @@ Locks
 Cache
 -----
 
+.. seealso::
+
+   :doc:`Caching`
+
 .. list-table::
    :header-rows: 1
    
@@ -833,6 +860,10 @@ Cache
 Queue
 -----
 
+.. seealso::
+
+   :doc:`Queue`
+
 .. list-table::
    :header-rows: 1
    
@@ -854,6 +885,10 @@ Queue
 
 Spooler
 -------
+
+.. seealso::
+
+   :doc:`Spooler`
 
 .. list-table::
    :header-rows: 1
@@ -888,6 +923,10 @@ Spooler
 
 Mules
 -----
+
+.. seealso::
+
+   :doc:`Mules`
 
 .. list-table::
    :header-rows: 1
@@ -1052,6 +1091,10 @@ Clustering
 Subscriptions
 -------------
 
+.. seealso::
+
+   :doc:`SubscriptionServer`
+
 .. list-table::
    :header-rows: 1
    
@@ -1085,6 +1128,10 @@ Subscriptions
 
 Router
 ------
+
+.. seealso::
+
+   :doc:`InternalRouting`
 
 .. list-table::
    :header-rows: 1

@@ -11,13 +11,14 @@ def transmogrify_name(name):
         return [unicode(name) for name in name]    
 
 class Option:
-    def __init__(self, name, type, desc, short_name, optional, multiple):
+    def __init__(self, name, type, desc, short_name, optional, multiple, docs = ()):
         self.names = transmogrify_name(name)
         self.type = type
         self.desc = desc
         self.short_name = short_name
         self.optional = optional
         self.multiple = multiple
+        self.docs = sorted(docs)
 
     def get_argument(self):
         if self.type is int:
@@ -53,9 +54,10 @@ class Option:
         return desc
 
 class Section:
-    def __init__(self, name):
+    def __init__(self, name, docs = []):
         self.name = name
         self.options = []
+        self.docs = sorted(docs)
 
     def __enter__(self):
         return self
@@ -63,7 +65,7 @@ class Section:
     def __exit__(self, et, ev, tb):
         pass
 
-    def define_option(self, name, type, desc, short_name=None):
+    def define_option(self, name, type, desc, short_name=None, docs = []):
         if isinstance(type, _Optional):
             optional = True
             type = type.inner
@@ -95,7 +97,7 @@ class Config(object):
     def __init__(self):
         self.sections = []
 
-    def section(self, name):
-        section = Section(name)
+    def section(self, name, docs=()):
+        section = Section(name, docs)
         self.sections.append(section)
         return section
