@@ -228,6 +228,20 @@ you can set multiple recipients using ',' as delimiter
 
 A very funny thing about the xmpp plugin is that you will se the jabber account of your app going down when your app dies...
 
+speech
+^^^^^^
+
+A joke plugin for OSX, used mainly for showing objective-c integration with uWSGI.
+It simply uses the speechsyntesizer to 'announce' the alarm
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugins = alarm_speech
+   alarm = say speech:
+   log-alarm = say .*
+
+
 ******
 Notes
 ******
