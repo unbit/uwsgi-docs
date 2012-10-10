@@ -26,7 +26,7 @@ Table of Contents
 =================
 
 
-.. toctree::
+.. contents::
    :maxdepth: 1
 
    Download
