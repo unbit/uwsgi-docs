@@ -70,7 +70,7 @@ And load-balance to multiple nodes:
 HTTPS support
 -------------
 
-.. seealso:: :doc:`HTTPS`
+see `HTTPS <HTTPS.rst>`_
 
 HTTP Keep-Alive
 ---------------
