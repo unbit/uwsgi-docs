@@ -45,7 +45,7 @@ def add_core_options(config):
 		s.o("threads-stack-size", int, "set threads stacksize")
 		s.o("check-interval", int, "set the interval (in seconds) of master checks")
 
-	with sec("Process Management - Emperor") as s:
+	with sec("Process Management - Emperor", docs = ["Emperor"]) as s:
 		s.o("emperor", [str], "run as the Emperor")
 		s.o("emperor-freq", int, "set the Emperor scan frequency (default 3 seconds)")
 		s.o("emperor-required-heartbeat", int, "set the Emperor tolerance about heartbeats")
@@ -68,7 +68,7 @@ def add_core_options(config):
 		s.o("auto-snapshot", o_int, "automatically make workers snapshot after reload")
 		s.o("reload-mercy", int, "set the maximum time (in seconds) a worker can take to reload/shutdown")
 
-	with sec("Process Management - Zerg") as s:
+	with sec("Process Management - Zerg", docs = ["Zerg"]) as s:
 		s.o("zerg", [str], "attach to a zerg server")
 		s.o("zerg-fallback", True, "fallback to normal sockets if the zerg server is not available")
 		s.o("zerg-server", str, "enable the zerg server on the specified UNIX socket")
@@ -87,35 +87,34 @@ def add_core_options(config):
 		s.o("allowed-modifiers", str, "comma separated list of allowed modifiers")
 		s.o("connect-and-read", "str", "connect to a socket and wait for data from it")
 
-	with sec("Configuration") as s:
-		s.o(("xml", "xmlconfig"), str, "Load XML file as configuration", short_name="x")
+	with sec("Configuration", docs = ["Configuration"]) as s:
 		s.o("set", str, "Set a custom placeholder for configuration")
 		s.o("declare-option", str, "Declare a new custom uWSGI option")
 		s.o("inherit", str, u"Use the specified file as configuration template")
-		s.o("ini", int, "load config from ini file")
-		s.o("yaml", str, "load config from yaml file", short_name="y")
-		s.o("yal", str, "load config from yaml file", short_name="y")
-		s.o("json", str, "load config from json file", short_name="j")
-		s.o("js", str, "load config from json file", short_name="j")
-		s.o("sqlite3", int, "load config from sqlite3 db")
-		s.o("sqlite", int, "load config from sqlite3 db")
-		s.o("ldap", int, "load configuration from ldap server")
-		s.o("ldap-schema", True, "dump uWSGI ldap schema")
-		s.o("ldap-schema-ldif", True, "dump uWSGI ldap schema in ldif format")
 		s.o(("plugins", "plugin"), int, "load uWSGI plugins")
 		s.o(("plugins-dir", "plugin-dir"), [str], "add a directory to uWSGI plugin search path")
 		s.o(("plugins-list", "plugin-list"), True, "list enabled plugins")
 		s.o("autoload", True, "try to automatically load plugins when unknown options are found")
-		s.o("dlopen", int, "blindly load a shared library")
+		s.o("dlopen", str, "blindly load a shared library")
+
+		s.o("ini", int, "load config from ini file")
+		s.o(("xml", "xmlconfig"), str, "Load XML file as configuration", short_name="x")
+		s.o(("yaml", "yal"), str, "load config from yaml file", short_name="y")
+		s.o(("json", "js"), str, "load config from json file", short_name="j")
+		s.o(("sqlite3", "sqlite"), int, "load config from sqlite3 db")
+		s.o("ldap", int, "load configuration from ldap server", docs = ["LDAP"])
+		s.o("ldap-schema", True, "dump uWSGI ldap schema", docs = ["LDAP"])
+		s.o("ldap-schema-ldif", True, "dump uWSGI ldap schema in ldif format", docs = ["LDAP"])
+		
 
 
 
-	with sec("Option logic") as s:
+	with sec("Config logic", docs = ["ConfigLogic"]) as s:
 		s.o("for", str, "For cycle")
 		s.o("endfor", optional(str), "End for cycle")
 		s.o("if-opt", str, "Check for option")
 		s.o("if-not-opt", str, "Check for lack of option")
-		s.o(("if-env", "ifenv"), str, "Check for environment variable)")
+		s.o(("if-env", "ifenv"), str, "Check for environment variable")
 		s.o("if-not-env", str, "Check for lack of environment variable")
 		s.o("if-reload", str, "Check for reload")
 		s.o("if-not-reload", str, "Check for lack of reload")
@@ -127,7 +126,7 @@ def add_core_options(config):
 		s.o("if-not-dir", str, "Check for directory inexistence")
 		s.o("endif", optional(str), "End if block")
 
-	with sec("Logging") as s:
+	with sec("Logging", docs = ["Logging"]) as s:
 		s.o("disable-logging", True, "disable request logging", short_name="L")
 		s.o("ignore-sigpipe", True, "do not report (annoying) SIGPIPE")
 		s.o("ignore-write-errors", True, "do not report (annoying) write()/writev() errors")
@@ -273,7 +272,7 @@ def add_core_options(config):
 		s.o("flock2", str, "lock the specified file after logging/daemon setup, exit if locked")
 		s.o("flock-wait2", str, "lock the specified file after logging/daemon setup, wait if locked")
 
-	with sec("Cache") as s:	
+	with sec("Cache", docs=["Caching"]) as s:	
 		s.o("cache", int, "create a shared cache containing given elements")
 		s.o("cache-blocksize", int, "set cache blocksize")
 		s.o("cache-store", str, "enable persistent cache to disk")
@@ -284,13 +283,13 @@ def add_core_options(config):
 		s.o("cache-expire-freq", int, "set the frequency of cache sweeper scans (default 3 seconds)")
 		s.o("cache-report-freed-items", True, "constantly report the cache item freed by the sweeper (use only for debug)")
 
-	with sec("Queue") as s:
+	with sec("Queue", docs=["Queue"]) as s:
 		s.o("queue", int, "Enable the shared queue with the given size.")
 		s.o("queue-blocksize", int, "Set the block size for the queue")
 		s.o("queue-store", "filename", "Enable periodical persisting of the queue to disk")
 		s.o("queue-store-sync", int, "Set periodical persisting frequency in seconds")
 
-	with sec("Spooler") as s:
+	with sec("Spooler", docs=["Spooler"]) as s:
 		s.o("spooler", str, "run a spooler on the specified directory", short_name='Q')
 		s.o("spooler-external", str, "map spooler requests to a spooler directory managed by an external instance")
 		s.o("spooler-ordered", True, "try to order the execution of spooler tasks")
@@ -300,7 +299,7 @@ def add_core_options(config):
 		s.o("spooler-max-tasks", int, "set the maximum number of tasks to run before recycling a spooler")
 	 	s.o("spooler-harakiri", int, "set harakiri timeout for spooler tasks")
 
-	with sec("Mules") as s:
+	with sec("Mules", docs=["Mules"]) as s:
 		s.o("mule", [str], "add a mule (signal-only mode without argument)")
 		s.o("mules", int, "add the specified number of mules")
 		s.o("farm", str, "add a mule farm")
@@ -351,7 +350,7 @@ def add_core_options(config):
 		s.o("cluster-reload", str, "send a reload message to the cluster")
 		s.o("cluster-log", str, "send a log line to the cluster")
 	
-	with sec("Subscriptions") as s:
+	with sec("Subscriptions", docs=["SubscriptionServer"]) as s:
 		s.o("subscriptions-sign-check", str, "set digest algorithm and certificate directory for secured subscription system")
 		s.o("subscriptions-sign-check-tolerance", int, "set the maximum tolerance (in seconds) of clock skew for secured subscription system")
 		s.o("subscription-algo", str, "set load balancing algorithm for the subscription system")
@@ -362,7 +361,7 @@ def add_core_options(config):
 		s.o("subscription-tolerance", int, "set tolerance for subscription servers")
 		s.o("unsubscribe-on-graceful-reload", True, "force unsubscribe request even during graceful reload")
 	
-	with sec("Router") as s:
+	with sec("Router", docs=["InternalRouting"]) as s:
 		s.o("route", [str], "add a route")
 		s.o("route-host", [str], "add a route based on Host header")
 		s.o("route-uri", [str], "add a route based on REQUEST_URI")
