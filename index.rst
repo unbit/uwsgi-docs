@@ -1,17 +1,18 @@
-Welcome to uWSGI's documentation!
-=================================
+The uWSGI project
+=================
 
-uWSGI is a fast, self-healing and developer/sysadmin-friendly application container server coded in pure C.
+uWSGI is an extremely advanced, sysadmin-friendly, highly-modular application container server coded in C.
 
-Born as a WSGI-only server, over time it has evolved in a complete stack for networked/:doc:`clustered<Clustering>` web applications, implementing :doc:`message/object passing<CustomRouting>`, :doc:`caching<Caching>`, :doc:`RPC` and :doc:`process management<ProcessManagement>`.
+It can communicate with your front-end webserver via HTTP, FastCGI, ZeroMQ and its highly specified/optimized protocol
+named 'uwsgi' (all-lowercase) already supported out-of-the-box by a lot of webservers.
 
-It uses the :doc:`uwsgi<Protocol>` protocol for all the networking/interprocess communications. The :doc:`Nginx<Nginx>` and :doc:`Cherokee<Cherokee>` servers natively support the uwsgi protocol. Modules are available for other popular servers, including :doc:`Apache<Apache>`. uWSGI can also speak other protocols, such as :doc:`HTTP<HTTP>`, ZeroMQ for :doc:`Mongrel2` and :doc:`FastCGI`.
+Born as a simple WSGI-only server, over time it has evolved in a complete stack for networked/:doc:`clustered<Clustering>` web applications, implementing :doc:`message/object passing<CustomRouting>`, :doc:`caching<Caching>`, :doc:`RPC` and :doc:`process management<ProcessManagement>`.
 
 uWSGI can be run in preforking, threaded, :doc:`asynchronous/evented<Async>` and :doc:`green thread/coroutine<GreenThread>` modes. Various forms of green threads/coroutines are supported, including :doc:`uGreen`, Greenlet, Stackless, :doc:`Gevent` and :doc:`FiberLoop`.
 
 Sysadmins will love it as it can be :doc:`configured via several methods<Configuration>`, including command line, environment variables, XML, INI, YAML, JSON, SQLite and LDAP.
 
-On top of all this, it is designed to be fully modular. This means that different plugins can be used in order to add compatibility with tons of different technology on top of the same solid core.
+Thanks to its pluggable architecture it can be extended without limits to support more platforms and languages.
 
 To get started with uWSGI, take a look at the :doc:`Install` page. Then continue to :doc:`Quickstart` or if you are feeling daring, the :doc:`Options` page. Some example configurations are available on the :doc:`Examples` page.
 
