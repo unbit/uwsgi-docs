@@ -100,7 +100,7 @@ if-dir
 
 Check if the given path exists and is a directory. The context placeholder is set to the filename found.
 
-.. code-block:: yml
+.. code-block:: yaml
 
   uwsgi:
     socket: 4040
