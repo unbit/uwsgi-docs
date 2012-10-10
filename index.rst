@@ -1,7 +1,7 @@
 The uWSGI project
 =================
 
-uWSGI is an extremely advanced, sysadmin-friendly, highly-modular application container server coded in C.
+uWSGI is an extremely advanced, sysadmin-friendly, highly-modular **application container server** coded in C.
 
 It can communicate with your front-end webserver via HTTP, FastCGI, ZeroMQ and its highly specified/optimized protocol
 named 'uwsgi' (all-lowercase) already supported out-of-the-box by a lot of webservers.
@@ -12,7 +12,7 @@ uWSGI can be run in preforking, threaded, :doc:`asynchronous/evented<Async>` and
 
 Sysadmins will love it as it can be :doc:`configured via several methods<Configuration>`, including command line, environment variables, XML, INI, YAML, JSON, SQLite and LDAP.
 
-Thanks to its pluggable architecture it can be extended without limits to support more platforms and languages.
+Thanks to its pluggable architecture it can be extended without limits to support more platforms and languages. Currently, you can write plugins in C, C++ and Objective-C
 
 To get started with uWSGI, take a look at the :doc:`Install` page. Then continue to :doc:`Quickstart` or if you are feeling daring, the :doc:`Options` page. Some example configurations are available on the :doc:`Examples` page.
 
