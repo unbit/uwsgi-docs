@@ -270,6 +270,10 @@ Process Management - Zerg
      - string
      - Enable the zerg server on the specified UNIX socket.
      - \
+   * - ``zergpool``, ``zerg-pool``
+     - string
+     - Start a zergpool on specified address for specified address (zergpool plugin). *This option may be declared multiple times.*
+     - \
 
 Debugging
 ^^^^^^^^^
@@ -562,22 +566,6 @@ Logging
      - *regexp*
      - Drain (do not show) log lines matching the specified regexp. *This option may be declared multiple times.*
      - \
-   * - ``alarm``
-     - string
-     - Create a new alarm. Syntax: <alarm> <plugin:args>. *This option may be declared multiple times.*
-     - \
-   * - ``alarm-freq``
-     - number
-     - Tune the alarm anti-loop system (default 3 seconds).
-     - \
-   * - ``log-alarm``
-     - string
-     - Raise the specified alarm when a log line matches the specified regexp, syntax: <alarm>[,alarm...] <regexp>. *This option may be declared multiple times.*
-     - \
-   * - ``alarm-list``, ``alarms-list``
-     - \
-     - List enabled alarms.
-     - \
    * - ``log-zeromq``
      - string
      - Send logs to a ZeroMQ server.
@@ -657,6 +645,37 @@ Logging
    * - ``snmp-community``
      - string
      - Set the SNMP community string.
+     - \
+
+Alarms
+^^^^^^
+
+.. seealso::
+
+   :doc:`Alarms`
+
+.. list-table::
+   :header-rows: 1
+   
+   * - Option
+     - Argument
+     - Description
+     - Docs
+   * - ``alarm``
+     - string
+     - Create a new alarm. Syntax: <alarm> <plugin:args>. *This option may be declared multiple times.*
+     - \
+   * - ``alarm-freq``
+     - number
+     - Tune the alarm anti-loop system (default 3 seconds).
+     - \
+   * - ``log-alarm``
+     - string
+     - Raise the specified alarm when a log line matches the specified regexp, syntax: <alarm>[,alarm...] <regexp>. *This option may be declared multiple times.*
+     - \
+   * - ``alarm-list``, ``alarms-list``
+     - \
+     - List enabled alarms.
      - \
 
 uWSGI Process

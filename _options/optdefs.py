@@ -68,7 +68,7 @@ def core_options():
 		s.o("zerg", [str], "attach to a zerg server")
 		s.o("zerg-fallback", True, "fallback to normal sockets if the zerg server is not available")
 		s.o("zerg-server", str, "enable the zerg server on the specified UNIX socket")
-
+		s.o(("zergpool", "zerg-pool"), [str], "start a zergpool on specified address for specified address (zergpool plugin)")
 
 
 	with config.section("Debugging") as s:
@@ -141,10 +141,6 @@ def core_options():
 		s.o(("logger-list", "loggers-list"), True, "list enabled loggers")
 		s.o("threaded-logger", True, "offload log writing to a thread")
 		s.o("log-drain", ["regexp"], "drain (do not show) log lines matching the specified regexp")
-		s.o("alarm", [str], "Create a new alarm. Syntax: <alarm> <plugin:args>")
-		s.o("alarm-freq", int, "tune the alarm anti-loop system (default 3 seconds)")
-		s.o("log-alarm", [str], "raise the specified alarm when a log line matches the specified regexp, syntax: <alarm>[,alarm...] <regexp>")
-		s.o(("alarm-list", "alarms-list"), True, "list enabled alarms")
 		s.o("log-zeromq", str, "send logs to a ZeroMQ server")
 		s.o("log-master", True, "delegate logging to master process")
 		s.o("log-master-bufsize", int, "Set the buffer size for the master logger. Log messages larger than this will be truncated.")
@@ -165,6 +161,13 @@ def core_options():
 		s.o("ssl-verbose", True, "be verbose about SSL errors")
 		s.o("snmp", [str], "Enable the embedded SNMP server")
 		s.o("snmp-community", str, "Set the SNMP community string")
+
+	with config.section("Alarms", docs = ["Alarms"]) as s:
+		s.o("alarm", [str], "Create a new alarm. Syntax: <alarm> <plugin:args>")
+		s.o("alarm-freq", int, "tune the alarm anti-loop system (default 3 seconds)")
+		s.o("log-alarm", [str], "raise the specified alarm when a log line matches the specified regexp, syntax: <alarm>[,alarm...] <regexp>")
+		s.o(("alarm-list", "alarms-list"), True, "list enabled alarms")
+
 
 	with config.section("uWSGI Process") as s:
 		s.o("daemonize", "logfile", "daemonize uWSGI, write messages into given log file or UDP socket address")
@@ -468,4 +471,212 @@ def erlang_options():
 	with config.section("Erlang", docs = ["Erlang"]) as s:
 		s.o("erlang", str, "spawn an Erlang c-node")
 		s.o("erlang-cookie", str, "set Erlang cookie")
+	return config
+
+def fastrouter_options():
+	config = Config("Fastrouter")
+	with config.section("Fastrouter", docs = ["Fastrouter"]) as s:
+		s.o("fastrouter", 'corerouter', "run the fastrouter on the specified port")
+		s.o(("fastrouter-processes", "fastrouter-workers"), int, "prefork the specified number of fastrouter processes")
+		s.o("fastrouter-zerg", 'corerouter zerg', "attach the fastrouter to a zerg server")
+		s.o("fastrouter-use-cache", True, "use uWSGI cache as hostname->server mapper for the fastrouter")
+		s.o("fastrouter-use-pattern", 'corerouter use pattern', "use a pattern for fastrouter hostname->server mapping")
+		s.o("fastrouter-use-base", 'corerouter use base', "use a base dir for fastrouter hostname->server mapping")
+		s.o("fastrouter-fallback", [str], "fallback to the specified node in case of error")
+		s.o("fastrouter-use-cluster", True, "load balance to nodes subscribed to the cluster")
+		s.o("fastrouter-use-code-string", 'corerouter cs', "use code string as hostname->server mapper for the fastrouter")
+		s.o("fastrouter-use-socket", optional('corerouter use socket'), "forward request to the specified uwsgi socket")
+		s.o("fastrouter-to", [str], "forward requests to the specified uwsgi server (you can specify it multiple times for load balancing)")
+		s.o("fastrouter-gracetime", int, "retry connections to dead static nodes after the specified amount of seconds")
+		s.o("fastrouter-events", int, "set the maximum number of concurrent events")
+		s.o("fastrouter-quiet", True, "do not report failed connections to instances")
+		s.o("fastrouter-cheap", True, "run the fastrouter in cheap mode")
+		s.o("fastrouter-subscription-server", 'corerouter ss', "run the fastrouter subscription server on the specified address")
+		s.o("fastrouter-timeout", int, "set fastrouter timeout")
+		s.o("fastrouter-post-buffering", long, "enable fastrouter post buffering")
+		s.o("fastrouter-post-buffering-dir", str, "put fastrouter buffered files to the specified directory")
+		s.o(("fastrouter-stats", "fastrouter-stats-server", "fastrouter-ss"), str, "run the fastrouter stats server")
+		s.o("fastrouter-harakiri", int, "enable fastrouter harakiri")
+	return config
+
+
+def http_options():
+	config = Config("HTTP support")
+	with config.section("HTTP", docs = ["HTTP"]) as s:
+		s.o("http", 'address', "add an http router/server on the specified address")
+		s.o(("http-processes", "http-workers"), int, "set the number of http processes to spawn")
+		s.o("http-var", [str], "add a key=value item to the generated uwsgi packet")
+		s.o("http-to", [str], "forward requests to the specified node (you can specify it multiple time for lb)")
+		s.o("http-zerg", 'corerouter zerg', "attach the http router to a zerg server")
+		s.o("http-fallback", [str], "fallback to the specified node in case of error")
+		s.o("http-modifier1", int, "set uwsgi protocol modifier1")
+		s.o("http-use-cache", True, "use uWSGI cache as key->value virtualhost mapper")
+		s.o("http-use-pattern", 'corerouter use pattern', "use the specified pattern for mapping requests to unix sockets")
+		s.o("http-use-base", 'corerouter use base', "use the specified base for mapping requests to unix sockets")
+		s.o("http-use-cluster", True, "load balance to nodes subscribed to the cluster")
+		s.o("http-events", int, "set the number of concurrent http async events")
+		s.o("http-subscription-server", 'corerouter ss', "enable the subscription server")
+		s.o("http-timeout", int, "set internal http socket timeout")
+		s.o("http-manage-expect", True, "manage the Expect HTTP request header")
+		s.o("http-keepalive", True, "support HTTP keepalive (non-pipelined) requests (requires backend support)")
+		s.o("http-raw-body", True, "blindly send HTTP body to backends (required for WebSockets and Icecast support)")
+		s.o("http-use-code-string", 'corerouter cs', "use code string as hostname->server mapper for the http router")
+		s.o("http-use-socket", optional('corerouter use socket'), "forward request to the specified uwsgi socket")
+		s.o("http-gracetime", int, "retry connections to dead static nodes after the specified amount of seconds")
+		s.o("http-quiet", True, "do not report failed connections to instances")
+		s.o("http-cheap", True, "run the http router in cheap mode")
+		s.o(("http-stats", "http-stats-server", "http-ss"), str, "run the http router stats server")
+		s.o("http-harakiri", int, "enable http router harakiri")
+
+	with config.section("HTTPS", docs = ["HTTPS"]) as s:
+		s.o("https", 'https config', "add an https router/server on the specified address with specified certificate and key")
+		s.o("https-export-cert", True, "export uwsgi variable HTTPS_CC containing the raw client certificate")
+		s.o("http-to-https", 'address', "add an HTTP router/server on the specified address and redirect all of the requests to HTTPS")
+	return config
+
+def jvm_options():
+	config = Config("JVM")
+	with config.section("JVM", docs = ["JVM"]) as s:
+		s.o("jvm-main-class", str, "load the specified class")
+		s.o("jvm-classpath", [str], "add the specified directory to the classpath")
+	return config
+
+def lua_options():
+	config = Config("Lua")
+	
+	with config.section("Lua", docs = ["Lua"]) as s:
+		s.o("lua", str, "load lua wsapi app")
+	
+	return config
+
+
+def nagios_options():
+	config = Config("Nagios")
+	
+	with config.section("Nagios output", docs = ["Nagios"]) as s:
+		s.o("nagios", True, "Output Nagios-friendly status check information")
+	
+	return config
+
+
+def pam_options():
+	config = Config("PAM")
+	
+	with config.section("PAM", docs = ["PAM"]) as s:
+		s.o("pam", str, "set the pam service name to use")
+		s.o("pam-user", str, "set a fake user for pam")
+	
+	return config
+
+
+def php_options():
+	config = Config("PHP")
+	
+	with config.section("PHP", docs = ["PHP"]) as s:
+		s.o(("php-ini", "php-config"), 'php ini', "set php.ini path")
+		s.o(("php-ini-append", "php-config-append"), [str], "set php.ini path (append mode)")
+		s.o("php-set", [str], "set a php config directive")
+		s.o("php-index", [str], "list the php index files")
+		s.o("php-docroot", str, "force php DOCUMENT_ROOT")
+		s.o("php-allowed-docroot", [str], "list the allowed document roots")
+		s.o("php-allowed-ext", [str], "list the allowed php file extensions")
+		s.o("php-server-software", str, "force php SERVER_SOFTWARE")
+		s.o("php-app", str, "force the php file to run at each request")
+		s.o("php-dump-config", True, "dump php config (if modified via --php-set or append options)")
+	
+	return config
+
+
+def ping_options():
+	config = Config("Ping")
+	
+	with config.section("Ping", docs = ["Ping"]) as s:
+		s.o("ping", str, "ping specified uwsgi host")
+		s.o("ping-timeout", int, "set ping timeout")
+	
+	return config
+
+
+def perl_options():
+	config = Config("Perl (PSGI plugin)")
+	
+	with config.section("Perl", docs = ["Perl"]) as s:
+		s.o("psgi", str, "load a psgi app")
+		s.o("perl-no-die-catch", True, "do not catch $SIG{__DIE__}")
+		s.o("perl-local-lib", str, "set perl locallib path")
+	
+	return config
+
+
+def ruby_options():
+	config = Config("Ruby")
+	
+	with config.section("Ruby", docs = ["Ruby"]) as s:
+		s.o("rails", str, "load a Ruby on Rails <= 2.x app")
+		s.o("rack", str, "load a Rack app")
+		s.o(("ruby-gc-freq", "rb-gc-freq"), int, "set Ruby GC frequency")
+		s.o(("rb-require", "ruby-require", "rbrequire", "rubyrequire", "require"), [str], "import/require a Ruby module/script")
+		s.o(("shared-rb-require", "shared-ruby-require", "shared-rbrequire", "shared-rubyrequire", "shared-require"), [str], "import/require a Ruby module/script (shared)")
+		s.o(("gemset", "rvm"), str, "load the specified gemset (rvm)")
+		s.o("rvm-path", [str], "search for rvm in the specified directory")
+		s.o("rbshell", optional(True), "run a Ruby/irb shell")
+		s.o(("rb-threads", "rbthreads", "ruby-threads"), int, "set the number of Ruby threads to run (Ruby 1.9+)")
+	
+	return config
+
+
+def rawrouter_options():
+	config = Config("Rawrouter")
+	
+	with config.section("Rawrouter", docs = ["Rawrouter"]) as s:
+		s.o("rawrouter", 'corerouter', "run the rawrouter on the specified port")
+		s.o(("rawrouter-processes", "rawrouter-workers"), int, "prefork the specified number of rawrouter processes")
+		s.o("rawrouter-zerg", 'corerouter zerg', "attach the rawrouter to a zerg server")
+		s.o("rawrouter-use-cache", True, "use uWSGI cache as address->server mapper for the rawrouter")
+		s.o("rawrouter-use-pattern", 'corerouter use pattern', "use a pattern for rawrouter address->server mapping")
+		s.o("rawrouter-use-base", 'corerouter use base', "use a base dir for rawrouter address->server mapping")
+		s.o("rawrouter-fallback", [str], "fallback to the specified node in case of error")
+		s.o("rawrouter-use-cluster", True, "load balance to nodes subscribed to the cluster")
+		s.o("rawrouter-use-code-string", 'corerouter cs', "use code string as address->server mapper for the rawrouter")
+		s.o("rawrouter-use-socket", optional('corerouter use socket'), "forward request to the specified uwsgi socket")
+		s.o("rawrouter-to", [str], "forward requests to the specified uwsgi server (you can specify it multiple times for load balancing)")
+		s.o("rawrouter-gracetime", int, "retry connections to dead static nodes after the specified amount of seconds")
+		s.o("rawrouter-events", int, "set the maximum number of concurrent events")
+		s.o("rawrouter-quiet", True, "do not report failed connections to instances")
+		s.o("rawrouter-cheap", True, "run the rawrouter in cheap mode")
+		s.o("rawrouter-subscription-server", 'corerouter ss', "run the rawrouter subscription server on the spcified address")
+		s.o("rawrouter-timeout", int, "set rawrouter timeout")
+		s.o(("rawrouter-stats", "rawrouter-stats-server", "rawrouter-ss"), str, "run the rawrouter stats server")
+		s.o("rawrouter-harakiri", int, "enable rawrouter harakiri")
+	
+	return config
+
+
+def rrdtool_options():
+	config = Config("RRDtool")
+	
+	with config.section("RRDtool", docs = ["RRDtool"]) as s:
+		s.o("rrdtool", [str], "collect request data in the specified rrd file")
+		s.o("rrdtool-freq", int, "set collect frequency")
+		s.o("rrdtool-max-ds", int, "set maximum number of data sources")
+	
+	return config
+
+
+def async_options():
+	config = Config("Async engines")
+	
+	with config.section("Greenlet", docs = ["Greenlet"]) as s:
+		s.o("greenlet", True, "enable greenlet as suspend engine")
+	
+	with config.section("Gevent", docs = ["Gevent"]) as s:
+		s.o("gevent", int, "a shortcut enabling gevent loop engine with the specified number of async cores and optimal parameters")
+	
+	with config.section("Stackless", docs = ["Stackless"]) as s:
+		s.o("stackless", True, "use stackless as suspend engine")
+
+	with config.section("uGreen", docs = ["uGreen"]) as s:
+		s.o("ugreen", True, "enable ugreen coroutine subsystem")
+		s.o("ugreen-stacksize", int, "set ugreen stack size in pages")
+	
 	return config

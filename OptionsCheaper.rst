@@ -18,19 +18,19 @@ Busyness Cheaper algorithm
      - Description
      - Docs
    * - ``cheaper-busyness-max``
-     - *<type 'long'>*
+     - number
      - Set the cheaper busyness high percent limit, above that value worker is considered loaded (default 50).
      - \
    * - ``cheaper-busyness-min``
-     - *<type 'long'>*
+     - number
      - Set the cheaper busyness low percent limit, belowe that value worker is considered idle (default 25).
      - \
    * - ``cheaper-busyness-multiplier``
-     - *<type 'long'>*
+     - number
      - Set initial cheaper multiplier, worker needs to be idle for cheaper-overload*multiplier seconds to be cheaped (default 10).
      - \
    * - ``cheaper-busyness-penalty``
-     - *<type 'long'>*
+     - number
      - Penalty for respawning workers to fast, it will be added to the current multiplier value if worker is cheaped and than respawned back too fast (default 2).
      - \
    * - ``cheaper-busyness-verbose``
@@ -42,7 +42,7 @@ Busyness Cheaper algorithm
      - Spawn emergency worker if anytime listen queue is higher than this value (default 33) (Linux only).
      - \
    * - ``cheaper-busyness-backlog-multiplier``
-     - *<type 'long'>*
+     - number
      - Set cheaper multiplier used for emergency workers (default 3) (Linux only).
      - \
    * - ``cheaper-busyness-backlog-step``

@@ -23,6 +23,8 @@ class Option:
     def get_argument(self):
         if self.type is int:
             argument_desc = "number"
+        elif self.type is long:
+            argument_desc = "number"
         elif self.type is str:
             argument_desc = "string"
         elif self.type is True:

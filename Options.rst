@@ -6,17 +6,53 @@ Configuration Options
 
 uWSGI and the various plugins it consists of is almost infinitely configurable.
 
+You can peruse the options page for each plugin, or scroll a little further down for an exhaustive and exhausting list of all options.
+
+
+.. toctree::
+   :maxdepth: 1
+
+
+   OptionsCore
+   OptionsAsync
+   OptionsCarbon
+   OptionsCgi
+   OptionsCheaper
+   OptionsErlang
+   OptionsFastrouter
+   OptionsHttp
+   OptionsJvm
+   OptionsLua
+   OptionsNagios
+   OptionsPam
+   OptionsPerl
+   OptionsPhp
+   OptionsPing
+   OptionsPython
+   OptionsRawrouter
+   OptionsRrdtool
+   OptionsRuby
+
+
 Take a deep breath and don't panic -- the list below is long.
 
 
 .. include:: OptionsCore.rst
-
+.. include:: OptionsAsync.rst
 .. include:: OptionsCarbon.rst
-
-.. include:: OptionsCGI.rst
-
+.. include:: OptionsCgi.rst
 .. include:: OptionsCheaper.rst
-
 .. include:: OptionsErlang.rst
-
+.. include:: OptionsFastrouter.rst
+.. include:: OptionsHttp.rst
+.. include:: OptionsJvm.rst
+.. include:: OptionsLua.rst
+.. include:: OptionsNagios.rst
+.. include:: OptionsPam.rst
+.. include:: OptionsPerl.rst
+.. include:: OptionsPhp.rst
+.. include:: OptionsPing.rst
 .. include:: OptionsPython.rst
+.. include:: OptionsRawrouter.rst
+.. include:: OptionsRrdtool.rst
+.. include:: OptionsRuby.rst
