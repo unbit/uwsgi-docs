@@ -94,7 +94,8 @@ class Section:
 
 
 class Config(object):
-    def __init__(self):
+    def __init__(self, title):
+        self.title = title
         self.sections = []
 
     def section(self, name, docs=()):
