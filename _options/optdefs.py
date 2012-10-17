@@ -598,7 +598,7 @@ def ping_options():
 
 
 def perl_options():
-	config = Config("Perl (PSGI plugin)")
+	config = Config("Perl (PSGI plugin)", "Perl")
 	
 	with config.section("Perl", docs = ["Perl"]) as s:
 		s.o("psgi", str, "load a psgi app")

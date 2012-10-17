@@ -1,4 +1,8 @@
 from collections import defaultdict
+import re
+
+un_whitespace_re = re.compile(r"[\s_]+")
+first_word_re = re.compile("^(\w+)", re.I)
 
 class _Optional:
     def __init__(self, inner):
@@ -96,8 +100,15 @@ class Section:
 
 
 class Config(object):
-    def __init__(self, title):
+    def __init__(self, title, filename_part=None):
         self.title = title
+        if filename_part:
+            self.filename_part = filename_part
+        else:
+            filename_part = first_word_re.search(self.title).group(1)
+            if filename_part.upper() != filename_part:
+                filename_part = (un_whitespace_re.sub("", filename_part).title())
+        self.filename_part = filename_part
         self.sections = []
 
     def section(self, name, docs=()):
