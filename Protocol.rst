@@ -16,7 +16,7 @@ SCTP support is being worked on.
 uwsgi packet header
 -------------------
 
-.. code::
+.. code-block::
 
     struct uwsgi_packet_header {
         uint8_t modifier1;
@@ -220,7 +220,7 @@ The uwsgi vars
 
 The uwsgi block vars represent a dictionary/hash. Every key-value is encoded in this way:
 
-.. code::
+.. code-block::
 
     struct uwsgi_var {
         uint16_t key_size;
