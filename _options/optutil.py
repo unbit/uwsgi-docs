@@ -23,6 +23,8 @@ class Option:
     def get_argument(self):
         if self.type is int:
             argument_desc = "number"
+        elif self.type is long:
+            argument_desc = "number"
         elif self.type is str:
             argument_desc = "string"
         elif self.type is True:
@@ -94,7 +96,8 @@ class Section:
 
 
 class Config(object):
-    def __init__(self):
+    def __init__(self, title):
+        self.title = title
         self.sections = []
 
     def section(self, name, docs=()):

@@ -11,6 +11,9 @@ In all file-based configuration methods, the use of placeholders of the format `
 
 .. seealso:: :doc:`ConfigLogic`
 
+.. seealso:: If you run Python applications, you can avoid the use of a configuration file to set up apps. See :doc:`Python#Application dictionary`.
+
+
 Loading configuration files
 ---------------------------
 
@@ -57,7 +60,9 @@ It consists of ``[section]``s and ``key=value`` pairs.
 
 
 
-An example uWSGI INI configuration::
+An example uWSGI INI configuration:
+
+.. code-block:: ini
 
   [uwsgi]
   socket = /tmp/uwsgi.sock
@@ -79,7 +84,9 @@ XML files
 
 The root node should be `<uwsgi>` and option values text nodes. Boolean values may be set without a text value.
 
-Example::
+An example:
+
+.. code-block:: xml
 
   <uwsgi>
     <socket>/tmp/uwsgi.sock</socket>
@@ -93,7 +100,9 @@ JSON files
 
 The JSON file should represent an object with one key-value pair, the key being `"uwsgi"` and the value an object of configuration variables. Native JSON lists, booleans and numbers are supported.
 
-Example::
+An example:
+
+.. code-block:: json
 
   {"uwsgi": {
     "socket": ["/tmp/uwsgi.sock", "127.0.0.1:8000"],
@@ -106,7 +115,9 @@ YAML files
 
 The root element should be `uwsgi`. Boolean options may be set as `true` or `1`.
 
-Example::
+An example:
+
+.. code-block:: yaml
 
   uwsgi:
     socket: /tmp/uwsgi.sock
