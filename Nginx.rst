@@ -141,7 +141,7 @@ Some applications need to pass control to the UWSGI server only if the requested
   }
 
 
-.. admonition::
+.. admonition:: WARNING
 
   If used incorrectly a configuration like this may cause security problems. For your sanity's sake, double-triple-quadruple check that your application files, configuration files and any other sensitive files are outside of the root of the static files.
 
