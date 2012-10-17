@@ -18,7 +18,7 @@ Options
    All of the options can be set per-host or per-location.
 
 
-==============                   ===
+==============                   ==
 Option                           Description
 ==============                   ==
 uWSGISocket <path> [timeout]     Absolute path and optional timeout in seconds of uwsgi server socket.
