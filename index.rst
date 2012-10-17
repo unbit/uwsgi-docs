@@ -84,15 +84,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
-.. toctree::
-   :hidden:
-
-   FeatureOverview
-   HTTPS
-   LDAP
-   examples/README
-   tutorials/README
-   tips_and_tricks/README
-   README
-   
