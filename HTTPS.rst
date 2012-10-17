@@ -42,7 +42,7 @@ The ``https`` option takes an optional fourth argument you can use to specify th
    http-to = /tmp/uwsgi.sock
 
 
-This will set all of the `HIGH`est ciphers (whenever possible) for your SSL/TLS transactions.
+This will set all of the **HIGHest** ciphers (whenever possible) for your SSL/TLS transactions.
 
 Client certificate authentication
 ---------------------------------
