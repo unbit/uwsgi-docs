@@ -352,6 +352,10 @@ Configuration
      - string
      - Use the specified file as configuration template.
      - \
+   * - ``include``
+     - string
+     - Include the specified file as if its configuration entries had been declared here (available post 1.3).
+     - \
    * - ``plugins``, ``plugin``
      - number
      - Load uWSGI plugins.

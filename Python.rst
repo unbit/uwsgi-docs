@@ -1,13 +1,20 @@
 Python support
 ==============
 
-Configuration variables
------------------------
+.. toctree::
+  :maxdepth: 1
 
-.. seealso:: :doc:`OptionsPython`
+  OptionsPython
+  PythonModule
+
+
+
+.. _PythonAppDict:
 
 Application dictionary
 ----------------------
+
+You can use the application dictionary mechanism to avoid setting up your application in your configuration.
 
 .. code-block:: python
 

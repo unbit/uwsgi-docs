@@ -11,7 +11,7 @@ In all file-based configuration methods, the use of placeholders of the format `
 
 .. seealso:: :doc:`ConfigLogic`
 
-.. seealso:: If you run Python applications, you can avoid the use of a configuration file to set up apps. See :doc:`Python#Application dictionary`.
+.. seealso:: If you run Python applications, you can avoid the use of a configuration file to set up apps. See :ref:`PythonAppDict`.
 
 
 Loading configuration files

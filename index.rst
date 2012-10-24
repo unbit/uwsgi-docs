@@ -40,6 +40,8 @@ Table of Contents
    Protocol
    AlarmSubsystem
    AttachingDaemons
+   Signals
+   Reload
 
 Web Server support
 ==================
@@ -52,6 +54,23 @@ Web Server support
    HTTP
    Lighttpd
    Nginx
+
+
+Language support
+==================
+   
+.. toctree::
+   :maxdepth: 1
+ 
+   Python
+   PHP
+   Perl
+   Ruby
+   Lua
+   Erlang
+   JVM
+   Mono
+   CGI
 
 .. include:: FeatureOverview.rst
 

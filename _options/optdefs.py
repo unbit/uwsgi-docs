@@ -87,6 +87,7 @@ def core_options():
 		s.o("set", str, "Set a custom placeholder for configuration")
 		s.o("declare-option", str, "Declare a new custom uWSGI option")
 		s.o("inherit", str, u"Use the specified file as configuration template")
+		s.o("include", str, u"Include the specified file as if its configuration entries had been declared here (available post 1.3)")
 		s.o(("plugins", "plugin"), int, "load uWSGI plugins")
 		s.o(("plugins-dir", "plugin-dir"), [str], "add a directory to uWSGI plugin search path")
 		s.o(("plugins-list", "plugin-list"), True, "list enabled plugins")
