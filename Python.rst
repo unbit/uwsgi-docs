@@ -73,6 +73,9 @@ Quickstart
 
     $ uwsgi -H myenv -s 127.0.0.1:3031 -M -w envapp
 
+
+.. _PythonPaste:
+
 Paste support
 -------------
 
