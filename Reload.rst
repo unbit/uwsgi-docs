@@ -1,7 +1,7 @@
 Reloading of the uWSGI server
 =============================
 
-The uWSGI server can be gracefully restarted without closing the main sockets.
+When running with the ``master`` process mode, the uWSGI server can be gracefully restarted without closing the main sockets.
 
 This functionality allows you patch/upgrade the uWSGI server without closing the connection with the web server and losing a single connection.
 
@@ -29,5 +29,8 @@ Now the server knows that it is a reloaded instance and will skip all the socket
 
    .. seealso:: :doc:`Signals`
 
+.. note::
+ 
+   The reload functionality can also be used via the uWSGI API as published to the applications being run.
 
-
+   .. seealso:: :py:func:`uwsgi.reload`

@@ -1,10 +1,9 @@
 The uWSGI project
 =================
 
-uWSGI is an extremely advanced, sysadmin-friendly, highly-modular **application container server** coded in C.
+uWSGI is an extremely advanced, sysadmin-friendly, highly-modular **application container server** written in POSIX-compatible C.
 
-It can communicate with your front-end webserver via `HTTP <HTTP.rst>`_, FastCGI, ZeroMQ and its highly specified/optimized protocol
-named 'uwsgi' (all-lowercase) already supported out-of-the-box by a lot of webservers.
+It can communicate with your front-end webserver via `HTTP <HTTP.rst>`_, FastCGI, ZeroMQ and its highly specified/optimized protocol named 'uwsgi' (all-lowercase) already supported out-of-the-box by a lot of webservers.
 
 Born as a simple WSGI-only server, over time it has evolved in a complete stack for networked/:doc:`clustered<Clustering>` web applications, implementing :doc:`message/object passing<CustomRouting>`, :doc:`caching<Caching>`, :doc:`RPC` and :doc:`process management<ProcessManagement>`.
 
@@ -30,6 +29,7 @@ Table of Contents
    :maxdepth: 1
 
    Download
+   Install
    LanguagesAndPlatforms
    WebServers
    FAQ
@@ -42,6 +42,7 @@ Table of Contents
    AttachingDaemons
    Signals
    Reload
+   Glossary
 
 Web Server support
 ==================
@@ -60,7 +61,7 @@ Language support
 ==================
    
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
  
    Python
    PHP
