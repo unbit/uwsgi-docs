@@ -11,7 +11,7 @@ In all file-based configuration methods, the use of placeholders of the format `
 
 .. seealso:: :doc:`ConfigLogic`
 
-.. seealso:: If you run Python applications, you can avoid the use of a configuration file to set up apps. See :doc:`Python#Application dictionary`.
+.. seealso:: If you run Python applications, you can avoid the use of a configuration file to set up apps. See :ref:`PythonAppDict`.
 
 
 Loading configuration files
@@ -82,7 +82,8 @@ By default, uWSGI uses the ``[uwsgi]`` section, but you can specify another sect
 XML files
 ---------
 
-The root node should be `<uwsgi>` and option values text nodes. Boolean values may be set without a text value.
+The root node should be ``<uwsgi>`` and option values text nodes.
+
 
 An example:
 
@@ -94,6 +95,19 @@ An example:
     <master/>
     <workers>3</workers>
   </uwsgi>
+
+You can also have multiple ``<uwsgi>`` stanzas in your file, marked with different ``id`` attributes. To choose the stanza to use, specify its id after the filename in the ``xml`` option, using a colon as a separator.
+When using this `id` mode, the root node of the file may be anything you like. This will allow you to embed ``uwsgi`` configuration nodes in other XML files.
+
+.. code-block:: xml
+
+  <i-love-xml>
+    <uwsgi id="turbogears"><socket>/tmp/tg.sock</socket></uwsgi>
+    <uwsgi id="django"><socket>/tmp/django.sock</socket></uwsgi>
+  </i-love-xml>
+
+* Boolean values may be set without a text value.
+* For convenience, uWSGI recognizes bare ``.xml`` arguments specially, so the invocation ``uwsgi myconf.xml``  is equal to ``uwsgi --xml myconf.xml``.
 
 JSON files
 ----------
@@ -109,6 +123,13 @@ An example:
     "master": true,
     "workers": 3
   }}
+
+.. note::
+
+   The `Jansson <http://www.digip.org/jansson/>`_ library is required during uWSGI build time to enable JSON support.
+   By default the presence of the library will be auto-detected and JSON support will be automatically enabled, but you can force JSON support to be enabled or disabled by editing your build configuration.
+
+   .. seealso:: :doc:`Install`
 
 YAML files
 ----------

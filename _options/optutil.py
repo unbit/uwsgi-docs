@@ -1,5 +1,6 @@
 from collections import defaultdict
 import re
+import textwrap
 
 un_whitespace_re = re.compile(r"[\s_]+")
 first_word_re = re.compile("^(\w+)", re.I)
@@ -15,7 +16,7 @@ def transmogrify_name(name):
         return [unicode(name) for name in name]    
 
 class Option:
-    def __init__(self, name, type, desc, short_name, optional, multiple, docs = ()):
+    def __init__(self, name, type, desc, short_name, optional, multiple, docs=(), default=None, help=None):
         self.names = transmogrify_name(name)
         self.type = type
         self.desc = desc
@@ -23,21 +24,22 @@ class Option:
         self.optional = optional
         self.multiple = multiple
         self.docs = sorted(docs)
+        self.cc_name = self.names[0].replace("-", " ").title().replace(" ", "")
+        self.help = textwrap.dedent((help or "").strip("\r\n"))
+        self.default = default
 
     def get_argument(self):
-        if self.type is int:
-            argument_desc = "number"
-        elif self.type is long:
+        if self.type is int or self.type is long:
             argument_desc = "number"
         elif self.type is str:
             argument_desc = "string"
         elif self.type is True:
-            argument_desc = "\\"
+            argument_desc = "no argument"
         else:
             argument_desc = "*%s*" % self.type
 
         if self.optional:
-            argument_desc = "[%s]" % argument_desc
+            argument_desc = "optional %s" % argument_desc
 
         return argument_desc
 
@@ -51,18 +53,19 @@ class Option:
             desc += "."
         
         if self.short_name:
-            desc += u" This option may be set with ``-%s`` from the command line." % self.short_name
+            desc += u"\n\nThis option may be set with ``-%s`` from the command line." % self.short_name
 
         if self.multiple:
-            desc += " *This option may be declared multiple times.*"
+            desc += "\n\n*This option may be declared multiple times.*"
 
 
         return desc
 
 class Section:
-    def __init__(self, name, docs = []):
+    def __init__(self, name, docs = [], refname=None):
         self.name = name
         self.options = []
+        self.refname = refname
         self.docs = sorted(docs)
 
     def __enter__(self):
@@ -71,7 +74,7 @@ class Section:
     def __exit__(self, et, ev, tb):
         pass
 
-    def define_option(self, name, type, desc, short_name=None, docs = []):
+    def define_option(self, name, type, desc, short_name=None, docs=(), default=None, help=None):
         if isinstance(type, _Optional):
             optional = True
             type = type.inner
@@ -111,7 +114,7 @@ class Config(object):
         self.filename_part = filename_part
         self.sections = []
 
-    def section(self, name, docs=()):
-        section = Section(name, docs)
+    def section(self, name, **kwargs):
+        section = Section(name, **kwargs)
         self.sections.append(section)
         return section
