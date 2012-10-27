@@ -14,6 +14,8 @@ In all file-based configuration methods, the use of placeholders of the format `
 .. seealso:: If you run Python applications, you can avoid the use of a configuration file to set up apps. See :ref:`PythonAppDict`.
 
 
+.. _LoadingConfig:
+
 Loading configuration files
 ---------------------------
 
@@ -29,6 +31,77 @@ uWSGI supports loading configuration files over several other methods than simpl
   More esoteric file sources, such as the :doc:`Emperor<Emperor>`, embedded configuration (in two flavors), dynamic library symbols and ELF sections could also be used.
   This is undocumented, but it's possible. This is the uWSGI way.
 
+.. _MagicVars:
+
+Magic variables
+---------------
+
+uWSGI configuration files can include special "magic" variables, prefixed with a percent sign.
+
+Currently the following magic variables (you can access them in Python via :py:data:`uwsgi.magic_table`) are defined.
+
+======== ==
+%v       the vassals directory
+%o       the original config filename, as specified on the command line
+%p       the absolute path of the configuration file
+%s       the filename of the configuration file
+%d       the absolute path of the directory containing the configuration file
+%e       the extension of the configuration file
+%n       the filename without extension
+%c       the name of the directory containing the config file (version 1.3+)
+%0..%9   a specific component of the full path of the directory containing the config file (version 1.3+)
+======== ==
+
+For example, here's :file:`funnyapp.ini`.
+
+.. code-block:: ini
+
+  [uwsgi]
+  socket = /tmp/%n.sock
+  module = werkzeug.testapp:test_app
+  processes = 4
+  master = 1
+
+``%n`` will be replaced with the name of the config file, sans extension, so the result in this case will be
+
+.. code-block:: ini
+
+  [uwsgi]
+  socket = /tmp/funnyapp.sock
+  module = werkzeug.testapp:test_app
+  processes = 4
+  master = 1
+
+.. _Placeholders:
+
+Placeholders
+------------
+
+Placeholders are custom special variables defined during configuration time by simply setting a new configuration variable of your own devising.
+
+As always, code is better than words
+
+.. code-block:: ini
+
+  [uwsgi]
+  ; These are placeholders...
+  my_funny_domain = uwsgi.it
+  max_customer_address_space = 64
+  customers_base_dir = /var/www
+  ; And these aren't.
+  socket = /tmp/sockets/%(my_funny_domain).sock
+  chdir = %(customers_base_dir)/%(my_funny_domain)
+  limit-as = %(max_customer_address_space)
+
+Placeholders are accessible, like any uWSGI option, in your application code via :py:data:`uwsgi.opt`.
+
+.. code-block:: python
+
+  import uwsgi
+  print uwsgi.opt['customers_base_dir']
+
+This feature can be (ab)used to reduce the number of configuration files required by your application.
+
 
 Command line arguments
 ----------------------
@@ -37,6 +110,7 @@ Example::
 
   uwsgi --socket /tmp/uwsgi.sock --socket 127.0.0.1:8000 --master --workers 3
 
+.. _ConfigEnv:
 
 Environment variables
 ---------------------
