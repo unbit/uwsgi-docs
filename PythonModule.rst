@@ -48,6 +48,13 @@ Module-level globals
 
 .. TODO: What _is_ this?
 
+.. data:: magic_table
+
+   The magic table of configuration placeholders.
+
+.. data:: opt
+
+   The current configuration options, including any custom placeholders.
 
 Cache functions
 ---------------
