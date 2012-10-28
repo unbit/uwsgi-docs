@@ -373,7 +373,7 @@ Process Management - Emperor
 ~~~~~~~~~~~
 **Argument:** string
 
-Run as the Emperor.
+Run as the Emperor, using the given configuration method.
 
 *This option may be declared multiple times.*
 
@@ -382,16 +382,9 @@ Run as the Emperor.
 ``emperor-freq``
 ~~~~~~~~~~~~~~~~
 **Argument:** number
+**Default:** 3
 
-Set the Emperor scan frequency (default 3 seconds).
-
-.. _OptionEmperorRequiredHeartbeat:
-
-``emperor-required-heartbeat``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-**Argument:** number
-
-Set the Emperor tolerance about heartbeats.
+Set the Emperor scanning frequency in seconds.
 
 .. _OptionEmperorPidfile:
 
@@ -407,7 +400,7 @@ Write the Emperor pid in the specified file.
 ~~~~~~~~~~~~~~~~~~
 **Argument:** no argument
 
-Put the Emperor in Tyrant mode.
+Put the Emperor in Tyrant (multi-user hosting) mode.
 
 .. _OptionEmperorStats:
 
@@ -415,7 +408,7 @@ Put the Emperor in Tyrant mode.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Argument:** string
 
-Run the Emperor stats server.
+Run the imperial bureau of statistics on the given address:port.
 
 .. _OptionEarlyEmperor:
 
@@ -439,16 +432,18 @@ Run the emperor in Broodlord mode.
 ``emperor-throttle``
 ~~~~~~~~~~~~~~~~~~~~
 **Argument:** number
+**Default:** 1000
 
-Set throttling level (in milliseconds) for bad behaving vassals (default 1000).
+Set throttling level (in milliseconds) for bad behaving vassals.
 
 .. _OptionEmperorMaxThrottle:
 
 ``emperor-max-throttle``
 ~~~~~~~~~~~~~~~~~~~~~~~~
 **Argument:** number
+**Default:** 180000
 
-Set max throttling level (in milliseconds) for bad behaving vassals (default 3 minutes).
+Set max throttling level (in milliseconds) for badly behaving vassals (default 3 minutes).
 
 .. _OptionEmperorMagicExec:
 
@@ -506,7 +501,18 @@ Ask emperor for sos if backlog queue has more items than the value specified.
 ~~~~~~~~~~~~~
 **Argument:** number
 
-Announce healtness to the emperor.
+(Vassal option) Announce vassal health to the emperor every N seconds.
+
+.. _OptionEmperorRequiredHeartbeat:
+
+``emperor-required-heartbeat``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** number
+**Default:** 30
+
+Set the Emperor tolerance about heartbeats.
+
+When a vassal asks for 'heartbeat mode' the emperor will also expect a 'heartbeat' at least every <secs> seconds.
 
 .. _OptionAutoSnapshot:
 
@@ -515,6 +521,7 @@ Announce healtness to the emperor.
 **Argument:** optional number
 
 Automatically make workers snapshot after reload.
+.. :seealso:: :doc:`Snapshot`
 
 .. _OptionReloadMercy:
 
@@ -2759,7 +2766,7 @@ Send a graceful reload message to the cluster.
 
 Send a log line to the cluster.
 
-For instance, ``--cluster-log "Hello, world!" will print that to each cluster node's log file.
+For instance, ``--cluster-log "Hello, world!"`` will print that to each cluster node's log file.
 
 
 Subscriptions
@@ -4313,7 +4320,7 @@ Import a python module in the spooler.
 
 Manually set ``sys.argv`` for python apps.
 
-``pyargv="one two three"`` will set ``sys.argv`` to ``('one', 'two', 'three').
+``pyargv="one two three"`` will set ``sys.argv`` to ``('one', 'two', 'three')``.
 
 .. _OptionOptimize:
 

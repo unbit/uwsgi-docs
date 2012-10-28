@@ -42,6 +42,7 @@ Table of Contents
    AttachingDaemons
    Signals
    Reload
+   Emperor
    Glossary
 
 Web Server support
