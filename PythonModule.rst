@@ -396,38 +396,65 @@ Async functions
 .. function:: wait_fd_write()
 
 
+.. _SharedAreaAPI:
+
 SharedArea functions
 --------------------
 
 .. seealso:: :doc:`SharedArea`
 
-.. function:: sharedarea_read() -> string
+.. function:: sharedarea_read(pos, len) -> bytes
 
    Read a byte string from the uWSGI :doc:`SharedArea`.
 
+   :param pos: Starting position to read from.
+   :param len: Number of bytes to read.
+   :return: Bytes read, or ``None`` if the shared area is not enabled or the read request is invalid.
 
-.. function:: sharedarea_write()
+.. function:: sharedarea_write(pos, str) -> long
 
    Write a byte string into the uWSGI :doc:`SharedArea`.
 
+   :param pos: Starting position to write to.
+   :param str: Bytestring to write.
+   :return: Number of bytes written, or ``None`` if the shared area is not enabled or the write could not be fully finished.
 
-.. function:: sharedarea_readbyte()
+.. function:: sharedarea_readbyte(pos) -> int
 
    Read a single byte from the uWSGI :doc:`SharedArea`.
 
+   :param pos: The position to read from.
+   :return: Bytes read, or ``None`` if the shared area is not enabled or the read request is invalid.
 
-.. function:: sharedarea_writebyte()
+.. function:: sharedarea_writebyte(pos, val) -> int
 
    Write a single byte into the uWSGI :doc:`SharedArea`.
 
-.. function:: sharedarea_readlong()
+   :param pos: The position to write the value to.
+   :param val: The value to write.
+   :type val: integer
+   :return: The byte written, or ``None`` if the shared area is not enabled or the write request is invalid.
+
+.. function:: sharedarea_readlong(pos) -> int
 
    Read a 64-bit (8-byte) long from the uWSGI :doc:`SharedArea`.
 
-.. function:: sharedarea_writelong()
+   :param pos: The position to read from.
+   :return: The value read, or ``None`` if the shared area is not enabled or the read request is invalid.
+
+.. function:: sharedarea_writelong(pos, val) -> int
    
    Write a 64-bit (8-byte) long into the uWSGI :doc:`SharedArea`.
+   
+   :param pos: The position to write the value to.
+   :param val: The value to write.
+   :type val: long
+   :return: The value written, or ``None`` if the shared area is not enabled or the write request is invalid.
 
-.. function:: sharedarea_inclong()
+.. function:: sharedarea_inclong(pos) -> int
    
    Atomically increment a 64-bit long value in the uWSGI :doc:`SharedArea`.
+
+   :param pos: The position of the value.
+   :type val: long
+   :return: The new value at the given position, or ``None`` if the shared area is not enabled or the read request is invalid.

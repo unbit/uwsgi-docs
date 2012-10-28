@@ -24,7 +24,6 @@ To get started with uWSGI, take a look at the :doc:`Install` page. Then continue
 Table of Contents
 =================
 
-
 .. toctree::
    :maxdepth: 1
 
@@ -35,6 +34,7 @@ Table of Contents
    FAQ
    ThingsToKnow
    Configuration
+   ConfigLogic
    Options
    Vars
    Protocol
@@ -42,8 +42,20 @@ Table of Contents
    AttachingDaemons
    Signals
    Reload
-   Emperor
+   Capabilities
+   SharedArea
    Glossary
+
+Scaling with uWSGI
+==================
+
+.. toctree::
+   :maxdepth: 1
+
+   Emperor
+   Broodlord
+   Zerg
+
 
 Web Server support
 ==================
@@ -55,6 +67,7 @@ Web Server support
    Cherokee
    HTTP
    Lighttpd
+   Mongrel2
    Nginx
 
 
@@ -91,13 +104,13 @@ Twitter       http://twitter.com/unbit
 Donate
 ======
 
-uWSGI development is sponsored by the Italian ISP `Unbit <http://unbit.it/>` and its customers. You can buy commercial
+uWSGI development is sponsored by the Italian ISP `Unbit<http://unbit.it/>`_ and its customers. You can buy commercial
 support and licensing. If you are not an Unbit customer, or you cannot/do not want to buy a commercial uWSGI license,
 consider making a donation. Obviously please feel free to ask for new features in your donation.
 We will give credit to everyone who wants to sponsor new features.
 
-See the `old uWSGI site<http://projects.unbit.it/uwsgi/#Donateifyouwant>` for the donation link.
-You can also `donate via GitTip<https://www.gittip.com/unbit/>`.
+See the `old uWSGI site<http://projects.unbit.it/uwsgi/#Donateifyouwant>`_ for the donation link.
+You can also donate via `GitTip<https://www.gittip.com/unbit/>`_.
 
 Indices and tables
 ==================

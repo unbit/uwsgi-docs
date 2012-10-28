@@ -40,7 +40,7 @@ The value of every item can be a callable, or its name as a string.
 
 .. TODO: Where is the string looked up from?
 
-.. _Virtualenv::
+.. _Virtualenv:
 
 Virtualenv support
 ------------------
@@ -53,10 +53,10 @@ Quickstart
 
 1. Create your virtualenv::
 
-  $ virtualenv myenv
-  New python executable in myenv/bin/python
-  Installing setuptools...............done.
-  Installing pip.........done.
+    $ virtualenv myenv
+    New python executable in myenv/bin/python
+    Installing setuptools...............done.
+    Installing pip.........done.
 
 2. Install all the modules you need (using `Flask <http://flask.pocoo.org/>`_ as an example)::
 
