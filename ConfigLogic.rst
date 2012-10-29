@@ -46,7 +46,7 @@ or equivalently
 
 or equivalently still
 
-.. code-block:: shell
+.. code-block:: sh
 
   uwsgi --for="3031 3032 3033 3034 3035" --socket="127.0.0.1:%(_)" --endfor --module helloworld
 

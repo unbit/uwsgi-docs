@@ -58,12 +58,15 @@ django.ini
 
 Put these 4 files in a directory, for instance :file:`/etc/uwsgi/vassals` in our example, then spawn the Emperor:
 
-.. code-block:: shell
+.. code-block:: sh
 
   uwsgi --emperor /etc/uwsgi/vassals
 
 The emperor will find the uWSGI instance configuration files in that directory (the ``dir://`` plugin declaration is implicit) and start the daemons to run them.
 
+.. _Werkzeug: http://werkzeug.pocoo.org/
+.. _Trac: http://trac.edgewall.org/
+.. _Django: http://djangoproject.com/
 
 ``glob://`` -- monitor a shell pattern
 --------------------------------------
@@ -98,7 +101,7 @@ You can specify a query to run against a PostgreSQL database. Its result must be
 4. The UID of the vassal instance. Required in :ref:`Tyrant` mode only.
 5. The GID of the vassal instance. Required in :ref:`Tyrant` mode only.
 
-.. code-block:: shell
+.. code-block:: sh
 
   uwsgi --plugin emperor_pg --emperor "pg://host=127.0.0.1 user=foobar dbname=emperor;SELECT name,config,ts FROM vassals"
 
@@ -110,7 +113,7 @@ You can specify a query to run against a PostgreSQL database. Its result must be
 ``mongodb://`` -- Scan MongoDB collections for configuration
 ------------------------------------------------------------
 
-.. code-block:: shell
+.. code-block:: sh
 
   uwsgi --plugin emperor_mongodb --emperor "mongodb://127.0.0.1:27107,emperor.vassals,{enabled:1}"
 
@@ -129,7 +132,7 @@ An Emperor-compliant document must define three fields: ``name``, ``config`` and
 
 Set your AMQP (RabbitMQ, for instance) server address as the --emperor argument:
 
-.. code-block:: shell
+.. code-block:: sh
 
   uwsgi --plugin emperor_amqp --emperor amqp://192.168.0.1:5672
 
