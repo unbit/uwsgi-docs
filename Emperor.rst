@@ -3,9 +3,9 @@ The uWSGI Emperor -- multi-app deployment
 
 If you need to deploy a big number of apps on a single server, or a group of servers, the Emperor mode is just the ticket.
 
-It is a special uWSGI instance that will monitor specific events and will spawn/stop/reload instances (known as :def:`vassals<vassal>`, when managed by an Emperor) on demand.
+It is a special uWSGI instance that will monitor specific events and will spawn/stop/reload instances (known as :term:`vassals<vassal>`, when managed by an Emperor) on demand.
 
-By default the Emperor will scan specific directories for supported (.ini, .xml, .yml, .json, etc.) uWSGI configuration files, but you it is extensible using :def:`imperial monitor` plugins.
+By default the Emperor will scan specific directories for supported (.ini, .xml, .yml, .json, etc.) uWSGI configuration files, but you it is extensible using :term:`imperial monitor` plugins.
 
 The ``dir://`` and ``glob://`` plugins are embedded in the core, so they need not be loaded, and are automatically detected. The ``dir://`` plugin is the default.
 
@@ -130,7 +130,7 @@ Workers of heartbeat-enabled vassals will send "heartbeat" messages to the Emper
 
 To enable sending of heartbeat packet in a vassal, add the :ref:`OptionHeartbeat` option.
 
-.. admonition::
+.. important::
 
   If all of your workers are stuck handling perfectly legal requests such as slow, large file uploads, the Emperor will trigger a reload as if the workers are hung.
   The reload triggered is a graceful one, so you can be able to tune your config/timeout/mercy for sane behaviour.
@@ -164,7 +164,7 @@ The binary is called with the same arguments that were passed to the vassal by t
   unshare = net
   unprivileged-binary-patch = /usr/bin/myfunnyserver
 
-.. admonition::
+.. important::
 
   *DO NOT DAEMONIZE* your apps. If you do so, the Emperor will lose its connection with them.
 

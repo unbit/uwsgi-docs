@@ -13,7 +13,7 @@ By default uWSGI requires the Python and `libxml2` headers/development libraries
 
 On a Debian/Ubuntu system you can install them (and the rest of the infrastructure required to build software) with:
 
-.. code-block:: shell
+.. code-block:: sh
 
    apt-get install build-essential python-dev libxml2-dev
 
@@ -21,13 +21,13 @@ uWSGI's build system is Python-based. If you have a variant of `make` available 
 
 If you do not have `make` (or want to have more control) simply run:
 
-.. code-block:: shell
+.. code-block:: sh
 
    python uwsgiconfig.py --build
 
 You can also use pip to install uWSGI. 
 
-.. code-block:: shell
+.. code-block:: sh
 
    # Install the latest stable release:
    pip install uwsgi
@@ -45,14 +45,15 @@ You can build customized uWSGI servers using build profiles, located in the find
 
 You can use a specific profile with 
 
-.. code-block:: shell
+.. code-block:: sh
 
    python uwsgiconfig --build <profile>
 
 Or you can pass it via an environment variable:
 
-.. code-block:: shell
+.. code-block:: sh
 
    UWSGI_PROFILE=lua make
    # ... or even ...
    UWSGI_PROFILE=gevent pip install uwsgi
+   

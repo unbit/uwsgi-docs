@@ -40,7 +40,7 @@ Or in C,
 
 From now you can receive (and send) messages from (and to) the Emperor over this file descriptor.
 
-Messages are one byte sized (0-255), and each number (byte) has a meaning::
+Messages are byte sized (0-255), and each number (byte) has a meaning.
 
 == ==
 0  Sent by the Emperor to stop a vassal
