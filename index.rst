@@ -55,7 +55,17 @@ Scaling with uWSGI
    Emperor
    Broodlord
    Zerg
+   Async
 
+
+Keeping an eye on your apps
+===========================
+
+
+.. toctree::
+   :maxdepth: 1
+
+   SNMP
 
 Web Server support
 ==================
@@ -104,13 +114,15 @@ Twitter       http://twitter.com/unbit
 Donate
 ======
 
-uWSGI development is sponsored by the Italian ISP `Unbit<http://unbit.it/>`_ and its customers. You can buy commercial
-support and licensing. If you are not an Unbit customer, or you cannot/do not want to buy a commercial uWSGI license,
-consider making a donation. Obviously please feel free to ask for new features in your donation.
+uWSGI development is sponsored by the Italian ISP `Unbit`_ and its customers. You can buy commercial support and licensing. If you are not an Unbit customer, or you cannot/do not want to buy a commercial uWSGI license, consider making a donation. Obviously please feel free to ask for new features in your donation.
+
 We will give credit to everyone who wants to sponsor new features.
 
-See the `old uWSGI site<http://projects.unbit.it/uwsgi/#Donateifyouwant>`_ for the donation link.
-You can also donate via `GitTip<https://www.gittip.com/unbit/>`_.
+See the `old uWSGI site <donation>`_ for the donation link. You can also donate via `GitTip <gittip>`_.
+
+.. _donation: http://projects.unbit.it/uwsgi/#Donateifyouwant
+.. _gittip: https://www.gittip.com/unbit/
+.. _unbit: http://unbit.it/
 
 Indices and tables
 ==================

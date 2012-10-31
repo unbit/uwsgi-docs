@@ -1,6 +1,12 @@
 Native HTTP support
 ===================
 
+
+.. toctree::
+   :maxdepth: 1
+
+   HTTPS
+
 HTTP sockets
 ------------
 

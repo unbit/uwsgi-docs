@@ -2,14 +2,14 @@ Current Core Features
 =====================
 
  * Written totally in C
- * Very fast (and simple) communication protocol for webservers integration (:doc:`Apache`, :doc:`Nginx`, :doc:`Cherokee` and :doc:`Lighttpd` etc.)
- * Low memory footprint (thanks to evil premature optimizations)
- * Support for multiple application in the same process/domain
+ * Very fast (and simple) communication protocol for web server integration
+ * Low memory footprint (thanks to plenty of evil premature optimization)
+ * Support for multiple applications in the same process/domain
  * A master process manager that will allows you to automatically respawn processes and monitor the stack status. See :doc:`ProcessManagement`.
- * Support for multiple protocols (:doc:`uwsgi<Protocol>`), :doc:`HTTP`, :doc:`FastCGI` and :doc:`Mongrel2` available out of the box)
+ * Support for multiple protocols (:doc:`uwsgi<Protocol>`), :doc:`HTTP<HTTP>`, FastCGI and :doc:`Mongrel2<Mongrel2>` available out of the box)
  * Preforking mode to improve concurrency
  * Address space and rss usage reports
- * Advanced logging (files, TCP, UDP, Redis, MongoDB, ZeroMQ...) see :doc:`Logging`)
+ * Advanced logging (files, TCP, UDP, Redis, MongoDB, ZeroMQ...) -- see :doc:`Logging`.
  * Fast static file serving via `sendfile()` (where available)
  * Portability (tested on Linux 2.6/3.x, Solaris/!OpenSolaris/!OpenIndiana, OpenBSD, NetBSD, DragonflyBSD, FreeBSD >= 8.0, MacOSX, Nexenta, and Haiku), including strange architectures like SPARC64 or ARM.
  * Support for threads (configurable, available from 0.9.7-dev)
@@ -36,7 +36,7 @@ Current Core Features
  * Integrated async/evented :doc:`proxy/load-balancer/router<FastRouter>`
  * Address space usage limiting (from version 0.9.5)
  * Automatically reload workers when a specific memory usage is reached
- * integrated :doc:`SNMP agent<UseSnmp>`, StatsServer and :doc:`Nagios` support (from version 0.9.5)
+ * Integrated :doc:`SNMP agent<SNMP>`, StatsServer and :doc:`Nagios` support (from version 0.9.5)
  * RRDTool and :doc:`Graphite/Carbon<Carbon>` support
  * :doc:`VirtualHosting`
  * Embedded async/evented :doc:`HTTP server<HTTP>` for easy development/testing and load balancing (from version 0.9.6)

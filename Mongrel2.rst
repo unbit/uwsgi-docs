@@ -1,13 +1,16 @@
 Attaching uWSGI to Mongrel2
 ===========================
 
-Mongrel2<http://mongrel2.org>_ is a next-next-generation webserver that focuses on modern webapps.
+Mongrel2_ is a next-next-generation webserver that focuses on modern webapps.
 
 Just like uWSGI, it is fully language agnostic, cluster-friendly and delightfully controversial :)
 
-It uses the amazing ZeroMQ<http://www.zeromq.org>_ library for communication, allowing reliable, easy message queueing and configuration-free scalability.
+It uses the amazing ZeroMQ_ library for communication, allowing reliable, easy message queueing and configuration-free scalability.
 
 Starting from version 0.9.8-dev, uWSGI can be used as a Mongrel2 handler.
+
+.. _Mongrel2: http://mongrel2.org/
+.. _ZeroMQ: http://www.zeromq.org/
 
 Requirements
 ------------
@@ -49,7 +52,8 @@ You can find ``mongrel2-uwsgi.conf`` shipped with the uWSGI source. You can use 
 
 It is a pretty standard Mongrel2 configuration with upload streaming enabled.
 
-== Configure uWSGI ==
+Configuring uWSGI for Mongrel2
+------------------------------
 
 To attach uWSGI to Mongrel2, simply use the :ref:`OptionZeromq` option:
 
