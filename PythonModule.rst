@@ -104,16 +104,16 @@ Queue functions
 SNMP functions
 --------------
 
-.. function:: snmp_set_counter32()
+.. function:: snmp_set_counter32(oidnum, value)
 
 
-.. function:: snmp_set_counter64()
+.. function:: snmp_set_counter64(oidnum, value)
 
 
-.. function:: snmp_set_gauge()
+.. function:: snmp_set_gauge(oidnum, value)
 
 
-.. function:: snmp_set_community()
+.. function:: snmp_set_community(str)
 
 Spooler functions
 -----------------
@@ -375,7 +375,11 @@ Async functions
 ---------------
 
 
-.. function:: async_sleep()
+.. function:: async_sleep(seconds)
+
+   Suspend handling the current request for ``seconds`` seconds and pass control to the next async core.
+
+   :param seconds: Sleep time, in seconds.
 
 
 .. function:: async_connect()
@@ -389,11 +393,24 @@ Async functions
 
 .. function:: suspend()
 
+   Suspend handling the current request and pass control to the next async core clamoring for attention.
 
-.. function:: wait_fd_read()
+.. function:: wait_fd_read(fd[, timeout])
+
+   Suspend handling the current request until there is something to be read on file descriptor ``fd``.
+   May be called several times before yielding/suspending to add more file descriptors to the set to be watched.
+
+   :param fd: File descriptor number.
+   :param timeout: Optional timeout (infinite if omitted).
 
 
-.. function:: wait_fd_write()
+.. function:: wait_fd_write(fd[, timeout])
+
+   Suspend handling the current request until there is nothing more to be written on file descriptor ``fd``.
+   May be called several times to add more file descriptors to the set to be watched.
+
+   :param fd: File descriptor number.
+   :param timeout: Optional timeout (infinite if omitted).
 
 
 .. _SharedAreaAPI:

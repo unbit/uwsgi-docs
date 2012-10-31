@@ -45,8 +45,10 @@ The value of every item can be a callable, or its name as a string.
 Virtualenv support
 ------------------
 
-`virtualenv <http://www.virtualenv.org/>`_ is a mechanism that lets you isolate one (or more) Python applications' libraries (and interpreters, when not using uWSGI) from each other.
+`virtualenv`_ is a mechanism that lets you isolate one (or more) Python applications' libraries (and interpreters, when not using uWSGI) from each other.
 Virtualenvs should be used by any respectable modern Python application.
+
+.. _virtualenv: http://www.virtualenv.org/
 
 Quickstart
 ^^^^^^^^^^

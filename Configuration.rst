@@ -200,10 +200,12 @@ An example:
 
 .. note::
 
-   The `Jansson <http://www.digip.org/jansson/>`_ library is required during uWSGI build time to enable JSON support.
+   The `Jansson`_ library is required during uWSGI build time to enable JSON support.
    By default the presence of the library will be auto-detected and JSON support will be automatically enabled, but you can force JSON support to be enabled or disabled by editing your build configuration.
 
    .. seealso:: :doc:`Install`
+
+.. _Jansson: http://www.digip.org/jansson/
 
 YAML files
 ----------
