@@ -3,7 +3,7 @@ Pushing statistics (from 1.4)
 
 
 Starting from uWSGI 1.4 you can push statistics (the same JSON blob you get with the :doc:`StatsServer`)
-to various systems (called stats pushers).
+via various systems (called stats pushers).
 
 Statistics are pushed at regular intervals (default 3 seconds).
 
