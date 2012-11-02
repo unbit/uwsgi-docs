@@ -14,7 +14,8 @@ By default the 'file' stats pusher is available.
 
 It allows you to save json chunks to a file (open in appended mode)
 
-.. block-code:: ini
+.. code-block:: ini
+
    [uwsgi]
    socket = :3031
    module = foobar
@@ -30,7 +31,8 @@ The 'mongodb' stats pusher
 This is the first developed stats pusher plugin, allowing you to store JSON
 data directly on a mongodb collection
 
-.. block-code:: ini
+.. code-block:: ini
+
    [uwsgi]
    plugins = stats_pusher_mongodb
    socket = :3031
@@ -53,7 +55,7 @@ Notes
 
 You can configure all of the stats pusher you need, just specify multiple stats-push options
 
-.. block-code:: ini
+.. code-block:: ini
    [uwsgi]
    plugins = stats_pusher_mongodb
    socket = :3031
