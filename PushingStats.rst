@@ -58,6 +58,7 @@ Notes
 You can configure all of the stats pusher you need, just specify multiple stats-push options
 
 .. code-block:: ini
+
    [uwsgi]
    plugins = stats_pusher_mongodb
    socket = :3031
