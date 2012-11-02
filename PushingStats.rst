@@ -45,7 +45,9 @@ every 4 seconds.
 
 To build the plugin you need mongodb development headers (mongodb-dev on Debian/Ubuntu)
 
-python uwsgiconfig.py --plugin plugins/stats_pusher_mongodb
+.. code-block:: sh
+
+   python uwsgiconfig.py --plugin plugins/stats_pusher_mongodb
 
 will do the trick
 
