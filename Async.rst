@@ -22,7 +22,7 @@ Asynchronous programming is a complex topic few programmer/users really understa
 
 If you run an app that has not been designed to be async-friendly on an async server you are, simply said, doing it wrong. In order to help users evaluate if async mode is a good choice for their particular app, uWSGI maintains a count of the "async switches" your app does.
 
-Every time your app calls ``yield`` (or :py:func:`uwsgi.suspend`s the execution) the "async switches" counter is incremented. At the end of every request this counter is reported in the uWSGI log. If the value is 0 or 1, then do yourself a favor and don't use Async mode. Your app will run faster and safer in preforking mode.
+Every time your app calls ``yield`` (or :py:func:`uwsgi.suspend` s the execution) the "async switches" counter is incremented. At the end of every request this counter is reported in the uWSGI log. If the value is 0 or 1, then do yourself a favor and don't use Async mode. Your app will run faster and safer in preforking mode.
 
 But if the "async switches" counter is high, your app *could* benefit from async mode. But, nevertheless:
 

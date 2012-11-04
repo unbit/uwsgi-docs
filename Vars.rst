@@ -37,9 +37,9 @@ Load a new app (defined as ``module:callable``) mapped into ``SCRIPT_NAME``.
 ``UWSGI_PYHOME``
 ----------------
 
-Dynamically set the Python :doc:`Virtualenv` for a :doc:`dynamic application<DynamicApps>`.
+Dynamically set the Python :ref:`Virtualenv` for a :doc:`dynamic application<DynamicApps>`.
 
-.. seealso:: :doc:`DynamicVirtualenv`
+.. seealso:: :ref:`DynamicVirtualenv`
 
 ``UWSGI_CHDIR``
 ---------------
