@@ -79,14 +79,12 @@ using such system, running apps in uWSGI should be extremely simple
    func main() {
            http.HandleFunc("/one/", oneHandler)
            http.HandleFunc("/two/", twoHandler)
-           var u uwsgi.App
-           uwsgi.Run(&u)
+           uwsgi.Run()
    }
 
-As you can note, the only differences from a standard net/http-based application are in the import "uwsgi" need, the instantiation
-of the uwsgi.App struct ('class' if you like...) and the call of the uwsgi.Run function.
+As you can note, the only differences from a standard net/http-based application are in the import "uwsgi" need and the call of the uwsgi.Run() function.
 
-You can use the uwsgi.App instance to store global app-related values and to access the uWSGI api.
+uwsgi.Run() will run the whole uWSGI server
 
 Building your first app
 ***********************
@@ -170,40 +168,33 @@ Goroutines, for the uWSGI-related part, maps to pthreads, but you will be able t
 uWSGI api
 *********
 
-You can access the uWSGI api from your Go app, pretty easily. Just invoke the functions exported by the uwsgi.App struct
+You can access the uWSGI api from your Go app, pretty easily. Just invoke the functions exported by the uwsgi package
 
 .. code-block:: go
 
-   type App struct {
-           uwsgi.App
-   }
-
    func hello2(signum int) {
-           fmt.Println("I am an rb_timer running on mule", u.MuleId())
+           fmt.Println("I am an rb_timer running on mule", uwsgi.MuleId())
    }
 
    func hello(signum int) {
            fmt.Println("Ciao, 3 seconds elapsed")
    }
 
-   func (app *App) PostInit() {
-           app.RegisterSignal(17, "", hello)
-           app.AddTimer(17, 3)
+   func postinit() {
+           uwsgi.RegisterSignal(17, "", hello)
+           uwsgi.AddTimer(17, 3)
 
-           app.RegisterSignal(30, "mule1", hello2)
-           app.AddRbTimer(30, 5)
+           uwsgi.RegisterSignal(30, "mule1", hello2)
+           uwsgi.AddRbTimer(30, 5)
    }
-
-   var u App
 
    func main() {
-           uwsgi.Run(&u)
+           uwsgi.PostInit(postinit)
+           uwsgi.Run()
    }
 
-This time we have done a Go-style override of the uwsgi.App struct. We use that to 'override' uwsgi Go hooks, to run
-specific code on the various server stage.
 
-The PostInit() function is called after the Go initialization is complete.
+The PostInit() function set the 'hook' to be called after the Go initialization is complete.
 
 In that function we register two uwsgi signals, with the second one being run in a mule (the mule1)
 
