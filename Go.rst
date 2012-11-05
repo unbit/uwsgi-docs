@@ -221,6 +221,11 @@ To run the code just build your new app as previously explained and run it
 
 this time we have added memory-report, try it to see how cheap are Go apps...
 
+More...
+^^^^^^^
+
+Check the t/go directory of the uWSGI source distribution, you will find a series of funny examples
+
 Running from the Emperor
 ************************
 
@@ -244,3 +249,12 @@ Your vassal will be something like that
 
 
 obviously change /tmp/bin/helloworld to your app path
+
+Notes
+*****
+
+* Changing processes names is currently not possibile without modifying the go core
+* You cannot use uWSGI native threads with Go (just use --goroutines)
+* Only a little part of the uWSGI api has been exposed, if you want to hack on, just edit the uwsgi.go file in the plugins/go/src/uwsgi directory
+* Goroutines require the async mode (if you are customizing your uWSGI library remember to always include it)
+* It looks like it is possibile to load the python, lua and psgi plugins without problems even in goroutines mode (more tests needed)
