@@ -172,6 +172,8 @@ You can access the uWSGI api from your Go app, pretty easily. Just invoke the fu
 
 .. code-block:: go
 
+   package main
+
    func hello2(signum int) {
            fmt.Println("I am an rb_timer running on mule", uwsgi.MuleId())
    }
@@ -188,15 +190,22 @@ You can access the uWSGI api from your Go app, pretty easily. Just invoke the fu
            uwsgi.AddRbTimer(30, 5)
    }
 
+   func foofork() {
+      fmt.Println("fork() has been called")
+   }
+
    func main() {
            uwsgi.PostInit(postinit)
+           uwsgi.PostFork(foofork)
            uwsgi.Run()
    }
 
 
 The PostInit() function set the 'hook' to be called after the Go initialization is complete.
 
-In that function we register two uwsgi signals, with the second one being run in a mule (the mule1)
+The PostFork() function set the 'hook' to be called after each fork()
+
+In postinit hook we register two uwsgi signals, with the second one being run in a mule (the mule1)
 
 To run the code just build your new app as previously explained and execute it
 
