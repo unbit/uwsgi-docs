@@ -150,8 +150,8 @@ Goroutines (currently Linux-only)
 
 Goroutines are very probably the most interesting feature of the Go platform.
 
-A uWSGI loop engine for goroutines is automatically embedded in the uWSGI library whrn you
-build with the go plugin.
+A uWSGI loop engine for goroutines is automatically embedded in the uWSGI library when you
+build it with the go plugin.
 
 To spawn goroutines in each uWSGI process just add goroutines = N option, where N is the number of goroutines to spawn
 
