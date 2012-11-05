@@ -7,7 +7,7 @@ You can download Go from here:
 
 http://golang.org/
 
-currently only Linux i386/x86_64 and OSX are supported.
+currently Linux i386/x86_64, FreeBSD i386/x86_64 and OSX are supported.
 
 For OSX support, you need a go version > than 1.0.3 or you will need to apply that patch:
 
@@ -143,8 +143,8 @@ Finally simply run your app
 
    ./helloworld config.ini
 
-Goroutines (currently Linux-only)
-*********************************
+Goroutines (currently Linux/FreeBSD-only)
+*****************************************
 
 Goroutines are very probably the most interesting feature of the Go platform.
 
