@@ -114,6 +114,7 @@ Language support
    JVM
    Mono
    CGI
+   Go
 
 Current Core Features
 =====================
