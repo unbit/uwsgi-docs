@@ -9,7 +9,7 @@ http://golang.org/
 
 currently only Linux i386/x86_64 and OSX are supported.
 
-For OSX support, you need a go version > than 1.0.3 or you will need to aply that patch:
+For OSX support, you need a go version > than 1.0.3 or you will need to apply that patch:
 
 http://code.google.com/p/go/source/detail?r=62b7ebe62958
 
