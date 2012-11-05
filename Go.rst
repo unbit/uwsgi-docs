@@ -122,6 +122,25 @@ Going in production
 
 In production environment you will probably puth a webserver/proxy in fron of your app.
 
-So your nginx config will look like that:
+So your nginx config will look like that::
 
+   location / {
+       include uwsgi_params;
+       uwsgi_pass 127.0.0.1:3031;
+       uwsgi_modifier1 11;
+   }
 
+while your uWSGI config will be something like that
+
+.. code-block:: ini
+
+   [uwsgi]
+   socket = 127.0.0.1:3031
+   master = true
+   processes 4
+
+Finally simply run your app
+
+.. code-block:: sh
+
+   ./helloworld config.ini
