@@ -115,7 +115,7 @@ You can start adding processes and a master as always
 
    ./helloworld --http :8080 --http-modifier1 11 --master --processes 8
 
-Note: The modifier 11 is  officially assigned to go.
+Note: The modifier 11 is  officially assigned to Go.
 
 Going in production
 *******************
