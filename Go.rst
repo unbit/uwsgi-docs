@@ -19,7 +19,7 @@ goroutines are supported (currently) ony on Linux i386/x86_64
 Building uWSGI with Go support
 ******************************
 
-As always you can build Go support as an embedded component or as a plugin.
+As always, you can build Go support as an embedded component or as a plugin.
 
 The main difference with the others setup is that this time we will build a uwsgi library
 and not a uwsgi binary. This library will be used by a Go package named uwsgi.go you can link with your apps.
