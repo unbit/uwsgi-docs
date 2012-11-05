@@ -42,6 +42,16 @@ Running uWSGI in gevent mode
 
 Set the ``--async`` value to the maximum number of concurrent connections you want to accept.
 
+Starting from 1.3 you can use the --gevent shortcut, that will set optimal parameters
+
+.. code-block:: sh
+
+   uwsgi --plugins gevent --gevent 100 --socket :3031 --module myapp
+
+the argument of --gevent is the number of async cores to spawn
+
+
+
 A crazy example
 ---------------
 
