@@ -13,6 +13,8 @@ For OSX support, you need a go version > than 1.0.3 or you will need to aply tha
 
 http://code.google.com/p/go/source/detail?r=62b7ebe62958
 
+goroutines are supported (currently) ony on Linux i386/x86_64
+
 
 Building uWSGI with Go support
 ******************************
@@ -41,3 +43,36 @@ or (if python is not in your system path, or you need to use a specific python v
 
 
 (obviously you can substitute 'python' with your needed path)
+
+Writing the first Go application
+********************************
+
+By default the uWSGI Go plugin supports the http.DefaultServeMux handler, so if you are already
+using such system, running apps in uWSGI should be extremely simple
+
+.. code-block:: go
+
+   package main
+
+   import (
+           "uwsgi"
+           "net/http"
+           "fmt"
+   )
+
+   func oneHandler(w http.ResponseWriter, r *http.Request) {
+           fmt.Fprintf(w, "<h1>One</h1>")
+   }
+
+
+   func twoHandler(w http.ResponseWriter, r *http.Request) {
+           fmt.Fprintf(w, "<h2>Two</h2>")
+   }
+
+   func main() {
+           http.HandleFunc("/one/", oneHandler)
+           http.HandleFunc("/two/", twoHandler)
+           var u uwsgi.App
+           uwsgi.Run(&u)
+   }
+
