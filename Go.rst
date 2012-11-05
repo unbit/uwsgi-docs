@@ -205,4 +205,18 @@ specific code on the various server stage.
 
 The PostInit() function is called after the Go initialization is complete in the uWSGI server.
 
-In that function we register two uwsgi signal, with the secobd being run in a mule (the mule1)
+In that function we register two uwsgi signal, with the second one being run in a mule (the mule1)
+
+To run the code just build your new app as previously explained and run it
+
+.. code-block:: ini
+
+   [uwsgi]
+   socket = 127.0.0.1:3031
+   master = true
+   processes = 2
+   goroutines = 20
+   mules = 2
+   memory-report = true
+
+this time we have added memory-report, try it to see how cheap are Go apps...
