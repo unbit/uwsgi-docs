@@ -220,3 +220,27 @@ To run the code just build your new app as previously explained and run it
    memory-report = true
 
 this time we have added memory-report, try it to see how cheap are Go apps...
+
+Running from the Emperor
+************************
+
+Obviously if you are a uWSGI user, you are using the Emperor. You can run uWSGI-Go apps in the Emperor
+using the privileged-binary-patch option
+
+Your vassal will be something like that
+
+.. code-block:: ini
+
+   [uwsgi]
+   socket = 127.0.0.1:3031
+   master = true
+   processes = 2
+   goroutines = 20
+   mules = 2
+   memory-report = true
+   uid = foobar
+   gid = foobar
+   privileged-binary-patch = /tmp/bin/helloworld
+
+
+obviously change /tmp/bin/helloworld to your app path
