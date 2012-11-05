@@ -15,8 +15,6 @@ Notes
 * The :doc:`SignalFramework` is fully working with Gevent mode. Each handler will be executed in a dedicated greenlet. Look at :file:`tests/ugevent.py` for an example.
 * uWSGI multithread mode (``threads`` option) will not work with Gevent. Running Python threads in your apps is supported.
 * Mixing uWSGI's Async API with gevent's is **EXPLICITLY FORBIDDEN**.
-* Currently you cannot run uWSGI + gevent on more than one socket. If you need multiple sockets, simply spawn additional uWSGI instances.
-* :doc:`Mongrel2<Mongrel2>` and its protocol handler are not supported.
 
 Building the plugin
 -------------------
