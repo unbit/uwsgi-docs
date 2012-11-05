@@ -165,4 +165,44 @@ To spawn goroutines in each uWSGI process just add goroutines = N option, where 
 
 with that config you will spawn 100 goroutines for each uWSGI process, for a grand-total of 400 goroutines !!!
 
-Goroutines, for the uWSGI-related part, maps to pthread, but you will be able to spawn coroutine-based tasks from your application.
+Goroutines, for the uWSGI-related part, maps to pthreads, but you will be able to spawn coroutine-based tasks from your application too
+
+uWSGI api
+*********
+
+You can access the uWSGI api from your Go app, pretty easily. Just invoke the functions exported by the uwsgi.App struct
+
+.. code-block:: go
+
+   type App struct {
+           uwsgi.App
+   }
+
+   func hello2(signum int) {
+           fmt.Println("I am an rb_timer running on mule", u.MuleId())
+   }
+
+   func hello(signum int) {
+           fmt.Println("Ciao, 3 seconds elapsed")
+   }
+
+   func (app *App) PostInit() {
+           app.RegisterSignal(17, "", hello)
+           app.AddTimer(17, 3)
+
+           app.RegisterSignal(30, "mule1", hello2)
+           app.AddTimer(30, 5)
+   }
+
+   var u App
+
+   func main() {
+           uwsgi.Run(&u)
+   }
+
+This type we have done a Go-style override of the uwsgi.App struct. We use that to 'override' uwsgi Go hooks, to run
+specific code on the various server stage.
+
+The PostInit() function is called after the Go initialization is complete in the uWSGI server.
+
+In that function we register two uwsgi signal, with the secobd being run in a mule (the mule1)
