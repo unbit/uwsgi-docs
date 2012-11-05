@@ -44,6 +44,13 @@ or (if python is not in your system path, or you need to use a specific python v
 
 (obviously you can substitute 'python' with your needed path)
 
+At the end of the build procedure you will have a libuwsgi.so file (copy or link it to a library directory
+like /usr/local/lib or /usr/lib and eventually run ldconfig if needed) and a uwsgi.a file in a subdirectory
+(based on your arch/os) in plugins/go/pkg.
+
+The last message from the build procedure reports the GOPATH you should use when building uWSGI Go apps (copy/remember/anottate that value somewhere).
+If you already knows how Go import system works, feel free to copy uwsgi.a in your system-wide GOPATH.
+
 Writing the first Go application
 ********************************
 
