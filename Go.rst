@@ -48,8 +48,8 @@ At the end of the build procedure you will have a libuwsgi.so file (copy or link
 like /usr/local/lib or /usr/lib and eventually run ldconfig if needed) and a uwsgi.a file in a subdirectory
 (based on your arch/os) in plugins/go/pkg.
 
-The last message from the build procedure reports the GOPATH you should use when building uWSGI Go apps (copy/remember/anottate that value somewhere).
-If you already knows how Go import system works, feel free to copy uwsgi.a in your system-wide GOPATH.
+**The last message from the build procedure reports the GOPATH you should use when building uWSGI Go apps (copy/remember/annotate that value somewhere).
+If you already knows how Go import system works, feel free to copy uwsgi.a in your system-wide GOPATH.**
 
 Writing the first Go application
 ********************************
@@ -83,3 +83,34 @@ using such system, running apps in uWSGI should be extremely simple
            uwsgi.Run(&u)
    }
 
+As you can note, the only differences from a standard net/http-based application are in the import "uwsgi" need, the instantiation
+of the uwsgi.App struct ('class' if you like...) and the call of the uwsgi.Run function.
+
+You can use the uwsgi.App instance to store global app-related values and to access the uWSGI api.
+
+Building your first app
+***********************
+
+Now, supposing you have saved your app as helloworld.go, just run
+
+.. code-block:: sh
+
+   GOPATH=/home/foobar/uwsgi/plugins/go go build helloworld.go
+
+change GOPATH to the value you got from the build procedure, or to the dir you have installed/copied uwsgi.a
+
+If all goes well you will end with a 'helloworld' executable.
+
+That executable is a full uWSGI server (yes, really).
+
+.. code-block:: sh
+
+   ./helloworld --http :8080 --http-modifier1 11
+
+just point your browser to the port 8080 and check /one/ and /two/
+
+You can start adding processes and a master as always
+
+.. code-block:: sh
+
+   ./helloworld --http :8080 --http-modifier1 11 --master --processes 8
