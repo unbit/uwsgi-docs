@@ -19,7 +19,7 @@ Notes
 Building the plugin (uWSGI >= 1.4)
 ----------------------------------
 
-The gevent plugin is compiled in by default when the default profiles is used.
+The gevent plugin is compiled in by default when the default profile is used.
 
 Doing a 
 
