@@ -16,8 +16,21 @@ Notes
 * uWSGI multithread mode (``threads`` option) will not work with Gevent. Running Python threads in your apps is supported.
 * Mixing uWSGI's Async API with gevent's is **EXPLICITLY FORBIDDEN**.
 
-Building the plugin
--------------------
+Building the plugin (uWSGI >= 1.4)
+----------------------------------
+
+The gevent plugin is compiled in by default when the default profiles is used.
+
+Doing a 
+
+.. code-block:: sh
+
+   pip install uwsgi
+
+will install the python plugin as well as the gevent one
+
+Building the plugin (uWSGI < 1.4)
+---------------------------------
 
 A 'gevent' build profile can be found in the :file:`buildconf` directory.
 
