@@ -137,10 +137,32 @@ while your uWSGI config will be something like that
    [uwsgi]
    socket = 127.0.0.1:3031
    master = true
-   processes 4
+   processes = 4
 
 Finally simply run your app
 
 .. code-block:: sh
 
    ./helloworld config.ini
+
+Goroutines (currently Linux-only)
+*********************************
+
+Goroutines are very probably the most interesting feature of the Go platform.
+
+A uWSGI loop engine for goroutines is automatically embedded in the uWSGI library whrn you
+build with the go plugin.
+
+To spawn goroutines in each uWSGI process just add goroutines = N option, where N is the number of goroutines to spawn
+
+.. code-block:: ini
+
+   [uwsgi]
+   socket = 127.0.0.1:3031
+   master = true
+   processes = 4
+   goroutines = 100
+
+with that config you will spawn 100 goroutines for each uWSGI process, for a grand-total of 400 goroutines !!!
+
+Goroutines, for the uWSGI-related part, maps to pthread, but you will be able to spawn coroutine-based tasks from your application.
