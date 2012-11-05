@@ -191,7 +191,7 @@ You can access the uWSGI api from your Go app, pretty easily. Just invoke the fu
            app.AddTimer(17, 3)
 
            app.RegisterSignal(30, "mule1", hello2)
-           app.AddTimer(30, 5)
+           app.AddRbTimer(30, 5)
    }
 
    var u App
