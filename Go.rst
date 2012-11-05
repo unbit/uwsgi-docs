@@ -200,14 +200,14 @@ You can access the uWSGI api from your Go app, pretty easily. Just invoke the fu
            uwsgi.Run(&u)
    }
 
-This tyme we have done a Go-style override of the uwsgi.App struct. We use that to 'override' uwsgi Go hooks, to run
+This time we have done a Go-style override of the uwsgi.App struct. We use that to 'override' uwsgi Go hooks, to run
 specific code on the various server stage.
 
-The PostInit() function is called after the Go initialization is complete in the uWSGI server.
+The PostInit() function is called after the Go initialization is complete.
 
-In that function we register two uwsgi signal, with the second one being run in a mule (the mule1)
+In that function we register two uwsgi signals, with the second one being run in a mule (the mule1)
 
-To run the code just build your new app as previously explained and run it
+To run the code just build your new app as previously explained and execute it
 
 .. code-block:: ini
 
