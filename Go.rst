@@ -200,7 +200,7 @@ You can access the uWSGI api from your Go app, pretty easily. Just invoke the fu
            uwsgi.Run(&u)
    }
 
-This type we have done a Go-style override of the uwsgi.App struct. We use that to 'override' uwsgi Go hooks, to run
+This tyme we have done a Go-style override of the uwsgi.App struct. We use that to 'override' uwsgi Go hooks, to run
 specific code on the various server stage.
 
 The PostInit() function is called after the Go initialization is complete in the uWSGI server.
