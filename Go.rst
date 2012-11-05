@@ -120,7 +120,7 @@ Note: The modifier 11 is  officially assigned to Go.
 Going in production
 *******************
 
-In production environment you will probably puth a webserver/proxy in fron of your app.
+In production environment you will probably put a webserver/proxy in fron of your app.
 
 So your nginx config will look like that::
 
