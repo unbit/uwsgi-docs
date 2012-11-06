@@ -86,6 +86,19 @@ As you can note, the only differences from a standard net/http-based application
 
 uwsgi.Run() will run the whole uWSGI server
 
+If you want to use your personal request handler instead of http.DefaultServeMux, just pass it as the argument of the uwsgi.RequestHandler() function
+
+.. code-block:: go
+
+   func myHandler(w http.ResponseWriter, r *http.Request) {
+           fmt.Fprintf(w, "<h2>Two</h2>")
+   }
+
+   func main() {
+           uwsgi.RequestHandler(myHandler)
+           uwsgi.Run()
+   }
+
 Building your first app
 ***********************
 
