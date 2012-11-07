@@ -86,7 +86,10 @@ As you can note, the only differences from a standard net/http-based application
 
 uwsgi.Run() will run the whole uWSGI server
 
-If you want to use your personal request handler instead of http.DefaultServeMux, just pass it as the argument of the uwsgi.RequestHandler() function
+If you want to use your personal request handler instead of http.DefaultServeMux, use uwsgi.Handler(http.Handler) or uwsgi.RequestHandler(func(http.ResponseWriter, *http.Request))
+to set it
+
+
 
 .. code-block:: go
 
