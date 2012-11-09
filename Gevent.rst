@@ -15,11 +15,22 @@ Notes
 * The :doc:`SignalFramework` is fully working with Gevent mode. Each handler will be executed in a dedicated greenlet. Look at :file:`tests/ugevent.py` for an example.
 * uWSGI multithread mode (``threads`` option) will not work with Gevent. Running Python threads in your apps is supported.
 * Mixing uWSGI's Async API with gevent's is **EXPLICITLY FORBIDDEN**.
-* Currently you cannot run uWSGI + gevent on more than one socket. If you need multiple sockets, simply spawn additional uWSGI instances.
-* :doc:`Mongrel2<Mongrel2>` and its protocol handler are not supported.
 
-Building the plugin
--------------------
+Building the plugin (uWSGI >= 1.4)
+----------------------------------
+
+The gevent plugin is compiled in by default when the default profile is used.
+
+Doing a 
+
+.. code-block:: sh
+
+   pip install uwsgi
+
+will install the python plugin as well as the gevent one
+
+Building the plugin (uWSGI < 1.4)
+---------------------------------
 
 A 'gevent' build profile can be found in the :file:`buildconf` directory.
 
@@ -43,6 +54,16 @@ Running uWSGI in gevent mode
   uwsgi --plugins gevent --loop gevent --socket :3031 --module myapp --async 100
 
 Set the ``--async`` value to the maximum number of concurrent connections you want to accept.
+
+Starting from 1.3 you can use the --gevent shortcut, that will set optimal parameters
+
+.. code-block:: sh
+
+   uwsgi --plugins gevent --gevent 100 --socket :3031 --module myapp
+
+the argument of --gevent is the number of async cores to spawn
+
+
 
 A crazy example
 ---------------
