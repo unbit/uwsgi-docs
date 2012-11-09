@@ -10,7 +10,8 @@ application-code to abuse it.
 
 
 To start the offloading subsystem just add --offload-threads <n>, where <n> is the number of threads (per-worker) to spawn.
-They are native threads, they are lock-free (no shared resources) and they are the best way to abuse your CPU cores.
+They are native threads, they are lock-free (no shared resources), thundering-herd free (requests to the system
+are made in round-robin) and they are the best way to abuse your CPU cores.
 
 The number of offloaded requests is accounted in the "offloaded_requests" metric of the stats subsystem.
 
@@ -53,6 +54,9 @@ Example:
 The Future
 **********
 
-The offloading subsystem has a great potential.
+The offloading subsystem has a great potential, you can think of it as a software DMA: you program it, and then it goes alone.
+
+Currently it is pretty monolithic, but the idea is to allow more-complex plugins (a redis-one is on work)
 
 Next step is allowing the user to "program" it via the uwsgi api.
+
