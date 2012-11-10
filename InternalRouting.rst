@@ -156,6 +156,9 @@ The http router supports the `doc:OffloadSubsystem`
 
 
 The ``rewrite`` router
--------------------
+----------------------
 
 .. note:: This router is undocumented.
+
+The ``cache`` router
+--------------------
