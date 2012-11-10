@@ -60,6 +60,8 @@ Example: forward requests starting with ``/foobar`` to a remote uwsgi server usi
   socket = :3031
   route = ^/foobar uwsgi:192.168.173.9:3031,5,0
 
+The uwsgi router supports :doc:`offloading<OffloadSubsystem>`
+
 The ``redirect`` router
 -----------------------
 
@@ -152,7 +154,7 @@ you can specify the Host header to ser
    route = ^/foobar http:127.0.0.1:4040,unbit.it
    route = ^/test http:192.168.173.3:3131,uwsgi.it
 
-The http router supports `doc:offloading<OffloadSubsystem>`
+The http router supports :doc:`offloading<OffloadSubsystem>`
 
 
 The ``rewrite`` router
