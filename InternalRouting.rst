@@ -8,12 +8,12 @@ Following the logging approach, new "routers" can be added as plugins.
 These routers are included:
 
 * ``uwsgi`` -- set modifiers and to eventually redirect requests to remote uWSGI servers
-* ``redirect`` -- works very similarly to Apache's mod_rewrite, allowing you to quickly send HTTP redirects to clients without touching your app
+* ``redirect`` --  allows to quickly send HTTP redirects to clients without touching your app
 * ``basicauth`` -- implements HTTP basic authentication
-* ``http`` (since 1.3)
-* ``rewrite`` (since 1.3)
-* ``access`` (since 1.4)
-* ``cache`` (since 1.4)
+* ``http`` (since 1.3) -- forward requests to remote HTTP servers
+* ``rewrite`` (since 1.3) -- intrnal rewrite, very similar to apache mod_rewrite
+* ``access`` (since 1.4) -- implementd tcpwrap check
+* ``cache`` (since 1.4) -- get an item from the uWSGI cache
 
 The internal router is configurable with:
 
