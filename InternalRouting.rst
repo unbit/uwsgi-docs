@@ -134,7 +134,25 @@ This will run Trac with 2 hardcoded users on HTTP port 9090.
 The ``http`` router
 -------------------
 
-.. note:: This router is undocumented.
+You can forward specific requests to an external http server
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugins = router_http
+   route = ^/foobar http:127.0.0.1:4040
+   route = ^/test http:192.168.173.3:3131
+
+you can specify the Host header to ser
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugins = router_http
+   route = ^/foobar http:127.0.0.1:4040,unbit.it
+   route = ^/test http:192.168.173.3:3131,uwsgi.it
+
+The http router supports the `doc:OffloadSubsystem`
 
 
 The ``rewrite`` router
