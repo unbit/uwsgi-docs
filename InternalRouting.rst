@@ -12,6 +12,8 @@ These routers are included:
 * ``basicauth`` -- implements HTTP basic authentication
 * ``http`` (since 1.3)
 * ``rewrite`` (since 1.3)
+* ``access`` (since 1.4)
+* ``cache`` (since 1.4)
 
 The internal router is configurable with:
 
