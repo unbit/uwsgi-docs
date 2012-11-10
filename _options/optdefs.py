@@ -568,17 +568,17 @@ def carbon_options():
 def cgi_options():
     config = Config("CGI")
     with config.section("Config", docs = ["CGI"]) as s:
-        s.o("cgi", 'add cgi', "add a cgi mountpoint/directory/script")
-        s.o(("cgi-map-helper", "cgi-helper"), 'add cgi maphelper', "add a cgi map-helper")
-        s.o("cgi-from-docroot", True, "blindly enable cgi in DOCUMENT_ROOT")
-        s.o("cgi-buffer-size", 'set 64bit', "set cgi buffer size")
-        s.o("cgi-timeout", int, "set cgi script timeout")
-        s.o("cgi-index", [str], "add a cgi index file")
-        s.o("cgi-allowed-ext", [str], "cgi allowed extension")
-        s.o("cgi-unset", [str], "unset specified environment variables")
-        s.o("cgi-loadlib", [str], "load a cgi shared library/optimizer")
-        s.o(("cgi-optimize", "cgi-optimized"), True, "enable cgi realpath() optimizer")
-        s.o("cgi-path-info", True, "disable PATH_INFO management in cgi scripts")
+        s.o("cgi", '[mountpoint=]script', "Add a CGI directory/script with optional mountpoint (URI prefix)")
+        s.o(("cgi-map-helper", "cgi-helper"), 'extension=helper-executable', "Add a cgi helper to map an extension into an executable.")
+        s.o("cgi-from-docroot", True, "Blindly enable cgi in DOCUMENT_ROOT")
+        s.o("cgi-buffer-size", int, "Set the CGI buffer size")
+        s.o("cgi-timeout", int, "set CGI script timeout")
+        s.o("cgi-index", [str], "add a CGI index file")
+        s.o("cgi-allowed-ext", [str], "Allowed extensions for CGI")
+        s.o("cgi-unset", [str], "unset specified environment variables before running CGI executable")
+        s.o("cgi-loadlib", [str], "load a CGI shared library/optimizer")
+        s.o(("cgi-optimize", "cgi-optimized"), True, "enable CGI realpath() optimizer")
+        s.o("cgi-path-info", True, "Disable PATH_INFO management in CGI scripts")
     return config
 
 def cheaper_options():

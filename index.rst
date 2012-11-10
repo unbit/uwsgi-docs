@@ -43,6 +43,8 @@ Table of Contents
    Signals
    Reload
    SharedArea
+   InternalRouting
+   OffloadSubsystem
    Glossary
 
 Scaling with uWSGI
