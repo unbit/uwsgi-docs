@@ -3295,17 +3295,17 @@ Config
 
 ``cgi``
 ~~~~~~~
-**Argument:** *add cgi*
+**Argument:** *[mountpoint=]script*
 
-Add a cgi mountpoint/directory/script.
+Add a CGI directory/script with optional mountpoint (URI prefix).
 
 .. _OptionCgiMapHelper:
 
 ``cgi-map-helper``, ``cgi-helper``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-**Argument:** *add cgi maphelper*
+**Argument:** *extension=helper-executable*
 
-Add a cgi map-helper.
+Add a cgi helper to map an extension into an executable.
 
 .. _OptionCgiFromDocroot:
 
@@ -3319,9 +3319,9 @@ Blindly enable cgi in DOCUMENT_ROOT.
 
 ``cgi-buffer-size``
 ~~~~~~~~~~~~~~~~~~~
-**Argument:** *set 64bit*
+**Argument:** number
 
-Set cgi buffer size.
+Set the CGI buffer size.
 
 .. _OptionCgiTimeout:
 
@@ -3329,7 +3329,7 @@ Set cgi buffer size.
 ~~~~~~~~~~~~~~~
 **Argument:** number
 
-Set cgi script timeout.
+Set CGI script timeout.
 
 .. _OptionCgiIndex:
 
@@ -3337,7 +3337,7 @@ Set cgi script timeout.
 ~~~~~~~~~~~~~
 **Argument:** string
 
-Add a cgi index file.
+Add a CGI index file.
 
 *This option may be declared multiple times.*
 
@@ -3347,7 +3347,7 @@ Add a cgi index file.
 ~~~~~~~~~~~~~~~~~~~
 **Argument:** string
 
-Cgi allowed extension.
+Allowed extensions for CGI.
 
 *This option may be declared multiple times.*
 
@@ -3357,7 +3357,7 @@ Cgi allowed extension.
 ~~~~~~~~~~~~~
 **Argument:** string
 
-Unset specified environment variables.
+Unset specified environment variables before running CGI executable.
 
 *This option may be declared multiple times.*
 
@@ -3367,7 +3367,7 @@ Unset specified environment variables.
 ~~~~~~~~~~~~~~~
 **Argument:** string
 
-Load a cgi shared library/optimizer.
+Load a CGI shared library/optimizer.
 
 *This option may be declared multiple times.*
 
@@ -3377,7 +3377,7 @@ Load a cgi shared library/optimizer.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Argument:** no argument
 
-Enable cgi realpath() optimizer.
+Enable CGI realpath() optimizer.
 
 .. _OptionCgiPathInfo:
 
@@ -3385,7 +3385,7 @@ Enable cgi realpath() optimizer.
 ~~~~~~~~~~~~~~~~~
 **Argument:** no argument
 
-Disable PATH_INFO management in cgi scripts.
+Disable PATH_INFO management in CGI scripts.
 
 
 
