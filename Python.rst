@@ -5,6 +5,8 @@ Python support
   :maxdepth: 1
 
   PythonModule
+  PythonDecorators
+  PythonPump
   Tracebacker
 
 .. seealso:: :ref:`Python configuration options <OptionsPython>`

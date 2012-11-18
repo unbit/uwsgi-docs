@@ -75,6 +75,7 @@ Keeping an eye on your apps
 .. toctree::
    :maxdepth: 1
 
+   Nagios
    SNMP
 
 Async and loop engines
