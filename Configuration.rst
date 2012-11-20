@@ -41,7 +41,7 @@ uWSGI configuration files can include special "magic" variables, prefixed with a
 Currently the following magic variables (you can access them in Python via :py:data:`uwsgi.magic_table`) are defined.
 
 ======== ==
-%v       the vassals directory
+%v       the vassals directory (pwd)
 %o       the original config filename, as specified on the command line
 %p       the absolute path of the configuration file
 %s       the filename of the configuration file
@@ -49,6 +49,7 @@ Currently the following magic variables (you can access them in Python via :py:d
 %e       the extension of the configuration file
 %n       the filename without extension
 %c       the name of the directory containing the config file (version 1.3+)
+%x       the current section identifier, eg. `config.ini:section` (version 1.5-dev+)
 %0..%9   a specific component of the full path of the directory containing the config file (version 1.3+)
 ======== ==
 
