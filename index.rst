@@ -36,6 +36,7 @@ Table of Contents
    Configuration
    ConfigLogic
    Options
+   CustomOptions
    Vars
    Protocol
    AlarmSubsystem
@@ -56,6 +57,7 @@ Scaling with uWSGI
    Emperor
    Broodlord
    Zerg
+   DynamicApps
 
 Securing uWSGI
 ==============
@@ -77,6 +79,7 @@ Keeping an eye on your apps
 
    Nagios
    SNMP
+   PushingStats
 
 Async and loop engines
 ======================

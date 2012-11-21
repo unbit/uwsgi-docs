@@ -4060,7 +4060,7 @@ PHP
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Argument:** *php ini*
 
-Set php.ini path.
+Use this PHP.ini.
 
 .. _OptionPhpIniAppend:
 
@@ -4068,7 +4068,7 @@ Set php.ini path.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Argument:** string
 
-Set php.ini path (append mode).
+Append this (these) php.inis to the first one.
 
 *This option may be declared multiple times.*
 
@@ -4076,7 +4076,7 @@ Set php.ini path (append mode).
 
 ``php-set``
 ~~~~~~~~~~~
-**Argument:** string
+**Argument:** *key=value*
 
 Set a php config directive.
 
@@ -4088,7 +4088,7 @@ Set a php config directive.
 ~~~~~~~~~~~~~
 **Argument:** string
 
-List the php index files.
+Set the file to open (like index.php) when a directory is requested.
 
 *This option may be declared multiple times.*
 
@@ -4106,7 +4106,7 @@ Force php DOCUMENT_ROOT.
 ~~~~~~~~~~~~~~~~~~~~~~~
 **Argument:** string
 
-List the allowed document roots.
+Add an allowed document root. Only scripts under these directories will be executed.
 
 *This option may be declared multiple times.*
 
@@ -4116,7 +4116,7 @@ List the allowed document roots.
 ~~~~~~~~~~~~~~~~~~~
 **Argument:** string
 
-List the allowed php file extensions.
+Add an allowed php file extension. Only scripts ending with these extensions will run.
 
 *This option may be declared multiple times.*
 
@@ -4126,7 +4126,7 @@ List the allowed php file extensions.
 ~~~~~~~~~~~~~~~~~~~~~~~
 **Argument:** string
 
-Force php SERVER_SOFTWARE.
+Force the SERVER_SOFTWARE value reported to PHP.
 
 .. _OptionPhpApp:
 
@@ -4134,7 +4134,7 @@ Force php SERVER_SOFTWARE.
 ~~~~~~~~~~~
 **Argument:** string
 
-Force the php file to run at each request.
+Run _only_ this file whenever a request to the PHP plugin is made.
 
 .. _OptionPhpDumpConfig:
 
@@ -4142,7 +4142,7 @@ Force the php file to run at each request.
 ~~~~~~~~~~~~~~~~~~~
 **Argument:** no argument
 
-Dump php config (if modified via --php-set or append options).
+Dump php config (even if modified via --php-set or append options).
 
 
 

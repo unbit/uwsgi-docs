@@ -368,7 +368,7 @@ def core_options():
 
     with config.section("Spooler", docs=["Spooler"]) as s:
         s.o("spooler", str, "run a spooler on the specified directory", short_name='Q')
-        s.o("spooler-external", str, "map spooler requests to a spooler directory managed by an external instance")
+        s.o("spooler-external", str, "map spooler requests to a spooler directory, but do not start a spooler (spooling managed by external instance)")
         s.o("spooler-ordered", True, "try to order the execution of spooler tasks")
         s.o("spooler-chdir", str, "chdir() to specified directory before each spooler task")
         s.o("spooler-processes", int, "set the number of processes for spoolers")
@@ -701,16 +701,16 @@ def php_options():
     config = Config("PHP")
     
     with config.section("PHP", docs = ["PHP"]) as s:
-        s.o(("php-ini", "php-config"), 'php ini', "set php.ini path")
-        s.o(("php-ini-append", "php-config-append"), [str], "set php.ini path (append mode)")
-        s.o("php-set", [str], "set a php config directive")
-        s.o("php-index", [str], "list the php index files")
+        s.o(("php-ini", "php-config"), 'php ini', "Use this PHP.ini")
+        s.o(("php-ini-append", "php-config-append"), [str], "Append this (these) php.inis to the first one")
+        s.o("php-set", ["key=value"], "set a php config directive")
+        s.o("php-index", [str], "set the file to open (like index.php) when a directory is requested")
         s.o("php-docroot", str, "force php DOCUMENT_ROOT")
-        s.o("php-allowed-docroot", [str], "list the allowed document roots")
-        s.o("php-allowed-ext", [str], "list the allowed php file extensions")
-        s.o("php-server-software", str, "force php SERVER_SOFTWARE")
-        s.o("php-app", str, "force the php file to run at each request")
-        s.o("php-dump-config", True, "dump php config (if modified via --php-set or append options)")
+        s.o("php-allowed-docroot", [str], "Add an allowed document root. Only scripts under these directories will be executed.")
+        s.o("php-allowed-ext", [str], "Add an allowed php file extension. Only scripts ending with these extensions will run.")
+        s.o("php-server-software", str, "force the SERVER_SOFTWARE value reported to PHP")
+        s.o("php-app", str, "run _only_ this file whenever a request to the PHP plugin is made")
+        s.o("php-dump-config", True, "dump php config (even if modified via --php-set or append options)")
     
     return config
 

@@ -59,18 +59,41 @@ Module-level globals
 Cache functions
 ---------------
 
+
+.. function:: cache_get(key[, cache_server])
+
+   Get a value from the cache.
+   
+   :param key: The cache key to read.
+   :param cache_server: The UNIX/TCP socket where the cache server is listening. Optional.
+
 	
-.. function:: cache_set()
+.. function:: cache_set(key, value[, expire, cache_server])
+
+   Set a value in the cache.
+   
+   :param key: The cache key to write.
+   :param write: The cache value to write.
+   :param expire: Expiry time of the value, in seconds.
+   :param cache_server: The UNIX/TCP socket where the cache server is listening. Optional.
 
 
-.. function:: cache_update()
+.. function:: cache_update(key, value[, expire, cache_server])
 
 
-.. function:: cache_del()
+.. function:: cache_del(key[, cache_server])
 
+   Delete the given cached value from the cache.
 
-.. function:: cache_exists()
+   :param key: The cache key to delete.
+   :param cache_server: The UNIX/TCP socket where the cache server is listening. Optional.
 
+.. function:: cache_exists(key[, cache_server])
+
+   Quickly check whether there is a value in the cache associated with the given key.
+
+   :param key: The cache key to check.
+   :param cache_server: The UNIX/TCP socket where the cache server is listening. Optional.
 
 .. function:: cache_clear()
 
@@ -118,14 +141,21 @@ SNMP functions
 Spooler functions
 -----------------
 
-.. function:: send_to_spooler()
+.. function:: send_to_spooler(message_dict=None, spooler=None, priority=None, at=None, body=None, **kwargs)
 
-   Send data to the :doc:`Spooler`.
+   Send data to the :doc:`Spooler`. Also known as `spool()`.
 
-.. function:: spool()
+   .. note:: Any of the keyword arguments may also be passed in the message dictionary. This means they're reserved words, in a way...
 
+   :param message_dict: The message (string keys, string values) to spool. Either this, or **kwargs may be set.
+   :param spooler: The spooler (id or directory) to use.
+   :param priority: The priority of the message. Larger = less important.
+   :param at: The minimum UNIX timestamp at which this message should be processed.
+   :param body: A binary (bytestring) body to add to the message, in addition to the message dictionary itself. Its value will be available in the key ``body`` in the message.
 
-.. function:: set_spooler_frequency()
+.. function:: set_spooler_frequency(seconds)
+
+   Set how often the spooler runs.
 
 
 .. function:: spooler_jobs()

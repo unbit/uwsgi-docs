@@ -18,7 +18,7 @@ Supported languages and platforms
       - Stable, 60% uWSGI API support
     * - Perl
       - 0.9.5
-      - :doc:`PSGI` support. Multiple interpreters, threading and async modes supported
+      - :doc:`Perl` (PSGI) support. Multiple interpreters, threading and async modes supported
       - Stable, 60% uWSGI API support
     * - Ruby
       - 0.9.7-dev
