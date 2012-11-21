@@ -60,9 +60,9 @@ Packet descriptions
      -
         
    * - 5
-     - size of :doc:`PSGI` block vars (HTTP request body excluded)
+     - size of :doc:`PSGI <Perl>` block vars (HTTP request body excluded)
      - 0
-     - Standard :doc:`PSGI` request followed by the HTTP request body
+     - Standard :doc:`PSGI <Perl>` request followed by the HTTP request body
    
    * - 6
      - size of LUA WSAPI block vars (HTTP request body excluded)
