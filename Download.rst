@@ -20,5 +20,5 @@ NetBSD pkgsrc  http://pkgsrc.se/www/py-uwsgi
 Gentoo ebuild  http://packages.gentoo.org/package/www-servers/uwsgi
 Debian         http://packages.debian.org/source/wheezy/uwsgi
 Ubuntu         http://packages.ubuntu.com/source/precise/uwsgi
-Arch pkgbuild  https://aur.archlinux.org/packages.php?ID=41075
+Arch           https://aur.archlinux.org/packages/?O=0&C=0&SeB=nd&K=uwsgi-&outdated=&SB=n&SO=a&PP=50&do_Search=Los
 =============  ====
