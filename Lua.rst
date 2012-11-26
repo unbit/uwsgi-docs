@@ -29,6 +29,8 @@ The ``lua.ini`` buildconf will build uWSGI with embedded Lua support. The ``luap
   # or if you have used another config file (for example core.ini)
   python uwsgiconfig.py --plugin plugins/lua core
 
+.. note:: It should also be possible to compile Lua against ``luajit`` -- just edit the library and header paths in the :file:`plugins/lua/uwsgiplugin.py` file.
+
 Your first WSAPI application
 ----------------------------
 
