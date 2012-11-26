@@ -24,8 +24,16 @@ in respect of it
 .. code-block: ini
 
    [uwsgi]
+   master = true
    cache = 20000
    cache-blocksize = 4096
+   ssl-sessions-use-cache = true
+   ssl-sessions-timeout = 300
+   https = 192.168.173.1:8443,foobar.crt,foobar.key
+   http-processes = 8
+   http-to = 192.168.173.2:3031
+   http-to = 192.168.173.3:3031
+   http-to = 192.168.173.4:3031
 
 
 
