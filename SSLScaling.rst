@@ -185,3 +185,5 @@ If you do not want to manually configure the cache udp nodes you can use multica
 A new gateway server is in development, named the 'udprepeater'. It will basically forward all of the udp
 packets it receive to the subscribed backend nodes. It will allows you to maintain the zero-config style of the subscription system
 (basically you only need to configure a single cache udp node pointing to the udprepeater)
+
+Currently there is no security between the cache nodes. For someone it could be a huge problem, so a security mode (encrypting the packets) is in development
