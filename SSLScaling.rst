@@ -21,19 +21,29 @@ You can configure the SSL subsystem of uWSGI to use the shared cache. The SSL se
 be ethe expire value of the cache item. In that way the cache sweeper (managed by the master) will destroy sessions
 in respect of it
 
-.. code-block: ini
+.. code-block:: ini
 
    [uwsgi]
+   ; spawn the master process (it will run the cache sweeper thread)
    master = true
+   ; store upto 20k sessions
    cache = 20000
+   ; 4k are enough for ssl sessions
    cache-blocksize = 4096
+   ; force the ssl subsystem to use the uWSGI cache as session storage
    ssl-sessions-use-cache = true
+   ; set sessions timeout
    ssl-sessions-timeout = 300
+   ; spawn an https router
    https = 192.168.173.1:8443,foobar.crt,foobar.key
+   ; spawn 8 processes for the https router (all sharing the same sessions cache)
    http-processes = 8
+   ; add a bunch of uwsgi nodes
    http-to = 192.168.173.2:3031
    http-to = 192.168.173.3:3031
    http-to = 192.168.173.4:3031
+   ; add stats
+   stats = 127.0.0.1:5001
 
 
 
