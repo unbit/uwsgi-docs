@@ -39,9 +39,9 @@ in respect of it
    ; spawn 8 processes for the https router (all sharing the same sessions cache)
    http-processes = 8
    ; add a bunch of uwsgi nodes
-   http-to = 192.168.173.2:3031
-   http-to = 192.168.173.3:3031
-   http-to = 192.168.173.4:3031
+   http-to = 192.168.173.10:3031
+   http-to = 192.168.173.11:3031
+   http-to = 192.168.173.12:3031
    ; add stats
    stats = 127.0.0.1:5001
 
@@ -56,5 +56,18 @@ Setup 2: synchronize caches of different HTTPS routers
 The objective is to sync each new session in all of the caches. To accomplish that you have to spawn a special thread
 (the cache-udp-server) in each instance and list all of the remote server that must be synchronized.
 
-A pure-tcp load balancer (like HAProxy or the uWSGI rawrouter can be used to load balance between the various https routers)
+A pure-tcp load balancer (like HAProxy or the uWSGI rawrouter) can be used to load balance between the various https routers.
+
+(a rawrouter config)
+
+.. code-block:: ini
+
+   [uwsgi]
+   master = true
+   rawrouter = 192.168.173.99:443
+   rawrouter-to = 192.168.173.1:8443
+   rawrouter-to = 192.168.173.2:8443
+   rawrouter-to = 192.168.173.3:8443
+   
+
 
