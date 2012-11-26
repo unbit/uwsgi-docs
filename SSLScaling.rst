@@ -175,7 +175,7 @@ Notes
 
 If you do not want to manually configure the cache udp nodes you can use multicast (if your network supports it)
 
-.. code-block ::ini
+.. code-block:: ini
 
    [uwsgi]
    ...
