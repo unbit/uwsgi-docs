@@ -71,7 +71,9 @@ A pure-tcp load balancer (like HAProxy or the uWSGI rawrouter) can be used to lo
    
 Now you can configure the first node (the new options are at the end of the .ini config)
 
-[uwsgi]
+.. code-block:: ini
+
+   [uwsgi]
    ; spawn the master process (it will run the cache sweeper thread)
    master = true
    ; store upto 20k sessions
