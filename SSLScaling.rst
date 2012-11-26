@@ -163,3 +163,8 @@ and the others two...
    ; propagate updates to the other nodes
    cache-udp-node = 192.168.173.1:7171
    cache-udp-node = 192.168.173.2:7171
+
+
+Start smashing the rawrouter (remember to use a client supporting ssl sessions, like your browser) and get cache statistics
+from the stats server of each https node. If the count of "hits" is a lot higher than the "miss" value the system is working well
+and your load is distributed and in high performance mode.
