@@ -168,3 +168,20 @@ and the others two...
 Start smashing the rawrouter (remember to use a client supporting ssl sessions, like your browser) and get cache statistics
 from the stats server of each https node. If the count of "hits" is a lot higher than the "miss" value the system is working well
 and your load is distributed and in high performance mode.
+
+
+Notes
+*****
+
+If you do not want to manually configure the cache udp nodes you can use multicast (if your network supports it)
+
+.. code-block ::ini
+
+   [uwsgi]
+   ...
+   cache-udp-server = 225.1.1.1:7171
+   cache-udp-node = 225.1.1.1:7171
+
+A new gateway server is in development, named the 'udprepeater'. It will basically forward all of the udp
+packets it receive to the subscribed backend nodes. It will allows you to maintain the zero-config style of the subscription system
+(basically you only need to configure a single cache udp node pointing to the udprepeater)
