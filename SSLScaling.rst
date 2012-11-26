@@ -69,5 +69,33 @@ A pure-tcp load balancer (like HAProxy or the uWSGI rawrouter) can be used to lo
    rawrouter-to = 192.168.173.2:8443
    rawrouter-to = 192.168.173.3:8443
    
+Now you can configure the first node (the new options are at the end of the .ini config)
 
+[uwsgi]
+   ; spawn the master process (it will run the cache sweeper thread)
+   master = true
+   ; store upto 20k sessions
+   cache = 20000
+   ; 4k are enough for ssl sessions
+   cache-blocksize = 4096
+   ; force the ssl subsystem to use the uWSGI cache as session storage
+   ssl-sessions-use-cache = true
+   ; set sessions timeout
+   ssl-sessions-timeout = 300
+   ; spawn an https router
+   https = 192.168.173.1:8443,foobar.crt,foobar.key
+   ; spawn 8 processes for the https router (all sharing the same sessions cache)
+   http-processes = 8
+   ; add a bunch of uwsgi nodes
+   http-to = 192.168.173.10:3031
+   http-to = 192.168.173.11:3031
+   http-to = 192.168.173.12:3031
+   ; add stats
+   stats = 127.0.0.1:5001
+   
+   ; spawn the cache-udp-server
+   cache-udp-server = 192.168.173.1:7171
+   ; propagate updates to the other nodes
+   cache-udp-node = 192.168.173.2:7171
+   cache-udp-node = 192.168.173.3:7171
 
