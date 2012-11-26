@@ -14,7 +14,7 @@ The solution works, but obviously does not scale.
 
 Starting from uWSGI 1.5-dev an implementation (based on the stud project) of distributed caching has been added.
 
-Step 1: using the uWSGI cache for storing SSL sessions
+Setup 1: using the uWSGI cache for storing SSL sessions
 ******************************************************
 
 You can configure the SSL subsystem of uWSGI to use the shared cache. The SSL sessions timeout will
@@ -45,5 +45,16 @@ in respect of it
    ; add stats
    stats = 127.0.0.1:5001
 
+Now starts blasting your https router and telnet to the port 5001. Under the "cache" object of the json
+output you should see the values "items" and "hits" increasing. The value "miss" is increased every time a session is not found
+in the cache. It is a good metric of SSL performance users can expect.
 
+
+Setup 2: synchronize caches of different HTTPS routers
+******************************************************
+
+The objective is to sync each new session in all of the caches. To accomplish that you have to spawn a special thread
+(the cache-udp-server) in each instance and list all of the remote server that must be synchronized.
+
+A pure-tcp load balancer (like HAProxy or the uWSGI rawrouter can be used to load balance between the various https routers)
 
