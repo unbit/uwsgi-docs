@@ -34,6 +34,8 @@ in respect of it
    ssl-sessions-use-cache = true
    ; set sessions timeout
    ssl-sessions-timeout = 300
+   ; set the session context string (see later)
+   https-session-context = foobar
    ; spawn an https router
    https = 192.168.173.1:8443,foobar.crt,foobar.key
    ; spawn 8 processes for the https router (all sharing the same sessions cache)
@@ -85,6 +87,7 @@ Now you can configure the first node (the new options are at the end of the .ini
    ; set sessions timeout
    ssl-sessions-timeout = 300
    ; spawn an https router
+   https-session-context = foobar
    https = 192.168.173.1:8443,foobar.crt,foobar.key
    ; spawn 8 processes for the https router (all sharing the same sessions cache)
    http-processes = 8
@@ -118,6 +121,7 @@ and the others two...
    ; set sessions timeout
    ssl-sessions-timeout = 300
    ; spawn an https router
+   https-session-context = foobar
    https = 192.168.173.2:8443,foobar.crt,foobar.key
    ; spawn 8 processes for the https router (all sharing the same sessions cache)
    http-processes = 8
@@ -148,6 +152,7 @@ and the others two...
    ; set sessions timeout
    ssl-sessions-timeout = 300
    ; spawn an https router
+   https-session-context = foobar
    https = 192.168.173.3:8443,foobar.crt,foobar.key
    ; spawn 8 processes for the https router (all sharing the same sessions cache)
    http-processes = 8
@@ -168,6 +173,12 @@ and the others two...
 Start smashing the rawrouter (remember to use a client supporting ssl sessions, like your browser) and get cache statistics
 from the stats server of each https node. If the count of "hits" is a lot higher than the "miss" value the system is working well
 and your load is distributed and in high performance mode.
+
+What is 'https-session-context' ?
+
+Basically each ssl session before being used is checked against a fixed string (the session context).
+I the session does not match that string it is rejected. By default the session context is initialized to
+a value build from the http server address. Forcing it to a common value will avoid session created in a node being rejected in another one.
 
 
 Notes
