@@ -184,6 +184,11 @@ Packet descriptions
      - size of packet
      - 0
      - ECHO service
+
+   * - 109
+     - size of clean payload
+     - 0 to 255
+     - legion msg (UDP, the body is encrypted) 
    
    * - 110
      - size of payload
