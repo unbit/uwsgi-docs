@@ -295,9 +295,16 @@ Advanced methods
 .. function:: add_rb_timer()
 
 
-.. function:: add_cron()
+.. function:: add_cron(signal, minute, hour, day, month, weekday)
 
+   For the time parameters, you may use the syntax ``-n`` to denote "every n". For instance ``hour=-2`` would declare the signal to be sent every other hour.
 
+   :param signal: The signal number to raise.
+   :param minute: The minute on which to run this event.
+   :param hour: The hour on which to run this event.
+   :param day: The day on which to run this event. This is "OR"ed with ``weekday``.
+   :param month: The month on which to run this event.
+   :param weekday: The weekday on which to run this event. This is "OR"ed with ``day``. (In accordance with the POSIX standard, 0 is Sunday, 6 is Monday)
 
 .. function:: register_rpc()
 
@@ -505,3 +512,19 @@ SharedArea functions
    :param pos: The position of the value.
    :type val: long
    :return: The new value at the given position, or ``None`` if the shared area is not enabled or the read request is invalid.
+
+Erlang functions
+----------------
+
+.. function:: erlang_send_message(node, process_name, message)
+
+.. function:: erlang_register_process(process_name, callable)
+
+.. function:: erlang_recv_message(node)
+
+.. function:: erlang_connect(address)
+
+   :return: File descriptor or -1 on error
+
+.. function:: erlang_rpc(node, module, function, argument)
+

@@ -46,6 +46,7 @@ Table of Contents
    SharedArea
    InternalRouting
    OffloadSubsystem
+   Cron
    Glossary
 
 Scaling with uWSGI
@@ -58,6 +59,7 @@ Scaling with uWSGI
    Broodlord
    Zerg
    DynamicApps
+   SSLScaling
 
 Securing uWSGI
 ==============
@@ -80,6 +82,7 @@ Keeping an eye on your apps
    Nagios
    SNMP
    PushingStats
+   Carbon
 
 Async and loop engines
 ======================

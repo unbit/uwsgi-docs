@@ -556,10 +556,10 @@ def python_options():
 def carbon_options():
     config = Config("Carbon")
     with config.section("Carbon", docs = ["Carbon"]) as s:
-        s.o("carbon", [str], "push statistics to the specified carbon server")
-        s.o("carbon-timeout", int, "set carbon connection timeout in seconds (default 3)")
-        s.o("carbon-freq", int, "set carbon push frequency in seconds (default 60)")
-        s.o("carbon-id", str, "set carbon id")
+        s.o("carbon", ["host:port"], "push statistics to the specified carbon server/port")
+        s.o("carbon-timeout", int, "set Carbon connection timeout in seconds", default=3)
+        s.o("carbon-freq", int, "set Carbon push frequency in seconds", default=60)
+        s.o("carbon-id", str, "set the identifier for Carbon metrics (by default the first uWSGI socket name)")
         s.o("carbon-no-workers", True, "disable generation of single worker metrics")
         s.o("carbon-max-retry", int, "set maximum number of retries in case of connection errors (default 1)")
         s.o("carbon-retry-delay", int, "set connection retry delay in seconds (default 7)")

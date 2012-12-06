@@ -2306,7 +2306,7 @@ This option may be set with ``-Q`` from the command line.
 ~~~~~~~~~~~~~~~~~~~~
 **Argument:** string
 
-Map spooler requests to a spooler directory managed by an external instance.
+Map spooler requests to a spooler directory, but do not start a spooler (spooling managed by external instance).
 
 .. _OptionSpoolerOrdered:
 
@@ -3226,9 +3226,9 @@ Carbon
 
 ``carbon``
 ~~~~~~~~~~
-**Argument:** string
+**Argument:** *host:port*
 
-Push statistics to the specified carbon server.
+Push statistics to the specified carbon server/port.
 
 *This option may be declared multiple times.*
 
@@ -3237,16 +3237,18 @@ Push statistics to the specified carbon server.
 ``carbon-timeout``
 ~~~~~~~~~~~~~~~~~~
 **Argument:** number
+**Default:** 3
 
-Set carbon connection timeout in seconds (default 3).
+Set Carbon connection timeout in seconds.
 
 .. _OptionCarbonFreq:
 
 ``carbon-freq``
 ~~~~~~~~~~~~~~~
 **Argument:** number
+**Default:** 60
 
-Set carbon push frequency in seconds (default 60).
+Set Carbon push frequency in seconds.
 
 .. _OptionCarbonId:
 
@@ -3254,7 +3256,7 @@ Set carbon push frequency in seconds (default 60).
 ~~~~~~~~~~~~~
 **Argument:** string
 
-Set carbon id.
+Set the identifier for Carbon metrics (by default the first uWSGI socket name).
 
 .. _OptionCarbonNoWorkers:
 
