@@ -1,19 +1,28 @@
 The uWSGI project
 =================
 
-uWSGI is an extremely advanced, sysadmin-friendly, highly-modular **application container server** written in POSIX-compatible C.
+The uWSGI project aims at developing a full stack for building (and hosting) clustered/distributed network applications.
 
-It can communicate with your front-end webserver via `HTTP <HTTP.rst>`_, FastCGI, ZeroMQ and its highly specified/optimized protocol named 'uwsgi' (all-lowercase) already supported out-of-the-box by a lot of webservers.
+Mainly targeted at the web and its standards, it has been successfully used in a lot of different contexts.
 
-Born as a simple WSGI-only server, over time it has evolved in a complete stack for networked/:doc:`clustered<Clustering>` web applications, implementing :doc:`message/object passing<CustomRouting>`, :doc:`caching<Caching>`, :doc:`RPC` and :doc:`process management<ProcessManagement>`.
+Thanks to its pluggable architecture it can be extended without limits to support more platforms and languages. Currently, you can write plugins in C, C++ and Objective-C.
 
-uWSGI can be run in preforking, threaded, :doc:`asynchronous/evented<Async>` and :doc:`green thread/coroutine<GreenThread>` modes. Various forms of green threads/coroutines are supported, including :doc:`uGreen`, Greenlet, Stackless, :doc:`Gevent` and :doc:`FiberLoop`.
+The 'WSGI' part in the name is a tribute to the namesake python standard, as it has been the first developed plugin for the project.
 
-Sysadmins will love it as it can be :doc:`configured via several methods<Configuration>`, including command line, environment variables, XML, INI, YAML, JSON, SQLite and LDAP.
+Versatility, performance, low-resource usage and reliability are the strenghts of the project (and the only rules followed).
 
-Thanks to its pluggable architecture it can be extended without limits to support more platforms and languages. Currently, you can write plugins in C, C++ and Objective-C
+Included components (updated to latest stable release)
+======================================================
 
-To get started with uWSGI, take a look at the :doc:`Install` page. Then continue to :doc:`Quickstart` or if you are feeling daring, the :doc:`Options` page. Some example configurations are available on the :doc:`Examples` page.
+The Core (implements configuration, processes management, sockets creation, monitoring, logging, shared memory areas, ipc, cluster membership and the SubscriptionSystem)
+
+Request plugins (implement application server interfaces for various languages and platforms: WSGI, PSGI, Rack, Lua WSAPI, CGI, PHP, Go ...)
+
+Gateways (implement load balancers, proxies and routers)
+
+The Emperor (implements massive instances management and monitoring)
+
+Loop engines (implement concurrency, uWSGI components can be run in preforking, threaded, asynchronous/evented and green thread/coroutine modes. Various technologies are supported, including uGreen – uWSGI Green Threads, Greenlet, Stackless, The Gevent loop engine, Goroutines and Fibers)
 
 .. note::
 
