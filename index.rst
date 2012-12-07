@@ -22,7 +22,7 @@ Gateways (implement load balancers, proxies and routers)
 
 The Emperor (implements massive instances management and monitoring)
 
-Loop engines (implement concurrency, uWSGI components can be run in preforking, threaded, asynchronous/evented and green thread/coroutine modes. Various technologies are supported, including uGreen – uWSGI Green Threads, Greenlet, Stackless, The Gevent loop engine, Goroutines and Fibers)
+Loop engines (implement concurrency, components can be run in preforking, threaded, asynchronous/evented and green thread/coroutine modes. Various technologies are supported, including uGreen – uWSGI Green Threads, Greenlet, Stackless, The Gevent loop engine, Goroutines and Fibers)
 
 .. note::
 
