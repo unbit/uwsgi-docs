@@ -20,7 +20,7 @@ Request plugins (implement application server interfaces for various languages a
 
 Gateways (implement load balancers, proxies and routers)
 
-The `Emperor`_ (implements massive instances management and monitoring)
+The :doc:`Emperor Emperor` (implements massive instances management and monitoring)
 
 Loop engines (implement concurrency, components can be run in preforking, threaded, asynchronous/evented and green thread/coroutine modes. Various technologies are supported, including uGreen, Greenlet, Stackless, `Gevent`_, Goroutines and Fibers)
 
