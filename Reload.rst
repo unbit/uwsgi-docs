@@ -17,7 +17,7 @@ Now the server knows that it is a reloaded instance and will skip all the socket
 
    Sending the `SIGTERM` signal will obtain the same result reload-wise but will not wait for the completion of running requests.
 
-   .. seealso:: :doc:`Signals`
+   .. seealso:: :doc:`ProcessSignals`
 
 .. note::
  

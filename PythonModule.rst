@@ -268,13 +268,36 @@ Advanced methods
 .. function:: listen_queue()
 
 
-.. function:: register_signal()
+.. function:: register_signal(num, who, function)
+
+   :param num: the signal number to configure
+   :param who: a magic string that will set which process/processes receive the signal.
+
+      * ``worker``/``worker0`` will send the signal to the first available worker. This is the default if you specify an empty string.
+      * ``workers`` will send the signal to every worker.
+      * ``workerN`` (N > 0) will send the signal to worker N.
+      * ``mule``/``mule0`` will send the signal to the first available mule. (See :doc:`Mules`)
+      * ``mules`` will send the signal to all mules
+      * ``muleN`` (N > 0) will send the signal to mule N.
+      * ``cluster`` will send the signal to all the nodes in the cluster. Warning: not implemented.
+      * ``subscribed`` will send the signal to all subscribed nodes. Warning: not implemented.
+      * ``spooler`` will send the signal to the spooler.
+
+      ``cluster`` and ``subscribed`` are special, as they will send the signal to the master of all cluster/subscribed nodes. The other nodes will have to define a local handler though, to avoid a terrible signal storm loop.
+
+   :param function: A callable that takes a single numeric argument.
+
+.. function:: signal(num)
+   
+   :param num: the signal number to raise
 
 
-.. function:: signal()
+.. function:: signal_wait([signum])
 
+   Block the process/thread/async core until a signal is received. Use ``signal_received`` to get the number of the signal received.
+   If a registered handler handles a signal, ``signal_wait`` will be interrupted and the actual handler will handle the signal.
 
-.. function:: signal_wait()
+   :param signum: Optional - the signal to wait for
 
 
 .. function:: signal_registered()
@@ -282,22 +305,40 @@ Advanced methods
 
 .. function:: signal_received()
 
+   Get the number of the last signal received. Used in conjunction with ``signal_wait``.
+
 
 .. function:: add_file_monitor()
 
 
-.. function:: add_timer()
+.. function:: add_timer(signum, seconds[, iterations=0])
 
+   :param signum: The signal number to raise.
+   :param seconds: The interval at which to raise the signal.
+   :param iterations: How many times to raise the signal. 0 (the default) means infinity.
 
 .. function:: add_probe()
 
 
-.. function:: add_rb_timer()
+.. function:: add_rb_timer(signum, seconds[, iterations=0])
+
+   Add an user-space (red-black tree backed) timer.
+
+   :param signum: The signal number to raise.
+   :param seconds: The interval at which to raise the signal.
+   :param iterations: How many times to raise the signal. 0 (the default) means infinity.
 
 
-.. function:: add_cron()
+.. function:: add_cron(signal, minute, hour, day, month, weekday)
 
+   For the time parameters, you may use the syntax ``-n`` to denote "every n". For instance ``hour=-2`` would declare the signal to be sent every other hour.
 
+   :param signal: The signal number to raise.
+   :param minute: The minute on which to run this event.
+   :param hour: The hour on which to run this event.
+   :param day: The day on which to run this event. This is "OR"ed with ``weekday``.
+   :param month: The month on which to run this event.
+   :param weekday: The weekday on which to run this event. This is "OR"ed with ``day``. (In accordance with the POSIX standard, 0 is Sunday, 6 is Monday)
 
 .. function:: register_rpc()
 
@@ -505,3 +546,19 @@ SharedArea functions
    :param pos: The position of the value.
    :type val: long
    :return: The new value at the given position, or ``None`` if the shared area is not enabled or the read request is invalid.
+
+Erlang functions
+----------------
+
+.. function:: erlang_send_message(node, process_name, message)
+
+.. function:: erlang_register_process(process_name, callable)
+
+.. function:: erlang_recv_message(node)
+
+.. function:: erlang_connect(address)
+
+   :return: File descriptor or -1 on error
+
+.. function:: erlang_rpc(node, module, function, argument)
+
