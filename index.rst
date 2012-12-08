@@ -48,14 +48,25 @@ Table of Contents
    CustomOptions
    Vars
    Protocol
-   AlarmSubsystem
    AttachingDaemons
-   Signals
+   ProcessSignals
    Reload
-   SharedArea
+   Glossary
+
+uWSGI Subsystems
+================
+
+.. toctree::
+   :maxdepth: 1
+   
+   AlarmSubsystem
+   Cron
    InternalRouting
    OffloadSubsystem
-   Glossary
+   RPC
+   SharedArea
+   Signals
+   Spooler
 
 Scaling with uWSGI
 ==================
@@ -67,6 +78,7 @@ Scaling with uWSGI
    Broodlord
    Zerg
    DynamicApps
+   SSLScaling
 
 Securing uWSGI
 ==============
@@ -89,6 +101,7 @@ Keeping an eye on your apps
    Nagios
    SNMP
    PushingStats
+   Carbon
 
 Async and loop engines
 ======================
