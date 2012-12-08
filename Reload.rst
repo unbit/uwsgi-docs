@@ -30,4 +30,4 @@ Other (more advanced) ways
 
 As always in the uWSGI project, there are more ways to accomplish the same result using different techiques.
 
-For very high-loaded sites, solutions like the `doc:Zerg` mode or the `doc:SubscriptionSystem` can be a better choice
+For very high-loaded sites, solutions like the :doc:`Zerg` mode or the :doc:`SubscriptionSystem` can be a better choice
