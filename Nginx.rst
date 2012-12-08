@@ -192,38 +192,3 @@ The customers' applications can now be run (using the process manager of your ch
   uwsgi --uid 1002 -w customer2app --limit-as 128 -p 3 -M -s 127.0.0.1:3032
   uwsgi --uid 1003 -w django3app --limit-as 96 -p 6 -M -s 127.0.0.1:3033
 
-
-FastFuncs
----------
-
-You can use :doc:`FastFuncs` with Nginx by setting the uwsgi modifiers and disabling request headers and body.
-
-The following example will request fastfunc 11 for the /xml path::
-
-  location /xml {
-     uwsgi_pass 127.0.0.1:3031;
-     uwsgi_modifier1 26;
-     uwsgi_modifier2 11;
-     uwsgi_pass_request_headers off;
-     uwsgi_pass_request_body off;
-   }
-
-
-Eval modifier
--------------
-
-.. note:: Available since 0.9.5.1.
-
-:doc:`Modifier<Modifiers>` 22 allows you to directly pass Python code to uWSGI that will be evaluated. An example::
-  
-  uwsgi_pass 127.0.0.1:3031;
-  uwsgi_pass_request_headers off;
-  uwsgi_pass_request_body off;
-  uwsgi_string "
-  import uwsgi
-  uwsgi.start_response('200 OK', [('Content-type','text/plain')])
-  total = 30+22
-  uwsgi.send("30 + 22 = %d" % total)
-  ";
-  uwsgi_modifier1 22;
-  uwsgi_modifier2 0;

@@ -9,19 +9,9 @@ When you send the `SIGHUP` to the master process it will try to gracefully stop 
 
 Then it closes all the eventually opened file descriptor not related to uWSGI.
 
-Lastly it assigns the server socket descriptor to a fixed, known file descriptor (number 3) and calls `execve` with the original args and environment of the uWSGI process.
+Lastly, it binary patches (using execve()) the uWSGI process image with a new one, inheriting all of the previous file descriptors.
 
-When the process image is overwritten the new server is alive and checks if it is a "respawned" instance:
-
-.. code-block:: c
-
-   if (!getsockopt(3, SOL_SOCKET, SO_TYPE, &socket_type, &socket_type_len)) {
-       fprintf(stderr, "...fd 3 is a socket, i suppose this is a graceful reload of uWSGI, i will try to do my best...\n");
-       is_a_reload = 1;
-       serverfd = 3;
-   }
-
-Now the server knows that it is a reloaded instance and will skip all the socket initialization.
+Now the server knows that it is a reloaded instance and will skip all the sockets initialization, reusing the previous ones.
 
 .. note::
 
@@ -34,3 +24,10 @@ Now the server knows that it is a reloaded instance and will skip all the socket
    The reload functionality can also be used via the uWSGI API as published to the applications being run.
 
    .. seealso:: :py:func:`uwsgi.reload`
+
+Other (more advanced) ways
+==========================
+
+As always in the uWSGI project, there are more ways to accomplish the same result using different techiques.
+
+For very high-loaded sites, solutions like the :doc:`Zerg` mode or the :doc:`SubscriptionSystem` can be a better choice
