@@ -221,7 +221,7 @@ uwsgidecorators API reference
 
 .. function:: signal(num)(func)
 
-   You can register signals for the :doc:`Signal framework<SignalFramework>` in one shot.
+   You can register signals for the :doc:`signal framework<Signals>` in one shot.
 
    .. code-block:: py
       

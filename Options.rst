@@ -1352,7 +1352,7 @@ Daemonize uWSGI after loading application, write messages into given log file or
 **Argument:** *pidfile*
 
 Send the stop (SIGINT) signal to the instance described by the pidfile.
-.. :seealso:: :doc:`Signals`
+.. :seealso:: :doc:`ProcessSignals`
 
 .. _OptionReload:
 
@@ -1361,7 +1361,7 @@ Send the stop (SIGINT) signal to the instance described by the pidfile.
 **Argument:** *pidfile*
 
 Send the reload (SIGHUP) signal to the instance described by the pidfile.
-.. :seealso:: :doc:`Signals`
+.. :seealso:: :doc:`ProcessSignals`
 
 .. _OptionPause:
 
@@ -1370,7 +1370,7 @@ Send the reload (SIGHUP) signal to the instance described by the pidfile.
 **Argument:** *pidfile*
 
 Send the pause (SIGTSTP) signal to the instance described by the pidfile.
-.. :seealso:: :doc:`Signals`
+.. :seealso:: :doc:`ProcessSignals`
 
 .. _OptionSuspend:
 
@@ -1379,7 +1379,7 @@ Send the pause (SIGTSTP) signal to the instance described by the pidfile.
 **Argument:** *pidfile*
 
 Send the suspend (SIGTSTP) signal to the instance described by the pidfile.
-.. :seealso:: :doc:`Signals`
+.. :seealso:: :doc:`ProcessSignals`
 
 .. _OptionResume:
 
@@ -1388,7 +1388,7 @@ Send the suspend (SIGTSTP) signal to the instance described by the pidfile.
 **Argument:** *pidfile*
 
 Send the resume (SIGTSTP) signal to the instance described by the pidfile.
-.. :seealso:: :doc:`Signals`
+.. :seealso:: :doc:`ProcessSignals`
 
 .. _OptionAutoProcname:
 

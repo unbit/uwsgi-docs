@@ -39,15 +39,25 @@ Table of Contents
    CustomOptions
    Vars
    Protocol
-   AlarmSubsystem
    AttachingDaemons
-   Signals
+   ProcessSignals
    Reload
-   SharedArea
+   Glossary
+
+uWSGI Subsystems
+================
+
+.. toctree::
+   :maxdepth: 1
+   
+   AlarmSubsystem
+   Cron
    InternalRouting
    OffloadSubsystem
-   Cron
-   Glossary
+   RPC
+   SharedArea
+   Signals
+   Spooler
 
 Scaling with uWSGI
 ==================

@@ -268,13 +268,36 @@ Advanced methods
 .. function:: listen_queue()
 
 
-.. function:: register_signal()
+.. function:: register_signal(num, who, function)
+
+   :param num: the signal number to configure
+   :param who: a magic string that will set which process/processes receive the signal.
+
+      * ``worker``/``worker0`` will send the signal to the first available worker. This is the default if you specify an empty string.
+      * ``workers`` will send the signal to every worker.
+      * ``workerN`` (N > 0) will send the signal to worker N.
+      * ``mule``/``mule0`` will send the signal to the first available mule. (See :doc:`Mules`)
+      * ``mules`` will send the signal to all mules
+      * ``muleN`` (N > 0) will send the signal to mule N.
+      * ``cluster`` will send the signal to all the nodes in the cluster. Warning: not implemented.
+      * ``subscribed`` will send the signal to all subscribed nodes. Warning: not implemented.
+      * ``spooler`` will send the signal to the spooler.
+
+      ``cluster`` and ``subscribed`` are special, as they will send the signal to the master of all cluster/subscribed nodes. The other nodes will have to define a local handler though, to avoid a terrible signal storm loop.
+
+   :param function: A callable that takes a single numeric argument.
+
+.. function:: signal(num)
+   
+   :param num: the signal number to raise
 
 
-.. function:: signal()
+.. function:: signal_wait([signum])
 
+   Block the process/thread/async core until a signal is received. Use ``signal_received`` to get the number of the signal received.
+   If a registered handler handles a signal, ``signal_wait`` will be interrupted and the actual handler will handle the signal.
 
-.. function:: signal_wait()
+   :param signum: Optional - the signal to wait for
 
 
 .. function:: signal_registered()
@@ -282,17 +305,28 @@ Advanced methods
 
 .. function:: signal_received()
 
+   Get the number of the last signal received. Used in conjunction with ``signal_wait``.
+
 
 .. function:: add_file_monitor()
 
 
-.. function:: add_timer()
+.. function:: add_timer(signum, seconds[, iterations=0])
 
+   :param signum: The signal number to raise.
+   :param seconds: The interval at which to raise the signal.
+   :param iterations: How many times to raise the signal. 0 (the default) means infinity.
 
 .. function:: add_probe()
 
 
-.. function:: add_rb_timer()
+.. function:: add_rb_timer(signum, seconds[, iterations=0])
+
+   Add an user-space (red-black tree backed) timer.
+
+   :param signum: The signal number to raise.
+   :param seconds: The interval at which to raise the signal.
+   :param iterations: How many times to raise the signal. 0 (the default) means infinity.
 
 
 .. function:: add_cron(signal, minute, hour, day, month, weekday)
