@@ -29,3 +29,19 @@ That node is our Lord.
 
 If we configure a Legion right (remember, a single uWSGI instances can be a member of all of the legions you need) we
 could easily implement ip takeover.
+
+.. code-block: ini
+
+   [uwsgi]
+   legion-freq = 1
+   legion-tolerance = 3
+   legion = clusterip 225.1.1.1:4242 98 bf-cbc:hello
+   legion-node = clusterip 225.1.1.1:4242
+
+   legion-lord = clusterip cmd:ip addr add 192.168.173.111/24 dev eth0
+   legion-lord = clusterip cmd:arping -c 3 -S 192.168.173.111 192.168.173.1
+
+   legion-setup = clusterip cmd:ip addr del 192.168.173.111/24 dev eth0
+   legion-unlord = clusterip cmd:ip addr del 192.168.173.111/24 dev eth0
+   legion-death = clusterip cmd:ip addr del 192.168.173.111/24 dev eth0
+
