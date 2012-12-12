@@ -30,7 +30,7 @@ That node is our Lord.
 If we configure a Legion right (remember, a single uWSGI instances can be a member of all of the legions you need) we
 could easily implement ip takeover.
 
-.. code-block: ini
+.. code-block:: ini
 
    [uwsgi]
    legion-freq = 1
