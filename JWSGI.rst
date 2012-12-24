@@ -113,5 +113,5 @@ Important Notes
 ---------------
 
 * The jwsgi method must be called ``jwsgi``. This will be fixed soon.
-* The jwsgi plugin may leaks memory at every request. We are still evaluating if memory management must be managed in the jvm plugin, or in the jwsgi one. Recently a patch had been merged for this issue, but only was tested on Ubuntu 12.0.4 and Oracle JDK 7.
+* The jwsgi plugin may leaks memory at every request. We are still evaluating if memory management must be managed in the jvm plugin, or in the jwsgi one. Recently a patch had been `merged <https://github.com/unbit/uwsgi/pull/97>`_ for this issue, but only was tested on Ubuntu 12.0.4 and Oracle JDK 7.
 * Threading will be a core component of the JVM plugin in the future. Expect an update soon.
