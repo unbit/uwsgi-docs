@@ -33,9 +33,11 @@ Now we can simply set the VirtualEnv dynamically using the ``UWSGI_PYHOME`` var:
 
 .. code-block:: nginx
 
-  location / {
-    uwsgi_pass 192.168.173.5:3031;
-    include uwsgi_params;
-    uwsgi_param UWSGI_SCRIPT mytrac;
-    uwsgi_param UWSGI_PYHOME /Users/roberto/uwsgi/VENV2;
-  }
+   location / {
+     uwsgi_pass 192.168.173.5:3031;
+     include uwsgi_params;
+     uwsgi_param UWSGI_SCRIPT mytrac;
+     uwsgi_param UWSGI_PYHOME /Users/roberto/uwsgi/VENV2;
+   }
+ 
+ 

@@ -151,7 +151,7 @@ Register code as a :doc:`RPC` function.
 mule(id?, block)
 ----------------
 
-Execute code as a :doc:`Mule <Mule>` brain.
+Execute code as a :doc:`Mule <Mules>` brain.
 
 .. code-block:: ruby
   

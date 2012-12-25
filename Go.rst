@@ -84,12 +84,9 @@ using such system, running apps in uWSGI should be extremely simple
 
 As you can note, the only differences from a standard net/http-based application are in the import "uwsgi" need and the call of the uwsgi.Run() function.
 
-uwsgi.Run() will run the whole uWSGI server
+uwsgi.Run() will run the whole uWSGI server.
 
-If you want to use your personal request handler instead of http.DefaultServeMux, use uwsgi.Handler(http.Handler) or uwsgi.RequestHandler(func(http.ResponseWriter, *http.Request))
-to set it
-
-
+If you want to use your personal request handler instead of ``http.DefaultServeMux``, use ``uwsgi.Handler(http.Handler)`` or ``uwsgi.RequestHandler(func(http.ResponseWriter, *http.Request))`` to set it.
 
 .. code-block:: go
 

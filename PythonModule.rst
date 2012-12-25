@@ -143,15 +143,15 @@ Spooler functions
 
 .. function:: send_to_spooler(message_dict=None, spooler=None, priority=None, at=None, body=None, **kwargs)
 
-   Send data to the :doc:`Spooler`. Also known as `spool()`.
-
-   .. note:: Any of the keyword arguments may also be passed in the message dictionary. This means they're reserved words, in a way...
-
    :param message_dict: The message (string keys, string values) to spool. Either this, or **kwargs may be set.
    :param spooler: The spooler (id or directory) to use.
    :param priority: The priority of the message. Larger = less important.
    :param at: The minimum UNIX timestamp at which this message should be processed.
    :param body: A binary (bytestring) body to add to the message, in addition to the message dictionary itself. Its value will be available in the key ``body`` in the message.
+
+   Send data to the :doc:`Spooler`. Also known as `spool()`.
+
+   .. note:: Any of the keyword arguments may also be passed in the message dictionary. This means they're reserved words, in a way...
 
 .. function:: set_spooler_frequency(seconds)
 
@@ -250,13 +250,17 @@ Advanced methods
 .. function:: grunt()
 
 
-.. function:: lock()
+.. function:: lock(locknum=0)
+
+   :param locknum: The lock number to lock. Lock 0 is always available.
 
 
 .. function:: is_locked()
 
 
-.. function:: unlock()
+.. function:: unlock(locknum=0)
+
+   :param locknum: The lock number to unlock. Lock 0 is always available.
 
 
 .. function:: cl()
@@ -415,19 +419,33 @@ Advanced methods
 .. function:: parsefile()
 
 
-.. function:: embedded_data()
+.. function:: embedded_data(symbol_name)
+
+   :param string: The symbol name to extract.
+
+   Extracts a symbol from the uWSGI binary image.
+
+   .. seealso:: :doc:`Embed`
 
 
 .. function:: extract()
 
 
-.. function:: mule_msg()
+.. function:: mule_msg(string[, id])
 
+   :param string: The bytestring message to send.
+   :param id: Optional - the mule ID to receive the message. If you do not specify an ID, the message will go to the first available programmed mule.
+
+   Send a message to a mule.
 
 .. function:: farm_msg()
 
 
 .. function:: mule_get_msg()
+
+   :return: A mule message, once one is received.
+
+   Block until a mule message is received and return it. This can be called from multiple threads in the same programmed mule.
 
 
 .. function:: farm_get_msg()

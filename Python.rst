@@ -8,6 +8,7 @@ Python support
   PythonDecorators
   PythonPump
   Tracebacker
+  PythonModuleAlias
 
 .. seealso:: :ref:`Python configuration options <OptionsPython>`
 
@@ -98,3 +99,28 @@ That's it! No additional configuration or Python modules to write.
     AssertionError: The EvalException middleware is not usable in a multi-process environment
 
   in which case you'll have to set the ``debug`` option in your paste configuration file to False -- or revert to single process environment.
+
+Using the uwsgi_admin Django app
+--------------------------------
+
+In the ``django`` directory of the distribution you will find the ``uwsgi_admin`` app. It plugs into Django's admin app, so if ``uwsgi_admin`` is importable, just add it into your ``INSTALLED_APPS``, then add it to urls.py.
+
+
+.. code-block:: py
+
+    INSTALLED_APPS = (
+        # ...
+        'django.contrib.admin',
+        'uwsgi_admin',
+        # ...
+    )
+    
+Then modify your ``urls.py`` accordingly.
+
+.. code-block:: py
+
+    # ...
+    (r'^admin/uwsgi/', include('mysite.uwsgi_admin.urls')),
+    # ...
+
+``/admin/uwsgi/`` will then serve uWSGI statistics and has a button for graceful reloading of the server (when running under a Master). Note that memory usage is reported only with the ``memory-report`` option is enabled.
