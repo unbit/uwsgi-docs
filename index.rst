@@ -7,9 +7,9 @@ Mainly targeted at the web and its standards, it has been successfully used in a
 
 Thanks to its pluggable architecture it can be extended without limits to support more platforms and languages. Currently, you can write plugins in C, C++ and Objective-C.
 
-The 'WSGI' part in the name is a tribute to the namesake python standard, as it has been the first developed plugin for the project.
+The "WSGI" part in the name is a tribute to the namesake Python standard, as it has been the first developed plugin for the project.
 
-Versatility, performance, low-resource usage and reliability are the strenghts of the project (and the only rules followed).
+Versatility, performance, low-resource usage and reliability are the strengths of the project (and the only rules followed).
 
 Included components (updated to latest stable release)
 ======================================================
@@ -38,6 +38,7 @@ Table of Contents
 
    Download
    Install
+   Management
    LanguagesAndPlatforms
    WebServers
    FAQ
@@ -49,8 +50,10 @@ Table of Contents
    Vars
    Protocol
    AttachingDaemons
-   ProcessSignals
-   Reload
+   ManagementFlag
+   Inetd
+   Upstart
+   Embed
    Glossary
 
 uWSGI Subsystems
@@ -60,13 +63,22 @@ uWSGI Subsystems
    :maxdepth: 1
    
    AlarmSubsystem
+   Caching
    Cron
+   Fastrouter
    InternalRouting
+   Legion
+   Locks
+   Mules
    OffloadSubsystem
+   Queue
    RPC
    SharedArea
    Signals
    Spooler
+   SubscriptionServer
+
+
 
 Scaling with uWSGI
 ==================
@@ -102,6 +114,8 @@ Keeping an eye on your apps
    SNMP
    PushingStats
    Carbon
+   StatsServer
+
 
 Async and loop engines
 ======================

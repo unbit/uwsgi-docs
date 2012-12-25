@@ -22,7 +22,7 @@ Supported languages and platforms
       - Stable, 60% uWSGI API support
     * - Ruby
       - 0.9.7-dev
-      - :doc:`Rack` and :doc:`RubyOnRails` support. A loop engine for :doc:`Ruby 1.9 fibers<FiberLoop>` is available as well as a handy :doc:`DSL <RubyDSL>` module.
+      - :doc:`Ruby` support. A loop engine for :doc:`Ruby 1.9 fibers<FiberLoop>` is available as well as a handy :doc:`DSL <RubyDSL>` module.
       - Stable, 80% uWSGI API support
     * - :doc:`Erlang`
       - 0.9.5

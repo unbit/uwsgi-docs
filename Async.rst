@@ -56,7 +56,7 @@ The ``tests.cpubound_async`` app is included in the source distribution. It's ve
 
 Every time the application calls ``yield`` from the response function, the execution of the app is stopped, and a new request or a previously suspended request on another async core will take over. This means the number of async core is the number of requests that can be queued.
 
-If you run the ``tests.cpubound_async`` app on a non-async server, it will block all processing, not accepting other requests until the heavy cycle of 10000 ``<h1>``s is done.
+If you run the ``tests.cpubound_async`` app on a non-async server, it will block all processing, not accepting other requests until the heavy cycle of 10000 ``<h1>`` s is done.
 
 Waiting for I/O
 ---------------

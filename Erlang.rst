@@ -114,16 +114,16 @@ Python-Erlang mappings
 
 The uWSGI server tries to translate Erlang types to Python objects according to the table below.
 
-======      ====== ====
+==========  ====== ====
 Python      Erlang note
-======      ====== ====
+==========  ====== ====
 str         binary
 unicode     atom   limited by internal atom size
 int/long    int
 list        list
 tuple       tuple
 3-tuple     pid
-======      ====== ====
+==========  ====== ====
 
 Sending messages to Erlang nodes
 --------------------------------

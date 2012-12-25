@@ -1,0 +1,7 @@
+*.bat
+*.pyc
+_build
+_wiki
+Makefile
+_ml
+*.sublime*
