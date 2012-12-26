@@ -18,12 +18,7 @@ Now by adding the ``--carbon`` option to your uWSGI instance, your server will p
 
     uwsgi --socket 127.0.0.1:3031 --carbon 127.0.0.1:2003 --processes 4 
 
-The metrics are named in this way:
-
-.. code-block::
-
-    uwsgi.<hostname>.<id>.requests
-    uwsgi.<hostname>.<id>.worker<n>.requests
+The metrics are named ``uwsgi.<hostname>.<id>.requests`` and ``uwsgi.<hostname>.<id>.worker<n>.requests``.
 
 * ``hostname`` will be mapped to the machine hostname
 * ``id`` is the name of the first uWSGI socket with dots replaced by underscores

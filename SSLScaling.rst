@@ -15,7 +15,7 @@ The solution works, but obviously does not scale.
 Starting from uWSGI 1.5-dev an implementation (based on the stud project) of distributed caching has been added.
 
 Setup 1: using the uWSGI cache for storing SSL sessions
-******************************************************
+*******************************************************
 
 You can configure the SSL subsystem of uWSGI to use the shared cache. The SSL sessions timeout will
 be ethe expire value of the cache item. In that way the cache sweeper (managed by the master) will destroy sessions

@@ -3,7 +3,7 @@ The uWSGI Signal Framework
 
 .. warning:: Raw usage of uwsgi signals is for advanced users only. You should see :doc:`PythonDecorators` for a more elegant abstraction.
 
-.. note:: uWSGI Signals have _nothing_ in common with UNIX/Posix signals (if you are looking for those, :doc:`ProcessSignals` is your page).
+.. note:: uWSGI Signals have _nothing_ in common with UNIX/Posix signals (if you are looking for those, :doc:`Management` is your page).
 
 Over time, your uWSGI stack is growing, you add spoolers, more processes, more plugins, whatever. The more features you add the more you need all of these components to speak to each other.
 

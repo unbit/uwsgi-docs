@@ -15,7 +15,7 @@ You can obviously edit your configuration to hike up ``workers`` and reload your
 
 Enabling Zerg mode you can allow "uwsgi-zerg" instances to attach to your already running server and help it in the work.
 
-Zerg mode is obviously local only. You cannot use it to add remote instances -- this is a job better done by the :doc:`FastRouter`, the :doc:`HTTP plugin<HTTP>` or your web server's load balancer.
+Zerg mode is obviously local only. You cannot use it to add remote instances -- this is a job better done by the :doc:`Fastrouter`, the :doc:`HTTP plugin<HTTP>` or your web server's load balancer.
 
 Enabling the zerg server
 ------------------------

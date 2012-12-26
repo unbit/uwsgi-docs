@@ -211,7 +211,7 @@ This is pretty much a full-stack solution using only uWSGI running on port 8080.
 Example 10: optimizing CGIs (advanced)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can avoid the overhead of re-running interpreters at each request, loading the interpreter(s) on startup and calling a function in them instead of ``execve()``ing the interpreter itself.
+You can avoid the overhead of re-running interpreters at each request, loading the interpreter(s) on startup and calling a function in them instead of ``execve()`` ing the interpreter itself.
 
 The :file:`contrib/cgi_python.c` file in the source distribution is a tiny example on how to optimize Python CGI scripts.
 

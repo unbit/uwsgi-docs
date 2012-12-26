@@ -1352,7 +1352,7 @@ Daemonize uWSGI after loading application, write messages into given log file or
 **Argument:** *pidfile*
 
 Send the stop (SIGINT) signal to the instance described by the pidfile.
-.. :seealso:: :doc:`ProcessSignals`
+.. :seealso:: :doc:`Management`
 
 .. _OptionReload:
 
@@ -1361,7 +1361,7 @@ Send the stop (SIGINT) signal to the instance described by the pidfile.
 **Argument:** *pidfile*
 
 Send the reload (SIGHUP) signal to the instance described by the pidfile.
-.. :seealso:: :doc:`ProcessSignals`
+.. :seealso:: :doc:`Management`
 
 .. _OptionPause:
 
@@ -1370,7 +1370,7 @@ Send the reload (SIGHUP) signal to the instance described by the pidfile.
 **Argument:** *pidfile*
 
 Send the pause (SIGTSTP) signal to the instance described by the pidfile.
-.. :seealso:: :doc:`ProcessSignals`
+.. :seealso:: :doc:`Management`
 
 .. _OptionSuspend:
 
@@ -1379,7 +1379,7 @@ Send the pause (SIGTSTP) signal to the instance described by the pidfile.
 **Argument:** *pidfile*
 
 Send the suspend (SIGTSTP) signal to the instance described by the pidfile.
-.. :seealso:: :doc:`ProcessSignals`
+.. :seealso:: :doc:`Management`
 
 .. _OptionResume:
 
@@ -1388,7 +1388,7 @@ Send the suspend (SIGTSTP) signal to the instance described by the pidfile.
 **Argument:** *pidfile*
 
 Send the resume (SIGTSTP) signal to the instance described by the pidfile.
-.. :seealso:: :doc:`ProcessSignals`
+.. :seealso:: :doc:`Management`
 
 .. _OptionAutoProcname:
 
@@ -1603,16 +1603,16 @@ Set value in specified cgroup option.
 **Argument:** string
 
 Run in a new namespace under the specified rootfs.
+.. :seealso:: :doc:`Namespaces`
 
 .. _OptionNamespaceKeepMount:
 
 ``namespace-keep-mount``
 ~~~~~~~~~~~~~~~~~~~~~~~~
-**Argument:** string
+**Argument:** *<mount>[:<jailed-mountpoint>]*
 
-Keep the specified mountpoint in your namespace.
-
-*This option may be declared multiple times.*
+Keep the specified mountpoint in your namespace, optionally renaming it.
+.. :seealso:: :doc:`Namespaces`
 
 .. _OptionNamespaceNet:
 
@@ -3624,7 +3624,7 @@ Do not report failed connections to instances.
 ~~~~~~~~~~~~~~~~~~~~
 **Argument:** no argument
 
-Run the fastrouter in cheap mode.
+Run the fastrouter in cheap mode (do not respond to requests unless a node is available).
 
 .. _OptionFastrouterSubscriptionServer:
 
