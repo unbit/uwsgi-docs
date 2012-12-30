@@ -82,7 +82,7 @@ You can load balance requests using mod_proxy_balancer (remember to load it)
    </Proxy>
    ProxyPass / balancer://mycluster
 
-Pay attention to the last slash in the member/node definition. It is optional for non-empty SCRIPT_NAME/mpuntpoints while it is required
+Pay attention to the last slash in the member/node definition. It is optional for non-empty SCRIPT_NAME/mountpoints while it is required
 for apps mounted in the root of the domain.
 
 Currently the module lacks the ability to set modifiers. It will be fixed soon.
