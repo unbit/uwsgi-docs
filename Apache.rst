@@ -62,7 +62,7 @@ It is fully "apache api compliant" so it should be easily integrated with all of
 
 Using it is easy (just remember to load mod_proxy and mod_proxy_uwsgi modules in your apache config)
 
-.. code-block:
+.. code-block::
 
    ProxyPass /foo uwsgi://127.0.0.1:3032/
    ProxyPass /bar uwsgi://127.0.0.1:3033/
@@ -74,7 +74,7 @@ You can set additional uwsgi vars using the SetEnv directive
 
 You can load balance requests using mod_proxy_balancer (remember to load it)
 
-.. code-block:
+.. code-block::
 
    <Proxy balancer://mycluster>
       BalancerMember uwsgi://192.168.1.50:3031/
