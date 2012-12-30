@@ -21,13 +21,21 @@ Options
 
 
 uWSGISocket <path> [timeout]     Absolute path and optional timeout in seconds of uwsgi server socket.
+
 uWSGISocket2 <path>              Absolute path of failover uwsgi server socket
+
 uWSGIServer <host:port>          Address and port of an UWSGI server (e.g. localhost:4000)
+
 uWSGIModifier1 <int>             Set uWSGI modifier1  
+
 uWSGIModifier2 <int>             Set uWSGI modifier2
+
 uWSGIForceScriptName             Force ``SCRIPT_NAME`` (app name)
+
 uWSGIForceCGIMode                Force uWSGI CGI mode for perfect integration with apache filters
+
 uWSGIForceWSGIScheme             Force the WSGI scheme var (set by default to "http")
+
 uWSGIMaxVars                     Set the maximum allowed number of uwsgi protocol variables (default 128)
 
 
