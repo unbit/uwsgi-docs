@@ -223,3 +223,9 @@ The Legion infos are exported in the :doc:`StatsServer`
 
 Be sure to understand the difference between "nodes" and "members". Nodes are the peer you configure with the **legion-node** option
 while members are the effective nodes that joined the cluster.
+
+The old clustering subsystem
+****************************
+
+During 0.9 development cycle a clustering subsystem (based on multicast) has been added. It was very raw, unreliable and very probably no-one used it seriously.
+The new idea is transforming it in a general api that can use different backends. The Legion subsystem can be one of those backends, as weel as projects like corosync or the redhat cluster suite.
