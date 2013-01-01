@@ -179,3 +179,39 @@ To specify the IV just add another parameter to the **legion** option
    legion-node = mycluster 192.168.173.22:4242
    legion-node = mycluster 192.168.173.30:4242
    legion-node = mycluster 192.168.173.5:4242
+
+
+Tuning
+******
+
+Currently there are two parameters you can tune (globally for all of the legions). The frequency (in seconds) at which each packet is sent (**legion-freq <secs>**) and the amount of seconds
+after a node not sending packets is considered dead (**legion-tolerance <secs>**)
+
+By default each packet is sent every 3 seconds, and a node is considered dead after 15 seconds.
+
+Lord scroll (coming soon)
+*************************
+
+In the current shape the Legion subsystem can be used for a lot of purposes (from master election to auto-nodes discovery or simple monitoring) but having
+the possibility to assign a "blob of data" (a scroll) to every node will open to a lot of new possibilities. You could use that blob
+to pass reconfiguration parameters to your app, or to log specific messages.
+
+Currently the scroll system is being discussed on, so if you have ideas join our mailing-list or irc channel
+
+Api
+***
+
+You can know if the instance is a lord of a Legion by simply calling 
+
+.. code-block:: c
+   int uwsgi_legion_i_am_the_lord(char *legion_name);
+
+it returns 1 if the current instance is the lord for the specified Legion
+
+The python plugins exposes it via the uwsgi.i_am_the_lord(name) function
+
+The psgi plugin exposes it via uwsgi::i_am_the_lord(name)
+
+The rack plugin exposes it as UWSGI::i_am_the_lord(name)
+
+Obviously more api functions will be added in the future, feel free to expose your ideas.
