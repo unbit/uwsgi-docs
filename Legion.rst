@@ -120,3 +120,62 @@ log:<msg>
 log a message
 
 For example you could combine the log action with the alarm subsystem to have cluster monitoring for free...
+
+Multicast, broadcast and unicast
+********************************
+
+Even if multicast is probably the easiest way to implement clustering (without additional efforts when you add/remove nodes) it is not available
+in all networks.
+
+If multicast (or broadcast) is not available for you, you can rely on normal ip addresses. Just bind to an address and add all of the legion-node options you need:
+
+.. code-block:: ini
+
+   [uwsgi]
+
+   legion = myclyster 192.168.173.17:4242 98 bf-cbc:hello
+   legion-node = mycluster 192.168.173.22:4242
+   legion-node = mycluster 192.168.173.30:4242
+   legion-node = mycluster 192.168.173.5:4242
+
+This is for a cluster of 4 nodes (myself + 3 nodes)
+
+Multiple Legions
+****************
+
+You can join multiple legions in the same instance. Just remember to use different addresses (ports in case of multicast) for each legion
+
+.. code-block:: ini
+
+   [uwsgi]
+
+   legion = myclyster 192.168.173.17:4242 98 bf-cbc:hello
+   legion-node = mycluster 192.168.173.22:4242
+   legion-node = mycluster 192.168.173.30:4242
+   legion-node = mycluster 192.168.173.5:4242
+
+   legion = myclyster2 225.1.1.1:4243 99 aes-128-cbc:secret
+   legion-node = mycluster2 225.1.1.1:4243
+
+   legion = anothercluster 225.1.1.1:4244 91 aes-256-cbc:secret2
+   legion-node = anothercluster 225.1.1.1:4244
+
+Security
+********
+
+Each packet sent by the Legion subsystem is encrypted using a specified cypher, a preshared secret and an optional IV (for some cipher the IV could be required).
+
+To get the list of supported ciphers, run **openssl enc -h***.
+
+Remember: each node of a Legion has to use the same encryption parameters !!!
+
+To specify the IV just add another parameter to the **legion** option
+
+.. code-block:: ini
+
+   [uwsgi]
+
+   legion = myclyster 192.168.173.17:4242 98 bf-cbc:hello thisistheiv
+   legion-node = mycluster 192.168.173.22:4242
+   legion-node = mycluster 192.168.173.30:4242
+   legion-node = mycluster 192.168.173.5:4242
