@@ -165,7 +165,7 @@ Security
 
 Each packet sent by the Legion subsystem is encrypted using a specified cypher, a preshared secret and an optional IV (for some cipher the IV could be required).
 
-To get the list of supported ciphers, run **openssl enc -h***.
+To get the list of supported ciphers, run **openssl enc -h**.
 
 Remember: each node of a Legion has to use the same encryption parameters !!!
 
