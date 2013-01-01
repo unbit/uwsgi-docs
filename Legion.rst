@@ -95,3 +95,28 @@ You can reduce the split brain problem asking the Legion subsystem to check for 
 
 
 The legion-quorum is the option for the job
+
+Actions
+*******
+
+Each one of the four phases of a legion (setup,death,lord,unlord) can trigger an action. The actions system is modular so you can
+add new kind of actions.
+
+Currently the supported actions are:
+
+cmd:<command>
+-------------
+
+run a shell command
+
+signal:<num>
+------------
+
+raise a uWSGI signal
+
+log:<msg>
+---------
+
+log a message
+
+For example you could combine the log action with the alarm subsystem to have cluster monitoring for free...
