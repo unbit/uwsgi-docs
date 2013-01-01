@@ -219,7 +219,7 @@ Obviously more api functions will be added in the future, feel free to expose yo
 Stats
 *****
 
-The Legion infos are exported in the :doc:`StatsServer`_
+The Legion infos are exported in the :doc:`StatsServer`
 
 Be sure to understand the difference between "nodes" and "members". Nodes are the peer you configure with the **legion-node** option
 while members are the effective nodes that joined the cluster.
