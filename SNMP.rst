@@ -18,7 +18,7 @@ Please note that the SNMP server is started in the master process after dropping
 The uWSGI SNMP server exports 2 group of information:
 
 * General information is managed by the uWSGI server itself. The base OID to access uWSGI SNMP information is ``1.3.6.1.4.1.35156.17`` (``iso.org.dod.internet.private.enterprise.unbit.uwsgi``). General options are mapped to ``1.3.6.1.4.1.35156.17.1.x``.
-* Custom information is managed by the apps and accessed via ``1.3.6.1.4.1.35156.17.2.x``.
+* Custom information is managed by the apps and accessed via ``1.3.6.1.4.1.35156.17.2.x``
 
 So, to get the number of requests managed by the uWSGI server, you could do
 
@@ -29,11 +29,17 @@ So, to get the number of requests managed by the uWSGI server, you could do
 Exporting custom values
 -----------------------
 
-To manage custom values from your app you have 3 Python functions,
+To manage custom values from your app you have these Python functions,
 
 * :py:func:`uwsgi.snmp_set_counter32`
 * :py:func:`uwsgi.snmp_set_counter64`
 * :py:func:`uwsgi.snmp_set_gauge`
+* :py:func:`uwsgi.snmp_incr_counter32`
+* :py:func:`uwsgi.snmp_incr_counter64`
+* :py:func:`uwsgi.snmp_incr_gauge`
+* :py:func:`uwsgi.snmp_decr_counter32`
+* :py:func:`uwsgi.snmp_decr_counter64`
+* :py:func:`uwsgi.snmp_decr_gauge`
 
 So if you wanted to export the number of users currently logged in (this is a gauge as it can lower) as custom OID 40, you'd call
 
@@ -47,3 +53,13 @@ and to look it up,
 .. code-block:: sh
 
   snmpget -v2c -c foo 192.168.0.1:2222 1.3.6.1.4.1.35156.17.2.40
+
+The system snmp daemon (net-snmp) can be configured to proxy SNMP requests to uwsgi. This allows you to run the system daemon and uwsgi at the same time, and runs all SNMP requests through the system daemon first. To configure the system snmp daemon (net-snmp) to proxy connections to uwsgi, add these lines to the bottom of /etc/snmp/snmpd.conf and restart the daemon:
+
+.. code-block:: sh
+
+   proxy -v 2c -c foo 127.0.0.1:2222 .1.3.6.1.4.1.35156.17
+   view    systemview    included   .1.3.6.1.4.1.35156.17
+
+Replace 'foo' and '2222' with the community and port configured in uwsgi. 
+
