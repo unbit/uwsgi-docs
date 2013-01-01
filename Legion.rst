@@ -49,4 +49,49 @@ In this example we join a legion named 'clusterip'. To receive messages from the
 
 The 'legion-node' option specify the destination of our announce messages. As we are using multicast we only need to specify a single node.
 
-The last options are the actions to trigger on the various state of the cluster.
+The last options are the actions to trigger on the various state of the cluster. For an ip takeover solution we seimply rely on iproute commands
+to set/unset ip addresses and to send gratuitous arp.
+
+The Quorum
+**********
+
+To choose a Lord each member of the legion has to cast a vote. When all of the active members of a legion agree on a Lord, the Lord is elected (and the old Lord degraded).
+
+Every time a new node joins or leaves a legion the quorum is re-computed and logged to the whole nodes.
+
+Choosing the Lord
+*****************
+
+Generally the node with the higher valor is choosen as the Lord, but there can be cases where different nodes have the same valor.
+When a node is started a UUID is assigned to it. If two nodes with same valor are found the one with the lexycographically higher UUID wins
+
+Split brain
+***********
+
+Even if each member of the Legion has to send a checksum of its internal cluster-membership (no quorum is reached if not all nodes have the same checksum)
+the system is still vulnerable to the split brain problem. If a node lose network connectivity with the cluster, it could believe it is the only node available and starts
+going in Lord mode.
+
+For some scenario this is bad, so if you have more than 2 nodes in a legion you may want to consider tuning the quorum level.
+The quorum level is the amount of votes (from different nodes) to receive needed to elect a lord. 
+
+You can reduce the split brain problem asking the Legion subsystem to check for at least 2 votes:
+
+.. code-block:: ini
+
+   [uwsgi]
+
+   legion = clusterip 225.1.1.1:4242 98 bf-cbc:hello
+   legion-node = clusterip 225.1.1.1:4242
+
+   legion-quorum = clusterip 2
+
+   legion-lord = clusterip cmd:ip addr add 192.168.173.111/24 dev eth0
+   legion-lord = clusterip cmd:arping -c 3 -S 192.168.173.111 192.168.173.1
+
+   legion-setup = clusterip cmd:ip addr del 192.168.173.111/24 dev eth0
+   legion-unlord = clusterip cmd:ip addr del 192.168.173.111/24 dev eth0
+   legion-death = clusterip cmd:ip addr del 192.168.173.111/24 dev eth0
+
+
+The legion-quorum is the option for the job
