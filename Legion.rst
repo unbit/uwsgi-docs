@@ -57,7 +57,7 @@ The Quorum
 
 To choose a Lord each member of the legion has to cast a vote. When all of the active members of a legion agree on a Lord, the Lord is elected (and the old Lord degraded).
 
-Every time a new node joins or leaves a legion the quorum is re-computed and logged to the whole nodes.
+Every time a new node joins or leaves a legion the quorum is re-computed and logged to the whole cluster.
 
 Choosing the Lord
 *****************
