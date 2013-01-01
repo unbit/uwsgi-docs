@@ -215,3 +215,11 @@ The psgi plugin exposes it via uwsgi::i_am_the_lord(name)
 The rack plugin exposes it as UWSGI::i_am_the_lord(name)
 
 Obviously more api functions will be added in the future, feel free to expose your ideas.
+
+Stats
+*****
+
+The Legion infos are exported in the :doc:`StatsServer`_
+
+Be sure to understand the difference between "nodes" and "members". Nodes are the peer you configure with the **legion-node** option
+while members are the effective nodes that joined the cluster.
