@@ -52,6 +52,10 @@ The 'legion-node' option specify the destination of our announce messages. As we
 The last options are the actions to trigger on the various state of the cluster. For an ip takeover solution we seimply rely on iproute commands
 to set/unset ip addresses and to send gratuitous arp.
 
+Obviously this specific example requires root privileges or CAP_NET_ADMIN capability, so be sure to not run applications on the same instance
+managing ip takeover.
+
+
 The Quorum
 **********
 
