@@ -105,17 +105,17 @@ add new kind of actions.
 Currently the supported actions are:
 
 cmd:<command>
--------------
+^^^^^^^^^^^^^
 
 run a shell command
 
 signal:<num>
-------------
+^^^^^^^^^^^^
 
 raise a uWSGI signal
 
 log:<msg>
----------
+^^^^^^^^^
 
 log a message
 
