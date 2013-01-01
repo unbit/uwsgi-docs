@@ -204,6 +204,7 @@ Api
 You can know if the instance is a lord of a Legion by simply calling 
 
 .. code-block:: c
+
    int uwsgi_legion_i_am_the_lord(char *legion_name);
 
 it returns 1 if the current instance is the lord for the specified Legion
