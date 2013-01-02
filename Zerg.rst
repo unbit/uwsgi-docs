@@ -3,7 +3,7 @@ Zerg mode
 
 .. note::
 
-  Yes, that's Zerg as in the "quantity-over-quality" Starcraft race. If you haven't played Starcraft, be prepared to some nonsense.
+  Yes, that's Zerg as in the "quantity-over-quality" Starcraft race. If you haven't played Starcraft, be prepared for some nonsense.
 
   .. note::
 
