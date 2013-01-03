@@ -137,7 +137,7 @@ If multicast (or broadcast) is not available for you, you can rely on normal ip 
 
    [uwsgi]
 
-   legion = myclyster 192.168.173.17:4242 98 bf-cbc:hello
+   legion = mycluster 192.168.173.17:4242 98 bf-cbc:hello
    legion-node = mycluster 192.168.173.22:4242
    legion-node = mycluster 192.168.173.30:4242
    legion-node = mycluster 192.168.173.5:4242
@@ -153,12 +153,12 @@ You can join multiple legions in the same instance. Just remember to use differe
 
    [uwsgi]
 
-   legion = myclyster 192.168.173.17:4242 98 bf-cbc:hello
+   legion = mycluster 192.168.173.17:4242 98 bf-cbc:hello
    legion-node = mycluster 192.168.173.22:4242
    legion-node = mycluster 192.168.173.30:4242
    legion-node = mycluster 192.168.173.5:4242
 
-   legion = myclyster2 225.1.1.1:4243 99 aes-128-cbc:secret
+   legion = mycluster2 225.1.1.1:4243 99 aes-128-cbc:secret
    legion-node = mycluster2 225.1.1.1:4243
 
    legion = anothercluster 225.1.1.1:4244 91 aes-256-cbc:secret2
@@ -179,7 +179,7 @@ To specify the IV just add another parameter to the **legion** option
 
    [uwsgi]
 
-   legion = myclyster 192.168.173.17:4242 98 bf-cbc:hello thisistheiv
+   legion = mycluster 192.168.173.17:4242 98 bf-cbc:hello thisistheiv
    legion-node = mycluster 192.168.173.22:4242
    legion-node = mycluster 192.168.173.30:4242
    legion-node = mycluster 192.168.173.5:4242
