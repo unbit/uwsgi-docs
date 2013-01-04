@@ -2427,6 +2427,7 @@ Chdir to specified directory after apps loading.
 Set lazy mode (load apps in workers instead of master).
 
 This option may have memory usage implications as Copy-on-Write semantics can not be used.
+When ``lazy`` is enabled, only workers will be reloaded by uWSGI's reload signals; the master will remain alive. As such, uWSGI configuration changes are not picked up on reload by the master.
 
 .. _OptionLazyApps:
 
@@ -2435,6 +2436,9 @@ This option may have memory usage implications as Copy-on-Write semantics can no
 **Argument:** no argument
 
 Load apps in each worker instead of the master.
+
+This option may have memory usage implications as Copy-on-Write semantics can not be used.
+Unlike ``lazy``, this only affects the way applications are loaded, not master's behavior on reload.
 
 .. _OptionCheap:
 
