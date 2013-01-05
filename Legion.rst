@@ -184,14 +184,18 @@ To specify the IV just add another parameter to the **legion** option
    legion-node = mycluster 192.168.173.30:4242
    legion-node = mycluster 192.168.173.5:4242
 
+To reduce the impact of replay-based attacks (an external node sending an exact copy of a sniffed packet), packets with a timestamp lower
+than 30 seconds are rejected. This could be not enough in high-security environment, so you can tune it (see next section).
+If you have no control on the time of all of the nodes you can increase the clock skew tolerance (see next section again)
 
-Tuning
-******
 
-Currently there are two parameters you can tune (globally for all of the legions). The frequency (in seconds) at which each packet is sent (**legion-freq <secs>**) and the amount of seconds
-after a node not sending packets is considered dead (**legion-tolerance <secs>**)
+Tuning and Clock Skew
+*********************
 
-By default each packet is sent every 3 seconds, and a node is considered dead after 15 seconds.
+Currently there are three parameters you can tune (globally for all of the legions). The frequency (in seconds) at which each packet is sent (**legion-freq <secs>**), the amount of seconds
+after a node not sending packets is considered dead (**legion-tolerance <secs>**), and the amount of seconds of difference in time received from nodes (**legion-skew-tolerance <secs>**, always synchronize all of your nodes with ntp or something similar)
+
+By default each packet is sent every 3 seconds, and a node is considered dead after 15 seconds, while a clock skew of 30 seconds is tolerated (decreasing skew tolerance will increase security against replay attacks)
 
 Lord scroll (coming soon)
 *************************
