@@ -389,7 +389,7 @@ Create a file called ```mysite_uwsgi.ini```::
     # maximum number of worker processes
     processes       = 10
     # the socket (use the full path to be safe
-    socket          = /path/to/your/project/uwsgi.sock 
+    socket          = /path/to/your/project/mysite.sock 
     # ... with appropriate permissions - may be needed
     # chmod-socket    = 664
     # clear environment on exit
@@ -403,35 +403,11 @@ And run uswgi using this file:
 
 Once again, test that the Django site works as expected.
 
-Emperor mode
-------------
-
-uWSGI can run in 'emperor' mode. In this mode it keeps an eye on a directory of
-uWSGI config files, and will spawn instances ('vassals') for each one it finds.
-
-Whenever a config file is amended, the emperor will automatically restart the
-vassal.
-
-.. code-block:: bash
-
-    # symlink from the default config directory to your config file
-    sudo ln -s /path/to/your/mysite/mysite_uwsgi.ini /etc/uwsgi/vassals/
-    # run the emperor
-    uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data
-
-The options mean:
-
-* ``emperor``: where to look for vassals (config files)
-* ``uid``: the user id of the process once it's started
-* ``gid``: the group id of the process once it's started
- 
-Check the site; it should be running.
-
-Make uWSGI startup when the system boots
-----------------------------------------
+Install uWSGI system-wide
+-------------------------
 
 So far, uWSGI is only installed in our virtualenv; we'll need it installed
-system-wide if it's to start up automatically with the system.
+system-wide for deployment purposes.
 
 Deactivate your virtualenv::
 
@@ -450,9 +426,47 @@ apppropriate way of installing it.
 
 .. _installation procedures: http://projects.unbit.it/uwsgi/wiki/Install
  
-Check once more that it works; this time you will need to run uWSGI with sudo::
+Check again that you can still run uWSGI just like you did before:
+    
+.. code-block:: bash
+
+    uwsgi --ini mysite_uwsgi.ini # the --ini option is used to specify a file
+
+Emperor mode
+------------
+
+uWSGI can run in 'emperor' mode. In this mode it keeps an eye on a directory of
+uWSGI config files, and will spawn instances ('vassals') for each one it finds.
+
+Whenever a config file is amended, the emperor will automatically restart the
+vassal.
+
+.. code-block:: bash
+
+    # create a directory for the vassals
+    sudo mkdir /etc/uwsgi
+    sudo mkdir /etc/uwsgi/vassals
+    # symlink from the default config directory to your config file
+    sudo ln -s /path/to/your/mysite/mysite_uwsgi.ini /etc/uwsgi/vassals/
+    # run the emperor
+    uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data
+
+You may need to run uWSGI with sudo:
+
+.. code-block:: bash
 
     sudo uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data
+
+The options mean:
+
+* ``emperor``: where to look for vassals (config files)
+* ``uid``: the user id of the process once it's started
+* ``gid``: the group id of the process once it's started
+ 
+Check the site; it should be running.
+
+Make uWSGI startup when the system boots
+----------------------------------------
 
 The last step is to make it all happen automatically at system startup time.
 
