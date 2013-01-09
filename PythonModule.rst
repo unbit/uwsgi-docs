@@ -127,16 +127,33 @@ Queue functions
 SNMP functions
 --------------
 
+.. function:: snmp_set_community(str)
+   :param str: The string containing the new community value.
+
+   Sets the SNMP community string.
+
 .. function:: snmp_set_counter32(oidnum, value)
-
-
 .. function:: snmp_set_counter64(oidnum, value)
-
-
 .. function:: snmp_set_gauge(oidnum, value)
 
+   :param oidnum: An integer containing the oid number target.
+   :param value: An integer containing the new value of the counter or gauge.
 
-.. function:: snmp_set_community(str)
+   Sets the counter or gauge to a specific value.
+
+.. function:: snmp_incr_counter32(oidnum, value)
+.. function:: snmp_incr_counter64(oidnum, value)
+.. function:: snmp_incr_gauge(oidnum, value)
+.. function:: snmp_decr_counter32(oidnum, value)
+.. function:: snmp_decr_counter64(oidnum, value)
+.. function:: snmp_decr_gauge(oidnum, value)
+
+   :param oidnum: An integer containing the oid number target.
+   :param value: An integer containing the amount to increase or decrease the counter or gauge. If not specified the default is 1.
+
+   Increases or decreases the counter or gauge by a specific amount. 
+
+   .. note:: uWSGI OID tree starts at 1.3.6.1.4.1.35156.17
 
 Spooler functions
 -----------------
