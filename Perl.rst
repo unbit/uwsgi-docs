@@ -44,9 +44,11 @@ The following frameworks/apps have been tested with uWSGI:
 
 * MojoMojo_
 * Mojolicious_
+* Mojolicious+perlbrew+uWSGI+nginx_ install bundle
 
 .. _MojoMojo: http://mojomojo.org/
 .. _Mojolicious: http://mojolicio.us/
+.. _Mojolicious+perlbrew+uWSGI+nginx: https://github.com/kraih/mojo/wiki/nginx-&-uwsgi(psgi)-&-perlbrew-&-mojolicious
 
 Multi-app support
 -----------------
