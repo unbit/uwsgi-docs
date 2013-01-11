@@ -86,6 +86,7 @@ Scaling with uWSGI
 .. toctree::
    :maxdepth: 1
 
+   Cheaper
    Emperor
    Broodlord
    Zerg
