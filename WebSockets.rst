@@ -115,7 +115,8 @@ Available proxies
 
 Sadly not all of the HTTP webserver/proxies work flawlessly with websockets.
 
-The uWSGI HTTP/HTTPS/SPDY router supports them without problems. Just remember to ass the --http-raw-body option
+The uWSGI HTTP/HTTPS/SPDY router supports them without problems. Just remember to add the --http-raw-body option.
+
 
 .. parsed-literal::
 
@@ -141,6 +142,9 @@ goroutines
 
 wss:// (websockets over https)
 ******************************
+
+The uWSGI HTTPS router works without problems with websockets. Just remember to use wss:// as the connection scheme
+in your javascript code
 
 Websockets over SPDY
 ********************
