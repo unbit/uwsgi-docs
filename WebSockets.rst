@@ -13,20 +13,38 @@ The uWSGI websockets implementation is compiled in by default and can be combine
 Handshaking
 ***********
 
+uwsgi.websocket_handshake(key[,origin])
+
 Sending
 *******
+
+uwsgi.websocket_send(msg)
 
 Receiving
 *********
 
+msg = uwsgi.websocket_recv()
+
 Channels
 ********
+
+uwsgi.websocket_channel_join(channel)
+
+PING/PONG
+*********
 
 Available proxies
 *****************
 
+uwsgi http router
+haproxy
+
 Concurrency models
 ******************
+
+multithread
+gevent
+goroutines
 
 wss:// (websockets over https)
 ******************************
@@ -37,7 +55,7 @@ Websockets over SPDY
 Routing
 *******
 
-.. code-block: ini
+.. code-block:: ini
 
    [uwsgi]
    route = ^/websocket uwsgi:127.0.0.1:3032
