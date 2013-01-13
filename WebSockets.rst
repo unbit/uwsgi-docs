@@ -41,23 +41,47 @@ To send a full handshake response you can use that function
 
 uwsgi.websocket_handshake(key[,origin])
 
+without correct handshaking the connection will never complere
+
 Sending
 *******
 
+Sending data to the browser is realy easy:
+
 uwsgi.websocket_send(msg)
+
+Nothing more
 
 Receiving
 *********
 
+This is the real core of the whole implementation.
+
+This function lies about its real purpose. It returns a websocket message, but it really holds the connection
+openend (using the ping/pong subsystem) and monitor the whole status. 
+
 msg = uwsgi.websocket_recv()
+
+The function can receive messages from a named channel (see below) and automatically forward them to your websocket connection
+(the function will always returns ONLY websocket messages sent from the browser, other communications happens in background)
 
 Channels
 ********
+
+Channels are a feature of uWSGI 1.5. They are a pretty complex (from an implementation point of view) messaging system
+but are really easy to use.
+
+Channels must be created on startup using the --channel <name> option. You can have all of the channels you need, but remember that
+each channel is preatty expensive as it will allocate 2 decriptor (via socketpair()) for each core of the instance.
+
+Joining a websocket to a channel will automagically forward all of the messages sent to the channel to the websocket connection.
 
 uwsgi.websocket_channel_join(channel)
 
 PING/PONG
 *********
+
+
 
 Available proxies
 *****************
