@@ -9,6 +9,11 @@ are good enough for topics like gaming or streaming.
 
 The uWSGI websockets implementation is compiled in by default and can be combined with the Channels subsystem (another new feature of the 1.5 tree)
 
+Channels allows you to fast exchange messages (it is all managed with various unix ipc techniques) with all of the cores of the instances (and pretty soon with other instances too) without the need of an external queue
+(like zeromq or redis)
+
+Websockets support is sponsored by 20Tab S.r.l. http://20tab.com/
+
 
 Handshaking
 ***********
@@ -38,6 +43,12 @@ Available proxies
 
 uwsgi http router
 haproxy
+
+Languages support
+*****************
+
+python
+perl
 
 Concurrency models
 ******************
