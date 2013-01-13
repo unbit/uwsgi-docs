@@ -12,3 +12,18 @@ The uWSGI websockets implementation is compiled in by default and can be combine
 
 Handshaking
 ***********
+
+Sending
+*******
+
+Receiving
+*********
+
+Channels
+********
+
+Available proxies
+*****************
+
+Concurrency models
+******************
