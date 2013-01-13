@@ -78,28 +78,65 @@ Joining a websocket to a channel will automagically forward all of the messages 
 
 uwsgi.websocket_channel_join(channel)
 
+You can implement a chat room with only few lines of code (really)
+
+.. code-block :: python
+
+   def application(env, start_response):
+       # complete the handshake
+       uwsgi.websocket_handshake(env['HTTP_SEC_WEBSOCKET_KEY'], env.get('HTTP_ORIGIN', ''))
+       # join the channel 'room001'
+       uwsgi.websocket_channel_join('room001')
+       # enter the main cycle
+       while True:
+           # wait for messages (this will automatically forward channel messages to the socket)
+           msg = uwsgi.websocket_recv()
+           # when a message is available, forward it to the channel
+           uwsgi.channel_send('room001', msg) 
+
+That's all.
+
+When you call uwsgi.channel_send(...) all of the cores blocked in the uwsgi.websocket_recv() will automatically
+forward the packet to the browser.
+
+
 PING/PONG
 *********
 
+To keep a websocket connection opened, you should constantly send ping (or pong, see later) to the browser and expect
+a response from it. If the response from the browser/client does not arrive in time the connection is closed (uwsgi.websocket_recv()
+will raise an exception). In addition to ping, the uwsgi.websocket_recv() function send the so called, 'gratuitous pong'. They are used
+to inform the client of server availability.
 
+All of this tasks happen in background. YOU DO NOT NEED TO MANAGE THEM
 
 Available proxies
 *****************
 
-uwsgi http router
+Sadly not all of the HTTP webserver/proxies work flawlessly with websockets.
+
+The uWSGI HTTP/HTTPS/SPDY router supports them without problems. Just remember to ass the --http-raw-body option
+
+.. parsed-literal::
+
+   uwsgi --http :8080 --http-raw-body --wsgi-file myapp.py
+
 haproxy
 
 Languages support
 *****************
 
 python
+
 perl
 
 Concurrency models
 ******************
 
 multithread
+
 gevent
+
 goroutines
 
 wss:// (websockets over https)
