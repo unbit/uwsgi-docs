@@ -14,9 +14,30 @@ Channels allows you to fast exchange messages (it is all managed with various un
 
 Websockets support is sponsored by 20Tab S.r.l. http://20tab.com/
 
+An echo server
+**************
+
+This is how a uWSGI-websockets application looks like:
+
+.. code-block :: python
+
+   def application(env, start_response):
+       # complete the handshake
+       uwsgi.websocket_handshake(env['HTTP_SEC_WEBSOCKET_KEY'], env.get('HTTP_ORIGIN', ''))
+       while True:
+           msg = uwsgi.websocket_recv()
+           uwsgi.websocket_send(msg) 
+
+
+You do not need to worry about keeping the connection alive or reject dead peers. The uwsgi.websocket_recv()
+function will do all of the dirty work for you in background.
 
 Handshaking
 ***********
+
+Handshaking is the first phase of a websocket connection.
+
+To send a full handshake response you can use that function
 
 uwsgi.websocket_handshake(key[,origin])
 
