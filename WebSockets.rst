@@ -36,3 +36,11 @@ Websockets over SPDY
 
 Routing
 *******
+
+.. code-block: ini
+
+   [uwsgi]
+   route = ^/websocket uwsgi:127.0.0.1:3032
+
+Performance tips
+****************
