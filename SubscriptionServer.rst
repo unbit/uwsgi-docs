@@ -18,7 +18,7 @@ To populate this dictionary you can contact 192.168.0.100:2626, the address of t
 
 For every key multiple addresses can exist, enabling round robin load balancing.
 
-A node can announce its presence to a Subscription Server using the ``subscribe-to`` option.
+A node can announce its presence to a Subscription Server using the ``subscribe-to`` or ``subscribe2`` options.
 
 .. code-block:: sh
 
@@ -33,6 +33,25 @@ To now add a second node for uwsgi.it simply run it and subscribe:
     uwsgi -s 192.168.0.11:3031 -w myapp -M --subscribe-to 192.168.0.100:2626:uwsgi.it
 
 Dead nodes are automatically removed from the pool.
+
+``subscribe2`` syntax is similar but it allows far more control since it allows to specify additional options like the address to which all requests should be forwarded.
+It's value syntax is a string with "key=value", each separated by a colon.
+
+.. code-block:: sh
+
+    uwsgi -s 192.168.0.10:3031 -w myapp -M --subscribe2 server=192.168.0.100:2626,key=uwsgi.it,addr=192.168.0.10:3031
+
+Possible keys are:
+
+  * server - address (ip:port) of the subscription server we want to connect to
+  * key - key used for mapping, hostname (FastRouter or HttpRouter) or ip:port (RawRouter)
+  * socket - TODO
+  * addr - address to which all requests should be forwared for this subscription
+  * weight - node weight for load balancing
+  * modifier1 - modifier1 value for our app
+  * modifier2 - modifier2 value for our app
+  * sign - TODO
+  * check - TODO 
 
 The subscription system is currently available for cluster joining (when multicast/broadcast is not available), the Fastrouter and HTTP.
 
