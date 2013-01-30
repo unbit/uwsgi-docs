@@ -102,8 +102,29 @@ Thanks to the power of regexps you will be able to build really complex mappings
 Setting the index page
 **********************
 
+By default, requests for a "directory" (like / or /foo) are bypassed (if not advanced internal routing is in place).
+If you want to map specific files to a "directory" request (like the venrable index.html) just use the ``--static-index``
+option
+
+.. code-block:: sh
+
+   --static-index index.html --static-index index.htm --static-index home.html
+
+as the other options, the first one matching will stop the chain
+
 Mime types
 **********
+
+Your HTTP/SPDY/whateveryouwant responses for static files should always return the correct mime type for the specifc file.
+
+By default uWSGI build its list of mime types from the /etc/mime.types file, but you can load additional files with the ``--mime-file``
+option
+
+.. code-block :: sh
+
+   --mime-file /etc/alternatives.types --mime-file /etc/apache2/mime.types
+
+all of the files will be combined in a single auto-optimizing linked list
 
 Skipping specific extensions
 ****************************
