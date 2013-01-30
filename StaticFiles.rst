@@ -243,7 +243,7 @@ will spawn 8 threads for each process and they will be automatically used for tr
 Security
 ********
 
-Every static mapping is fully translated to the "real" path (so symbolink links are translated too).
+Every static mapping is fully translated to the "real" path (so symbolic links are translated too).
 
 If the resulting path is not under the one specified in the option, a security error will be triggered.
 
