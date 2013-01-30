@@ -24,7 +24,7 @@ You want to check each request has a corresponence in that directory before pass
 
 The --check-static option is for you:
 
-.. code-block: sh
+.. code-block:: sh
 
    --check-static /customers/foobar/app001/public
 
@@ -33,7 +33,7 @@ it will invoke your app.
 
 You can specify --check-static multiple times
 
-.. code-block: sh
+.. code-block:: sh
 
    --check-static /customers/foobar/app001/public --check-static /customers/foobar/app001/static
 
