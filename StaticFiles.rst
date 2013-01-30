@@ -148,7 +148,7 @@ Setting the Expires headers
 ***************************
 
 When serving static files, abusing client browser caching is the path to wisdom. By default uWSGI will add a Last-Modified
-header to all of teh static-responses, and will honour the If-Modified-Since request header.
+header to all of the static-responses, and will honour the If-Modified-Since request header.
 
 This could be not enough for high traffic sites. You can add an automatic Expires headers using one of the following options
 
