@@ -40,3 +40,55 @@ You can specify --check-static multiple times
 uWSGI will first check for /customers/foobar/app001/public/foo.png if it does not find it it will try /customers/foobar/app001/static/foo.png
 and if it is still not available the request will goes on to your app.
 
+Mode 2: trust frontend supplied DOCUMENT_ROOT
+*********************************************
+
+If your frontend (a webserver, a uWSGI corerouters...) set the DOCUMENT_ROOT values, you can instruct uWSGI to trust it
+as a valid directory for checking for static files.
+
+Just use the '''--check-static-docroot''' option
+
+Mode 3: using mountpoints
+*************************
+
+Mode 4: using advanced internal routing
+***************************************
+
+Setting the index page
+**********************
+
+Mime types
+**********
+
+Skipping specific extensions
+****************************
+
+Setting the Expires headers
+***************************
+
+Transferring modes
+******************
+
+X-Sendfile
+X-Accel-Redirect
+Offloading
+
+Security
+********
+
+--static-safe
+
+Caching paths mappings/resolutions
+**********************************
+
+--static-cache-paths
+
+--static-cache-paths-name will use the specified new generation cache
+
+Bonus trick: storing static files in the cache
+**********************************************
+
+--load-file-in-cache
+
+Notes
+*****
