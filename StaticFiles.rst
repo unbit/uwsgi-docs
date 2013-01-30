@@ -292,7 +292,22 @@ If you want to store translation on a specific cache you can use
 Bonus trick: storing static files in the cache
 **********************************************
 
---load-file-in-cache
+You can directly store a static file in the uWSGI cache during startup using that option (you can specify it multiple times)
+
+``--load-file-in-cache <filename>``
+
+the content of the file will be stored under the key <filename>.
+
+
+Pay attention:
+
+.. code-block:: sh
+
+   --load-file-in-cache ./foo.png
+
+will store the item as ./foo.png
 
 Notes
 *****
+
+The static file serving subsystem automatically honours the If-Modified_since HTTP request header
