@@ -3,12 +3,12 @@ Serving static files with uWSGI (updated to 1.5)
 
 Sadly you cannot live without serving static files via some protocol (HTTP, SPDY...).
 
-uWSGI as a big series of options and micro-optimizations for serving static files.
+uWSGI has a big series of options and micro-optimizations for serving static files.
 
 Generally your webserver of choice (nginx, mongrel2...) will serve static files efficiently and fast
 and will simply forward dynamic requests to uwsgi backend nodes.
 
-The uWSGI project has ISPs and PaaS (read: the hostign market) as the main target, where generally you would want to avoid
+The uWSGI project has ISPs and PaaS (read: the hosting market) as the main target, where generally you would want to avoid
 generating disk I/O on a central server, while you want each user dedicated-area to be accounted for that (and more important
 you want to allow your customers to customize the way they serve static assets without bothering your system administrator)
 
@@ -16,11 +16,11 @@ you want to allow your customers to customize the way they serve static assets w
 Mode 1: check for a static resource before passing the request to your app
 **************************************************************************
 
-This a common way of managing static files in web apps. Framework like RubyOnRails use it from ages.
+This a common way of managing static files in web apps. Frameworks like RubyOnRails have used this method for ages.
 
 Suppose your static assets are under /customers/foobar/app001/public
 
-You want to check each request has a correspondence in that directory before passign the request to your app.
+You want to check each request has a corresponding file in that directory before passing the request to your app.
 
 The ``--check-static`` option is for you:
 
@@ -132,7 +132,7 @@ Skipping specific extensions
 Some platform/language, most-notably cgi-based ones, like php are deployed in a very simple manner.
 You simply drop them in the document root and they are executed whenever you call them.
 
-This approach, when combined with static file serving, requires a bit of attention for avoiding your cgi/php/whatever to be 
+This approach, when combined with static file serving, requires a bit of attention for avoiding your cgi/php/whatever to be
 served like static files.
 
 The ``--static-skip-ext`` will do the trick.
@@ -190,7 +190,7 @@ Transferring modes
 ******************
 
 If you have developed an async/nonblocking application, serving static files directly from uWSGI is not a big problem.
-All of the transfer are managed in the async way, so your app will not block during them.
+All of the transfers are managed in the async way, so your app will not block during them.
 
 In multiprocess/multithread modes, your process (or threads) will be blocked during the whole transfer of the file.
 
@@ -275,13 +275,13 @@ Caching paths mappings/resolutions
 
 One of the bottlenecks in static file serving is the constant massive amount of stat() syscalls.
 
-You can use the uWSGI caching subsystem to store mappings from uri to filesystem paths. 
+You can use the uWSGI caching subsystem to store mappings from uri to filesystem paths.
 
 .. code-block:: sh
 
    --static-cache-paths 30
 
-will cache each static file translation fro 30 seconds in the uWSGI cache
+will cache each static file translation for 30 seconds in the uWSGI cache
 
 From uWSGI 1.5 an updated caching subsystem has been added, allowing you to create multiple caches.
 
@@ -310,4 +310,4 @@ will store the item as ./foo.png
 Notes
 *****
 
-The static file serving subsystem automatically honours the If-Modified_since HTTP request header
+The static file serving subsystem automatically honours the If-Modified-Since HTTP request header
