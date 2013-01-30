@@ -103,7 +103,7 @@ Setting the index page
 **********************
 
 By default, requests for a "directory" (like / or /foo) are bypassed (if not advanced internal routing is in place).
-If you want to map specific files to a "directory" request (like the venrable index.html) just use the ``--static-index``
+If you want to map specific files to a "directory" request (like the venerable index.html) just use the ``--static-index``
 option
 
 .. code-block:: sh
