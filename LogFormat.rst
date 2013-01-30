@@ -6,6 +6,7 @@ Starting from 1.3-dev uWSGI exports a --logformat option allowing you to build c
 The syntax is simple:
 
 .. code-block:: ini
+
    [uwsgi]
    logformat = i am a logline reporting "%(method) %(uri) %(proto)" returning with status %(status) 
 
@@ -18,7 +19,8 @@ offsetof
 
 they are taken blindly from the wsgi_request structure of the current request
 
-.. parsed-block:: 
+.. code-block::
+
    %(uri) -> REQUEST_URI
    %(method) -> REQUEST_METHOD
    %(user) -> REMOTE_USER
@@ -26,24 +28,37 @@ they are taken blindly from the wsgi_request structure of the current request
    %(host) -> HTTP_HOST
    %(proto) -> SERVER_PROTOCOL
 
+and from 1.4.5
+
+.. code-block::
+
+   %(uagent) -> HTTP_USER_AGENT
+   %(referer) -> HTTP_REFERER
+
+
+
 functions
 *********
 
 they are simple functions called for generating the logvar value
 
-%(status) -> HTTP response status code
-%(micros) -> response time in microseconds
-%(msecs) -> respone time in milliseconds
-%(time) -> timestamp of the start of the request
-%(ctime) -> ctime of the start of the request
-%(epoch) -> the current time in unix format
+.. code-block::
+
+   %(status) -> HTTP response status code
+   %(micros) -> response time in microseconds
+   %(msecs) -> respone time in milliseconds
+   %(time) -> timestamp of the start of the request
+   %(ctime) -> ctime of the start of the request
+   %(epoch) -> the current time in unix format
 
 and from 1.4.5
 
-%(size) -> response body size + response headers size
-%(ltime) -> human-formatted (apache style) request time
-%(hsize) -> response headers size
-%(rsize) -> response body size
+.. code-block::
+
+   %(size) -> response body size + response headers size
+   %(ltime) -> human-formatted (apache style) request time
+   %(hsize) -> response headers size
+   %(rsize) -> response body size
 
 user-defined logvars
 ********************
