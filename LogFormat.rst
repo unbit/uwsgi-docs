@@ -19,7 +19,7 @@ offsetof
 
 they are taken blindly from the wsgi_request structure of the current request
 
-.. code-block::
+.. code-block:: sh
 
    %(uri) -> REQUEST_URI
    %(method) -> REQUEST_METHOD
@@ -30,7 +30,7 @@ they are taken blindly from the wsgi_request structure of the current request
 
 and from 1.4.5
 
-.. code-block::
+.. code-block:: sh
 
    %(uagent) -> HTTP_USER_AGENT
    %(referer) -> HTTP_REFERER
@@ -42,7 +42,7 @@ functions
 
 they are simple functions called for generating the logvar value
 
-.. code-block::
+.. code-block:: sh
 
    %(status) -> HTTP response status code
    %(micros) -> response time in microseconds
@@ -53,7 +53,7 @@ they are simple functions called for generating the logvar value
 
 and from 1.4.5
 
-.. code-block::
+.. code-block:: sh
 
    %(size) -> response body size + response headers size
    %(ltime) -> human-formatted (apache style) request time
@@ -95,6 +95,8 @@ If you want to generate apache-compatible logs, just apply what you have learnt
    [uwsgi]
    ...
    log-format = %(addr) - %(user) [%(ltime)] "%(method) %(uri) %(proto)" %(status) %(size) "%(referer)" "%(uagent)"
+   ...
+
 
 Hacking logformat
 *****************
