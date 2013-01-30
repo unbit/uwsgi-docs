@@ -10,7 +10,7 @@ and will simply forward dynamic requests to uwsgi backend nodes.
 
 The uWSGI project has ISPs and PaaS (read: the hostign market) as the main target, where generally you would want to avoid
 generating disk I/O on a central server, while you want each user dedicated-area to be accounted for that (and more important
-you want to allow your customer to customize the way they serve static assets without bothering your system administrator)
+you want to allow your customers to customize the way they serve static assets without bothering your system administrator)
 
 
 Mode 1: check for a static resource before passing the request to your app
