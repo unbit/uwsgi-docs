@@ -20,7 +20,7 @@ This a common way of managing static files in web apps. Fraemwork like RubyOnRai
 
 Suppose your static assets are under /customers/foobar/app001/public
 
-You want to check each request has a corresponence in that directory before passign the request to your app.
+You want to check each request has a correspondence in that directory before passign the request to your app.
 
 The ``--check-static`` option is for you:
 
