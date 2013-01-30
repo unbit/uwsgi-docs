@@ -16,7 +16,7 @@ you want to allow your customers to customize the way they serve static assets w
 Mode 1: check for a static resource before passing the request to your app
 **************************************************************************
 
-This a common way of managing static files in web apps. Fraemwork like RubyOnRails use it from ages.
+This a common way of managing static files in web apps. Framework like RubyOnRails use it from ages.
 
 Suppose your static assets are under /customers/foobar/app001/public
 
