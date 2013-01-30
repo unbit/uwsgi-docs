@@ -262,7 +262,7 @@ After the translation of /foo/test.png, uWSGI will rais a security error as /tmp
 
 Using
 
-. code-block:: sh
+.. code-block:: sh
 
    --static-map /foo=/var/www/ --static-safe /tmp
 
@@ -273,9 +273,21 @@ You can specify multiple ``--static-safe`` options
 Caching paths mappings/resolutions
 **********************************
 
---static-cache-paths
+One of the bottlenecks in static file serving is the constant massive amount of stat() syscalls.
 
---static-cache-paths-name will use the specified new generation cache
+You can use the uWSGI caching subsystem to store mappings from uri to filesystem paths. 
+
+.. code-block:: sh
+
+   --static-cache-paths 30
+
+will cache each static file translation fro 30 seconds in the uWSGI cache
+
+From uWSGI 1.5 an updated caching subsystem has been added, allowing you to create multiple caches.
+
+If you want to store translation on a specific cache you can use
+
+``--static-cache-paths-name <cachename>``
 
 Bonus trick: storing static files in the cache
 **********************************************
