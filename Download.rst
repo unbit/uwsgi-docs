@@ -7,7 +7,7 @@ These are the current versions of uWSGI.
 Release   Date        Link
 ========  ==========  ===================================================
 Unstable  \-          https://github.com/unbit/uwsgi/
-Stable    2012-12-30  http://projects.unbit.it/downloads/uwsgi-1.4.4.tar.gz
+Stable    2013-01-30  http://projects.unbit.it/downloads/uwsgi-1.4.5.tar.gz
 old-LTS   2012-09-06  http://projects.unbit.it/downloads/uwsgi-1.2.6.tar.gz
 ========  ==========  ===================================================
 
