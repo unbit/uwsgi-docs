@@ -59,6 +59,7 @@ and from 1.4.5
    %(ltime) -> human-formatted (apache style) request time
    %(hsize) -> response headers size
    %(rsize) -> response body size
+   %(cl) -> request content body size
 
 user-defined logvars
 ********************
@@ -83,6 +84,17 @@ if you set a logformat like that
    uwsgi --logformat "worker id = %(worker_id) for request \"%(method) %(uri) %(proto)\" test = %(foo)"
 
 you will be able to access code-defined logvars
+
+Apache style combined request logging
+*************************************
+
+If you want to generate apache-compatible logs, just apply what you have learnt
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   log-format = %(addr) - %(user) [%(ltime)] "%(method) %(uri) %(proto)" %(status) %(size) "%(referer)" "%(uagent)"
 
 Hacking logformat
 *****************
@@ -133,6 +145,7 @@ for function-based vars the prototype is
 where buf is the destination buffer for the logvar value (this will be automatically freed if you set logchunk->free as in the "status" related c-code previously reported)
 
 .. code-block:: c
+
    ssize_t uwsgi_lf_status(struct wsgi_request *wsgi_req, char **buf) {
            *buf = uwsgi_num2str(wsgi_req->status);
            return strlen(*buf);
