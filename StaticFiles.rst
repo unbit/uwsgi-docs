@@ -196,7 +196,7 @@ In multiprocess/multithread modes, your process (or threads) will be blocked dur
 
 For little files this is not a problem, but for the biggest one you'd better to offload their transfer.
 
-You have variosu ways:
+You have various ways:
 
 X-Sendfile
 ^^^^^^^^^^
