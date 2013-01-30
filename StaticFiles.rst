@@ -129,15 +129,116 @@ all of the files will be combined in a single auto-optimizing linked list
 Skipping specific extensions
 ****************************
 
+Some platform/language, most-notably cgi-based ones, like php are deployed in a very simple manner.
+You simply drop them in the document root and they are executed whenever you call them.
+
+This approach, when combined with static file serving, requires a bit of attention for avoiding your cgi/php/whatever to be 
+served like static files.
+
+The ``--static-skip-ext`` will do the trick.
+
+A very common pattern on cgi and php deployment is that one:
+
+.. code-block:: sh
+
+   --static-skip-ext .php --static-skip-ext .cgi --static-skip-ext .php4
+
+
 Setting the Expires headers
 ***************************
+
+When serving static files, abusing client browser caching is the path to wisdom. By default uWSGI will add a Last-Modified
+header to all of teh static-responses, and will honour the If-Modified-Since request header.
+
+This could be not enough for high traffic sites. You can add an automatic Expires headers using one of the following options
+
+``--static-expires-type``
+
+will set the Expires header to the specified number of seconds for the specified mime type:
+
+.. code-block:: sh
+
+   --static-expires-type text/html=3600
+
+will add an Expires header with a value of an hour since now
+
+``--static-expires-type-mtime``
+
+same as the previous one, but will add the specified number of seconds to the file modification time and not the current time
+
+``--static-expires``
+
+this will set Expires header for all of the filenames (after the complete mapping to the filesystem) matching the specified regexp
+
+.. code-block:: sh
+
+   --static-expires-type /var/www/static/foo*\.jpg 3600
+
+``--static-expires-mtime``
+
+same as the previous one, but will add the specified number of seconds to the file modification time and not the current time
+
+``--static-expires-uri`` and ``--static-expires-uri-mtime``
+
+like ``--static-expires`` but the regexp is matched over the REQUEST_URI value
+
+``--static-expires-path-info`` and ``--static-expires-path-info-mtime``
+
+like ``--static-expires`` but the regexp is matched over the PATH_INFO value
 
 Transferring modes
 ******************
 
+If you have developed an async/nonblocking application, serving static files directly from uWSGI is not a big problem.
+All of the transfer are managed in the async way, so your app will not block during them.
+
+In multiprocess/multithread modes, your process (or threads) will be blocked during the whole transfer of the file.
+
+For little files this is not a problem, but for the biggest one you'd better to offload their transfer.
+
+You have variosu ways:
+
 X-Sendfile
+^^^^^^^^^^
+
+If your webserver support the X-Sendfile header and has access to the file you want to send (for example it is on the same machine
+of your application or can access it via nfs) you can avoid the transfer of the file from your app with that option:
+
+.. code-block:: sh
+
+   --file-serve-mode x-sendfile
+
+in that way, uWSGI will only generates response headers and the webserver will be delegated to transferring it
+
 X-Accel-Redirect
+^^^^^^^^^^^^^^^^
+
+This is currently (january 2013) supported only on nginx. Works in the same way as x-sendfile, the only difference
+is in the option argument:
+
+.. code-block:: sh
+
+   --file-serve-mode x-accel-redirect
+
 Offloading
+^^^^^^^^^^
+
+This is the best approach if your frontend server has no access to the static files.
+It uses the :doc:`OffloadSubsystem` to delegate the file transfer to a pool of non-blocking threads.
+
+Each one of this thread can manage thousands of file transfer concurrently.
+
+To enable file transfer offloading just use the option
+
+``--offload-threads``
+
+specifying the number of threads to spawn (try to set it to the number of cpu cores to take advantage of SMP)
+
+.. code-block:: sh
+
+   --offload-threads 8
+
+will spawn 8 threads for each process and they will be automatically used for transferring files
 
 Security
 ********
