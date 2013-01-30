@@ -41,7 +41,7 @@ If you have built uWSGI with pcre/regexp support you can use the --sni-regexp op
 
 .. code-block:: sh
 
-   --sni *.unbit.com unbit.crt,unbit.key,HIGH,unbit.ca
+   --sni-regexp *.unbit.com unbit.crt,unbit.key,HIGH,unbit.ca
 
 Massive SNI hosting
 *******************
