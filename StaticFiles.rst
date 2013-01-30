@@ -243,7 +243,32 @@ will spawn 8 threads for each process and they will be automatically used for tr
 Security
 ********
 
---static-safe
+Every static mapping is fully translated to the "real" path (so symbolink links are translated too).
+
+If the resulting path is not under the one specified in the option, a security error will be triggered.
+
+If you trust your unix skills and know what you are doing, you can add a list of "safe" paths. If a translated path
+is not under a configured directory but it is under a safe one, it will be served.
+
+Example:
+
+.. code-block:: sh
+
+   --static-map /foo=/var/www/
+
+/var/www/test.png is a symlink to /tmp/foo.png
+
+After the translation of /foo/test.png, uWSGI will rais a security error as /tmp/foo.png is not under /var/www/.
+
+Using
+
+. code-block:: sh
+
+   --static-map /foo=/var/www/ --static-safe /tmp
+
+will bypass that limit.
+
+You can specify multiple ``--static-safe`` options
 
 Caching paths mappings/resolutions
 **********************************
