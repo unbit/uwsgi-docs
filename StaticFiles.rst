@@ -22,7 +22,7 @@ Suppose your static assets are under /customers/foobar/app001/public
 
 You want to check each request has a corresponence in that directory before passign the request to your app.
 
-The --check-static option is for you:
+The ``--check-static`` option is for you:
 
 .. code-block:: sh
 
@@ -31,7 +31,7 @@ The --check-static option is for you:
 If uWSGI receives a request for /foo.png will first check for /customers/foobar/app001/public/foo.png and if it is not found
 it will invoke your app.
 
-You can specify --check-static multiple times
+You can specify ``--check-static`` multiple times
 
 .. code-block:: sh
 
@@ -46,13 +46,58 @@ Mode 2: trust frontend supplied DOCUMENT_ROOT
 If your frontend (a webserver, a uWSGI corerouters...) set the DOCUMENT_ROOT values, you can instruct uWSGI to trust it
 as a valid directory for checking for static files.
 
-Just use the '''--check-static-docroot''' option
+Just use the ``--check-static-docroot`` option
 
 Mode 3: using mountpoints
 *************************
 
+A more general approach is "mapping" specific request prefixes to physical directory on your file system.
+
+``static-map mountpoint=path`` will do the trick
+
+.. code-block:: sh
+
+   --static-map /images=/var/www/img
+
+if you get a request for /images/logo.png and /var/www/img/logo.png exists, it will be served, otherwise your app will manage the request.
+
+You can specify multiple ``--static-map`` options even for the same mountpoint
+
+.. code-block:: sh
+
+   --static-map /images=/var/www/img --static-map /images=/var/www/img2 --static-map /images=/var/www/img3
+
+the file will be searched in each directory til is found (otherwise, as always, the request will be managed by your app)
+
+In some specific cases you may want to build the internal path in a different way. The ``--static-map2`` option will change the translation in that way:
+
+.. code-block:: sh
+
+   --static-map2 /images=/var/www/img
+
+a request for /images/logo.png will be mapped to /var/www/img/images/logo.png
+
+That means the full request will be appended to the path
+
+You can map (or map2) both directory and files:
+
+.. code-block:: sh
+
+   --static-map /images/logo.gif=/tmp/oldlogo.gif
+
+
 Mode 4: using advanced internal routing
 ***************************************
+
+When mappings are not enough, advanced internal routing (available from 1.5) will be your last resort.
+
+Thanks to the power of regexps you will be able to build really complex mappings:
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = /static/(.*)\.png static:/var/www/images/pngs/$1/highres.png
+   route = *\.jpg static:/var/www/always_the_same_photo.jpg
 
 Setting the index page
 **********************
