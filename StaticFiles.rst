@@ -258,7 +258,7 @@ Example:
 
 /var/www/test.png is a symlink to /tmp/foo.png
 
-After the translation of /foo/test.png, uWSGI will rais a security error as /tmp/foo.png is not under /var/www/.
+After the translation of /foo/test.png, uWSGI will raise a security error as /tmp/foo.png is not under /var/www/.
 
 Using
 
