@@ -24,6 +24,8 @@ If you go to https://address:8443/ with a SPDY-enabled browser you will see addi
 Notes
 *****
 
+you need at least openssl version 1.x to use SPDY (all of the modern Linux distros should have it)
+
 During uploads the window size is constantly updated
 
 the ``--http-timeout`` directive is used to set the SPDY timeout, this is the maximum amount of inactivity time
