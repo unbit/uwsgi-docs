@@ -240,6 +240,44 @@ specifying the number of threads to spawn (try to set it to the number of cpu co
 
 will spawn 8 threads for each process and they will be automatically used for transferring files
 
+
+GZIP (uWSGI 1.5)
+****************
+
+uWSGI 1.5 can check for a .gz variant of a static files.
+
+Lot of users/sysadmins underestimate the impact on servers of on-the-fly gzip encoding.
+
+Compressing files every time (unless your webservers is caching them in some way) will use CPU
+and will not be able to use advanced techniques like sendfile(). For a very loaded site (or network) this could
+be a problem (expecially when gzip encoding is a need for better user experience).
+
+Albeit uWSGI is able to compress contents on the fly (this is used in the http/https/spdy router for example), the best approach
+for serving gzipped static files is generating them "manually" (obviously you can use a script for that), and let uWSGI
+choose if it is best to serve the uncompressed or the compressed one every time.
+
+In this way serving a gzip content will be no different from serving standard static files (sendfile, offloading...)
+
+To trigger that behaviour you have various options:
+
+``statig-gzip <regexp>`` check for .gz variant for all of the requested files mathing the specified regexp (the regexp is applied to the full filesystem path of the file)
+
+``static-gzip-dir <dir>`` check for .gz variant for all of the files under the specified dir
+
+``static-gzip-prefix <prefix>`` check for .gz variant for all of the files having the specified filesystem prefix (alias for the previous option)
+
+``static-gzip-ext <ext>`` check for .gz variant for all of the files with the specified extension
+
+``static-gzip-suffix <suffix>`` check for .gz variant for all of the files ending with the specified suffix (alias for the previous option)
+
+``static-gzip-all`` check for .gz variant for all of the requested static files
+
+Example:
+
+in your /var/www directory you have uwsgi.c and uwsgi.c.gz files.
+
+If a client make a request for uwsgi.c and accept gzip content encoding, uwsgi.c.gz will be served instead
+
 Security
 ********
 
