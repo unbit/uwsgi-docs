@@ -228,6 +228,14 @@ you can set multiple recipients using ',' as delimiter
 
 A very funny thing about the xmpp plugin is that you will se the jabber account of your app going down when your app dies...
 
+Some XMPP server (most notably the OSX server one) requires you to bind to a resource. You can do it appending /resource to the JID:
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugins = alarm_xmpp
+   alarm = jabber xmpp:app@example.it/uWSGI;secret1;foo1@foo.it,foo2@foo.it
+
 speech
 ^^^^^^
 
