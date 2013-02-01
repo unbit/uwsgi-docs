@@ -244,7 +244,7 @@ will spawn 8 threads for each process and they will be automatically used for tr
 GZIP (uWSGI 1.5)
 ****************
 
-uWSGI 1.5 can check for a .gz variant of a static files.
+uWSGI 1.5 can check for a .gz variant of a static file.
 
 Lot of users/sysadmins underestimate the impact on servers of on-the-fly gzip encoding.
 
