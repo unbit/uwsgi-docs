@@ -234,7 +234,7 @@ Some XMPP server (most notably the OSX server one) requires you to bind to a res
 
    [uwsgi]
    plugins = alarm_xmpp
-   alarm = jabber xmpp:app@example.it/uWSGI;secret1;foo1@foo.it,foo2@foo.it
+   alarm = jabber xmpp:max@server.local/uWSGI;secret1;foo1@foo.it,foo2@foo.it
 
 speech
 ^^^^^^
