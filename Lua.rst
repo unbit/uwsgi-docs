@@ -122,7 +122,7 @@ Create a wsapi compliant file:
 
 And run your threaded uWSGI server
 
-..code-block:: sh
+.. code-block:: sh
 
   ./uwsgi --plugins lua --lua sputnik.ws --threads 20 -s :3031
 
