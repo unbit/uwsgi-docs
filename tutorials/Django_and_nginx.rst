@@ -119,9 +119,10 @@ Install uWSGI into your virtualenv
 
     pip install uwsgi
     
-Of course there are other ways to install uWSGI - but this one is as good as
-any. Remeber that you need to have python development packages installed, in case of 
-Ubuntu or Debian it should be ``pythonX.Y-dev`` (where X.Y stands for python version).
+Of course there are other ways to install uWSGI, but this one is as good as
+any. Remember that you will need to have Python development packages installed. 
+In the case of Debian, or Debian-derived systems such as Ubuntu, what you need 
+to have installed is ``pythonX.Y-dev``, where X.Y is your version of Python.
 
 Basic test
 ^^^^^^^^^^
