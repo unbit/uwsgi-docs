@@ -31,7 +31,7 @@ Currently the uWSGI distribution includes the following suspend/resume engines:
 
 ``Fiber`` Ruby 1.9 fibers
 
-Running the uWSGI async mode without a proper suspend/resume engine will raise a warning, sor for a minimal non-blocking app
+Running the uWSGI async mode without a proper suspend/resume engine will raise a warning, so for a minimal non-blocking app
 you will need something like that:
 
 .. code-block:: sh
@@ -45,7 +45,7 @@ may fail miserably. Always check the uWSGI mailinglist or irc channel for update
 Older uWSGI releases supported an additional system: callbacks.
 
 Callbacks is the approach used by popular systems like node.js. This approach requires HEAVY app cooperation, and for complex projects
-like uWSGI dealing with this is basically impossible. For that reason, callback approach IS NOT SUPPORTED (even if technically
+like uWSGI dealing with this is extremely complex. For that reason, callback approach IS NOT SUPPORTED (even if technically
 possible)
 
 Loop engines
