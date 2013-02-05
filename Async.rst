@@ -113,9 +113,9 @@ If you run the ``tests.cpubound_async`` app on a non-async server, it will block
 Waiting for I/O
 ---------------
 
-There is currently one specification on how to have WSGI apps manage IO in async mode: `<http://wsgi.readthedocs.org/en/latest/specifications/fdevent.html>`_.
+If you are not under a loop engine, you can use the uWSGI api to wait for I/O events
 
-uWSGI supports this standard (``x-wsgiorg.fdevent.readable``, ``x-wsgiorg.fdevent.writable``, and ``x-wsgiorg.fdevent.timeout``) but also exports 2 more advanced functions in its API:
+Currently only 2 functions are exported
 
 * :py:func:`uwsgi.wait_fd_read`
 * :py:func:`uwsgi.wait_fd_write`
@@ -129,7 +129,6 @@ These functions may be called in succession to wait for multiple file descriptor
   uwsgi.wait_fd_read(fd1)
   uwsgi.wait_fd_read(fd2)
   yield "" # Yield the app, let uWSGI do its magic
-  print "fd %d is ready" % env['uwsgi.ready_fd']
 
 
 Sleeping
@@ -144,64 +143,20 @@ Instead of using the blocking ``time.sleep(N)`` function, use ``uwsgi.async_slee
 Suspend/Resume
 --------------
 
-Yielding from the WSGI callable is not very practical as most of the time your app is more advanced than a simple callable and formed of tons of functions and various levels of call depth.
+Yielding from the main application routine is not very practical as most of the time your app is more advanced than a simple callable and formed of tons of functions and various levels of call depth.
 
-Worry not! uWSGI's async mode can use a coroutine/greenthread approach to suspend an async request (to pass control to another one) in any part of your code. :py:func:`uwsgi.suspend` will stop the current request.
+Worry not! you can force a suspend (using coroutine/greenthread) simply calling ``uwsgi.suspend()``
 
 .. code-block:: python
 
   uwsgi.wait_fd_read(fd0)
   uwsgi.suspend()
 
-You can suspend your async requests using various techniques.
 
-* :doc:`uGreen` - built in by default.
-
-  .. code-block:: sh
-
-    ./uwsgi --async <n> --ugreen
-
-* Greenlet (plugin, also requires the greenlet module for Python)
-
-  .. code-block:: sh
-   
-    python uwsgiconfig.py --plugin plugins/greenlet
-    ./uwsgi --plugin greenlet --async <n> --greenlet
-
-* Stackless (plugin, requires to build uWSGI with Stackless Python instead of CPython)
-
-  .. code-block:: sh
-    
-    python uwsgiconfig.py --plugin plugins/stackless
-    ./uwsgi --plugin stackless --async <n> --stackless
+uwsgi.suspend() will automatically call the choosen suspend engine (uGreen, greenlet...)
 
 Static files
 ------------
 
-uWSGI's :py:func:`uwsgi.sendfile` (where available) implementation is async-friendly, so if you need to serve lots of static files, wrapped by Python code of some sort, Async mode is a good choice.
+Static file serving will automatically use the loaded async engine
 
-.. seealso:: See :file:`tests/fileserve_async.py` for an example.
-
-Comet apps
-----------
-
-The current implementation lets you easily develop Comet_ style applications -- if you run uWSGI behind an async-friendly webserver that allows long-running requests.
-
-.. _Comet: http://en.wikipedia.org/wiki/Comet_(programming)
-
-Mixed-mode apps
----------------
-
-Some apps could get advantages of async mode with certain specific requests.
-
-To achieve this, you can spawn 2 instances of uWSGI, on different sockets, one set up for async mode, the other for preforking. Then, in your web server's configuration file, point each URI/mountpoint to whichever socket would be the most useful.
-
-.. TODO: Could the FastRouters, etc. be used instead? This seems a little clunky.
-
-
-Improvements/todo
------------------
-
-uWSGI's async mode does currently not support the read of POST data in async mode. This is not a big problem for most apps, but if your webserver handler does not do buffering of POST data (Apache doesn't), there might be some performance problems with big uploads. This will be fixed in future releases.
-
-.. TODO: Has this been fixed already?
