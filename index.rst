@@ -77,6 +77,8 @@ uWSGI Subsystems
    Signals
    Spooler
    SubscriptionServer
+   StaticFiles
+   SNI
 
 
 
