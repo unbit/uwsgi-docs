@@ -5,7 +5,7 @@ uWSGI includes an embedded RPC stack that abstracts away having to use the lower
 
 What's really neat about uWSGI's RPC is that it allows you to call functions even between separate nodes and languages.
 
-.. note:: RPC functions receive arguments in the form of binary strings, so every RPC exportable function must assume that each argument is a string. Every RPC function returns a string of 0 ore more characters.
+.. note:: RPC functions receive arguments in the form of binary strings, so every RPC exportable function must assume that each argument is a string. Every RPC function returns a string of 0 or more characters.
 
 Learning by example
 -------------------
