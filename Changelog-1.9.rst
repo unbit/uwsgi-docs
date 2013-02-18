@@ -154,31 +154,31 @@ boject of different size (but it will be slower than non-bitmap based caches)
 
 The options you can specify in cache2 are the following:
 
-`name` the name of the cache (must be unique) REQUIRED
+``name`` the name of the cache (must be unique) REQUIRED
 
-`items/max_items/maxitems` set the max number of items the cache can store REQUIRED
+``items/max_items/maxitems`` set the max number of items the cache can store REQUIRED
 
-`blocksize` set the size of a single block
+``blocksize`` set the size of a single block
 
-`blocks` set the number of blocks (used only in bitmap mode)
+``blocks`` set the number of blocks (used only in bitmap mode)
 
-`hash` set the hashing algorithm, currently supported: djbx33 and murmur2
+``hash`` set the hashing algorithm, currently supported: djbx33 and murmur2
 
-`hashsize/hash_size` set the size of the hash table (default to 65536 items)
+``hashsize/hash_size`` set the size of the hash table (default to 65536 items)
 
-`keysize/key_size` set the max size of a key
+``keysize/key_size`` set the max size of a key
 
-`store` set the filename in which to persistent store the cache
+``store`` set the filename in which to persistent store the cache
 
-`store_sync/storesync` set the frequency (in seconds) at which msync() is called to flush cache on disk (when in persistent mode)
+``store_sync/storesync`` set the frequency (in seconds) at which msync() is called to flush cache on disk (when in persistent mode)
 
-`node/nodes` the new cache subsystem can send cache updates via udp packet. With this option you set one or more (separated with `;`) udp addresses on which to send updates
+``node/nodes`` the new cache subsystem can send cache updates via udp packet. With this option you set one or more (separated with `;`) udp addresses on which to send updates
 
-`sync` set it to the address of a cache server. Its whole content will be copied in the new cache (use it for initial sync)
+``sync`` set it to the address of a cache server. Its whole content will be copied in the new cache (use it for initial sync)
 
-`udp/udp_servers/udp_server/udpservers/udpserver` bind to the specified udp addresses (separated with `;`) listening for cache updates
+``udp/udp_servers/udp_server/udpservers/udpserver`` bind to the specified udp addresses (separated with `;`) listening for cache updates
 
-`bitmap` enable botmap mode (set it to 1)
+``bitmap`` enable botmap mode (set it to 1)
 
 If you are asking yourself why such low-level tunings exists, you have to take in account that the new cachign subsystem is used in lot of areas, so for different
 needs you may want different tuning. Just check :doc:`SSLScaling` for an example
@@ -228,13 +228,13 @@ old-good webserver.
 
 The new options:
 
-`--http-keepalive` enable HTTP/1.1 keepalive connections
+``--http-keepalive`` enable HTTP/1.1 keepalive connections
 
-`--http-auto-chunked` for backend response without content-length (or chunked encoding already enabled), transform the output in chunked mode to maintain keepalive connections
+``--http-auto-chunked`` for backend response without content-length (or chunked encoding already enabled), transform the output in chunked mode to maintain keepalive connections
 
-`--http-auto-gzip` automatically gzip content if uWSGI-Encoding header is set to gzip, but content size (Content-Length/Transfer-Encoding) and Content-Encoding are not specified
+``--http-auto-gzip`` automatically gzip content if uWSGI-Encoding header is set to gzip, but content size (Content-Length/Transfer-Encoding) and Content-Encoding are not specified
 
-`--http-websockets` automatically detect websockets connections to put the request handler in raw mode
+``--http-websockets`` automatically detect websockets connections to put the request handler in raw mode
 
 The SSL router (sslrouter)
 **************************
