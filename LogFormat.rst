@@ -61,6 +61,24 @@ and from 1.4.5
    %(rsize) -> response body size
    %(cl) -> request content body size
 
+and from 1.4.6
+
+.. code-block:: sh
+
+   %(pid) -> pid of the worker handling the request
+   %(wid) -> id of the worker handling the request
+   %(switches) -> number of async switches
+   %(vars) -> number of CGI vars in the request
+   %(headers) -> number of generated response headers
+   %(core) -> the core running the request
+   %(vsz) -> address space/virtual memory usage (in bytes)
+   %(rss) -> RSS memory usage (in bytes)
+   %(vszM) -> address space/virtual memory usage (in megabytes)
+   %(rssM) -> RSS memory usage (in megabytes)
+   %(pktsize) -> size of the internal request uwsgi packet
+   %(modifier1) -> modifier1 of the request
+   %(modifier2) -> modifier2 of the request
+
 user-defined logvars
 ********************
 
