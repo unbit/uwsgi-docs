@@ -42,7 +42,7 @@ The new non-blocking api added 3 simple generic C/C++/Obj-C functions to deal wi
    void uwsgi_request_body_seek(struct wsgi_request *wsgi_req, off_t pos); 
 
 
-they automatically manage post-buffering, non-blocking, upload progress.
+they automatically manage post-buffering, non-blocking and upload progress.
 
 All of the request plugins have been updated to the new api
 
@@ -51,16 +51,16 @@ All of the request plugins have been updated to the new api
 Faster uwsgi/HTTP/FastCGI/SCGI native sockets
 *********************************************
 
-All of the --socket protocols parser have been rewritten to be faster (less syscall usage) and to use less memory.
+All of the --socket protocol parsers have been rewritten to be faster (less syscall usage) and to use less memory.
 
-They are now more complex now, but you should note (on loaded site) a reduced amount of syscalls per-request.
+They are now more complex, but you should note (on loaded site) a reduced amount of syscalls per-request.
 
 The SCGI protocol support has been added, while a NPH fastcgi mode (where the output is HTTP instead of cgi) has been implemented.
 
 The FastCGI protocol now supports true sendfile() usage
 
 The old behaviour of storing request body for HTTP and FastCGI on a temp file, has been removed (unless you use post-buffering),
-that mean you can now have upload progress with protocols other than uwsgi.
+that means you can now have upload progress with protocols other than uwsgi.
 
 Request logging VS err logging
 ******************************
@@ -85,7 +85,7 @@ As an example you may want to send request logging to syslog and redis, and erro
    logger = mongodb:127.0.0.1:9090,foo.bar
    ...
 
-Or ust use (boring) files
+Or just use (boring) files
 
 .. code-block:: ini
 
