@@ -82,7 +82,7 @@ As an example you may want to send request logging to syslog and redis, and erro
    [uwsgi]
    req-logger = syslog
    req-logger = redislog:127.0.0.1:6269
-   logger = mongodb:127.0.0.1:9090,foo.bar
+   logger = mongodblog:127.0.0.1:9090,foo.bar
    ...
 
 Or just use (boring) files
