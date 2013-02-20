@@ -64,7 +64,7 @@ The first example
 
 The previous rules, build the following table:
 
-* if the HTTP_USER_AGENT var contains 'curl' redirect the request to http://uwsgi.it (code 301, action returns BREAK)
+* if the HTTP_USER_AGENT var contains 'curl' redirect the request to http://uwsgi.it (code 302, action returns BREAK)
 * if the REMOTE_ADDR is '127.0.0.1' returns a 403 Forbidden (action returns BREAK)
 * if the PATH_INFO starts with /test print the string 'someone called /test' in the logs (action returns NEXT)
 * if the PATH_INFO ends with '.php' rewrite it to /index.php (action returns NEXT)
@@ -267,4 +267,26 @@ Extremely advanced (and dangerous) function allowing you to add raw data to the 
    route = ^/foo/(.) send-crnl:HTTP/1.0 100 Continue
 
 
+redirect
+^^^^^^^^
 
+return value: BREAK
+
+redirect (302) to the specified url/uri
+
+redirect-302
+^^^^^^^^^^^^
+
+alias for redirect
+
+redirect-permanent
+^^^^^^^^^^^^^^^^^^
+
+return value: BREAK
+
+redirect (301) to the specified url/uri
+
+redirect-301
+^^^^^^^^^^^^
+
+alias for redirect-permanent
