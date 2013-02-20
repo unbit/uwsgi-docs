@@ -72,6 +72,20 @@ The previous rules, build the following table:
 * if HTTP_HOST is localhost add the logvar 'local' setting it to '1'
 * if REQUEST_URI starts with /foo and ends with .jpg get it from the uWSGI cache using the supplied key (built over regexp grouping) (action returns BREAK)
 
+
+Accessing request vars
+**********************
+
+In addition to pcre placeholders/groups (using $1 to $9) you can access request variables (PATH_INFO, SCRIPT_NAME, REQUEST_METHOD...)
+using the ${VAR} syntax
+
+.. code-block:: ini
+
+   [uwsgi]
+   route-user-agent = .*curl.* redirect:http://uwsgi.it/%{REQUEST_URI}
+   route-remote-addr = ^127\.0\.0\.1$ break:403 Forbidden for ip ${REMOTE_ADDR}
+
+
 GOTO
 ****
 
