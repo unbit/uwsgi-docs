@@ -368,4 +368,91 @@ you can specify an alternative Host header with the following syntax:
    [uwsgi]
    route = ^/zope http:127.0.0.1:8181,myzope.uwsgi.it
 
+static
+^^^^^^
 
+return value: BREAK
+
+plugin: router_static
+
+serve a static file from the specified path
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = ^/logo static:/var/www/logo.png
+
+basicauth
+^^^^^^^^^
+
+return value: GOON (NEXT on failed authentication)
+
+plugin: router_basicauth
+
+four syntaxes are supported
+
+* basicauth:realm,user:password – a simple user:password mapping
+* basicauth:realm,user: – only authenticates username
+* basicauth:realm,htpasswd – use a htpasswd-like file. All POSIX crypt() algorithms are supported. This is _not_ the same behavior as Apache’s traditional htpasswd files, so use the -d flag of the htpasswd utility to create compatible files.
+* basicauth:realm, – Useful to cause a HTTP 401 response immediately. As routes are parsed top-bottom, you may want to raise that to avoid bypassing rules.
+
+Example:
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = ^/foo basicauth:My Realm,foo:bar
+   route = ^/foo basicauth:My Realm,foo2:bar2
+   # The following rule is required as the last one will never match and an HTTP 401 would never be triggered
+   route = ^/foo basicauth:My Realm,
+   route = ^/bar basicauth:Another Realm,kratos:
+
+Example: using basicauth for Trac
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; load plugins (if required)
+   plugins = python,router_basicauth
+
+   ; bind to port 9090 using http protocol
+   http-socket = :9090
+
+   ; set trac instance path
+   env = TRAC_ENV=myinstance
+   ; load trac
+   module = trac.web.main:dispatch_request
+
+   ; trigger authentication on /login
+   route = ^/login basicauth:Trac Realm,pippo:pluto
+   route = ^/login basicauth:Trac Realm,foo:bar
+
+   ;high performance file serving
+   static-map = /chrome/common=/usr/local/lib/python2.7/dist-packages/trac/htdocs
+
+basicauth-last
+^^^^^^^^^^^^^^
+
+same as basicauth but returns CONTINUE on successfull authentication
+
+cache
+^^^^^
+
+return value: BREAK
+
+plugin: router_cache
+
+memcached
+^^^^^^^^^
+
+access
+^^^^^^
+
+spnego
+^^^^^^
+
+radius
+^^^^^^
+
+ldap
+^^^^
