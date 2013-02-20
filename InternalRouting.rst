@@ -271,6 +271,7 @@ redirect
 ^^^^^^^^
 
 return value: BREAK
+plugin: router_redirect
 
 redirect (302) to the specified url/uri
 
@@ -283,6 +284,7 @@ redirect-permanent
 ^^^^^^^^^^^^^^^^^^
 
 return value: BREAK
+plugin: router_redirect
 
 redirect (301) to the specified url/uri
 
@@ -290,3 +292,24 @@ redirect-301
 ^^^^^^^^^^^^
 
 alias for redirect-permanent
+
+
+rewrite
+^^^^^^^
+
+return value: NEXT
+plugin: router_rewrite
+
+Apache mod_rewrite inspired rewrite engine. Rebuild PATH_INFO and QUERY_STRING accordingly to the specified rule
+
+.. code-block:: ini
+
+   [uwsgi]
+   route-uri = ^/foo/(.*) rewrite:/index.php?page=$1.php
+
+rewrite-last
+^^^^^^^^^^^^
+
+alias for rewrite but with a return value of CONTINUE
+
+
