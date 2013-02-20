@@ -70,8 +70,7 @@ The previous rules, build the following table:
 * if the PATH_INFO ends with '.php' rewrite it to /index.php (action returns NEXT)
 * for all of the PATH_INFO add the HTTP header 'Server: my uWSGI server' to the response (action returns NEXT)
 * if HTTP_HOST is localhost add the logvar 'local' setting it to '1'
-* if REQUEST_URI starts with /foo and ends with .jpg get it from the uWSGI cache using the supplied key (built over regexp grouping)
- (action returns BREAK)
+* if REQUEST_URI starts with /foo and ends with .jpg get it from the uWSGI cache using the supplied key (built over regexp grouping) (action returns BREAK)
 
 GOTO
 ****
