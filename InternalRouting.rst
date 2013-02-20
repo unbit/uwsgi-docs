@@ -347,3 +347,25 @@ you can even set a specific UWSGI_APPID value
 
 The request is async-friendly (engine like gevent, or ugreen are supported) and if offload threads are available they will be used.
 
+http
+^^^^
+
+return value: BREAK
+
+plugin: router_http
+
+route the request to an external http server
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = ^/zope http:127.0.0.1:8181
+
+you can specify an alternative Host header with the following syntax:
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = ^/zope http:127.0.0.1:8181,myzope.uwsgi.it
+
+
