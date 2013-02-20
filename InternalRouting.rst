@@ -82,7 +82,7 @@ using the ${VAR} syntax
 .. code-block:: ini
 
    [uwsgi]
-   route-user-agent = .*curl.* redirect:http://uwsgi.it/%{REQUEST_URI}
+   route-user-agent = .*curl.* redirect:http://uwsgi.it%{REQUEST_URI}
    route-remote-addr = ^127\.0\.0\.1$ break:403 Forbidden for ip ${REMOTE_ADDR}
 
 
