@@ -271,6 +271,7 @@ redirect
 ^^^^^^^^
 
 return value: BREAK
+
 plugin: router_redirect
 
 redirect (302) to the specified url/uri
@@ -284,6 +285,7 @@ redirect-permanent
 ^^^^^^^^^^^^^^^^^^
 
 return value: BREAK
+
 plugin: router_redirect
 
 redirect (301) to the specified url/uri
@@ -298,6 +300,7 @@ rewrite
 ^^^^^^^
 
 return value: NEXT
+
 plugin: router_rewrite
 
 Apache mod_rewrite inspired rewrite engine. Rebuild PATH_INFO and QUERY_STRING accordingly to the specified rule
@@ -312,4 +315,35 @@ rewrite-last
 
 alias for rewrite but with a return value of CONTINUE
 
+uwsgi
+^^^^^
+
+return value: BREAK
+
+plugin: router_uwsgi
+
+Rewrite the modifier1 and modifier2 values of a request or route the request to an external uwsgi server
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = ^/psgi uwsgi:127.0.0.1:3031,5,0
+
+route all of the requests starting with /psgi to the uwsgi server running on 127.0.0.1:3031 setting modifier1 to 5 and modifier2 to 0
+
+If you only want to change the modifiers without routing the request to an external server use the following syntax
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = ^/psgi uwsgi:,5,0
+
+you can even set a specific UWSGI_APPID value
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = ^/psgi uwsgi:127.0.0.1:3031,5,0,fooapp
+
+The request is async-friendly (engine like gevent, or ugreen are supported) and if offload threads are available they will be used.
 
