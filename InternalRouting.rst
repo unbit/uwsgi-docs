@@ -1,166 +1,270 @@
-uWSGI internal routing 
+uWSGI internal routing
 ======================
 
-Starting from tree 1.1, uWSGI contains an internal routing/rewrite subsystem.
+``Updated to 1.9``
 
-Following the logging approach, new "routers" can be added as plugins.
+Since uWSGI 1.9, a programmable internal routing subsystem is available (older releases have it, but with lot less features)
 
-These routers are included:
+You can use the internal routing subsystem to dinamically alter the way requests are handled. For example you can
+use it to trigger a 301 redirect on specific urls, or to serve content from the cache on specific conditions.
 
-* ``uwsgi`` -- set modifiers and to eventually redirect requests to remote uWSGI servers
-* ``redirect`` --  allows to quickly send HTTP redirects to clients without touching your app
-* ``basicauth`` -- implements HTTP basic authentication
-* ``http`` (since 1.3) -- forward requests to remote HTTP servers
-* ``rewrite`` (since 1.3) -- intrnal rewrite, very similar to apache mod_rewrite
-* ``access`` (since 1.4) -- implementd tcpwrap check
-* ``cache`` (since 1.4) -- get an item from the uWSGI cache
+The internal routing subsystem is inspired by Apache mod_rewrite and Linux iptables command.
 
-The internal router is configurable with:
+Please, before blasting it for being messy, not-elegant nor turing-complete, remember that it must be FAST and only FAST.
+If you need elegance, do that (slowly) in your code.
 
-.. code-block:: ini
+The internal routing table
+**************************
 
-  [uwsgi]
-  route = <rule-regexp> <action> # define rule for PATH_INFO
-  route-host = <rule-regexp> <action> # define rule for HTTP_HOST
-  route-qs = <rule-regexp> <action> # define rule for QUERY_STRING
-  route-uri = <rule-regexp> <action> # define rule for REQUEST_URI
+The internal routing table is a sequence of ''rules'' executed one after another (forward jumps are allowed too).
 
-The ``uwsgi`` router
---------------------
+Each rule is composed by a ''subject'', a ''condition'' and an ''action''
 
-The uwsgi router has 2 syntaxes::
+The ''condition'' is a PCRE regexp applied to the subject, if it matches the action is triggered. Subjects are request's variables.
 
-  uwsgi:,N1,N2
+Currently the following subjects are supported:
 
-will set the specific modifiers, while
+* host (check HTTP_HOST)
+* uri (check REQUEST_URI)
+* qs (check QUERY_STRING)
+* remote-addr (check REMOTE_ADDR)
+* referer (check HTTP_REFERER)
+* user-agent (check HTTP_USER_AGENT)
+* default (default subject, maps to PATH_INFO)
 
-  uwsgi:addr,N1,N2
+Actions, are the functions to run if a rule matches. This actions are exported by plugins and have a return value
 
-will forward the request to a remote uwsgi-speaking server.
+Action's return value
+*********************
 
-Example: map requests ending with .cgi and .pl to the cgi plugin
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Each action has a return value, that value tell the routing engine what to do next.
 
-.. code-block:: ini
-  
-  [uwsgi]
-  plugins = cgi
-  socket = :3031
-  cgi = /var/www/myscripts
-  
-  route = \.pl$ uwsgi:,9,0
-  route = \.cgi$ uwsgi:,9,0
+The following return codes are supported:
 
-Example: forward requests starting with ``/foobar`` to a remote uwsgi server using the PSGI plugin
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* NEXT (continue to the next rule)
+* CONTINUE (stop scanning the internal routing table and run the request)
+* BREAK (stop scanning the internal routing table and close the request)
+* GOON (continue to the next rule with an action plugin different from the current one)
 
-.. code-block:: ini
-  
-  [uwsgi]
-  socket = :3031
-  route = ^/foobar uwsgi:192.168.173.9:3031,5,0
+When a rule does not match, NEXT is assumed
 
-The uwsgi router supports :doc:`offloading<OffloadSubsystem>`
-
-The ``redirect`` router
------------------------
-
-The redirect router allows you to send a HTTP 302 redirect. Doing it in uWSGI will be a lot faster than writing the rules in your app.
-
-Regexp groups are supported. You can refer to groups using the Perl-like syntax $1, $2, $...
-
-Example
-^^^^^^^
-
-.. code-block:: ini
-  
-  [uwsgi]
-  socket = :3031
-  
-  route = uwsgi$ redirect:/UWSGI/wiki
-  route = test redirect:http://example.com
-  route = ^/foobar/(.+)/ redirect:http://unbit.it/$1
-
-
-The ``basicauth`` router
-------------------------
-
-The ``basicauth`` router allows you to protect resources via HTTP Basic authentication.
-
-Four syntaxes are supported:
-
-* ``basicauth:realm,user:password`` -- a simple user:password mapping
-* ``basicauth:realm,user:`` -- only authenticates username
-* ``basicauth:realm,htpasswd`` -- use a ``htpasswd``-like file. All POSIX ``crypt()`` algorithms are supported. This is _not_ the same behavior as Apache's traditional htpasswd files, so use the ``-d`` flag of the ``htpasswd`` utility to create compatible files.
-* ``basicauth:realm,`` -- Useful to cause a HTTP 401 response immediately. As routes are parsed top-bottom, you may want to raise that to avoid bypassing rules.
-
-Example
-^^^^^^^
-
-.. code-block:: ini
-
-  [uwsgi]  
-  route = ^/foo basicauth:My Realm,foo:bar
-  route = ^/foo basicauth:My Realm,foo2:bar2
-  # The following rule is required as the last one will never match and an HTTP 401 would never be triggered
-  route = ^/foo basicauth:My Realm,
-  route = ^/bar basicauth:Another Realm,kratos:
-
-Example: Using basicauth for Trac
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This will run Trac with 2 hardcoded users on HTTP port 9090.
-
-.. code-block:: ini
-
-  [uwsgi]
-  ; load plugins (if required)
-  plugins = python,router_basicauth
-  
-  ; bind to port 9090 using http protocol
-  http-socket = :9090
-  
-  ; set trac instance path
-  env = TRAC_ENV=myinstance
-  ; load trac
-  module = trac.web.main:dispatch_request
-  
-  ; trigger authentication on /login
-  route = ^/login basicauth:Trac Realm,pippo:pluto
-  route = ^/login basicauth:Trac Realm,foo:bar
-  
-  ;high performance file serving
-  static-map = /chrome/common=/usr/local/lib/python2.7/dist-packages/trac/htdocs
-
-
-The ``http`` router
--------------------
-
-You can forward specific requests to an external http server
+The first example
+*****************
 
 .. code-block:: ini
 
    [uwsgi]
-   plugins = router_http
-   route = ^/foobar http:127.0.0.1:4040
-   route = ^/test http:192.168.173.3:3131
+   route-user-agent = .*curl.* redirect:http://uwsgi.it
+   route-remote-addr = ^127\.0\.0\.1$ break:403 Forbidden
+   route = ^/test log:someone called /test
+   route = \.php$ rewrite:/index.php
+   route = .* addheader:Server: my uWSGI server
+   route-host = ^localhost$ logvar:local=1
+   route-uri = ^/foo/(.*)\.jpg$ cache:key=$1.jpg
 
-you can specify the Host header to ser
+The previous rules, build the following table:
+
+* if the HTTP_USER_AGENT var contains 'curl' redirect the request to http://uwsgi.it (code 301, action returns BREAK)
+* if the REMOTE_ADDR is '127.0.0.1' returns a 403 Forbidden (action returns BREAK)
+* if the PATH_INFO starts with /test print the string 'someone called /test' in the logs (action returns NEXT)
+* if the PATH_INFO ends with '.php' rewrite it to /index.php (action returns NEXT)
+* for all of the PATH_INFO add the HTTP header 'Server: my uWSGI server' to the response (action returns NEXT)
+* if HTTP_HOST is localhost add the logvar 'local' setting it to '1'
+* if REQUEST_URI starts with /foo and ends with .jpg get it from the uWSGI cache using the supplied key (built over regexp grouping)
+ (action returns BREAK)
+
+GOTO
+****
+
+Yes, the most controversial construct of the whole information technology industry (and history) is here. You can make forward jumps (only forward !!!)
+to specific points of the internal routing table. You can set labels to mark specific point of the table, or if you are brave (or fool)
+directly the rule number (rule number are printed on server startup, but please use labels...)
 
 .. code-block:: ini
 
    [uwsgi]
-   plugins = router_http
-   route = ^/foobar http:127.0.0.1:4040,unbit.it
-   route = ^/test http:192.168.173.3:3131,uwsgi.it
 
-The http router supports :doc:`offloading<OffloadSubsystem>`
+   route-host = ^localhost$ goto:localhost
+   route-host = ^sid\.local$ goto:sid.local
+   route = .* last:
+  
+   route-label = sid.local
+   route-user-agent = .*curl.* redirect:http://uwsgi.it
+   route-remote-addr = ^192\.168\..* break:403 Forbidden
+   route = ^/test log:someone called /test
+   route = \.php$ rewrite:/index.php
+   route = .* addheader:Server: my sid.local server
+   route = .* logvar:local=0
+   route-uri = ^/foo/(.*)\.jpg$ cache:key=$1.jpg
+   route = .* last:
+
+   route-label = localhost
+   route-user-agent = .*curl.* redirect:http://uwsgi.it
+   route-remote-addr = ^127\.0\.0\.1$ break:403 Forbidden
+   route = ^/test log:someone called /test
+   route = \.php$ rewrite:/index.php
+   route = .* addheader:Server: my uWSGI server
+   route = .* logvar:local=1
+   route-uri = ^/foo/(.*)\.jpg$ cache:key=$1.jpg
+   route = .* last:
+
+The example is like the previous one, but we make tiny differences between domains. Check the use of "last:", that interrupt
+the routing table scan.
+
+Obviously (or not ?) you can rewrite the first 2 rules as one:
+
+.. code-block:: ini
+
+   [uwsgi]
+
+   route-host = (.*) goto:$1
+   
+The available actions
+*********************
+
+This is the list of currently (february 2013) supported actions
 
 
-The ``rewrite`` router
-----------------------
+continue
+^^^^^^^^
 
-.. note:: This router is undocumented.
+return value: CONTINUE
 
-The ``cache`` router
---------------------
+stop the scanning of the internal routing table and continue to the request handler
+
+last
+^^^^
+
+same as continue
+
+break
+^^^^^
+
+return value: BREAK
+
+stop the scanning of the internal routing table and close the request
+
+can optionally returns the specified HTTP status code:
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = ^/notfound break:404 Not Found
+   route = ^/bad break:
+   route = ^/error break:500
+
+goon
+^^^^
+
+return value: GOON
+
+jump (forward) to the first rule with the action plugin different from the current one.
+
+This function is only for internal use.
+
+log
+^^^
+
+return value: NEXT
+
+print the specified message in the logs
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = ^/logme/(.) log:hey i am printing $1
+
+logvar
+^^^^^^
+
+return value: NEXT
+
+add the specified logvar
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = ^/logme/(.) logvar:item=$1
+
+goto
+^^^^
+
+return value: NEXT
+
+make a forward jump to the specified label or rule position
+
+addvar
+^^^^^^
+
+return value: NEXT
+
+add the specified CGI var to the request
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = ^/foo/(.) addvar:FOOVAR=prefix$1suffix
+
+addheader
+^^^^^^^^^
+
+return value: NEXT
+
+add the specified HTTP header to the response
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = ^/foo/(.) addheader:Foo: Bar
+
+delheader
+^^^^^^^^^
+
+return value: NEXT
+
+remove the specified HTTP header from the response
+
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = ^/foo/(.) delheader:Foo
+
+remheader
+^^^^^^^^^
+
+alias for delheader
+
+signal
+^^^^^^
+
+return value: NEXT
+
+raise the specified uwsgi signal
+
+send
+^^^^
+
+return value: NEXT
+
+Extremely advanced (and dangerous) function allowing you to add raw data to the response
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = ^/foo/(.) send:destroy the world
+
+send-crnl
+^^^^^^^^^
+
+return value: NEXT
+
+Extremely advanced (and dangerous) function allowing you to add raw data to the response with \r\n suffix
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = ^/foo/(.) send-crnl:HTTP/1.0 100 Continue
+
+
+
