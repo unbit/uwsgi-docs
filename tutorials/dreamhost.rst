@@ -96,3 +96,40 @@ Statistics
 
 As always remember to use uWSGI internal stats system
 
+first, install uwsgitop
+
+.. code-block:: sh
+
+   venv/bin/easy_install uwsgitop
+
+Enable the stats server on the uWSGI config
+
+.. code-block:: ini
+
+.. code-block:: ini
+
+   [uwsgi]
+   flock = /home/XXX/YYY.ini
+   account = XXX
+   domain = YYY
+
+   protocol = fastcgi
+   master = true
+   processes = 3
+   logto = /home/%(account)/%(domain).uwsgi.log
+   virtualenv = /home/%(account)/venv
+   module = werkzeug.testapp:test_app
+   touch-reload = %p
+   auto-procname = true
+   procname-prefix-spaced = [%(domain)]
+
+   stats = /home/%(account)/stats_%(domain).sock
+
+(as we have touch-reload in place, as soon as you update the ini file your instance is reloaded, and you will be able to suddenly use uwsgitop)
+
+
+.. code-block:: sh
+
+    venv/bin/uwsgitop /home/WWW/stats_YYY.sock
+
+(remember to change XXX and YYY accordingly)
