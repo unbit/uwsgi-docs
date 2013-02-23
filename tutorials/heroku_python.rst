@@ -207,7 +207,7 @@ You can simply add uwsgitop to you requirements.txt
    uwsgitop
    werkzeug
 
-and enable the stats server on a TCP port (unix sockets will not work a the instance running uwsgitop is not on the same server !!!):
+and enable the stats server on a TCP port (unix sockets will not work as the instance running uwsgitop is not on the same server !!!):
 
 .. code-block:: ini
 
