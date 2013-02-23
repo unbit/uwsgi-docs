@@ -4,7 +4,7 @@ Running uWSGI on Dreamhost shared hosting
 Note: the following tutorial gives suggestions on how to name files with the objective of hosting multiple applications
 on your account. You are obviously free to change naming schemes.
 
-The tutorial assumes a shared hosting account, but it works even on the VPS offer (even if on such a system you have lot more freedom and you could use
+The tutorial assumes a shared hosting account, but it works on the VPS offer too (even if on such a system you have lot more freedom and you could use
 better techniques to accomplish the result)
 
 
