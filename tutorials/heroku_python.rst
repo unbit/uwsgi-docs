@@ -124,8 +124,29 @@ Remember to add/commit that in the repository.
 
 Every time you change the python version, a new uWSGI binary is built.
 
-Monitoring your app
-*******************
+Multiprocess or Multithread ?
+*****************************
+
+It obviosuly depend on your app. But as we are on a memory-limited environment you can expect better memory usage with threads.
+
+In addition to this, if you plan to put production-apps on Heroku be sure to understand how Dynos and their proxy works
+(it is very important. really)
+
+Async/Greethreads/Coroutine ?
+*****************************
+
+As always, do not trust people suggesting you to ALWAYS use some kind of async mode (like gevent). If your app
+is async-friendly you can obviously use gevent (it is built by default in recent uWSGI releases), but if you do not know that, remain
+with multiprocess (or multithread).
+
+Harakiri
+********
+
+As said previously, if you plan to put production-apps on heroku, be sure to understand how dynos and their proxy works. Based on that,
+try to always set the harakiri parameters to a good value for your app. (do not ask for a default value, IT IS APP-DEPENDENT)
+
+Monitoring your app (advanced/hacky)
+*************************************
 
 Albeit Heroku works really well with newrelic services, you always need to monitor the internals of your uWSGI instance.
 
@@ -139,7 +160,7 @@ You can simply add uwsgitop to you requirements.txt
    uwsgitop
    werkzeug
 
-and enable the stats server on a unix socket:
+and enable the stats server on a TCP port (unix sockets will not work a the instance running uwsgitop is not on the same server !!!):
 
 .. code-block:: ini
 
@@ -150,5 +171,32 @@ and enable the stats server on a unix socket:
    die-on-term = true
    module = werkzeug.testapp:test_app
    memory-report = true
-   stats = stats.socket
+   stats = :22222
 
+Now we have a problem: how to reach our instance ?
+
+We need to know the LAN address of the machine where our instance is phisically running. To accomplish that, a raw trick is running
+ifconfig on uWSGI startup:
+
+.. code-block:: ini
+
+   [uwsgi]
+   http-socket = :$(PORT)
+   master = true
+   processes = 4
+   die-on-term = true
+   module = werkzeug.testapp:test_app
+   memory-report = true
+   stats = :22222
+   exec-pre-app = /sbin/ifconfig eth0
+
+Now thanks to the ``heroku logs`` command you can know where your stats server is
+
+.. code-block:: sh
+
+   heroku run uwsgitop 10.x.x.x:22222
+
+change x.x.x with the discovered address and remember that you could not be able to bind on port 22222, so change it accordingly.
+
+Is it worthy to make such a mess to get monitoring ? If you are testing your app before going to production, it could be a good idea,
+but if you plan to buy more dynos, all became so complex that you'd better to use some heroku-blessed technique (if any)
