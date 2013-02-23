@@ -223,7 +223,7 @@ Edit (again) the uwsgi.fcgi file changing it to
    #!/bin/sh
    /home/XXX/uwsgi_rack /home/XXX/YYY.ini
 
-and create a Rack application in the document root
+and create a Rack application in the document root (call it app.ru)
 
 .. code-block:: rb
 
@@ -237,3 +237,35 @@ and create a Rack application in the document root
 
    run RackFoo.new
 
+
+Finally change the uWSGI .ini file for a rack app:
+
+.. code-block:: ini
+
+   [uwsgi]
+   flock = /home/XXX/YYY.ini
+   account = XXX
+   domain = YYY
+
+   rack = /home/%(account)/%(domain)/app.ru
+   fastcgi-modifier1 = 7
+
+   protocol = fastcgi
+   master = true
+   processes = 3
+   logto = /home/%(account)/%(domain).uwsgi.log
+   virtualenv = /home/%(account)/venv
+   touch-reload = %p
+   auto-procname = true
+   procname-prefix-spaced = [%(domain)]
+
+   stats = /home/%(account)/stats_%(domain).sock
+
+Only differences from the PSGI one, is the use of 'rack' instead of 'psgi', and the modifier1 mapped to 7 (the ruby/rack one)
+
+
+Serving static files
+********************
+
+It is unlikely you will need to serve static files on uWSGI on a dreamhost account. You can directly use apache for that
+(eventually remember to change the .htaccess file accordingly)
