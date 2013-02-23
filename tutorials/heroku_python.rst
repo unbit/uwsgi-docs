@@ -145,6 +145,53 @@ Harakiri
 As said previously, if you plan to put production-apps on heroku, be sure to understand how dynos and their proxy works. Based on that,
 try to always set the harakiri parameters to a good value for your app. (do not ask for a default value, IT IS APP-DEPENDENT)
 
+Static files
+************
+
+Generally, serving static files on Heroku is not a good idea (mainly from a design point of view). You could obviously have that need.
+In such a case remember to use uWSGI facilities for that, in particular offloading is the best way to leave your workers free while you serve big files (in addition to this remember that your static files must be tracked with git)
+
+Adaptive process spawning
+*************************
+
+None of the supported algorithm are good for the Heroku approach and, very probably, it makes little sense to use a dynamic process
+number on such a platform.
+
+Logging
+*******
+
+If you plan to use heroku on production, remember to send your logs (via udp for example) on an external server (with persistent storage).
+
+Che the uWSGI available loggers. Surely one will fit your need. (pay attention to security, as logs will fly in clear).
+
+UPDATE: a udp logger with crypto features is on work.
+
+Alarms
+******
+
+All of the alarms plugin should works without problems
+
+The Spooler
+***********
+
+As your app runs on a non-persistent filesystem, using the Spooler is a bad idea (you will easily lose tasks).
+
+Mules
+*****
+
+They can be used without problems
+
+Signals (timers, filemonitors, crons...)
+****************************************
+
+They all works, but do not rely on cron facilities, as heroku can kill/destroy/restarts your instances in every moment.
+
+External daemons
+****************
+
+The --attach-daemon option and it --smart variants work without problems. Just remember you are on a volatile filesystem and you are not
+free to bind on port/addresses as you may wish
+
 Monitoring your app (advanced/hacky)
 *************************************
 
