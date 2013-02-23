@@ -172,4 +172,28 @@ Now upload an app.psgi file in the document root (this is your app)
       ];
    };
 
+and change the uWSGI ini file accordingly
 
+.. code-block:: ini
+
+[uwsgi]
+   flock = /home/XXX/YYY.ini
+   account = XXX
+   domain = YYY
+
+   psgi = /home/%(account)/%(domain)/app.psgi
+   fastcgi-modifier1 = 5
+
+   protocol = fastcgi
+   master = true
+   processes = 3
+   logto = /home/%(account)/%(domain).uwsgi.log
+   virtualenv = /home/%(account)/venv
+   touch-reload = %p
+   auto-procname = true
+   procname-prefix-spaced = [%(domain)]
+
+   stats = /home/%(account)/stats_%(domain).sock
+
+The only difference from the python one, is the usage of 'psgi' instead of 'module' and the addition of fastcgi-modifier1 
+that set the uWSGI modifier to the perl/psgi one
