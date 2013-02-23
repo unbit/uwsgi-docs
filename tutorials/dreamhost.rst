@@ -176,7 +176,7 @@ and change the uWSGI ini file accordingly
 
 .. code-block:: ini
 
-[uwsgi]
+   [uwsgi]
    flock = /home/XXX/YYY.ini
    account = XXX
    domain = YYY
@@ -197,3 +197,43 @@ and change the uWSGI ini file accordingly
 
 The only difference from the python one, is the usage of 'psgi' instead of 'module' and the addition of fastcgi-modifier1 
 that set the uWSGI modifier to the perl/psgi one
+
+
+Running Ruby/Rack apps (requires uWSGI >= 1.9)
+**********************************************
+
+By default you can use passenger on Dreamhost servers to host ruby/rack applications, but you may need a more advanced application servers
+for your work (or you may need simply more control over the deployment process)
+
+As the PSGI one you need a uWSGI version >= 1.9 to get better (and faster) fastcgi support
+
+Build a new uWSGI binary with rack support
+
+
+.. code-block:: sh
+
+   UWSGI_PROFILE=rack make
+
+and copy it in the home as ''uwsgi_ruby''
+
+Edit (again) the uwsgi.fcgi file changing it to
+
+.. code-block:: sh
+
+   #!/bin/sh
+   /home/XXX/uwsgi_rack /home/XXX/YYY.ini
+
+and create a Rack application in the document root
+
+.. code-block:: rb
+
+   class RackFoo
+
+        def call(env)
+                [200, { 'Content-Type' => 'text/plain'}, ['ciao']]
+        end
+
+   end
+
+   run RackFoo.new
+
