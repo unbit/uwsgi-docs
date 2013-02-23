@@ -133,3 +133,43 @@ Enable the stats server on the uWSGI config
     venv/bin/uwsgitop /home/WWW/stats_YYY.sock
 
 (remember to change XXX and YYY accordingly)
+
+
+Running Perl/PSGI apps (requires uWSGI >= 1.9)
+**********************************************
+
+Older uWSGI versions does not work well with plugins other than the python one, as the fastcgi implementation has lot of limits.
+
+Starting from 1.9, fastCGI is a first-class citizen in the uWSGI project, so all of the plugins work with it.
+
+As before, compile the uWSGI sources but this time we will build a PSGI monolithic binary:
+
+.. code-block:: sh
+
+   UWSGI_PROFILE=psgi make
+
+copy the resulting binary in the home as uwsgi_perl
+
+Now edit the previously created uwsgi.fcgi file changing it to
+
+.. code-block:: sh
+
+   #!/bin/sh
+   /home/XXX/uwsgi_perl /home/XXX/YYY.ini
+
+(again, change XXX and YYY accordingly)
+
+Now upload an app.psgi file in the document root (this is your app)
+
+.. code-block:: pl
+
+   my $app = sub {
+      my $env = shift;
+      return [
+          '200',
+          [ 'Content-Type' => 'text/plain' ],
+          [ "Hello World" ]
+      ];
+   };
+
+
