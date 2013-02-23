@@ -189,7 +189,7 @@ They all works, but do not rely on cron facilities, as heroku can kill/destroy/r
 External daemons
 ****************
 
-The --attach-daemon option and it --smart variants work without problems. Just remember you are on a volatile filesystem and you are not
+The --attach-daemon option and its --smart variants work without problems. Just remember you are on a volatile filesystem and you are not
 free to bind on port/addresses as you may wish
 
 Monitoring your app (advanced/hacky)
