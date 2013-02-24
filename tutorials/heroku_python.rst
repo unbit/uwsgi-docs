@@ -162,7 +162,7 @@ Logging
 
 If you plan to use heroku on production, remember to send your logs (via udp for example) on an external server (with persistent storage).
 
-Che the uWSGI available loggers. Surely one will fit your need. (pay attention to security, as logs will fly in clear).
+Check the uWSGI available loggers. Surely one will fit your need. (pay attention to security, as logs will fly in clear).
 
 UPDATE: a udp logger with crypto features is on work.
 
