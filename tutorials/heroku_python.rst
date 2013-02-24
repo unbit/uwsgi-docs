@@ -169,7 +169,7 @@ UPDATE: a udp logger with crypto features is on work.
 Alarms
 ******
 
-All of the alarms plugin should works without problems
+All of the alarms plugin should work without problems
 
 The Spooler
 ***********
