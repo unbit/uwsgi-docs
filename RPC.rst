@@ -1,11 +1,20 @@
-uWSGI RPC Stack
-===============
+uWSGI RPC Stack (updated to 1.9)
+================================
 
-uWSGI includes an embedded RPC stack that abstracts away having to use the lower level functions of uWSGI's API to do RPC.
+Albeit you may fall in love with this subsystem, try to use it when you need it.
 
-What's really neat about uWSGI's RPC is that it allows you to call functions even between separate nodes and languages.
+There are lot of higher-level RPC technologies best suited for the vast majority of situations.
 
-.. note:: RPC functions receive arguments in the form of binary strings, so every RPC exportable function must assume that each argument is a string. Every RPC function returns a string of 0 or more characters.
+Where uWSGI RPC subsystem shines, is in performance and memory usage. As an example if you need to split the load of a request to multiple
+servers, the uWSGI RPC is a great choice, as it allows you to offload tasks with very little effort.
+
+Its biggest limit is in its "typeless" approach:
+
+.. note:: RPC functions receive arguments in the form of binary strings, so every RPC exportable function must assume that each argument is a string. Every RPC function returns a binary string of 0 or more characters.
+
+so, if you need 'elegence' or strong typization, just look in another place.
+
+Since 1.9 the RPC subsystem is fully async-friendly, so you can use it over engine like gevent and Coro::AnyEvent
 
 Learning by example
 -------------------
@@ -36,16 +45,6 @@ On the caller's side, on ``10.0.0.1``, let's declare the world's (second) simple
         return uwsgi.rpc('10.0.0.2:3031', 'hello')
 
 That's it!
-
-If you are a member of an uWSGI cluster, you can use :meth:`uwsgi.cluster_best_node` to distribute RPC load (more) evenly.
-
-.. code-block:: py
-
-    import uwsgi
-    
-    def application(env, start_response):
-        start_response('200 Ok', [('Content-Type', 'text/html')]
-        return uwsgi.rpc(uwsgi.cluster_best_node(), 'hello')
 
 What about, let's say, Lua? 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
