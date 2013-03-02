@@ -136,3 +136,28 @@ And push to heroku:
 
    git push heroku master
 
+If all goes well, you will see your page under your app url on the /hi path
+
+Remember to run ``heroku logs`` to check if all is ok.
+
+fork() for dummies
+******************
+
+uWSGI allows you to choose how to abuse the fork() syscall in your app.
+
+By default the approach is loading the application in the master process and then fork() to the workers
+that will inherit a copy of the master process.
+
+This approach speedup startup and can potentially consume less memory. The truth is that often (for the way ruby garbage collection works)
+you will get few memory gain. The real advantage in in performance as the vast majority of time during application startup is spent
+in (slowly) searching for files. With the fork() early approach you can avoid repeating that slow procedure one time for worker.
+
+Obviously the uWSGI mantra is "do whatever you need, if you can't, it is a uWSGI bug" so if your app is not fork()-friendly
+you can add the ``lazy-apps = true`` option that will load your app one time per-worker.
+
+The ruby GC
+***********
+
+By default uWSGI, calls the ruby Garbage collector after each request. This ensure an optimal use of memory (remember on Heroku, your memory is limited) you should not touch
+the default approach, but if you experience a drop in performance you may want to tune it using the ``ruby-gc-freq = n`` option
+where n is the number of requests after the GC is called.
