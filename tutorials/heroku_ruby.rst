@@ -10,7 +10,7 @@ Preparing the environment (a Sinatra application)
 
 On your local system prepare the structure for your sinatra application
 
-.. code-block: sh
+.. code-block:: sh
 
    mkdir uwsgi-heroku
    cd uwsgi-heroku
