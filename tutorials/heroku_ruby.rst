@@ -63,7 +63,7 @@ We are now ready to create the uWSGI configuration (we will use the .ini format 
 
 The minimal setup for heroku is the following (check the comments in the file for an explanation)
 
-.. code-block ::ini
+.. code-block:: ini
 
    [uwsgi]
    ; bind to the heroku required port
@@ -79,7 +79,7 @@ The minimal setup for heroku is the following (check the comments in the file fo
 
 but a better setup will be
 
-.. code-block ::ini
+.. code-block:: ini
 
    [uwsgi]
    ; bind to the heroku required port
