@@ -161,3 +161,65 @@ The ruby GC
 By default uWSGI, calls the ruby Garbage collector after each request. This ensure an optimal use of memory (remember on Heroku, your memory is limited) you should not touch
 the default approach, but if you experience a drop in performance you may want to tune it using the ``ruby-gc-freq = n`` option
 where n is the number of requests after the GC is called.
+
+Concurrency
+***********
+
+Albeit uWSGI supports lot of different paradigms for concurrency, the multiprocess one is suggested for ruby apps.
+
+Basically all popular ruby-frameworks rely on that. Remember that your app is limited so spawn a number of processes
+that can fit in your Heroku dyno.
+
+Harakiri
+********
+
+If you plan to put production-apps on heroku, be sure to understand how dynos and their proxy works. Based on that, try to always set the harakiri parameters to a good value for your app. (do not ask for a default value, IT IS APP-DEPENDENT)
+
+Harakiri, is the maximum time a single request can run, before being destroyed by the master
+
+Static files
+************
+
+Generally, serving static files on Heroku is not a good idea (mainly from a design point of view). You could obviously have that need. In such a case remember to use uWSGI facilities for that, in particular offloading is the best way to leave your workers free while you serve big files (in addition to this remember that your static files must be tracked with git)
+
+Try to avoid serving static files from your ruby/rack code. It will be extremely slow (compared to the uWSGI facilities) and can hold your worker busy
+for the whole transfer of the file
+
+Adaptive process spawning
+*************************
+
+None of the supported algorithms are good for the Heroku approach and, very probably, it makes little sense to use a dynamic process number on such a platform.
+
+Logging
+*******
+
+If you plan to use heroku on production, remember to send your logs (via udp for example) on an external server (with persistent storage).
+
+Check the uWSGI available loggers. Surely one will fit your need. (pay attention to security, as logs will fly in clear).
+
+UPDATE: a udp logger with crypto features is on work.
+
+Alarms
+******
+
+All of the alarms plugin should work without problems
+
+The Spooler
+***********
+
+As your app runs on a non-persistent filesystem, using the Spooler is a bad idea (you will easily lose tasks).
+
+Mules
+*****
+
+They can be used without problems
+
+Signals (timers, filemonitors, crons...)
+****************************************
+
+They all works, but do not rely on cron facilities, as heroku can kill/destroy/restarts your instances in every moment.
+
+External daemons
+****************
+
+The --attach-daemon option and its --smart variants work without problems. Just remember you are on a volatile filesystem and you are not free to bind on port/addresses as you may wish
