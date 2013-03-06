@@ -141,3 +141,33 @@ Let's complete the configuration
 The last option (jvm-main-class) will load a java class and will execute its main() method.
 
 We can now visit localhost:9090 and we should see the Hello World message
+
+Registering signal handlers
+***************************
+
+In the same way as the RPC subsystem you can register signal handlers.
+
+You will be able to call java functions on time events, file modifications, cron...
+
+Our Sigbar.java
+
+.. code-block:: java
+
+   public class Sigbar {
+      static void main() {
+
+          // create an anonymous function
+          uwsgi.SignalHandler sh = new uwsgi.SignalHandler() { 
+              public void function(int signum) {
+                  System.out.println("Hi, i am the signal " + signum)
+              }
+          };
+
+          // register it in the uWSGI signal subsystem
+          uwsgi.register_signal(17, "", sh);
+      }
+   }
+
+uwsgi.SignalHandler is the interface for signal handlers.
+
+Whenever signal 17 is rased, the corresponding java function will be run
