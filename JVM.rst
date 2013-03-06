@@ -153,7 +153,7 @@ Our Sigbar.java
           // create an anonymous function
           uwsgi.SignalHandler sh = new uwsgi.SignalHandler() { 
               public void function(int signum) {
-                  System.out.println("Hi, i am the signal " + signum)
+                  System.out.println("Hi, i am the signal " + signum);
               }
           };
 
