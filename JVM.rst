@@ -1,12 +1,6 @@
 JVM in the uWSGI server (updated to 1.9)
 ========================================
 
-.. toctree::
-
-   Clojure/Ring
-   JWSGI
-
-
 Starting from uWSGI 1.9, you can have a full, thread-safe and versatile JVM embedded in the core.
 
 All of the plugins can call JVM functions (written in java, jruby, jython, clojure, whatever the jvm support...) 
@@ -181,4 +175,17 @@ The fork() problem and multithreading
 The JVM is not for friendly. If you load a virtual machine in the master and then you fork() (like generally you do in other languages)
 the children JVM will be broken (this is mainly because threads required by the JVM are not inherited).
 
-For that reason a JVM for each worker, mule and spooler is spawned
+For that reason a JVM for each worker, mule and spooler is spawned.
+
+Fortunately enough, differently from the vast majority of other platforms, the JVM as a truly powerful multithreading support.
+
+uWSGI supports it, so if you want to run one of the request handlers (JWSGI, clojure/Ring) just remember to spawn a number of threads with the --threads option
+
+How it works
+************
+
+uWSGI embeds the JVM using the JNI interface. Sadly we cannot rely on JVM automatic garbage collector, so we have to manually
+unreference all of the allocated object. This is not a problem from a performance and usage point of view, but makes the development of plugins
+a bit more difficult (compared to other JNI-based products)
+
+Fortunately the current api simplify that task a lot.
