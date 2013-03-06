@@ -101,9 +101,11 @@ We now create our Foobar.java class (its main function will be run by uWSGI on s
 
    public class Foobar {
       static void main() {
-          uwsgi.RpcFunction rpc_func = new uwsgi.RpcFunction() { public String function(String... args) {
-              return "Hello World";
-          }};
+          uwsgi.RpcFunction rpc_func = new uwsgi.RpcFunction() { 
+              public String function(String... args) {
+                  return "Hello World";
+              }
+          };
 
           uwsgi.register_rpc("hello", rpc_func);
       }
