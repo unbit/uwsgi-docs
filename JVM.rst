@@ -101,13 +101,43 @@ We now create our Foobar.java class (its main function will be run by uWSGI on s
 
    public class Foobar {
       static void main() {
+
+          // create an anonymous function
           uwsgi.RpcFunction rpc_func = new uwsgi.RpcFunction() { 
               public String function(String... args) {
                   return "Hello World";
               }
           };
 
+          // register it in the uWSGI RPC subsystem
           uwsgi.register_rpc("hello", rpc_func);
       }
    }
 
+
+The uwsgi.RpcFunction interface allows you to write uWSGI-compliant RPC functions
+
+Now compile the Foobar.java file:
+
+.. code-block:: sh
+
+   javac Foobar.java
+
+(eventually fix the classpath or pass the uwsgi.jar path with the -cp option)
+
+You now have a Foobar.class that can be loaded by uWSGI
+
+Let's complete the configuration
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugins = python,jvm
+   http = :9090
+   wsgi-file = myapp.py
+   jvm-classpath = /opt/uwsgi/lib/uwsgi.jar
+   jvm-main-class = Foobar
+
+The last option (jvm-main-class) will load a java class and will execute its main() method.
+
+We can now visit localhost:9090 and we should see the Hello World message
