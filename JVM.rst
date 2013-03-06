@@ -171,3 +171,5 @@ Our Sigbar.java
 uwsgi.SignalHandler is the interface for signal handlers.
 
 Whenever signal 17 is rased, the corresponding java function will be run
+
+Remember to compile the file, load it in uWSGI and to enable to master process (without it the signal subsystem will not work)
