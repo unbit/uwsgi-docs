@@ -95,4 +95,17 @@ This is our WSGI example script
 
 here we use uwsgi.call (instead of uwsgi.rpc) as a shortcut (little performance gain in options parsing)
 
+We now create our Foobar.java class (its main function will be run by uWSGI on startup)
+
+.. code-block:: java
+
+   public class Foobar {
+      static void main() {
+          uwsgi.RpcFunction rpc_func = new uwsgi.RpcFunction() { public String function(String... args) {
+              return "Hello World";
+          }};
+
+          uwsgi.register_rpc("hello", rpc_func);
+      }
+   }
 
