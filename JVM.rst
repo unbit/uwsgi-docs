@@ -173,3 +173,12 @@ uwsgi.SignalHandler is the interface for signal handlers.
 Whenever signal 17 is rased, the corresponding java function will be run
 
 Remember to compile the file, load it in uWSGI and to enable to master process (without it the signal subsystem will not work)
+
+
+The fork() problem and multithreading
+*************************************
+
+The JVM is not for friendly. If you load a virtual machine in the master and then you fork() (like generally you do in other languages)
+the children JVM will be broken (this is mainly because threads required by the JVM are not inherited).
+
+For that reason a JVM for each worker, mule and spooler is spawned
