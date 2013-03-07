@@ -8,7 +8,7 @@ via the :doc:`RPC subsystem<RPC>` or using uWSGI :doc:`Signals`
 
 The JVM plugin itself can implement request handlers to host JVM-based web applications. Currently JWSGI and Ring (Clojure)
 apps are supported. A long-term goal is supporting servlet, but it will require heavy sponsorship and funding (feel free to ask
-for more inforomation about the project at info@unbit.it)
+for more information about the project at info@unbit.it)
 
 Building the JVM support
 ************************
@@ -224,13 +224,13 @@ Remember class names must use the '/' format (not dot !!!). This rule applies to
 Request handlers
 ****************
 
-Albeit the Java (TM) world has its J2EE environment for deployng web applications, you may want to follow
+Albeit the Java (TM) world has its J2EE environment for deploying web applications, you may want to follow
 a different approach (feel free to call it NO-Enterprise if you feel more cool).
 
 The uWSGI project implements lot of features that are not part of J2EE (and does not implement lot of features that are a strong part of J2EE),
 so you may find its approach best suited for your setup (or taste, or skills).
 
-The JVM plugin exports an API for allowing hooking web requests. This approach differs a bit from the uWSGI "classic one".
+The JVM plugin exports an API for allow hooking web requests. This approach differs a bit from the uWSGI "classic one".
 
 The JVM plugin register itself as the modifier1 with the value '8', but will look at the modifier2 value to know who of its request handlers
 has to manage it.
@@ -258,7 +258,7 @@ or with nginx:
    }
 
 
-Currently there are 2 JVM request handler available
+Currently there are 2 JVM request handlers available
 
 :doc:`JWSGI`
 
@@ -275,7 +275,7 @@ You do not need special jars to use UNIX sockets, the JVM plugin has access to a
 You may be addicted to the log4j module. There is nothing wrong with it, but give a look at the uWSGI logging capabilities
 (less resources needed, less configuration, and NO-Enterprise)
 
-The uWSGI api is still incomplete (will be updated after 1.9)
+The uWSGI api access is still incomplete (will be updated after 1.9)
 
 The JVM does not play well in environment with limited address space. Avoid using --limit-as if you load the JVM in your instances.
 
