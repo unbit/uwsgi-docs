@@ -138,7 +138,7 @@ Now we want to write our ring app, just edit the file src/helloworld/core.clj an
     (content-type "text/plain")))
 
 
-then edit (again) project.clj again to instruct leiningen on which namespaces to build:
+then edit (again) project.clj to instruct leiningen on which namespaces to build:
 
 .. code-block:: clojure
 
