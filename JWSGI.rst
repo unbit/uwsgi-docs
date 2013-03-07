@@ -48,8 +48,8 @@ A simple JWSGI app looks like this:
 
 
 
-How to use it?
---------------
+How to use it ?
+***************
 
 
 1. Compile your class with ``javac``.
@@ -65,3 +65,38 @@ How to use it?
       ./uwsgi --socket /tmp/uwsgi.socket --plugins jvm,jwsgi --jwsgi MyApp:application --threads 40
 
 this will run a JWSGI application on UNIX socket /tmp/uwsgi.socket with 40 threads
+
+
+Reading request body
+********************
+
+The jwsgi.input item is an uwsgi.RequestBody object (subclass of java/io/InputStream). You can use it to access the request body
+
+.. code-block:: java
+
+   import java.util.*;
+   public class MyApp {
+
+       public static Object[] application(HashMap env) {
+
+           int status = 200;
+
+           HashMap<String,Object> headers = new HashMap<String,Object>();
+           headers.put("Content-type", "text/plain");
+
+           int body_len = Integer.parseInt((String) env.get("CONTENT_LENGTH"));
+           byte[] chunk = new byte[body_len];
+
+           uwsgi.RequestBody input = (uwsgi.RequestBody) env.get("jwsgi.input");
+
+           int len = input.read(chunk);
+
+           System.out.println("read " + len + " bytes");
+
+           String body = new String(chunk, 0, len);
+
+           Object[] response = { status, headers, body };
+
+           return response;
+       }
+   }
