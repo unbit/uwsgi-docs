@@ -21,3 +21,15 @@ From the uWSGI sources:
 
 The build system will try to detect your JDK installation based on various presets (for example on centos you can yum install 
 java-1.6.0-openjdk.x86_64-devel or java-1.7.0-openjdk-devel.x86_64 or on debian/ubuntu 
+
+Our first Ring app
+******************
+
+Using leiningen
+***************
+
+Concurrency
+***********
+
+Notes
+*****
