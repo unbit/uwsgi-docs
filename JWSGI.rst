@@ -25,23 +25,25 @@ A simple JWSGI app looks like this:
 
 .. code-block:: java
 
-	public class MyApp {
+   import java.util.*;
+   public class MyApp {
 
-	    public static Object[] application(HashMap env) {
+       public static Object[] application(HashMap env) {
 
-	        int status = 200;
+           int status = 200;
 
-	        HashMap headers = new HashMap<Object,Object>();
-                headers.put("Content-type", "text/html");
-	        headers.put("Server", "uWSGI");
+           HashMap<String,Object> headers = new HashMap<String,Object>();
+           headers.put("Content-type", "text/html");
+           String[] servers = {"uWSGI", "Unbit"};
+           headers.put("Server", servers);
 
-	        String body = "<h1>Hello World</h1>" + env.get("REQUEST_URI");
+           String body = "<h1>Hello World</h1>" + env.get("REQUEST_URI");
 
-	        Object[] response = {status, headers, body};
+           Object[] response = { status, headers, body };
 
-	        return response;
-	    }
-	}
+           return response;
+       }
+   }
 
 
 
