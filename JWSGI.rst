@@ -34,6 +34,7 @@ A simple JWSGI app looks like this:
 
            HashMap<String,Object> headers = new HashMap<String,Object>();
            headers.put("Content-type", "text/html");
+           // a response header can have multiple values
            String[] servers = {"uWSGI", "Unbit"};
            headers.put("Server", servers);
 
