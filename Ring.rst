@@ -1,7 +1,7 @@
 The Clojure/Ring JVM request handler
 ====================================
 
-Thanks to the JVM pluging available from 1.9, Clojure web app can be run on uWSGI.
+Thanks to the :doc:`JVM` plugin available from 1.9, Clojure web app can be run on uWSGI.
 
 The supported webserver-gatway standard is Ring:
 
