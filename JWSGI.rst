@@ -55,11 +55,12 @@ How to use it?
 
    .. code-block:: sh
 
-      javac utest.java
+      javac MyApp.java
 
-4. Run uWSGI and load the utest class.
+4. Run uWSGI and specify the method to run (in the form class:method)
 
    .. code-block:: sh
 
-      ./uwsgi -s :3031 --plugins jvm,jwsgi --jvm-class utest -M -p 4 -m
+      ./uwsgi --socket /tmp/uwsgi.socket --plugins jvm,jwsgi --jwsgi MyApp:application --threads 40
 
+this will run a JWSGI application on UNIX socket /tmp/uwsgi.socket with 40 threads
