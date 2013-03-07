@@ -80,6 +80,8 @@ The ``ring-app`` option specify the class/namespace in which to search for the r
 
 In our case the function is in the 'myapp' namespace and it is called 'handler' (you can understand that the syntax is namespace:function)
 
+Pay attention to the modifier config. The JVM plugin register itself as the 8 one, while the ring plugin register itself to the JVM parent-one as '1' (that you set as the modifier2)
+
 Using Leiningen
 ***************
 
@@ -224,5 +226,12 @@ Threads in the JVM are really solid, do not be afraid to use them (even if you c
 
 this setup will spawn 4 uWSGI processes (workers) with 8 threads each (for a total of 32 threads)
 
-Notes
-*****
+Notes and status
+****************
+
+A shortcut option allowing to load compiled code and specifying the ring app would be cool
+
+As the :doc:`JWSGI` handler, all of the uWSGI performance features are automatically used (like when sending static files
+or buffering input)
+
+The plugin has been realized with the cooperation (and the ideas) of Mingli Yuan
