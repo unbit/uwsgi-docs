@@ -189,3 +189,72 @@ unreference all of the allocated object. This is not a problem from a performanc
 a bit more difficult (compared to other JNI-based products)
 
 Fortunately the current api simplify that task a lot.
+
+Passing options to the JVM
+**************************
+
+You can pass specific options to the JVM using the ``--jvm-opt`` option.
+
+For example to limit the HEAP usage to 10 megabytes:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   jvm-opt = -Xmx10m
+
+Loading classes (without main method)
+*************************************
+
+We have already seen how to load classes and run their main() method on startup.
+
+Often you will want to load classes only to add them to the JVM (allowing access to external modules needing them)
+
+To load a class you can use ``--jvm-class``
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   jvm-class = Foobar
+   jvm-class = org/unbit/Unbit
+
+Remember class names must use the '/' format (not dot !!!). This rule applies to --jvm-main-class too.
+
+Request handlers
+****************
+
+Albeit the Java (TM) world has its J2EE environment for deployng web applications, you may want to follow
+a different approach (feel free to call it NO-Enterprise if you feel more cool).
+
+The uWSGI project implements lot of features that are not part of J2EE (and does not implement lot of features that are a strong part of J2EE),
+so you may find its approach best suited for your setup (or taste, or skills).
+
+The JVM plugin exports an API for allowing hooking web requests. This approach differs a bit from the uWSGI "classic one".
+
+The JVM plugin register itself as the modifier1 with the value '8', but will look at the modifier2 value to know who of its request handlers
+has to manage it.
+
+For example the :doc:`Ring` plugin register itself in the JVM plugin as the modifier2 number '1'.
+
+So to pass requests to it you need something like that:
+
+.. code-block:: ini
+
+   [uwsgi]
+   http = :9090
+   http-modifier1 = 8
+   http-modifier2 = 1
+
+or with nginx:
+
+.. code-block:: c
+
+   location / {
+       include uwsgi_params;
+       uwsgi_modifier1 8;
+       uwsgi_modifier2 1;
+       uwsgi_pass /tmp/uwsgi.socket;
+   }
+
+
