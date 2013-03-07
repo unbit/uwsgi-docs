@@ -83,6 +83,62 @@ In our case the function is in the 'myapp' namespace and it is called 'handler' 
 Using Leiningen
 ***************
 
+Leiningen is a great tool for managing clojure projects. If you use clojure, you are very probably a Leiningen user.
+
+One of the great advantages of leiningen is the easy generation of single jar distribution. That means you can deploy a whole app
+with a single file.
+
+Let's create a new helloworld ring application with lein
+
+.. code-block:: sh
+
+   lein new helloworld
+
+move it to the just created 'helloworld' directory and edit the project.clj file
+
+.. code-block:: clojure
+
+   (defproject helloworld "0.1.0-SNAPSHOT"
+  :description "FIXME: write description"
+  :url "http://example.com/FIXME"
+  :license {:name "Eclipse Public License"
+            :url "http://www.eclipse.org/legal/epl-v10.html"}
+  :dependencies [[org.clojure/clojure "1.4.0"]])
+
+we want to add the ring-core package to our dependancies (it contains a set of classes/modules to simplify the writing of ring apps) and obviously we need to change description and url:
+
+.. code-block:: clojure
+
+   (defproject helloworld "0.1.0-SNAPSHOT"
+  :description "My second uWSGI ring app"
+  :url "https://uwsgi-docs.readthedocs.org/en/latest/Ring.html"
+  :license {:name "Eclipse Public License"
+            :url "http://www.eclipse.org/legal/epl-v10.html"}
+  :dependencies [[org.clojure/clojure "1.4.0"] [ring/ring-core "1.2.0-beta1"]])
+
+save it and run
+
+.. code-block:: sh
+
+   lein repl
+
+this will install all of the jar we need and will move us to the clojure console (just exit from it for now)
+
+Now we want to write our ring app, just edit the file src/helloworld/core.clj and place the following content in it:
+
+.. code-block:: clojure
+
+   (ns helloworld.core)
+    (:use ring.util.response))
+
+   (defn handler [request]
+    (-> (response "Hello World")
+    (content-type "text/plain")))
+
+
+
+
+
 Concurrency
 ***********
 
