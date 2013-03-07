@@ -100,3 +100,44 @@ The jwsgi.input item is an uwsgi.RequestBody object (subclass of java/io/InputSt
            return response;
        }
    }
+
+Pay attention to the use of read(byte[]) instead of the classical (and the only required by the InputStream specs) read().
+
+The read() one (no arguments) read one byte at time, while the second one is more efficient (it reads in chunk). 
+
+JWSGI and Groovy
+****************
+
+Being very low-level the JWSGI standard can be used as-is in other languages running on the JVM.
+
+As an example this is a Hello World groovy example:
+
+.. code-block:: groovy
+
+   static def Object[] application(java.util.HashMap env) {
+        def headers = ["Content-Type":"text/html", "Server":"uWSGI"]
+        return [200, headers, "<h1>Hello World</h1"]
+   }
+
+and another one serving a static file
+
+.. code-block:: groovy
+
+   static def Object[] application(java.util.HashMap env) {
+        def headers = ["Content-Type":"text/plain", "Server":"uWSGI"]
+        return [200, headers, new File("/etc/services")]
+   }
+
+The second approach is really efficient as it will abuse uWSGI internal facilities (for example if you have offloading enabled, your thread will be suddenly freed)
+
+To load groovy code remember to compile it:
+
+.. code-block:: sh
+
+   groovyc Foobar.groovy
+
+then you can run it
+
+.. code-block:: sh
+
+   ./uwsgi --socket /tmp/uwsgi.socket --plugins jvm,jwsgi --jwsgi Foobar:application --threads 40
