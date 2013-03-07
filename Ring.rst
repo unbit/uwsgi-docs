@@ -128,7 +128,7 @@ Now we want to write our ring app, just edit the file src/helloworld/core.clj an
 
 .. code-block:: clojure
 
-   (ns helloworld.core)
+   (ns helloworld.core
     (:use ring.util.response))
 
    (defn handler [request]
@@ -136,7 +136,56 @@ Now we want to write our ring app, just edit the file src/helloworld/core.clj an
     (content-type "text/plain")))
 
 
+then edit (again) project.clj again to instruct leiningen on which namespaces to build:
 
+.. code-block:: clojure
+
+   (defproject helloworld "0.1.0-SNAPSHOT"
+  :description "FIXME: write description"
+  :url "http://example.com/FIXME"
+  :license {:name "Eclipse Public License"
+            :url "http://www.eclipse.org/legal/epl-v10.html"}
+
+  :aot [helloworld.core]
+
+  :dependencies [[org.clojure/clojure "1.4.0"] [ring/ring-core "1.2.0-beta1"]])
+
+
+as you can see we have added helloworld.core in the :aot keyword
+
+Now let's compile our code:
+
+.. code-block:: sh
+
+   lein compile
+
+and build the full jar (the uberjar):
+
+.. code-block:: sh
+
+   lein uberjar
+
+if all goes well you should see a message like that at the end of the procedure:
+
+.. code-block:: sh
+
+   Created /home/unbit/helloworld/target/helloworld-0.1.0-SNAPSHOT-standalone.jar
+
+annotate the path somewhere and let's configure uWSGI to run our application
+
+.. code-block:: ini
+
+   [uwsgi]
+   http = :9090
+   http-modifier1 = 8
+   http-modifier2 = 1
+
+   jvm-classpath = plugins/jvm/uwsgi.jar
+   jvm-classpath = /home/unbit/helloworld/target/helloworld-0.1.0-SNAPSHOT-standalone.jar
+
+   jvm-class = helloworld/core
+
+   ring-app = helloworld.core:handler
 
 
 Concurrency
