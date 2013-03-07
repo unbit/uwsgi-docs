@@ -11,7 +11,7 @@ its full spec are available here:
 
 https://github.com/ring-clojure/ring/blob/master/SPEC
 
-A uWSGI build profile name "ring" is available for generating a monolithic build with the jvm plugin and the ring one.
+A uWSGI build profile named "ring" is available for generating a monolithic build with the jvm plugin and the ring one.
 
 From the uWSGI sources:
 
