@@ -141,3 +141,39 @@ then you can run it
 .. code-block:: sh
 
    ./uwsgi --socket /tmp/uwsgi.socket --plugins jvm,jwsgi --jwsgi Foobar:application --threads 40
+
+JWSGI and Scala
+***************
+
+Like Groovy you can write JWSGI apps with Scala. You only need the entry point function to use native java objects:
+
+.. code-block:: scala
+
+   object HelloWorld {
+        def application(env:java.util.HashMap[String, Object]): Array[Object] = {
+                var headers = new java.util.HashMap[String, Object]()
+                headers.put("Content-Type", "text/html")
+                headers.put("Server", "uWSGI")
+                return Array(200:java.lang.Integer, headers , "Hello World")
+        }
+   }
+
+or more "scalish"
+
+.. code-block:: scala
+
+   object HelloWorld {
+        def application(env:java.util.HashMap[String, Object]): Array[Object] = {
+                val headers = new java.util.HashMap[String, Object]() {
+                        put("Content-Type", "text/html")
+                        put("Server", Array("uWSGI", "Unbit"))
+                }
+                return Array(200:java.lang.Integer, headers , "Hello World")
+        }
+   }
+
+one compiled (with scalac <filename>) you can run it as always:
+
+.. code-block:: sh
+
+   ./uwsgi --socket /tmp/uwsgi.socket --plugins jvm,jwsgi --jwsgi HelloWorld:application --threads 40
