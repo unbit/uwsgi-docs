@@ -61,7 +61,7 @@ Every environment variable of the form ``UWSGI_VASSAL_xxx`` will be rewritten in
 
 For example::
 
-  UWSGI_VASSAL_SOCKET=/tmp/%n.sock uwsgi --emperor /opt/apps
+  UWSGI_VASSAL_SOCKET=/tmp/%n.sock uwsgi --master --emperor /opt/apps
 
 will let you avoid specifying the socket option in configuration files.
 
@@ -207,11 +207,12 @@ Notes
 * At startup, the emperor ``chdir()`` to the vassal dir. All vassal instances will start from here.
 * If the uwsgi binary is not in your system path you can force its path with ``binary-path``::
     
-    ./uwsgi --emperor /opt/apps --binary-path /opt/uwsgi/uwsgi
+    ./uwsgi --master --emperor /opt/apps --binary-path /opt/uwsgi/uwsgi
 
 * Sending ``SIGUSR1`` to the emperor will print vassal status in its log
 * Stopping (``SIGINT``/``SIGTERM``/``SIGQUIT``) the Emperor will invoke Ragnarok and kill all the vassals.
 * Sending ``SIGHUP`` to the Emperor will reload all vassals.
+* The emperor should always be started with ``--master``, else reload will not go so well.
 
 Todo
 ----
