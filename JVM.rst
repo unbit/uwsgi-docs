@@ -258,3 +258,25 @@ or with nginx:
    }
 
 
+Currently there are 2 JVM request handler available
+
+:doc:`JWSGI`
+
+:doc:`Ring` (for clojure)
+
+As already said, there is the "idea" of developing a servlet request handler, but it requires sponsorhip (read: money)
+as it will be a really big effort.
+
+Notes
+*****
+
+You do not need special jars to use UNIX sockets, the JVM plugin has access to all of the uWSGI features.
+
+You may be addicted to the log4j module. There is nothing wrong with it, but give a look at the uWSGI logging capabilities
+(less resources needed, less configuration, and NO-Enterprise)
+
+The uWSGI api is still incomplete (will be updated after 1.9)
+
+The JVM does not play well in environment with limited address space. Avoid using --limit-as if you load the JVM in your instances.
+
+
