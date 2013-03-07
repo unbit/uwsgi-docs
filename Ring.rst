@@ -183,13 +183,46 @@ annotate the path somewhere and let's configure uWSGI to run our application
    jvm-classpath = plugins/jvm/uwsgi.jar
    jvm-classpath = /home/unbit/helloworld/target/helloworld-0.1.0-SNAPSHOT-standalone.jar
 
-   jvm-class = helloworld/core
+   jvm-class = helloworld/core__init
 
    ring-app = helloworld.core:handler
 
+This time we do not load clojure code, but directly a JVM class.
+
+Pay attention, when you specify a JVM class you have to use the '/' form, not that dot one !!!
+
+The __init suffix is automatically added by the system when your app is compiled.
+
+The ``ring-app`` set the entry point to the helloworld.core namespace and the function 'handler'.
+
+We can access that namespace as we have loaded it with ``jvm-class``
 
 Concurrency
 ***********
+
+As all of the JVM plugin request handlers, multithreading is the best way to achieve concurrency.
+
+Threads in the JVM are really solid, do not be afraid to use them (even if you can spawn multiple processes too)
+
+.. code-block:: ini
+
+   [uwsgi]
+   http = :9090
+   http-modifier1 = 8
+   http-modifier2 = 1
+
+   jvm-classpath = plugins/jvm/uwsgi.jar
+   jvm-classpath = /home/unbit/helloworld/target/helloworld-0.1.0-SNAPSHOT-standalone.jar
+
+   jvm-class = helloworld/core__init
+
+   ring-app = helloworld.core:handler
+
+   master = true
+   processes = 4
+   threads = 8
+
+this setup will spawn 4 uWSGI processes (workers) with 8 threads each (for a total of 32 threads)
 
 Notes
 *****
