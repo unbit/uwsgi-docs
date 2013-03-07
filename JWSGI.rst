@@ -51,6 +51,13 @@ A simple JWSGI app looks like this:
 How to use it ?
 ***************
 
+You need both the 'jvm' plugin and the 'jwsgi' plugin. A build profile named 'jwsgi', is available
+in the project to allow a monolithic build with jvm+jwsgi:
+
+.. code-block:: sh
+
+   UWSGI_PROFILE=jwsgi make
+
 
 1. Compile your class with ``javac``.
 
