@@ -226,6 +226,57 @@ Threads in the JVM are really solid, do not be afraid to use them (even if you c
 
 this setup will spawn 4 uWSGI processes (workers) with 8 threads each (for a total of 32 threads)
 
+Accessing the uWSGI api
+***********************
+
+Clojure can call native java classes too, so it is able to access the uWSGI api exposed bu the JVM plugin.
+
+The following example shows how to call a function (written in python) via clojure:
+
+.. code-block:: clojure
+
+   (ns myapp
+    (import uwsgi)
+   )
+
+   (defn handler [req]
+     {:status 200
+      :headers { "Content-Type" "text/html" , "Server" "uWSGI" }
+      :body (str "<h1>The requested uri is " (get req :uri) "</h1>" "<h2>reverse is " (uwsgi/rpc (into-array ["" "reverse" (get req :uri)])) "</h2>" )
+     }
+   )
+
+The "reverse" function has been registered from a python module:
+
+.. code-block:: python
+ 
+   from uwsgidecorators import *
+
+   @rpc('reverse')
+   def contrario(arg):
+       return arg[::-1]
+
+This is the used config:
+
+.. code-block:: ini
+
+   [uwsgi]
+   http = :9090
+   http-modifier1 = 8
+   http-modifier2 = 1 
+   jvm-classpath = plugins/jvm/uwsgi.jar
+   jvm-classpath = /usr/share/java/clojure-1.4.jar
+   clojure-load = myapp.clj
+   plugin = python
+   import = pyrpc.py
+   ring-app = myapp:handler
+   master = true
+
+Another useful feature is accessing the uwsgi cache. Remember that cache key are string while values are bytes.
+
+The uWSGI ring implementation supports byte array in addition to string for the response. This is obviously a violation of the standard
+but avoids you to re-encode bytes every time (but obviously you are free to do it)
+
 Notes and status
 ****************
 
