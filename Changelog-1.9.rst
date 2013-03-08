@@ -28,6 +28,21 @@ Thanks to the new :doc:`Async` mode, a Coro::Anyevent (coroae) loop engine has b
 To build it you need the Coro::Anyevent package (you can use cpanm to get it), then just add --coroae <n> to your options
 where <n> is the number of async cores to spawn.
 
+
+The JVM plugin
+**************
+
+We have finally a truly working JVM infrastructure in uWSGI 1.9.
+
+Check the new docs at :doc:`JVM`
+
+Improved :doc:`JWSGI` support is available as well as the new Clojure :doc:`Ring` plugin
+
+The Mono ASP.NET plugin
+***********************
+
+still waiting for docs
+
 Language independent HTTP body manage
 *************************************
 
@@ -291,8 +306,6 @@ that need to be completed and some issues
 - SPDY push is still not implemented
 
 - The cache request plugin still need to be ported to the new api
-
-- the high-performance cache-server is broken
 
 - RADIUS and LDAP internal routing instructions are unimplemented
 
