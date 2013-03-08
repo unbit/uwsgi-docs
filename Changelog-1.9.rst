@@ -183,6 +183,10 @@ The options you can specify in cache2 are the following:
 If you are asking yourself why such low-level tunings exists, you have to take in account that the new cachign subsystem is used in lot of areas, so for different
 needs you may want different tuning. Just check :doc:`SSLScaling` for an example
 
+The old --cache-server option has been removed. The threaded cache server added in 0.9.8 has been completed superseeded
+by the new non blocking infrastructure. If you load the "cache" plugin (enabled by default in monolithic build) a cache server
+will be available and managed by the workers.
+
 The Legion subsystem
 ********************
 
