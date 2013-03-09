@@ -78,3 +78,72 @@ Basically whenever you set/update/delete an item from the cache, the operation i
 This is obviously non-synced so use it only for very specific purposes, like :doc:`SSLScaling`
 
 
+--cache2 options
+****************
+
+This is the list of all of the options (and their aliases) of ``--cache2``
+
+name
+^^^^
+
+set the name of the cache (must be unique in an instance)
+
+max-items || maxitems || items
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+set the maximum number of cache items
+
+blocksize
+^^^^^^^^^
+
+set the size (in bytes) of a single block
+
+blocks
+^^^^^^
+
+set the number of blocks in the cache. Useful only in bitmap mode, otherwise the block numbers is equal to
+the maximum number of items.
+
+hash
+^^^^
+
+set the hash algorithm used in the hahstable. Currently available "djb33x" (default) and "murmur2"
+
+hashsize || hash_size
+^^^^^^^^^^^^^^^^^^^^^
+
+this is the size of the hashtable (in bytes). Generally 65536 (the default) is a good value. Change it only if you know what you are doing
+(or if you have a lot of collissions in your cache)
+
+keysize || key_size
+^^^^^^^^^^^^^^^^^^^
+
+set the maximum size of a key, in bytes (default 2048)
+
+store
+^^^^^
+
+set the filename for the persistent storage (if it not exists, the system assumes an empty cache and the file will be created)
+
+store_sync || storesync
+^^^^^^^^^^^^^^^^^^^^^^^
+
+set the number of seconds after which call msync() (to flush memory cache on disk when in persistent mode).
+
+By default it is disabled leaving the job to the kernel.
+
+node || nodes
+^^^^^^^^^^^^^
+
+a semicolon separated list of udp server that will receive udp cache updates
+
+sync
+^^^^
+
+a semicolon separated list of uwsgi addresses at which the cache subsystem will connect to for getting a full dump
+of the cache. It can be used for initial cache synchronization. The first node sending a valid dump will stop the procedure.
+
+udp || udp_servers || udp_server || udpserver
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+a semicolon separated list of udp addresses on which to bind the cache (waiting for udp updates)
