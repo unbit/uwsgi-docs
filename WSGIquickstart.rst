@@ -179,3 +179,35 @@ In this quickstart we will use .ini files.
    stats = :9191
 
 ...a lot better
+
+older (<1.4) Django releases need to set env, module and the pythonpath (note the .. that allows us to reach the myproject.settings module)
+
+
+Deploying Flask
+***************
+
+Flask is another popular python web microframework
+
+.. code-block:: python
+
+   from flask import Flask
+
+   app = Flask(__name__)
+
+   @app.route('/')
+   def index():
+       return "<span style='color:red'>I am app 1</span>"
+
+Flask exports its WSGI function (the one we called 'application' at the start of the page) as 'app', so we need to instruct uwsgi to use it
+
+We still continue to use the 4 processes/2 threads and the uwsgi socket as the base
+
+.. code-block::
+
+   uwsgi --socket 127.0.0.1:3031 --wsgi-file myflaskapp.py --callable app --processes 4 --threads 2 --stats :9191
+
+the only addition is the --callable option.
+
+Deploying Web2Py
+****************
+
