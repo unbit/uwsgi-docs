@@ -41,7 +41,9 @@ Improved :doc:`JWSGI` support is available as well as the new Clojure :doc:`Ring
 The Mono ASP.NET plugin
 ***********************
 
-still waiting for docs
+The first Mono plugin attempt (in 2010) was a total failure. Now we have a new shining implementation.
+
+Check docs here :doc:`Mono`
 
 Language independent HTTP body manage
 *************************************
