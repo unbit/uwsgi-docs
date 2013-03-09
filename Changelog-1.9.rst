@@ -202,6 +202,9 @@ The old --cache-server option has been removed. The threaded cache server added 
 by the new non blocking infrastructure. If you load the "cache" plugin (enabled by default in monolithic build) a cache server
 will be available and managed by the workers.
 
+
+Update docs are available here :doc:`Caching`
+
 The Legion subsystem
 ********************
 
@@ -283,7 +286,7 @@ The internal routing subsystem has been rewritten to be 'programmable'. You can 
 Docs still need to be ported, but the new system allows you to modify/filter CGI vars and HTTP headers on the fly, as well as managing HTTP
 authentication and caching.
 
-Stay tuned.
+Updated docs here (still work in progress) :doc:`InternalRouting`
 
 Working On, Issues and regressions
 ***********************************
@@ -297,22 +300,14 @@ that need to be completed and some issues
 
 - Ruby 1.9 fibers support has been rewritten, but need tests
 
-- CGI plugin has been ported to the new api, but requires tests
-
 - BIG ENDIAN archs are broken
 
 - Async sleep is broken
 
 - SPDY push is still not implemented
 
-- The cache request plugin still need to be ported to the new api
-
 - RADIUS and LDAP internal routing instructions are unimplemented
 
 - The channel subsystem (required for easy websockets communications) is still unimplemented
-
-- IPv6 support still need tests
-
-- Corerouters automatically get fallback support, it need tests
 
 - This page is incomplete ;)
