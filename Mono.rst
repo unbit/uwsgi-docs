@@ -79,3 +79,40 @@ If starting uwsgi you get an error about not being able to find uwsgi.dll you ca
 or you can simply copy uwsgi.dll in the /bin directory of your sire directory (/usr/share/asp.net-demos in this case).
 
 The ``mono-index`` option is used to set the file to search when a directory is requested. You can specify it multiple times.
+
+
+Concurrency and fork() unfriendlyness
+**************************************
+
+As the Mono VM is not fork() friendly, a new VM is spawned for each workers. This ensure you can run your application in multiprocessing mode.
+
+Mono has a real solid multithreading support and it works great with the uWSGI threads support.
+
+.. code-block:: ini
+
+   [uwsgi]
+   http = :9090
+   http-modifier1 = 15
+   mono-app = /usr/share/asp.net-demos
+   mono-index = index.asp
+   mono-assembly = /usr/lib/uwsgi/uwsgi.dll
+   env = MONO_PATH=/usr/lib/uwsgi/
+  
+   master = true
+   processes = 4
+   threads = 20
+
+With this setup you will spawn 4 processes each with 20 threads. Try to not rely on a single process. Albeit it is a common setup
+in the so-called "Enterprise environment", having multiple processes ensure you greater availability (thanks to the master work).
+This rule (as an example) applies even to the :doc:`JVM` plugin.
+
+API access
+**********
+
+This is a work in progress. Currently only a couple of functions are exported. High precedence will be given to the :doc:`RPC` and Signal subsystem and to the :doc:`Caching` framework
+
+Tricks
+******
+
+As always uWSGI tries to optimize (where possibile) the "common" operations of your applications. Serving static files is automatically
+accelerated (or offloaded if offloading is enabled) and all of the path resolutions are cached.
