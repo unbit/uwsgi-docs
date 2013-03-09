@@ -30,7 +30,7 @@ using the network installer
 
    curl http://uwsgi.it/install | bash -s default /tmp/uwsgi
 
-(this will install the uWSGI binary in /tmp/uwsgi, feel fre to change it)
+(this will install the uWSGI binary in /tmp/uwsgi, feel free to change it)
 
 or simply downloading a source tarball and 'making' it
 
