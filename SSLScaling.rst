@@ -1,4 +1,4 @@
-Scaling SSL connections (uWSGI 1.5-dev)
+Scaling SSL connections (uWSGI 1.9-dev)
 =======================================
 
 Distributing SSL servers in a cluster is an hard topic.
@@ -12,7 +12,7 @@ A common solution (compromise ?) til now has been using a single ssl terminator 
 
 The solution works, but obviously does not scale.
 
-Starting from uWSGI 1.5-dev an implementation (based on the stud project) of distributed caching has been added.
+Starting from uWSGI 1.9-dev an implementation (based on the stud project) of distributed caching has been added.
 
 Setup 1: using the uWSGI cache for storing SSL sessions
 *******************************************************

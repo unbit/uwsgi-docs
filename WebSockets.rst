@@ -1,13 +1,13 @@
-WebSockets Support (from 1.5-dev)
+WebSockets Support (from 1.9-dev)
 =================================
 
 
-In uWSGI 1.5 a high performance websockets (rfc 6455) implementation has been added.
+In uWSGI 1.9 a high performance websockets (rfc 6455) implementation has been added.
 
 Albeit lot of different solutions exist for the problem, most of them rely on higher-level languages implementation, that rarely
 are good enough for topics like gaming or streaming.
 
-The uWSGI websockets implementation is compiled in by default and can be combined with the Channels subsystem (another new feature of the 1.5 tree)
+The uWSGI websockets implementation is compiled in by default and can be combined with the Channels subsystem (another new feature of the 1.9 tree)
 
 Channels allows you to fast exchange messages (it is all managed with various unix ipc techniques) with all of the cores of the instance (and pretty soon with other instances too) without the need of an external queue
 (like zeromq or redis)
@@ -68,7 +68,7 @@ The function can receive messages from a named channel (see below) and automatic
 Channels
 ********
 
-Channels are a feature of uWSGI 1.5. They are a pretty complex (from an implementation point of view) messaging system
+Channels are a feature of uWSGI 1.9. They are a pretty complex (from an implementation point of view) messaging system
 but are really easy to use.
 
 Channels must be created on startup using the --channel <name> option. You can have all of the channels you need, but remember that

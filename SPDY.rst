@@ -1,7 +1,7 @@
-The SPDY router (uWSGI 1.5)
+The SPDY router (uWSGI 1.9)
 ===========================
 
-Starting from uWSGI 1.5 the HTTPS router has been extended to support the SPDY protocol.
+Starting from uWSGI 1.9 the HTTPS router has been extended to support the SPDY protocol.
 
 Currently version 3 of the protocol is supported.
 
