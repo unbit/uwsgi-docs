@@ -1,22 +1,10 @@
-The uWSGI caching framework
+WebCaching framework
 ===========================
 
-Caching is one of the key component of a successful webapp.
+This is a port of the old caching subsystem to the new uWSGI caching api documented here :doc:`Caching`.
 
-uWSGI includes an ultra-fast all-in-memory SMP-safe constantly-auto-optimizing caching framework.
 
-The API exposes 6 functions for caching:
-
-* :py:func:`uwsgi.cache_get`
-* :py:func:`uwsgi.cache_set`
-* :py:func:`uwsgi.cache_update` (since 0.9.8.4)
-* :py:func:`uwsgi.cache_del`
-* :py:func:`uwsgi.cache_exists`
-* :py:func:`uwsgi.cache_clear`
-
-The optional ``cache_server`` argument is a TCP/UNIX socket address.
-
-To enable caching, allocate slots for your items using the ``cache`` option. The following command line would create a cache that can contain at most 1000 items.
+To enable web caching, allocate slots for your items using the ``cache`` option. The following command line would create a cache that can contain at most 1000 items.
 
 .. code-block:: sh
 
@@ -28,21 +16,6 @@ To use the cache in your application,
 
    uwsgi.cache_set("foo_key", "foo_value") # set a key
    value = uwsgi.cache_get("foo_key") # get a key.
-
-
-Notes
------
-
-* ``key`` can be at most 2048 bytes -- that's probably not a problem for most apps.
-* Values are put into fixed size blocks in memory. Every item will thus take the same amount of space. The block size is configurable.
-* The uWSGI master process will constantly optimize your cache in a way that most requested items are always on the top of the stack. This is still being worked on, but the current implementation is already fast as all hell.
-* Caching is completely thread/multiprocess/SMP safe. Writing and deletion will block, though.
-* The cache can be accessed via network using the uwsgi protocol modifier 111.
-  .. code-block:: py
-
-     # Modifier2: 0: read, 1: write, 2: delete, 3: dict_based
-     data = uwsgi.send_message("host", 111, 0, "foo_key")
-     data = uwsgi.send_message("host", 111, 3, {"key":"foo_key"})
 
 
 Persistent storage
