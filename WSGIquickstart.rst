@@ -43,6 +43,13 @@ or simply downloading a source tarball and 'making' it
 
 after the build you will have a 'uwsgi' binary in the current directory
 
+Installing via your package distribution is not covered (would be impossibile to make everyone happy), but all the general rules applies.
+
+One thing you may want to take in account when testing this quickstart with distro supplied packages, is that very probably your distribution
+has built uWSGI in modular way (every feature is a different plugin that must be loaded). To complete the quickstart
+you have to add --plugin python,http to the first serie of example and --plugin python when the HTTP router is removed (it could make
+no sense for you, just continue reading)
+
 The first WSGI application
 **************************
 
