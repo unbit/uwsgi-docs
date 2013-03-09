@@ -64,7 +64,7 @@ Let's start with the simple hello world example:
 save it as foobar.py
 
 As you can see it is composed by a single python function. It is called "application" as this is the default function
-that the uWSGI python loader will search (but you can obviously customize it)
+that the uWSGI python loader will search for (but you can obviously customize it)
 
 Deploy it on HTTP port 9090
 ***************************
