@@ -186,6 +186,13 @@ An empty cache value (the default) means the default cache (generally the first 
 
 All of the network operations are transparent and fully non-blocking (and threads/greenthreads friendly)
 
+The Cache sweeper thread
+************************
+
+When at least one cache is configured and the master is enabled, a thread named "the cache sweeper" is started.
+
+Its main purpose is deleting expired keys from the cache. So, if you want auto-expiring you need to enable the master.
+
 
 Web caching
 ***********
