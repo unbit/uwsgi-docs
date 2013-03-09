@@ -185,3 +185,10 @@ yourcache@192.168.173.22:4040
 An empty cache value (the default) means the default cache (generally the first initialized).
 
 All of the network operations are transparent and fully non-blocking (and threads/greenthreads friendly)
+
+
+Web caching
+***********
+
+In its first incarnation the uWSGI caching framework was meant only for caching of web pages. That old system
+has been rebuilt on top of the new one. It is now named as :doc:`WebCaching`
