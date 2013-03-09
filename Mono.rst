@@ -76,7 +76,7 @@ If starting uwsgi you get an error about not being able to find uwsgi.dll you ca
    mono-assembly = /usr/lib/uwsgi/uwsgi.dll
    env = MONO_PATH=/usr/lib/uwsgi/
 
-or you can simply copy uwsgi.dll in the /bin directory of your sire directory (/usr/share/asp.net-demos in this case).
+or you can simply copy uwsgi.dll in the /bin directory of your site directory (/usr/share/asp.net-demos in this case).
 
 The ``mono-index`` option is used to set the file to search when a directory is requested. You can specify it multiple times.
 
