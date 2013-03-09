@@ -153,7 +153,7 @@ bitmap
 
 set it to 1, to enable bitmap mode
 
-Accessing the cache from your application using the cache api
+Accessing the cache from your applications using the cache api
 *************************************************************
 
 You can obviously access the various cache in your instance (or the one on remote instances) using the cache api.
