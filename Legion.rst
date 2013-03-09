@@ -1,7 +1,7 @@
-The uWSGI Legion subsystem (1.5-dev)
+The uWSGI Legion subsystem (1.9-dev)
 ====================================
 
-Starting from uWSGI 1.5-dev a new subsystem for clustering has been added: The Legion subsystem.
+Starting from uWSGI 1.9-dev a new subsystem for clustering has been added: The Legion subsystem.
 
 A Legion is a group of uWSGI nodes constantly fighting for domination.
 
