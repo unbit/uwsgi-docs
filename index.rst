@@ -64,6 +64,7 @@ uWSGI Subsystems
    
    AlarmSubsystem
    Caching
+   WebCaching
    Cron
    Fastrouter
    InternalRouting
