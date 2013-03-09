@@ -3,7 +3,7 @@ The uWSGI caching framework
 
 .. note::
 
-  This page is about "new-generation" cache introcued in uWSGI 1.9.
+  This page is about "new-generation" cache introduced in uWSGI 1.9.
   For old-style cache (now simply named "web caching") check :doc:`WebCaching`
 
 uWSGI includes a very fast all-in-memory, zero-ipc, SMP-safe, constantly-auto-optimizing, highly-tunable key-value store, named
