@@ -63,7 +63,7 @@ Network access
 **************
 
 All of your caches can be accessed over the network. A request plugin named "cache" (modifier1 111) manages requests
-done by external nodes. On a standard onolithic build of uWSGI the cache plugin is always enabled.
+done by external nodes. On a standard monolithic build of uWSGI the cache plugin is always enabled.
 
 The cache plugin works in a full non-blocking way, and it is greenthreads/coroutine friendly so you can use technologies
 like gevent or Coro::AnyEvent with it safely.
