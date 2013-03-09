@@ -16,7 +16,7 @@ Creating a "cache"
 
 To create a cache you use the ``--cache2`` option. It takes a dictionary of arguments specifying the cache configuration.
 
-To have a valid cache you to specify its name and the maximum number of items it can contains.
+To have a valid cache you need to specify its name and the maximum number of items it can contains.
 
 .. code-block:: sh
 
