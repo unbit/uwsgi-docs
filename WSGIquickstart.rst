@@ -6,7 +6,7 @@ This quickstart will show you how to deploy simple WSGI applications and common 
 Installing uWSGI with python support
 ************************************
 
-uWSGI is a (big) C application, so you need a c compiler (like the gcc or clang) and python development headers.
+uWSGI is a (big) C application, so you need a C compiler (like the gcc or clang) and python development headers.
 
 On a debian-based distro a
 
@@ -71,7 +71,7 @@ Deploy it on HTTP port 9090
 
 Now start uwsgi to run an http server/router passing requests to your WSGI application:
 
-.. code-block::
+.. code-block:: sh
 
    uwsgi --http :9090 --wsgi-file foobar.py
 
@@ -84,7 +84,7 @@ The first tuning you would like to make is adding concurrency (by default uWSGI 
 
 You can add more processes with the ``--processes`` option or more threads with the ``--threads`` options (or you can have both).
 
-.. code-block::
+.. code-block:: sh
 
    uwsgi --http :9090 --wsgi-file foobar.py --processes 4 --threads 2
 
@@ -94,7 +94,7 @@ One important task is monitoring. Understanding what is going on is vital in pro
 
 The stats subsystem allows you to export uWSGI internal statistics via json
 
-.. code-block::
+.. code-block:: sh
 
    uwsgi --http :9090 --wsgi-file foobar.py --processes 4 --threads 2 --stats :9191
 
@@ -124,7 +124,7 @@ this means, "pass every request to the server bound to port 3031 speaking the uw
 
 Now we can spawn uWSGI to natively speak the uwsgi protocol
 
-.. code-block::
+.. code-block:: sh
 
    uwsgi --socket 127.0.0.1:3031 --wsgi-file foobar.py --processes 4 --threads 2 --stats :9191
 
@@ -148,7 +148,7 @@ Django is very probably the most used python web framework around. Deploying it 
 
 We suppose the django project is in /home/foobar/myproject
 
-.. code-block::
+.. code-block:: sh
 
    uwsgi --socket 127.0.0.1:3031 --chdir /home/foobar/myproject/ --wsgi-file myproject/wsgi.py --processes 4 --threads 2 --stats :9191
 
@@ -157,7 +157,7 @@ with --chdir we move to a specific directory. In django this is required to corr
 if the file /home/foobar/myproject/myproject/wsgi.py (or whatever you have called your project) does not exist, you are very probably
 using an old (<1.4) django version. In such a case you need a little bit more configuration.
 
-.. code-block::
+.. code-block:: sh
 
    uwsgi --socket 127.0.0.1:3031 --chdir /home/foobar/myproject/ --pythonpath .. --env DJANGO_SETTINGS_MODULE=myproject.settings --module "django.core.handlers.wsgi.WSGIHandler()" --processes 4 --threads 2 --stats :9191
 
@@ -208,7 +208,7 @@ Flask exports its WSGI function (the one we called 'application' at the start of
 
 We still continue to use the 4 processes/2 threads and the uwsgi socket as the base
 
-.. code-block::
+.. code-block:: sh
 
    uwsgi --socket 127.0.0.1:3031 --wsgi-file myflaskapp.py --callable app --processes 4 --threads 2 --stats :9191
 
