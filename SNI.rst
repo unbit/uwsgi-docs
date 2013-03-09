@@ -1,7 +1,7 @@
 SNI - Server Name Identification or VirtualHosting for your ssl nodes 
 =====================================================================
 
-uWSGI 1.5 (aka: ssl as p0rn) added support for SNI (Server Name Identification) to the whole
+uWSGI 1.9 (aka: ssl as p0rn) added support for SNI (Server Name Identification) to the whole
 ssl subsystem. The HTTPS router, the SPDY router and the SSL router can use it transparently.
 
 SNI is an extension to the ssl standard, allowing a client to specify a "name" for the resource
