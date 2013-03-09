@@ -75,9 +75,9 @@ Packet descriptions
      - Standard RACK request followed by the HTTP request body
    
    * - 8
-     - size of jwsgi block vars (HTTP request body excluded)
+     - size of JWSGI/Rack block vars (HTTP request body excluded)
      - 0
-     - Standard :doc:`jwsgi` request followed by the HTTP request body
+     - Standard JVM request for :doc:`JWSGI` and :doc:`Ring` followed by the HTTP request body
    
    * - 9
      - size of CGI block vars (HTTP request body excluded)
@@ -93,6 +93,11 @@ Packet descriptions
      - size of CGI block vars (HTTP request body excluded)
      - 0
      - Standard :doc:`PHP` request followed by the HTTP request body
+
+   * - 15
+     - size of Mono ASP.NET block vars (HTTP request body excluded)
+     - 0
+     - Standard :doc:`Mono` request followed by the HTTP request body
    
    * - 17
      - size of Spooler block vars
