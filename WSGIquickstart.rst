@@ -88,7 +88,7 @@ You can add more processes with the ``--processes`` option or more threads with 
 
    uwsgi --http :9090 --wsgi-file foobar.py --processes 4 --threads 2
 
-this will spawn 4 processes (each with 2 threads), a master process that will respawn your processes when they dies and the HTTP router seen before.
+this will spawn 4 processes (each with 2 threads), a master process that will respawn your processes when they die and the HTTP router seen before.
 
 One important task is monitoring. Understanding what is going on is vital in production deployment.
 
