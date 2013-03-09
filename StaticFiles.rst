@@ -1,4 +1,4 @@
-Serving static files with uWSGI (updated to 1.5)
+Serving static files with uWSGI (updated to 1.9)
 ================================================
 
 Sadly you cannot live without serving static files via some protocol (HTTP, SPDY...).
@@ -89,7 +89,7 @@ You can map (or map2) both directory and files:
 Mode 4: using advanced internal routing
 ***************************************
 
-When mappings are not enough, advanced internal routing (available from 1.5) will be your last resort.
+When mappings are not enough, advanced internal routing (available from 1.9) will be your last resort.
 
 Thanks to the power of regexps you will be able to build really complex mappings:
 
@@ -241,10 +241,10 @@ specifying the number of threads to spawn (try to set it to the number of cpu co
 will spawn 8 threads for each process and they will be automatically used for transferring files
 
 
-GZIP (uWSGI 1.5)
+GZIP (uWSGI 1.9)
 ****************
 
-uWSGI 1.5 can check for a .gz variant of a static file.
+uWSGI 1.9 can check for a .gz variant of a static file.
 
 Lot of users/sysadmins underestimate the impact on servers of on-the-fly gzip encoding.
 
@@ -260,7 +260,7 @@ In this way serving a gzip content will be no different from serving standard st
 
 To trigger that behaviour you have various options:
 
-``statig-gzip <regexp>`` check for .gz variant for all of the requested files mathing the specified regexp (the regexp is applied to the full filesystem path of the file)
+``static-gzip <regexp>`` check for .gz variant for all of the requested files mathing the specified regexp (the regexp is applied to the full filesystem path of the file)
 
 ``static-gzip-dir <dir>`` check for .gz variant for all of the files under the specified dir
 
@@ -321,7 +321,7 @@ You can use the uWSGI caching subsystem to store mappings from uri to filesystem
 
 will cache each static file translation for 30 seconds in the uWSGI cache
 
-From uWSGI 1.5 an updated caching subsystem has been added, allowing you to create multiple caches.
+From uWSGI 1.9 an updated caching subsystem has been added, allowing you to create multiple caches.
 
 If you want to store translation on a specific cache you can use
 
