@@ -147,3 +147,41 @@ udp || udp_servers || udp_server || udpserver
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 a semicolon separated list of udp addresses on which to bind the cache (waiting for udp updates)
+
+bitmap
+^^^^^^
+
+set it to 1, to enable bitmap mode
+
+Accessing the cache from your application using the cache api
+*************************************************************
+
+You can obviously access the various cache in your instance (or the one on remote instances) using the cache api.
+
+Currently the following functions are exposed (each language can name them a bit differently from the standard)
+
+ * cache_get(key[,cache])
+ * cache_set(key,value[,expires,cache])
+ * cache_update(key,value[,expires,cache])
+ * cache_exists(key[,cache])
+ * cache_del(key[,cache])
+ * cache_clear([cache])
+
+If the language/platform calling the cache api differentiate between strings and bytes (like python3 and java) you have to
+assumes that keys are string and values are bytes (or bytearray in the java way). Otherwise keys and values are both strings
+(without specific encoding, as internally the cache values and keys are simple binary blobs)
+
+The expires argument (default to 0) is the number of seconds after the object is no more valid (and will be removed by the cache sweeper, see below)
+
+The cache argument is the so called "magic identifier".
+
+Its syntax is the following:
+
+cache[@node]
+
+So to operate on the cache "mycache" you can simply set it as "mycache", while to operate on "yourcache" on the uWSGI server at 192.168.173.22 port 4040 the value will be
+yourcache@192.168.173.22:4040
+
+An empty cache value (the default) means the default cache (generally the first initialized).
+
+All of the network operations are transparent and fully non-blocking (and threads/greenthreads friendly)
