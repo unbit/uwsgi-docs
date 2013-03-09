@@ -180,6 +180,12 @@ In this quickstart we will use .ini files.
 
 ...a lot better
 
+Just run it
+
+.. code-block:: sh
+
+   uwsgi yourfile.ini
+
 older (<1.4) Django releases need to set env, module and the pythonpath (note the .. that allows us to reach the myproject.settings module)
 
 
@@ -210,4 +216,44 @@ the only addition is the --callable option.
 
 Deploying Web2Py
 ****************
+
+Again a popular choice. Unzip the web2py source distribution on a directory of choice and write a uWSGI config file
+
+.. code-block:: ini
+
+   [uwsgi]
+   http = :9090
+   chdir = path_to_web2py
+   module = wsgihandler
+   master = true
+   processes = 8
+
+this time we used again the HTTP router. Just go to port 9090 with your browser and you will see the web2py welcome page.
+
+Click on the administartive interface and... OOOPS it does not work as it requires HTTPS.
+
+Do not worry, the uWSGI router is HTTPS capable (be sure you have openssl development headers, eventually install them and rebuild uWSGI, the build system will automatically detect it)
+
+First of all generate your key and certificate
+
+.. code-block:: sh
+
+   openssl genrsa -out foobar.key 2048
+   openssl req -new -key foobar.key -out foobar.csr
+   openssl x509 -req -days 365 -in foobar.csr -signkey foobar.key -out foobar.crt
+
+you now have 2 files (well 3, counting the csr), foobar.key and foobar.crt. Change the uwsgi config
+
+.. code-block:: ini
+
+   [uwsgi]
+   https = :9090,foobar.crt,foobar.key
+   chdir = path_to_web2py
+   module = wsgihandler
+   master = true
+   processes = 8
+
+re-run uWSGI and connect with your browser to port 9090 using https://
+
+
 
