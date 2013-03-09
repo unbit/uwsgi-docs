@@ -130,3 +130,52 @@ Now we can spawn uWSGI to natively speak the uwsgi protocol
 
 if you run ps aux you will see one process less. The http router has been removed as our "workers" (the processes assigned to uWGSI)
 natively speak the uwsgi protocol.
+
+Automatically starting uWSGI on boot
+************************************
+
+If you think about writing some init.d script for spawning uWSGI, just sit down and realize that we are no more in 1995.
+
+Each distribution has choosen its startup system (Upstart, SystemD...) and there are tons of process managers available (supervisord, god...).
+
+uWSGI will integrate very well with all of them (we hope), but if you plan to deploy a big number of apps check the uWSGI :doc:`Emperor`
+it is the dream of every devops.
+
+Deploying Django
+****************
+
+Django is very probably the most used python web framework around. Deploying it is pretty easy (we continue our configuration with 4 processes with 2 threads each)
+
+We suppose the django project is in /home/foobar/myproject
+
+.. code-block::
+
+   uwsgi --socket 127.0.0.1:3031 --chdir /home/foobar/myproject/ --wsgi-file myproject/wsgi.py --processes 4 --threads 2 --stats :9191
+
+with --chdir we move to a specific directory. In django this is required to correctly load modules.
+
+if the file /home/foobar/myproject/myproject/wsgi.py (or whatever you have called your project) does not exist, you are very probably
+using an old (<1.4) django version. In such a case you need a little bit more configuration.
+
+.. code-block::
+
+   uwsgi --socket 127.0.0.1:3031 --chdir /home/foobar/myproject/ --pythonpath .. --env DJANGO_SETTINGS_MODULE=myproject.settings --module "django.core.handlers.wsgi.WSGIHandler()" --processes 4 --threads 2 --stats :9191
+
+ARGH !!! what the hell is this ???
+
+Yes, you are right, dealing with such long command lines is basically unpractical (and foolish). uWSGI supports various configuration styles.
+In this quickstart we will use .ini files.
+
+.. code-block:: ini
+
+   [uwsgi]
+   socket = 127.0.0.1:3031
+   chdir = /home/foobar/myproject/
+   pythonpath = ..
+   env = DJANGO_SETTINGS_MODULE=myproject.settings
+   module = "django.core.handlers.wsgi.WSGIHandler()"
+   processes = 4
+   threads = 2
+   stats = :9191
+
+...a lot better
