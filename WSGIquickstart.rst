@@ -264,11 +264,11 @@ are for maintaining it "agnostic".
 
 But do not worry, there are basically no choices made by the uWSGI developers that cannot be changed with an option.
 
-If you want to maintain python threads support but without starting multiple threads for your application, just the --enable-threads option
+If you want to maintain python threads support but without starting multiple threads for your application, just add the --enable-threads option
 (or enable-threads = true in ini style)
 
 And now
 *******
 
-You should be already able to go in production with such few concepts, but uWSGI is an enormous project with hundreds of features
+You should already be able to go in production with such few concepts, but uWSGI is an enormous project with hundreds of features
 and configurations. If you want to be a better sysadmin, continue reading the full docs.
