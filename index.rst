@@ -29,6 +29,17 @@ Loop engines (implement concurrency, components can be run in preforking, thread
   With a large open source project such as uWSGI the code and the documentation may not always be in sync.
   The mailing list is the best source for help regarding uWSGI.
 
+Quickstarts
+===========
+
+.. toctree::
+   :maxdepth: 1
+
+   WSGIquickstart
+   PSGIquickstart
+   RACKquickstart
+   LUAquickstart
+
 
 Table of Contents
 =================
