@@ -96,11 +96,13 @@ The stats subsystem allows you to export uWSGI internal statistics via json
 
 .. code-block:: sh
 
-   uwsgi --http :9090 --wsgi-file foobar.py --processes 4 --threads 2 --stats :9191
+   uwsgi --http :9090 --wsgi-file foobar.py --processes 4 --threads 2 --stats 127.0.0.1:9191
 
 make some request to your app and then telnet to the port 9191. You will get lot of funny infos.
 
 There is a top-like tool for monitoring instances, named 'uwsgitop' (just pip install it)
+
+Pay attention: bind the stats socket to a private address (unless you know what you are doing) otherwise everyone could access it !!!
 
 Putting behind a full webserver
 *******************************
@@ -126,7 +128,7 @@ Now we can spawn uWSGI to natively speak the uwsgi protocol
 
 .. code-block:: sh
 
-   uwsgi --socket 127.0.0.1:3031 --wsgi-file foobar.py --processes 4 --threads 2 --stats :9191
+   uwsgi --socket 127.0.0.1:3031 --wsgi-file foobar.py --processes 4 --threads 2 --stats 127.0.0.1:9191
 
 if you run ps aux you will see one process less. The http router has been removed as our "workers" (the processes assigned to uWGSI)
 natively speak the uwsgi protocol.
@@ -150,7 +152,7 @@ We suppose the django project is in /home/foobar/myproject
 
 .. code-block:: sh
 
-   uwsgi --socket 127.0.0.1:3031 --chdir /home/foobar/myproject/ --wsgi-file myproject/wsgi.py --processes 4 --threads 2 --stats :9191
+   uwsgi --socket 127.0.0.1:3031 --chdir /home/foobar/myproject/ --wsgi-file myproject/wsgi.py --processes 4 --threads 2 --stats 127.0.0.1:9191
 
 with --chdir we move to a specific directory. In django this is required to correctly load modules.
 
@@ -159,7 +161,7 @@ using an old (<1.4) django version. In such a case you need a little bit more co
 
 .. code-block:: sh
 
-   uwsgi --socket 127.0.0.1:3031 --chdir /home/foobar/myproject/ --pythonpath .. --env DJANGO_SETTINGS_MODULE=myproject.settings --module "django.core.handlers.wsgi.WSGIHandler()" --processes 4 --threads 2 --stats :9191
+   uwsgi --socket 127.0.0.1:3031 --chdir /home/foobar/myproject/ --pythonpath .. --env DJANGO_SETTINGS_MODULE=myproject.settings --module "django.core.handlers.wsgi.WSGIHandler()" --processes 4 --threads 2 --stats 127.0.0.1:9191
 
 ARGH !!! what the hell is this ???
 
@@ -176,7 +178,7 @@ In this quickstart we will use .ini files.
    module = django.core.handlers.wsgi.WSGIHandler()
    processes = 4
    threads = 2
-   stats = :9191
+   stats = 127.0.0.1:9191
 
 ...a lot better
 
@@ -210,7 +212,7 @@ We still continue to use the 4 processes/2 threads and the uwsgi socket as the b
 
 .. code-block:: sh
 
-   uwsgi --socket 127.0.0.1:3031 --wsgi-file myflaskapp.py --callable app --processes 4 --threads 2 --stats :9191
+   uwsgi --socket 127.0.0.1:3031 --wsgi-file myflaskapp.py --callable app --processes 4 --threads 2 --stats 127.0.0.1:9191
 
 the only addition is the --callable option.
 
