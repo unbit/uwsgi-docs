@@ -269,6 +269,57 @@ But do not worry, there are basically no choices made by the uWSGI developers th
 If you want to maintain python threads support but without starting multiple threads for your application, just add the --enable-threads option
 (or enable-threads = true in ini style)
 
+Security and availability
+*************************
+
+ALWAYS avoid running your uWSGI instances as root. You can drop privileges using the uid and gid options
+
+.. code-block:: ini
+
+   [uwsgi]
+   https = :9090,foobar.crt,foobar.key
+   uid = foo
+   gid = bar
+   chdir = path_to_web2py
+   module = wsgihandler
+   master = true
+   processes = 8
+
+If you need to bind to privileged ports (like 443 for https, use shared sockets):
+
+.. code-block:: ini
+
+   [uwsgi]
+   shared-socket = :443
+   https = =0,foobar.crt,foobar.key
+   uid = foo
+   gid = bar
+   chdir = path_to_web2py
+   module = wsgihandler
+   master = true
+   processes = 8
+
+they are created soon before dropping privileges and can be referenced with the '=N' syntax, where N is the socket number (starting from 0)
+
+A common problem with webapp deployment is "stuck requests". All of your threads/workers are stuck blocked on a request and your app cannot accept more requests.
+
+To avoid that problem you can set an ``harakiri`` timer. It is a monitor (managed by the master process) that will destroy processes stuck for more than the pecified number of seconds
+
+.. code-block:: ini
+
+   [uwsgi]
+   shared-socket = :443
+   https = =0,foobar.crt,foobar.key
+   uid = foo
+   gid = bar
+   chdir = path_to_web2py
+   module = wsgihandler
+   master = true
+   processes = 8
+   harakiri = 30
+
+will destroy workers blocked for more than 30 seconds. Choose carefully the harakiri value !!!
+
 And now
 *******
 
