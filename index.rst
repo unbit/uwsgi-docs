@@ -64,6 +64,7 @@ Table of Contents
    ManagementFlag
    Inetd
    Upstart
+   SystemD
    Embed
    Glossary
 
