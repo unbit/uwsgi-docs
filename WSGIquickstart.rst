@@ -140,7 +140,7 @@ If you think about writing some init.d script for spawning uWSGI, just sit down 
 
 Each distribution has choosen its startup system (:doc:`Upstart<Upstart>`, :doc:`SystemD`...) and there are tons of process managers available (supervisord, god...).
 
-uWSGI will integrate very well with all of them (we hope), but if you plan to deploy a big number of apps check the uWSGI :doc:`Emperor`
+uWSGI will integrate very well with all of them (we hope), but if you plan to deploy a big number of apps check the uWSGI :doc:`Emperor<Emperor>`
 it is the dream of every devops.
 
 Deploying Django
