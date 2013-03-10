@@ -49,6 +49,12 @@ Or you can use ruby gems
    # Install the latest stable release:
    gem install uwsgi
 
+
+At teh end of the build, you will get a report of the enabled features. If something you require is missing, just add the development headers
+and rerun the build.
+
+FOr example to build uWSGI with ssl and perl regexp support you need libssl-dev and pcre headers
+
 Alternative build profiles
 --------------------------
 
