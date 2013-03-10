@@ -269,6 +269,13 @@ But do not worry, there are basically no choices made by the uWSGI developers th
 If you want to maintain python threads support but without starting multiple threads for your application, just add the --enable-threads option
 (or enable-threads = true in ini style)
 
+Virtualenvs
+***********
+
+uWSGI can be configured to search for python modules in a specific virtualenv.
+
+Just add ``virtualenv = <path>` to your options
+
 Security and availability
 *************************
 
