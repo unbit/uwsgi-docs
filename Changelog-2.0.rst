@@ -27,3 +27,6 @@ On-demand threading mode
 Instead of pre-spawning threads in each worker, just spawn a single one that will generate a new one
 at each request.
 
+Emperor binary patching
+***********************
+
