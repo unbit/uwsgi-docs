@@ -315,6 +315,8 @@ that need to be completed and some issues
 
 - BIG ENDIAN archs are broken
 
+- Erlang support did not got required attention, very probably will be post-poned to 2.0
+
 - Async sleep is broken
 
 - SPDY push is still not implemented
