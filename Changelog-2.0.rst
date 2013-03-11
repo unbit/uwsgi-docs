@@ -30,3 +30,9 @@ at each request.
 Emperor binary patching
 ***********************
 
+Emperor clustering
+******************
+
+The Legion subsystem will be integrated with the Emperor, allowing the cluster to distribute multiple application on multiple nodes in a balanced way.
+Broodlord mode will be updated accordingly.
+
