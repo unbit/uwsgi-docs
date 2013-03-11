@@ -290,6 +290,17 @@ authentication and caching.
 
 Updated docs here (still work in progress) :doc:`InternalRouting`
 
+Removed and deprecated features
+*******************************
+
+The --app option has been removed. To load applications on specific mountpoints use the --mount option
+
+The --static-offload-to-thread option has been removed. Use the more versatile --offload-threads
+
+The grunt mode has been removed. To accomplish the same behaviour just use threads or directly call fork() and uwsgi.disconnect()
+
+The send_message/recv_message api has been removed (use language-supplied functions)
+
 Working On, Issues and regressions
 ***********************************
 
