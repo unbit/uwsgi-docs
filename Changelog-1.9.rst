@@ -290,6 +290,16 @@ authentication and caching.
 
 Updated docs here (still work in progress) :doc:`InternalRouting`
 
+Nagios plugin
+*************
+
+Ping requests sent using nagios plugin will no longer be counted in apps request stats.
+
+This means that if application had --idle option enabled nagios pings will no longer prevent app from going to idle state,
+so starting with 1.9 --idle should be disabled when nagios plugin is used. Otherwise app may be put in idle state just before
+nagios ping request, when ping arrives it needs to wake from idle and this might take longer than ping timeout, causing nagios
+alerts.
+
 Removed and deprecated features
 *******************************
 
