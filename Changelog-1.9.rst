@@ -218,6 +218,15 @@ It implements a quorum system to manage shared resources in clustered environmen
 
 Docs are already available: :doc:`Legion`
 
+Cygwin (windows) support
+************************
+
+uWSGI can be compiled on windows machines using the cygwin POSIX emulation system.
+
+The event subsystem uses simple poll() (mapped to select() on cygwin), while the lock engine uses windows mutexes.
+
+Albeit from our tests it looks pretty solid, we consider the porting still "experimental"
+
 
 Advanced Exceptions subsystem
 *****************************
