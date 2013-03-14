@@ -50,7 +50,7 @@ Language independent HTTP body manage
 
 One of the most annoying task in writing uWSGI request plugins, was re-implementing the management of HTTP body reader every time.
 
-The new non-blocking api added 3 simple generic C/C++/Obj-C functions to deal with in ia language independent way:
+The new non-blocking api added 3 simple generic C/C++/Obj-C functions to deal with it in a language independent way:
 
 .. code-block:: c
 
