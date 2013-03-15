@@ -306,6 +306,13 @@ A new imperial monitor has been added allowing vassals to be governed over zerom
 
 http://uwsgi-docs.readthedocs.org/en/latest/ImperialMonitors.html#zmq-zeromq
 
+Total introspection via the stats server
+****************************************
+
+The stats server now exports (for each core, so it works in multithread mode too) all of the request variables
+of the currently running requests. This is a great way to inspect what your instance is doing (and how). In the future,
+uwsgitop could be extended to show the currently runnign request in realtime.
+
 Nagios plugin
 *************
 
