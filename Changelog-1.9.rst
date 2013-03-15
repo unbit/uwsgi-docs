@@ -111,6 +111,15 @@ Or just use (boring) files
    logger = file:/tmp/errlog
    ...
 
+Chain reloading
+***************
+
+When in lazy/lazy_apps mode, you can simply destroy a worker to force it to reload the application code.
+
+A new reloading system named "chain reload", allows you to reload one worker at time (opposed to the standard way where all of the workers are destroyed in bulk)
+
+Chain reloading can only be triggered via "touch": --touch-chain-reload <file>
+
 Offloading improvements
 ***********************
 
