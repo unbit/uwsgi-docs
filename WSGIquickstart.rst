@@ -327,6 +327,8 @@ To avoid that problem you can set an ``harakiri`` timer. It is a monitor (manage
 
 will destroy workers blocked for more than 30 seconds. Choose carefully the harakiri value !!!
 
+In addition to this, since uWSGI 1.9, the stats server exports the whole set of request variables, so you can see (in realtime) what your instance is doing (for each worker, thread or async core)
+
 And now
 *******
 
