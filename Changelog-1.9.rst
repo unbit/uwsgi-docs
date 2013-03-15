@@ -299,6 +299,13 @@ authentication and caching.
 
 Updated docs here (still work in progress) :doc:`InternalRouting`
 
+Emperor ZMQ plugin
+******************
+
+A new imperial monitor has been added allowing vassals to be governed over zeromq messages:
+
+http://uwsgi-docs.readthedocs.org/en/latest/ImperialMonitors.html#zmq-zeromq
+
 Nagios plugin
 *************
 
