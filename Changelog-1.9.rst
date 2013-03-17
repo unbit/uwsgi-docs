@@ -383,6 +383,8 @@ Riccardo Magliocchetti (static analysis)
 
 André Cruz (HTTPS and gevent battle tests)
 
+Mingli Yuan (Clojure/Ring support and test suite)
+
 
 
 
