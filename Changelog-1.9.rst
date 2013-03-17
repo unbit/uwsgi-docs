@@ -346,20 +346,15 @@ The send_message/recv_message api has been removed (use language-supplied functi
 Working On, Issues and regressions
 ***********************************
 
-uWSGI 1.9 is scheduled at March 17th, first -rc should be out the first day of March, but there is still new features
-that need to be completed and some issues
+We missed the timeline for a bunch of expected features:
 
 - SPNEGO support, this is an internal routing instruction to implement SPNEGO authentication support
 
-- Mongrel2 support it is currently broken (need to be ported to the new api)
-
 - Ruby 1.9 fibers support has been rewritten, but need tests
-
-- BIG ENDIAN archs are broken
 
 - Erlang support did not got required attention, very probably will be post-poned to 2.0
 
-- Async sleep is broken
+- Async sleep api is incomplete
 
 - SPDY push is still not implemented
 
@@ -367,4 +362,29 @@ that need to be completed and some issues
 
 - The channel subsystem (required for easy websockets communications) is still unimplemented
 
-- This page is incomplete ;)
+In addition to this we have issues that will be resolved in upcoming minor releases:
+
+- the --lazy mode lost usefulness, now it is like --lazy-apps but with workers-reload only policy on SIGHUP
+
+- it looks like the JVM does not cooperate well with coroutine engines, maybe we should add a check for it
+
+- Solaris and Solaris-like systems did not get heavy testing
+
+Special thanks
+**************
+
+A number of users/developers helped during the 1.9 development cycle. We would like to make special thanks to:
+
+Łukasz Mierzwa (fastrouters scalability tests)
+
+Guido Berhoerster (making the internal routing the new skynet)
+
+Riccardo Magliocchetti (static analysis)
+
+André Cruz (HTTPS and gevent battle tests)
+
+
+
+
+
+
