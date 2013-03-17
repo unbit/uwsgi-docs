@@ -49,20 +49,15 @@ Running uWSGI in gevent mode
 
 .. code-block:: sh
 
-  uwsgi --loop gevent --socket :3031 --module myapp --async 100
-  # or if built as an external plugin,
-  uwsgi --plugins gevent --loop gevent --socket :3031 --module myapp --async 100
+   uwsgi --gevent 100 --socket :3031 --module myapp
 
-Set the ``--async`` value to the maximum number of concurrent connections you want to accept.
-
-Starting from 1.3 you can use the --gevent shortcut, that will set optimal parameters
+or for a modular build:
 
 .. code-block:: sh
 
-   uwsgi --plugins gevent --gevent 100 --socket :3031 --module myapp
+   uwsgi --plugins python,gevent --gevent 100 --socket :3031 --module myapp
 
 the argument of --gevent is the number of async cores to spawn
-
 
 
 A crazy example
@@ -102,8 +97,35 @@ This example shows how to sleep in a request, how to make asynchronous network r
   
       gevent.spawn(bg_task) # this task will go on after request end
 
-Streaming
----------
+Monkey patching
+---------------
+
+uWSGI uses native gevent api, so it does not need monkey patching. Your code (instead) could need it, so remember
+to call gevent.monkey.patch_all() at the start of your app. Since uWSGI 1.9, a commodity option, --gevent-monkey-patch will do that for you.
+
+A common example is using psycopg2_gevent with django. Django will make a connection to postgres for each thread (storing it in thread locals).
+
+As uWSGI gevent plugin runs on a single thread this approach will lead to a deadlock in psycopg. Enabling monkey patch will allows you to
+map thread locals to greenlet (you may want to avoid full monkey patching and only call gevent.monkey.patch_thread() ) and solving the issue:
+
+.. code-block:: python 
+
+   import gevent.monkey
+   gevent.monkey.patch_thread()
+   import gevent_psycopg2
+   gevent_psycopg2.monkey_patch()
+
+or (to monkey patch all)
+
+.. code-block:: python 
+
+   import gevent.monkey
+   gevent.monkey.patch_all()
+   import gevent_psycopg2
+   gevent_psycopg2.monkey_patch()
+
+Notes on clients and frontends
+------------------------------
 
 * If you're testing a WSGI application that generates a stream of data, you should know that ``curl`` by default buffers data until a newline. So make sure you either disable curl's buffering with ``-N`` or have regular newlines in your output.
 * If you are using Nginx in front of uWSGI and wish to stream data from your app, you'll probably want to disable Nginx's buffering.
