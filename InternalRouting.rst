@@ -469,3 +469,8 @@ radius
 
 ldap
 ^^^^
+
+xslt
+^^^^
+
+check :doc:`XSLT`
