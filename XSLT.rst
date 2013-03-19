@@ -18,8 +18,7 @@ The stylesheet path is created following this steps:
 
 - if a specific CGI var is set (via ``--xslt-var``) it will be used as the stylesheet path
 
-- if a file named like the document plus a specific extension (by default .xsl and .xslt are searched) exists it will be used
-as the stylesheet path
+- if a file named like the document plus a specific extension (by default .xsl and .xslt are searched) exists it will be used as the stylesheet path
 
 - finally a series of static xslt file (specified with ``--xslt-stylesheet``) is tried 
 
