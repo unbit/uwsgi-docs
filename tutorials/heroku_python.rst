@@ -1,7 +1,7 @@
 Running python webapps on Heroku with uWSGI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Prerequisites: a Heroku account (on the ceddar platform), git (on the local system) and the heroku toolbelt.
+Prerequisites: a Heroku account (on the cedar platform), git (on the local system) and the heroku toolbelt.
 
 Note: you need a uWSGI version >= 1.4.6 to correctly run python apps. Older versions may work, but are not supported.
 
