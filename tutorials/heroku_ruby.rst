@@ -1,7 +1,7 @@
 Running Ruby/Rack webapps on Heroku with uWSGI
 ==============================================
 
-Prerequisites: a Heroku account (on the ceddar platform), git (on the local system) and the heroku toolbelt (or the old/deprecated heroku gem)
+Prerequisites: a Heroku account (on the cedar platform), git (on the local system) and the heroku toolbelt (or the old/deprecated heroku gem)
 
 Note: you need a uWSGI version >= 1.4.8 to correctly run ruby/rack apps. Older versions may work, but are not supported.
 
