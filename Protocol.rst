@@ -75,7 +75,7 @@ Packet descriptions
      - Standard RACK request followed by the HTTP request body
    
    * - 8
-     - size of JWSGI/Rack block vars (HTTP request body excluded)
+     - size of JWSGI/Ring block vars (HTTP request body excluded)
      - 0
      - Standard JVM request for :doc:`JWSGI` and :doc:`Ring` followed by the HTTP request body
    
