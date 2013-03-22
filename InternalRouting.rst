@@ -77,6 +77,7 @@ The first example
    route = .* addheader:Server: my uWSGI server
    route-host = ^localhost$ logvar:local=1
    route-uri = ^/foo/(.*)\.jpg$ cache:key=$1.jpg
+   route-if = equal:${PATH_INFO};/bad break:500 Internal Server Error
 
 The previous rules, build the following table:
 
@@ -87,7 +88,7 @@ The previous rules, build the following table:
 * for all of the PATH_INFO add the HTTP header 'Server: my uWSGI server' to the response (action returns NEXT)
 * if HTTP_HOST is localhost add the logvar 'local' setting it to '1'
 * if REQUEST_URI starts with /foo and ends with .jpg get it from the uWSGI cache using the supplied key (built over regexp grouping) (action returns BREAK)
-
+* if the PATH_INFO is equal to /bad throws a 500 error
 
 Accessing request vars
 **********************
