@@ -47,6 +47,15 @@ Currently the following checks are supported:
 * endswith (check if the subject ends with the specified pattern)
 * regexp/re (check if the subject matches the specified regexp)
 
+When a check requires a pattern (like with 'equal' or 'regexp') you split it from the subject with a semicolon:
+
+.. code-block:: ini
+
+   ; never matches
+   route-if = equal:FOO;BAR log:never here
+   ; matches
+   route if = regexp:FOO;^F log:starts with F
+
 
 Actions, are the functions to run if a rule matches. This actions are exported by plugins and have a return value
 
