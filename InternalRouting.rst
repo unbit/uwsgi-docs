@@ -501,11 +501,17 @@ access
 spnego
 ^^^^^^
 
+in development
+
 radius
 ^^^^^^
 
+in development
+
 ldap
 ^^^^
+
+in development
 
 xslt
 ^^^^
