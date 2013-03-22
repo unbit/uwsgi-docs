@@ -111,6 +111,14 @@ using the ${VAR} syntax
    route-user-agent = .*curl.* redirect:http://uwsgi.it${REQUEST_URI}
    route-remote-addr = ^127\.0\.0\.1$ break:403 Forbidden for ip ${REMOTE_ADDR}
 
+Is not --route-if enough ? Why --route-uri and friends ?
+********************************************************
+
+This is a good question. You just need to always remember that uWSGI is about versatility and PERFORMANCE. Gaining cycles
+is always good. The --route-if option, albeit versatile, cannot be optimized, all of its parts has to be recomputed at every request.
+This is obviously very fast, but --route-uri option (and friends) can be pre-optimized (during startup) to directly map to the request memory areas, so
+if you can use them, just use them ;)
+
 
 GOTO
 ****
