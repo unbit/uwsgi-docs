@@ -20,7 +20,7 @@ The internal routing table is a sequence of ''rules'' executed one after another
 
 Each rule is composed by a ''subject'', a ''condition'' and an ''action''
 
-The ''condition'' is a PCRE regexp applied to the subject, if it matches the action is triggered. Subjects are request's variables.
+The ''condition'' is generally a PCRE regexp applied to the subject, if it matches the action is triggered. Subjects are request's variables.
 
 Currently the following subjects are supported:
 
@@ -31,6 +31,22 @@ Currently the following subjects are supported:
 * referer (check HTTP_REFERER)
 * user-agent (check HTTP_USER_AGENT)
 * default (default subject, maps to PATH_INFO)
+
+In addition to this a pluggable system of lower-level conditions is available.
+
+You can access this system using the ``--route-if`` option.
+
+Currently the following checks are supported:
+
+* exists (check if the subject exists in the filesystem)
+* isfile (check if the subject is a file)
+* isdir (check if the subject is a directory)
+* isexec (check if the subject is an executable file)
+* equal/isequal/eq/== (check if the subject is equal to the specified pattern)
+* startswith (check if the subject starts with the specified pattern)
+* endswith (check if the subject ends with the specified pattern)
+* regexp/re (check if the subject matches the specified regexp)
+
 
 Actions, are the functions to run if a rule matches. This actions are exported by plugins and have a return value
 
@@ -457,6 +473,9 @@ plugin: router_cache
 
 memcached
 ^^^^^^^^^
+
+rpc
+^^^
 
 access
 ^^^^^^
