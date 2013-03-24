@@ -23,21 +23,21 @@ Legion scrolls api
 ******************
 
 Scrolls are text blob attached to each member of a :doc:`Legion<Legion>` cluster. We are slowly defining an api allowing developers to directly
-use the legion subsystem in their apps and configurations. The addition 1.9.1 is the uwsgi.scrolls(legion) function returning a list/array
+use the legion subsystem in their apps and configurations. The addition in 1.9.1 is the uwsgi.scrolls(legion) function returning a list/array
 of the current scrolls defined by the whole cluster. This is still not something fully usable (and useful) more to come soon...
 
 On demand vassals
 *****************
 
-Another step in better resource usage for massive hosting. You can now tell the :doc:`Emperor` to start vassals only after the first request
-to a specific socket. Combine with --idle/--die-on-idle options, you can have truly on-demand applications.
+Another step in better resource usage for massive hosting. You can now tell the :doc:`Emperor<Emperor>` to start vassals only after the first request
+to a specific socket. Combined with --idle/--die-on-idle options, you can have truly on-demand applications.
 
 To define the socket to wait for for each vassal you have 3 options:
 
 --emperor-on-demand-extension <ext>
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-this will instruct the Emperor to check for a file named <vassal>+<ext>, if the file is available it will be read and its content use as the socket to wait for:
+this will instruct the Emperor to check for a file named <vassal>+<ext>, if the file is available it will be read and its content used as the socket to wait for:
 
 .. code-block:: sh
 
@@ -52,7 +52,7 @@ other protocols (like http or fastcgi) you have to specify it with the --protoco
 --emperor-on-demand-directory <dir>
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This is a less-versatile approach suppoting only UNIX sockets. Basically the name (without extension and path) of the vassal is appended
+This is a less-versatile approach supporting only UNIX sockets. Basically the name (without extension and path) of the vassal is appended
 to the specified directory + the .socket extension and used as the on-demand socket:
 
 .. code-block:: sh
@@ -94,6 +94,7 @@ The rpc internal routing instruction
 Preliminary support for name resolving in the carbon plugin
 ***********************************************************
 
+You can specify carbon servers using hostnames. The current code is pretty simple. Future updates will support round robin queries.
 
 New routing conditions
 **********************
