@@ -17,12 +17,12 @@ Fixed exception handling in the Rack plugin
 The XSLT plugin
 ***************
 
-The :doc:`XSLT` plugin has been added. It allows to apply XML transformation via request plugin or :doc:`InternalRouting`
+The :doc:`XSLT<XSLT>` plugin has been added. It allows to apply XML transformation via request plugin or :doc:`InternalRouting`
 
 Legion scrolls api
 ******************
 
-Scrolls are text blob attached to each member of a :doc:`Legion` cluster. We are slowly defining an api allowing developers to directly
+Scrolls are text blob attached to each member of a :doc:`Legion<Legion>` cluster. We are slowly defining an api allowing developers to directly
 use the legion subsystem in their apps and configurations. The addition 1.9.1 is the uwsgi.scrolls(legion) function returning a list/array
 of the current scrolls defined by the whole cluster. This is still not something fully usable (and useful) more to come soon...
 
