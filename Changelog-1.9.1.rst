@@ -88,8 +88,41 @@ Docs will be available soon
 The crypto logger
 *****************
 
+If you host your applications on cloud services without persistent storage you may want to send your logs to external
+systems. Sadly logs often contain sensible informations you should not transfer in clear. The new crypto logger try to solve
+this issue allowing you to encrypt each log packet and send it over udp to a server able to decrypt it.
+
+The following example
+
+.. code-block:: sh
+
+   uwsgi --plugin logcrypto --logger crypto:addr=192.168.173.22:1717,algo=bf-cbc,secret=ciaociao -M -p 4 -s :3031
+
+will send each log packet to the udp server available at 192.168.173.22:1717 encrypting the text with 'ciaociao' secret key using
+the blowfish cbc algorithm.
+
+An example server is available here:
+
+https://github.com/unbit/uwsgi/blob/master/contrib/cryptologger.rb
+
+
 The rpc internal routing instruction
 ************************************
+
+The "rpc" routing instruction has been added, allowing you to call rpc functions directly from the routing subsystem
+and forward they output to the client.
+
+Check the following examples:
+
+.. code-block:: ini
+
+   [uwsgi]
+   http-socket = :9090
+   route = ^/foo addheader:Content-Type: text/html
+   route = ^/foo rpc:hello ${REQUEST_URI} ${HTTP_USER_AGENT}
+   route = ^/bar/(.+)$ rpc:test $1 ${REMOTE_ADDR} uWSGI %V
+   route = ^/pippo/(.+)$ rpc:test@127.0.0.1:4141 $1 ${REMOTE_ADDR} uWSGI %V
+   import = funcs.py
 
 Preliminary support for name resolving in the carbon plugin
 ***********************************************************
