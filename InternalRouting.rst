@@ -46,6 +46,7 @@ Currently the following checks are supported:
 * startswith (check if the subject starts with the specified pattern)
 * endswith (check if the subject ends with the specified pattern)
 * regexp/re (check if the subject matches the specified regexp)
+* empty (check if the subject is empty)
 
 When a check requires a pattern (like with 'equal' or 'regexp') you split it from the subject with a semicolon:
 
