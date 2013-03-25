@@ -503,6 +503,12 @@ return value: BREAK
 
 plugin: router_cache
 
+cachestore
+^^^^^^^^^^
+
+cache-store
+^^^^^^^^^^^
+
 memcached
 ^^^^^^^^^
 
