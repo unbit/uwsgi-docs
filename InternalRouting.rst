@@ -124,6 +124,18 @@ You can access a cookie value using the ${cookie[name]} syntax:
 
 this will log the content of the 'foobar' cookie of the current request
 
+Accessing query string items
+****************************
+
+You can access the value of the QUERY_STRING using the ${qs[name]} syntax:
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = ^/foo log:${qs[foobar]}
+
+this will log the content of the 'foobar' item of the current request's QUERY_STRING
+
 
 Is not --route-if enough ? Why --route-uri and friends ?
 ********************************************************
