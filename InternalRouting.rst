@@ -111,6 +111,19 @@ using the ${VAR} syntax
    route-user-agent = .*curl.* redirect:http://uwsgi.it${REQUEST_URI}
    route-remote-addr = ^127\.0\.0\.1$ break:403 Forbidden for ip ${REMOTE_ADDR}
 
+Accessing cookies
+*****************
+
+You can access a cookie value using the ${cookie[name]} syntax:
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = ^/foo log:${cookie[foobar]}
+
+this will log the content of the 'foobar' cookie of the current request
+
+
 Is not --route-if enough ? Why --route-uri and friends ?
 ********************************************************
 
