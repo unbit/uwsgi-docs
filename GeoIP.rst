@@ -80,3 +80,11 @@ An example
    ; try to serve a specific page translation
    route = ^/foo/bar/test.html static:/var/www/${geoip[country_code]}/test.html
 
+Memory usage
+************
+
+The country db is tiny so you will generally have no problem in using it. Instead, the city db can be huge (from 20MB to more than 40MB).
+
+If you have lot of instances using the geoip city database and you are on a recent Linux system, consider using :doc:`KSM`.
+
+All of the memory used by the geoip database can be shared by all instances.
