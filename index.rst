@@ -92,6 +92,7 @@ uWSGI Subsystems
    SubscriptionServer
    StaticFiles
    SNI
+   GeoIP
 
 
 
