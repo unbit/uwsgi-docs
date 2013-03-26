@@ -58,22 +58,25 @@ If you do not specify at least one of them, the system will always return empty 
 An example
 **********
 
-[uwsgi]
-plugin = geoip
-http-socket = :9090
-; load the geoip city database
-geoip-city = GeoLiteCity.dat
-module = werkzeug.testapp:test_app
-; first some debug info (addvar will ad WSGI variables you will see in the werkzeug testapp)
-route-run = log:${geoip[country_name]}/${geoip[country_code3]}
-route-run = addvar:COUNTRY=${geoip[country_name]}
-route-run = log:${geoip[city]}/${geoip[region]}/${geoip[continent]}
-route-run = addvar:COORDS=${geoip[lon]}/${geoip[lat]}
-route-run = log:${geoip[region_name]}
-route-run = log:${geoip[dma]}/${geoip[area]}
+.. code-block:: ini
 
-; then something more useful
-; block access to all of the italians (hey i am italian do not start blasting me...)
-route-if = equal:${geoip[country_name]};Italy break:403 Italians cannot see this site :P
-; try to serve a specific page translation
-route = ^/foo/bar/test.html static:/var/www/${geoip[country_code]}/test.html
+   [uwsgi]
+   plugin = geoip
+   http-socket = :9090
+   ; load the geoip city database
+   geoip-city = GeoLiteCity.dat
+   module = werkzeug.testapp:test_app
+   ; first some debug info (addvar will ad WSGI variables you will see in the werkzeug testapp)
+   route-run = log:${geoip[country_name]}/${geoip[country_code3]}
+   route-run = addvar:COUNTRY=${geoip[country_name]}
+   route-run = log:${geoip[city]}/${geoip[region]}/${geoip[continent]}
+   route-run = addvar:COORDS=${geoip[lon]}/${geoip[lat]}
+   route-run = log:${geoip[region_name]}
+   route-run = log:${geoip[dma]}/${geoip[area]}
+
+   ; then something more useful
+   ; block access to all of the italians (hey i am italian do not start blasting me...)
+   route-if = equal:${geoip[country_name]};Italy break:403 Italians cannot see this site :P
+   ; try to serve a specific page translation
+   route = ^/foo/bar/test.html static:/var/www/${geoip[country_code]}/test.html
+
