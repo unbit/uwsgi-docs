@@ -15,8 +15,8 @@ Fixed ruby fiber plugin
 New features
 ************
 
-cachestore routing instruction
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+route-run and the cachestore routing action
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You can now store responses automatically in the uWSGI cache:
 
@@ -28,11 +28,13 @@ You can now store responses automatically in the uWSGI cache:
    master = true
    cache2 = name=pippo2,items=10
    module = werkzeug.testapp:test_app
-   route = ^ cache:key=${REQUEST_URI},name=pippo2
-   route = ^ cachestore:key=${REQUEST_URI},expires=30,name=pippo2
+   route-run = cache:key=${REQUEST_URI},name=pippo2
+   route-run = cachestore:key=${REQUEST_URI},expires=30,name=pippo2
 
-this example check every request for its availability in the cache 'pippo2'. If not available the request plugin
+this example check every request for its availability in the cache 'pippo2'. If not available the request plugin (werkzeug test app)
 will run normally and its output will be stored in the cache (only if it returns a HTTP 200 status)
+
+``--route-run`` is a new option allowing you to directly call routing action without checking for a specific condition (yes, it is an optimization)
 
 routing access to cookie and query string
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
