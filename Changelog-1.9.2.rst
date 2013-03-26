@@ -18,17 +18,41 @@ New features
 cachestore routing instruction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+You can now store responses automatically in the uWSGI cache:
+
+.. code-block:: ini
+
+   [uwsgi]
+   http-socket = :9090
+   ; ensure the sweeper thread will run
+   master = true
+   cache2 = name=pippo2,items=10
+   module = werkzeug.testapp:test_app
+   route = ^ cache:key=${REQUEST_URI},name=pippo2
+   route = ^ cachestore:key=${REQUEST_URI},expires=30,name=pippo2
+
+this example check every request for its availability in the cache 'pippo2'. If not available the request plugin
+will run normally and its output will be stored in the cache (only if it returns a HTTP 200 status)
+
 routing access to cookie and query string
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check updated docs :doc:`InternalRouting`
 
 empty internal routing condition
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Check updated docs :doc:`InternalRouting`
+
 The Geoip plugin
 ^^^^^^^^^^^^^^^^
 
+Check official docs :doc:`GeoIP`
+
 The SSI plugin (beta)
 ^^^^^^^^^^^^^^^^^^^^^
+
+Check official docs :doc:`SSI`
 
 Availability
 ************
