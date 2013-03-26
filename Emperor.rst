@@ -95,6 +95,14 @@ as unprivileged user but maintaining the minimal amount of root-capabilities nee
    emperor-tyrant = true
    cap = setgid,setuid
 
+On demand vassals (socket activation)
+-------------------------------------
+
+Inspired by the venerable xinetd/inetd approach, you can spawn your vassals only after the first connection
+to a specific socket. This feature is available since 1.9.1, check its changelog for more infos: 
+
+:doc:`Changelog-1.9.1`
+
 
 Loyalty
 -------
