@@ -136,6 +136,14 @@ You can access the value of the QUERY_STRING using the ${qs[name]} syntax:
 
 this will log the content of the 'foobar' item of the current request's QUERY_STRING
 
+Pluggbale routing vars
+**********************
+
+Both the cookie and qs vars, are so called "routing vars". They are pluggable, so external plugin can
+add new vars to add new features to your application.
+
+Check the :doc:`GeoIP` for an example
+
 
 Is not --route-if enough ? Why --route-uri and friends ?
 ********************************************************
