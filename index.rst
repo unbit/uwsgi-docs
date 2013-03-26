@@ -175,6 +175,7 @@ Language support
    CGI
    Go
    XSLT
+   SSI
 
 
 Contact
