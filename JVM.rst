@@ -22,20 +22,20 @@ To build the JVM plugin simply run:
 
 .. code-block:: sh
 
-   python uwsgiconfig --plugin plugins/jvm default
+   python uwsgiconfig.py --plugin plugins/jvm default
 
 change 'default', if needed, with your alternative build profile. FOr example if you have a Perl/PSGI monolithic build
 just run
 
 .. code-block:: sh
 
-   python uwsgiconfig --plugin plugins/jvm psgi
+   python uwsgiconfig.py --plugin plugins/jvm psgi
 
 or for a fully-modular build
 
 .. code-block:: sh
 
-   python uwsgiconfig --plugin plugins/jvm core
+   python uwsgiconfig.py --plugin plugins/jvm core
 
 If all goes well the jvm_plugin will be built.
 
