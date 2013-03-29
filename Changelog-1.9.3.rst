@@ -45,7 +45,7 @@ you can load it with:
 
    uwsgi --plugin lua --config config.lua
 
-The --config option is the way to load pluggable configurators. You can even ovverride the already available embedded configurators
+The --config option is the way to load pluggable configurators. You can even override the already available embedded configurators
 with your own version.
 
 The Emperor has already been extended to support pluggable configurators:
