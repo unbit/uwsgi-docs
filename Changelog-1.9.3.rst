@@ -76,7 +76,7 @@ Honouring symlinks in tyrant mode
 
 The option --emperor-tyrant-nofollow has been added forcing the emperor to now follow symlinks when searching for uid/gid in tyrant mode.
 
-This option allows the sysadmin to simply symlink configurations and just change the uid/gid of teh symlink it self (remember to
+This option allows the sysadmin to simply symlink configurations and just change the uid/gid of the symlink it self (remember to
 pass the -h option to chown !!!)
 
 The "rpcret" routing action (or usa Lua to write advanced rules)
