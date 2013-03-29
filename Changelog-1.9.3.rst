@@ -113,7 +113,7 @@ The "rpcret" works in similar way, but instead generating a response, you genera
 
 and the uWSGI config:
 
-.. code-block ::ini
+.. code-block:: ini
 
    [uwsgi]
    route-run = rpcret:choose ${REQUEST_URI} ${REMOTE_ADDR}
