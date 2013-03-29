@@ -137,3 +137,16 @@ Currently supported return strings are:
 ``break`` close the connection with an optional status code
 
 ``goto <label>`` goto to the specified label
+
+
+Obviously rpc functions for rpcret can be written in any language/platform supported by uWSGI, but we strongly suggest to go with Lua for performance reasons
+(the inpact compared to pure C code is pretty irrelevant). If you are lucky and can use LuaJit you will experiment even better performance as for this kind of job
+a JIT compiler is the best approach.
+
+
+Availability
+************
+
+uWSGI 1.9.3 has been released on 20130328 and can be downloaded from:
+
+http://projects.unbit.it/downloads/uwsgi-1.9.3.tar.gz
