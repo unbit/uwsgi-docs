@@ -69,7 +69,7 @@ Albeit it is the most secure approach, two new options --immediate-uid and --imm
 Setting them on top of your vassal file will force the instance to setuid()/setgid() as soon as possibile and without the (theoretical) possibility to override them.
 
 The word "theoretical" here is the key, you always need to remember that a security bug in uWSGI could allow a malicious user to change privileges, so if you really
-care security (or do not trust uWSGI developers ;) always drop privileges before teh vassal/instance is spawned (like in standard tyrant mode)
+care security (or do not trust uWSGI developers ;) always drop privileges before the vassal/instance is spawned (like in standard tyrant mode)
 
 Honouring symlinks in tyrant mode
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
