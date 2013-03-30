@@ -1,5 +1,5 @@
-The uWSGI Legion subsystem (1.9-dev)
-====================================
+The uWSGI Legion subsystem
+==========================
 
 Starting from uWSGI 1.9-dev a new subsystem for clustering has been added: The Legion subsystem.
 
