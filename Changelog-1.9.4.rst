@@ -105,9 +105,9 @@ Legion improvements
 We are hardly working in stabilizing :doc:`Legion` The objective is have a rock-solid clustering implementation for uWSGI 2.0
 that you can use even from your applications.
 
-The code in 1.9.4 has been refactored a bit by Łukasz Mierzwa to allows easier integration with external plugin.
+The code in 1.9.4 has been refactored a bit by Łukasz Mierzwa to allow easier integration with external plugins.
 
-A new hook has been added "join" that is called as soon as a need became active part of a legion (read, it is part of a quorum)
+A new "join" hook has been added, it is called as soon as a node becomes active part of a legion (read, it is part of a quorum).
 
 Availability
 ************
