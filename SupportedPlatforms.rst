@@ -15,3 +15,4 @@ This is the list of officially supported operating systems and platforms.
 * NexentaOS
 * SmartOS
 * OpenSolaris
+* OpenIndiana
