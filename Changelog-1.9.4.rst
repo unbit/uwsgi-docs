@@ -52,7 +52,7 @@ itself could be a valid alternative. A V8 plugin is now available, supporting RP
 
    uwsgi --plugin v8 --config foo.js
 
-The previous example will allows you to write dynamic coonfigs in javascript, while you can export javascript functions via the RPC subsystem:
+The previous example will allows you to write dynamic configs in javascript, while you can export javascript functions via the RPC subsystem:
 
 .. code-block:: js
 
