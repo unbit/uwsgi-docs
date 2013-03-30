@@ -48,3 +48,7 @@ Supported languages and platforms
       - 0.9.7-dev
       - Allows integration between uWSGI and Mono, and execution of ASP.NET applications.
       - Stable
+    * - V8
+      - 1.9.4
+      - Allows integration between uWSGI and javascript V8.
+      - Early stage of development
