@@ -51,6 +51,7 @@ Table of Contents
    Install
    Management
    LanguagesAndPlatforms
+   SupportedPlatforms
    WebServers
    FAQ
    ThingsToKnow
