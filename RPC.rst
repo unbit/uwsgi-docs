@@ -76,7 +76,7 @@ Check language specific docs, basically all of them should support registering a
 
 You can build multi-languages apps with really no-efforts.
 
-You will be surprised on how you can call :doc:`JVM<Java>` functions from perl, javascript from python and so on...
+You will be surprised on how you can call :doc:`Java<JVM>` functions from perl, javascript from python and so on...
 
 
 Doing RPC locally
@@ -84,7 +84,7 @@ Doing RPC locally
 
 Doing RPC locally may sound a little silly, but if you need to call a Lua function from Python with the absolute least possible overhead, uWSGI RPC is your man.
 
-If you want to call a RPC defined in the same server (governed by the same master, etc.), simply set the first parameter of :py:meth:`uwsgi.rpc`` to None or nil, or use the convenience function :py:meth:`uwsgi.call`.
+If you want to call a RPC defined in the same server (governed by the same master, etc.), simply set the first parameter of ``uwsgi.rpc`` to None or nil, or use the convenience function :py:meth:`uwsgi.call`.
 
 Doing RPC from the internal routing subsystem
 ---------------------------------------------
