@@ -69,6 +69,15 @@ And in your Python WSGI app:
         start_response('200 Ok', [('Content-Type', 'text/html')]
         return uwsgi.rpc('10.0.0.2:3031', 'hellolua', 'foo', 'bar')
 
+And other languages/platforms ?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check language specific docs, basically all of them should support registering and calling rpc functions.
+
+You can build multi-languages apps with really no-efforts.
+
+You will be surprised on how you can call :doc:`JVM<Java>` functions from perl, javascript from python and so on...
+
 
 Doing RPC locally
 -----------------
@@ -77,6 +86,25 @@ Doing RPC locally may sound a little silly, but if you need to call a Lua functi
 
 If you want to call a RPC defined in the same server (governed by the same master, etc.), simply set the first parameter of :py:meth:`uwsgi.rpc`` to None or nil, or use the convenience function :py:meth:`uwsgi.call`.
 
+Doing RPC from the internal routing subsystem
+---------------------------------------------
+
+The rpc plugin export a bunch of internal routing actions:
+
+`rpc` call the specified rpc function and send the response to the client
+
+`rpcnext/rpcblob` call the specified rpc function, send the response to the client and continue to the next rule
+
+`rpcret` call the specified rpc function and use its return value as the action return code (next, continue, goto ...)
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = ^/foo rpc:hello ${REQUEST_URI} ${REMOTE_ADDR}
+   ; call on remote nodes
+   route = ^/multi rpcnext:part1@192.168.173.100:3031
+   route = ^/multi rpcnext:part2@192.168.173.100:3031
+   route = ^/multi rpcnext:part3@192.168.173.100:3031
 
 Doing RPC from nginx
 --------------------
