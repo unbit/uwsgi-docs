@@ -1,5 +1,5 @@
-uWSGI RPC Stack (updated to 1.9)
-================================
+uWSGI RPC Stack
+===============
 
 Albeit you may fall in love with this subsystem, try to use it when you need it.
 
