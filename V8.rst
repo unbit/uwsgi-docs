@@ -1,0 +1,37 @@
+uWSGI V8 support
+================
+
+Building
+********
+
+RPC
+***
+
+Signal handlers
+***************
+
+Multitheading and multiprocess
+******************************
+
+Mules
+*****
+
+The uWSGI api
+*************
+
+JSGI 3.0
+********
+
+CommonJS
+********
+
+require OK
+
+Binary/B NO
+
+System/1.0 (in progress)
+
+IO/A NO
+
+Filesystem/A NO
+
