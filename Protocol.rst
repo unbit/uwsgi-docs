@@ -114,6 +114,16 @@ Packet descriptions
      - size of CGI vars
      - 0- 255
      - invoke the :doc:`XSLT`
+
+   * - 24
+     - size of CGI vars
+     - 0- 255
+     - invoke the :doc:`V8`
+
+   * - 25
+     - size of CGI vars
+     - 0- 255
+     - invoke the :doc:`GridFS`
    
    * - 26
      - 0
