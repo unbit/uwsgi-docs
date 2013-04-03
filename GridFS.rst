@@ -95,3 +95,41 @@ the SCRIPT_NAME variable you do not need additional setup (other than --gridfs-m
    gridfs-mount = mountpoint=/foo,server=192.168.173.17:4040,db=wolverine
    ; map /bar to db "storm" on server 192.168.173.30:4040
    gridfs-mount = mountpoint=/bar,server=192.168.173.30:4040,db=storm
+   ; force management of the SCRIPT_NAME variable
+   manage-script-name = true
+
+.. code-block:: sh
+
+    curl -D /dev/stdout http://localhost:9090/myfile.txt
+    curl -D /dev/stdout http://localhost:9090/foo/myfile.txt
+    curl -D /dev/stdout http://localhost:9090/bar/myfile.txt
+
+each request will map to a different gridfs server
+
+Replica sets
+************
+
+Prefixes
+********
+
+Mime types and filenames
+************************
+
+Timeouts
+********
+
+MD5 and ETag headers
+********************
+
+Multithreading
+**************
+
+Combining with Nginx
+********************
+
+The 'gridfs' internal routing action
+************************************
+
+Notes
+*****
+
