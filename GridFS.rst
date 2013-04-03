@@ -109,6 +109,21 @@ each request will map to a different gridfs server
 Replica sets
 ************
 
+If you are using MonogDB/GridFS in production environments, it is very probably you are using a replica set.
+
+You can use replica set in your uWSGI config with this syntax:
+
+<replica>server1,server2,serverN...
+
+.. code-block:: ini
+
+   [uwsgi]
+   http-socket = :9090
+   http-socket-modifier1 = 25
+   gridfs-mount = server=rs0/ubuntu64.local\,raring64.local\,mrspurr-2.local,db=test
+
+pay attention to the backslashes used to escape the server list.
+
 Prefixes
 ********
 
