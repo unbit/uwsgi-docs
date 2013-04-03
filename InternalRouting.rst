@@ -557,3 +557,13 @@ xslt
 ^^^^
 
 check :doc:`XSLT`
+
+ssi
+^^^
+
+check :doc:`SSI`
+
+gridfs
+^^^^^^
+
+check :doc:`GridFS`
