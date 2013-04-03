@@ -28,6 +28,14 @@ Or you can build it as plugin:
 
    python uwsgiconfig.py --plugin plugins/gridfs
 
+For a fast installation of a monolithic build you can use the network installer:
+
+.. code-block:: sh
+
+   curl http://uwsgi.it/install | bash -s gridfs /tmp/uwsgi
+
+this will install a gridfs enabled uwsgi binary
+
 
 Standalone quickstart
 *********************
@@ -259,7 +267,7 @@ The plugin exports a 'gridfs' action simply returning an item:
    socket = 127.0.0.1:3031
    route = ^/foo/(.+).jpg gridfs:server=192.168.173.17,db=test,itemname=$1.jpg
 
-the options are teh same of the request plugin, the only addition is the "itemname" one, specifying the name of the object
+the options are the same of the request plugin, the only addition is the "itemname" one, specifying the name of the object
 in the GridFS db.
 
 Notes
