@@ -177,6 +177,8 @@ Language support
    Go
    XSLT
    SSI
+   V8
+   GridFS
 
 
 Contact
