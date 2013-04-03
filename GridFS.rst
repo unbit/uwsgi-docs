@@ -251,6 +251,21 @@ just be sure to set the uwsgi_modifier1 value.
 The 'gridfs' internal routing action
 ************************************
 
+The plugin exports a 'gridfs' action simply returning an item:
+
+.. code-block:: ini
+
+   [uwsgi]
+   socket = 127.0.0.1:3031
+   route = ^/foo/(.+).jpg gridfs:server=192.168.173.17,db=test,itemname=$1.jpg
+
+the options are teh same of the request plugin, the only addition is the "itemname" one, specifying the name of the object
+in the GridFS db.
+
 Notes
 *****
+
+If you do not specify a server address, 127.0.0.1:27017 is assumed
+
+The use of the plugin in async modes is not officially supported
 
