@@ -277,3 +277,5 @@ If you do not specify a server address, 127.0.0.1:27017 is assumed
 
 The use of the plugin in async modes is not officially supported
 
+If you do not get why a request is not serving your GridFS item, consider adding the --gridfs-debug option. It will print the requested item
+in uWSGI logs.
