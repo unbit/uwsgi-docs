@@ -48,7 +48,7 @@ You can now call CGI script directly from the :doc:`InternalRouting`
 
 
 Availability
-^^^^^^^^^^^^
+************
 
 uWSGI 1.9.5 will be available since 20130404 at this url
 
