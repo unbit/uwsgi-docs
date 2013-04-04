@@ -12,7 +12,7 @@ The official modifier1 is the '24'
 RPC
 ***
 
-   .. code-block:: js
+.. code-block:: js
 
    function part1(request_uri, remote_addr) {
         return '<h1>i am part1 for ' + request_uri + ' ' + remote_addr + "</h1>" ;
