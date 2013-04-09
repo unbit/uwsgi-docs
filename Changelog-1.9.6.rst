@@ -166,6 +166,137 @@ Return values must be valid HTTP:
    route = ^/foo rpcraw:myrules ${REQUEST_URI}
 
 
+Preliminary support for the HTTP Range header
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The range request header allows requesting only part of a resource (like a limited set of bytes of a static file).
+
+The system can be used when serving static files, but it is disabled by default. Just add --honour-range to enable it.
+
+In the future it will be used for file wrappers (like wsgi.file_wrapper) and for :doc:`GridFS` (this is the reason for not enabling it by default
+as you could have already implemented range management in your app)
+
+
+The 'lord' routing condition
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We are working hard on making a truly amazing cluster subsystem using :doc:`Legion`
+
+You can now execute internal routing rules when an instance is a lord:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   route-if = lord:mylegion log:I AM THE LORD !!!
+
+the "I AM THE LORD !!!" logline will be printed only when the instance is a lord of the legion 'mylegion'
+
+GridFS authentication
+^^^^^^^^^^^^^^^^^^^^^
+
+You can now connect to authenticated MongoDB servers when using :doc:`GridFS`
+
+Just add the username and password parameters to the mount definition
+
+The --for-times config logic
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can use --for-times for running uWSGI options the specified number of times:
+
+.. code-block:: ini
+
+   [uwsgi]
+   for-times = 8
+      mule = true
+   endfor =
+
+this will spawn 8 mules
+
+The 'uwsgi' routing var
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Accessing uWSGI internal parameters when defining routing rules could be handy. The 'uwsgi' routing var
+is the container for such vars.
+
+Currently it exports 'wid' (the id of the worker running the rule) and 'pid' (the pid of the worker running the rule)
+
+.. code-block:: ini
+
+   [uwsgi]
+   master = true
+   processes = 4
+   ; stupid rule... break connections to the worker 4
+   route-if = ishigher:${uwsgi[wid]};3 break:403 Forbidden
+
+The 'alarm' routing action
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can now trigger alarms from the routing subsystem:
+
+.. code-block:: ini
+
+   [uwsgi]
+
+   alarm = pippo cmd:cat
+
+   route = ^/help alarm:pippo ${uwsgi[wid]} ${uwsgi[pid]}
+   http-socket = :9090
+
+when /help is requested the 'pippo' alarm is triggered passing the wid and the pid as the message
+
+Welcome to the ruby shell
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+As well as the --pyshell we now have the ruby shell:
+
+.. code-block:: sh
+
+   uwsgi --rbshell -s :3031
+
+or
+
+.. code-block:: sh
+
+   uwsgi --rbshell="require 'pry';binding.pry" -s :3031
+
+for using the pry shell: http://pryrepl.org/
+
+... and welcome to the Lua shell
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+As python and ruby, even Lua got its shell. Just add --lua-shell
+
+Goodbye to the old (and useless) probe subsystem
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The probe subsystem was added during 0.9 development cycle but it was badly designed and basically broken.
+
+It has been definitely removed (the deprecation phase has been skipped as 1.9 is not an LTS release and 1.4 still support it)
+
+
+Improvements in the Legion subsystem (Author: Łukasz Mierzwa)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Two new hooks have been added: --legion-node-joined and --legion-node-left
+
+More fine-tuning
+^^^^^^^^^^^^^^^^
+
+--socket-sndbuf and --socket-rcvbuf have been added to allow tuning of the send a receive buffer of the uWSGI sockets (use with caution)
+
+V8 improvements and TeaJS integration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The :doc:`V8` plugin continue to improve. The main target is still :doc:`InternalRouting` but JSGI support is almost complete
+and we are working for TeaJS (old v8cgi) integration: http://code.google.com/p/teajs/
+
+more to come soon...
+
 
 Availability
 ************
+
+uWSGI 1.9.6 will be available since 20130409 at this url:
+
+http://projects.unbit.it/downloads/uwsgi-1.9.6.tar.gz
