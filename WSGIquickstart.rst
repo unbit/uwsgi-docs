@@ -130,7 +130,7 @@ Now we can spawn uWSGI to natively speak the uwsgi protocol
 
    uwsgi --socket 127.0.0.1:3031 --wsgi-file foobar.py --processes 4 --threads 2 --stats 127.0.0.1:9191
 
-if you run ps aux you will see one process less. The http router has been removed as our "workers" (the processes assigned to uWGSI)
+if you run ps aux you will see one process less. The http router has been removed as our "workers" (the processes assigned to uWSGI)
 natively speak the uwsgi protocol.
 
 Automatically starting uWSGI on boot
