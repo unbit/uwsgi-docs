@@ -74,4 +74,22 @@ For example,
         <cron>9 11 -1 -1 2 /opt/dem/bin/send_reminders</cron>
     </uwsgi>
 
+..code-block:: ini
+
+   [uwsgi]
+   ; every two hours
+   cron = -1 /2 -1 -1 -1 /usr/bin/backup_my_home --recursive
+
+Legion crons
+************
+
+When your instance is part of a Legion, you can configure it to run crons only if it is the Lord of the specified Legion:
+
+..code-block:: ini
+
+   [uwsgi]
+   legion = mycluster 225.1.1.1:1717 100 bf-cbc:hello
+   legion-node = mycluster 225.1.1.1:1717
+   ; every two hours
+   legion-cron = mycluster -1 /2 -1 -1 -1 /usr/bin/backup_my_home --recursive
 
