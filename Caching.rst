@@ -153,6 +153,12 @@ bitmap
 
 set it to 1, to enable bitmap mode
 
+lastmod
+^^^^^^^
+
+set it to 1 will update last_modified_at timestamp of each cache, on every cache item modification.
+Enable it if you want to track this value (accessible using stats socket) or if other features depend on it.
+
 Accessing the cache from your applications using the cache api
 *************************************************************
 
