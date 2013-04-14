@@ -154,6 +154,8 @@ Web Server support
    Apache
    Cherokee
    HTTP
+   HTTPS
+   SPDY
    Lighttpd
    Mongrel2
    Nginx
