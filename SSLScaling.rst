@@ -1,5 +1,5 @@
-Scaling SSL connections (uWSGI 1.9-dev)
-=======================================
+Scaling SSL connections (uWSGI 1.9)
+===================================
 
 Distributing SSL servers in a cluster is an hard topic.
 The biggest problem is sharing SSL sessions between different nodes.
@@ -180,6 +180,54 @@ Basically each ssl session before being used is checked against a fixed string (
 I the session does not match that string it is rejected. By default the session context is initialized to
 a value build from the http server address. Forcing it to a common value will avoid session created in a node being rejected in another one.
 
+Using named caches
+******************
+
+Starting from uWSGI 1.9 you can have multiple caches. This is a setup with 2 nodes using a new generation cache named "ssl"
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; spawn the master process (it will run the cache sweeper thread)
+   master = true
+   ; store upto 20k sessions
+   cache2 = name=ssl,items=20000,blocksize=4096,node=127.0.0.1:4242,udp=127.0.0.1:4141
+   ; force the ssl subsystem to use the uWSGI cache as session storage
+   ssl-sessions-use-cache = ssl
+   ; set sessions timeout
+   ssl-sessions-timeout = 300
+   ; set the session context string (see later)
+   https-session-context = foobar
+   ; spawn an https router
+   https = :8443,foobar.crt,foobar.key
+   ; spawn 8 processes for the https router (all sharing the same sessions cache)
+   http-processes = 8
+   module = werkzeug.testapp:test_app
+   ; add stats
+   stats = :5001
+
+and the second node...
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; spawn the master process (it will run the cache sweeper thread)
+   master = true
+   ; store upto 20k sessions
+   cache2 = name=ssl,items=20000,blocksize=4096,node=127.0.0.1:4141,udp=127.0.0.1:4242
+   ; force the ssl subsystem to use the uWSGI cache as session storage
+   ssl-sessions-use-cache = ssl
+   ; set sessions timeout
+   ssl-sessions-timeout = 300
+   ; set the session context string (see later)
+   https-session-context = foobar
+   ; spawn an https router
+   https = :8444,foobar.crt,foobar.key
+   ; spawn 8 processes for the https router (all sharing the same sessions cache)
+   http-processes = 8
+   module = werkzeug.testapp:test_app
+   ; add stats
+   stats = :5002
 
 Notes
 *****
