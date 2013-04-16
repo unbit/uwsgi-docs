@@ -143,6 +143,19 @@ cheaper-busyness-backlog-multiplier
 This option is only available on linux, it works just like ``cheaper-busyness-multiplier`` except that it is used only for emergency workers spawned when listen queue was higher than ``cheaper-busyness-backlog-alert``. Emergency workers are spawned in case of big load spike to prevent currently running workers from being overloaded (it takes some time to spawn new workers due to high average busyness), and sometimes those load spike are random, short and they can spawn a lot of such workers. In such case we would need to wait many cycles before cheaping all those workers, so to cheap them faster we use different multiplier in such case.
 Default is 3.
 
+cheaper-busyness-backlog-step
+*****************************
+
+This option is only available on linux, it sets the number of emergency workers spawned when listen queue is higher than ``cheaper-busyness-backlog-alert``.
+Defalult is 1.
+
+cheaper-busyness-backlog-nonzero
+********************************
+
+This option is only available on linux, it will spawn new emergency worker(s) if request listen queue is > 0 for more than N second.
+It is used to protect from corner case where there is only single worker running (others are cheaped) and it is handling long running request. If uWSGI receive new requests they would stay in request queue until current long running request is completed, with this option we can detect such condition and spawn new worker to prevent queued requests from being timed out.
+Default is 60.
+
 Notes:
 
 - experiment with settings, there is no one golden rule of what values should be used for everyone, test and pick values that are best for You, carbon stats will make it easy to decide so use them
