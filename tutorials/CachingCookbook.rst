@@ -414,3 +414,100 @@ This option does not allow to set the name of the cache item, so to support clie
    route-if = contains:${HTTP_ACCEPT_ENCODING};gzip cache:key=${REQUEST_URI},name=compressedfiles,content_encoding=gzip
    ; fallback to the uncompressed one
    route-run = cache:key=${REQUEST_URI},name=files
+
+Caching for authenticated users
+*******************************
+
+If you authenticate users with http basic auth, you can differentiate caching for each one using the ${REMOTE_USER} request variable:
+
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; load the PSGI plugin as the default one
+   plugins = 0:psgi,router_cache
+   ; load the Dancer app
+   psgi = myapp.pl
+   ; enable the master process
+   master = true
+   ; spawn 4 processes
+   processes = 4
+   ; bind an http socket to port 9090
+   http-socket = :9090
+   ; log response time with microseconds resolution
+   log-micros = true
+
+   ; create a cache with 100 items (default size per-item is 64k)
+   cache2 = name=mycache,items=100
+   ; check if the user is authenticated
+   route-if-not = empty:${REMOTE_USER} goto:cacheme
+   route-run = break:
+
+   ; the following rules are executed only if REMOTE_USER is defined
+   route-label = cacheme
+   route = ^/$ cache:key=myhome_for_${REMOTE_USER},name=mycache
+   ; store each successfull request (200 http status code) for '/'
+   route = ^/$ cachestore:key=myhome_for_${REMOTE_USER},name=mycache
+
+
+Cookie-based authentication is generally more complex, but the vast majority of time a session id is passed as a cookie.
+
+You may want to use this session_id as the key
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; load the PHP plugin as the default one
+   plugins = 0:php,router_cache
+   ; enable the master process
+   master = true
+   ; spawn 4 processes
+   processes = 4
+   ; bind an http socket to port 9090
+   http-socket = :9090
+   ; log response time with microseconds resolution
+   log-micros = true
+
+   ; create a cache with 100 items (default size per-item is 64k)
+   cache2 = name=mycache,items=100
+   ; check if the user is authenticated
+   route-if-not = empty:${cookie[PHPSESSID]} goto:cacheme
+   route-run = break:
+
+   ; the following rules are executed only if the PHPSESSID cookie is defined
+   route-label = cacheme
+   route = ^/$ cache:key=myhome_for_${cookie[PHPSESSID]},name=mycache
+   ; store each successfull request (200 http status code) for '/'
+   route = ^/$ cachestore:key=myhome_for_${cookie[PHPSESSID]},name=mycache
+
+
+Obviously a malicious user could build a fake session id and could potentially fill your cache. You should always check
+the session id. There is no single solution, but a good example for file-based php session is the following one:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; load the PHP plugin as the default one
+   plugins = 0:php,router_cache
+   ; enable the master process
+   master = true
+   ; spawn 4 processes
+   processes = 4
+   ; bind an http socket to port 9090
+   http-socket = :9090
+   ; log response time with microseconds resolution
+   log-micros = true
+
+   ; create a cache with 100 items (default size per-item is 64k)
+   cache2 = name=mycache,items=100
+   ; check if the user is authenticated
+   route-if-not = empty:${cookie[PHPSESSID]} goto:cacheme
+   route-run = break:
+
+   ; the following rules are executed only if the PHPSESSID cookie is defined
+   route-label = cacheme
+   ; stop if the session file does not exist
+   route-if-not = isfile:/var/lib/php5/sessions/sess_${cookie[PHPSESSID]} break:
+   route = ^/$ cache:key=myhome_for_${cookie[PHPSESSID]},name=mycache
+   ; store each successfull request (200 http status code) for '/'
+   route = ^/$ cachestore:key=myhome_for_${cookie[PHPSESSID]},name=mycache
