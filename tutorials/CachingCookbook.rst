@@ -249,8 +249,8 @@ for images, css and html responses.
    
 Important, every matched 'cachestore' will overwrite the previous one. So we are putting .* as the first rule.
 
-Being more aggressive, the Expires HTTP headers
-***********************************************
+Being more aggressive, the Expires HTTP header
+**********************************************
 
 You can set an expiration for each cache item. If an item has an expire, it will be translated to an HTTP Expires headers.
 This means, once you have sent a cache item to the browser, it will not request it until it expires !!!
