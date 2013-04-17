@@ -183,7 +183,7 @@ We want to cache all of our requests. Some of them returns images and css, while
    ; load the mime types engine
    mime-file = /etc/mime.types
 
-   ; at each request starting with /img check it in the cache
+   ; at each request starting with /img check it in the cache (use mime types engine for the content type)
    route = ^/img/(.+) cache:key=/img/$1,name=mycache,mime=1
 
    ; at each request ending with .css check it in the cache
@@ -192,5 +192,55 @@ We want to cache all of our requests. Some of them returns images and css, while
    ; fallback to text/html all of the others request
    route = .* cache:key=${REQUEST_URI},name=mycache
    ; store each successfull request (200 http status code) in the 'mycache' cache using the REQUEST_URI as key
-   route = ^/$ cachestore:key=${REQUEST_URI},name=mycache
+   route = .* cachestore:key=${REQUEST_URI},name=mycache
 
+
+Multiple caches
+***************
+
+You may want/need to store items in different caches. We can chnage the previous recipe to use three different caches
+for images, css and html responses.
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; load the PSGI plugin as the default one
+   plugins = 0:psgi,router_cache
+   ; load the Dancer app
+   psgi = myapp.pl
+   ; enable the master process
+   master = true
+   ; spawn 4 processes
+   processes = 4
+   ; bind an http socket to port 9090
+   http-socket = :9090
+   ; log response time with microseconds resolution
+   log-micros = true
+
+   ; create a cache with 100 items (default size per-item is 64k)
+   cache2 = name=mycache,items=100
+
+   ; create a cache for images with dynamic size
+   cache2 = name=images,items=20,bitmap=1,blocks=100
+
+   ; a cache for css (20k per-item is more than enough)
+   cache2 = name=stylesheets,items=30,blocksize=20000
+
+   ; load the mime types engine
+   mime-file = /etc/mime.types
+
+   ; at each request starting with /img check it in the cache (use mime types engine for the content type)
+   route = ^/img/(.+) cache:key=/img/$1,name=myimages,mime=1
+
+   ; at each request ending with .css check it in the cache
+   route = \.css$ cache:key=${REQUEST_URI},name=stylesheets,content_type=text/css
+
+   ; fallback to text/html all of the others request
+   route = .* cache:key=${REQUEST_URI},name=mycache
+
+   ; store images and stylesheets in the corresponding caches
+   route = ^/img/ cachestore:key=${REQUEST_URI},name=myimages
+   route = ^/css/ cachestore:key=${REQUEST_URI},name=stylesheets
+
+   ; store each successfull request (200 http status code) in the 'mycache' cache using the REQUEST_URI as key
+   route = .* cachestore:key=${REQUEST_URI},name=mycache
