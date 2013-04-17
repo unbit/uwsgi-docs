@@ -346,4 +346,50 @@ Storing static files in the cache for fast serving
 
 You can populate a uWSGI cache on server startup with static files for fast serving them. The option --load-file-in-cache is the right tool for the job
 
+.. code-block:: ini
 
+   [uwsgi]
+   plugins = 0:notfound,router_cache
+   http-socket = :9090
+   cache2 = name=files,bitmap=1,items=1000,blocksize=10000,blocks=2000
+   load-file-in-cache = files /usr/share/doc/socat/index.html
+   route-run = cache:key=${REQUEST_URI},name=files
+
+You can specify all of the --load-file-in-cache directive you need but a better approach would be
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugins = router_cache
+   http-socket = :9090
+   cache2 = name=files,bitmap=1,items=1000,blocksize=10000,blocks=2000
+   for-glob = /usr/share/doc/socat/*.html
+      load-file-in-cache = files %(_)
+   endfor =
+   route-run = cache:key=${REQUEST_URI},name=files
+
+this will store all of the html files in /usr/share/doc/socat.
+
+Items are stored with the path as the key.
+
+When a non-existent item is requested the connection is closed and you should get an ugly
+
+.. code-block:: sh
+
+   -- unavailable modifier requested: 0 --
+
+
+This is because the internal routing system failed to manage the request, and no request plugin is available to manage the request.
+
+You can build a better infrastructure using the simple 'notfound' plugin (it will always return a 404)
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugins = 0:notfound,router_cache
+   http-socket = :9090
+   cache2 = name=files,bitmap=1,items=1000,blocksize=10000,blocks=2000
+   for-glob = /usr/share/doc/socat/*.html
+      load-file-in-cache = files %(_)
+   endfor =
+   route-run = cache:key=${REQUEST_URI},name=files
