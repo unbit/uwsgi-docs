@@ -5,6 +5,8 @@ This is a cookbook of various caching techniques using :doc:`InternalRouting` an
 
 The examples assume a modular uWSGI build. You can ignore the 'plugins' option, if you are using a monolithic build.
 
+Recipes are tested over uWSGI 1.9.7. Older versions may not work.
+
 Let'start
 *********
 
@@ -220,7 +222,7 @@ for images, css and html responses.
    ; create a cache with 100 items (default size per-item is 64k)
    cache2 = name=mycache,items=100
 
-   ; create a cache for images with dynamic size
+   ; create a cache for images with dynamic size (images can be big, so do not waste memory)
    cache2 = name=images,items=20,bitmap=1,blocks=100
 
    ; a cache for css (20k per-item is more than enough)
@@ -229,18 +231,75 @@ for images, css and html responses.
    ; load the mime types engine
    mime-file = /etc/mime.types
 
-   ; at each request starting with /img check it in the cache (use mime types engine for the content type)
-   route = ^/img/(.+) cache:key=/img/$1,name=myimages,mime=1
+   ; at each request starting with /img check it in the 'images' cache (use mime types engine for the content type)
+   route = ^/img/(.+) cache:key=/img/$1,name=images,mime=1
 
-   ; at each request ending with .css check it in the cache
+   ; at each request ending with .css check it in the 'stylesheets' cache
    route = \.css$ cache:key=${REQUEST_URI},name=stylesheets,content_type=text/css
 
    ; fallback to text/html all of the others request
    route = .* cache:key=${REQUEST_URI},name=mycache
 
-   ; store images and stylesheets in the corresponding caches
-   route = ^/img/ cachestore:key=${REQUEST_URI},name=myimages
-   route = ^/css/ cachestore:key=${REQUEST_URI},name=stylesheets
-
    ; store each successfull request (200 http status code) in the 'mycache' cache using the REQUEST_URI as key
    route = .* cachestore:key=${REQUEST_URI},name=mycache
+   ; store images and stylesheets in the corresponding caches
+   route = ^/img/ cachestore:key=${REQUEST_URI},name=images
+   route = ^/css/ cachestore:key=${REQUEST_URI},name=stylesheets
+
+   
+Important, every matched 'cachestore' will overwrite teh previous one. So we are putting .* as the first rule.
+
+Being more aggressive, the Expires HTTP headers
+***********************************************
+
+You can set an expiration for each cache item. If an item has an expire, it will be translated to an HTTP Expires headers.
+This means, once you have sent a cache item to the browser, it will not request it until it expires !!!
+
+
+We use the previous recipe simply adding different expires to the items
+
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; load the PSGI plugin as the default one
+   plugins = 0:psgi,router_cache
+   ; load the Dancer app
+   psgi = myapp.pl
+   ; enable the master process
+   master = true
+   ; spawn 4 processes
+   processes = 4
+   ; bind an http socket to port 9090
+   http-socket = :9090
+   ; log response time with microseconds resolution
+   log-micros = true
+
+   ; create a cache with 100 items (default size per-item is 64k)
+   cache2 = name=mycache,items=100
+
+   ; create a cache for images with dynamic size (images can be big, so do not waste memory)
+   cache2 = name=images,items=20,bitmap=1,blocks=100
+
+   ; a cache for css (20k per-item is more than enough)
+   cache2 = name=stylesheets,items=30,blocksize=20000
+
+   ; load the mime types engine
+   mime-file = /etc/mime.types
+
+   ; at each request starting with /img check it in the 'images' cache (use mime types engine for the content type)
+   route = ^/img/(.+) cache:key=/img/$1,name=images,mime=1
+
+   ; at each request ending with .css check it in the 'stylesheets' cache
+   route = \.css$ cache:key=${REQUEST_URI},name=stylesheets,content_type=text/css
+
+   ; fallback to text/html all of the others request
+   route = .* cache:key=${REQUEST_URI},name=mycache
+
+   ; store each successfull request (200 http status code) in the 'mycache' cache using the REQUEST_URI as key
+   route = .* cachestore:key=${REQUEST_URI},name=mycache,expires=60
+   ; store images and stylesheets in the corresponding caches
+   route = ^/img/ cachestore:key=${REQUEST_URI},name=images,expires=3600
+   route = ^/css/ cachestore:key=${REQUEST_URI},name=stylesheets,expires=3600
+
+images and stylesheets are cached for 1 hour, while html response are cached for 1 minute
