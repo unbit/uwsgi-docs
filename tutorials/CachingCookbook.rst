@@ -339,3 +339,11 @@ Then check for HTTP_ACCEPT_ENCODING request header. If it contains the 'gzip' wo
 
    ; store each successfull request (200 http status code) for '/' in the 'myhome' item in gzip too
    route = ^/$ cachestore:key=myhome,gzip=gzipped_myhome,name=mycache
+
+
+Storing static files in the cache for fast serving
+**************************************************
+
+You can populate a uWSGI cache on server startup with static files for fast serving them. The option --load-file-in-cache is the right tool for the job
+
+
