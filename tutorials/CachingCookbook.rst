@@ -21,7 +21,7 @@ This is a simple perl/PSGI Dancer app we deploy on an http-socket with 4 process
    dance;
 
 This is the uWSGI config, pay attention to the log-micros directive. The objective of uWSGI in-memory caching is generating a response
-in less than 1 millisecond (yes, this is true), so we want to get the response time logging in miroseconds.
+in less than 1 millisecond (yes, this is true), so we want to get the response time logging in microseconds.
 
 .. code-block:: ini
 
