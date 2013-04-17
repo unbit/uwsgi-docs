@@ -247,7 +247,7 @@ for images, css and html responses.
    route = ^/css/ cachestore:key=${REQUEST_URI},name=stylesheets
 
    
-Important, every matched 'cachestore' will overwrite teh previous one. So we are putting .* as the first rule.
+Important, every matched 'cachestore' will overwrite the previous one. So we are putting .* as the first rule.
 
 Being more aggressive, the Expires HTTP headers
 ***********************************************
