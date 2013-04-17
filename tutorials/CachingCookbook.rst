@@ -153,5 +153,5 @@ You will note less headers too:
 
    Hello World!
 
-This is because only the body of a response is a cached. By default the generated response is set as text/html but you can change it
+This is because only the body of a response is cached. By default the generated response is set as text/html but you can change it
 or let the mime types engine do the work for you (see later)
