@@ -303,3 +303,39 @@ We use the previous recipe simply adding different expires to the items
    route = ^/css/ cachestore:key=${REQUEST_URI},name=stylesheets,expires=3600
 
 images and stylesheets are cached for 1 hour, while html response are cached for 1 minute
+
+
+Storing GZIP variant of an object
+*********************************
+
+Back to the first recipe. We may want to store two copies of a response. The "clean" one and a gzipped one for clients supporting gzip encoding.
+
+To enable the gzip copy you only need to choose a name for the item and pass it as the 'gzip' option of the cachestore action.
+
+Then check for HTTP_ACCEPT_ENCODING request header. If it contains the 'gzip' word you can send it the gzip variant.
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; load the PSGI plugin as the default one
+   plugins = 0:psgi,router_cache
+   ; load the Dancer app
+   psgi = myapp.pl
+   ; enable the master process
+   master = true
+   ; spawn 4 processes
+   processes = 4
+   ; bind an http socket to port 9090
+   http-socket = :9090
+   ; log response time with microseconds resolution
+   log-micros = true
+
+   ; create a cache with 100 items (default size per-item is 64k)
+   cache2 = name=mycache,items=100
+   ; if the client support GZIP give it the gzip body
+   route-if = contains:${HTTP_ACCEPT_ENCODING};gzip cache:key=gzipped_myhome,name=mycache,content_encoding=gzip
+   ; else give it the clear version
+   route = ^/$ cache:key=myhome,name=mycache
+
+   ; store each successfull request (200 http status code) for '/' in the 'myhome' item in gzip too
+   route = ^/$ cachestore:key=myhome,gzip=gzipped_myhome,name=mycache
