@@ -81,8 +81,10 @@ named 'myhome'.
 
 This time we load the router_cache plugin too (it is builtin by default in monolithic servers)
 
-   [uwsgi]
 
+..code-block:: ini
+
+   [uwsgi]
    ; load the PSGI plugin as the default one
    plugins = 0:psgi,router_cache
    ; load the Dancer app
@@ -106,8 +108,10 @@ restart uWSGI and re-run the previous test with curl. Sadly nothing will change.
 
 Because you did not instructed uWSGI to store the plugin response in the cache. You need to use teh cachestore routing action
 
-   [uwsgi]
 
+..code-block:: ini
+
+   [uwsgi]
    ; load the PSGI plugin as the default one
    plugins = 0:psgi,router_cache
    ; load the Dancer app
