@@ -393,3 +393,24 @@ You can build a better infrastructure using the simple 'notfound' plugin (it wil
       load-file-in-cache = files %(_)
    endfor =
    route-run = cache:key=${REQUEST_URI},name=files
+
+
+You can store file in the cache as gzip too using --load-file-in-cache-gzip
+
+This option does not allow to set the name of the cache item, so to support client iwith and without gzip support we can use 2 different caches
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugins = 0:notfound,router_cache
+   http-socket = :9090
+   cache2 = name=files,bitmap=1,items=1000,blocksize=10000,blocks=2000
+   cache2 = name=compressedfiles,bitmap=1,items=1000,blocksize=10000,blocks=2000
+   for-glob = /usr/share/doc/socat/*.html
+      load-file-in-cache = files %(_)
+      load-file-in-cache-gzip = compressedfiles %(_)
+   endfor =
+   ; take the item from the compressed cache
+   route-if = contains:${HTTP_ACCEPT_ENCODING};gzip cache:key=${REQUEST_URI},name=compressedfiles,content_encoding=gzip
+   ; fallback to the uncompressed one
+   route-run = cache:key=${REQUEST_URI},name=files
