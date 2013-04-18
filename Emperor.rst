@@ -48,7 +48,7 @@ Suppose that in :file:`/opt/apps` there are only Django_ apps...
 And then for each app create a symlink::
 
   ln -s /opt/apps/app.skel /opt/apps/app1.ini
-  ln -s /opt/apps/app.skel /opt/apps/app2.ini
+  ln -s /opt/apps/app2.skel /opt/apps/app2.ini
 
 .. _Django: http://djangoproject.com
 
