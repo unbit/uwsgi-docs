@@ -41,3 +41,6 @@ The transformation api
 
 --alarm-fd
 ^^^^^^^^^^
+
+The spooler server plugin and the cheaper busyness algorithm compiled in by default
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
