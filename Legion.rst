@@ -9,13 +9,15 @@ Each node has a valor (different from the others, if possible).
 
 The node with the higher valor is the Lord of the Legion (or if you like a more engineer-friendly term: the master)
 
-This constant fight generates 5 kind of events:
+This constant fight generates 7 kind of events:
 
 1. setup - when legion subsystem is started on a node
 2. join - the first time quorum is reached, only on the newly joined node
 3. lord - when node becomes a lord
 4. unlord - when node loses the lord title
 5. death - when legion subsystem is shuting down
+6. node-joined - when any new node is joined to our legion
+7. node-left - when any node leaves our legion
 
 You can trigger actions every time such an event rises, and this should switch-on the light on your brain...
 
