@@ -103,7 +103,12 @@ Packet descriptions
      - size of Spooler block vars
      - 0- 255
      - :doc:`Spooler` request, the block vars is converted to a dictionary/hash/table and passed to the spooler callable. The second modifier is currently ignored.
-   
+
+   * - 18
+     - size of CGI block vars
+     - 0-255
+     - direct call to c-like symbols   
+
    * - 22
      - size of code string
      - 0- 255
