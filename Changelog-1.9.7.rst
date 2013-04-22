@@ -147,3 +147,17 @@ an example perl startup script:
 
 The spooler server plugin and the cheaper busyness algorithm compiled in by default
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In extremely high-loaded scenario the busyness cheaper algorithm (by Łukasz Mierzwa) has been a real
+silver bullet in the past months allowing adaptive process spawning to be based on real usage time taking in account
+performance and response time. For this reason the plugin is now builtin by default.
+
+In addition to this the remote spooler plugin (allowing external process to enqueue jobs) has been added too in the default build profile.
+
+
+Availability
+************
+
+uWSGI 1.9.7 will be available since 20130422 at this url:
+
+http://projects.unbit.it/downloads/uwsgi-1.9.7.tar.gz
