@@ -64,6 +64,18 @@ The curl_cron plugin has been added allowing the cron subsystem to call urls (vi
 
 The output of the request is reported in the log
 
+The UWSGI_EMBED_PLUGINS build variable
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ou can now embed plugins on the fly during the build phase. Check this example:
+
+.. code-block:: sh
+
+   UWSGI_EMBED_PLUGINS=gridfs,rack UWSGI_PROFILE=psgi make
+
+this will build a monolithic binary with the default profile for psgi + the gridfs and the rack plugins (both embedded in the binary)
+
+
 Gzip caching
 ^^^^^^^^^^^^
 
