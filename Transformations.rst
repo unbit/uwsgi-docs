@@ -79,6 +79,6 @@ Available transformations (last update 20130422)
 Working on
 **********
 
- - rpc, allows applyng rpc functions to a response buffer (limit 64k size)
+ - rpc, allows applying rpc functions to a response buffer (limit 64k size)
  - lua, apply a lua function to a response buffer (no limit in size)
  - memcachedstore, store the response buffer in a memcached object
