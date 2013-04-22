@@ -1,7 +1,7 @@
 The uWSGI Caching Cookbook
 ==========================
 
-This is a cookbook of various caching techniques using :doc:`InternalRouting` and :doc:`Caching`
+This is a cookbook of various caching techniques using :doc:`InternalRouting`, :doc:`Caching` and :doc:`Transformations`
 
 The examples assume a modular uWSGI build. You can ignore the 'plugins' option, if you are using a monolithic build.
 
@@ -511,3 +511,34 @@ the session id. There is no single solution, but a good example for file-based p
    route = ^/$ cache:key=myhome_for_${cookie[PHPSESSID]},name=mycache
    ; store each successfull request (200 http status code) for '/'
    route = ^/$ cachestore:key=myhome_for_${cookie[PHPSESSID]},name=mycache
+
+Caching to files
+****************
+
+Sometimes, instead of caching in memory you want to store static files.
+
+The transformation_tofile plugin allows you to store responses in files:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; load the PHP plugin as the default one
+   plugins = 0:psgi,transformation_tofile,router_static
+   ; load the Dancer app
+   psgi = myapp.pl
+   ; enable the master process
+   master = true
+   ; spawn 4 processes
+   processes = 4
+   ; bind an http socket to port 9090
+   http-socket = :9090
+   ; log response time with microseconds resolution
+   log-micros = true
+
+   ; check if a file exists
+   route-if = isfile:/var/www/cache/${base64[PATH_INFO]}.html static:/var/www/cache/${base64[PATH_INFO]}.html
+   ; otherwise store the response in it
+   route-run = tofile:/var/www/cache/${base64[PATH_INFO]}.html
+
+the base64[] routing var take a request variable content and encode it in base64. As PATH_INFO tend to contains / it is a better approach than storing
+full path names.
