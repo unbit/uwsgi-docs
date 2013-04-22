@@ -66,3 +66,19 @@ The 'toxslt' transformation is exposed by the 'xslt' plugin:
    uwsgi --plugin xslt --http-socket :9090 -w mycd --route-run "toxslt:stylesheet=t/xslt/cd.xml.xslt,params=foobar=test&agent=\${HTTP_USER_AGENT}"
 
 the mycd module is a simple xml generator. Its output is then passed to the xslt transformation
+
+Available transformations (last update 20130422)
+************************************************
+
+ - gzip, exposed by the transformation_gzip plugin (encode the response buffer to gzip)
+ - toupper, exposed by the transformation_toupper plugin (example plugin transforming each character in uppercase)
+ - tofile, exposed by the transformation_tofile plugin (used for caching to response buffer to a static file)
+ - toxslt, exposed by the xslt plugin (apply xslt stylesheet to an xml response buffer)
+ - cachestore, exposed by the router_cache plugin (cache the response buffer in the uWSGI cache)
+
+Working on
+**********
+
+ - rpc, allows applyng rpc functions to a response buffer (limit 64k size)
+ - lua, apply a lua function to a response buffer (no limit in size)
+ - memcachedstore, store the response buffer in a memcached object
