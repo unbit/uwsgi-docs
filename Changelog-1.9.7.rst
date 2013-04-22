@@ -65,17 +65,85 @@ The output of the request is reported in the log
 Gzip caching
 ^^^^^^^^^^^^
 
+The cachestore routing function can now directly store items in gzip format.
+
+Check the CachingCookbook: http://uwsgi-docs.readthedocs.org/en/latest/tutorials/CachingCookbook.html
+
 --skip-atexit
 ^^^^^^^^^^^^^
+
+A bug in the mongodb client library could cause a crash of the uWSGI server during shutdown/reload. This option
+avoid calling atexit() hooks. If you are building a :doc:`GridFS` infrastructure you may want to use this option while the MongoDB guys solve the issue.
 
 proxyhttp and proxyuwsgi
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
+The http and uwsgi routing instructions are now more smart. You can cache their output and get the right status code in the logs.
+
+This requires you to NOT use offloading. If offloading is in place and do not want to use it for this two router use the proxy-prefixed variant
+that will skip offloading.
+
+You can now make cool things like:
+
+.. code-block:: ini
+
+   [uwsgi]
+   socket = 127.0.0.1:3031
+   ; create a cache of 100 items
+   cache = 100
+   ; check if a cached value is available
+   route-run = cache:key=${REQUEST_URI}
+   ; proxy all request to http://unbit.it
+   route-run = http:81.174.68.52:80,unbit.it
+   ; and cache them for 5 minutes
+   route-run = cachestore:key=${REQUEST_URI},expires=300
+
 The transformation api
 ^^^^^^^^^^^^^^^^^^^^^^
 
+A generic api for manipulating the response has been added (cachestore uses it)
+
+check :doc:`Transformations`
+
 --alarm-fd
 ^^^^^^^^^^
+
+We are improving :doc:`AlarmSubsystem` to be less-dependent on loglines. You can now trigger alarms when an fd is ready for read.
+
+This is really useful for integration with the Linux eventfd() facility.
+
+For example you can monitor (and throw an alarm) when your cgroup is running the OOM-Killer:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; define an 'outofmemory' alarm that simply print the alarm in the logs
+   alarm = outofmemory log:
+   ; raise the alarm (with the specified message) when fd is ready (this is an eventfd se we read 8 bytes from the fd)
+   alarm-fd = outofmemory $(CGROUP_OOM_FD):8 OUT OF MEMORY !!!
+
+in this example CGROUP_OOM_FD is an environment variable mapping to the number of an eventfd() filedescriptor inherited from some kind
+of startup script. Maybe (in the near future) we could be able to directly define this kind of monitor directly in uWSGI.
+
+More infos on the eventfd() + cgroup integration are here: https://www.kernel.org/doc/Documentation/cgroups/cgroups.txt
+
+an example perl startup script:
+
+.. code-block:: pl
+
+   use Linux::FD;
+   use POSIX;
+
+   my $foo = Linux::FD::Event->new(0);
+   open OOM,'/sys/fs/cgroup/uwsgi/memory.oom_control';
+   # we dup() the file as Linux::FD::Event set the CLOSE_ON_EXEC bit (why ???)
+   $ENV{'CGROUP_OOM_FD'} = dup(fileno($foo)).'';
+
+   open CONTROL,'>/sys/fs/cgroup/uwsgi/cgroup.event_control';
+   print CONTROL fileno($foo).' '.fileno(OOM)."\n";
+   close CONTROL;
+
+   exec 'uwsgi','mem.ini';
 
 The spooler server plugin and the cheaper busyness algorithm compiled in by default
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
