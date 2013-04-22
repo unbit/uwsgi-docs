@@ -29,6 +29,8 @@ Bugfixes
 
 - more robust error checking for cgroups
 
+- honour SCRIPT_NAME the in the PSGI plugin when multiple perl apps are mounted
+
 
 New features
 ************
