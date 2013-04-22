@@ -67,6 +67,7 @@ Table of Contents
    Upstart
    SystemD
    Embed
+   LogFormat
    Glossary
 
 uWSGI Subsystems
@@ -94,6 +95,7 @@ uWSGI Subsystems
    StaticFiles
    SNI
    GeoIP
+   Transformations
 
 
 
