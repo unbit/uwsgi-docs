@@ -536,9 +536,9 @@ The transformation_tofile plugin allows you to store responses in files:
    log-micros = true
 
    ; check if a file exists
-   route-if = isfile:/var/www/cache/${base64[PATH_INFO]}.html static:/var/www/cache/${base64[PATH_INFO]}.html
+   route-if = isfile:/var/www/cache/${hex[PATH_INFO]}.html static:/var/www/cache/${hex[PATH_INFO]}.html
    ; otherwise store the response in it
-   route-run = tofile:/var/www/cache/${base64[PATH_INFO]}.html
+   route-run = tofile:/var/www/cache/${hex[PATH_INFO]}.html
 
-the base64[] routing var take a request variable content and encode it in base64. As PATH_INFO tend to contains / it is a better approach than storing
-full path names.
+the hex[] routing var take a request variable content and encode it in hexadecimal. As PATH_INFO tend to contains / it is a better approach than storing
+full path names (or using other encoding scheme like base64 that can include slashes too)
