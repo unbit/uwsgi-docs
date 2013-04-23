@@ -144,6 +144,26 @@ add new vars to add new features to your application.
 
 Check the :doc:`GeoIP` for an example
 
+There are a series of embedded routing vars, this is a list updated to 20130422:
+
+mime, returns the mime type of the specified var: ${mime[REQUEST_URI]}
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = ^/images/(.+) addvar:MYFILE=$1.jpg
+   route = ^/images/ addheader:Content-Type: ${mime[MYFILE]}
+
+time, returns time/date in various form. The only supported (for now) is time[unix] returning the epoch
+
+math, requires matheval support. Example: math[CONTENT_LENGTH+1]
+
+base64, encode the specified var in base64
+
+hex, encode the specified var in hex
+
+uwsgi, return internal uWSGI infos, uwsgi[wid] and uwsgi[pid] are currently supported
+
 
 Is not --route-if enough ? Why --route-uri and friends ?
 ********************************************************
