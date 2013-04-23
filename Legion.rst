@@ -85,7 +85,7 @@ the system is still vulnerable to the split brain problem. If a node lose networ
 going in Lord mode.
 
 For some scenario this is bad, so if you have more than 2 nodes in a legion you may want to consider tuning the quorum level.
-The quorum level is the amount of votes (from different nodes) to receive needed to elect a lord. 
+The quorum level is the amount of votes (from different nodes) to receive needed to elect a lord.
 
 You can reduce the split brain problem asking the Legion subsystem to check for at least 2 votes:
 
@@ -106,7 +106,10 @@ You can reduce the split brain problem asking the Legion subsystem to check for 
    legion-death = clusterip cmd:ip addr del 192.168.173.111/24 dev eth0
 
 
-The legion-quorum is the option for the job
+The legion-quorum is the option for the job. 
+
+Starting with 1.9.7 you can use nodes with valor 0 (concept similar to MongoDB Arbiter Nodes), such nodes will be counted when checking for quorum but will never become The Lord.
+This allows to use bigger legions (> 2 nodes) with quorum option enabled for spit brain protection, in cases when lords can only run on 1 or 2 nodes.
 
 Actions
 *******
