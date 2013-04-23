@@ -185,6 +185,23 @@ Language support
    GridFS
 
 
+Release Notes
+=============
+
+.. toctree::
+   :maxdepth: 1
+
+   Changelog-1.9.8
+   Changelog-1.9.7
+   Changelog-1.9.6
+   Changelog-1.9.5
+   Changelog-1.9.4
+   Changelog-1.9.3
+   Changelog-1.9.2
+   Changelog-1.9.1
+   Changelog-1.9
+
+
 Contact
 =======
 
