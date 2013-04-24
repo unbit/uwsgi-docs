@@ -86,7 +86,7 @@ You can add more processes with the ``--processes`` option or more threads with 
 
 .. code-block:: sh
 
-   uwsgi --http :9090 --wsgi-file foobar.py --processes 4 --threads 2
+   uwsgi --http :9090 --wsgi-file foobar.py --master --processes 4 --threads 2
 
 this will spawn 4 processes (each with 2 threads), a master process that will respawn your processes when they die and the HTTP router seen before.
 
@@ -96,7 +96,7 @@ The stats subsystem allows you to export uWSGI internal statistics via json
 
 .. code-block:: sh
 
-   uwsgi --http :9090 --wsgi-file foobar.py --processes 4 --threads 2 --stats 127.0.0.1:9191
+   uwsgi --http :9090 --wsgi-file foobar.py --master --processes 4 --threads 2 --stats 127.0.0.1:9191
 
 make some request to your app and then telnet to the port 9191. You will get lot of funny infos.
 
@@ -128,7 +128,7 @@ Now we can spawn uWSGI to natively speak the uwsgi protocol
 
 .. code-block:: sh
 
-   uwsgi --socket 127.0.0.1:3031 --wsgi-file foobar.py --processes 4 --threads 2 --stats 127.0.0.1:9191
+   uwsgi --socket 127.0.0.1:3031 --wsgi-file foobar.py --master --processes 4 --threads 2 --stats 127.0.0.1:9191
 
 if you run ps aux you will see one process less. The http router has been removed as our "workers" (the processes assigned to uWSGI)
 natively speak the uwsgi protocol.
@@ -152,7 +152,7 @@ We suppose the django project is in /home/foobar/myproject
 
 .. code-block:: sh
 
-   uwsgi --socket 127.0.0.1:3031 --chdir /home/foobar/myproject/ --wsgi-file myproject/wsgi.py --processes 4 --threads 2 --stats 127.0.0.1:9191
+   uwsgi --socket 127.0.0.1:3031 --chdir /home/foobar/myproject/ --wsgi-file myproject/wsgi.py --master --processes 4 --threads 2 --stats 127.0.0.1:9191
 
 with --chdir we move to a specific directory. In django this is required to correctly load modules.
 
@@ -310,7 +310,7 @@ they are created soon before dropping privileges and can be referenced with the 
 
 A common problem with webapp deployment is "stuck requests". All of your threads/workers are stuck blocked on a request and your app cannot accept more requests.
 
-To avoid that problem you can set an ``harakiri`` timer. It is a monitor (managed by the master process) that will destroy processes stuck for more than the pecified number of seconds
+To avoid that problem you can set an ``harakiri`` timer. It is a monitor (managed by the master process) that will destroy processes stuck for more than the specified number of seconds
 
 .. code-block:: ini
 
