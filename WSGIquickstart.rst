@@ -53,7 +53,7 @@ no sense for you, just continue reading)
 The first WSGI application
 **************************
 
-Let's start with the simple hello world example:
+Let's start with the simple hello world example (this is for python 2.x, python 3.x requires the returned string to be bytes, see later):
 
 .. code-block:: python
 
@@ -65,6 +65,14 @@ save it as foobar.py
 
 As you can see it is composed by a single python function. It is called "application" as this is the default function
 that the uWSGI python loader will search for (but you can obviously customize it)
+
+The python 3.x version is the following:
+
+.. code-block:: python
+
+   def application(env, start_response):
+       start_response('200 OK', [('Content-Type','text/html')])
+       return b"Hello World"
 
 Deploy it on HTTP port 9090
 ***************************
