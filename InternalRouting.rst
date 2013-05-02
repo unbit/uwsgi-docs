@@ -536,6 +536,35 @@ basicauth-last
 
 same as basicauth but returns CONTINUE on successfull authentication
 
+ldapauth
+^^^^^^^^
+
+This auth router is part of ldap plugin, build and load this plugin to use it.
+Same as basicauth router, but uses LDAP server for authentication, syntax:
+
+ldapauth:realm,options
+
+Avaiable options:
+
+* url - LDAP server URI (required)
+* binddn - DN used for binding, set if LDAP server does not allow anonymous searches
+* bindpw - password for binddn user
+* basedn - base DN used when searching for users (required)
+* filter - filter used when searching for users (default is "(objectClass=*)")
+* attr - LDAP attribute that holds user login (default is "uid")
+* loglevel - 0 - don't log any binds, 1 - log authentication errors, 2 - log both successful and failed binds
+
+Example:
+
+.. code-block:: ini
+
+   route = ^/protected route-run = ldapauth:LDAP auth realm,url=ldap://ldap.domain.com;basedn=ou=users,dc=domain;binddn=uid=proxy,ou=users,dc=domain;bindpw=password;loglevel=1;filter=(objectClass=posixAccount)
+
+ldapauth-last
+^^^^^^^^^^^^^
+
+same as ldapauth but returns CONTINUE on successfull authentication
+
 cache
 ^^^^^
 
