@@ -70,7 +70,6 @@ The following return codes are supported:
 * NEXT (continue to the next rule)
 * CONTINUE (stop scanning the internal routing table and run the request)
 * BREAK (stop scanning the internal routing table and close the request)
-* GOON (continue to the next rule with an action plugin different from the current one)
 
 When a rule does not match, NEXT is assumed
 
@@ -253,15 +252,6 @@ can optionally returns the specified HTTP status code:
    route = ^/notfound break:404 Not Found
    route = ^/bad break:
    route = ^/error break:500
-
-goon
-^^^^
-
-return value: GOON
-
-jump (forward) to the first rule with the action plugin different from the current one.
-
-This function is only for internal use.
 
 log
 ^^^
@@ -486,7 +476,7 @@ serve a static file from the specified path
 basicauth
 ^^^^^^^^^
 
-return value: GOON (NEXT on failed authentication)
+return value: NEXT (break 401 on failed authentication)
 
 plugin: router_basicauth
 
@@ -502,10 +492,8 @@ Example:
 .. code-block:: ini
 
    [uwsgi]
-   route = ^/foo basicauth:My Realm,foo:bar
+   route = ^/foo basicauth-next:My Realm,foo:bar
    route = ^/foo basicauth:My Realm,foo2:bar2
-   # The following rule is required as the last one will never match and an HTTP 401 would never be triggered
-   route = ^/foo basicauth:My Realm,
    route = ^/bar basicauth:Another Realm,kratos:
 
 Example: using basicauth for Trac
@@ -525,16 +513,16 @@ Example: using basicauth for Trac
    module = trac.web.main:dispatch_request
 
    ; trigger authentication on /login
-   route = ^/login basicauth:Trac Realm,pippo:pluto
+   route = ^/login basicauth-next:Trac Realm,pippo:pluto
    route = ^/login basicauth:Trac Realm,foo:bar
 
    ;high performance file serving
    static-map = /chrome/common=/usr/local/lib/python2.7/dist-packages/trac/htdocs
 
-basicauth-last
+basicauth-next
 ^^^^^^^^^^^^^^
 
-same as basicauth but returns CONTINUE on successfull authentication
+same as basicauth but returns NEXT on failed authentication
 
 ldapauth
 ^^^^^^^^
@@ -558,12 +546,12 @@ Example:
 
 .. code-block:: ini
 
-   route = ^/protected route-run = ldapauth:LDAP auth realm,url=ldap://ldap.domain.com;basedn=ou=users,dc=domain;binddn=uid=proxy,ou=users,dc=domain;bindpw=password;loglevel=1;filter=(objectClass=posixAccount)
+   route = ^/protected ldapauth:LDAP auth realm,url=ldap://ldap.domain.com;basedn=ou=users,dc=domain;binddn=uid=proxy,ou=users,dc=domain;bindpw=password;loglevel=1;filter=(objectClass=posixAccount)
 
-ldapauth-last
+ldapauth-next
 ^^^^^^^^^^^^^
 
-same as ldapauth but returns CONTINUE on successfull authentication
+same as ldapauth but returns NEXT on failed authentication
 
 cache
 ^^^^^
@@ -597,10 +585,6 @@ radius
 
 in development
 
-ldap
-^^^^
-
-in development
 
 xslt
 ^^^^
