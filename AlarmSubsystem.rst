@@ -255,6 +255,22 @@ It simply uses the speechsynthesizer to 'announce' the alarm
 
 turn on your amplifiers, run uWSGI and start listening...
 
+airbrake
+^^^^^^^^
+
+Starting with 1.9.9 uWSGI includes --alarm-segfault option that can be used to raise alarm when uWSGI segfaults,
+and airbrake plugin that can be used to send segfault backtraces to airbrake compatible servers,
+like its open source clone errbit (https://github.com/errbit/errbit).
+Airbrake support is experimental and it might not fully work in all cases.
+
+.. code-block:: ini
+
+   plugins = airbrake
+   alarm = errbit airbrake:http://errbit.domain.com/notifier_api/v2/notices;apikey=APIKEY;subject=uWSGI segfault
+   alarm-segfault = errbit
+
+Note that alarm-segfault does not require airbrake plugin, backtrace can be sent using any other alarm plugin.
+
 ******
 Notes
 ******
