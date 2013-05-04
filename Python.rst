@@ -103,7 +103,8 @@ That's it! No additional configuration or Python modules to write.
 Using the uwsgi_admin Django app
 --------------------------------
 
-First of all you need to get ``uwsgi_admin`` app from https://github.com/unbit/uwsgi_django (once it was in the ``django`` directory of the distribution).
+First of all you need to get the ``uwsgi_admin`` app from https://github.com/unbit/uwsgi_django (once it was in the ``django`` directory of the distribution).
+
 It plugs into Django's admin app, so if ``uwsgi_admin`` is importable, just add it into your ``INSTALLED_APPS``.
 
 .. code-block:: py
@@ -124,5 +125,6 @@ Then modify your ``urls.py`` accordingly. For example:
     url(r'^admin/', include(admin.site.urls)),
     # ...
 
-Be sure to place the URL pattern for the uwsgi_admin above the one for the admin site, or it will never match.
+Be sure to place the URL pattern for uwsgi_admin *before* the one for the admin site, or it will never match.
+
 ``/admin/uwsgi/`` will then serve uWSGI statistics and has a button for graceful reloading of the server (when running under a Master). Note that memory usage is reported only when the ``memory-report`` option is enabled.
