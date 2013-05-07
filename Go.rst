@@ -187,6 +187,11 @@ You can access the uWSGI api from your Go app, pretty easily. Just invoke the fu
 
    package main
 
+   import (
+      "fmt"
+      "uwsgi"
+   )
+
    func hello2(signum int) {
            fmt.Println("I am an rb_timer running on mule", uwsgi.MuleId())
    }
