@@ -43,8 +43,8 @@ The radius plugin
 The SPNEGO plugin
 ^^^^^^^^^^^^^^^^^
 
-The ldapauth authenticator
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+The ldap authenticator
+^^^^^^^^^^^^^^^^^^^^^^
 
 New internal routing features
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
