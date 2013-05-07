@@ -9,10 +9,6 @@ Metric subsystem
 think about persistent storage
 
 
-Storage subsystem
-*****************
-
-
 Better Erlang integration
 *************************
 
