@@ -70,6 +70,14 @@ The xattr plugin
 The airbrake plugin
 ^^^^^^^^^^^^^^^^^^^
 
+Legion Daemons
+^^^^^^^^^^^^^^
+
+No, it is not a blackmetal band, it is a new feature of :doc:`Legion` allowing you to run external processes
+only when an instance is a lord:
+
+--touch-exec
+^^^^^^^^^^^^
 
 
 Availability
