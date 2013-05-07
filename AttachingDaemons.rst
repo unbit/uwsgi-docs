@@ -24,8 +24,6 @@ for processes requiring longer persistence and for which a brutal kill could mea
 The last kind of processes is an 'expansion' of the second one. If your process does not support daemonization or writing to pidfile you can let the master do the hard work.
 Very few daemons/applications requires that feature, but it could be useful for tiny prototype applications or simply bad-designed ones.
 
-
-
 Examples
 ********
 
@@ -103,3 +101,21 @@ This requires that */dev/pts* filesystem is mounted inside namespace and that th
    exec-as-root = chown -R www-data /etc/dropbear
    attach-daemon = /usr/sbin/dropbear -j -k -p 1022 -E -F -I 300
 
+Legion support
+**************
+
+Starting with uWSGI 1.9.9 it's possible to use :doc:`Legion` subsystem for daemon management.
+Legion daemons will will be executed only on the legion lord node, so there will always be a single daemon instance running in each legion, once lord dies daemon will be respawned on another node.
+To add legion daemon use --legion-attach-daemon, --legion-smart-attach-daemon and --legion-smart-attach-daemon2 options, they have the same syntax as normal daemon options, the only difference is that you need to add legion name as first argument.
+
+Example:
+
+Managing **celery beat**
+
+.. code-block:: ini
+
+   [uwsgi]
+   master = true
+   socket = :3031
+   legion-mcast = mylegion 225.1.1.1:9191 90 bf-cbc:mysecret
+   legion-smart-attach-daemon = mylegion /tmp/celery-beat.pid celery beat --pidfile=/tmp/celery-beat.pid
