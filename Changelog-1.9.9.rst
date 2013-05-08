@@ -42,6 +42,8 @@ Basically half of the uWSGI features will be no more usable in go apps.
 
 Things could change in the future, but currently our objective is better integration with the gccgo project.
 
+Go 1.0.x will continue to be supported (unless gccgo shows itself as a better alternative)
+
 More to come soon.
 
 Improved async modes
