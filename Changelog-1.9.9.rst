@@ -121,6 +121,17 @@ The ldap authenticator
 
 (Author: Łukasz Mierzwa)
 
+Currently it lacks SASL support. Will be improved soon.
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   plugins = router_ldapauth
+   route = ^/a ldapauth:LDAP realm,url=ldap://ldap.domain,com;basedn=ou=users,dc=domain.com;binddn=uid=proxy,dc=domain,dc=com;bindpw=password
+
+
+
 New internal routing features
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -183,6 +194,10 @@ The airbrake plugin
 
 (Author: Łukasz Mierzwa)
 
+Currently at early stage of development allows sending uWSGI exceptions and alarms to airbrake servers.
+
+Official docs will be available soon.
+
 Legion Daemons
 ^^^^^^^^^^^^^^
 
@@ -190,6 +205,25 @@ Legion Daemons
 
 No, it is not a blackmetal band, it is a new feature of :doc:`Legion` allowing you to run external processes
 only when an instance is a lord:
+
+.. code-block:: ini
+
+   [uwsgi]
+
+   master = true
+   http = :8081
+   stats = :2101
+   wsgi-file = tests/staticfile.py
+
+   logdate = true
+
+   legion = legion1 225.1.1.1:19678 100 bf-cbc:abc
+   legion-node = legion1 225.1.1.1:19678
+
+   legion-attach-daemon = legion1 memcached -p 10001
+
+   legion-smart-attach-daemon = legion1 /tmp/memcached.pid memcached -p 10002 -d -P /tmp/memcached.pid
+
 
 --touch-exec
 ^^^^^^^^^^^^
