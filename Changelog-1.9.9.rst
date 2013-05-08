@@ -246,9 +246,13 @@ You can now use the caching subsystem to store 64bit signed numbers and apply at
 The uwsgi api has been extended with 5 new functions (currently exposed only by the python plugin):
 
 *uwsgi.cache_num(key[,cache]) -> get the 64bit number from the specified item
+
 *uwsgi.cache_inc(key[,amount=1,expires,cache]) -> increment the specified key by the specified amount
+
 *uwsgi.cache_dec(key[,amount=1,expires,cache]) -> deccrement the specified key by the specified amount
+
 *uwsgi.cache_mul(key[,amount=2,expires,cache]) -> multiply the specified key by the specified amount
+
 *uwsgi.cache_div(key[,amount=2,expires,cache]) -> divide the specified key by the specified amount
 
 The new api has been exposed to the routing subsystem, allowing you to implement advanced patterns, like the request limiter:
