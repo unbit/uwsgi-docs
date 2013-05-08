@@ -31,6 +31,39 @@ New Features
 The WebDav plugin
 ^^^^^^^^^^^^^^^^^
 
+WebDav is one of the much requested features for the project. We now have a beta-quality plugin, already supporting
+additional standards like the carddav:
+
+https://github.com/unbit/uwsgi/blob/master/t/webdav/carddav.ini
+
+The official modifier is 35, and to mount a simple directory as a webdav shares (for use with windows, gnome...) you only need to
+specify the --webdav-mount option:
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugin = webdav
+   http-socket = :9090
+   http-socket-modifier1 = 35
+   webdav-mount = /home/foobar
+
+remember to protect shares:
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugin = webdav,router_basicauth
+   http-socket = :9090
+   http-socket-modifier1 = 35
+   route-run = basicauth:CardDav uWSGI server,unbit:unbit
+   webdav-mount = /home/foobar
+
+WebDav attributes are stored as filesystem xattr, so be sure to use a filesystem supporting them (ext4, xfs, hfs+...)
+
+LOCK/UNLOCK support is still incomplete
+
+Official docs will be available soon.
+
 Support for Go 1.1 (more or less, sad news for go users...)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -49,11 +82,39 @@ More to come soon.
 Improved async modes
 ^^^^^^^^^^^^^^^^^^^^
 
+Stackless, Greenlet and Fiber support have been updated to support new async features
+
 The radius plugin
 ^^^^^^^^^^^^^^^^^
 
+You can now authenticate over radius servers using the router_radius plugin:
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugin = webdav,router_radius
+   http-socket = :9090
+   http-socket-modifier1 = 35
+   route-run = radius:realm=CardDav uWSGI server,server=127.0.0.1:1812
+   webdav-mount = /home/foobar
+
 The SPNEGO plugin
 ^^^^^^^^^^^^^^^^^
+
+Another authentication backend, using SPNEGO (kerberos)
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugin = webdav,router_spnego
+   http-socket = :9090
+   http-socket-modifier1 = 35
+   route-run = spnego:HTTP@localhost
+   webdav-mount = /home/foobar
+
+The plugin is beta quality as it leaks memory (it looks like a bug in MIT-kerberos) and Heimdal implementation does not work.
+
+More reports are wellcomed
 
 The ldap authenticator
 ^^^^^^^^^^^^^^^^^^^^^^
