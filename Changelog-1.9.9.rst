@@ -31,8 +31,18 @@ New Features
 The WebDav plugin
 ^^^^^^^^^^^^^^^^^
 
-Support for Go 1.1
-^^^^^^^^^^^^^^^^^^
+Support for Go 1.1 (more or less, sad news for go users...)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Albeit you can successfully embed go 1.1 apps in uWSGI, go 1.1 will be completely fork() unsafe.
+
+That means you are not able to use multiprocessing, the master, mules and so on.
+
+Basically half of the uWSGI features will be no more usable in go apps.
+
+Things could change in the future, but currently our objective is better integration with the gccgo project.
+
+More to come soon.
 
 Improved async modes
 ^^^^^^^^^^^^^^^^^^^^
@@ -78,6 +88,10 @@ only when an instance is a lord:
 
 --touch-exec
 ^^^^^^^^^^^^
+
+
+Math for cache
+^^^^^^^^^^^^^^
 
 
 Availability
