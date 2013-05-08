@@ -122,23 +122,59 @@ The ldap authenticator
 New internal routing features
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Removed the GOON action
+We removed the GOON action, as it was messy and basically useless with the new authentication approach
 
-setscriptname
+The "setscriptname" action has been added to override the internally computed SCRIPT_NAME (not only the var)
 
-donotlog
+The "donotlog" action forces uWSGI to not log the current request
 
-route-if regexp
+The "regexp" routing conditions has been improved to allows grouping. Now you can easily manipulate strings and adding them as new request VARS:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   route-if = regexp:${REQUEST_URI};^/(.)oo addvar:PIPPO=$1
+   route-run = log:PIPPO IS ${PIPPO}
+
+this will take the first char of foo and place in the PIPPO request var
 
 Gevent atexit hook
 ^^^^^^^^^^^^^^^^^^
+
+uwsgi.atexit hook is now honoured by the gevent plugin (Author: André Cruz)
 
 
 Streaming transformations
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Transformations can be applied on the fly (no buffering involved).
+
+Check updated docs: :doc:`Transformations`
+
 The xattr plugin
 ^^^^^^^^^^^^^^^^
+
+The xattr plugin allows you to reference files extended attributes in the internal routing subsystem:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   route-run = addvar:MYATTR=user.uwsgi.foo.bar
+   route-run = log:The attribute is ${xattr[/tmp/foo:MYATTR]}
+
+
+or (variant with 2 vars)
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   route-run = addvar:MYFILE=/tmp/foo
+   route-run = addvar:MYATTR=user.uwsgi.foo.bar
+   route-run = log:The attribute is ${xattr2[MYFILE:MYATTR]}
+
 
 The airbrake plugin
 ^^^^^^^^^^^^^^^^^^^
