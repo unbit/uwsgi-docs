@@ -1,7 +1,7 @@
 uWSGI 1.9.9
 ===========
 
-Changelog [20130507]
+Changelog [20130508]
 
 Special Warning !!!
 *******************
@@ -119,6 +119,8 @@ More reports are wellcomed
 The ldap authenticator
 ^^^^^^^^^^^^^^^^^^^^^^
 
+(Author: Łukasz Mierzwa)
+
 New internal routing features
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -179,8 +181,12 @@ or (variant with 2 vars)
 The airbrake plugin
 ^^^^^^^^^^^^^^^^^^^
 
+(Author: Łukasz Mierzwa)
+
 Legion Daemons
 ^^^^^^^^^^^^^^
+
+(Author: Łukasz Mierzwa)
 
 No, it is not a blackmetal band, it is a new feature of :doc:`Legion` allowing you to run external processes
 only when an instance is a lord:
@@ -188,12 +194,41 @@ only when an instance is a lord:
 --touch-exec
 ^^^^^^^^^^^^
 
+A new "touch" option (like --touch-reload) is available, triggering the execution of a command:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   touch-exec = /tmp/foobar run_my_script.sh
+   touch-exec = /var/test/foo.txt run_my_second_script.sh arg1 arg2
+
 
 Math for cache
 ^^^^^^^^^^^^^^
 
+You can now use the caching subsystem to store 64bit signed numbers and apply atomic operations on them.
+
+The uwsgi api has been extended with 5 new functions (currently exposed only by the python plugin):
+
+*uwsgi.cache_num(key[,cache]) -> get the 64bit number from the specified item
+*uwsgi.cache_inc(key[,amount=1,cache]) -> increment the specified key by the specified amount
+*uwsgi.cache_dec(key[,amount=1,cache]) -> deccrement the specified key by the specified amount
+*uwsgi.cache_mul(key[,amount=2,cache]) -> multiply the specified key by the specified amount
+*uwsgi.cache_div(key[,amount=2,cache]) -> divide the specified key by the specified amount
+
+The new api has been exposed to the routing subsystem, allowing you to implement advanced patterns, like the request limiter:
+
+https://github.com/unbit/uwsgi/blob/master/t/routing/limiter.ini
+
+the example shows hot to limit the request of a single ip to 10 every 30 seconds
+
+The long-term objective of this new feature is being the base for the upcoming metric subsystem
 
 Availability
 ************
 
+uWSGI 1.9.9 will be availabel since 20130508 at the following url
+
+http://projects.unbit.it/downloads/uwsgi-1.9.9.tar.gz
 
