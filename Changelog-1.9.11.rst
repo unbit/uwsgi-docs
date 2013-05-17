@@ -59,10 +59,13 @@ The xmlrpc wrapper workx in the same way (but it uses the modifier2 '3'). It req
    
 just call it:
 
-.. code-block::py
+.. code-block::python
 
    proxy = xmlrpclib.ServerProxy("http://localhost:9090')
    proxy.hello('foo','bar','test') 
+   
+
+
    
 you can combine multiple wrappers using routing:
 
