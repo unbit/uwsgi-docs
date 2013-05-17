@@ -6,8 +6,8 @@ Changelog
 Bugfixes
 ********
 
-New featurs
-***********
+New features
+************
 
 The new high-performance PyPy plugin
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
