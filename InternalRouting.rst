@@ -161,7 +161,7 @@ base64, encode the specified var in base64
 
 hex, encode the specified var in hex
 
-uwsgi, return internal uWSGI infos, uwsgi[wid] and uwsgi[pid] are currently supported
+uwsgi, return internal uWSGI information, uwsgi[wid] and uwsgi[pid] are currently supported
 
 
 Is not --route-if enough ? Why --route-uri and friends ?

@@ -24,7 +24,7 @@ java-1.6.0-openjdk.x86_64-devel or java-1.7.0-openjdk-devel.x86_64 or on debian/
 
 OSX/X-Code default paths are searched too.
 
-For more infos on the JVM plugin check :doc:`JVM`
+For more information on the JVM plugin check :doc:`JVM`
 
 After a successfull build you will have the uwsgi binary and a uwsgi.jar file that you should copy in your CLASSPATH (or just remember
 to set it in the uwsgi configuration everytime).

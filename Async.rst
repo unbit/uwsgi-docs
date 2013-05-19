@@ -23,13 +23,10 @@ the ``--async <n>`` option
 
 Currently the uWSGI distribution includes the following suspend/resume engines:
 
-``uGreen`` Unbit greenthreads implementation (based on swapcontext() )
-
-``Greenlet`` Python greenlet module
-
-``Stackless`` Stackless python
-
-``Fiber`` Ruby 1.9 fibers
+* ``uGreen`` - Unbit's greenthread implementation (based on `swapcontext()`)
+* ``Greenlet`` - Python greenlet module
+* ``Stackless`` Stackless Åython
+* ``Fiber`` - Ruby 1.9 fibers
 
 Running the uWSGI async mode without a proper suspend/resume engine will raise a warning, so for a minimal non-blocking app
 you will need something like that:
@@ -39,8 +36,8 @@ you will need something like that:
    uwsgi --async 100 --ugreen --socket :3031
 
 An important aspect of suspend/resume engines is that they can easily destroy your process if it is not aware of them.
-Some of the language plugins (most-notably python) has hooks to cooperate flawlessly with coroutine/greenthreads. Other languages
-may fail miserably. Always check the uWSGI mailinglist or irc channel for updated infos.
+Some of the language plugins (most notably Python) has hooks to cooperate flawlessly with coroutine/greenthreads. Other languages
+may fail miserably. Always check the uWSGI mailing list or IRC channel for updated information.
 
 Older uWSGI releases supported an additional system: callbacks.
 

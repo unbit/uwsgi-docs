@@ -16,7 +16,7 @@ Building the JVM support
 First of all, be sure to have a full JDK distibution installed.
 
 The uWSGI build system will try to detect common JDK setup (debian,ubuntu,centos, OSX...), but if it is not able
-to find a JDK installation it will need infos from the user (see below).
+to find a JDK installation it will need information from the user (see below).
 
 To build the JVM plugin simply run:
 
