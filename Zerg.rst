@@ -22,6 +22,8 @@ Enabling the zerg server
 
 If you want an uWSGI instance to be rushed by zerg, you have to enable the Zerg server. It will be bound to an UNIX socket and will pass uwsgi socket file descriptors to the Zerg workers connecting to it.
 
+.. warning:: The socket must be an UNIX socket because it must be capable of passing through file descriptors. A TCP socket simply will not work.
+
 For security reasons the UNIX socket does not inherit the ``chmod-socket`` option, but will always use the current umask.
 
 If you have filesystem permission issues, on Linux you can use the UNIX sockets in abstract namespace, by prepending an ``@`` to the socket name.
