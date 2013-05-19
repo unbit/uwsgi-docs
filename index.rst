@@ -67,6 +67,7 @@ Table of Contents
    Upstart
    SystemD
    Embed
+   Logging
    LogFormat
    Glossary
 
