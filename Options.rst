@@ -172,6 +172,7 @@ Create a zeromq pub/sub pair.
 Run the udp server on the specified address.
 
 Mainly useful for SNMP or shared UDP logging.
+
 .. :seealso:: :doc:`Logging`, :doc:`SNMP`
 
 .. _OptionReusePort:
@@ -425,6 +426,7 @@ Spawn the emperor before jailing and privilege dropping.
 **Argument:** number
 
 Run the emperor in Broodlord mode.
+
 .. :seealso:: :doc:`Broodlord`
 
 .. _OptionEmperorThrottle:
@@ -521,6 +523,7 @@ When a vassal asks for 'heartbeat mode' the emperor will also expect a 'heartbea
 **Argument:** optional number
 
 Automatically make workers snapshot after reload.
+
 .. :seealso:: :doc:`Snapshot`
 
 .. _OptionReloadMercy:
@@ -804,6 +807,7 @@ Load config from sqlite3 db.
 **Argument:** number
 
 Load configuration from ldap server.
+
 .. :seealso:: :doc:`LDAP`
 
 .. _OptionLdapSchema:
@@ -813,6 +817,7 @@ Load configuration from ldap server.
 **Argument:** no argument
 
 Dump uWSGI ldap schema.
+
 .. :seealso:: :doc:`LDAP`
 
 .. _OptionLdapSchemaLdif:
@@ -822,6 +827,7 @@ Dump uWSGI ldap schema.
 **Argument:** no argument
 
 Dump uWSGI ldap schema in ldif format.
+
 .. :seealso:: :doc:`LDAP`
 
 
@@ -1269,6 +1275,7 @@ Be verbose about SSL errors.
 Enable the embedded SNMP server.
 
 *This option may be declared multiple times.*
+
 .. :seealso:: :doc:`SNMP`
 
 .. _OptionSnmpCommunity:
@@ -1285,7 +1292,7 @@ Alarms
 
 .. seealso::
 
-   :doc:`Alarms`
+   :doc:`AlarmSubsystem`
 
 .. _OptionAlarm:
 
@@ -1334,6 +1341,7 @@ uWSGI Process
 **Argument:** *logfile*
 
 Daemonize uWSGI and write messages into given log file or UDP socket address.
+
 .. :seealso:: :doc:`Logging`
 
 .. _OptionDaemonize2:
@@ -1343,6 +1351,7 @@ Daemonize uWSGI and write messages into given log file or UDP socket address.
 **Argument:** *logfile*
 
 Daemonize uWSGI after loading application, write messages into given log file or UDP socket address.
+
 .. :seealso:: :doc:`Logging`
 
 .. _OptionStop:
@@ -1352,6 +1361,7 @@ Daemonize uWSGI after loading application, write messages into given log file or
 **Argument:** *pidfile*
 
 Send the stop (SIGINT) signal to the instance described by the pidfile.
+
 .. :seealso:: :doc:`Management`
 
 .. _OptionReload:
@@ -1361,6 +1371,7 @@ Send the stop (SIGINT) signal to the instance described by the pidfile.
 **Argument:** *pidfile*
 
 Send the reload (SIGHUP) signal to the instance described by the pidfile.
+
 .. :seealso:: :doc:`Management`
 
 .. _OptionPause:
@@ -1370,6 +1381,7 @@ Send the reload (SIGHUP) signal to the instance described by the pidfile.
 **Argument:** *pidfile*
 
 Send the pause (SIGTSTP) signal to the instance described by the pidfile.
+
 .. :seealso:: :doc:`Management`
 
 .. _OptionSuspend:
@@ -1379,6 +1391,7 @@ Send the pause (SIGTSTP) signal to the instance described by the pidfile.
 **Argument:** *pidfile*
 
 Send the suspend (SIGTSTP) signal to the instance described by the pidfile.
+
 .. :seealso:: :doc:`Management`
 
 .. _OptionResume:
@@ -1388,6 +1401,7 @@ Send the suspend (SIGTSTP) signal to the instance described by the pidfile.
 **Argument:** *pidfile*
 
 Send the resume (SIGTSTP) signal to the instance described by the pidfile.
+
 .. :seealso:: :doc:`Management`
 
 .. _OptionAutoProcname:
@@ -1583,6 +1597,7 @@ Run the specified command before app loading.
 Put the processes in the specified cgroup (Linux only).
 
 *This option may be declared multiple times.*
+
 .. :seealso:: :doc:`Cgroups`
 
 .. _OptionCgroupOpt:
@@ -1594,6 +1609,7 @@ Put the processes in the specified cgroup (Linux only).
 Set value in specified cgroup option.
 
 *This option may be declared multiple times.*
+
 .. :seealso:: :doc:`Cgroups`
 
 .. _OptionNamespace:
@@ -1603,6 +1619,7 @@ Set value in specified cgroup option.
 **Argument:** string
 
 Run in a new namespace under the specified rootfs.
+
 .. :seealso:: :doc:`Namespaces`
 
 .. _OptionNamespaceKeepMount:
@@ -1612,6 +1629,7 @@ Run in a new namespace under the specified rootfs.
 **Argument:** *<mount>[:<jailed-mountpoint>]*
 
 Keep the specified mountpoint in your namespace, optionally renaming it.
+
 .. :seealso:: :doc:`Namespaces`
 
 .. _OptionNamespaceNet:
@@ -1679,6 +1697,7 @@ Patch the uwsgi binary with a new command and arguments (after privileges drop).
 **Argument:** number
 
 Enable async mode with specified cores.
+
 .. :seealso:: :doc:`Async`
 
 .. _OptionMaxFd:
@@ -1774,6 +1793,7 @@ Create a raw shared memory area of specified number of pages.
 This option may be set with ``-A`` from the command line.
 
 This enables the SharedArea. This is a low level shared memory. If you want a more usable/user-friendly system look at the caching framework.
+
 .. :seealso:: :doc:`SharedArea`
 
 .. _OptionCgiMode:
@@ -2703,6 +2723,7 @@ Automatically add HTTP headers to response.
 **Argument:** no argument
 
 Enable virtualhosting mode (based on SERVER_NAME variable).
+
 .. :seealso:: :doc:`VirtualHosting`
 
 .. _OptionVhostHost:
@@ -2714,6 +2735,7 @@ Enable virtualhosting mode (based on SERVER_NAME variable).
 Enable virtualhosting mode (based on HTTP_HOST variable).
 
 By default the virtualhosting mode use the SERVER_NAME variable as the hostname key. If you want to use the HTTP_HOST one (corresponding to the Host: header) add this option
+
 .. :seealso:: :doc:`VirtualHosting`
 
 
@@ -3130,6 +3152,7 @@ Loop engines
 **Argument:** string
 
 Select the uWSGI loop engine (advanced).
+
 .. :seealso:: :doc:`LoopEngine`
 
 .. _OptionLoopList:
@@ -3637,6 +3660,7 @@ Run the fastrouter in cheap mode (do not respond to requests unless a node is av
 **Argument:** *corerouter ss*
 
 Add a Subscription Server to the fastrouter to build the hostname:address map.
+
 .. :seealso:: :doc:`SubscriptionServer`
 
 .. _OptionFastrouterTimeout:
@@ -4247,6 +4271,7 @@ This option may be set with ``-J`` from the command line.
 Set PYTHONHOME/virtualenv.
 
 This option may be set with ``-H`` from the command line.
+
 .. :seealso:: :doc:`Virtualenv`
 
 .. _OptionPyProgramname:
@@ -4276,6 +4301,7 @@ Add directory (or an .egg or a glob) to the Python search path. This can be spec
 Add a python alias module.
 
 *This option may be declared multiple times.*
+
 .. :seealso:: :doc:`PyModuleAlias`
 
 .. _OptionPostPymoduleAlias:
@@ -4345,6 +4371,7 @@ This option may be set with ``-O`` from the command line.
 **Argument:** string
 
 Load a paste.deploy config file.
+
 .. :seealso:: :doc:`PythonPaste`
 
 .. _OptionPasteLogger:

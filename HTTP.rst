@@ -12,13 +12,7 @@ HTTP sockets
 
 The ``http-socket <bind>`` option will make uWSGI natively speak HTTP.
 
-If your web server does not support the `uwsgi protocol <Protocol.rst>`_
-
-.. only:: html
-
-   :doc:`Protocol`
-
-but is able to speak to upstream HTTP proxies, or if you are using a service like Webfaction or Heroku to host your application, you can use ``http-socket``.
+If your web server does not support the :doc:`uwsgi protocol <Protocol>` but is able to speak to upstream HTTP proxies, or if you are using a service like Webfaction or Heroku to host your application, you can use ``http-socket``.
 
 If you plan to expose your app to the world with uWSGI only, use the ``http`` option instead, as the router/proxy/load-balancer will then be your shield.
 

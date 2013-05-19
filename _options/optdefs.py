@@ -212,7 +212,7 @@ def core_options():
         s.o("snmp", [str], "Enable the embedded SNMP server", docs=["SNMP"])
         s.o("snmp-community", str, "Set the SNMP community string")
 
-    with config.section("Alarms", docs = ["Alarms"]) as s:
+    with config.section("Alarms", docs = ["AlarmSubsystem"]) as s:
         s.o("alarm", [str], "Create a new alarm. Syntax: <alarm> <plugin:args>")
         s.o("alarm-freq", int, "tune the alarm anti-loop system (default 3 seconds)")
         s.o("log-alarm", [str], "raise the specified alarm when a log line matches the specified regexp, syntax: <alarm>[,alarm...] <regexp>")
