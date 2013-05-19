@@ -1,88 +1,68 @@
 Formatting uWSGI requests logs (from 1.3-dev)
-====================================
+=============================================
 
-Starting from 1.3-dev uWSGI exports a --logformat option allowing you to build custom request loglines
+Starting from 1.3-dev uWSGI has a ``--logformat`` option allowing you to build custom request loglines.
 
 The syntax is simple:
 
 .. code-block:: ini
 
    [uwsgi]
-   logformat = i am a logline reporting "%(method) %(uri) %(proto)" returning with status %(status) 
+   logformat = i am a logline reporting "%(method)``%(uri) %(proto)" returning with status %(status)`` 
 
-All of the %() marked variables are substitued using specific rules.
+All of the %() marked variables are substituted using specific rules.
 
-Currently 3 kind of logvars are defined:
+Currently 3 kinds of logvars are defined:
 
 offsetof
 ********
 
-they are taken blindly from the wsgi_request structure of the current request
+These are taken blindly from the internal ``wsgi_request`` structure of the current request.
 
-.. code-block:: sh
-
-   %(uri) -> REQUEST_URI
-   %(method) -> REQUEST_METHOD
-   %(user) -> REMOTE_USER
-   %(addr) -> REMOTE_ADDR
-   %(host) -> HTTP_HOST
-   %(proto) -> SERVER_PROTOCOL
-
-and from 1.4.5
-
-.. code-block:: sh
-
-   %(uagent) -> HTTP_USER_AGENT
-   %(referer) -> HTTP_REFERER
-
+* ``%(uri)`` -> REQUEST_URI
+* ``%(method)`` -> REQUEST_METHOD
+* ``%(user)`` -> REMOTE_USER
+* ``%(addr)`` -> REMOTE_ADDR
+* ``%(host)`` -> HTTP_HOST
+* ``%(proto)`` -> SERVER_PROTOCOL
+* ``%(uagent)`` -> HTTP_USER_AGENT (starting from 1.4.5)
+* ``%(referer)`` -> HTTP_REFERER (starting from 1.4.5)
 
 
 functions
 *********
 
-they are simple functions called for generating the logvar value
+These are simple functions called for generating the logvar value
 
-.. code-block:: sh
+* ``%(status)`` -> HTTP response status code
+* ``%(micros)`` -> response time in microseconds
+* ``%(msecs)`` -> respone time in milliseconds
+* ``%(time)`` -> timestamp of the start of the request
+* ``%(ctime)`` -> ctime of the start of the request
+* ``%(epoch)`` -> the current time in unix format
+* ``%(size)`` -> response body size + response headers size (since 1.4.5)
+* ``%(ltime) -> human-formatted (apache style)`` request time (since 1.4.5)
+* ``%(hsize)`` -> response headers size (since 1.4.5)
+* ``%(rsize)`` -> response body size (since 1.4.5)
+* ``%(cl)`` -> request content body size (since 1.4.5)
+* ``%(pid)`` -> pid of the worker handling the request (since 1.4.6)
+* ``%(wid)`` -> id of the worker handling the request (since 1.4.6)
+* ``%(switches)`` -> number of async switches (since 1.4.6)
+* ``%(vars)`` -> number of CGI vars in the request (since 1.4.6)
+* ``%(headers)`` -> number of generated response headers (since 1.4.6)
+* ``%(core)`` -> the core running the request (since 1.4.6)
+* ``%(vsz)`` -> address space/virtual memory usage (in bytes) (since 1.4.6)
+* ``%(rss)`` -> RSS memory usage (in bytes) (since 1.4.6)
+* ``%(vszM)`` -> address space/virtual memory usage (in megabytes) (since 1.4.6)
+* ``%(rssM)`` -> RSS memory usage (in megabytes) (since 1.4.6)
+* ``%(pktsize)`` -> size of the internal request uwsgi packet (since 1.4.6)
+* ``%(modifier1)`` -> modifier1 of the request (since 1.4.6)
+* ``%(modifier2)`` -> modifier2 of the request (since 1.4.6)
 
-   %(status) -> HTTP response status code
-   %(micros) -> response time in microseconds
-   %(msecs) -> respone time in milliseconds
-   %(time) -> timestamp of the start of the request
-   %(ctime) -> ctime of the start of the request
-   %(epoch) -> the current time in unix format
-
-and from 1.4.5
-
-.. code-block:: sh
-
-   %(size) -> response body size + response headers size
-   %(ltime) -> human-formatted (apache style) request time
-   %(hsize) -> response headers size
-   %(rsize) -> response body size
-   %(cl) -> request content body size
-
-and from 1.4.6
-
-.. code-block:: sh
-
-   %(pid) -> pid of the worker handling the request
-   %(wid) -> id of the worker handling the request
-   %(switches) -> number of async switches
-   %(vars) -> number of CGI vars in the request
-   %(headers) -> number of generated response headers
-   %(core) -> the core running the request
-   %(vsz) -> address space/virtual memory usage (in bytes)
-   %(rss) -> RSS memory usage (in bytes)
-   %(vszM) -> address space/virtual memory usage (in megabytes)
-   %(rssM) -> RSS memory usage (in megabytes)
-   %(pktsize) -> size of the internal request uwsgi packet
-   %(modifier1) -> modifier1 of the request
-   %(modifier2) -> modifier2 of the request
-
-user-defined logvars
+User-defined logvars
 ********************
 
-you can define logvars directly from your code (they are freed after each request)
+You can define logvars within your request handler. The variables live only per-request.
 
 .. code-block:: python
 
@@ -94,75 +74,73 @@ you can define logvars directly from your code (they are freed after each reques
        uwsgi.set_logvar('worker_id', str(uwsgi.worker_id()))
        ...
 
-if you set a logformat like that
-
+With a log format such as this
 
 .. code-block:: sh
 
-   uwsgi --logformat "worker id = %(worker_id) for request \"%(method) %(uri) %(proto)\" test = %(foo)"
+   uwsgi --logformat "worker id =``%(worker_id) for request \"%(method) %(uri)`` %(proto)\" test = %(foo)"
 
-you will be able to access code-defined logvars
+you will be able to access code-defined logvars.
 
 Apache style combined request logging
 *************************************
 
-If you want to generate apache-compatible logs, just apply what you have learnt
+If you want to generate Apache-compatible logs, just apply what you have learned:
 
 .. code-block:: ini
 
    [uwsgi]
    ...
-   log-format = %(addr) - %(user) [%(ltime)] "%(method) %(uri) %(proto)" %(status) %(size) "%(referer)" "%(uagent)"
+   log-format =``%(addr) - %(user) [%(ltime)] "%(method) %(uri) %(proto)" %(status) %(size)`` "%(referer)" "%(uagent)"
    ...
 
 
 Hacking logformat
 *****************
 
-If you want to add more c-based variables, open logging.c and go to the end of the file.
+If you want to add more C-based variables, open logging.c and go to the end of the file.
 
-Adding vars is really easy
+Adding vars is really easy:
 
 .. code-block:: c
 
-                if (!uwsgi_strncmp(ptr, len, "uri", 3)) {
-                        logchunk->pos = offsetof(struct wsgi_request, uri);
-                        logchunk->pos_len = offsetof(struct wsgi_request, uri_len);
-                }
-                else if (!uwsgi_strncmp(ptr, len, "method", 6)) {
-                        logchunk->pos = offsetof(struct wsgi_request, method);
-                        logchunk->pos_len = offsetof(struct wsgi_request, method_len);
-                }
-                else if (!uwsgi_strncmp(ptr, len, "user", 4)) {
-                        logchunk->pos = offsetof(struct wsgi_request, remote_user);
-                        logchunk->pos_len = offsetof(struct wsgi_request, remote_user_len);
-                }
-                else if (!uwsgi_strncmp(ptr, len, "addr", 4)) {
-                        logchunk->pos = offsetof(struct wsgi_request, remote_addr);
-                        logchunk->pos_len = offsetof(struct wsgi_request, remote_addr_len);
-                }
-                else if (!uwsgi_strncmp(ptr, len, "host", 4)) {
-                        logchunk->pos = offsetof(struct wsgi_request, host);
-                        logchunk->pos_len = offsetof(struct wsgi_request, host_len);
-                }
-                else if (!uwsgi_strncmp(ptr, len, "proto", 5)) {
-                        logchunk->pos = offsetof(struct wsgi_request, protocol);
-                        logchunk->pos_len = offsetof(struct wsgi_request, protocol_len);
-                }
-                else if (!uwsgi_strncmp(ptr, len, "status", 6)) {
-                        logchunk->type = 3;
-                        logchunk->func = uwsgi_lf_status;
-                        logchunk->free = 1;
-                }
+    if (!uwsgi_strncmp(ptr, len, "uri", 3)) {
+            logchunk->pos = offsetof(struct wsgi_request, uri);
+            logchunk->pos_len = offsetof(struct wsgi_request, uri_len);
+    }
+    else if (!uwsgi_strncmp(ptr, len, "method", 6)) {
+            logchunk->pos = offsetof(struct wsgi_request, method);
+            logchunk->pos_len = offsetof(struct wsgi_request, method_len);
+    }
+    else if (!uwsgi_strncmp(ptr, len, "user", 4)) {
+            logchunk->pos = offsetof(struct wsgi_request, remote_user);
+            logchunk->pos_len = offsetof(struct wsgi_request, remote_user_len);
+    }
+    else if (!uwsgi_strncmp(ptr, len, "addr", 4)) {
+            logchunk->pos = offsetof(struct wsgi_request, remote_addr);
+            logchunk->pos_len = offsetof(struct wsgi_request, remote_addr_len);
+    }
+    else if (!uwsgi_strncmp(ptr, len, "host", 4)) {
+            logchunk->pos = offsetof(struct wsgi_request, host);
+            logchunk->pos_len = offsetof(struct wsgi_request, host_len);
+    }
+    else if (!uwsgi_strncmp(ptr, len, "proto", 5)) {
+            logchunk->pos = offsetof(struct wsgi_request, protocol);
+            logchunk->pos_len = offsetof(struct wsgi_request, protocol_len);
+    }
+    else if (!uwsgi_strncmp(ptr, len, "status", 6)) {
+            logchunk->type = 3;
+            logchunk->func = uwsgi_lf_status;
+            logchunk->free = 1;
+    }
 
-
-for function-based vars the prototype is
+For function-based vars the prototype is
 
 .. code-block:: c
 
    ssize_t uwsgi_lf_foobar(struct wsgi_request *wsgi_req, char **buf);
 
-where buf is the destination buffer for the logvar value (this will be automatically freed if you set logchunk->free as in the "status" related c-code previously reported)
+where ``buf`` is the destination buffer for the logvar value (this will be automatically freed if you set ``logchunk->free`` as in the "status" related C-code previously reported).
 
 .. code-block:: c
 
