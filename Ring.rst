@@ -1,17 +1,11 @@
 The Clojure/Ring JVM request handler
 ====================================
 
-Thanks to the :doc:`JVM` plugin available from 1.9, Clojure web app can be run on uWSGI.
+Thanks to the :doc:`JVM` plugin available from 1.9, Clojure web apps can be run on uWSGI.
 
-The supported webserver-gatway standard is Ring:
+The supported gateway standard is Ring, https://github.com/ring-clojure/ring . Its full specification is available here: https://github.com/ring-clojure/ring/blob/master/SPEC
 
-https://github.com/ring-clojure/ring
-
-its full spec are available here:
-
-https://github.com/ring-clojure/ring/blob/master/SPEC
-
-A uWSGI build profile named "ring" is available for generating a monolithic build with the jvm plugin and the ring one.
+A uWSGI build profile named "ring" is available for generating a monolithic build with both the JVM and Ring plugins.
 
 From the uWSGI sources:
 
@@ -19,22 +13,22 @@ From the uWSGI sources:
 
    UWSGI_PROFILE=ring make
 
-The build system will try to detect your JDK installation based on various presets (for example on centos you can yum install 
-java-1.6.0-openjdk.x86_64-devel or java-1.7.0-openjdk-devel.x86_64 or on debian/ubuntu openjdk-6-jdk and so on...)
+The build system will try to detect your JDK installation based on various presets (for example on CentOS you can ``yum install 
+java-1.6.0-openjdk.x86_64-devel`` or ``java-1.7.0-openjdk-devel.x86_64`` or on Debian/Ubuntu ``openjdk-6-jdk`` and so on...).
 
-OSX/X-Code default paths are searched too.
+OSX/Xcode default paths are searched too.
 
-For more infos on the JVM plugin check :doc:`JVM`
+After a successful build you will have the uwsgi binary and a uwsgi.jar file that you should copy in your CLASSPATH (or just remember
+to set it in the uwsgi configuration every time).
 
-After a successfull build you will have the uwsgi binary and a uwsgi.jar file that you should copy in your CLASSPATH (or just remember
-to set it in the uwsgi configuration everytime).
+.. seealso:: For more information on the JVM plugin check :doc:`JVM`
 
 Our first Ring app
 ******************
 
-A basic clojure ring app could be the following (save it as myapp.clj):
+A basic Clojure/Ring app could be the following (save it as myapp.clj):
 
-.. code-block:: clojure
+.. code-block:: Clojure
 
    (ns myapp)
 
@@ -62,73 +56,73 @@ We can now build a configuration serving that app on the HTTP router on port 909
    clojure-load = myapp.clj
    ring-app = myapp:handler
 
-run uWSGI:
+Run uWSGI:
 
 .. code-block:: sh
 
    ./uwsgi config.ini
 
-now connect to port 9090 and you should see the app response.
+Now connect to port 9090 and you should see the app response.
 
-As you can note we have manually added to our classpath uwsgi.jar and the leiningen standalone jar (it includes the whole clojure distribution).
+As you can note we have manually added uwsgi.jar and the Leiningen standalone jar (it includes the whole Clojure distribution) to our classpath.
 
-Obviously if you do not want to use leiningen, just add the clojure jar to your classpath
+Obviously if you do not want to use Leiningen, just add the Clojure jar to your classpath.
 
-The ``clojure-load`` load a clojure script in the JVM (very similar to what ``jvm-class`` do with the basic jvm plugin).
+The ``clojure-load`` option loads a Clojure script in the JVM (very similar to what ``jvm-class`` do with the basic jvm plugin).
 
 The ``ring-app`` option specify the class/namespace in which to search for the ring function entry point.
 
 In our case the function is in the 'myapp' namespace and it is called 'handler' (you can understand that the syntax is namespace:function)
 
-Pay attention to the modifier config. The JVM plugin register itself as the 8 one, while the ring plugin register itself to the JVM parent-one as '1' (that you set as the modifier2)
+Pay attention to the modifier configuration. The JVM plugin registers itself as 8, while Ring registers itself as modifier 2 #1, yielding an effective configuration of "modifier1 8, modifier2 1".
 
 Using Leiningen
 ***************
 
-Leiningen is a great tool for managing clojure projects. If you use clojure, you are very probably a Leiningen user.
+Leiningen is a great tool for managing Clojure projects. If you use Clojure, you are very probably a Leiningen user.
 
-One of the great advantages of leiningen is the easy generation of single jar distribution. That means you can deploy a whole app
+One of the great advantages of Leiningen is the easy generation of a single JAR distribution. That means you can deploy a whole app
 with a single file.
 
-Let's create a new helloworld ring application with lein
+Let's create a new "helloworld" Ring application with the ``lein`` command.
 
 .. code-block:: sh
 
    lein new helloworld
 
-move it to the just created 'helloworld' directory and edit the project.clj file
+Move it to the just created 'helloworld' directory and edit the project.clj file
 
-.. code-block:: clojure
+.. code-block:: Clojure
 
    (defproject helloworld "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.4.0"]])
+  :dependencies [[org.Clojure/Clojure "1.4.0"]])
 
-we want to add the ring-core package to our dependancies (it contains a set of classes/modules to simplify the writing of ring apps) and obviously we need to change description and url:
+We want to add the ``ring-core`` package to our dependencies (it contains a set of classes/modules to simplify the writing of ring apps) and obviously we need to change the description and URL:
 
-.. code-block:: clojure
+.. code-block:: Clojure
 
    (defproject helloworld "0.1.0-SNAPSHOT"
   :description "My second uWSGI ring app"
   :url "https://uwsgi-docs.readthedocs.org/en/latest/Ring.html"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.4.0"] [ring/ring-core "1.2.0-beta1"]])
+  :dependencies [[org.Clojure/Clojure "1.4.0"] [ring/ring-core "1.2.0-beta1"]])
 
-save it and run
+Now save it and run...
 
 .. code-block:: sh
 
    lein repl
 
-this will install all of the jar we need and will move us to the clojure console (just exit from it for now)
+This will install all of the jars we need and move us to the Clojure console (just exit from it for now).
 
-Now we want to write our ring app, just edit the file src/helloworld/core.clj and place the following content in it:
+Now we want to write our Ring app, just edit the file src/helloworld/core.clj and place the following content in it:
 
-.. code-block:: clojure
+.. code-block:: Clojure
 
    (ns helloworld.core
     (:use ring.util.response))
@@ -138,9 +132,9 @@ Now we want to write our ring app, just edit the file src/helloworld/core.clj an
     (content-type "text/plain")))
 
 
-then edit (again) project.clj to instruct leiningen on which namespaces to build:
+Then re-edit project.clj to instruct Leiningen on which namespaces to build:
 
-.. code-block:: clojure
+.. code-block:: Clojure
 
    (defproject helloworld "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
@@ -150,10 +144,9 @@ then edit (again) project.clj to instruct leiningen on which namespaces to build
 
   :aot [helloworld.core]
 
-  :dependencies [[org.clojure/clojure "1.4.0"] [ring/ring-core "1.2.0-beta1"]])
+  :dependencies [[org.Clojure/Clojure "1.4.0"] [ring/ring-core "1.2.0-beta1"]])
 
-
-as you can see we have added helloworld.core in the :aot keyword
+As you can see we have added helloworld.core in the ``:aot`` keyword.
 
 Now let's compile our code:
 
@@ -161,19 +154,19 @@ Now let's compile our code:
 
    lein compile
 
-and build the full jar (the uberjar):
+And build the full jar (the uberjar):
 
 .. code-block:: sh
 
    lein uberjar
 
-if all goes well you should see a message like that at the end of the procedure:
+If all goes well you should see a message like this at the end of the procedure:
 
 .. code-block:: sh
 
    Created /home/unbit/helloworld/target/helloworld-0.1.0-SNAPSHOT-standalone.jar
 
-annotate the path somewhere and let's configure uWSGI to run our application
+Take a note of the path so we can configure uWSGI to run our application.
 
 .. code-block:: ini
 
@@ -189,11 +182,11 @@ annotate the path somewhere and let's configure uWSGI to run our application
 
    ring-app = helloworld.core:handler
 
-This time we do not load clojure code, but directly a JVM class.
+This time we do not load Clojure code, but directly a JVM class.
 
-Pay attention, when you specify a JVM class you have to use the '/' form, not that dot one !!!
+Pay attention: when you specify a JVM class you have to use the '/' form, not the usual dotted form.
 
-The __init suffix is automatically added by the system when your app is compiled.
+The __init suffix is automatically added by the Clojure system when your app is compiled.
 
 The ``ring-app`` set the entry point to the helloworld.core namespace and the function 'handler'.
 
@@ -202,7 +195,7 @@ We can access that namespace as we have loaded it with ``jvm-class``
 Concurrency
 ***********
 
-As all of the JVM plugin request handlers, multithreading is the best way to achieve concurrency.
+As all of the JVM plugin request handlers, multi-threading is the best way to achieve concurrency.
 
 Threads in the JVM are really solid, do not be afraid to use them (even if you can spawn multiple processes too)
 
@@ -224,16 +217,16 @@ Threads in the JVM are really solid, do not be afraid to use them (even if you c
    processes = 4
    threads = 8
 
-this setup will spawn 4 uWSGI processes (workers) with 8 threads each (for a total of 32 threads)
+This setup will spawn 4 uWSGI processes (workers) with 8 threads each (for a total of 32 threads).
 
 Accessing the uWSGI api
 ***********************
 
-Clojure can call native java classes too, so it is able to access the uWSGI api exposed bu the JVM plugin.
+Clojure can call native Java classes too, so it is able to access the uWSGI API exposed by the JVM plugin.
 
-The following example shows how to call a function (written in python) via clojure:
+The following example shows how to call a function (written in python) via Clojure:
 
-.. code-block:: clojure
+.. code-block:: Clojure
 
    (ns myapp
     (import uwsgi)
@@ -246,7 +239,7 @@ The following example shows how to call a function (written in python) via cloju
      }
    )
 
-The "reverse" function has been registered from a python module:
+The "reverse" function has been registered from a Python module:
 
 .. code-block:: python
  
@@ -256,7 +249,7 @@ The "reverse" function has been registered from a python module:
    def contrario(arg):
        return arg[::-1]
 
-This is the used config:
+This is the used configuration:
 
 .. code-block:: ini
 
@@ -265,24 +258,21 @@ This is the used config:
    http-modifier1 = 8
    http-modifier2 = 1 
    jvm-classpath = plugins/jvm/uwsgi.jar
-   jvm-classpath = /usr/share/java/clojure-1.4.jar
-   clojure-load = myapp.clj
+   jvm-classpath = /usr/share/java/Clojure-1.4.jar
+   Clojure-load = myapp.clj
    plugin = python
    import = pyrpc.py
    ring-app = myapp:handler
    master = true
 
-Another useful feature is accessing the uwsgi cache. Remember that cache key are string while values are bytes.
+Another useful feature is accessing the uwsgi cache. Remember that cache keys are string while values are bytes.
 
-The uWSGI ring implementation supports byte array in addition to string for the response. This is obviously a violation of the standard
-but avoids you to re-encode bytes every time (but obviously you are free to do it)
+The uWSGI Ring implementation supports byte array in addition to string for the response. This is obviously a violation of the standard
+but avoids you to re-encode bytes every time (but obviously you are free to do it if you like).
 
 Notes and status
 ****************
 
-A shortcut option allowing to load compiled code and specifying the ring app would be cool
-
-As the :doc:`JWSGI` handler, all of the uWSGI performance features are automatically used (like when sending static files
-or buffering input)
-
-The plugin has been realized with the cooperation (and the ideas) of Mingli Yuan
+* A shortcut option allowing to load compiled code and specifying the ring app would be cool.
+* As with the :doc:`JWSGI` handler, all of the uWSGI performance features are automatically used (like when sending static files or buffering input)
+* The plugin has been developed with the cooperation and ideas of Mingli Yuan. Thanks!

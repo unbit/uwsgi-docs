@@ -31,29 +31,33 @@ To enable cheaper mode You need to add ``cheaper = N`` option to uWSGI configura
 
 
 This will tell uWSGI to run up to 10 workers under load, if app is idle uWSGI will stop workers but it will always leave at least 2 of them running.
-With ``cheaper-initial`` You can control how many workers should be spawned at startup, so if Your average load requires more than minimum number of workers You can have them spawned right away and than cheaped if load is low enough.
-When cheaper algorithm decides that it needs more worker it will spawn ``cheaper-step`` number of them, this is useful if You have high maximum number of workers -- if load spike hit Your app it could take a lot of time to spawn all of them one by one.
+With ``cheaper-initial`` you can control how many workers should be spawned at startup. If your average load requires more than minimum number of workers you can have them spawned right away and then cheaped (killed off) if load is low enough.
+When the cheaper algorithm decides that it needs more workers it will spawn ``cheaper-step`` of them. This is useful if you have a high maximum number of workers -- in the occasion a sudden load spike hits your app it could otherwise take a lot of time to spawn enough workers one by one.
 
-spare cheaper algorithm
------------------------
+``spare`` cheaper algorithm
+---------------------------
 
-This is default algorithm.
-If all workers are busy for ``cheaper_overload`` seconds than uWSGI will spawn new workers. If load is gone it will start to stop processes one at a time.
+This is the default algorithm.
+If all workers are busy for ``cheaper_overload`` seconds then uWSGI will spawn new workers. When the load is gone it will begin stopping processes one at a time.
 
-backlog cheaper algorithm
--------------------------
+``backlog`` cheaper algorithm
+-----------------------------
 
-Only available on Linux.
-If listen queue has more than ``cheaper_overload`` requests waiting to be processed uWSGI will spawn new workers.
-If it's lower it will start to stop processes one at a time.
+.. note:: ``backlog`` is only available on Linux and only on TCP sockets (not UNIX domain sockets).
 
-cheaper busyness algorithm
+If the socket's listen queue has more than ``cheaper_overload`` requests waiting to be processed uWSGI will spawn new workers.
+If the backlog is lower it will start to stop processes one at a time.
+
+``cheaper`` busyness algorithm
 --------------------------
 
-This algorithm is optional, it is only available if cheaper_busyness plugin is compiled and loaded.
+.. note:: This algorithm is optional, it is only available if the ``cheaper_busyness`` plugin is compiled and loaded.
 
-This plugin implements cheaper algorithm that adds or remove workers based on average utilization for given time period. It's goal is to keep more workers than the minimum needed at given time, so that app always have some room for new requests. If You want to run only minimum number of workers than use spare or backlog algorithms.
-This plugin exist mostly because the way spare and backlog plugins works causes very aggressive scaling behavior, if You set low ``cheaper`` value (for example 1), than uWSGI will keep only 1 worker running and spawn new workers only when running worker is overloaded. If Your app requires more workers, than uWSGI will be spawning and stopping workers all the time, only during night time when load is very low minimum number of workers will be enough. Busyness algorithm tries to do the opposite: spawn as many workers as needed and stop some of them only when there is a good chance that they are not needed. This means more stable worker count and much less respawns, and since for most of the time we have little more workers than actually needed, average application respond times should be lower than with other plugins.
+This plugin implements a cheaper algorithm that adds or remove workers based on average utilization for given time period. It's goal is to keep more workers than the minimum needed available at any given time, so that the app will always have some room for new requests. If you want to run only minimum number of workers then use the spare or backlog algorithms.
+
+This plugin exists mostly because the way spare and backlog plugins work causes very aggressive scaling behavior. If you set a low ``cheaper`` value (for example 1), then uWSGI will keep only 1 worker running and spawn new workers only when that running worker is overloaded.
+If your app requires more workers, then uWSGI will be spawning and stopping workers all the time, only during times of very low load (such as nights) the minimum number of workers will be enough.
+The Busyness algorithm tries to do the opposite: spawn as many workers as needed and stop some of them only when there is a good chance that they are not needed. This should lead to a more stable worker count and much less respawns, and since for most of the time we have little more workers than actually needed, average application respond times should be lower than with other plugins.
 
 Options:
 
@@ -66,18 +70,18 @@ Specify intervals (in seconds) for tracking average busyness of workers. Example
 
    cheaper-overload = 30
 
-will to check busyness every 30 seconds, if during last 30 seconds all workers were running for 3 seconds and they were idle for remaining 27 seconds, than calculated busyness will be at 10% (3/30). This value will decide how fast uWSGI can respond to load spikes, new workers will be spawned at most every ``cheaper-overload`` seconds unless You are running uWSGI on linux (see ``cheaper-busyness-backlog-alert`` for details). If You want to react faster to load spikes than keep this value low, so that busyness will be calculated more often and proper action can be taken, but keep in mind that this might cause workers to be started/stopped more often since every minor spike might spawn new workers. With high ``cheaper-overload`` worker count will change much less since longer cycles will eat all short spikes of load and extreme values.
+will to check busyness every 30 seconds. If during the last 30 seconds all workers were running for 3 seconds and idle for the remaining 27 seconds the calculated busyness will be 10% (3/30). This value will decide how fast uWSGI can respond to load spikes. New workers will be spawned at most every ``cheaper-overload`` seconds (unless you are running uWSGI on Linux -- see ``cheaper-busyness-backlog-alert`` for details).
+If you want to react to load spikes faster then keep this value low, so that busyness will be calculated more often and proper action can be taken.Keep in mind though that this might cause workers to be started/stopped more often than required since every minor spike may spawn new workers. With a high ``cheaper-overload`` value the worker count will change much less since longer cycles will eat all short spikes of load and extreme values.
 
 cheaper-step
 ************
 
-How many workers to spawn when any cheaper algorithm decide that it is needed.
-Default is 1.
+How many workers to spawn when any cheaper algorithm decide that it is needed. Default is 1.
 
 cheaper-initial
 ***************
 
-How many workers should be started when starting application, after app is started cheaper algorithm can stop or start workers if needed.
+How many workers should be started when starting the application. After the app is started cheaper algorithm can stop or start workers if needed.
 
 cheaper-busyness-max
 ********************
@@ -104,12 +108,12 @@ Example:
    cheaper-busyness-multiplier = 20
    cheaper-busyness-min = 25
 
-If average workers busyness is under 25% for 20 checks in a row, executed every 10 seconds (so we need to wait 200 seconds, 10*20), than one worker will be stopped. Idle cycles counter will be reset if average busyness jump above ``cheaper-busyness-max`` and we spawn new worker. If during idle cycle counting average busyness jumps above ``cheaper-busyness-min`` but still below ``cheaper-busyness-max``, than idle cycles counter is adjusted and we need to wait extra one idle cycle. If during idle cycle counting average busyness jumps above ``cheaper-busyness-min`` but still below ``cheaper-busyness-max`` three times in a row, than we must reset idle cycle counter and start from scratch.
+If average worker busyness is under 25% for 20 checks in a row, executed every 10 seconds (so we need to wait 200 seconds, 10*20), then one worker will be stopped. The idle cycles counter will be reset if average busyness jumps above ``cheaper-busyness-max`` and we spawn new worker. If during idle cycle counting the average busyness jumps above ``cheaper-busyness-min`` but still below ``cheaper-busyness-max``, then the idle cycles counter is adjusted and we need to wait extra one idle cycle. If during idle cycle counting the average busyness jumps above ``cheaper-busyness-min`` but still below ``cheaper-busyness-max`` three times in a row, then the idle cycle counter is reset.
 
 cheaper-busyness-penalty
 ************************
 
-uWSGI will auto tune number of idle cycles needed to stop worker when worker is stopped due to enough idle cycles and than spawned back to fast (less than the same time we need to cheap worker), than we will increment the ``cheaper-busyness-multiplier`` value this value.
+uWSGI will automatically tune number of idle cycles needed to stop worker when worker is stopped due to enough idle cycles and then spawned back to fast (less than the same time we need to cheap worker), then we will increment the ``cheaper-busyness-multiplier`` value this value.
 Default is 1.
 
 Example:
@@ -121,50 +125,51 @@ Example:
    cheaper-busyness-min = 25
    cheaper-busyness-penalty = 2
 
-If average workers busyness is under 25% for 20 checks in a row, executed every 10 seconds (so we need to wait 200 seconds, 10*20), than one worker will be stopped. If new worker be spawned in less than 200 seconds (counting from the time when we spawned last worker), than ``cheaper-busyness-multiplier`` value will be incremented up to 22 (20+2). Now we will need to wait 220 seconds (22*10) to cheap another worker.
+If average worker busyness is under 25% for 20 checks in a row, executed every 10 seconds (so we need to wait 200 seconds, 10*20), then one worker will be stopped. If new worker is spawned in less than 200 seconds (counting from the time when we spawned the last worker before it), then the ``cheaper-busyness-multiplier`` value will be incremented up to 22 (20+2). Now we will need to wait 220 seconds (22*10) to cheap another worker.
 
-This option is used to prevent workers from being started and stopped all the time since once we stop one worker busyness might jump up enough to hit ``cheaper-busyness-max``, and then new worker will be spawned, once we have new worker busyness will go down and another worker will be stopped.
+This option is used to prevent workers from being started and stopped all the time since once we stop one worker, busyness might jump up enough to hit ``cheaper-busyness-max``, and a new worker will be spawned and once we have new worker busyness will go down and another worker will be stopped.
 
 cheaper-busyness-verbose
 ************************
 
-This option will enable debug logs from cheaper_busyness plugin, enable them to debug and understand it.
-Default is false.
+This option will enable debug logs from the ``cheaper_busyness`` plugin, helping you to debug and understand it.
 
 cheaper-busyness-backlog-alert
 ******************************
 
-This option is only available on linux, it is used to allow quick response to load spikes even with high ``cheaper-overload`` values. Every uWSGI master cycle (1 second) current listen queue is checked, if it is bigger than this value than 1 emergency worker is spawned. When using this option it is safe to use high ``cheaper-overload`` values to have more smooth scaling of workers count.
-Default is 33.
+This option is only available on Linux. It is used to allow quick response to load spikes even with high ``cheaper-overload`` values. On 
+every uWSGI master cycle (default 1 second) the current listen queue is checked. If it is higher than this value, an emergency worker is spawned. When using this option it is safe to use high ``cheaper-overload`` values to have smoother scaling of worker count. Default is 33.
 
 cheaper-busyness-backlog-multiplier
 ***********************************
 
-This option is only available on linux, it works just like ``cheaper-busyness-multiplier`` except that it is used only for emergency workers spawned when listen queue was higher than ``cheaper-busyness-backlog-alert``. Emergency workers are spawned in case of big load spike to prevent currently running workers from being overloaded (it takes some time to spawn new workers due to high average busyness), and sometimes those load spike are random, short and they can spawn a lot of such workers. In such case we would need to wait many cycles before cheaping all those workers, so to cheap them faster we use different multiplier in such case.
+This option is only available on Linux. It works just like ``cheaper-busyness-multiplier`` except that it is used only for emergency workers spawned when listen queue was higher than ``cheaper-busyness-backlog-alert``.
+
+Emergency workers are spawned in case of big load spike to prevent currently running workers from being overloaded (it takes some time to spawn new workers due to high average busyness), and sometimes those load spike are random, short and they can spawn a lot of such workers. In such case we would need to wait many cycles before cheaping all those workers, so to cheap them faster we use different multiplier in such case.
 Default is 3.
 
 cheaper-busyness-backlog-step
 *****************************
 
-This option is only available on linux, it sets the number of emergency workers spawned when listen queue is higher than ``cheaper-busyness-backlog-alert``.
-Defalult is 1.
+This option is only available on Linux. It sets the number of emergency workers spawned when listen queue is higher than ``cheaper-busyness-backlog-alert``. Defaults to 1.
 
 cheaper-busyness-backlog-nonzero
 ********************************
 
-This option is only available on linux, it will spawn new emergency worker(s) if request listen queue is > 0 for more than N second.
-It is used to protect from corner case where there is only single worker running (others are cheaped) and it is handling long running request. If uWSGI receive new requests they would stay in request queue until current long running request is completed, with this option we can detect such condition and spawn new worker to prevent queued requests from being timed out.
+This option is only available on Linux. It will spawn new emergency worker(s) if request listen queue is > 0 for more than N seconds.
+It is used to protect the server from the corner case where there is only single worker running (others are cheaped) and the single worker is handling a long running request. If uWSGI receives new requests they would stay in the request queue until that long running request is completed. With this option we can detect such a condition and spawn new worker to prevent queued requests from being timed out.
 Default is 60.
 
-Notes:
+Notes regarding Busyness
+************************
 
-- experiment with settings, there is no one golden rule of what values should be used for everyone, test and pick values that are best for You, carbon stats will make it easy to decide so use them
-- don't expect busyness to be constant value, it will change a lot jumping up and down, real users interact with Your apps in very random way, it's recommended to use longer --cheaper-overload values (>=30) to have less spikes
-- if You want to run some benchmarks with this plugin than use tools that add randomness to the work load
-- with low number of workers (2-3) starting new worker or stopping one might affect busyness a lot, if You have 2 workers with busyness of 50%, than stopping one of them will increase busyness to 100%. Keep that in mind when picking min and max levels, with only few workers running most of the time max should be more than double of min, otherwise every time one worker is stopped it might increase busyness to above max level.
-- with low number of workers (1-4) and default settings expect that this plugin will keep average busyness below min level, adjust levels to compensate that
-- with higher number of workers required to handle load, workers count should stabilize somewhere near minimum busyness level, jumping a little bit around this value
-- when experimenting with this plugin it is advised to enable --cheaper-busyness-verbose to get an idea of what it is doing, example log below:
+* Experiment with settings, there is no one golden rule of what values should be used for everyone. Test and pick values that are best for you. Following uWSGI stats (via Carbon, for instance) will make it easy to decide on good values.
+* Don't expect busyness to be constant value, it will change a lot jumping up and down. In the end, real users interact with your apps in very random way. It's recommended to use longer --cheaper-overload values (>=30) to have less spikes.
+* If you want to run some benchmarks with this plugin, you should use tools that add randomness to the work load
+* With a low number of workers (2-3) starting new worker or stopping one might affect busyness a lot, if You have 2 workers with busyness of 50%, than stopping one of them will increase busyness to 100%. Keep that in mind when picking min and max levels, with only few workers running most of the time max should be more than double of min, otherwise every time one worker is stopped it might increase busyness to above max level.
+* With a low number of workers (1-4) and default settings expect that this plugin will keep average busyness below min level, adjust levels to compensate that
+* With a higher number of workers required to handle load, workers count should stabilize somewhere near minimum busyness level, jumping a little bit around this value
+* When experimenting with this plugin it is advised to enable ``--cheaper-busyness-verbose`` to get an idea of what it is doing. An example log follows.
 
   .. code-block::
 

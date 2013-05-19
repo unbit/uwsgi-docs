@@ -80,8 +80,8 @@ In Tyrant mode the Emperor will run the vassal with the UID/GID of its configura
 If Tyrant mode is used, the vassal configuration files must have UID/GID > 0. An error will occur if the UID or GID is zero, or if the UID or GID of the configuration of an already running vassal changes.
 
 
-Tyrant mode for paranoids (Linux-ony)
-*************************************
+Tyrant mode for paranoid sysadmins (Linux only)
+***********************************************
 
 If you have built a uWSGI version with :doc:`Capabilities` options enabled, you can run the Emperor
 as unprivileged user but maintaining the minimal amount of root-capabilities needed to apply the tyrant mode
@@ -99,7 +99,7 @@ On demand vassals (socket activation)
 -------------------------------------
 
 Inspired by the venerable xinetd/inetd approach, you can spawn your vassals only after the first connection
-to a specific socket. This feature is available since 1.9.1, check its changelog for more infos: 
+to a specific socket. This feature is available since 1.9.1, check its changelog for more information: 
 
 :doc:`Changelog-1.9.1`
 

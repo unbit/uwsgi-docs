@@ -1,7 +1,7 @@
 Embedding an application in uWSGI
 =================================
 
-Starting from uWSGI 0.9.8.2, you can embed files (including config files) in the server binary.
+Starting from uWSGI 0.9.8.2, you can embed files (including configuration files) in the server binary.
 
 You can embed directories too, so by hooking the Python module loader you can transparently import packages, too.
 

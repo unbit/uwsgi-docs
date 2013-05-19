@@ -1,7 +1,10 @@
 WebCaching framework
 ===========================
 
-This is a port of the old caching subsystem to the new uWSGI caching api documented here :doc:`Caching`.
+.. note::
+
+    This is a port of the old caching subsystem to the new uWSGI caching API documented here :doc:`Caching`.
+    Using the options here will create a new-style cache named "default".
 
 
 To enable web caching, allocate slots for your items using the ``cache`` option. The following command line would create a cache that can contain at most 1000 items.

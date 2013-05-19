@@ -106,7 +106,7 @@ The stats subsystem allows you to export uWSGI internal statistics via json
 
    uwsgi --http :9090 --wsgi-file foobar.py --master --processes 4 --threads 2 --stats 127.0.0.1:9191
 
-make some request to your app and then telnet to the port 9191. You will get lot of funny infos.
+make some request to your app and then telnet to the port 9191. You will get lot of funny information.
 
 There is a top-like tool for monitoring instances, named 'uwsgitop' (just pip install it)
 

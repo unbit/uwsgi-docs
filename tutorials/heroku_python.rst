@@ -104,7 +104,7 @@ Following push will be much faster.
 Checking your app
 *****************
 
-Running ``heroku logs`` you will be able to access uWSGI logs. You should get all of your familiar infos, and eventually
+Running ``heroku logs`` you will be able to access uWSGI logs. You should get all of your familiar information, and eventually
 some hint in case of problems.
 
 Using another version of python

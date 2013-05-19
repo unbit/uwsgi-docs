@@ -1,59 +1,45 @@
 The GeoIP plugin
 ================
 
-The geoip plugin adds new routing vars to your internal routing subsystem.
+The ``geoip`` plugin adds new routing vars to your internal routing subsystem.
 
 The vars are prefixed with the "geoip" tag.
 
-To build the geoip plugin you need the official GeoIP c library and its headers.
+To build the geoip plugin you need the official GeoIP C library and its headers.
 
 The supported databases are the country and city one, and they are completely loaded on memory at startup.
 
 The country database give access to the following variables:
 
-${geoip[country_code]}
-
-${geoip[country_code3]}
-
-${geoip[country_name]}
+* ``${geoip[country_code]}``
+* ``${geoip[country_code3]}``
+* ``${geoip[country_name]}``
 
 while the city one offers a lot more (at the cost of increased memory usage for storing the database)
 
-${geoip[continent]}
-
-${geoip[country_code]}
-
-${geoip[country_code3]}
-
-${geoip[country_name]}
-
-${geoip[region]}
-
-${geoip[region_name]}
-
-${geoip[city]}
-
-${geoip[postal_code]}
-
-${geoip[latitude]} or ${geoip[lat]}
-
-${geoip[longitude]} or ${geoip[lon]}
-
-${geoip[dma]}
-
-${geoip[area]}
+* ``${geoip[continent]}
+* ``${geoip[country_code]}
+* ``${geoip[country_code3]}
+* ``${geoip[country_name]}
+* ``${geoip[region]}
+* ``${geoip[region_name]}
+* ``${geoip[city]}
+* ``${geoip[postal_code]}
+* ``${geoip[latitude]} (``${geoip[lat]}``)
+* ``${geoip[longitude]} (``${geoip[lon]}``)
+* ``${geoip[dma]}
+* ``${geoip[area]}
 
 Enabling geoip lookup
 *********************
 
-To enable the geoip lookup system you need to load at least one database. After having loaded the geoip plugin
+To enable the GeoIP lookup system you need to load at least one database. After having loaded the geoip plugin
 you will get 2 new options:
 
-``--geoip-country`` specify a country database
+* ``--geoip-country`` specifies a country database
+* ``--geoip-city`` specifies a city database
 
-``--geoip-city`` specify a city database
-
-If you do not specify at least one of them, the system will always return empty strings
+If you do not specify at least one of them, the system will always return empty strings.
 
 An example
 **********
@@ -83,8 +69,6 @@ An example
 Memory usage
 ************
 
-The country db is tiny so you will generally have no problem in using it. Instead, the city db can be huge (from 20MB to more than 40MB).
+The country database is tiny so you will generally have no problem in using it. Instead, the city database can be huge (from 20MB to more than 40MB).
 
-If you have lot of instances using the geoip city database and you are on a recent Linux system, consider using :doc:`KSM`.
-
-All of the memory used by the geoip database can be shared by all instances.
+If you have lot of instances using the GeoIP city database and you are on a recent Linux system, consider using :doc:`KSM` to reduce memory usage. All of the memory used by the GeoIP database can be shared by all instances with it.

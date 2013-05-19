@@ -100,9 +100,9 @@ Ha! Server XXX is faster than uWSGI! Take that!
 -----------------------------------------------
 
 If you want to be a good technician, start learning how to choose software. As already stated uWSGI is not a silver bullet, it is not meant to be liked by the whole world and it is obviously not
-the fastest server out-there.
+the fastest server out there.
 
-It is a software following an "approach" to problems you may not like or you may love.
+It is a piece of software following an "approach" to problems you may not like or that you may conversely love.
 
 What is 'Harakiri mode'?
 ------------------------

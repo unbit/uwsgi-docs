@@ -1,7 +1,7 @@
 The JWSGI interface
 ===================
 
-.. note:: JWSGI is not a standard. Yet. If you like JWSGI, why not send an RFC to the uWSGI mailing list. We have no interest in a standard, but who knows...
+.. note:: JWSGI is not a standard. Yet. If you like JWSGI, why not send an RFC to the uWSGI mailing list. We have no specific interest in a standard, but who knows...
 
 JWSGI is a port of the WSGI/PSGI/Rack way of thinking for Java.
 
@@ -12,11 +12,9 @@ This HashMap contains CGI style variables and ``jwsgi.input`` containing a Java 
 
 The function has to returns an array of 3 Objects:
 
-status (java/lang/Integer) Example '200'
-
-headers (HashMap) Example {"Content-type": "text/html", "Server": "uWSGI", "Foo": ["one","two"]}
-
-body (can be a String, an array of String, a File or an InputStream object)
+* ``status`` (java.lang.Integer) (example: 200)
+* ``headers`` (HashMap) (example: {"Content-type": "text/html", "Server": "uWSGI", "Foo": ["one","two"]})
+* ``body`` (may be a String, an array of Strings, a File or an InputStream object)
 
 Example
 -------
@@ -71,13 +69,12 @@ in the project to allow a monolithic build with jvm+jwsgi:
 
       ./uwsgi --socket /tmp/uwsgi.socket --plugins jvm,jwsgi --jwsgi MyApp:application --threads 40
 
-this will run a JWSGI application on UNIX socket /tmp/uwsgi.socket with 40 threads
-
+  This will run a JWSGI application on UNIX socket /tmp/uwsgi.socket with 40 threads.
 
 Reading request body
 ********************
 
-The jwsgi.input item is an uwsgi.RequestBody object (subclass of java/io/InputStream). You can use it to access the request body
+The ``jwsgi.input`` item is an ``uwsgi.RequestBody`` object (subclass of java/io/InputStream). You can use it to access the request body.
 
 .. code-block:: java
 
@@ -108,14 +105,12 @@ The jwsgi.input item is an uwsgi.RequestBody object (subclass of java/io/InputSt
        }
    }
 
-Pay attention to the use of read(byte[]) instead of the classical (and the only required by the InputStream specs) read().
-
-The read() one (no arguments) read one byte at time, while the second one is more efficient (it reads in chunk). 
+Pay attention to the use of ``read(byte[])`` instead of the classical (and the only required by the InputStream specification) ``read()``. The argumentless ``read()`` function will inefficiently read one byte at time, while the second one reads a larger chunk at a time.
 
 JWSGI and Groovy
 ****************
 
-Being very low-level the JWSGI standard can be used as-is in other languages running on the JVM.
+Being a very low-level the JWSGI standard can be used as-is in other languages running on the JVM.
 
 As an example this is a Hello World groovy example:
 
@@ -135,9 +130,9 @@ and another one serving a static file
         return [200, headers, new File("/etc/services")]
    }
 
-The second approach is really efficient as it will abuse uWSGI internal facilities (for example if you have offloading enabled, your thread will be suddenly freed)
+The second approach is very efficient as it will abuse uWSGI internal facilities (for example if you have offloading enabled, your worker thread will be suddenly freed).
 
-To load groovy code remember to compile it:
+To load Groovy code, remember to compile it:
 
 .. code-block:: sh
 
@@ -152,7 +147,7 @@ then you can run it
 JWSGI and Scala
 ***************
 
-Like Groovy you can write JWSGI apps with Scala. You only need the entry point function to use native java objects:
+Like Groovy you can write JWSGI apps with Scala. You only need the entry point function to use native Java objects:
 
 .. code-block:: scala
 
@@ -165,7 +160,7 @@ Like Groovy you can write JWSGI apps with Scala. You only need the entry point f
         }
    }
 
-or more "scalish"
+or in a more Scala-ish way,
 
 .. code-block:: scala
 
@@ -179,7 +174,7 @@ or more "scalish"
         }
    }
 
-one compiled (with scalac <filename>) you can run it as always:
+Once compiled with ``scalac <filename>`` you can run this as usual:
 
 .. code-block:: sh
 

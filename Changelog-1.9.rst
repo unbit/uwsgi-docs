@@ -244,7 +244,7 @@ As well as the request body language-independent management, an exception manage
 
 Currently supported only in the Python and Ruby plugins, allows language-independent handling of exceptions cases (like reloading on a specific exception).
 
-The --catch-exception option has been improved to show lot of useful infos. Just try it (in development !!!)
+The --catch-exception option has been improved to show lot of useful information. Just try it (in development !!!)
 
 Future development will allow automatic sending of exception to system like Sentry or Airbrake.
 
