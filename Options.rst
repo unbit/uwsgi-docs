@@ -173,7 +173,7 @@ Run the udp server on the specified address.
 
 Mainly useful for SNMP or shared UDP logging.
 
-.. :seealso:: :doc:`Logging`, :doc:`SNMP`
+.. seealso:: :doc:`Logging`, :doc:`SNMP`
 
 .. _OptionReusePort:
 
@@ -427,7 +427,7 @@ Spawn the emperor before jailing and privilege dropping.
 
 Run the emperor in Broodlord mode.
 
-.. :seealso:: :doc:`Broodlord`
+.. seealso:: :doc:`Broodlord`
 
 .. _OptionEmperorThrottle:
 
@@ -524,7 +524,7 @@ When a vassal asks for 'heartbeat mode' the emperor will also expect a 'heartbea
 
 Automatically make workers snapshot after reload.
 
-.. :seealso:: :doc:`Snapshot`
+.. seealso:: :doc:`Snapshot`
 
 .. _OptionReloadMercy:
 
@@ -808,7 +808,7 @@ Load config from sqlite3 db.
 
 Load configuration from ldap server.
 
-.. :seealso:: :doc:`LDAP`
+.. seealso:: :doc:`LDAP`
 
 .. _OptionLdapSchema:
 
@@ -818,7 +818,7 @@ Load configuration from ldap server.
 
 Dump uWSGI ldap schema.
 
-.. :seealso:: :doc:`LDAP`
+.. seealso:: :doc:`LDAP`
 
 .. _OptionLdapSchemaLdif:
 
@@ -828,7 +828,7 @@ Dump uWSGI ldap schema.
 
 Dump uWSGI ldap schema in ldif format.
 
-.. :seealso:: :doc:`LDAP`
+.. seealso:: :doc:`LDAP`
 
 
 Config logic
@@ -1276,7 +1276,7 @@ Enable the embedded SNMP server.
 
 *This option may be declared multiple times.*
 
-.. :seealso:: :doc:`SNMP`
+.. seealso:: :doc:`SNMP`
 
 .. _OptionSnmpCommunity:
 
@@ -1342,7 +1342,7 @@ uWSGI Process
 
 Daemonize uWSGI and write messages into given log file or UDP socket address.
 
-.. :seealso:: :doc:`Logging`
+.. seealso:: :doc:`Logging`
 
 .. _OptionDaemonize2:
 
@@ -1352,7 +1352,7 @@ Daemonize uWSGI and write messages into given log file or UDP socket address.
 
 Daemonize uWSGI after loading application, write messages into given log file or UDP socket address.
 
-.. :seealso:: :doc:`Logging`
+.. seealso:: :doc:`Logging`
 
 .. _OptionStop:
 
@@ -1362,7 +1362,7 @@ Daemonize uWSGI after loading application, write messages into given log file or
 
 Send the stop (SIGINT) signal to the instance described by the pidfile.
 
-.. :seealso:: :doc:`Management`
+.. seealso:: :doc:`Management`
 
 .. _OptionReload:
 
@@ -1372,7 +1372,7 @@ Send the stop (SIGINT) signal to the instance described by the pidfile.
 
 Send the reload (SIGHUP) signal to the instance described by the pidfile.
 
-.. :seealso:: :doc:`Management`
+.. seealso:: :doc:`Management`
 
 .. _OptionPause:
 
@@ -1382,7 +1382,7 @@ Send the reload (SIGHUP) signal to the instance described by the pidfile.
 
 Send the pause (SIGTSTP) signal to the instance described by the pidfile.
 
-.. :seealso:: :doc:`Management`
+.. seealso:: :doc:`Management`
 
 .. _OptionSuspend:
 
@@ -1392,7 +1392,7 @@ Send the pause (SIGTSTP) signal to the instance described by the pidfile.
 
 Send the suspend (SIGTSTP) signal to the instance described by the pidfile.
 
-.. :seealso:: :doc:`Management`
+.. seealso:: :doc:`Management`
 
 .. _OptionResume:
 
@@ -1402,7 +1402,7 @@ Send the suspend (SIGTSTP) signal to the instance described by the pidfile.
 
 Send the resume (SIGTSTP) signal to the instance described by the pidfile.
 
-.. :seealso:: :doc:`Management`
+.. seealso:: :doc:`Management`
 
 .. _OptionAutoProcname:
 
@@ -1598,7 +1598,7 @@ Put the processes in the specified cgroup (Linux only).
 
 *This option may be declared multiple times.*
 
-.. :seealso:: :doc:`Cgroups`
+.. seealso:: :doc:`Cgroups`
 
 .. _OptionCgroupOpt:
 
@@ -1610,7 +1610,7 @@ Set value in specified cgroup option.
 
 *This option may be declared multiple times.*
 
-.. :seealso:: :doc:`Cgroups`
+.. seealso:: :doc:`Cgroups`
 
 .. _OptionNamespace:
 
@@ -1620,7 +1620,7 @@ Set value in specified cgroup option.
 
 Run in a new namespace under the specified rootfs.
 
-.. :seealso:: :doc:`Namespaces`
+.. seealso:: :doc:`Namespaces`
 
 .. _OptionNamespaceKeepMount:
 
@@ -1630,7 +1630,7 @@ Run in a new namespace under the specified rootfs.
 
 Keep the specified mountpoint in your namespace, optionally renaming it.
 
-.. :seealso:: :doc:`Namespaces`
+.. seealso:: :doc:`Namespaces`
 
 .. _OptionNamespaceNet:
 
@@ -1698,7 +1698,7 @@ Patch the uwsgi binary with a new command and arguments (after privileges drop).
 
 Enable async mode with specified cores.
 
-.. :seealso:: :doc:`Async`
+.. seealso:: :doc:`Async`
 
 .. _OptionMaxFd:
 
@@ -1794,7 +1794,7 @@ This option may be set with ``-A`` from the command line.
 
 This enables the SharedArea. This is a low level shared memory. If you want a more usable/user-friendly system look at the caching framework.
 
-.. :seealso:: :doc:`SharedArea`
+.. seealso:: :doc:`SharedArea`
 
 .. _OptionCgiMode:
 
@@ -2724,7 +2724,7 @@ Automatically add HTTP headers to response.
 
 Enable virtualhosting mode (based on SERVER_NAME variable).
 
-.. :seealso:: :doc:`VirtualHosting`
+.. seealso:: :doc:`VirtualHosting`
 
 .. _OptionVhostHost:
 
@@ -2736,7 +2736,7 @@ Enable virtualhosting mode (based on HTTP_HOST variable).
 
 By default the virtualhosting mode use the SERVER_NAME variable as the hostname key. If you want to use the HTTP_HOST one (corresponding to the Host: header) add this option
 
-.. :seealso:: :doc:`VirtualHosting`
+.. seealso:: :doc:`VirtualHosting`
 
 
 Clustering
@@ -3153,7 +3153,7 @@ Loop engines
 
 Select the uWSGI loop engine (advanced).
 
-.. :seealso:: :doc:`LoopEngine`
+.. seealso:: :doc:`LoopEngine`
 
 .. _OptionLoopList:
 
@@ -3661,7 +3661,7 @@ Run the fastrouter in cheap mode (do not respond to requests unless a node is av
 
 Add a Subscription Server to the fastrouter to build the hostname:address map.
 
-.. :seealso:: :doc:`SubscriptionServer`
+.. seealso:: :doc:`SubscriptionServer`
 
 .. _OptionFastrouterTimeout:
 
@@ -4272,7 +4272,7 @@ Set PYTHONHOME/virtualenv.
 
 This option may be set with ``-H`` from the command line.
 
-.. :seealso:: :doc:`Virtualenv`
+.. seealso:: :doc:`Virtualenv`
 
 .. _OptionPyProgramname:
 
@@ -4302,7 +4302,7 @@ Add a python alias module.
 
 *This option may be declared multiple times.*
 
-.. :seealso:: :doc:`PyModuleAlias`
+.. seealso:: :doc:`PyModuleAlias`
 
 .. _OptionPostPymoduleAlias:
 
@@ -4372,7 +4372,7 @@ This option may be set with ``-O`` from the command line.
 
 Load a paste.deploy config file.
 
-.. :seealso:: :doc:`PythonPaste`
+.. seealso:: :doc:`PythonPaste`
 
 .. _OptionPasteLogger:
 

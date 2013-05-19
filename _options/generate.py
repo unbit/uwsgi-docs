@@ -70,7 +70,7 @@ def render_rst(config, prelude):
                 write(opt.help)
             if opt.docs:
                 write("")
-                write(".. :seealso:: %s" % ", ".join(u":doc:`%s`" % topic for topic in opt.docs))
+                write(".. seealso:: %s" % ", ".join(u":doc:`%s`" % topic for topic in opt.docs))
             write("")
 
     return output
