@@ -5,7 +5,7 @@ The Gevent loop engine
 
 Even if uWSGI supports Greenlet as suspend-resume/greenthread/coroutine library, it requires a lot of effort and code modifications to work with gevent.
 
-The gevent plugin requires gevent 1.0.0 and :doc:`Async<Async>` mode.
+The gevent plugin requires gevent 1.0.0 and :doc:`Async` mode.
 
 .. _Gevent: http://www.gevent.org
 
@@ -100,13 +100,13 @@ This example shows how to sleep in a request, how to make asynchronous network r
 Monkey patching
 ---------------
 
-uWSGI uses native gevent api, so it does not need monkey patching. Your code (instead) could need it, so remember
-to call gevent.monkey.patch_all() at the start of your app. Since uWSGI 1.9, a commodity option, --gevent-monkey-patch will do that for you.
+uWSGI uses native gevent api, so it does not need monkey patching. Your code (instead) may need it, so remember
+to call ``gevent.monkey.patch_all()`` at the start of your app. Since uWSGI 1.9, the convenience option ``--gevent-monkey-patch`` will do that for you.
 
-A common example is using psycopg2_gevent with django. Django will make a connection to postgres for each thread (storing it in thread locals).
+A common example is using ``psycopg2_gevent`` with django. Django will make a connection to postgres for each thread (storing it in thread locals).
 
-As uWSGI gevent plugin runs on a single thread this approach will lead to a deadlock in psycopg. Enabling monkey patch will allows you to
-map thread locals to greenlet (you may want to avoid full monkey patching and only call gevent.monkey.patch_thread() ) and solving the issue:
+As the uWSGI gevent plugin runs on a single thread this approach will lead to a deadlock in psycopg. Enabling monkey patch will allow you to
+map thread locals to greenlets (however you may want to avoid full monkey patching and only call ``gevent.monkey.patch_thread()``) and solves the issue:
 
 .. code-block:: python 
 
@@ -115,7 +115,7 @@ map thread locals to greenlet (you may want to avoid full monkey patching and on
    import gevent_psycopg2
    gevent_psycopg2.monkey_patch()
 
-or (to monkey patch all)
+or (to monkey patch everything)
 
 .. code-block:: python 
 
@@ -127,7 +127,7 @@ or (to monkey patch all)
 Notes on clients and frontends
 ------------------------------
 
-* If you're testing a WSGI application that generates a stream of data, you should know that ``curl`` by default buffers data until a newline. So make sure you either disable curl's buffering with ``-N`` or have regular newlines in your output.
+* If you're testing a WSGI application that generates a stream of data, you should know that ``curl`` by default buffers data until a newline. So make sure you either disable curl's buffering with the ``-N`` flag or have regular newlines in your output.
 * If you are using Nginx in front of uWSGI and wish to stream data from your app, you'll probably want to disable Nginx's buffering.
   
   .. code-block:: nginx

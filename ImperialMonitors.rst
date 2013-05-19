@@ -198,7 +198,7 @@ The same reloading rules of previous modes are valid. When you want to remove an
 ``zmq://`` -- ZeroMQ
 --------------------
 
-The Emperor bind itself to a zmq PULL socket, ready to receive commands.
+The Emperor binds itself to a ZeroMQ PULL socket, ready to receive commands.
 
 .. code-block:: sh
 
@@ -208,27 +208,22 @@ Each command is a multipart message sent over a PUSH zmq socket.
 
 A command is composed by at least 2 parts: ``command`` and ``name``
 
-Command is the action to do, while name is the name of the vassal.
+``command`` is the action to execute, while ``name`` is the name of the vassal.
 
-3 optional parts can be specified
+3 optional parts can be specified.
 
-   ``config`` (a string containing the vassal config)
-
-   ``uid`` (the user id to drop priviliges to in case of tyrant mode)
-
-   ``gid`` (the group id to drop priviliges to in case of tyrant mode)
+* ``config`` (a string containing the vassal config)
+* ``uid`` (the user id to drop priviliges to in case of tyrant mode)
+* ``gid`` (the group id to drop priviliges to in case of tyrant mode)
 
 There are 2 kind of commands (for now):
 
-   ``touch``
+* ``touch``
+* ``destroy``
 
-   ``destroy``
+The first one is used for creating and reloading instances while the second is for destroying. 
 
-The first one is used for creating and reloading instances while the second is
-for destroying. 
-
-If you do not specify a config string, the Emperor will assume you are referring to a static file
-available in the Emperor current directory.
+If you do not specify a config string, the Emperor will assume you are referring to a static file available in the Emperor current directory.
 
 .. code-block:: python
 

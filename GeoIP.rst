@@ -69,8 +69,6 @@ An example
 Memory usage
 ************
 
-The country db is tiny so you will generally have no problem in using it. Instead, the city db can be huge (from 20MB to more than 40MB).
+The country database is tiny so you will generally have no problem in using it. Instead, the city database can be huge (from 20MB to more than 40MB).
 
-If you have lot of instances using the geoip city database and you are on a recent Linux system, consider using :doc:`KSM`.
-
-All of the memory used by the geoip database can be shared by all instances.
+If you have lot of instances using the GeoIP city database and you are on a recent Linux system, consider using :doc:`KSM` to reduce memory usage. All of the memory used by the GeoIP database can be shared by all instances with it.
