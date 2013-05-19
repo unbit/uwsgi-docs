@@ -385,8 +385,8 @@ def core_options():
     with config.section("Application loading") as s:
         s.o("chdir", str, "chdir to specified directory before apps loading")
         s.o("chdir2", str, "chdir to specified directory after apps loading")
-        s.o("lazy", True, "set lazy mode (load apps in workers instead of master)", help="This option may have memory usage implications as Copy-on-Write semantics can not be used.")
-        s.o("lazy-apps", True, "load apps in each worker instead of the master")
+        s.o("lazy", True, "set lazy mode (load apps in workers instead of master)", help="This option may have memory usage implications as Copy-on-Write semantics can not be used.\nWhen ``lazy`` is enabled, only workers will be reloaded by uWSGI's reload signals; the master will remain alive. As such, uWSGI configuration changes are not picked up on reload by the master.")
+        s.o("lazy-apps", True, "load apps in each worker instead of the master", help="This option may have memory usage implications as Copy-on-Write semantics can not be used.\nUnlike ``lazy``, this only affects the way applications are loaded, not master's behavior on reload.")
         s.o("cheap", True, "set cheap mode (spawn workers only after the first request)")
         s.o("cheaper", int, "set cheaper mode (adaptive process spawning)", help="""This an advanced `cheap` mode. This will only spawn <n> workers on startup and will use various (pluggable) algorithms to implement adaptive process spawning.""")
         s.o("cheaper-initial", int, "set the initial number of processes to spawn in cheaper mode")
