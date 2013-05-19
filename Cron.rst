@@ -83,7 +83,7 @@ For example,
 Legion crons
 ************
 
-When your instance is part of a Legion, you can configure it to run crons only if it is the Lord of the specified Legion:
+When your instance is part of a :doc:`Legion`, you can configure it to run crons only if it is the Lord of the specified Legion:
 
 .. code-block:: ini
 

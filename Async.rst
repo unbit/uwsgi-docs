@@ -23,13 +23,10 @@ the ``--async <n>`` option
 
 Currently the uWSGI distribution includes the following suspend/resume engines:
 
-``uGreen`` Unbit greenthreads implementation (based on swapcontext() )
-
-``Greenlet`` Python greenlet module
-
-``Stackless`` Stackless python
-
-``Fiber`` Ruby 1.9 fibers
+* ``uGreen`` - Unbit's greenthread implementation (based on `swapcontext()`)
+* ``Greenlet`` - Python greenlet module
+* ``Stackless`` Stackless Python
+* ``Fiber`` - Ruby 1.9 fibers
 
 Running the uWSGI async mode without a proper suspend/resume engine will raise a warning, so for a minimal non-blocking app
 you will need something like that:
@@ -39,8 +36,8 @@ you will need something like that:
    uwsgi --async 100 --ugreen --socket :3031
 
 An important aspect of suspend/resume engines is that they can easily destroy your process if it is not aware of them.
-Some of the language plugins (most-notably python) has hooks to cooperate flawlessly with coroutine/greenthreads. Other languages
-may fail miserably. Always check the uWSGI mailinglist or irc channel for updated infos.
+Some of the language plugins (most notably Python) has hooks to cooperate flawlessly with coroutine/greenthreads. Other languages
+may fail miserably. Always check the uWSGI mailing list or IRC channel for updated information.
 
 Older uWSGI releases supported an additional system: callbacks.
 
@@ -56,11 +53,10 @@ the way uWSGI manages connections and signal handlers (uWSGI-signals NOT POSIX s
 
 Currently uWSGI supports the following loop engines:
 
-``Gevent`` (python, libev, greenlet)
+* ``Gevent`` (Python, libev, greenlet)
+* ``Coro::AnyEvent`` (Perl, coro, anyevent)
 
-``Coro::AnyEvent`` (perl, coro, anyevent)
-
-Albeit they are generally used by a specific language, pure-C uWSGI plugins (like the CGI one) can use them without problems
+Although they are generally used by a specific language, pure-C uWSGI plugins (like the CGI one) can use them without problems
 to increase concurrency.
 
 Async switches
@@ -145,7 +141,7 @@ Suspend/Resume
 
 Yielding from the main application routine is not very practical as most of the time your app is more advanced than a simple callable and formed of tons of functions and various levels of call depth.
 
-Worry not! you can force a suspend (using coroutine/greenthread) simply calling ``uwsgi.suspend()``
+Worry not! You can force a suspend (using coroutine/greenthread) simply calling ``uwsgi.suspend()``
 
 .. code-block:: python
 
@@ -153,10 +149,9 @@ Worry not! you can force a suspend (using coroutine/greenthread) simply calling 
   uwsgi.suspend()
 
 
-uwsgi.suspend() will automatically call the choosen suspend engine (uGreen, greenlet...)
+uwsgi.suspend() will automatically call the chosen suspend engine (uGreen, greenlet...)
 
 Static files
 ------------
 
-Static file serving will automatically use the loaded async engine
-
+Static file serving will automatically use the loaded async engine.

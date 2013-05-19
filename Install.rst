@@ -9,9 +9,9 @@ Installing from a distribution package
 Installing from source
 ----------------------
 
-To build uWSGI you need python and a c compiler (gcc and clang are supported).
+To build uWSGI you need Python and a C compiler (``gcc`` and ``clang`` are supported).
 
-Based on the languages you want to support you will need their development headers.
+Based on the languages you wish to support you will need their development headers.
 
 On a Debian/Ubuntu system you can install them (and the rest of the infrastructure required to build software) with:
 
@@ -53,7 +53,7 @@ Or you can use ruby gems (it will build a binary with ruby/rack support).
 At tehe end of the build, you will get a report of the enabled features. If something you require is missing, just add the development headers
 and rerun the build.
 
-For example to build uWSGI with ssl and perl regexp support you need libssl-dev and pcre headers
+For example to build uWSGI with ssl and perl regexp support you need libssl-dev and pcre headers.
 
 Alternative build profiles
 --------------------------

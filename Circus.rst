@@ -1,10 +1,10 @@
 Running uWSGI instances with Circus
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Circus is a process manager written in python. It is very similar to projects like supervisor, but with lot of interesting features.
+Circus (http://circus.readthedocs.org/en/0.7/) is a process manager written in Python. It is very similar to projects like Supervisor, but with lots of interesting features.
 
-Albeit all of its functionalities have a counterpart in uWSGI, Circus can be used as a library allowing you to build dynamic
-configurations (and extend uWSGI patterns without messing with low-level languages). This aspect is very important (maybe the real selling point of Circus)
+Although most if not all of its functionalities have a counterpart in uWSGI, Circus can be used as a library allowing you to build dynamic
+configurations (and extend uWSGI patterns without messing with low-level languages). This aspect is very important (maybe the real selling point of Circus) 
 so before starting comparing it with other solutions, think about it.
 
 Socket activation

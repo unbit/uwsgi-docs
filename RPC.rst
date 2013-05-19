@@ -1,20 +1,19 @@
 uWSGI RPC Stack
 ===============
 
-Albeit you may fall in love with this subsystem, try to use it when you need it.
+uWSGI contains a fast, simple, pan-and-cross-language RPC stack.
 
-There are lot of higher-level RPC technologies best suited for the vast majority of situations.
+Although you may fall in love with this subsystem, try to use it only when you need it. There are plenty of higher-level RPC technologies better suited for the vast majority of situations.
 
-Where uWSGI RPC subsystem shines, is in performance and memory usage. As an example if you need to split the load of a request to multiple
-servers, the uWSGI RPC is a great choice, as it allows you to offload tasks with very little effort.
+That said, the uWSGI RPC subsystem shines with its performance and memory usage. As an example, if you need to split the load of a request to multiple servers, the uWSGI RPC is a great choice, as it allows you to offload tasks with very little effort. 
 
-Its biggest limit is in its "typeless" approach:
+Its biggest limit is in its "typeless" approach.
 
 .. note:: RPC functions receive arguments in the form of binary strings, so every RPC exportable function must assume that each argument is a string. Every RPC function returns a binary string of 0 or more characters.
 
-so, if you need 'elegence' or strong typization, just look in another place.
+So, if you need "elegance" or strong typing, just look in another place (or roll your own typing on top of uWSGI RPC, maybe...).
 
-Since 1.9 the RPC subsystem is fully async-friendly, so you can use it over engine like gevent and Coro::AnyEvent
+Since 1.9 the RPC subsystem is fully async-friendly, so you can use it with gevent and Coro::AnyEvent etc.
 
 Learning by example
 -------------------
@@ -69,14 +68,12 @@ And in your Python WSGI app:
         start_response('200 Ok', [('Content-Type', 'text/html')]
         return uwsgi.rpc('10.0.0.2:3031', 'hellolua', 'foo', 'bar')
 
-And other languages/platforms ?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+And other languages/platforms?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Check language specific docs, basically all of them should support registering and calling rpc functions.
+Check the language specific docs, basically all of them should support registering and calling RPC functions.
 
-You can build multi-languages apps with really no-efforts.
-
-You will be surprised on how you can call :doc:`Java<JVM>` functions from perl, javascript from python and so on...
+You can build multi-languages app with really no effort at all and will be happily surprised about how easy it is to call :doc:`Java<JVM>` functions from Perl, JavaScript from Python and so on.
 
 
 Doing RPC locally
@@ -89,13 +86,11 @@ If you want to call a RPC defined in the same server (governed by the same maste
 Doing RPC from the internal routing subsystem
 ---------------------------------------------
 
-The rpc plugin export a bunch of internal routing actions:
+The RPC plugin exports a bunch of internal routing actions:
 
-`rpc` call the specified rpc function and send the response to the client
-
-`rpcnext/rpcblob` call the specified rpc function, send the response to the client and continue to the next rule
-
-`rpcret` call the specified rpc function and use its return value as the action return code (next, continue, goto ...)
+* `rpc` call the specified rpc function and send the response to the client
+* `rpcnext/rpcblob` call the specified rpc function, send the response to the client and continue to the next rule
+* `rpcret` calls the specified rpc function and uses its return value as the action return code (next, continue, goto ...)
 
 .. code-block:: ini
 

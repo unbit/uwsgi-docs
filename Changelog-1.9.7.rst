@@ -139,7 +139,7 @@ For example you can monitor (and throw an alarm) when your cgroup is running the
 in this example CGROUP_OOM_FD is an environment variable mapping to the number of an eventfd() filedescriptor inherited from some kind
 of startup script. Maybe (in the near future) we could be able to directly define this kind of monitor directly in uWSGI.
 
-More infos on the eventfd() + cgroup integration are here: https://www.kernel.org/doc/Documentation/cgroups/cgroups.txt
+More information on the eventfd() + cgroup integration are here: https://www.kernel.org/doc/Documentation/cgroups/cgroups.txt
 
 an example perl startup script:
 
