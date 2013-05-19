@@ -80,8 +80,8 @@ In Tyrant mode the Emperor will run the vassal with the UID/GID of its configura
 If Tyrant mode is used, the vassal configuration files must have UID/GID > 0. An error will occur if the UID or GID is zero, or if the UID or GID of the configuration of an already running vassal changes.
 
 
-Tyrant mode for paranoids (Linux-ony)
-*************************************
+Tyrant mode for paranoid sysadmins (Linux only)
+***********************************************
 
 If you have built a uWSGI version with :doc:`Capabilities` options enabled, you can run the Emperor
 as unprivileged user but maintaining the minimal amount of root-capabilities needed to apply the tyrant mode
