@@ -116,7 +116,7 @@ Rebuild and re-run. We're adding --no-site when running to show you that the emb
 Step 4: adding templates
 ------------------------
 
-Still not satisfied? WELL YOU SHOULDN'T BE. This is uWSGI, man, not some half-assed cheap application server. Yes, you can add your templates directory to the binary and have your full app available in a single file. Madness!
+Still not satisfied? WELL YOU SHOULDN'T BE.
 
 .. code-block:: ini
 

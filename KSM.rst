@@ -8,7 +8,7 @@ Born as an enhancement for KVM (the main vanilla Linux virtualization technology
 
 If you are lucky, using KSM could exponentially reduce the memory usage of your uWSGI instances. Especially in massive :doc:`Emperor<Emperor>` deployments enabling KSM in each vassal may result in massive memory savings.
 
-KSM in uWSGI was the idea of Giacomo Bagnoli of Asidev s.r.l. <http://www.asidev.com/asidev/charter_members/giacomo_bagnoli.html>. Many thanks to him.
+KSM in uWSGI was the idea of Giacomo Bagnoli of Asidev s.r.l. http://www.asidev.com/en/company.html .Many thanks to him.
 
 
 Enabling the KSM daemon

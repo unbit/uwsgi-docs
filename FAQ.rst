@@ -27,18 +27,16 @@ The uwsgi (all lowercase) protocol is derived from SCGI but with binary string l
 
 No, we are not reinventing the wheel. Binary management is much easier and cheaper than string parsing, and every single bit of power is required for our projects. If you need proof, look at the :doc:`official protocol documentation<Protocol>` and you will understand why a new protocol was needed.
 
-But if you insist, other inferior protocols can be used too, of course at the price of losing some kick-ass feature you didn't know you needed.
+Obviously, you are free to use the other supported protocols. Remember, if you cannot use uWSGI in some scenario, it is a uWSGI bug.
 
 Can I use it in cluster environments?
 -------------------------------------
 
 Yes, this is one of the main features of the uWSGI stack.
 
-For example, using the :doc:`Cherokee` handler you can specify different uWSGI servers running on different systems, or you can use the integrated upstream load balancer in :doc:`Nginx`.
+You can have multiple instances bound on different servers, and using the load balancing facilities of your webserver/proxy/router you can distribute your load.
 
-When using webserver handlers that do not support load balancing (such as :doc:`Apache`) the :doc:`integrated proxy<Proxy>` can be used.
-
-Remember that the uWSGI server can pass string messages, dictionaries and even marshaled/serialized objects via its network protocol, so it can be used to build a complete distributed application. See :doc:`Clustering` and :doc:`ClusteringExamples`.
+Systems like :doc:`RPC` allows you to fast call functions on remote nodes, and :doc:`Legion` allows you to elect a master in a multi-node setup.
 
 So, why all those timeout configuration flags?
 ----------------------------------------------
@@ -69,7 +67,7 @@ I am not a sysadmin, nor a UNIX guru. Can I use uWSGI?
 
 That's a good question :) But sadly there is no simple answer.
 uWSGI has not been developed with simplicity in mind, but with versatility.
-You can try it for sure (start with the :doc:Quickstart) and if you have problems, simply ask for help in the list or on the IRC channel.
+You can try it for sure (starting with one of the quickstart) and if you have problems, simply ask for help in the list or on the IRC channel.
 
 How can I buy commercial support for my company?
 ------------------------------------------------
@@ -101,8 +99,10 @@ Also remember that uWSGI can be run in various modes, so avoid comparing it conf
 Ha! Server XXX is faster than uWSGI! Take that!
 -----------------------------------------------
 
-But does this magnificent server XXX have all the production-vital features uWSGI has? If you only care about speed
-you are looking at the wrong project. While uWSGI is probably one of the fastest application containers available, it will always give precedence to reliability and low resource consumption in addition to an API aimed at allowing developers to write better apps.
+If you want to be a good technician, start learning how to choose software. As already stated uWSGI is not a silver bullet, it is not meant to be liked by the whole world and it is obviously not
+the fastest server out-there.
+
+It is a software following an "approach" to problems you may not like or you may love.
 
 What is 'Harakiri mode'?
 ------------------------

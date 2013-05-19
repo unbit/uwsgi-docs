@@ -1,177 +1,207 @@
 The uWSGI caching framework
 ===========================
 
-Caching is one of the key component of a successful webapp.
+.. note::
 
-uWSGI includes an ultra-fast all-in-memory SMP-safe constantly-auto-optimizing caching framework.
+  This page is about "new-generation" cache introduced in uWSGI 1.9.
+  For old-style cache (now simply named "web caching") check :doc:`WebCaching`
 
-The API exposes 6 functions for caching:
+uWSGI includes a very fast all-in-memory, zero-ipc, SMP-safe, constantly-auto-optimizing, highly-tunable key-value store, named
+as the "caching framework".
 
-* :py:func:`uwsgi.cache_get`
-* :py:func:`uwsgi.cache_set`
-* :py:func:`uwsgi.cache_update` (since 0.9.8.4)
-* :py:func:`uwsgi.cache_del`
-* :py:func:`uwsgi.cache_exists`
-* :py:func:`uwsgi.cache_clear`
+A single uWSGI instance can create an unlimited number of "caches" each one with different setup and purpose.
 
-The optional ``cache_server`` argument is a TCP/UNIX socket address.
+Creating a "cache"
+******************
 
-To enable caching, allocate slots for your items using the ``cache`` option. The following command line would create a cache that can contain at most 1000 items.
+To create a cache you use the ``--cache2`` option. It takes a dictionary of arguments specifying the cache configuration.
+
+To have a valid cache you need to specify its name and the maximum number of items it can contains.
 
 .. code-block:: sh
 
-   ./uwsgi --socket 127.0.0.1:3031 --module mysimpleapp --master --processes 4 --cache 1000
+   uwsgi --cache2 name=mycache,items=100 --socket :3031
 
-To use the cache in your application, 
+this will create a cache named "mycache" with a maximum of 100 items. Each item can be at most 64k.
 
-.. code-block:: python
+Configuring the cache (how it works)
+************************************
 
-   uwsgi.cache_set("foo_key", "foo_value") # set a key
-   value = uwsgi.cache_get("foo_key") # get a key.
+A uWSGI cache works like a filesystem. You have an area for storing keys (metadata) followed by a series of fixed size blocks
+in which to store the content of each key.
 
+Another memory area, the "hashtable" is allocated for fast search of keys.
 
-Notes
------
+When you request a key, it is firstly hashed over the hashtable. Each hash point to a key in the metadata area. Keys can be linked
+to manage hash collisions. Each key has a reference to the block containing its value.
 
-* ``key`` can be at most 2048 bytes -- that's probably not a problem for most apps.
-* Values are put into fixed size blocks in memory. Every item will thus take the same amount of space. The block size is configurable.
-* The uWSGI master process will constantly optimize your cache in a way that most requested items are always on the top of the stack. This is still being worked on, but the current implementation is already fast as all hell.
-* Caching is completely thread/multiprocess/SMP safe. Writing and deletion will block, though.
-* The cache can be accessed via network using the uwsgi protocol modifier 111.
-  .. code-block:: py
+Single block (faster) VS bitmaps (slower)
+*****************************************
 
-     # Modifier2: 0: read, 1: write, 2: delete, 3: dict_based
-     data = uwsgi.send_message("host", 111, 0, "foo_key")
-     data = uwsgi.send_message("host", 111, 3, {"key":"foo_key"})
+In the standard configuration ("single block") a key can only map to a single block so if you have a blocksize of 64k, your items
+can be at max 64k. That means, an object of 5k will consume 64k of memory.
 
+The advantage of this approach is in its simplicity and speed. The system does not need to scan the memory for free blocks every time
+you insert an object in the cache.
+
+If you need a more versatile (but relatively slower) approach, you can enable the "bitmap" mode. Another memory area will be created
+containing a map of all of the used and free blocks of the cache. When you insert an item the bitmap is scanned for contiguous free blocks.
+
+Blocks must be contiguous, this could lead to a bit of fragmentation but it is not a big problem as on disk storage (and you can always tune
+the blocksize to reduce it)
 
 Persistent storage
-------------------
+******************
 
-You can store cache data in a backing store file to implement persistence. Simply add the ``cache-store <filename>`` option.
-Every kernel will commit data to the disk at a different rate. You can set if/when to force this with ``cache-store-sync <n>``, where ``n`` is the number of master cycles to wait before each disk sync.
+You can store cache data in a backing store file to implement persistence.
 
-Cache sweeper
--------------
+Thanks to mmap() this is almost transparent to the user.
 
-Since uWSGI 1.2, cache item expiration is managed by a thread in the :term:`master` process, to reduce the risk of deadlock. This thread can be disabled (making item expiry a no-op) with the ``cache-no-expire`` option.
+Obviously do not rely on it for data safety (the disk sync is managed in async way), but only for performance purpose
 
-The frequency of the cache sweeper thread can be set with ``cache-expire-freq <seconds>``. You can make the sweeper log the number of freed items with ``cache-report-freed-items``.
+Network access
+**************
 
-Directly accessing the cache from your web server
--------------------------------------------------
+All of your caches can be accessed over the network. A request plugin named "cache" (modifier1 111) manages requests
+done by external nodes. On a standard monolithic build of uWSGI the cache plugin is always enabled.
 
-.. code-block:: nginx
+The cache plugin works in a full non-blocking way, and it is greenthreads/coroutine friendly so you can use technologies
+like gevent or Coro::AnyEvent with it safely.
 
-   location / {
-    uwsgi_pass 127.0.0.1:3031;
-    uwsgi_modifier1 111;
-    uwsgi_modifier2 3;
-    uwsgi_param key $request_uri;
-   }
+UDP sync
+********
 
-That's it! Nginx would now get HTTP responses from a remote uwsgi protocol compliant server. Although honestly this is not very useful, as if you get a cache miss, you will see a blank page.
+This technique has been inspired by the STUD project, using it for ssl sessions scaling (the same approach can be used with uWSGI SSL/HTTPS routers)
 
-A better system, that will fallback to a real uwsgi request would be
+Basically whenever you set/update/delete an item from the cache, the operation is propagated to other remote nodes (via simple udp packets).
 
-.. code-block:: nginx
+This is obviously non-synced so use it only for very specific purposes, like :doc:`SSLScaling`
 
-   location / {
-     uwsgi_pass 192.168.173.3:3032;
-     uwsgi_modifier1 111;
-     uwsgi_modifier2 3;
-     uwsgi_param key $request_uri;
-     uwsgi_pass_request_headers off;
-     error_page 502 504 = @real;
-   }
 
-   location @real {
-     uwsgi_pass 192.168.173.3:3032;
-     uwsgi_modifier1 0;
-     uwsgi_modifier2 0;
-     include uwsgi_params;
-   }
-   
-Django cache backend
---------------------
+--cache2 options
+****************
 
-If you are running Django, here's a ready-to-use cache backend. Copy the code to a file named :file:`uwsgicache.py`` and put it where your app can load it.
+This is the list of all of the options (and their aliases) of ``--cache2``
 
-.. code-block:: py
+name
+^^^^
 
-   """uWSGI cache backend"""
-   
-   from django.core.cache.backends.base import BaseCache, InvalidCacheBackendError
-   from django.utils.encoding import smart_unicode, smart_str
-   
-   try:
-       import cPickle as pickle
-   except ImportError:
-       import pickle
-   
-   try:
-       import uwsgi
-   except:
-       raise InvalidCacheBackendError("uWSGI cache backend requires you are running under it to have the 'uwsgi' module available")
-   
-   class UWSGICache(BaseCache):
-       def __init__(self, server, params):
-           BaseCache.__init__(self, params)
-           self._cache = uwsgi
-           self._server = server
-   
-       def exists(self, key):
-           return self._cache.cache_exists(smart_str(key), self._server)
-   
-       def add(self, key, value, timeout=0):
-           if self.exists(key):
-               return False
-           return self.set(key, value, timeout, self._server)
-   
-       def get(self, key, default=None):
-           val = self._cache.cache_get(smart_str(key), self._server)
-           if val is None:
-               return default
-           val = smart_str(val)
-           return pickle.loads(val)
-   
-       def set(self, key, value, timeout=0):
-           self._cache.cache_update(smart_str(key), pickle.dumps(value), timeout, self._server)
-   
-       def delete(self, key):
-           self._cache.cache_del(smart_str(key), self._server)
-   
-       def close(self, **kwargs):
-           pass
-   
-       def clear(self):
-           pass
-   
-   # For backwards compatibility
-   class CacheClass(UWSGICache):
-       pass
+set the name of the cache (must be unique in an instance)
 
-Follow the Django `caching configuration`_ to add the middleware classes, and then configure your cache like this in your settings:
+max-items || maxitems || items
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: py
+set the maximum number of cache items
 
-   try:
-       import uwsgi
-       UWSGI = True
-   except:
-       UWSGI = False
-   
-   if UWSGI:
-       CACHES = {
-           'default': {
-               'BACKEND': 'uwsgicache.UWSGICache',
-               'OPTIONS': {
-                   'MAX_ENTRIES': uwsgi.opt['cache']
-               }
-           }
-       }
+blocksize
+^^^^^^^^^
 
-       # For Django older than 1.3:
-       CACHE_BACKEND = "uwsgicache://" # a unix or tcp socket address, leave empty to use local uwsgi
+set the size (in bytes) of a single block
 
-.. _caching configuration: https://docs.djangoproject.com/en/dev/topics/cache/?from=olddocs#the-per-site-cache
+blocks
+^^^^^^
+
+set the number of blocks in the cache. Useful only in bitmap mode, otherwise the block numbers is equal to
+the maximum number of items.
+
+hash
+^^^^
+
+set the hash algorithm used in the hahstable. Currently available "djb33x" (default) and "murmur2"
+
+hashsize || hash_size
+^^^^^^^^^^^^^^^^^^^^^
+
+this is the size of the hashtable (in bytes). Generally 65536 (the default) is a good value. Change it only if you know what you are doing
+(or if you have a lot of collissions in your cache)
+
+keysize || key_size
+^^^^^^^^^^^^^^^^^^^
+
+set the maximum size of a key, in bytes (default 2048)
+
+store
+^^^^^
+
+set the filename for the persistent storage (if it not exists, the system assumes an empty cache and the file will be created)
+
+store_sync || storesync
+^^^^^^^^^^^^^^^^^^^^^^^
+
+set the number of seconds after which call msync() (to flush memory cache on disk when in persistent mode).
+
+By default it is disabled leaving the job to the kernel.
+
+node || nodes
+^^^^^^^^^^^^^
+
+a semicolon separated list of udp server that will receive udp cache updates
+
+sync
+^^^^
+
+a semicolon separated list of uwsgi addresses at which the cache subsystem will connect to for getting a full dump
+of the cache. It can be used for initial cache synchronization. The first node sending a valid dump will stop the procedure.
+
+udp || udp_servers || udp_server || udpserver
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+a semicolon separated list of udp addresses on which to bind the cache (waiting for udp updates)
+
+bitmap
+^^^^^^
+
+set it to 1, to enable bitmap mode
+
+lastmod
+^^^^^^^
+
+set it to 1 will update last_modified_at timestamp of each cache, on every cache item modification.
+Enable it if you want to track this value (accessible using stats socket) or if other features depend on it.
+
+Accessing the cache from your applications using the cache api
+*************************************************************
+
+You can obviously access the various cache in your instance (or the one on remote instances) using the cache api.
+
+Currently the following functions are exposed (each language can name them a bit differently from the standard)
+
+ * cache_get(key[,cache])
+ * cache_set(key,value[,expires,cache])
+ * cache_update(key,value[,expires,cache])
+ * cache_exists(key[,cache])
+ * cache_del(key[,cache])
+ * cache_clear([cache])
+
+If the language/platform calling the cache api differentiate between strings and bytes (like python3 and java) you have to
+assumes that keys are string and values are bytes (or bytearray in the java way). Otherwise keys and values are both strings
+(without specific encoding, as internally the cache values and keys are simple binary blobs)
+
+The expires argument (default to 0) is the number of seconds after the object is no more valid (and will be removed by the cache sweeper, see below)
+
+The cache argument is the so called "magic identifier".
+
+Its syntax is the following:
+
+cache[@node]
+
+So to operate on the cache "mycache" you can simply set it as "mycache", while to operate on "yourcache" on the uWSGI server at 192.168.173.22 port 4040 the value will be
+yourcache@192.168.173.22:4040
+
+An empty cache value (the default) means the default cache (generally the first initialized).
+
+All of the network operations are transparent and fully non-blocking (and threads/greenthreads friendly)
+
+The Cache sweeper thread
+************************
+
+When at least one cache is configured and the master is enabled, a thread named "the cache sweeper" is started.
+
+Its main purpose is deleting expired keys from the cache. So, if you want auto-expiring you need to enable the master.
+
+
+Web caching
+***********
+
+In its first incarnation the uWSGI caching framework was meant only for caching of web pages. That old system
+has been rebuilt on top of the new one. It is now named as :doc:`WebCaching`

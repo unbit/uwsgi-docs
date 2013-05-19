@@ -7,7 +7,7 @@ Managing the uWSGI server
 
   * :doc:`Emperor`
   * :doc:`Zerg`
-  * :doc:`SubscriptionSystem`
+  * :doc:`SubscriptionServer`
 
 
 Starting the server
@@ -24,7 +24,7 @@ System         Method
 ============== =========
 Ubuntu         :doc:`Upstart` (the official ``uwsgi`` package, available since Ubuntu 12.04 provides an init.d based solution. Read the README.)
 Debian         :doc:`Upstart`
-Fedora         :doc:`Systemd`
+Fedora         :doc:`SystemD`
 OSX            launchd
 Solaris        SMF
 ============== =========
@@ -57,7 +57,7 @@ Reloading the server
 
 When running with the ``master`` process mode, the uWSGI server can be gracefully restarted without closing the main sockets.
 
-This functionality allows you patch/upgrade the uWSGI server without closing the connection with the web server and losing a single connection.
+This functionality allows you patch/upgrade the uWSGI server without closing the connection with the web server and losing a single request.
 
 When you send the `SIGHUP` to the master process it will try to gracefully stop all the workers, waiting for the completion of any currently running requests.
 

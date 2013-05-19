@@ -95,6 +95,14 @@ as unprivileged user but maintaining the minimal amount of root-capabilities nee
    emperor-tyrant = true
    cap = setgid,setuid
 
+On demand vassals (socket activation)
+-------------------------------------
+
+Inspired by the venerable xinetd/inetd approach, you can spawn your vassals only after the first connection
+to a specific socket. This feature is available since 1.9.1, check its changelog for more infos: 
+
+:doc:`Changelog-1.9.1`
+
 
 Loyalty
 -------
@@ -197,9 +205,11 @@ Integrating the Emperor with the FastRouter
 
 The FastRouter is a proxy/load-balancer/router speaking :doc:`Protocol`.
 
-Yann Malet from `Lincoln Loop`_ has released a draft about massive Emperor + Fastrouter deployment using :doc:`Caching` as a hostname to socket mapping storage.
+Yann Malet from `Lincoln Loop`_ has released `a draft about massive Emperor + Fastrouter deployment`_ (PDF) using :doc:`Caching` as a hostname to socket mapping storage.
 
 .. _Lincoln Loop: http://lincolnloop.com/
+
+.. _`a draft about massive Emperor + Fastrouter deployment`: http://projects.unbit.it/uwsgi/raw-attachment/wiki/Emperor/lincolnloop.pdf
 
 Notes
 -----
@@ -209,9 +219,15 @@ Notes
     
     ./uwsgi --emperor /opt/apps --binary-path /opt/uwsgi/uwsgi
 
-* Sending ``SIGUSR1`` to the emperor will print vassal status in its log
+* Sending ``SIGUSR1`` to the emperor will print vassal status in its log.
 * Stopping (``SIGINT``/``SIGTERM``/``SIGQUIT``) the Emperor will invoke Ragnarok and kill all the vassals.
 * Sending ``SIGHUP`` to the Emperor will reload all vassals.
+* The emperor should generally not be run with ``--master``, unless master features like advanced logging are
+  specifically needed.
+* The emperor should generally be started at server boot time and left alone, not reloaded/restarted except for uWSGI
+  upgrades; emperor reloads are a bit drastic, reloading all vassals at once. Instead vassals should be reloaded
+  individually when needed, in the manner of the imperial monitor in use (typically by touching the vassal configuration
+  file).
 
 Todo
 ----

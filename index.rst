@@ -29,6 +29,17 @@ Loop engines (implement concurrency, components can be run in preforking, thread
   With a large open source project such as uWSGI the code and the documentation may not always be in sync.
   The mailing list is the best source for help regarding uWSGI.
 
+Quickstarts
+===========
+
+.. toctree::
+   :maxdepth: 1
+
+   WSGIquickstart
+   PSGIquickstart
+   RACKquickstart
+   LUAquickstart
+
 
 Table of Contents
 =================
@@ -40,6 +51,7 @@ Table of Contents
    Install
    Management
    LanguagesAndPlatforms
+   SupportedPlatforms
    WebServers
    FAQ
    ThingsToKnow
@@ -53,7 +65,9 @@ Table of Contents
    ManagementFlag
    Inetd
    Upstart
+   SystemD
    Embed
+   LogFormat
    Glossary
 
 uWSGI Subsystems
@@ -64,6 +78,7 @@ uWSGI Subsystems
    
    AlarmSubsystem
    Caching
+   WebCaching
    Cron
    Fastrouter
    InternalRouting
@@ -77,6 +92,10 @@ uWSGI Subsystems
    Signals
    Spooler
    SubscriptionServer
+   StaticFiles
+   SNI
+   GeoIP
+   Transformations
 
 
 
@@ -86,6 +105,7 @@ Scaling with uWSGI
 .. toctree::
    :maxdepth: 1
 
+   Cheaper
    Emperor
    Broodlord
    Zerg
@@ -136,6 +156,8 @@ Web Server support
    Apache
    Cherokee
    HTTP
+   HTTPS
+   SPDY
    Lighttpd
    Mongrel2
    Nginx
@@ -157,6 +179,29 @@ Language support
    Mono
    CGI
    Go
+   XSLT
+   SSI
+   V8
+   GridFS
+
+
+Release Notes
+=============
+
+.. toctree::
+   :maxdepth: 1
+
+   Changelog-1.9.10
+   Changelog-1.9.9
+   Changelog-1.9.8
+   Changelog-1.9.7
+   Changelog-1.9.6
+   Changelog-1.9.5
+   Changelog-1.9.4
+   Changelog-1.9.3
+   Changelog-1.9.2
+   Changelog-1.9.1
+   Changelog-1.9
 
 
 Contact

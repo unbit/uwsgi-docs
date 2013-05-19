@@ -75,9 +75,9 @@ Packet descriptions
      - Standard RACK request followed by the HTTP request body
    
    * - 8
-     - size of jwsgi block vars (HTTP request body excluded)
+     - size of JWSGI/Ring block vars (HTTP request body excluded)
      - 0
-     - Standard :doc:`jwsgi` request followed by the HTTP request body
+     - Standard JVM request for :doc:`JWSGI` and :doc:`Ring` followed by the HTTP request body
    
    * - 9
      - size of CGI block vars (HTTP request body excluded)
@@ -93,17 +93,42 @@ Packet descriptions
      - size of CGI block vars (HTTP request body excluded)
      - 0
      - Standard :doc:`PHP` request followed by the HTTP request body
+
+   * - 15
+     - size of Mono ASP.NET block vars (HTTP request body excluded)
+     - 0
+     - Standard :doc:`Mono` request followed by the HTTP request body
    
    * - 17
      - size of Spooler block vars
      - 0- 255
      - :doc:`Spooler` request, the block vars is converted to a dictionary/hash/table and passed to the spooler callable. The second modifier is currently ignored.
-   
+
+   * - 18
+     - size of CGI block vars
+     - 0-255
+     - direct call to c-like symbols   
+
    * - 22
      - size of code string
      - 0- 255
      - Raw Code evaluation. The interpreter is choosen by the modifier2. 0 is Python, 5 is Perl.
        It does not return a valid uwsgi response, but a raw string (that may be an HTTP response)
+
+   * - 23
+     - size of CGI vars
+     - 0- 255
+     - invoke the :doc:`XSLT`
+
+   * - 24
+     - size of CGI vars
+     - 0- 255
+     - invoke the :doc:`V8`
+
+   * - 25
+     - size of CGI vars
+     - 0- 255
+     - invoke the :doc:`GridFS`
    
    * - 26
      - 0

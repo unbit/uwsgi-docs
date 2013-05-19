@@ -195,6 +195,50 @@ The same reloading rules of previous modes are valid. When you want to remove an
 
   channel.basic_publish(exchange='uwsgi.emperor', routing_key='mydomain_trac_config.ini', body='')
 
+``zmq://`` -- ZeroMQ
+--------------------
+
+The Emperor bind itself to a zmq PULL socket, ready to receive commands.
+
+.. code-block:: sh
+
+   uwsgi --plugin emperor_zeromq --emperor zmq://tcp://127.0.0.1:5252
+
+Each command is a multipart message sent over a PUSH zmq socket.
+
+A command is composed by at least 2 parts: ``command`` and ``name``
+
+Command is the action to do, while name is the name of the vassal.
+
+3 optional parts can be specified
+
+   ``config`` (a string containing the vassal config)
+
+   ``uid`` (the user id to drop priviliges to in case of tyrant mode)
+
+   ``gid`` (the group id to drop priviliges to in case of tyrant mode)
+
+There are 2 kind of commands (for now):
+
+   ``touch``
+
+   ``destroy``
+
+The first one is used for creating and reloading instances while the second is
+for destroying. 
+
+If you do not specify a config string, the Emperor will assume you are referring to a static file
+available in the Emperor current directory.
+
+.. code-block:: python
+
+   import zmq
+   c = zmq.Context()
+   s = zmq.Socket(c, zmq.PUSH)
+   s.connect('tcp://127.0.0.1:5252')
+   s.send_multipart(['touch','foo.ini',"[uwsgi]\nsocket=:4142"])
+
+
 ``zoo://`` -- Zookeeper
 -----------------------
 

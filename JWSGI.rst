@@ -7,8 +7,16 @@ JWSGI is a port of the WSGI/PSGI/Rack way of thinking for Java.
 
 If, for some obscure reason, you'd feel like developing apps with JVM languages and you don't feel like deploying a huge servlet stack, JWSGI should be up your alley.
 
-It is a very simple (and admittedly raw) protocol where you call a public method that takes a ``Hashtable`` as its sole argument.
-This Hashtable contains CGI style variables and ``jwsgi.input`` containing a Java FileDescriptor that you can use with ``java.io``.
+It is a very simple protocol where you call a public method that takes a ``HashMap`` as its sole argument.
+This HashMap contains CGI style variables and ``jwsgi.input`` containing a Java InputStream object.
+
+The function has to returns an array of 3 Objects:
+
+status (java/lang/Integer) Example '200'
+
+headers (HashMap) Example {"Content-type": "text/html", "Server": "uWSGI", "Foo": ["one","two"]}
+
+body (can be a String, an array of String, a File or an InputStream object)
 
 Example
 -------
@@ -17,101 +25,162 @@ A simple JWSGI app looks like this:
 
 .. code-block:: java
 
-	import java.util.Hashtable;
-	import java.util.ArrayList;
+   import java.util.*;
+   public class MyApp {
 
-	public class utest {
+       public static Object[] application(HashMap env) {
 
-	    public static Object[] jwsgi(Hashtable env) {
+           int status = 200;
 
-	        String status = "200 Ok";
+           HashMap<String,Object> headers = new HashMap<String,Object>();
+           headers.put("Content-type", "text/html");
+           // a response header can have multiple values
+           String[] servers = {"uWSGI", "Unbit"};
+           headers.put("Server", servers);
 
-	        ArrayList<Object> headers = new ArrayList<Object>();
+           String body = "<h1>Hello World</h1>" + env.get("REQUEST_URI");
 
-	        String[] header = {"Content-type", "text/html"};
-	        headers.add(header);
-	        String[] header2 = {"Server", "uWSGI"};
-	        headers.add(header2);
+           Object[] response = { status, headers, body };
 
-	        String body = "<h1>Hello World</h1>" + env.get("REQUEST_URI");
+           return response;
+       }
+   }
 
-	        Object[] response = {status, headers, body};
 
-	        return response;
-	    }
-	}
 
-And to consume HTTP body content,
+How to use it ?
+***************
+
+You need both the 'jvm' plugin and the 'jwsgi' plugin. A build profile named 'jwsgi', is available
+in the project to allow a monolithic build with jvm+jwsgi:
+
+.. code-block:: sh
+
+   UWSGI_PROFILE=jwsgi make
+
+
+1. Compile your class with ``javac``.
+
+   .. code-block:: sh
+
+      javac MyApp.java
+
+4. Run uWSGI and specify the method to run (in the form class:method)
+
+   .. code-block:: sh
+
+      ./uwsgi --socket /tmp/uwsgi.socket --plugins jvm,jwsgi --jwsgi MyApp:application --threads 40
+
+this will run a JWSGI application on UNIX socket /tmp/uwsgi.socket with 40 threads
+
+
+Reading request body
+********************
+
+The jwsgi.input item is an uwsgi.RequestBody object (subclass of java/io/InputStream). You can use it to access the request body
 
 .. code-block:: java
 
-	public static Object[] jwsgi(Hashtable env) throws java.io.IOException {
+   import java.util.*;
+   public class MyApp {
 
-            if (env.containsKey("CONTENT_LENGTH")) {
-                    String s = (String) env.get("CONTENT_LENGTH");
-                    if (s.length() > 0) {
-                            Integer cl = Integer.parseInt( s );
-                            FileInputStream f = new FileInputStream( (FileDescriptor) env.get("jwsgi.input") );
-                            byte[] b = new byte[cl];
+       public static Object[] application(HashMap env) {
 
-                            if (f.read(b) > 0) {
-                                    String postdata = new String(b);
-                                    System.out.println( postdata );
-                            }
-                    }
-            }
+           int status = 200;
 
-            String status = "200 Ok";
+           HashMap<String,Object> headers = new HashMap<String,Object>();
+           headers.put("Content-type", "text/plain");
 
-            ArrayList<Object> headers = new ArrayList<Object>();
+           int body_len = Integer.parseInt((String) env.get("CONTENT_LENGTH"));
+           byte[] chunk = new byte[body_len];
 
-            String[] header = { "Content-type", "text/html" } ;
-            headers.add(header);
-            String[] header2 = { "Server", "uWSGI" } ;
-            headers.add(header2);
+           uwsgi.RequestBody input = (uwsgi.RequestBody) env.get("jwsgi.input");
 
+           int len = input.read(chunk);
 
+           System.out.println("read " + len + " bytes");
 
-            String body = "<form method=\"POST\"><input type=\"text\" name=\"nome\"/><input type=\"submit\" value=\"send\" /></form>" + env.get("REQUEST_URI");
+           String body = new String(chunk, 0, len);
 
-            Object[] response = { status, headers, body };
+           Object[] response = { status, headers, body };
 
-            return response;
-    }
+           return response;
+       }
+   }
 
+Pay attention to the use of read(byte[]) instead of the classical (and the only required by the InputStream specs) read().
 
-How to use it?
---------------
+The read() one (no arguments) read one byte at time, while the second one is more efficient (it reads in chunk). 
 
-The procedure to run JWSGI is still sort of messy. You have to build both the JVM and the JWSGI plugins. Modifier 8 has been assigned to the JWSGI interface, so remember to edit your webserver
-configuration accordingly.
+JWSGI and Groovy
+****************
 
-1. Edit ``plugins/jvm/uwsgiplugin.py`` to set ``JVM_INCPATH`` and ``JVM_LIBPATH`` to their right values. What the right values are is system dependent. Search for ``jni.h`` and ``libjvm.so``.
-   Do the same for ``plugins/jwsgi/uwsgiplugin.py``.
+Being very low-level the JWSGI standard can be used as-is in other languages running on the JVM.
 
-2. Build!
+As an example this is a Hello World groovy example:
 
-   .. code-block:: sh
+.. code-block:: groovy
 
-      python uwsgiconfig.py --build core
-      python uwsgiconfig.py --plugin plugins/jvm core
-      python uwsgiconfig.py --plugin plugins/jwsgi core
+   static def Object[] application(java.util.HashMap env) {
+        def headers = ["Content-Type":"text/html", "Server":"uWSGI"]
+        return [200, headers, "<h1>Hello World</h1"]
+   }
 
-3. Compile your class with ``javac``.
+and another one serving a static file
 
-   .. code-block:: sh
+.. code-block:: groovy
 
-      javac utest.java
+   static def Object[] application(java.util.HashMap env) {
+        def headers = ["Content-Type":"text/plain", "Server":"uWSGI"]
+        return [200, headers, new File("/etc/services")]
+   }
 
-4. Run uWSGI and load the utest class.
+The second approach is really efficient as it will abuse uWSGI internal facilities (for example if you have offloading enabled, your thread will be suddenly freed)
 
-   .. code-block:: sh
+To load groovy code remember to compile it:
 
-      ./uwsgi -s :3031 --plugins jvm,jwsgi --jvm-main-class utest -M -p 4 -m
+.. code-block:: sh
 
-Important Notes
----------------
+   groovyc Foobar.groovy
 
-* The jwsgi method must be called ``jwsgi``. This will be fixed soon.
-* The jwsgi plugin may leaks memory at every request. We are still evaluating if memory management must be managed in the jvm plugin, or in the jwsgi one. Recently a patch had been `merged <https://github.com/unbit/uwsgi/pull/97>`_ for this issue, but only was tested on Ubuntu 12.0.4 and Oracle JDK 7.
-* Threading will be a core component of the JVM plugin in the future. Expect an update soon.
+then you can run it
+
+.. code-block:: sh
+
+   ./uwsgi --socket /tmp/uwsgi.socket --plugins jvm,jwsgi --jwsgi Foobar:application --threads 40
+
+JWSGI and Scala
+***************
+
+Like Groovy you can write JWSGI apps with Scala. You only need the entry point function to use native java objects:
+
+.. code-block:: scala
+
+   object HelloWorld {
+        def application(env:java.util.HashMap[String, Object]): Array[Object] = {
+                var headers = new java.util.HashMap[String, Object]()
+                headers.put("Content-Type", "text/html")
+                headers.put("Server", "uWSGI")
+                return Array(200:java.lang.Integer, headers , "Hello World")
+        }
+   }
+
+or more "scalish"
+
+.. code-block:: scala
+
+   object HelloWorld {
+        def application(env:java.util.HashMap[String, Object]): Array[Object] = {
+                val headers = new java.util.HashMap[String, Object]() {
+                        put("Content-Type", "text/html")
+                        put("Server", Array("uWSGI", "Unbit"))
+                }
+                return Array(200:java.lang.Integer, headers , "Hello World")
+        }
+   }
+
+one compiled (with scalac <filename>) you can run it as always:
+
+.. code-block:: sh
+
+   ./uwsgi --socket /tmp/uwsgi.socket --plugins jvm,jwsgi --jwsgi HelloWorld:application --threads 40

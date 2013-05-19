@@ -228,6 +228,14 @@ you can set multiple recipients using ',' as delimiter
 
 A very funny thing about the xmpp plugin is that you will se the jabber account of your app going down when your app dies...
 
+Some XMPP server (most notably the OSX server one) requires you to bind to a resource. You can do it appending /resource to the JID:
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugins = alarm_xmpp
+   alarm = jabber xmpp:max@server.local/uWSGI;secret1;foo1@foo.it,foo2@foo.it
+
 speech
 ^^^^^^
 
@@ -246,6 +254,22 @@ It simply uses the speechsynthesizer to 'announce' the alarm
    log-alarm = say .*
 
 turn on your amplifiers, run uWSGI and start listening...
+
+airbrake
+^^^^^^^^
+
+Starting with 1.9.9 uWSGI includes --alarm-segfault option that can be used to raise alarm when uWSGI segfaults,
+and airbrake plugin that can be used to send segfault backtraces to airbrake compatible servers,
+like its open source clone errbit (https://github.com/errbit/errbit).
+Airbrake support is experimental and it might not fully work in all cases.
+
+.. code-block:: ini
+
+   plugins = airbrake
+   alarm = errbit airbrake:http://errbit.domain.com/notifier_api/v2/notices;apikey=APIKEY;subject=uWSGI segfault
+   alarm-segfault = errbit
+
+Note that alarm-segfault does not require airbrake plugin, backtrace can be sent using any other alarm plugin.
 
 ******
 Notes

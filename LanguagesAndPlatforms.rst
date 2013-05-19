@@ -36,11 +36,19 @@ Supported languages and platforms
       - 1.0-dev
       - Run PHP scripts
       - Stable from 1.1, 5% uWSGI API support   
+    * - :doc:`Go`
+      - 1.4-dev
+      - Allows integration with the Go language
+      - 15% uWSGI API support
     * - :doc:`JVM`
+      - 1.9-dev
+      - Allows integration between uWSGI and the Java Virtual Machine :doc:`JWSGI<JWSGI>` and :doc:`Clojure/Ring<Ring>` handlers are available.
+      - Stable
+    * - :doc:`Mono`
       - 0.9.7-dev
-      - Allows integration between uWSGI and the Java Virtual Machine. An :doc:`example WSGI-like handler<JWSGI>` is available.
-      - Alpha
-    * - mono
-      - 0.9.7-dev
-      - Still at early stage of development. Allows integration between uWSGI and Mono.
-      - Unusable
+      - Allows integration between uWSGI and Mono, and execution of ASP.NET applications.
+      - Stable
+    * - V8
+      - 1.9.4
+      - Allows integration between uWSGI and javascript V8.
+      - Early stage of development
