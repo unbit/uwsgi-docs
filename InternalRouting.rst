@@ -75,6 +75,7 @@ The following return codes are supported:
 * ``NEXT`` (continue to the next rule)
 * ``CONTINUE`` (stop scanning the internal routing table and run the request)
 * ``BREAK`` (stop scanning the internal routing table and close the request)
+* ``GOTO x`` (go to rule ``x``)
 
 When a rule does not match, ``NEXT`` is assumed.
 
@@ -569,17 +570,15 @@ Plugin: ``rpc``
 
 Plugin: ``rpc``
 
-
-``rpcblob``
-^^^^^^^^^
-
-Plugin: ``rpc``
+`rpcret` calls the specified rpc function and uses its return value as the action return code (next, continue, goto, etc)
 
 
-``rpcnext``
-^^^^^^^^^
+``rpcblob``//``rpcnext``
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Plugin: ``rpc``
+
+`rpcnext/rpcblob` calls the specified RPC function, sends the response to the client and continues to the next rule.
 
 
 ``rpcraw``
