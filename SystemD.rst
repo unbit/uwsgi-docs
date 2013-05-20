@@ -2,6 +2,7 @@ SystemD
 =======
 
 uWSGI is a new-style daemon for [http://www.freedesktop.org/wiki/Software/systemd systemd].
+
 It can notify status change and readyness.
 
 When uWSGI detects it is running under systemd, the notification system is enabled.
@@ -9,7 +10,7 @@ When uWSGI detects it is running under systemd, the notification system is enabl
 Adding the Emperor to systemd
 *****************************
 
-The best approach to integrate uWSGI apps with your init system is using the :doc:`Emperor<Emperor>`
+The best approach to integrate uWSGI apps with your init system is using the :doc:`Emperor<Emperor>`-
 
 Your init system will talk only with the Emperor that will rule all of the apps itself.
 
@@ -31,23 +32,19 @@ Create a systemd service file (you can save it as /etc/systemd/system/emperor.uw
    [Install]
    WantedBy=multi-user.target
 
-
 Then run it
 
 .. code-block:: sh
 
    systemctl start emperor.uwsgi.service
 
-
-...and check it
+And check its status.
 
 .. code-block:: sh
 
    systemctl status emperor.uwsgi.service
 
-
-
-You will see the Emperor reporting the number of governed vassals
+You will see the Emperor reporting the number of governed vassals to Systemd (and to you).
 
 .. code-block:: sh
 
@@ -62,15 +59,13 @@ You will see the Emperor reporting the number of governed vassals
 		  └ 30569 /root/uwsgi/uwsgi --ini werkzeug.ini
 
 
-You can stop the emperor (and all the apps) with
-
+You can stop the Emperor (and all the apps it governs) with
 
 .. code-block:: sh
 
    systemctl stop emperor.uwsgi.service
 
-
-A simple emperor.ini could look like this (www-data is just an anonymous user)
+A simple ``emperor.ini`` could look like this (www-data is just an anonymous user)
 
 .. code-block:: ini
 
@@ -79,29 +74,19 @@ A simple emperor.ini could look like this (www-data is just an anonymous user)
    uid = www-data
    gid = www-data
 
-Obviously if you want to allows each vassal tun run under different privileges, remove the uid and gid options from the emperor configuration
+If you want to allow each vassal to run under different privileges, remove the ``uid`` and ``gid`` options from the emperor configuration (and please read the Emperor docs!)
 
 Logging
 *******
 
-Using the previous service file all of the Emperor messages go to the syslog. You can avoid it
-by removing the
+Using the previous service file all of the Emperor messages go to the syslog. You can avoid it by removing the ``StandardError=syslog`` directive.
 
-..code-block:: ini
-
-   StandardError=syslog
-
-
-directive.
-
-If you do that, be sure to set a --logto option in your emperor configuration, otherwise all of your logs will be lost!
+If you do that, be sure to set a ``--logto`` option in your Emperor configuration, otherwise all of your logs will be lost!
 
 Putting sockets in /run/
 ************************
 
-
-On a modern system, /run/ is mounted as a tmpfs and is the right place to put sockets and pidfiles into. You can have systemd create a uwsgi directory to put them into by adding these directives to the .service file
-
+On a modern system, /run/ is mounted as a tmpfs and is the right place to put sockets and pidfiles into. You can have systemd create a uwsgi directory to put them into by adding these directives to the .service file:
 
 .. code-block:: ini
 
@@ -110,11 +95,11 @@ On a modern system, /run/ is mounted as a tmpfs and is the right place to put so
 
 
 Socket activation
-********************
+*****************
 
 Starting from uWSGI 0.9.8.3 socket activation is available. You can setup systemd to spawn uWSGI instances only after the first socket connection.
 
-Create the required emperor.uwsgi.socket (in /etc/systemd/system/emperor.uwsgi.socket). Note that the *.socket file name must match the *.service file name.
+Create the required emperor.uwsgi.socket (in ``/etc/systemd/system/emperor.uwsgi.socket``). Note that the *.socket file name must match the *.service file name.
 
 .. code-block:: ini
 
@@ -127,7 +112,6 @@ Create the required emperor.uwsgi.socket (in /etc/systemd/system/emperor.uwsgi.s
 
    [Install]
    WantedBy=sockets.target
-
 
 Then disable the service and enable the socket unit.
 

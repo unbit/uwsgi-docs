@@ -34,8 +34,7 @@ To now add a second node for uwsgi.it simply run it and subscribe:
 
 Dead nodes are automatically removed from the pool.
 
-``subscribe2`` syntax is similar but it allows far more control since it allows to specify additional options like the address to which all requests should be forwarded.
-It's value syntax is a string with "key=value", each separated by a colon.
+The syntax for ``subscribe2`` is similar but it allows far more control since it allows to specify additional options like the address to which all requests should be forwarded. Its value syntax is a string with "key=value" pairs, each separated by a comma.
 
 .. code-block:: sh
 
@@ -43,15 +42,15 @@ It's value syntax is a string with "key=value", each separated by a colon.
 
 Possible keys are:
 
-  * server - address (ip:port) of the subscription server we want to connect to
-  * key - key used for mapping, hostname (FastRouter or HttpRouter) or ip:port (RawRouter)
-  * socket - TODO
-  * addr - address to which all requests should be forwared for this subscription
-  * weight - node weight for load balancing
-  * modifier1 - modifier1 value for our app
-  * modifier2 - modifier2 value for our app
-  * sign - TODO
-  * check - TODO 
+  * ``server`` - address (ip:port) of the subscription server we want to connect to
+  * ``key`` - key used for mapping, hostname (FastRouter or HttpRouter) or ip:port (RawRouter)
+  * ``socket`` - TODO
+  * ``addr`` - address to which all requests should be forwared for this subscription
+  * ``weight`` - node weight for load balancing
+  * ``modifier1`` - modifier1 value for our app
+  * ``modifier2`` - modifier2 value for our app
+  * ``sign`` - TODO
+  * ``check`` - TODO
 
 The subscription system is currently available for cluster joining (when multicast/broadcast is not available), the Fastrouter and HTTP.
 

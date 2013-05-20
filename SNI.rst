@@ -1,32 +1,30 @@
-SNI - Server Name Identification or VirtualHosting for your ssl nodes 
-=====================================================================
+SNI - Server Name Identification (virtual hosting for SSL nodes)
+================================================================
 
-uWSGI 1.9 (aka: ssl as p0rn) added support for SNI (Server Name Identification) to the whole
-ssl subsystem. The HTTPS router, the SPDY router and the SSL router can use it transparently.
+uWSGI 1.9 (codenamed "ssl as p0rn") added support for SNI (Server Name Identification) throughout the whole
+SSL subsystem. The HTTPS router, the SPDY router and the SSL router can all use it transparently.
 
-SNI is an extension to the ssl standard, allowing a client to specify a "name" for the resource
-it wants. That name is generally the requested hostname, so you can implement a virtualhosting-like behaviour
-(like you do using the HTTP Host: header)
+SNI is an extension to the SSL standard which allows a client to specify a "name" for the resource
+it wants. That name is generally the requested hostname, so you can implement virtual hosting-like behavior like you do using the HTTP ``Host:`` header without requiring extra IP addresses etc.
 
-In uWSGI a sni object is composed by a name and a value. The name is the servername/hostname while the value is the SSL Context
-(you can see it as the sum of certificates,key and cihpers for a particular domain).
+In uWSGI an SNI object is composed of a name and a value. The name is the servername/hostname while the value is the "SSL context" (you can think of it as the sum of certificates, key and ciphers for a particular domain).
 
 Adding SNI objects
 ******************
 
-To add a sni object just use the --sni opion:
+To add an SNI object just use the ``--sni`` option:
 
 .. code-block:: sh
 
    --sni <name> crt,key[,ciphers,client_ca]
 
-Example:
+For example:
 
 .. code-block:: sh
 
    --sni unbit.com unbit.crt,unbit.key
 
-or (for client based ssl authentication and HIGH ciphers)
+or for client-based SSL authentication and OpenSSL HIGH cipher levels
 
 .. code-block:: sh
 
@@ -35,9 +33,9 @@ or (for client based ssl authentication and HIGH ciphers)
 Adding complex SNI objects
 **************************
 
-Sometimes you need more complex keys for your SNI objects (like with wildcard certificates)
+Sometimes you need more complex keys for your SNI objects (like when using wildcard certificates)
 
-If you have built uWSGI with pcre/regexp support you can use the --sni-regexp option
+If you have built uWSGI with PCRE/regexp support (as you should) you can use the ``--sni-regexp`` option.
 
 .. code-block:: sh
 
@@ -46,10 +44,9 @@ If you have built uWSGI with pcre/regexp support you can use the --sni-regexp op
 Massive SNI hosting
 *******************
 
-uWSGI main purpose is massive hosting, so ssl without that feature would be pretty annoying.
+One of uWSGI's main purposes is massive hosting, so SSL without support for that would be pretty annoying.
 
-If you have dozens (or hundreds...) of certificates mapped to the same ip you can simply put them in a directory (follwing a
-simple convention) and let uWSGI to scan it whenever it need to add a new context for a domain.
+If you have dozens (or hundreds, for that matter) of certificates mapped to the same IP address you can simply put them in a directory (following a simple convention we'll elaborate in a bit) and let uWSGI scan it whenever it needs to find a context for a domain.
 
 To add a directory just use
 
@@ -63,30 +60,25 @@ like
 
    --sni-dir /etc/customers/certificates
 
-Now if you have unbit.com and example.com certificates and keys just drop them following that naming rules:
+Now, if you have ``unbit.com`` and ``example.com`` certificates (.crt) and keys (.key) just drop them in there following these naming rules:
 
-/etc/customers/certificates/unbit.com.crt
+* ``/etc/customers/certificates/unbit.com.crt``
+* ``/etc/customers/certificates/unbit.com.key``
+* ``/etc/customers/certificates/unbit.com.ca``
+* ``/etc/customers/certificates/example.com.crt``
+* ``/etc/customers/certificates/example.com.key``
 
-/etc/customers/certificates/unbit.com.key
+As you can see, ``example.com`` has no .ca file, so client authentication will be disabled for it.
 
-/etc/customers/certificates/unbit.com.ca
-
-/etc/customers/certificates/example.com.crt
-
-/etc/customers/certificates/example.com.key
-
-
-as you can see example.com has no .ca file, so client authentication will be disabled for it.
-
-If you want to force a default ciphers set to the sni contexts just use
+If you want to force a default cipher set to the SNI contexts, use
 
 .. code-block:: sh
 
    --sni-dir-ciphers HIGH
 
-or whatever value you need
+(or whatever other value you need)
 
 Notes
 *****
 
-Unloading sni objects is not supported, once you load them in memory they will be hold til reload.
+* Unloading SNI objects is not supported. Once they are loaded into memory they will be held onto until reload.

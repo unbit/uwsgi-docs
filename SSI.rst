@@ -5,14 +5,14 @@ Server Side Includes are an "old-fashioned" way to write dynamic web pages.
 
 It is generally recognized as a templating system instead of a full featured language.
 
-The main purpose of the uWSGI SSI plugin is having a fast templating system that can use the uWSGI api.
+The main purpose of the uWSGI SSI plugin is to have a fast templating system that has access to the uWSGI API.
 
-Currently (March 2013) the plugin is in beta quality and implements less than 30% of the standard (the focus is in exposing uWSGI api as SSI commands)
+At the time of writing, March 2013, the plugin is beta quality and implements less than 30% of the SSI standard, the focus being in exposing uWSGI API as SSI commands.
 
 Using it as a request handler
 *****************************
 
-The plugin has an official modifier, the 19:
+The plugin has an official modifier1, number 19.
 
 .. code-block:: ini
 
@@ -22,11 +22,11 @@ The plugin has an official modifier, the 19:
    http-modifier1 = 19
    http-var = DOCUMENT_ROOT=/var/www
 
-The plugin build the filename as DOCUMENT_ROOT+PATH_INFO, the file is then parsed as a server side include.
+The plugin builds the filename as ``DOCUMENT_ROOT``+``PATH_INFO``. This file is then parsed as a server side include document.
 
-Both DOCUMENT_ROOT and PATH_INFO are required, otherwise a 500 error will be returned.
+Both ``DOCUMENT_ROOT`` and ``PATH_INFO`` are required, otherwise a 500 error will be returned.
 
-An example config for nginx will be:
+An example configuration for Nginx would be:
 
 .. code-block:: c
 
@@ -37,16 +37,18 @@ An example config for nginx will be:
        uwsgi_modifier1 19;
    }
 
+with something like this for uWSGI...
+
 .. code-block:: ini
 
    [uwsgi]
    plugin = ssi
    socket = 127.0.0.1:3031
 
-Using it as a routing action
-****************************
+Using SSI as a routing action
+*****************************
 
-A more versatile approach is using the ssi parser as a routing action:
+A more versatile approach is using the SSI parser as a routing action.
 
 .. code-block:: ini
 
@@ -55,47 +57,45 @@ A more versatile approach is using the ssi parser as a routing action:
    http-socket = :9090
    route = ^/(.*) ssi:/var/www/$1.shtml
 
-the routing action does not need DOCUMENT_ROOT or PATH_INFO
+.. warning:: As with all of the routing actions, no check on file paths is made to allow a higher level of customization. If you pass untrusted paths to the SSI action, you should sanitize them (you can use routing again, checking for the presence of .. or other dangerous symbols).
 
-Pay attention: as all of the routing actions, no check on file paths is made to allow higher customizations. If you pass untrusted paths
-to the ssi action, you should sanitize them (you can use routing again, checking for the presence of .. or other dangerous symbols)
+And with the above admonition in mind, when used as a routing action, ``DOCUMENT_ROOT`` or ``PATH_INFO`` are not required, as the parameter passed contains the full filesystem path.
 
 Supported SSI commands
 **********************
 
-This is the list of supported commands (and their args). If a command is not part of the standard (read: uWSGI specific) it will be reported
+This is the list of supported commands (and their arguments). If a command is not part of the SSI standard (that is, it's uWSGI specific) it will be reported.
 
 echo
 ^^^^
 
-args = ``var``
+Arguments: ``var``
 
-print the content of the specified request variable
+Print the content of the specified request variable.
 
 printenv
 ^^^^^^^^
 
-print the list of all of the request variables
+Print a list of all request variables.
 
 include
 ^^^^^^^
 
-args = ``file``
+Arguments: ``file``
 
-include the specified file (relative to the current directory)
+Include the specified file (relative to the current directory).
 
 cache
 ^^^^^
 
-uWSGI specific/non standard
+.. note:: This is uWSGI specific/non-standard.
 
-args = ``key`` ``name``
+Arguments: ``key`` ``name``
 
-print the value of the specified cache key in the specified cache name
+Print the value of the specified cache key in the named cache.
 
 Status
 ******
 
-The plugin is fully thread safe and very fast.
-
-Very few commands are available, more will be added soon.
+* The plugin is fully thread safe and very fast.
+* Very few commands are available, more will be added soon.
