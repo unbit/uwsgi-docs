@@ -172,7 +172,7 @@ this will set Expires header for all of the filenames (after the complete mappin
 
 .. code-block:: sh
 
-   --static-expires-type /var/www/static/foo*\.jpg 3600
+   --static-expires /var/www/static/foo*\.jpg 3600
 
 ``--static-expires-mtime``
 
