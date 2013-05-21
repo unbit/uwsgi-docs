@@ -132,7 +132,7 @@ A general function api uwsgi.offload() is on work, to allow applications to acce
 All of the uWSGI part sending static files (included the language-specific implementations, like WSGI wsgi.file_wrapper) have been extended
 to automatically use offloading if available.
 
-That means, you can use your Framework way for serving static files, without loosing too much performance and (more important) without blocking
+That means, you can use your Framework way for serving static files, without losing too much performance and (more important) without blocking
 your workers.
 
 
