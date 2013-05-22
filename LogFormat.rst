@@ -1,18 +1,16 @@
-Formatting uWSGI requests logs (from 1.3-dev)
-=============================================
+Formatting uWSGI requests logs 
+==============================
 
-Starting from 1.3-dev uWSGI has a ``--logformat`` option allowing you to build custom request loglines.
-
-The syntax is simple:
+uWSGI has a ``--logformat`` option for building custom request loglines. The
+syntax is simple:
 
 .. code-block:: ini
 
    [uwsgi]
    logformat = i am a logline reporting "%(method)``%(uri) %(proto)" returning with status %(status)`` 
 
-All of the %() marked variables are substituted using specific rules.
-
-Currently 3 kinds of logvars are defined:
+All of the %() marked variables are substituted using specific rules. Three
+kinds of logvars are defined:
 
 offsetof
 ********
@@ -62,7 +60,8 @@ These are simple functions called for generating the logvar value
 User-defined logvars
 ********************
 
-You can define logvars within your request handler. The variables live only per-request.
+You can define logvars within your request handler. The variables live only
+per-request.
 
 .. code-block:: python
 
@@ -74,18 +73,17 @@ You can define logvars within your request handler. The variables live only per-
        uwsgi.set_logvar('worker_id', str(uwsgi.worker_id()))
        ...
 
-With a log format such as this
+With the following log format you will be able to access code-defined logvars.
 
 .. code-block:: sh
 
    uwsgi --logformat "worker id =``%(worker_id) for request \"%(method) %(uri)`` %(proto)\" test = %(foo)"
 
-you will be able to access code-defined logvars.
 
 Apache style combined request logging
 *************************************
 
-If you want to generate Apache-compatible logs, just apply what you have learned:
+To generate Apache compatible logs:
 
 .. code-block:: ini
 
@@ -98,9 +96,8 @@ If you want to generate Apache-compatible logs, just apply what you have learned
 Hacking logformat
 *****************
 
-If you want to add more C-based variables, open logging.c and go to the end of the file.
-
-Adding vars is really easy:
+To add more C-based variables, open logging.c and add them to the end of the
+file.
 
 .. code-block:: c
 
@@ -134,13 +131,15 @@ Adding vars is really easy:
             logchunk->free = 1;
     }
 
-For function-based vars the prototype is
+For function-based vars the prototype is:
 
 .. code-block:: c
 
    ssize_t uwsgi_lf_foobar(struct wsgi_request *wsgi_req, char **buf);
 
-where ``buf`` is the destination buffer for the logvar value (this will be automatically freed if you set ``logchunk->free`` as in the "status" related C-code previously reported).
+where ``buf`` is the destination buffer for the logvar value (this will be
+automatically freed if you set ``logchunk->free`` as in the "status" related
+C-code previously reported).
 
 .. code-block:: c
 
