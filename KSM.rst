@@ -1,20 +1,25 @@
 Using Linux KSM in uWSGI
 ========================
 
-Kernel Samepage Merging <http://www.linux-kvm.org/page/KSM> is a feature of recent (>= 2.6.32) Linux kernels that allows processes to share pages of memory with the same content.
-This is accomplished by a kernel task that scans specific memory areas and compares and merges, if possible, them periodically.
+Kernel Samepage Merging <http://www.linux-kvm.org/page/KSM> is a feature of
+Linux kernels >= 2.6.32 which allows processes to share pages of memory with
+the same content.  This is accomplished by a kernel task that scans specific
+memory areas and compares periodically, and when possible, merges them.  Born
+as an enhancement for KVM it can be used for processes using common data such
+as uWSGI processes with language interpreters and standard libraries.
 
-Born as an enhancement for KVM (the main vanilla Linux virtualization technology), it can be used for all of those processes having lot of common data, such as uWSGI processes with their language interpreters and standard libraries.
-
-If you are lucky, using KSM could exponentially reduce the memory usage of your uWSGI instances. Especially in massive :doc:`Emperor<Emperor>` deployments enabling KSM in each vassal may result in massive memory savings.
-
-KSM in uWSGI was the idea of Giacomo Bagnoli of Asidev s.r.l. http://www.asidev.com/en/company.html .Many thanks to him.
+If you are lucky, using KSM could exponentially reduce the memory usage of your
+uWSGI instances. Especially in massive :doc:`Emperor<Emperor>` deployments
+enabling KSM in each vassal may result in massive memory savings.
+KSM in uWSGI was the idea of Giacomo Bagnoli of Asidev s.r.l.
+http://www.asidev.com/en/company.html .Many thanks to him.
 
 
 Enabling the KSM daemon
 -----------------------
 
-To enable the KSM kernel daemon, simply set ``/sys/kernel/mm/ksm/run`` to 1, like so:
+To enable the KSM kernel daemon, simply set ``/sys/kernel/mm/ksm/run`` to 1,
+like so:
 
 .. code-block:: sh
 
@@ -27,18 +32,19 @@ To enable the KSM kernel daemon, simply set ``/sys/kernel/mm/ksm/run`` to 1, lik
 Enabling KSM support in uWSGI
 -----------------------------
 
-If you have compiled uWSGI on a kernel with KSM support, you will be able to use the ``ksm`` option.
-
-This option will instruct uWSGI to register process memory mappings to the KSM daemon after each request or master cycle.
-
-Don't worry -- if no page mapping has changed from the last scan, no expensive syscalls are used. (Each mapping requires a ``madvise`` call.)
+If you have compiled uWSGI on a kernel with KSM support, you will be able to
+use the ``ksm`` option.  This option will instruct uWSGI to register process
+memory mappings to the KSM daemon after each request or master cycle.  If no
+page mapping has changed from the last scan, no expensive syscalls are used.
+(Each mapping requires a ``madvise`` call.)
 
 Performance impact
 ------------------
 
-Checking for process mappings requires parsing the :file:`/proc/self/maps` file after each request.
-
-In some setups this may hurt performance. But don't worry -- you can tune the frequency of the uWSGI page scanner by passing an argument to the ``ksm`` option.
+Checking for process mappings requires parsing the /proc/self/maps file after
+each request.  In some setups this may hurt performance. You can tune the
+frequency of the uWSGI page scanner by passing an argument to the ``ksm``
+option.
 
 .. code-block:: sh
 
@@ -49,9 +55,9 @@ In some setups this may hurt performance. But don't worry -- you can tune the fr
 Check if KSM is working well
 ----------------------------
 
-The :file:`/sys/kernel/mm/ksm/pages_shared` and :file:`/sys/kernel/mm/ksm/pages_sharing` files contain statistics regarding KSM's efficiency.
-
-Higher values means lesser memory consumption for your uWSGI instances.
+The /sys/kernel/mm/ksm/pages_shared and /sys/kernel/mm/ksm/pages_sharing files
+contain statistics regarding KSM's efficiency.  Higher values means lesser
+memory consumption for your uWSGI instances.
 
 
 KSM statistics using collectd

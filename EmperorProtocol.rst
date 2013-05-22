@@ -1,15 +1,17 @@
 The Emperor protocol
 ====================
 
-Starting from 1.3 you can spawn custom applications via the :doc:`Emperor<Emperor>`.
+As of 1.3 you can spawn custom applications via the :doc:`Emperor<Emperor>`.
 
-Non-uWSGI Vassals should never daemonize,to maintain a link with the Emperor.
-But if you want/need better integration with the Emperor, go ahead and implement the Emperor protocol.
+Non-uWSGI Vassals should never daemonize, to maintain a link with the Emperor.
+If you want/need better integration with the Emperor, implement the Emperor
+protocol.
 
 The protocol
 ------------
 
-An environment variable ``UWSGI_EMPEROR_FD`` is passed to every vassal, containing a file descriptor number.
+An environment variable ``UWSGI_EMPEROR_FD`` is passed to every vassal,
+containing a file descriptor number.
 
 .. code-block:: python
 

@@ -1,11 +1,12 @@
 Running uWSGI instances with Circus
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Circus (http://circus.readthedocs.org/en/0.7/) is a process manager written in Python. It is very similar to projects like Supervisor, but with lots of interesting features.
-
-Although most if not all of its functionalities have a counterpart in uWSGI, Circus can be used as a library allowing you to build dynamic
-configurations (and extend uWSGI patterns without messing with low-level languages). This aspect is very important (maybe the real selling point of Circus) 
-so before starting comparing it with other solutions, think about it.
+Circus (http://circus.readthedocs.org/en/0.7/) is a process manager written in
+Python. It is very similar to projects like Supervisor, but with several
+additional features.  Although most, if not all, of it's functionalities have a
+counterpart in uWSGI, Circus can be used as a library allowing you to build
+dynamic configurations (and extend uWSGI patterns). This aspect is very
+important and may be the real selling point of Circus.
 
 Socket activation
 *****************
@@ -38,9 +39,9 @@ run it with
 (Better) Socket activation
 **************************
 
-If you want to spawn instances on demand, you will very probably want to shut down them when they are no more used.
-
-To accomplish that use the --idle uWSGI option
+If you want to spawn instances on demand, you will likely want to shut them
+down when they are no longer used.  To accomplish that use the --idle uWSGI
+option.
 
 .. code-block:: ini
 
@@ -59,5 +60,5 @@ To accomplish that use the --idle uWSGI option
    host = 0.0.0.0
    port = 8888
 
-this time we have enabled the master process. It will manage the --idle option, shutting down the instance if it is
+This time we have enabled the master process. It will manage the --idle option, shutting down the instance if it is
 inactive for more than 60 seconds

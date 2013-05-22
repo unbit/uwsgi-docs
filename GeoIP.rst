@@ -2,12 +2,9 @@ The GeoIP plugin
 ================
 
 The ``geoip`` plugin adds new routing vars to your internal routing subsystem.
-
-The vars are prefixed with the "geoip" tag.
-
-To build the geoip plugin you need the official GeoIP C library and its headers.
-
-The supported databases are the country and city one, and they are completely loaded on memory at startup.
+GeoIP's vars are prefixed with the "geoip" tag.  To build the geoip plugin you
+need the official GeoIP C library and its headers.  The supported databases are
+the country and city one, and they are completely loaded on memory at startup.
 
 The country database give access to the following variables:
 
@@ -15,7 +12,8 @@ The country database give access to the following variables:
 * ``${geoip[country_code3]}``
 * ``${geoip[country_name]}``
 
-while the city one offers a lot more (at the cost of increased memory usage for storing the database)
+while the city one offers a lot more at the cost of increased memory usage for
+storing the database
 
 * ``${geoip[continent]}
 * ``${geoip[country_code]}
@@ -33,8 +31,8 @@ while the city one offers a lot more (at the cost of increased memory usage for 
 Enabling geoip lookup
 *********************
 
-To enable the GeoIP lookup system you need to load at least one database. After having loaded the geoip plugin
-you will get 2 new options:
+To enable the GeoIP lookup system you need to load at least one database. After
+having loaded the geoip plugin you will get 2 new options:
 
 * ``--geoip-country`` specifies a country database
 * ``--geoip-city`` specifies a city database
@@ -69,6 +67,8 @@ An example
 Memory usage
 ************
 
-The country database is tiny so you will generally have no problem in using it. Instead, the city database can be huge (from 20MB to more than 40MB).
-
-If you have lot of instances using the GeoIP city database and you are on a recent Linux system, consider using :doc:`KSM` to reduce memory usage. All of the memory used by the GeoIP database can be shared by all instances with it.
+The country database is tiny so you will generally have no problem in using it.
+Instead, the city database can be huge (from 20MB to more than 40MB).  If you
+have lot of instances using the GeoIP city database and you are on a recent
+Linux system, consider using :doc:`KSM` to reduce memory usage. All of the
+memory used by the GeoIP database can be shared by all instances with it.

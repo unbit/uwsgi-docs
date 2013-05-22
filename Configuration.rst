@@ -3,15 +3,17 @@ Configuring uWSGI
 
 uWSGI can be configured using several different methods. All configuration methods may be mixed and matched in the same invocation of uWSGI.
 
-In the following examples the "socket" configuration option will be set to `/tmp/uwsgi.sock` and `127.0.0.1:8000`, and Master mode will be enabled with 3 workers.
-
-In all file-based configuration methods, the use of placeholders of the format ``%(foo)`` is supported in option values.
+In the following examples the "socket" configuration option will be set to
+`/tmp/uwsgi.sock` and `127.0.0.1:8000`, and Master mode will be enabled with 3
+workers.  In all file-based configuration methods, the use of placeholders of
+the format ``%(foo)`` is supported in option values.
 
 .. note:: Some of the configuration methods may require to be compiled in.
 
 .. seealso:: :doc:`ConfigLogic`
 
-.. seealso:: If you run Python applications, you can avoid the use of a configuration file to set up apps. See :ref:`PythonAppDict`.
+.. seealso:: If you run Python applications, you can avoid the use of a
+   configuration file to set up apps. See :ref:`PythonAppDict`.
 
 
 .. _LoadingConfig:
@@ -19,7 +21,7 @@ In all file-based configuration methods, the use of placeholders of the format `
 Loading configuration files
 ---------------------------
 
-uWSGI supports loading configuration files over several other methods than simple disk files::
+uWSGI supports loading configuration files over several methods other than simple disk files::
 
   uwsgi --ini http://uwsgi.it/configs/myapp.ini # HTTP
   uwsgi --xml - # standard input
@@ -28,17 +30,19 @@ uWSGI supports loading configuration files over several other methods than simpl
 
 .. note::
 
-  More esoteric file sources, such as the :doc:`Emperor<Emperor>`, embedded configuration (in two flavors), dynamic library symbols and ELF sections could also be used.
-  This is undocumented, but it's possible. This is the uWSGI way.
+  More esoteric file sources, such as the :doc:`Emperor<Emperor>`, embedded
+  configuration (in two flavors), dynamic library symbols and ELF sections
+  could also be used.  This is undocumented, but it's possible. This is the
+  uWSGI way.
 
 .. _MagicVars:
 
 Magic variables
 ---------------
 
-uWSGI configuration files can include special "magic" variables, prefixed with a percent sign.
-
-Currently the following magic variables (you can access them in Python via :py:data:`uwsgi.magic_table`) are defined.
+uWSGI configuration files can include "magic" variables, prefixed with a
+percent sign.  Currently the following magic variables (you can access them in
+Python via :py:data:`uwsgi.magic_table`) are defined.
 
 ======== ==
 %v       the vassals directory (pwd)
@@ -78,9 +82,8 @@ For example, here's :file:`funnyapp.ini`.
 Placeholders
 ------------
 
-Placeholders are custom special variables defined during configuration time by simply setting a new configuration variable of your own devising.
-
-As always, code is better than words
+Placeholders are custom magic variables defined during configuration time by
+setting a new configuration variable of your own devising.
 
 .. code-block:: ini
 
@@ -94,14 +97,16 @@ As always, code is better than words
   chdir = %(customers_base_dir)/%(my_funny_domain)
   limit-as = %(max_customer_address_space)
 
-Placeholders are accessible, like any uWSGI option, in your application code via :py:data:`uwsgi.opt`.
+Placeholders are accessible, like any uWSGI option, in your application code
+via :py:data:`uwsgi.opt`.
 
 .. code-block:: python
 
   import uwsgi
   print uwsgi.opt['customers_base_dir']
 
-This feature can be (ab)used to reduce the number of configuration files required by your application.
+This feature can be (ab)used to reduce the number of configuration files
+required by your application.
 
 
 Command line arguments
@@ -116,11 +121,13 @@ Example::
 Environment variables
 ---------------------
 
-When passed as environment variables, options are capitalized and prefixed with `UWSGI_`, and dashes are substituted with underscores.
+When passed as environment variables, options are capitalized and prefixed with
+`UWSGI_`, and dashes are substituted with underscores.
 
 .. note::
 
-   Several values for the same configuration variable are not supported with this method.
+   Several values for the same configuration variable are not supported with
+   this method.
 
 Example::
 
@@ -129,11 +136,8 @@ Example::
 INI files
 ---------
 
-.INI files are a standard de-facto configuration way used by a lot of applications.
-
-It consists of ``[section]``s and ``key=value`` pairs.
-
-
+.INI files are a standard de-facto configuration foramt used by many
+applications.  It consists of ``[section]``s and ``key=value`` pairs.
 
 An example uWSGI INI configuration:
 
@@ -145,7 +149,9 @@ An example uWSGI INI configuration:
   workers = 3
   master = true
 
-By default, uWSGI uses the ``[uwsgi]`` section, but you can specify another section name while loading the INI file with the syntax ``filename:section``, that is::
+By default, uWSGI uses the ``[uwsgi]`` section, but you can specify another
+section name while loading the INI file with the syntax ``filename:section``,
+that is::
 
   uwsgi --ini myconf.ini:app1
 
@@ -171,8 +177,11 @@ An example:
     <workers>3</workers>
   </uwsgi>
 
-You can also have multiple ``<uwsgi>`` stanzas in your file, marked with different ``id`` attributes. To choose the stanza to use, specify its id after the filename in the ``xml`` option, using a colon as a separator.
-When using this `id` mode, the root node of the file may be anything you like. This will allow you to embed ``uwsgi`` configuration nodes in other XML files.
+You can also have multiple ``<uwsgi>`` stanzas in your file, marked with
+different ``id`` attributes. To choose the stanza to use, specify its id after
+the filename in the ``xml`` option, using a colon as a separator.  When using
+this `id` mode, the root node of the file may be anything you like. This will
+allow you to embed ``uwsgi`` configuration nodes in other XML files.
 
 .. code-block:: xml
 
@@ -187,7 +196,9 @@ When using this `id` mode, the root node of the file may be anything you like. T
 JSON files
 ----------
 
-The JSON file should represent an object with one key-value pair, the key being `"uwsgi"` and the value an object of configuration variables. Native JSON lists, booleans and numbers are supported.
+The JSON file should represent an object with one key-value pair, the key being
+`"uwsgi"` and the value an object of configuration variables. Native JSON
+lists, booleans and numbers are supported.
 
 An example:
 
@@ -201,8 +212,10 @@ An example:
 
 .. note::
 
-   The `Jansson`_ library is required during uWSGI build time to enable JSON support.
-   By default the presence of the library will be auto-detected and JSON support will be automatically enabled, but you can force JSON support to be enabled or disabled by editing your build configuration.
+   The `Jansson`_ library is required during uWSGI build time to enable JSON
+   support.  By default the presence of the library will be auto-detected and
+   JSON support will be automatically enabled, but you can force JSON support
+   to be enabled or disabled by editing your build configuration.
 
    .. seealso:: :doc:`Install`
 
@@ -234,4 +247,6 @@ SQLite configuration
 LDAP configuration
 ------------------
 
-LDAP is a flexible way to centralize configuration of large clusters of uWSGI servers. Configuring it is a complex topic. See :doc:`LDAP` for more information.
+LDAP is a flexible way to centralize configuration of large clusters of uWSGI
+servers. Configuring it is a complex topic. See :doc:`LDAP` for more
+information.

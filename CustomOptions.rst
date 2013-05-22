@@ -1,20 +1,27 @@
 Defining new options for your instances
 =======================================
 
-You may want to give your customers/users a better experience in configuring their apps, or you need to configure so many instances you need all the possibile help and shortcuts.
-Declaring new options for your config files/command-line is a good way of achieving either of these goals.
+Sometimes the built-in options are not enough. For example, you may need to
+give your customers custom options for configuring their apps on your platform.
+Or you need to configure so many instances you want to simplify things such as
+per-datacenter or per-server-type options.  Declaring new options for your
+config files/command-line is a good way of achieving these goals.
 
 To define new options use ``--declare-option``::
 
   --declare-option <option_name>=<option1=value1>[;<option2=value2>;<option3=value3>...]
 
 
-An useful example could be defining a "redirect" option, using the redirect plugin of the InternalRouting subsystem::
+An useful example could be defining a "redirect" option, using the redirect
+plugin of the InternalRouting subsystem::
 
   --declare-option "redirect=route=\$1 redirect:\$2"
 
 
-You have just declared a new option called ``redirect`` that takes 2 arguments. Those arguments will be expanded using the $-prefixed variables. Like shell scripts, *the backslash is required to make your shell not expand these values*.
+This will declare a new option called ``redirect`` that takes 2 arguments.
+Those arguments will be expanded using the $-prefixed variables. Like shell
+scripts, *the backslash is required to make your shell not expand these
+values*.
 
 Now you will be able to define a redirect in your config files:
 
@@ -42,7 +49,7 @@ or directly on the command line:
 More fun: a bunch of shortcuts
 ------------------------------
 
-Let's define some new options for frequently-used apps.
+Now we will define new options for frequently-used apps.
 
 Shortcuts.ini:
 
@@ -56,7 +63,7 @@ Shortcuts.ini:
   ; another for flask (new syntax: flask=<path_to_your_app_entry_point>)
   declare-option = flask=plugin=python;wsgi-file=$1;callable=app
 
-Now, to hook up a Trac instance on :file:`/var/www/trac/fooenv`:
+To hook up a Trac instance on /var/www/trac/fooenv:
 
 .. code-block:: ini
 
@@ -72,7 +79,7 @@ Now, to hook up a Trac instance on :file:`/var/www/trac/fooenv`:
   ; our new option
   trac = /var/www/trac/fooenv
 
-A config for Web2py, in XML
+A config for Web2py, in XML:
 
 .. code-block:: xml
 
@@ -92,14 +99,15 @@ A config for Web2py, in XML
 A trick for the Emperor: automatically import shortcuts for your vassals
 ------------------------------------------------------------------------
 
-If you manage your customers/users with the :doc:`Emperor<Emperor>`, you can configure it to automatically import your shortcuts in each vassal.
+If you manage your customers/users with the :doc:`Emperor<Emperor>`, you can
+configure it to automatically import your shortcuts in each vassal.
 
 .. code-block:: sh
 
   uwsgi --emperor /etc/uwsgi/vassals --vassals-inherit /etc/uwsgi/shortcuts.ini
 
 
-Or for multiple shortcuts,
+For multiple shortcuts use:
 
 .. code-block:: sh
 
@@ -119,12 +127,11 @@ Or (with a bit of :doc:`configuration logic magic<ConfigLogic>`):
 An advanced trick: embedding shortcuts in your uWSGI binary
 -----------------------------------------------------------
 
-uWSGI's build system allows you to embed files, be they generic files or configuration, in the server binary.
-
-Abusing this feature will enable you to embed your new option shortcuts to the server binary, automagically allowing users to use them.
-
-To embed your shortcuts file, edit your build profile (like :file:`buildconf/base.ini`) and set ``embed_config`` to the path of the shortcuts file.
-
-Rebuild your server and your new options will be available.
+uWSGI's build system allows you to embed files, be they generic files or
+configuration, in the server binary.  Abusing this feature will enable you to
+embed your new option shortcuts to the server binary, automagically allowing
+users to use them.  To embed your shortcuts file, edit your build profile (like
+:file:`buildconf/base.ini`) and set ``embed_config`` to the path of the
+shortcuts file.  Rebuild your server and your new options will be available.
 
 .. seealso:: :doc:`BuildConf`

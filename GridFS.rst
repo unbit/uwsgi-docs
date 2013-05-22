@@ -1,16 +1,15 @@
 The GridFS plugin
 =================
 
-Starting with uWSGI 1.9.5 a "GridFS" plugin is available. It exports both a request handler and an internal routing function.
-
-Its official modifier is '25'. The routing instruction is "gridfs"
-
-The plugin is written in C++.
+Beginning in uWSGI 1.9.5 a "GridFS" plugin is available. It exports both a
+request handler and an internal routing function.  Its official modifier is
+'25'. The routing instruction is "gridfs" The plugin is written in C++.
 
 Requirements and install
 ************************
 
-To build the plugin you need the ``libmongoclient`` headers (and a functioning C++ compiler). On a Debian-like system you can do
+To build the plugin you need the ``libmongoclient`` headers (and a functioning
+C++ compiler). On a Debian-like system you can do the following.
 
 .. code-block:: sh
 
@@ -28,7 +27,8 @@ Or you can build it as plugin:
 
    python uwsgiconfig.py --plugin plugins/gridfs
 
-For a fast installation of a monolithic build you can use the network installer:
+For a fast installation of a monolithic build you can use the network
+installer:
 
 .. code-block:: sh
 
@@ -40,7 +40,8 @@ This will install a gridfs enabled uwsgi binary.
 Standalone quickstart
 *********************
 
-This is a standalone config that blindly maps the incoming ``PATH_INFO`` to items in the GridFS db named "test":
+This is a standalone config that blindly maps the incoming ``PATH_INFO`` to
+items in the GridFS db named "test":
 
 .. code-block:: ini
 
@@ -54,7 +55,8 @@ This is a standalone config that blindly maps the incoming ``PATH_INFO`` to item
    ; map gridfs requests to the "test" db
    gridfs-mount = db=test
 
-Supposing you have the myfile.txt file stored in your GridFS as "/myfile.txt", run
+Assuming you have the myfile.txt file stored in your GridFS as "/myfile.txt",
+run the following:
 
 .. code-block:: sh
 
@@ -65,8 +67,10 @@ and you should be able to get it.
 The initial slash problem
 *************************
 
-Generally ``PATH_INFO`` is prefixed with a '/'. This could cause problems in GridFS path resolution if you are not storing the items
-with absolute path names. To counteract this, you can make the ``gridfs`` plugin to skip the initial slash:
+Generally ``PATH_INFO`` is prefixed with a '/'. This could cause problems in
+GridFS path resolution if you are not storing the items with absolute path
+names. To counteract this, you can make the ``gridfs`` plugin to skip the
+initial slash:
 
 .. code-block:: ini
 
@@ -85,8 +89,10 @@ Now instead of searching for /myfile.txt it will search for "myfile.txt".
 Multiple mountpoints (and servers)
 **********************************
 
-You can mount different GridFS databases under different SCRIPT_NAME (or UWSGI_APPID). If your web server is able to correctly manage
-the ``SCRIPT_NAME`` variable you do not need any additional setup (other than --gridfs-mount). Otherwise don't forget to add the --manage-script-name option
+You can mount different GridFS databases under different SCRIPT_NAME (or
+UWSGI_APPID). If your web server is able to correctly manage the
+``SCRIPT_NAME`` variable you do not need any additional setup (other than
+--gridfs-mount). Otherwise don't forget to add the --manage-script-name option
 
 .. code-block:: ini
 
@@ -117,11 +123,8 @@ This way each request will map to a different GridFS server.
 Replica sets
 ************
 
-If you are using MonogDB/GridFS in production environments, it is very probable you are using a replica set.
-
-You can use replica set in your uWSGI config with this syntax:
-
-<replica>server1,server2,serverN...
+If you are using a replica set, you can use it in your uWSGI config with this
+syntax: <replica>server1,server2,serverN...
 
 .. code-block:: ini
 
@@ -160,10 +163,11 @@ will map to /foobar___test.txt
 MIME types and filenames
 ************************
 
-By default the MIME type of the file is derived from the filename stored in GridFS. This filename might not map to the effectively
-requested URI or you may not want to set a ``content_type`` for your response (or want to allow some other system to set it).
-
-If you want to disable MIME type generation just add ``no_mime=1`` to the mount options.
+By default the MIME type of the file is derived from the filename stored in
+GridFS. This filename might not map to the effectively requested URI or you may
+not want to set a ``content_type`` for your response. Or you may want to allow
+some other system to set it.  If you want to disable MIME type generation just
+add ``no_mime=1`` to the mount options.
 
 .. code-block:: ini
 
@@ -172,7 +176,8 @@ If you want to disable MIME type generation just add ``no_mime=1`` to the mount 
    http-socket-modifier1 = 25
    gridfs-mount = server=ubuntu64.local,db=test,skip_slash=1,no_mime=1
 
-If you want your response to set the filename using the original value (the one stored in GridFS) add ``orig_filename=1``
+If you want your response to set the filename using the original value (the one
+stored in GridFS) add ``orig_filename=1``
 
 .. code-block:: ini
 
@@ -184,7 +189,8 @@ If you want your response to set the filename using the original value (the one 
 Timeouts
 ********
 
-You can set the timeout of the low-level MongoDB operations by adding ``timeout=N`` to the options:
+You can set the timeout of the low-level MongoDB operations by adding
+``timeout=N`` to the options:
 
 .. code-block:: ini
 
@@ -197,13 +203,10 @@ You can set the timeout of the low-level MongoDB operations by adding ``timeout=
 MD5 and ETag headers
 ********************
 
-GridFS stores an MD5 hash of each file.
-
-You can add this info to your response headers both as ETag (MD5 in hex format) or Content-MD5 (in Base64).
-
-Use ``etag=1`` for adding ETag header and ``md5=1`` for adding Content-MD5.
-
-And there's nothing stopping you from adding both headers to the response.
+GridFS stores an MD5 hash of each file. You can add this info to your response
+headers both as ETag (MD5 in hex format) or Content-MD5 (in Base64).  Use
+``etag=1`` for adding ETag header and ``md5=1`` for adding Content-MD5. There's
+nothing stopping you from adding both headers to the response.
 
 .. code-block:: ini
 
@@ -216,7 +219,8 @@ And there's nothing stopping you from adding both headers to the response.
 Multithreading
 **************
 
-The plugin is fully thread-safe, so consider using multiple threads for improving concurrency:
+The plugin is fully thread-safe, so consider using multiple threads for
+improving concurrency:
 
 .. code-block:: ini
 
@@ -229,7 +233,8 @@ The plugin is fully thread-safe, so consider using multiple threads for improvin
    processes = 2
    threads = 8
 
-This will spawn 2 processes (monitored by the master) with 8 threads each (for a total of 16 threads)
+This will spawn 2 processes monitored by the master with 8 threads each for a
+total of 16 threads.
 
 Combining with Nginx
 ********************
@@ -244,7 +249,8 @@ This is not different from the other plugins:
        uwsgi_modifier1 25;
    }
 
-just be sure to set the ``uwsgi_modifier1`` value to ensure all requests get routed to GridFS.
+Just be sure to set the ``uwsgi_modifier1`` value to ensure all requests get
+routed to GridFS.
 
 .. code-block:: ini
 
@@ -266,12 +272,14 @@ The plugin exports a 'gridfs' action simply returning an item:
    socket = 127.0.0.1:3031
    route = ^/foo/(.+).jpg gridfs:server=192.168.173.17,db=test,itemname=$1.jpg
 
-The options are the same as the request plugin's, with "itemname" being the only addition. It specifies the name of the object in the GridFS db.
+The options are the same as the request plugin's, with "itemname" being the
+only addition. It specifies the name of the object in the GridFS db.
 
 Notes
 *****
 
 * If you do not specify a server address, 127.0.0.1:27017 is assumed.
 * The use of the plugin in async modes is not officially supported, but may work.
-* If you do not get why a request is not serving your GridFS item, consider adding the ``--gridfs-debug`` option. It will print the requested item
-in uWSGI logs.
+* If you do not get why a request is not serving your GridFS item, consider
+  adding the ``--gridfs-debug`` option. It will print the requested item in uWSGI
+  logs.

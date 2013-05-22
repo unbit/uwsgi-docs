@@ -172,7 +172,7 @@ Accessing the cache from your applications using the cache api
 
 You can access the various cache in your instance or on remote instances by
 using the cache API.  Currently the following functions are exposed (each
-language can name them a bit differently from the standard):
+language might name them a bit differently from the standard):
 
  * cache_get(key[,cache])
  * cache_set(key,value[,expires,cache])

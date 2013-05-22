@@ -1,18 +1,23 @@
 Integration with Graphite/Carbon
 ================================
 
-Graphite (http://graphite.wikidot.com/) is a kick-ass realtime graphing application built on top of three components: Whisper (a data storage system), Carbon (a server gathering data and storing them in whisper files) and a Python web application for rendering and managing graphs.
+Graphite (http://graphite.wikidot.com/) is a kick-ass realtime graphing application built on top of three components: 
+- Whisper - a data storage system
+- Carbon - a server for receiving data  
+- A Python web application for rendering and managing graphs
 
-The uWSGI Carbon plugin allows you to send uWSGI's internal statistics to one or more Carbon servers.
-
-It is compiled in by default starting from uWSGI 1.0 but it can also be built as a plugin.
+The uWSGI Carbon plugin allows you to send uWSGI's internal statistics to one
+or more Carbon servers.  It is compiled in by default as of uWSGI 1.0, though
+it can also be built as a plugin.
 
 Quickstart
 ----------
 
-For the sake of illustration, let's say your Carbon server is listening on ``127.0.0.1:2003`` and your uWSGI instance is on the machine ``debian32``, listening on ``127.0.0.1:3031`` with 4 processes.
-
-Now by adding the ``--carbon`` option to your uWSGI instance, your server will periodically (by default every 60 seconds) send its statistics to the carbon server.
+For the sake of illustration, let's say your Carbon server is listening on
+``127.0.0.1:2003`` and your uWSGI instance is on the machine ``debian32``,
+listening on ``127.0.0.1:3031`` with 4 processes.  By adding the ``--carbon``
+option to your uWSGI instance, your server will periodically send its
+statistics to the carbon server. The default period is 60 seconds.
 
 .. code-block:: sh
 

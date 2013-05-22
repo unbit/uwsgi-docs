@@ -1,7 +1,7 @@
 Running CGI scripts on uWSGI
 ============================
 
-The CGI plugin allows you to run CGI scripts within your uWSGI server.
+The CGI plugin provides the ability to run CGI scripts using the uWSGI server.
 
 Web servers/clients/load balancers send requests to the uWSGI server using modifier ``9``. uWSGI then uses the variables passed from the client as CGI variables (on occasion fixing them) and calls the corresponding script/executable, re-forwarding its output to the client.
 

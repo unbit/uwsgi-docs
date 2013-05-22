@@ -1,28 +1,23 @@
 uWSGI Go support (1.4-dev)
 ==========================
 
-Starting from uWSGI 1.4-dev you can host Go web applications in your uWSGI stack.
-
-You can download Go from http://golang.org/ .
-
-Currently Linux i386/x86_64, FreeBSD i386/x86_64 and OSX are supported.
-
-For OSX support, you need Go 1.0.3+ or you will need to apply the patch available at http://code.google.com/p/go/source/detail?r=62b7ebe62958
-
-Goroutines are currently supported only on Linux i386/x86_64.
+Starting from uWSGI 1.4-dev you can host Go web applications in your uWSGI
+stack.  You can download Go from http://golang.org/ .  Currently Linux
+i386/x86_64, FreeBSD i386/x86_64 and OSX are supported.  For OSX support, you
+need Go 1.0.3+ or you will need to apply the patch available at
+http://code.google.com/p/go/source/detail?r=62b7ebe62958 Goroutines are
+currently supported only on Linux i386/x86_64.
 
 Building uWSGI with Go support
 ******************************
 
-As always, you can build Go support as an embedded component or as a plugin.
-
-The main difference with the others setup is that this time we will build a uwsgi library
-and not a uwsgi binary. This library will be used by a Go package named uwsgi.go you can link with your apps.
-
-Do not be afraid, you are lucky, as in the uWSGI distribution there is already a build profile to make a completely
-(monolithic) distribution with Go support embedded.
-
-At the end of the build procedure you will have a libuwsgi.so shared library and a uwsgi.a Go package.
+Go support can be built as an embedded component or plugin.  The main
+difference with the setup of other languages is this time we will build a uwsgi
+library and not a uwsgi binary. This library will be used by a Go package named
+uwsgi.go you can link with your apps.  Do not be afraid as in the uWSGI
+distribution there is already a build profile to make a completely (monolithic)
+distribution with Go support embedded.  At the end of the build procedure you
+will have a libuwsgi.so shared library and a uwsgi.a Go package.
 
 To build uWSGI+go just run (from uWSGI sources directory)
 
@@ -30,7 +25,8 @@ To build uWSGI+go just run (from uWSGI sources directory)
 
    UWSGI_PROFILE=go make
 
-or if Python is not in your system path, or you need to use a specific python version,
+or if Python is not in your system path, or you need to use a specific python
+version:
 
 .. code-block:: sh
 
@@ -38,21 +34,26 @@ or if Python is not in your system path, or you need to use a specific python ve
 
 (or wherever your custom Python is)
 
-At the end of the build procedure you will have a libuwsgi.so file (copy or link it to a library directory
-like /usr/local/lib or /usr/lib and eventually run ldconfig if needed) and a uwsgi.a file in a subdirectory
-(based on your arch/os) in plugins/go/pkg.
+At the end of the build procedure you will have a libuwsgi.so file (copy or
+link it to a library directory like /usr/local/lib or /usr/lib and eventually
+run ldconfig if needed) and a uwsgi.a file in a subdirectory (based on your
+arch/os) in plugins/go/pkg.
 
 .. important::
 
-   The last message from the build procedure reports the ``GOPATH`` you should use when building uWSGI Go apps (copy/remember/annotate that value somewhere).
+   The last message from the build procedure reports the ``GOPATH`` you should
+   use when building uWSGI Go apps (copy/remember/annotate that value
+   somewhere).
 
-   If you already know how the Go import system works, feel free to copy uwsgi.a in your system-wide GOPATH.
+   If you already know how the Go import system works, feel free to copy
+   uwsgi.a in your system-wide GOPATH.
 
 Writing the first Go application
 ********************************
 
-By default the uWSGI Go plugin supports the ``http.DefaultServeMux`` handler, so if your app is already based on it,
-running it in uWSGI should be extremely simple.
+By default the uWSGI Go plugin supports the ``http.DefaultServeMux`` handler,
+so if your app is already based on it, running it in uWSGI should be extremely
+simple.
 
 .. code-block:: go
 
@@ -79,9 +80,12 @@ running it in uWSGI should be extremely simple.
            uwsgi.Run()
    }
 
-As you can see, the only differences from a standard ``net/http``-based application are the need to ``import "uwsgi"`` need and calling ``uwsgi.Run()`` function, which will run the whole uWSGI server.
-
-If you want to use your personal request handler instead of ``http.DefaultServeMux``, use ``uwsgi.Handler(http.Handler)`` or ``uwsgi.RequestHandler(func(http.ResponseWriter, *http.Request))`` to set it.
+As you can see, the only differences from a standard ``net/http``-based
+application are the need to ``import "uwsgi"`` need and calling ``uwsgi.Run()``
+function, which will run the whole uWSGI server.  If you want to use your
+personal request handler instead of ``http.DefaultServeMux``, use
+``uwsgi.Handler(http.Handler)`` or
+``uwsgi.RequestHandler(func(http.ResponseWriter, *http.Request))`` to set it.
 
 .. code-block:: go
 
@@ -97,25 +101,22 @@ If you want to use your personal request handler instead of ``http.DefaultServeM
 Building your first app
 ***********************
 
-Now, supposing you have saved your app as helloworld.go, just run
+Assuming you saved your app as helloworld.go, just run the following.
 
 .. code-block:: sh
 
    GOPATH=/home/foobar/uwsgi/plugins/go go build helloworld.go
 
-change GOPATH to the value you got from the build procedure, or to the dir you have installed/copied uwsgi.a
-
-If all goes well you will end with a 'helloworld' executable.
-
-That executable is a full uWSGI server (yes, really).
+change GOPATH to the value you got from the build procedure, or to the dir you
+have installed/copied uwsgi.a If all goes well you will end with a 'helloworld'
+executable.  That executable is a full uWSGI server (yes, really).
 
 .. code-block:: sh
 
    ./helloworld --http :8080 --http-modifier1 11
 
-just point your browser to the port 8080 and check /one/ and /two/
-
-You can start adding processes and a master as always
+Just point your browser to the port 8080 and check /one/ and /two/ You can
+start adding processes and a master:
 
 .. code-block:: sh
 
@@ -126,9 +127,8 @@ Note: modifier1 11 is officially assigned to Go.
 Going in production
 *******************
 
-In a production environment you will probably put a webserver/proxy in front of your app.
-
-So your nginx config will look like this::
+In a production environment you will probably put a webserver/proxy in front of
+your app. Thus your nginx config will look like this::
 
    location / {
        include uwsgi_params;
@@ -155,11 +155,10 @@ Goroutines (currently Linux/FreeBSD-only)
 *****************************************
 
 Goroutines are very probably the most interesting feature of the Go platform.
-
-A uWSGI loop engine for goroutines is automatically embedded in the uWSGI library when you
-build it with the go plugin.
-
-To spawn goroutines in each uWSGI process just add the ``goroutines = N`` option, where N is the number of goroutines to spawn.
+A uWSGI loop engine for goroutines is automatically embedded in the uWSGI
+library when you build it with the go plugin.  To spawn goroutines in each
+uWSGI process just add the ``goroutines = N`` option, where N is the number of
+goroutines to spawn.
 
 .. code-block:: ini
 
@@ -169,14 +168,16 @@ To spawn goroutines in each uWSGI process just add the ``goroutines = N`` option
    processes = 4
    goroutines = 100
 
-With this config you will spawn 100 goroutines for each uWSGI process, yielding a grand total of 400 goroutines (!)
-
-As far as uWSGI is concerned, goroutines map to pthreads, but you will be able to spawn coroutine-based tasks from your application as well.
+With this config you will spawn 100 goroutines for each uWSGI process, yielding
+a grand total of 400 goroutines (!) As far as uWSGI is concerned, goroutines
+map to pthreads, but you will be able to spawn coroutine-based tasks from your
+application as well.
 
 uWSGI api
 *********
 
-You can access the uWSGI API from your Go app pretty easily. Just invoke the functions exported by the uwsgi package:
+It is fairly simple to access the uWSGI API from your Go app. To do so invoke
+the functions exported by the uwsgi package:
 
 .. code-block:: go
 
@@ -214,13 +215,11 @@ You can access the uWSGI API from your Go app pretty easily. Just invoke the fun
    }
 
 
-The PostInit() function set the 'hook' to be called after the Go initialization is complete.
-
-The PostFork() function set the 'hook' to be called after each fork()
-
-In postinit hook we register two uwsgi signals, with the second one being run in a mule (the mule1)
-
-To run the code just build your new app as previously explained and execute it
+The PostInit() function set the 'hook' to be called after the Go initialization
+is complete.  The PostFork() function set the 'hook' to be called after each
+fork() In postinit hook we register two uwsgi signals, with the second one
+being run in a mule (the mule1) To run the code just build your new app as
+above and execute it
 
 .. code-block:: ini
 
@@ -232,15 +231,15 @@ To run the code just build your new app as previously explained and execute it
    mules = 2
    memory-report = true
 
-This time we have added memory-report, try it to see how memory-cheap Go apps can be...
+This time we have added memory-report, try it to see how memory-cheap Go apps
+can be.
 
 Running from the Emperor
 ************************
 
-Obviously if you are an uWSGI user, you are using the Emperor (or you really should be). You can run uWSGI-Go apps in the Emperor
-using the ``privileged-binary-patch`` option
-
-Your vassal configuration should be something like this.
+If you are running in Emperor mode, you can run uWSGI-Go apps by using the
+``privileged-binary-patch`` option.  Your vassal configuration should be
+something like this.
 
 .. code-block:: ini
 
@@ -260,9 +259,14 @@ Your vassal configuration should be something like this.
 Notes
 *****
 
-* A series of interesting go examples can be found in the ``t/go`` directory of the uWSGI source distribution.
+* A series of interesting go examples can be found in the ``t/go`` directory of
+  the uWSGI source distribution.
 * Changing process names is currently not possible without modifying the go core
 * You cannot use uWSGI native threads with Go (just use --goroutines)
-* Only a little part of the uWSGI API has been exposed so far. If you want to hack on it or need more, just edit the uwsgi.go file in the plugins/go/src/uwsgi directory
-* Goroutines require the async mode (if you are customizing your uWSGI library remember to always include it)
-* It looks like it is possible to load the Python, Lua and PSGI plugins without problems even in goroutines mode (more tests needed)
+* Only a little part of the uWSGI API has been exposed so far. If you want to
+  hack on it or need more, just edit the uwsgi.go file in the
+  plugins/go/src/uwsgi directory
+* Goroutines require the async mode (if you are customizing your uWSGI library
+  remember to always include it)
+* It looks like it is possible to load the Python, Lua and PSGI plugins without
+  problems even in goroutines mode (more tests needed)
