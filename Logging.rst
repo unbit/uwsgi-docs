@@ -6,14 +6,17 @@ Logging
 Basic logging
 -------------
 
-The most basic form of logging in uWSGI is of course writing everything, both requests and errors/informational messages, to stdout/stderr. This happens automatically.
-
-But like most everything in uWSGI, this is fully configurable. The most basic form of log redirection is the ``--logto``/``--logto2``/``--daemonize`` options which allow you to redirect logs to files (or ``/dev/null``, mind).
+The most basic form of logging in uWSGI is writing requests, errors, and
+informational messages to stdout/stderr. This happens in the default
+configuration.  The most basic form of log redirection is the ``--logto`` /
+``--logto2`` / ``--daemonize`` options which allow you to redirect logs to
+files.
 
 Basic logging to files
 ^^^^^^^^^^^^^^^^^^^^^^
 
-To log to files instead of stdout/stderr, use ``--logto``, or to simultaneously daemonize uWSGI, ``--daemonize``.
+To log to files instead of stdout/stderr, use ``--logto``, or to simultaneously
+daemonize uWSGI, ``--daemonize``.
 
 .. code-block:: sh
 
@@ -25,46 +28,56 @@ To log to files instead of stdout/stderr, use ``--logto``, or to simultaneously 
 Basic logging (connected UDP mode)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Using UDP logging you can "centralize" cluster logging or redirect the write of logs (that can be very heavy for your I/O resources) to another machine. UDP logging works both in daemonized and interactive mode. UDP logging works with connected-socket mode, so the UDP server must be available before uWSGI starts. For a more raw approach (working in unconnected mode) see the above section on socket logging.
+With UDP logging you can centralize cluster logging or redirect the persistence
+of logs to another machinei to offload disk I/O. UDP logging works in both
+daemonized and interactive modes. UDP logging operaties in connected-socket
+mode, so the UDP server must be available before uWSGI starts.  For a more raw
+approach (working in unconnected mode) see the section on socket logging.
 
-To enable it you simply pass the address of an UDP server to the ``--daemonize``/``--logto`` option:
+To enable conencted UDP mode pass the address of an UDP server to the
+``--daemonize``/``--logto`` option:
 
 .. code-block:: sh
 
     ./uwsgi -s :3031 -w simple_app --daemonize 192.168.0.100:1717
     ./uwsgi -s :3031 -w simple_app --logto 192.168.0.100:1717
 
-This will redirect all the stdout/stderr data to the UDP socket on 192.168.0.100, port 1717.
-
-Now you need an UDP server that will manage your UDP messages. You could use netcat, or even uWSGI:
+This will redirect all the stdout/stderr data to the UDP socket on
+192.168.0.100, port 1717.  Now you need an UDP server that will manage your UDP
+messages. You could use netcat, or even uWSGI:
 
 .. code-block:: sh
 
     nc -u -p 1717 -s 192.168.0.100 -l
     ./uwsgi --udp 192.168.0.100:1717
 
-The second way is a bit more useful as it will print the source (ip:port) of every message. In case of multiple uWSGI server logging on the same UDP server it will allow you to recognize one server from another. And of course you can write your own apps to manage/filter/save the logs received via udp.
+The second way is a bit more useful as it will print the source (ip:port) of
+every message. In case of multiple uWSGI server logging on the same UDP server
+it will allow you to recognize one server from another. Naturally you can
+write your own apps to manage/filter/save the logs received via udp.
 
 
 Pluggable loggers
 -----------------
 
-uWSGI also supports pluggable loggers, which allow you to more flexibly specify where to log, and what to log (at request/error granularity at the time of writing).
+uWSGI also supports pluggable loggers, which allow you more flexibility on
+where and what to log. Depending on the configuration of your uWSGI build,
+some loggers may or may not be available. Some may require to be loaded as
+plugins. To find out what plugins are available in your build, invoke uWSGI
+with ``--logger-list``. To set up a pluggable logger, use the ``--logger`` or
+``--req-logger`` options. ``--logger`` will set up a logger for every message
+while ``--req-logger`` will set up a logger for request information messages.
 
-Depending on the configuration of your uWSGI build, some loggers may or may not be available. Some may require to be loaded as plugins. To find out what plugins are available in your build, invoke uWSGI with ``--logger-list``.
-
-To set up a pluggable logger, use the ``--logger`` or ``--req-logger`` options. ``--logger`` will set up a logger for every message while ``--req-logger`` will set up a logger for request information messages.
-
-The syntax for the logger options is as follows:
+This is the syntax:
 
 .. code-block:: sh
 
     --logger <plugin>[:options]"
     --logger "<name> <plugin>[:options]" # The quotes are only required on the command line -- config files don't use them
 
-You may set up as many loggers as you like. Named plugins are used for log routing.
-
-A very simple example of split request/error logging (using plain old boring files) would be
+You may set up as many loggers as you like. Named plugins are used for log
+routing.  A very simple example of split request/error logging using plain text
+files follows.
 
 .. code-block:: ini
 
@@ -75,7 +88,10 @@ A very simple example of split request/error logging (using plain old boring fil
 Log routing
 -----------
 
-By default all log lines are sent to all declared loggers. If this is not what you want, you can use ``--log-route`` (and ``--log-req-route`` for request loggers) to specify a regular expression to route certain log messages to different destinations.
+By default all log lines are sent to all declared loggers. If this is not what
+you want, you can use ``--log-route`` (and ``--log-req-route`` for request
+loggers) to specify a regular expression to route certain log messages to
+different destinations.
 
 For instance:
 
@@ -91,9 +107,10 @@ For instance:
     log-route = internalservererror (HTTP/1.\d 500)
     log-route = mylogger1 uWSGI listen queue of socket .* full
 
-This will log all 500 errors to /tmp/errors, while listen queue full errors will end up in /tmp/foobar.
-
-This is somewhat similar to the :doc:`AlarmSubsystem` (though alarms are usually heavier and should only be used for critical situations).
+This will log each 500 level error to /tmp/errors, while listen queue full errors
+will end up in /tmp/foobar.  This is somewhat similar to the
+:doc:`AlarmSubsystem`, though alarms are usually heavier and should only be
+used for critical situations.
 
 Logging to files
 ----------------
@@ -109,7 +126,8 @@ Logging to sockets
 
 ``logsocket`` plugin -- embedded by default.
 
-You can log to an unconnected UNIX or UDP socket using ``--logger socket:...`` (or ``--log-socket ...``).
+You can log to an unconnected UNIX or UDP socket using ``--logger socket:...``
+(or ``--log-socket ...``).
 
 .. code-block:: sh
 
@@ -121,9 +139,9 @@ will send log entries to the Unix socket ``/tmp/uwsgi.logsock``.
 
     uwsgi --socket :3031 --logger socket:192.168.173.19:5050
 
-will shoot log datagrams to the UDP address 192.168.173.19 on port 5050.
- 
-You may also multicast logs to multiple log servers by passing the multicast address:
+will send log datagrams to the UDP address 192.168.173.19 on port 5050.  You
+may also multicast logs to multiple log servers by passing the multicast
+address:
 
 .. code-block:: sh
 
@@ -134,7 +152,8 @@ Logging to syslog
 
 ``logsyslog`` plugin -- embedded by default
 
-The ``logsyslog`` plugin routes logs to Unix standard syslog. You may pass an optional ID to send as the "facility" parameter for the log entry.
+The ``logsyslog`` plugin routes logs to Unix standard syslog. You may pass an
+optional ID to send as the "facility" parameter for the log entry.
 
 .. code-block:: sh
 
@@ -146,7 +165,10 @@ Logging to remote syslog
 ``logrsyslog`` plugin -- embedded by default
 
 
-The ``logrsyslog`` plugin routes logs to Unix standard syslog residing on a remote server. In addtition to the address+port of the remote syslog server, you may pass an optional ID to send as the "facility" parameter for the log entry.
+The ``logrsyslog`` plugin routes logs to Unix standard syslog residing on a
+remote server. In addtition to the address+port of the remote syslog server,
+you may pass an optional ID to send as the "facility" parameter for the log
+entry.
 
 .. code-block:: sh
 
@@ -157,25 +179,26 @@ Redis logger
 
 ``redislog`` plugin -- embedded by default.
 
-By default the ``redislog`` plugin will 'publish' each logline to a redis pub/sub queue.
-
-The logger plugin syntax is:
+By default the ``redislog`` plugin will 'publish' each logline to a redis
+pub/sub queue. The logger plugin syntax is:
 
 .. code-block:: sh
 
     --logger redislog[:<host>,<command>,<prefix>]
 
-By default ``host`` is mapped to ``127.0.0.1:6379``, ``command`` is mapped to "publish uwsgi" and ``prefix`` is empty.
-
-So, to publish to a queue called foobar, use ``redislog:127.0.0.1:6379,publish foobar``, etc.
-
-Redis logging is not limited to pub/sub. You could for instance push items into a list with
+By default ``host`` is mapped to ``127.0.0.1:6379``, ``command`` is mapped to
+"publish uwsgi" and ``prefix`` is empty.  To publish to a queue called foobar,
+use ``redislog:127.0.0.1:6379,publish foobar``.  Redis logging is not limited
+to pub/sub. You could for instance push items into a list, as in the next
+example.
 
 .. code-block:: sh
 
     --logger redislog:/tmp/redis.sock,rpush foo,example.com
 
-As error situations could cause the master to block while writing a log line to a remote server, it's a good idea to use ``--threaded-logger`` to offload log writes to a secondary thread.
+As error situations could cause the master to block while writing a log line to
+a remote server, it's a good idea to use ``--threaded-logger`` to offload log
+writes to a secondary thread.
 
 MongoDB logger
 --------------
@@ -188,21 +211,24 @@ The logger syntax for MongoDB logging (``mongodblog``) is
 
     --logger mongodblog[:<host>,<collection>,<node>]
 
-Where ``host`` is the address of the MongoDB instance (default ``127.0.0.1:27017``), ``collection`` names the collection to write log lines into (default ``uwsgi.logs``) and ``node`` is an identification string for the instance sending logs (default: server hostname).
+Where ``host`` is the address of the MongoDB instance (default
+``127.0.0.1:27017``), ``collection`` names the collection to write log lines
+into (default ``uwsgi.logs``) and ``node`` is an identification string for the
+instance sending logs (default: server hostname).
 
 .. code-block:: sh
 
     --logger mongodblog
 
-will run the logger with default values, while
+Will run the logger with default values, while
 
 .. code-block:: sh
 
     --logger mongodblog:127.0.0.1:9090,foo.bar
 
-will write logs to the mongodb server 127.0.0.1:9090 in the collection ``foo.bar`` using the default node name.
-
-Like with the Redis logger, offloading log writes to a dedicated thread is a good choice.
+Will write logs to the mongodb server 127.0.0.1:9090 in the collection
+``foo.bar`` using the default node name.  As with the Redis logger, offloading
+log writes to a dedicated thread is a good choice.
 
 .. code-block:: ini
 
@@ -216,7 +242,8 @@ Like with the Redis logger, offloading log writes to a dedicated thread is a goo
 ZeroMQ logging
 --------------
 
-As with UDP logging you can centralize/distribute logging via ZeroMQ. Build your logger daemon using a ``ZMQ_PULL`` socket:
+As with UDP logging you can centralize/distribute logging via ZeroMQ. Build
+your logger daemon using a ``ZMQ_PULL`` socket:
 
 .. code-block:: python
 
@@ -243,20 +270,22 @@ Now run your uWSGI server:
 Crypto logger (plugin)
 ----------------------
 
-If you host your applications on cloud services without persistent storage you may want to send your logs to external systems.
-
-However logs often contain sensitive information that should not be transferred in clear.
-
-The ``logcrypto`` plugin logger attempts to solve this issue allowing you to encrypt each log packet and send it over UDP to a server able to decrypt it.
-
-This will send each log packet to an UDP server available at 192.168.173.22:1717 encrypting the text with the secret key ``ciaociao`` with Blowfish in CBC mode.
+If you host your applications on cloud services without persistent storage you
+may want to send your logs to external systems.  However logs often contain
+sensitive information that should not be transferred in clear.  The
+``logcrypto`` plugin logger attempts to solve this issue by encrypting each log
+packet before sending it over UDP to a server able to decrypt it.  The next
+example will send each log packet to a UDP server available at
+192.168.173.22:1717 encrypting the text with the secret key ``ciaociao`` with
+Blowfish in CBC mode.
 
 
 .. code-block:: sh
 
    uwsgi --plugin logcrypto --logger crypto:addr=192.168.173.22:1717,algo=bf-cbc,secret=ciaociao -M -p 4 -s :3031
 
-An example server is available at https://github.com/unbit/uwsgi/blob/master/contrib/cryptologger.rb
+An example server is available at
+https://github.com/unbit/uwsgi/blob/master/contrib/cryptologger.rb
 
 Graylog2 logger (plugin)
 ------------------------
@@ -284,7 +313,8 @@ This plugin will write log entries into the Systemd journal.
 Writing your own logger plugins
 -------------------------------
 
-This plugin, ``foolog.c`` will write your messages in the file specified with --logto/--daemonize with a simple prefix using vector IO.
+This plugin, ``foolog.c`` will write your messages in the file specified with
+--logto/--daemonize with a simple prefix using vector IO.
 
 .. code-block:: c
 
