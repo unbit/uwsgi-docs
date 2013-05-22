@@ -55,7 +55,10 @@ A more versatile approach is using the ssi parser as a routing action:
    http-socket = :9090
    route = ^/(.*) ssi:/var/www/$1.shtml
 
-the routign action does not need DOCUMENT_ROOT or PATH_INFO
+the routing action does not need DOCUMENT_ROOT or PATH_INFO
+
+Pay attention: as all of the routing actions, no check on file paths is made to allow higher customizations. If you pass untrusted paths
+to the ssi action, you should sanitize them (you can use routing again, checking for the presence of .. or other dangerous symbols)
 
 Supported SSI commands
 **********************
