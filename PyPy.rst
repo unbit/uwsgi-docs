@@ -126,3 +126,12 @@ RPC support
 
 You can register RPC function using the uwsgi.register_rpc api function (in the same way you do it with the cpython plugin)
 
+.. code-block:: py
+
+   import uwsgi
+   
+   def hello():
+       return "Hello World"
+       
+   uwsgi.register_rpc('hello', hello)
+   
