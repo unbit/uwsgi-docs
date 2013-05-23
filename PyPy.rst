@@ -5,7 +5,7 @@ Idea/Design: Maciej Fijalkowski
 
 Contributors: Alex Gaynor, Armin Rigo
 
-Since uWSGI 1.9.11 a new pypy plugin based on cffi is available. The old one, base on (slow) cpyext has been removed
+Since uWSGI 1.9.11 a new pypy plugin based on cffi is available. The old one, based on (slow) cpyext has been removed
 from the tree.
 
 The plugin is currently supported only on Linux systems. Next releases will support other systems as well.
