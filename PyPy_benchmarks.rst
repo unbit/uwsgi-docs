@@ -199,3 +199,16 @@ RPC
 
 uWSGI RPC is good for testing string manipulation. RPC parsing is done in C with the CPython plugin and in python in PyPy
 
+
+RPC (multithread)
+^^^^^^^^^^^^^^^^^
+
+Notes
+^^^^^
+
+Testing multiprocessing is useless, do not ask for it
+
+The uWSGI PyPy plugin still does not support all of the features of the CPython-based plugin, we cannot exclude a little drop in performance
+while we add features.
+
+Again, this tests are only useful for the PyPy and uWSGI teams, do not base your choice between CPython and PyPy on them !!!
