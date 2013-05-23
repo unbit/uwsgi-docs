@@ -189,3 +189,6 @@ multithreading in PyPy is way better.
 We cannot exclude other problems (testing threads is really hard).
 
 Memory usage is a bit higher on PyPy (about 1.5 megs per thread compared to less than 200k in cpython)
+
+Syscalls report will be hard to print, but the same blast of gettimeofday can be noted on PyPy, while lock contention
+seems the same between uWSGI/mod_wsgi and PyPy
