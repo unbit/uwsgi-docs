@@ -8,6 +8,8 @@ Contributors: Alex Gaynor, Armin Rigo
 Since uWSGI 1.9.11 a new pypy plugin based on cffi is available. The old one, base on (slow) cpyext has been removed
 from the tree.
 
+The plugin is currently supported only on Linux systems. Next releases will support other systems as well.
+
 The plugin load libpypy-s.so on startup, set the home of the pypy installation and execute a special python module
 implementing the plugin logic. Yes, the 90% of the plugin is implemented in python, and theoretically this apparoach will allows
 writing uWSGI plugin directly in python (in addition to C,C++ and Objective C)
@@ -103,6 +105,12 @@ If you want to change it, just pass another script via the --pypy-setup option
    uwsgi --http-socket :9090 --pypy-home /opt/pypy --pypy-lib /opt/libs/libpypy-c.so --pypy-setup /home/foobar/foo.py
    
 This python module implements uWSGI hook and the virtual uwsgi python module (for accessing the uwsgi api from your apps)
+
+If you want to get the content of the embedded pypy_setup.py file you can read it from the binary symbols:
+
+.. code-block:: sh
+
+   uwsgi --print-sym uwsgi_pypy_setup
 
 WSGI support
 ^^^^^^^^^^^^
