@@ -5,7 +5,9 @@ This is mainly targeted at PyPy developers to spot slow paths or to fix corner-c
 
 uWSGI stresses lot of areas of PyPy (most of them rarely abused in pure-python apps), so making benchmarks is good both for uWSGI and PyPy
 
-Results are rounded for easy of read, each test is executed 10 times on a Intel i7-3615QM CPU @ 2.30GHz
+Results are rounded for easy of read, each test is executed 10 times on a Intel i7-3615QM CPU @ 2.30GHz.
+
+CPython version is 2.7.5, pypy is latest tip at 23 of May 2013
 
 Tests are run with logging disabled
 
@@ -84,3 +86,17 @@ Response time is astonishing, there is no debate about how PyPy is better for CP
 , but more interesting is how the memory usage of PyPy remains the same of the simple hello world, while CPython increased 10x
 
 Syscall usage is again the same
+
+Werkzeug testapp
+^^^^^^^^^^^^^^^^
+
+You may think this is not very different from the hello world, but this specific application call lot of python functions
+and inspect the whole WSGI environ dictionary. This is very near to a standard application without I/O
+
+CPython: 600 requests per seconds, memory usage 13MB
+
+PyPy: 1500 requests per seconds, memory usage 74MB
+
+Considerations:
+
+this tests stresses standard function calls, we have about 2.5x improvement with PyPy, while memory usage is pretty similar (considering the 62MB base difference)
