@@ -121,6 +121,48 @@ syscalls
 
 PyPy: 1500 requests per seconds, memory usage 74MB
 
+syscalls
+
+.. code-block:: sh
+
+   0.000397 gettimeofday({1369294713, 743204}, NULL) = 0
+   0.000431 read(5, "GET / HTTP/1.1\r\nUser-Agent: curl/7.30.0\r\nHost: ubuntu64.local:9090\r\nAccept: */*\r\n\r\n", 4096) = 83
+   0.003217 gettimeofday({1369294713, 746909}, NULL) = 0
+   0.000660 gettimeofday({1369294713, 747509}, NULL) = 0
+   0.000958 gettimeofday({1369294713, 748463}, NULL) = 0
+   0.000359 gettimeofday({1369294713, 748832}, NULL) = 0
+   0.000586 gettimeofday({1369294713, 749427}, NULL) = 0
+   0.000660 gettimeofday({1369294713, 750077}, NULL) = 0
+   0.000626 gettimeofday({1369294713, 750695}, NULL) = 0
+   0.000318 gettimeofday({1369294713, 751010}, NULL) = 0
+   0.000598 gettimeofday({1369294713, 751586}, NULL) = 0
+   0.000782 gettimeofday({1369294713, 752391}, NULL) = 0
+   0.000738 gettimeofday({1369294713, 753129}, NULL) = 0
+   0.000355 gettimeofday({1369294713, 753483}, NULL) = 0
+   0.000617 gettimeofday({1369294713, 754156}, NULL) = 0
+   0.000502 gettimeofday({1369294713, 754649}, NULL) = 0
+   0.000484 gettimeofday({1369294713, 755139}, NULL) = 0
+   0.000513 gettimeofday({1369294713, 755674}, NULL) = 0
+   0.001537 getcwd("/opt/uwsgi", 256) = 12
+   0.000641 stat("/opt/uwsgi/.", {st_mode=S_IFDIR|0755, st_size=12288, ...}) = 0
+   0.000668 stat("/opt/pypy/site-packages/setuptools-0.6c11-py2.7.egg", {st_mode=S_IFREG|0644, st_size=332005, ...}) = 0
+   0.000766 stat("/opt/pypy/site-packages/pip-1.3.1-py2.7.egg", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+   0.000652 stat("/opt/pypy/lib_pypy/__extensions__", 0x7ff66a446030) = -1 ENOENT (No such file or directory)
+   0.000570 stat("/opt/pypy/lib_pypy", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+   0.000688 stat("/opt/pypy/lib-python/2.7", {st_mode=S_IFDIR|0755, st_size=12288, ...}) = 0
+   0.000592 stat("/opt/pypy/lib-python/2.7/lib-tk", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+   0.000534 stat("/opt/pypy/lib-python/2.7/plat-linux2", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+   0.000840 stat("/opt/pypy/site-packages", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+   0.000592 stat("/opt/uwsgi/.", {st_mode=S_IFDIR|0755, st_size=12288, ...}) = 0
+   0.001014 write(5, "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 4915\r\n\r\n", 81) = 81
+   0.000510 write(5, "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n  \"http://www.w3.org/TR/html4/loose.dtd\">\n<title>WSGI Information</title>\n<style type=\"text/css\">\n  @import url(http://fonts.googleapis.com/css?family=Ubuntu);\n\n  body       { font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva',\n               'Verdana', sans-serif; background-color: white; color: #000;\n               font-size: 15px; text-align: center; }\n  #logo      { float: right; padding: 0 0 10px 10px; }\n  div.box    { text-align: left; width: 45em; margin: auto; padding: 50px 0;\n               background-color: white; }\n  h1, h2     { font-family: 'Ubuntu', 'Lucida Grande', 'Lucida Sans Unicode',\n               'Geneva', 'Verdana', sans-serif; font-weight: normal; }\n  h1         { margin: 0 0 30px 0; }\n  h2         { font-size: 1.4em; margin: 1em 0 0.5em 0; }\n  table      { width: 100%; border-collapse: collapse; border: 1px solid #AFC5C9 }\n  table th   { background-color: #AFC1C4; color: white; font-size: "..., 4915) = 4915
+   0.000729 gettimeofday({1369294713, 766079}, NULL) = 0
+   0.000616 close(5)                  = 0
+
 Considerations:
 
 this tests stresses standard function calls, we have about 2.5x improvement with PyPy, while memory usage is pretty similar (considering the 62MB base difference)
+
+There is a syscall "problem" with PyPy, as soon before starting the path checks, it calls a blast of gettimeofday() syscalls.
+
+Without them, request per-seconds could increase a bit
