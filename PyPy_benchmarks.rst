@@ -74,3 +74,13 @@ CPU-Bound test (fibonacci)
       return "ciao"
 
 
+This is where PyPy shines.
+
+CPython: time-to-complete 6400 milliseconds, memory used 65 MB
+
+PyPy: time-to-complete 900 milliseconds, memory used 71 MB
+
+Response time is astonishing, there is no debate about how PyPy is better for CPU intensive tasks (and with high grade of recursion)
+, but more interesting is how the memory usage of PyPy remains the same of the simple hello world, while CPython increased 10x
+
+Syscall usage is again the same
