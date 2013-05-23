@@ -89,3 +89,40 @@ With this approach you are able to use library from a specific pypy build and ho
 
 The PyPy setup file
 ^^^^^^^^^^^^^^^^^^^
+
+As said before, the 90% of the uWSGI pypy plugin is written in python. This code is loaded at runtime, and you can even customize it.
+
+Yes, it means you can change the way the plugin works without rebuilding uWSGI !
+
+The pypy_setup.py file is embedded in the uWSGI binary, and it is automatically loaded on startup.
+
+If you want to change it, just pass another script via the --pypy-setup option
+
+.. code-block:: sh
+
+   uwsgi --http-socket :9090 --pypy-home /opt/pypy --pypy-lib /opt/libs/libpypy-c.so --pypy-setup /home/foobar/foo.py
+   
+This python module implements uWSGI hook and the virtual uwsgi python module (for accessing the uwsgi api from your apps)
+
+WSGI support
+^^^^^^^^^^^^
+
+The plugin implements PEP 333 and PEP 3333. You can load both wsgi modules and mod_wsgi style wsgi files.
+
+To load a WSGI module (it must be in your pythonpath):
+
+.. code-block:: sh
+
+   uwsgi --http-socket :9090 --pypy-home /opt/pypy --pypy-wsgi myapp
+   
+To load a WSGI file:
+
+.. code-block:: sh
+
+   uwsgi --http-socket :9090 --pypy-home /opt/pypy --pypy-wsgi-file /var/www/myapp/myapp.wsgi
+   
+RPC support
+^^^^^^^^^^^
+
+You can register RPC function using the uwsgi.register_rpc api function (in the same way you do it with the cpython plugin)
+
