@@ -192,3 +192,10 @@ Memory usage is a bit higher on PyPy (about 1.5 megs per thread compared to less
 
 Syscalls report will be hard to print, but the same blast of gettimeofday can be noted on PyPy, while lock contention
 seems the same between uWSGI/mod_wsgi and PyPy
+
+
+RPC
+^^^
+
+uWSGI RPC is good for testing string manipulation. RPC parsing is done in C with the CPython plugin and in python in PyPy
+
