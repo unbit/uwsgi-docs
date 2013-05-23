@@ -5,7 +5,7 @@ This is mainly targeted at PyPy developers to spot slow paths or to fix corner-c
 
 uWSGI stresses lot of areas of PyPy (most of them rarely abused in pure-python apps), so making benchmarks is good both for uWSGI and PyPy
 
-Results are rounded for easy of read, each test is executed 10 times on a Intel i7-3615QM CPU @ 2.30GHz.
+Results are rounded for easy of read, each test is executed 10 times on a Intel i7-3615QM CPU @ 2.30GHz. (8 cores)
 
 CPython version is 2.7.5, pypy is latest tip at 23 of May 2013
 
@@ -166,3 +166,26 @@ this tests stresses standard function calls, we have about 2.5x improvement with
 There is a syscall "problem" with PyPy, as soon before starting the path checks, it calls a blast of gettimeofday() syscalls.
 
 Without them, request per-seconds could increase a bit
+
+Werkzeug testapp with multithreading
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+It looks like Arming Rigo will soon be able to remove the GIL from PyPy. While he works on this, we can compare multithreading
+of CPython and PyPy.
+
+Multithreading for Python webapps is a good approach, the GIL is generally released during blocking parts, so you can safely punch the face
+of people ranting on python threads independently by the context.
+
+We spawn 8 threads (with Linux default stack size), and we stress with a concurrency of 10
+
+CPython: 200 requests per seconds, memory usage 14MB
+
+PyPy: 1100 requests per seconds, memory usage 88 MB
+
+Here we have a problem. For avoiding the possibility of a uWSGI threading bug we added a comparative test with mod_wsgi in embedded mode
+(uWSGI threading model is based on mod_wsgi). Results are the same (between 160 and 190 in apache2+mod_wsgi). So it looks like
+multithreading in PyPy is way better.
+
+We cannot exclude other problems (testing threads is really hard).
+
+Memory usage is a bit higher on PyPy (about 1.5 megs per thread compared to less than 200k in cpython)
