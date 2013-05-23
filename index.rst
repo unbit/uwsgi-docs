@@ -70,6 +70,19 @@ Table of Contents
    Logging
    LogFormat
    Glossary
+   
+Tutorials
+=========
+
+.. toctree::
+   :maxdepth: 1
+
+   CachingCookbook
+   Django_and_nginx
+   dreamhost
+   heroku_python
+   heroku_ruby
+
 
 uWSGI Subsystems
 ================
