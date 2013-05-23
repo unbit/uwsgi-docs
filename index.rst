@@ -171,6 +171,7 @@ Language support
    :maxdepth: 2
  
    Python
+   PyPy
    PHP
    Perl
    Ruby
