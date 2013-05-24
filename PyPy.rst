@@ -24,7 +24,7 @@ Linux x86 64bit
 Building libpypy-c (if needed)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Get the pypy mercurial tip from bitbucket and translate it (it should require no more than 50 minutes, but be sure to have at least 2GB of free memory):
+Get the pypy mercurial tip from bitbucket and translate it (it should require no more than 50 minutes, but be sure to have at least 2GB of free memory for 32 bit and 4GB for 64bit):
 
 .. code-block:: sh
 
