@@ -170,7 +170,7 @@ syscalls
 
 Considerations:
 
-this tests stresses standard function calls, we have about 2.5x improvement with PyPy, while memory usage is pretty similar (considering the 62MB base difference)
+this test stresses standard function calls, we have about 2.5x improvement with PyPy, while memory usage is pretty similar (considering the 62MB base difference)
 
 There is a syscall "problem" with PyPy, as soon before starting the path checks, it calls a blast of gettimeofday() syscalls.
 
