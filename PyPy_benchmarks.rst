@@ -264,4 +264,7 @@ as 99% of the time you will be able to only test the peer/server performance and
 The uWSGI PyPy plugin still does not support all of the features of the CPython-based plugin, we cannot exclude a little drop in performance
 while we add features.
 
+Numbers could look low if you have already made/read benchmarks. This is because the test tool inject bad requests in the stream to test
+server "robustness"
+
 Again, this tests are only useful for the PyPy and uWSGI teams, do not base your choice between CPython and PyPy on them !!!
