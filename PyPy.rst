@@ -173,4 +173,7 @@ Notes
 
 Mixing libpython with libpypy-c is FORBIDDEN. A check in the pypy plugin prevent you from doing such hellish thing
 
+The PyPy plugin is generally more "ortodox" from the python programmer point of view (while the python one is blasphemous in lot of areas). We have been able to make that choice as we do not need
+backward compatibility with older uWSGI releases.
+
 The uwsgi API is still incomplete
