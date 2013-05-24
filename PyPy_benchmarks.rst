@@ -231,6 +231,7 @@ while the function is registered as:
 The results are pretty similar to the "hello world" one.
 
 CPython: 6400 requests per seconds, 8MB memory usage
+
 PyPy: 6500 requests per seconds, 71MB memory usage
 
 PyPy has "irrelevant" advantage in term of performance, but its whole string parsing is done in pure python
