@@ -143,3 +143,34 @@ You can register RPC function using the uwsgi.register_rpc api function (in the 
        
    uwsgi.register_rpc('hello', hello)
    
+   
+Options
+^^^^^^^
+
+```pypy-lib```   load the specified libpypy-s.so
+
+```pypy-setup``` load the specified pypy_setup script file
+
+```pypy-home```  set the pypy home
+
+```pypy-wsgi```  load a WSGI module
+
+```pypy-wsgi-file```   load a mod_wsgi compliant wsgi file
+
+```pypy-eval```   execute the specified string before fork()
+
+```pypy-eval-post-fork```   execute the specified string after each fork()
+
+```pypy-exec```   execute the specified python script before fork()
+
+```pypy-exec-post-fork```   execute the specified python script after each fork()
+
+```pypy-pp/pypy-python-path/pypy-pythonpath``` add the specified item to the pythonpath
+   
+
+Notes
+^^^^^
+
+Mixing libpython with libpypy-c is FORBIDDEN. A check in the pypy plugin prevent you from doing such hellish thing
+
+The uwsgi API is still incomplete
