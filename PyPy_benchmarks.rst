@@ -55,8 +55,17 @@ no differences with CPython
 
 Considerations:
 
-there is only slightly (read: irrelevant) better performance in PyPy, but memory usage is 10x higher with PyPy. It needs to be investigated.
+there is only slightly (read: irrelevant) better performance in PyPy.
 
+Memory usage is 10x higher with PyPy. 
+
+(PyPy developers note)
+
+This is caused by the difference in the binary size (about 4 megs for libpython, about 50 for stripped libpypy-c).
+It is important to note that this 10x increse is only on startup, after app is loaded memory allocations are really different.
+
+(personal note)
+It looks like pypy team is working on reducing the binary size too
 
 CPU-Bound test (fibonacci)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -199,14 +208,57 @@ RPC
 
 uWSGI RPC is good for testing string manipulation. RPC parsing is done in C with the CPython plugin and in python in PyPy
 
+The RPC is called using the internal routing system (as the pypy plugin still does not export the uwsgi.rpc() api function).
+
+The option added to both command line is:
+
+.. code-block:: sh
+
+   --route-run "rpc myfunc:one two threee four five six seven"
+   
+while the function is registered as:
+
+.. code-block:: py
+
+   import uwsgi
+
+   def myfunc(*args):
+       return '|'.join(reversed(args))
+
+   uwsgi.register_rpc('myfunc', myfunc)
+   
+
+The results are pretty similar to the "hello world" one.
+
+CPython: 6400 requests per seconds, 8MB memory usage
+PyPy: 6500 requests per seconds, 71MB memory usage
+
+PyPy has "irrelevant" advantage in term of performance, but its whole string parsing is done in pure python
+
 
 RPC (multithread)
 ^^^^^^^^^^^^^^^^^
+
+And here we have interesting results:
+
+CPython: 6300 requests per seconds, 8MB memory usage
+
+PyPy: 6000 requests per seconds, 71MB memory usage
+
+This time it is easy to understand what is going on. In PyPy the GIL is hold 99% of the time in RPC mode (as message parsing is done in python), while
+in the CPython version we have the GIL only for 10% of the whole request time.
+
+Rewriting the RPC parsing in cffi will probably change the results (back to the werkzeug numbers). Something to look at for the future (unless Armin manages to remove the GIL)
+
+
 
 Notes
 ^^^^^
 
 Testing multiprocessing is useless, do not ask for it
+
+Web apps are (generally) I/O bound, so this tests have really little use for real-world scenarios. Testing I/O behaviour is stupid
+as 99% of the time you will be able to only test the peer/server performance and not the power of the client.
 
 The uWSGI PyPy plugin still does not support all of the features of the CPython-based plugin, we cannot exclude a little drop in performance
 while we add features.
