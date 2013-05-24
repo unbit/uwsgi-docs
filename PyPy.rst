@@ -104,7 +104,7 @@ If you want to change it, just pass another script via the --pypy-setup option
 
    uwsgi --http-socket :9090 --pypy-home /opt/pypy --pypy-lib /opt/libs/libpypy-c.so --pypy-setup /home/foobar/foo.py
    
-This python module implements uWSGI hook and the virtual uwsgi python module (for accessing the uwsgi api from your apps)
+This python module implements uWSGI hooks and the virtual uwsgi python module (for accessing the uwsgi api from your apps)
 
 If you want to get the content of the embedded pypy_setup.py file you can read it from the binary symbols:
 
