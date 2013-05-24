@@ -81,7 +81,7 @@ Supposing your PyPy is in /opt/pypy you can start uWSGI with:
   
 With this command line uWSGI will search fr libpypy-c.so in /opt/pypy and if found, it will set it as the pypy home too.
 
-If your libpypy-c.so is outsize of the pypy home (and in a directory not reachable by the linker), you can use the --pypy-lib option:
+If your libpypy-c.so is outsize of the pypy home (and in a directory not reachable by the dynamic linker), you can use the --pypy-lib option:
 
 .. code-block:: sh
 
