@@ -38,9 +38,9 @@ As always you have different ways to install uWSGI based on your needs.
 
 If you have installed pip in your pypy home just run:
 
-.. code-block::
+.. code-block:: sh
 
-  pip install uwsgi
+   pip install uwsgi
   
 The uwsgi setup.py file will recognize the pypy environment and will build a pypy-only uWSGI binary
 
