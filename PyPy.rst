@@ -17,9 +17,13 @@ writing uWSGI plugin directly in python (in addition to C,C++ and Objective C)
 Currently (May 2013) all of the required patches are available into pypy official tip (on bitbucket) but binary packages/tarballs
 are not available, so you need to build/translate libpypy-c by yourself, or download one of the following files:
 
-Linux x86 32bit
+Linux x86 32bit: http://projects.unbit.it/downloads/pypy/libpypy-c-x86_32_20130524.so
 
-Linux x86 64bit
+Linux x86 32bit (with debug symbols): http://projects.unbit.it/downloads/pypy/libpypy-c-x86_32_20130524-dbg.so
+
+Linux x86 64bit: http://projects.unbit.it/downloads/pypy/libpypy-c-x86_64_20130524.so
+
+Linux x86 64bit (with debug symbols): http://projects.unbit.it/downloads/pypy/libpypy-c-x86_64_20130524-dbg.so
 
 Building libpypy-c (if needed)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
