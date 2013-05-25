@@ -6,11 +6,43 @@ Changelog
 Bugfixes
 ********
 
+- fixed python3 stdout/stderr buffering
+- fixed mule messages (@mulefunc is now reliable)
+- fixed SCRIPT_NAME handling in dynamic mode
+
 New features
 ************
 
 The new high-performance PyPy plugin
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We are pleased to announce the availability of the new PyPy plugin.
+
+PyPy team has been great in helping us. We hope the uWSGI integration (that exposed new challenges to the PyPy project)
+will help PyPy becaming better and better.
+
+Official docs: :doc:`PyPy`
+
+Cron improvements
+^^^^^^^^^^^^^^^^^
+
+unique crons
+
+cron2 syntax
+
+harakiri cron
+
+Support for GNU Hurd
+^^^^^^^^^^^^^^^^^^^^
+
+Error routes
+^^^^^^^^^^^^
+
+Support for corner case usage in wsgi.file_wrapper
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+HTTPHTTPS router keepalive improvements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 RPC wrappers
 ^^^^^^^^^^^^
