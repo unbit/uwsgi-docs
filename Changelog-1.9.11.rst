@@ -35,6 +35,9 @@ harakiri cron
 Support for GNU Hurd
 ^^^^^^^^^^^^^^^^^^^^
 
+New Websockets chat example
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Error routes
 ^^^^^^^^^^^^
 
