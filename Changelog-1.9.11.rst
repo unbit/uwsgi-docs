@@ -112,3 +112,6 @@ you can combine multiple wrappers using routing:
    ; load the rpc code
    import = myrpcfuncs.py
 
+
+Availability
+************
