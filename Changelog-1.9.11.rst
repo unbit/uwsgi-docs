@@ -9,6 +9,8 @@ Bugfixes
 - fixed python3 stdout/stderr buffering
 - fixed mule messages (@mulefunc is now reliable)
 - fixed SCRIPT_NAME handling in dynamic mode
+- fixed X-Sendfile with gzip static mode
+- fixed cache item max size with custom blocksize
 
 New features
 ************
@@ -34,6 +36,9 @@ harakiri cron
 
 Support for GNU Hurd
 ^^^^^^^^^^^^^^^^^^^^
+
+The memory offload engine
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 New Websockets chat example
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
