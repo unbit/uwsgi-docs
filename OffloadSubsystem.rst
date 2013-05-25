@@ -47,9 +47,22 @@ Example:
 
    [uwsgi]
    socket = :3031
+   offload-threads = 8
    route = ^/foo http:127.0.0.1:8080
    route = ^/bar http:127.0.0.1:8181
    route = ^/node http:127.0.0.1:9090
+   
+
+Since 1.9.11 the cache router is offload friendly too
+
+.. code-block:: ini
+
+   [uwsgi]
+   socket = :3031
+   offload-threads = 8
+   route-run = cache:key=${REQUEST_URI}
+   
+as soon as the object is retrieved cron the cache the object will be transferred in one of the offload threads
 
 The Future
 **********
