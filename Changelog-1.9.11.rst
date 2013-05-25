@@ -79,7 +79,7 @@ or (to have more control)
    import = myrpcfuncs.py
 
 
-The xmlrpc wrapper workx in the same way (but it uses the modifier2 '3'). It requires a libxml2-enabled build of uWSGI:
+The xmlrpc wrapper works in the same way (but it uses the modifier2 '3'). It requires a libxml2-enabled build of uWSGI:
 
 .. code-block:: ini
 
