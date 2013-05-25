@@ -25,6 +25,9 @@ Linux x86 64bit: http://projects.unbit.it/downloads/pypy/libpypy-c-x86_64_201305
 
 Linux x86 64bit (with debug symbols): http://projects.unbit.it/downloads/pypy/libpypy-c-x86_64_20130524-dbg.so
 
+In addition to the library you need to download a nightly build (use the jitted one obviously) from the pypy website. You will use
+this directory as the pypy home (see below)
+
 Building libpypy-c (if needed)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
