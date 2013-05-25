@@ -41,7 +41,7 @@ Error routes
 Support for corner case usage in wsgi.file_wrapper
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-HTTPHTTPS router keepalive improvements
+HTTP/HTTPS router keepalive improvements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 RPC wrappers
