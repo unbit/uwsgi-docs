@@ -150,6 +150,21 @@ You can register RPC function using the uwsgi.register_rpc api function (in the 
        
    uwsgi.register_rpc('hello', hello)
    
+To call rpc functions you have both uwsgi.rpc and uwsgi.call:
+
+.. code-block:: py
+
+   import uwsgi
+   
+   uwsgi.rpc('192.168.173.100:3031', 'myfunc', 'myarg')
+   uwsgi.call('myfunc', 'myarg')
+   uwsgi.call('myfunc@192.168.173.100:3031', 'myarg')
+   
+   
+Currently we have tested integeration (when rpc is used 'locally') between pypy/pypy pypy/jvm and pypy/lua
+
+All worked flawlessly, that means you can call java functions from pypy ;)
+   
    
 Options
 ^^^^^^^
