@@ -11,6 +11,7 @@ Bugfixes
 - fixed SCRIPT_NAME handling in dynamic mode
 - fixed X-Sendfile with gzip static mode
 - fixed cache item max size with custom blocksize
+- fixed cache paths handling
 
 New features
 ************
