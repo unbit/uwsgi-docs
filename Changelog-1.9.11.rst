@@ -50,6 +50,8 @@ cron2 syntax
 harakiri cron
 -------------
 
+When using the cron2 option you are allowed to set an harakiri for a cron task. Just add harakiri=n to the options
+
 Support for GNU Hurd
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -57,6 +59,15 @@ Debian GNU/Hurd has been recently released. uWSGI 1.9.11 can be built over it. V
 
 The memory offload engine
 ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Idea: Stefano Brentegani
+
+When serving content from the cache, a worker could be blocked during transfer from memory to the socket.
+
+A new offload engine named "memory" allows to offload memory transfers. The cache router automatically support it,
+we will add support for more areas soon.
+
+To enable it just add --offload-threads <n>
 
 New Websockets chat example
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
