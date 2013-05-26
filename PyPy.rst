@@ -15,7 +15,7 @@ implementing the plugin logic. Yes, the 90% of the plugin is implemented in pyth
 writing uWSGI plugin directly in python (in addition to C,C++ and Objective C)
 
 Currently (May 2013) all of the required patches are available into pypy official tip (on bitbucket) but binary packages/tarballs
-are not available, so you need to build/translate libpypy-c by yourself, or download one of the following files:
+are not available, so you need to build/translate libpypy-c by yourself, or download one of the following files (they require libssl 1.0):
 
 Linux x86 32bit: http://projects.unbit.it/downloads/pypy/libpypy-c-x86_32_20130524.so
 
@@ -95,6 +95,8 @@ If your libpypy-c.so is outsize of the pypy home (and in a directory not reachab
    uwsgi --http-socket :9090 --pypy-home /opt/pypy --pypy-lib /opt/libs/libpypy-c.so
    
 With this approach you are able to use library from a specific pypy build and home from another one
+
+Remember to prefix --pypy-lib with ./ if you want to point to a .so file in your current directory !!!
 
 The PyPy setup file
 ^^^^^^^^^^^^^^^^^^^
