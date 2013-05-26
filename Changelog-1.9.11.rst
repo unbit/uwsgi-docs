@@ -47,6 +47,12 @@ will not be triggered:
 cron2 syntax
 ------------
 
+A keyval variant of the --cron option is now available:
+
+.. code-block:: ini
+
+   [uwsgi]
+   cron2 = minute=39,hour=23,month=-1,week=-1,day=-1,unique=1,legion=foobar,harakiri=30
 harakiri cron
 -------------
 
@@ -103,6 +109,18 @@ HTTP/HTTPS router keepalive improvements
 Credits: André Cruz
 
 When using --http-keepalive you can now hold the connection open even if the request has a body
+
+
+The harakiri routing action
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can now set a harakiri tmer for each request using internal routing:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; set harakiri to 30 seconds for request starting with /slow
+   route = ^/slow harakiri:30
 
 RPC wrappers
 ^^^^^^^^^^^^
