@@ -101,7 +101,7 @@ Support for corner case usage in wsgi.file_wrapper
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Generally wsgi.file_wrapper callable expects a file-like object. PEP 333/3333 report a special pattern when the object
-is not a file (call read() untile the object is consumed). uWSGI now supports this pattern (even if in a hacky way)
+is not a file (call read() until the object is consumed). uWSGI now supports this pattern (even if in a hacky way)
 
 HTTP/HTTPS router keepalive improvements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
