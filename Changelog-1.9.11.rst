@@ -1,7 +1,7 @@
 uWSGI 1.9.11
 ============
 
-Changelog
+Changelog 20130526
 
 Bugfixes
 ********
