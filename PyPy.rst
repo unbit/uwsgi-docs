@@ -164,7 +164,67 @@ To call rpc functions you have both uwsgi.rpc and uwsgi.call:
 Currently we have tested integeration (when rpc is used 'locally') between pypy/pypy pypy/jvm and pypy/lua
 
 All worked flawlessly, that means you can call java functions from pypy ;)
+
+IPython trick
+^^^^^^^^^^^^^
+
+Having a runtime shell for making tests is a very handy option. You can use IPython:
+
+.. code-block:: sh
+
+   uwsgi --socket :3031 --pypy-home /opt/pypy --pypy-eval "import IPython; IPython.embed()" --honour-stdin
    
+   
+uWSGI API status
+^^^^^^^^^^^^^^^^
+
+The following api functions, hooks and attributes are supported (updated to 20130526)
+
+uwsgi.opt
+
+uwsgi.post_fork_hook
+
+uwsgi.add_cron()
+
+uwsgi.setprocname()
+
+uwsgi.alarm()
+
+uwsgi.signal_registered()
+
+uwsgi.mule_id()
+
+uwsgi.worker_id()
+
+uwsgi.masterpid()
+
+uwsgi.lock()
+
+uwsgi.unlock()
+
+uwsgi.add_file_monitor()
+
+uwsgi.add_timer()
+
+uwsgi.add_rb_timer()
+
+uwsgi.cache_get()
+
+uwsgi.cache_set()
+
+uwsgi.cache_update()
+
+uwsgi.cache_del()
+
+uwsgi.signal()
+
+uwsgi.call()
+
+uwsgi.rpc()
+
+uwsgi.register_rpc()
+
+uwsgi.register_signal()
    
 Options
 ^^^^^^^
