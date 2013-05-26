@@ -90,7 +90,7 @@ You can now define a routing table to be executed as soon as you set the HTTP st
 This allows you to completely modify the response (this is useful for custom error codes)
 
 All of the routing standard options are available (included labels) plus an optimized ``error-route-status``
-mathing a specific HTTP status code:
+matching a specific HTTP status code:
 
 .. code-block:: ini
 
