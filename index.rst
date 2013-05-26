@@ -206,6 +206,7 @@ Release Notes
 .. toctree::
    :maxdepth: 1
 
+   Changelog-1.9.11
    Changelog-1.9.10
    Changelog-1.9.9
    Changelog-1.9.8
