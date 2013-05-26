@@ -1,7 +1,7 @@
 uWSGI 1.9.11
 ============
 
-Changelog 20130526
+Changelog [20130526]
 
 Bugfixes
 ********
@@ -19,6 +19,8 @@ New features
 The new high-performance PyPy plugin
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Credits: Maciej Fijalkowski
+
 We are pleased to announce the availability of the new PyPy plugin.
 
 PyPy team has been great in helping us. We hope the uWSGI integration (that exposed new challenges to the PyPy project)
@@ -29,14 +31,29 @@ Official docs: :doc:`PyPy`
 Cron improvements
 ^^^^^^^^^^^^^^^^^
 
+Credits: Łukasz Mierzwa
+
 unique crons
+------------
+
+You can now avoid overlapping crons. The uWSGI master will track death of a single task, and until its death the same cron
+will not be triggered:
+
+.. code-block:: ini
+
+   [uwsgi]
+   unique-cron = -1 -1 -1 -1 -1 my_script.sh
 
 cron2 syntax
+------------
 
 harakiri cron
+-------------
 
 Support for GNU Hurd
 ^^^^^^^^^^^^^^^^^^^^
+
+Debian GNU/Hurd has been recently released. uWSGI 1.9.11 can be built over it. Very few tests have been made.
 
 The memory offload engine
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -44,14 +61,37 @@ The memory offload engine
 New Websockets chat example
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+An example websocket chat using redis have been added to the repository:
+
+https://github.com/unbit/uwsgi/blob/master/tests/websockets_chat.py
+
 Error routes
 ^^^^^^^^^^^^
+
+You can now define a routing table to be executed as soon as you set the HTTP status code in your plugin.
+
+This allows you to completely modify the response (this is useful for cutom error codes)
+
+All of the routing standard options are available (included labels) plus an optimized ``error-route-status``
+mathing a specific HTTP status code:
+
+.. code-block:: ini
+
+   [uwsgi]
+   error-route-status = 502 redirect:http://unbit.it
 
 Support for corner case usage in wsgi.file_wrapper
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Generally wsgi.file_wrapper callable expects a file-like object. PEP 333/3333 report a special pattern when the object
+is not a file (call read() untile the object is consumed). uWSGI now supports this pattern (even if in a hacky way)
+
 HTTP/HTTPS router keepalive improvements
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Credits: André Cruz
+
+When using --http-keepalive you can now hold the connection open even if the request has a body
 
 RPC wrappers
 ^^^^^^^^^^^^
@@ -124,3 +164,7 @@ you can combine multiple wrappers using routing:
 
 Availability
 ************
+
+uWSGI 1.9.11 will be available since 20130526 at:
+
+http://projects.unbit.it/downloads/uwsgi-1.9.11.tar.gz
