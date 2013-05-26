@@ -87,7 +87,7 @@ Error routes
 
 You can now define a routing table to be executed as soon as you set the HTTP status code in your plugin.
 
-This allows you to completely modify the response (this is useful for cutom error codes)
+This allows you to completely modify the response (this is useful for custom error codes)
 
 All of the routing standard options are available (included labels) plus an optimized ``error-route-status``
 mathing a specific HTTP status code:
