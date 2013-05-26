@@ -261,3 +261,6 @@ The PyPy plugin is generally more "ortodox" from the python programmer point of 
 backward compatibility with older uWSGI releases.
 
 The uwsgi API is still incomplete
+
+The WSGI loader does not update the uWSGI internal application list, so things like --need-app will not work. The server will report "dynamic mode" on startup even if the app
+has been successfully loaded. This will be fixed soon
