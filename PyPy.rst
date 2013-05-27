@@ -86,7 +86,7 @@ Supposing your PyPy is in /opt/pypy you can start uWSGI with:
 
    uwsgi --http-socket :9090 --pypy-home /opt/pypy
   
-With this command line uWSGI will search fr libpypy-c.so in /opt/pypy and if found, it will set it as the pypy home too.
+With this command line uWSGI will search for libpypy-c.so in /opt/pypy and if found, it will set it as the pypy home too.
 
 If your libpypy-c.so is outsize of the pypy home (and in a directory not reachable by the dynamic linker), you can use the --pypy-lib option:
 
