@@ -1,2 +1,2 @@
-SPNEGO auth
-===========
+SPNEGO authentication
+=====================

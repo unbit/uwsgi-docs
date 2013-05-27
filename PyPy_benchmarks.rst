@@ -1,32 +1,25 @@
 Benchmarks for the PyPy plugin
 ==============================
 
-This is mainly targeted at PyPy developers to spot slow paths or to fix corner-case bug.
+This is mainly targeted at PyPy developers to spot slow paths or to fix corner-case bugs.
 
-uWSGI stresses lot of areas of PyPy (most of them rarely abused in pure-python apps), so making benchmarks is good both for uWSGI and PyPy
+uWSGI stresses lot of areas of PyPy (most of them rarely used in pure-Python apps), so making these benchmarks is good both for uWSGI and PyPy.
 
-Results are rounded for easy of read, each test is executed 10 times on a Intel i7-3615QM CPU @ 2.30GHz. (8 cores)
-
-CPython version is 2.7.5, pypy is latest tip at 23 of May 2013
-
-Tests are run with logging disabled
+* Results are rounded for ease of reading. Each test is executed 10 times on an 8-core Intel i7-3615QM CPU @ 2.30GHz.
+* The CPython version is 2.7.5, PyPy is latest tip at 2013-05-23.
+* Tests are run with logging disabled.
 
 Generally the command lines are:
 
 .. code-block:: sh
 
    uwsgi --http-socket :9090 --wsgi hello --disable-logging
-   
-and
-
-.. code-block:: sh
-
    uwsgi --http-socket :9090 --pypy-home /opt/pypy --pypy-wsgi hello --disable-logging
 
 Simple Hello World
 ^^^^^^^^^^^^^^^^^^
 
-The most useless of the tests (as it shows only how uWSGI performs instead of the python engine).
+The most useless of the tests (as it shows only how uWSGI performs instead of the chosen Python engine).
 
 .. code-block:: py
 
@@ -34,9 +27,9 @@ The most useless of the tests (as it shows only how uWSGI performs instead of th
        sr('200 Ok', [('Content-Type', 'text/html')])
        return "ciao"
 
-CPython: 6500 requests per-second, memory used 7MB (no leak detected)
+CPython: 6500 RPS, memory used 7MB (no leak detected)
 
-syscalls:
+Syscalls used:
 
 .. code-block:: sh
 
@@ -47,27 +40,19 @@ syscalls:
    0.000528 gettimeofday({1369293059, 220477}, NULL) = 0
    0.000394 close(5)
 
-PyPy: 6560 requests per-second, memory used 71MB (no leak detected)
+PyPy: 6560 RPS, memory used 71MB (no leak detected)
 
-syscalls:
-
-no differences with CPython
+Syscalls: No differences with CPython
 
 Considerations:
 
-there is only slightly (read: irrelevant) better performance in PyPy.
+* There is only slightly (read: irrelevant) better performance in PyPy.
+* Memory usage is 10x higher with PyPy. 
+  This is caused by the difference in the binary size (about 4 megs for libpython, about 50 for stripped libpypy-c).
+  It is important to note that this 10x increase is only on startup, after the app is loaded memory allocations are really different.
+  It looks like the PyPy team is working on reducing the binary size too.
 
-Memory usage is 10x higher with PyPy. 
-
-(PyPy developers note)
-
-This is caused by the difference in the binary size (about 4 megs for libpython, about 50 for stripped libpypy-c).
-It is important to note that this 10x increse is only on startup, after app is loaded memory allocations are really different.
-
-(personal note)
-It looks like pypy team is working on reducing the binary size too
-
-CPU-Bound test (fibonacci)
+CPU bound test (fibonacci)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: py
@@ -84,27 +69,24 @@ CPU-Bound test (fibonacci)
       fib(36)
       return "ciao"
 
-
 This is where PyPy shines.
 
-CPython: time-to-complete 6400 milliseconds, memory used 65 MB
+* CPython: time-to-complete 6400 milliseconds, memory used 65 MB
+* PyPy: time-to-complete 900 milliseconds, memory used 71 MB
 
-PyPy: time-to-complete 900 milliseconds, memory used 71 MB
-
-Response time is astonishing, there is no debate about how PyPy is better for CPU intensive tasks (and with high grade of recursion)
-, but more interesting is how the memory usage of PyPy remains the same of the simple hello world, while CPython increased 10x
-
-Syscall usage is again the same
+* The response time here is astonishing, there is no debate about how much better PyPy can be for CPU intensive (and/or highly recursive) tasks.
+* More interesting is how the memory usage of PyPy remains the same of the simple hello world, while CPython's increased tenfold.
+* Syscall usage is again the same.
 
 Werkzeug testapp
 ^^^^^^^^^^^^^^^^
 
-You may think this is not very different from the hello world, but this specific application call lot of python functions
-and inspect the whole WSGI environ dictionary. This is very near to a standard application without I/O
+You may think this is not very different from the Hello World example, but this specific application does actually call lots of Python functions
+and inspects the entire WSGI ``environ`` dictionary. This is very near to a standard application without I/O.
 
-CPython: 600 requests per seconds, memory usage 13MB
+CPython: 600 RPS, memory usage 13MB
 
-syscalls
+Syscalls:
 
 .. code-block:: sh
 
@@ -128,9 +110,9 @@ syscalls
    0.000469 gettimeofday({1369294531, 370471}, NULL) = 0
    0.000391 close(5)                  = 0
 
-PyPy: 1500 requests per seconds, memory usage 74MB
+PyPy: 1500 RPSs, memory usage 74MB
 
-syscalls
+Syscalls:
 
 .. code-block:: sh
 
@@ -170,47 +152,40 @@ syscalls
 
 Considerations:
 
-this test stresses standard function calls, we have about 2.5x improvement with PyPy, while memory usage is pretty similar (considering the 62MB base difference)
-
-There is a syscall "problem" with PyPy, as soon before starting the path checks, it calls a blast of gettimeofday() syscalls.
-
-Without them, request per-seconds could increase a bit
+* This test stresses standard function calls. We have about 2.5x improvement with PyPy, while memory usage is pretty similar (considering the 62MB base difference).
+* There is a syscall "problem" with PyPy, soon before starting the path checks it calls a blast of ``gettimeofday()`` syscalls. Without these, the RPS could increase a bit.
 
 Werkzeug testapp with multithreading
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-It looks like Arming Rigo will soon be able to remove the GIL from PyPy. While he works on this, we can compare multithreading
-of CPython and PyPy.
+It looks like Armin Rigo will soon be able to remove the GIL from PyPy. While he works on this, we can compare multithreading CPython and PyPy.
 
-Multithreading for Python webapps is a good approach, the GIL is generally released during blocking parts, so you can safely punch the face
-of people ranting on python threads independently by the context.
+Multithreading for Python webapps is a good approach, the GIL is generally released during the blocking parts, so you can safely punch the face
+of people ranting on the slowness of Python threads without knowing the context.
 
-We spawn 8 threads (with Linux default stack size), and we stress with a concurrency of 10
+We spawn 8 threads (with Linux default stack size), and we stress test with a concurrency of 10.
 
-CPython: 200 requests per seconds, memory usage 14MB
+* CPython: 200 RPSs, memory usage 14MB
+* PyPy: 1100 RPSs, memory usage 88 MB
 
-PyPy: 1100 requests per seconds, memory usage 88 MB
-
-Here we have a problem. For avoiding the possibility of a uWSGI threading bug we added a comparative test with mod_wsgi in embedded mode
-(uWSGI threading model is based on mod_wsgi). Results are the same (between 160 and 190 in apache2+mod_wsgi). So it looks like
+Here we have a problem. To avoid the possibility of a uWSGI threading bug we added a comparative test with ``mod_wsgi`` in embedded mode
+(as uWSGI's threading model is based on ``mod_wsgi``). Results are the same (between 160 and 190 in apache2+mod_wsgi). So it looks like
 multithreading in PyPy is way better.
 
-We cannot exclude other problems (testing threads is really hard).
+We cannot, however, exclude other problems (testing threads is really hard).
 
 Memory usage is a bit higher on PyPy (about 1.5 megs per thread compared to less than 200k in cpython)
 
-Syscalls report will be hard to print, but the same blast of gettimeofday can be noted on PyPy, while lock contention
-seems the same between uWSGI/mod_wsgi and PyPy
-
+Syscalls report will be hard to print, but the same blast of ``gettimeofday`` can be noted on PyPy, while lock contention
+seems the same between uWSGI/mod_wsgi and PyPy.
 
 RPC
 ^^^
 
-uWSGI RPC is good for testing string manipulation. RPC parsing is done in C with the CPython plugin and in python in PyPy
+uWSGI RPC is good for testing string manipulation. RPC parsing is done in C with the CPython plugin and in Python in PyPy.
+RPC is called using the internal routing system (as the PyPy plugin does not export the :func:`uwsgi.rpc()` API function yet).
 
-The RPC is called using the internal routing system (as the pypy plugin still does not export the uwsgi.rpc() api function).
-
-The option added to both command line is:
+The option added to both command lines is:
 
 .. code-block:: sh
 
@@ -230,41 +205,29 @@ while the function is registered as:
 
 The results are pretty similar to the "hello world" one.
 
-CPython: 6400 requests per seconds, 8MB memory usage
+* CPython: 6400 RPSs, 8MB memory usage
+* PyPy: 6500 RPSs, 71MB memory usage
 
-PyPy: 6500 requests per seconds, 71MB memory usage
-
-PyPy has "irrelevant" advantage in term of performance, but its whole string parsing is done in pure python
-
+PyPy has a small, "irrelevant" advantage in term of performance, but do remember its string parsing is done in pure Python.
 
 RPC (multithread)
 ^^^^^^^^^^^^^^^^^
 
-And here we have interesting results:
+Here we have very interesting results:
 
-CPython: 6300 requests per seconds, 8MB memory usage
+* CPython: 6300 RPSs, 8MB memory usage
+* PyPy: 6000 RPSs, 71MB memory usage
 
-PyPy: 6000 requests per seconds, 71MB memory usage
+This time it is easy to understand what is going on. In PyPy the GIL is held 99% of the time in RPC mode (as message parsing is done in Python), while
+the CPython version we have the GIL only for 10% of the whole request time.
 
-This time it is easy to understand what is going on. In PyPy the GIL is hold 99% of the time in RPC mode (as message parsing is done in python), while
-in the CPython version we have the GIL only for 10% of the whole request time.
-
-Rewriting the RPC parsing in cffi will probably change the results (back to the werkzeug numbers). Something to look at for the future (unless Armin manages to remove the GIL)
-
-
+Rewriting the RPC parsing in ``cffi`` will probably change the results to look more like the Werkzeug numbers. Something to look at in the future, unless Armin manages to remove the GIL.
 
 Notes
 ^^^^^
 
-Testing multiprocessing is useless, do not ask for it
-
-Web apps are (generally) I/O bound, so this tests have really little use for real-world scenarios. Testing I/O behaviour is stupid
-as 99% of the time you will be able to only test the peer/server performance and not the power of the client.
-
-The uWSGI PyPy plugin still does not support all of the features of the CPython-based plugin, we cannot exclude a little drop in performance
-while we add features.
-
-Numbers could look low if you have already made/read benchmarks. This is because the test tool inject bad requests in the stream to test
-server "robustness"
-
-Again, this tests are only useful for the PyPy and uWSGI teams, do not base your choice between CPython and PyPy on them !!!
+* Testing multiprocessing is useless, do not ask for it.
+* Web apps are (generally) I/O bound, so these tests have really little use for real-world scenarios. Testing I/O behaviour is stupid as 99% of the time you will be able to only test the peer/server performance and not the power of the client.
+* The uWSGI PyPy plugin still does not support all of the features of the CPython based plugin, we cannot exclude a little drop in performance while we add features.
+* These numbers might look low to you if you have already made (or read) benchmarks. This is because the test tool injects bad requests in the stream to test server robustness.
+* Again, this tests are only useful for the PyPy and uWSGI teams, do not base your choice between CPython and PyPy on them! (Your app's requirements will always be unique, and it's very possible that your app won't even run on PyPy even though it chugs along fine on CPython.)
