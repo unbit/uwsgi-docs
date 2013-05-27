@@ -96,9 +96,12 @@ When your instance is part of a :doc:`Legion`, you can configure it to run crons
 Unique crons
 ************
 
-Available since 1.9.11
-Some commands can take long time to finish or just hang, sometime it's fine, but there are also cases when running multiple instances of a command can be dangerous.
-For such cases ``unique-cron`` and ``unique-legion-cron`` options were added, syntax is the same as with ``cron`` and ``legion-cron``, the difference is that uWSGI will delay next execution until previous was completed.
+.. note:: This feature is available since 1.9.11.
+
+
+Some commands can take a long time to finish or just hang doing their thing. Sometimes this is okay, but there are also cases when running multiple instances of the same command can be dangerous.
+
+For such cases the ``unique-cron`` and ``unique-legion-cron`` options were added. The syntax is the same as with ``cron`` and ``legion-cron``, but the difference is that uWSGI will keep track of execution state and not execute the cronjob again until it is complete.
 
 Example:
 
@@ -107,14 +110,15 @@ Example:
    [uwsgi]
    cron = -1 -1 -1 -1 -1 sleep 70
 
-Would execute ``sleep 70`` every minute, since sleep command will be running longer than our execution interval, we will end up with growing number of sleep processes.
-To fix this we can simply replace ``cron`` with ``unique-cron`` and uWSGI will make sure that only single sleep process is running, new process will be started right after previous had finished.
+This would execute ``sleep 70`` every minute, but sleep command will be running longer than our execution interval, we will end up with a growing number of sleep processes.
+To fix this we can simply replace ``cron`` with ``unique-cron`` and uWSGI will make sure that only single sleep process is running. A new process will be started right after the previous one finishes.
 
 Harakiri
 ********
 
-Available since 1.9.11
-Using ``--cron-harakiri`` will enforce time limit on executed commands, if any command is taking longer it will be killed.
+.. note:: Available since 1.9.11.
+
+``--cron-harakiri`` will enforce a time limit on executed commands. If any command is taking longer it will be killed.
 
 .. code-block:: ini
 
@@ -123,13 +127,14 @@ Using ``--cron-harakiri`` will enforce time limit on executed commands, if any c
    cron = sleep 30
    cron-harakiri = 10
 
-Will kill cron command after 10 seconds. Note that ``cron-harakiri`` is a global limit, it affects all cron commands, to set per command time limit use ``cron2`` option (see below).
+This will kill the cron command after 10 seconds. Note that ``cron-harakiri`` is a global limit, it affects all cron commands. To set a per-command time limit, use the ``cron2`` option (see below).
 
 New syntax for cron options
 ***************************
 
-Available since 1.9.11
-To allow better control over crons new option was added in uWSGI, syntax:
+.. note:: Available since 1.9.11
+
+To allow better control over crons, a new option was added to uWSGI:
 
 .. code-block:: ini
 
@@ -144,42 +149,30 @@ Example:
 
    cron2 = minute=-2,unique=1 sleep 130
 
-Will spawn unique cron command ``sleep 130`` every 2 minutes.
+Will spawn an unique cron command ``sleep 130`` every 2 minutes.
 
 Option list is optional, available options for every cron:
 
-**minute** - minute part of crontab entry, default is -1 (interpreted as *)
+* ``minute`` - minute part of crontab entry, default is -1 (interpreted as *)
+* ``hour`` - hour part of crontab entry, default is -1 (interpreted as *)
+* ``day`` - day part of crontab entry, default is -1 (interpreted as *)
+* ``month`` - month part of crontab entry, default is -1 (interpreted as *)
+* ``week`` - week part of crontab entry, default is -1 (interpreted as *)
+* ``unique`` - marks cron command as unique (see above), default is 0 (not unique)
+* ``harakiri`` - set harakiri timeout (in seconds) for this cron command, default is 0 (no harakiri)
+* ``legion`` - set legion name for use with this cron command, cron legions are only executed on the legion lord node.
 
-**hour** - hour part of crontab entry, default is -1 (interpreted as *)
-
-**day** - day part of crontab entry, default is -1 (interpreted as *)
-
-**month** - month part of crontab entry, default is -1 (interpreted as *)
-
-**week** - week part of crontab entry, default is -1 (interpreted as *)
-
-**unique** - marks cron command as unique (see above), default is 0 (not unique)
-
-**harakiri** - set harakiri timeout (in seconds) for this cron command, default is 0 (no harakiri)
-
-**legion** - set legion name for use with this cron command, cron legions are only executed on the legion lord node.
-
-Note that you cannot use spaces in options list (``minute=1, hour=2`` will not work, but ``minute=1,hour=2`` will work just fine).
-If any option is missing default value is used, examples:
+Note that you cannot use spaces in options list. (``minute=1, hour=2`` will not work, but ``minute=1,hour=2`` will work just fine.)
+If any option is missing, a default value is used.
 
 .. code-block:: ini
 
    [uwsgi]
+   # execute ``my command`` every minute (-1 -1 -1 -1 -1 crontab).
    cron2 = my command
-
-Will execute ``my command`` every minute (-1 -1 -1 -1 -1 crontab).
-
-.. code-block:: ini
-
-   [uwsgi]
+   # execute unique command ``/usr/local/bin/backup.sh`` at 5:30 every day.
    cron2 = minute=30,hour=5,unique=1 /usr/local/bin/backup.sh
 
-Will execute unique command ``/usr/local/bin/backup.sh`` at 5:30 every day.
 
 .. code-block:: ini
 
@@ -188,7 +181,7 @@ Will execute unique command ``/usr/local/bin/backup.sh`` at 5:30 every day.
    legion-node = mycluster 225.1.1.1:1717
    cron2 = minute=-10,legion=mycluster my command
 
-Will execute ``my command`` every 10 minutes on ``mycluster`` legion lord node.
+This will disable harakiri for ``my command``, but other cron commands will still be killed after 10 seconds: 
 
 .. code-block:: ini
 
@@ -197,4 +190,4 @@ Will execute ``my command`` every 10 minutes on ``mycluster`` legion lord node.
    cron2 = harakiri=0 my command
    cron2 = my second command
 
-Will disable harakiri for ``my command``, but other cron commands will still be killed after 10 seconds.
+

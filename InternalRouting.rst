@@ -739,12 +739,12 @@ Plugin: ``router_uwsgi``
 ``harakiri``
 ^^^^^^^^^^^^
 
-set harakiri for the current request
+Set harakiri for the current request.
 
 ``file``
 ^^^^^^^^
 
-transfer the specified filename without using acceleration (sendfile, offloading...)
+Directly transfer the specified filename *without* using acceleration (sendfile, offloading, etc.).
 
 .. code-block:: ini
 

@@ -4,10 +4,7 @@ uWSGI V8 support
 Building
 ********
 
-You need libv8 headers to build the plugin
-
-The official modifier1 is the '24'
-
+You will need the ``libv8`` headers to build the plugin. The official modifier1 value for V8 is '24'.
 
 RPC
 ***
@@ -30,9 +27,8 @@ RPC
    uwsgi.register_rpc('part2', part2);
    uwsgi.register_rpc('part3', part3);
 
-
    ciao = function(saluta) {
-        uwsgi.log("i do not know");
+        uwsgi.log("I have no idea what's going on.");
         return "Ciao Ciao";
    }
 
@@ -57,8 +53,7 @@ Mules
 *****
 
 
-
-The uWSGI api
+The uWSGI API
 *************
 
 JSGI 3.0
@@ -67,13 +62,13 @@ JSGI 3.0
 .. code-block:: js
 
    exports.app = function (request) {
-    uwsgi.log("Hello i am the app\n");
+    uwsgi.log("Hello! I am the app.\n");
     uwsgi.log(request.scheme + ' ' + request.method + ' ' + request.scriptName + ' ' + request.pathInfo + ' ' + request.queryString + ' ' + request.host);
     uwsgi.log(request.serverSoftware);
     return {
         status: 200,
         headers: {"Content-Type": "text/plain", "Server": ["uWSGI", "v8/plugin"]},
-        body: ["Hello World!", "i am v8"]
+        body: ["Hello World!", "I am V8"]
     };
    }
 
@@ -84,13 +79,9 @@ JSGI 3.0
 CommonJS
 ********
 
-require OK
-
-Binary/B NO
-
-System/1.0 (in progress)
-
-IO/A NO
-
-Filesystem/A NO
+* Require: OK
+* Binary/B: NO
+* System/1.0: in progress
+* IO/A: NO
+* Filesystem/A: NO
 
