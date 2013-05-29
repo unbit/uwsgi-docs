@@ -3,6 +3,8 @@ Quickstart for python/WSGI applications
 
 This quickstart will show you how to deploy simple WSGI applications and common frameworks
 
+Python here is meant as CPython, for PyPy you need to use the specific plugin: :doc:`PyPy`, Jython support is on work.
+
 Installing uWSGI with python support
 ************************************
 
@@ -336,6 +338,18 @@ To avoid that problem you can set an ``harakiri`` timer. It is a monitor (manage
 will destroy workers blocked for more than 30 seconds. Choose carefully the harakiri value !!!
 
 In addition to this, since uWSGI 1.9, the stats server exports the whole set of request variables, so you can see (in realtime) what your instance is doing (for each worker, thread or async core)
+
+
+Offloading
+**********
+
+:doc:`OffloadSubsystem` allows you to free your workers as soon as possibile when some specific pattern matches and can be delegated
+to a pure-c thread. Examples are sending static file from the filesystem, transferring data from the network to the client and so on.
+
+Offloading is very complex, but its use is transparent to the end user. If you want to try just add --offload-threads <n> where <n> is the number of threads to spawn (one for cpu is a good value).
+
+When offload threads are enabled, all of the parts that can be optimized will be automatically detected
+
 
 And now
 *******
