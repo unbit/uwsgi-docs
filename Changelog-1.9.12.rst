@@ -37,6 +37,7 @@ it will be cool to 'signal' big responses via the internal routing subsystem:
 
    [uwsgi]
    ...
+   offload-threads = 8
    route = ^/bigxml offload:memory
    
 The offload engine could be extended to support multiple instructions so we could enqueue response chunks built by a generator:
