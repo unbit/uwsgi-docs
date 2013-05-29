@@ -343,7 +343,7 @@ In addition to this, since uWSGI 1.9, the stats server exports the whole set of 
 Offloading
 **********
 
-:doc:`OffloadSubsystem` allows you to free your workers as soon as possibile when some specific pattern matches and can be delegated
+:doc:`OffloadSubsystem` allows you to free your workers as soon as possible when some specific pattern matches and can be delegated
 to a pure-c thread. Examples are sending static file from the filesystem, transferring data from the network to the client and so on.
 
 Offloading is very complex, but its use is transparent to the end user. If you want to try just add --offload-threads <n> where <n> is the number of threads to spawn (one for cpu is a good value).
