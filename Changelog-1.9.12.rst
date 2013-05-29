@@ -18,7 +18,7 @@ Take the following WSGI app:
 
    def application(environ, start_response):
        start_response('200 OK', [('Content-Type', 'text/plain')])
-       return 'u' * 100000000
+       return ['u' * 100000000]
        
 it will generate about 100megs of data. 98% of the time the worker spent on the request was on the data transfer. As the whole response
 is followed by the end of the request we can offload the data write to a thread and free the worker suddenly (so it will be able to handle a new request).
@@ -29,7 +29,9 @@ Thanks to the 'memory offload' facility added in 1.9.11 implementing it will be 
 
 Challenges:
 
-how this will touch the translation subsystem ?
+how this will touch the translation subsystem ? maybe delegating the offload to a translation filter would be a lot more 'clean'
+
+how to detect if offloading can be used ? A language independent way would be better
 
 it will be cool to 'signal' big responses via the internal routing subsystem:
 
