@@ -1,9 +1,8 @@
 The uWSGI cron-like interface
 =============================
 
-uWSGI's :term:`master` has an internal cron-like facility that can generate events at predefined times.
-
-You can use it
+uWSGI's :term:`master` has an internal cron-like facility that can generate
+events at predefined times.  You can use it
 
 * via the uWSGI API, in which case cron events will generate uWSGI signals
 * directly via options, in which case events will run shell commands
@@ -11,15 +10,15 @@ You can use it
 uWSGI signal based
 ------------------
 
-The :meth:`uwsgi.add_cron` function is the interface to the uWSGI signal cron facility.
-
-The syntax is 
+The :meth:`uwsgi.add_cron` function is the interface to the uWSGI signal cron
+facility.  The syntax is 
 
 .. code-block:: py
 
     uwsgi.add_cron(signal, minute, hour, day, month, weekday)
 
-The last 5 arguments work similarly to a standard crontab, but instead of "*", use -1, and instead of "*/2", "*/3", etc. use -2 and -3, etc.
+The last 5 arguments work similarly to a standard crontab, but instead of "*",
+use -1, and instead of "*/2", "*/3", etc. use -2 and -3, etc.
 
 .. code-block:: py
 
@@ -35,11 +34,10 @@ The last 5 arguments work similarly to a standard crontab, but instead of "*", u
 Timers vs. cron
 ---------------
 
-As usual, you should choose the right tool for the job.
+Recurring events not related to specific dates should use timers/rb_timers.
+When you are interested in a specific date/hour use cron.
 
-Recurring events not related to specific dates should use timers/rb_timers, and when you are interested in a specific date/hour use cron.
-
-For example,
+For example:
 
 .. code-block:: py
 
@@ -50,16 +48,17 @@ Notes
 -----
 
 * ``day`` and ``weekday`` are ORed as the original crontab specifications.
-* By default, you can define up to 64 signal-based cron jobs per master. This value may be increased in :file:`uwsgi.h`.
+* By default, you can define up to 64 signal-based cron jobs per master. This
+value may be increased in :file:`uwsgi.h`.
 
 Option-based cron
 -----------------
 
 You can define cron tasks directly in configuration with the ``cron`` option.
+You can specify an unlimited number of option-based cron records. The syntax is
+the same of the signal-based ones.
 
-You can specify an unlimited number of option-based cron records. The syntax is the same of the signal-based ones.
-
-For example,
+For example:
 
 .. code-block:: ini
 
@@ -83,7 +82,8 @@ For example,
 Legion crons
 ************
 
-When your instance is part of a :doc:`Legion`, you can configure it to run crons only if it is the Lord of the specified Legion:
+When your instance is part of a :doc:`Legion`, you can configure it to run
+crons only if it is the Lord of the specified Legion:
 
 .. code-block:: ini
 

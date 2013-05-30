@@ -13,14 +13,16 @@ The following statements are currently supported:
 * ``if-option`` / ``if-not-option`` -- undocumented
 * ``if-reload`` / ``if-not-reload`` -- undocumented
 
-Each of these statements exports a context value you can access with the special placeholder ``%(_)`` For example, the for statement sets ``%(_)`` to the current iterated value.
+Each of these statements exports a context value you can access with the
+special placeholder ``%(_)``. For example, the "for" statement sets ``%(_)`` to
+the current iterated value.
 
 .. warning:: Recursive logic is not supported and will cause uWSGI to promptly exit.
 
 for
 ---
 
-Iterates over space-separated strings.
+For iterates over space-separated strings. The following three code blocks are equivalent.
 
 .. code-block:: ini
 
@@ -32,7 +34,6 @@ Iterates over space-separated strings.
   endfor =
   module = helloworld
 
-or equivalently
 
 .. code-block:: xml
 
@@ -44,7 +45,6 @@ or equivalently
     <module>helloworld</module>
   </uwsgi>
 
-or equivalently still
 
 .. code-block:: sh
 
@@ -53,7 +53,8 @@ or equivalently still
 if-env
 ------
 
-Check if an environment variable is defined, putting its value in the context placeholder.
+Check if an environment variable is defined, putting its value in the context
+placeholder.
 
 .. code-block:: ini
 
@@ -67,7 +68,8 @@ Check if an environment variable is defined, putting its value in the context pl
 if-exists
 ---------
 
-Check for the existence of a file/directory. The context placeholder is set to the filename found.
+Check for the existence of a file or directory. The context placeholder is set
+to the filename found.
 
 .. code-block:: ini
 
@@ -83,7 +85,8 @@ Check for the existence of a file/directory. The context placeholder is set to t
 if-file
 -------
 
-Check if the given path exists and is a regular file. The context placeholder is set to the filename found.
+Check if the given path exists and is a regular file. The context placeholder
+is set to the filename found.
 
 .. code-block:: xml
 
@@ -98,7 +101,8 @@ Check if the given path exists and is a regular file. The context placeholder is
 if-dir
 ------
 
-Check if the given path exists and is a directory. The context placeholder is set to the filename found.
+Check if the given path exists and is a directory. The context placeholder is
+set to the filename found.
 
 .. code-block:: yaml
 

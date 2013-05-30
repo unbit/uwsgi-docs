@@ -1,8 +1,7 @@
 Socket activation with inetd/xinetd
 ===================================
 
-Inetd and Xinetd are two (old-style) daemons used to start network processes on demand.
-
+Inetd and Xinetd are two daemons used to start network processes on demand.
 You can use this in uWSGI too.
 
 Inetd
@@ -13,9 +12,10 @@ Inetd
 
     127.0.0.1:3031 stream tcp wait root /usr/bin/uwsgi uwsgi -M -p 4 --wsgi-file /root/uwsgi/welcome.py --log-syslog=uwsgi
 
-with that config you will run uWSGI on port 3031 as soon as the first connection is made.
-
-Note: the first argument (the one soon after /usr/bin/uwsgi) is mapped to ``argv[0]``. Do not forget this -- always set it to ``uwsgi`` if you want to be sure.
+With this config you will run uWSGI on port 3031 as soon as the first
+connection is made.  Note: the first argument (the one soon after
+/usr/bin/uwsgi) is mapped to ``argv[0]``. Do not forget this -- always set it
+to ``uwsgi`` if you want to be sure.
 
 Xinetd 
 ------
@@ -36,4 +36,5 @@ Xinetd
     	        wait            = yes
     	}
 
-Again, you do not need to specify the socket in uWSGI, as it will be passed to the server by xinetd.
+Again, you do not need to specify the socket in uWSGI, as it will be passed to
+the server by xinetd.

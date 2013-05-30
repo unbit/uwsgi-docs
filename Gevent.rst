@@ -1,33 +1,34 @@
 The Gevent loop engine
 ======================
 
-`Gevent`_ is an amazing non-blocking Python network library built on top of ``libev`` and ``greenlet``.
-
-Even if uWSGI supports Greenlet as suspend-resume/greenthread/coroutine library, it requires a lot of effort and code modifications to work with gevent.
-
-The gevent plugin requires gevent 1.0.0 and :doc:`Async` mode.
+`Gevent`_ is an amazing non-blocking Python network library built on top of
+``libev`` and ``greenlet``.  Even though uWSGI supports Greenlet as
+suspend-resume/greenthread/coroutine library, it requires a lot of effort and
+code modifications to work with gevent.  The gevent plugin requires gevent
+1.0.0 and :doc:`Async` mode.
 
 .. _Gevent: http://www.gevent.org
 
 Notes
 -----
 
-* The :doc:`SignalFramework` is fully working with Gevent mode. Each handler will be executed in a dedicated greenlet. Look at :file:`tests/ugevent.py` for an example.
-* uWSGI multithread mode (``threads`` option) will not work with Gevent. Running Python threads in your apps is supported.
+* The :doc:`SignalFramework` is fully working with Gevent mode. Each handler
+  will be executed in a dedicated greenlet. Look at :file:`tests/ugevent.py` for
+  an example.
+* uWSGI multithread mode (``threads`` option) will not work with Gevent.
+  Running Python threads in your apps is supported.
 * Mixing uWSGI's Async API with gevent's is **EXPLICITLY FORBIDDEN**.
 
 Building the plugin (uWSGI >= 1.4)
 ----------------------------------
 
 The gevent plugin is compiled in by default when the default profile is used.
-
-Doing a 
+Doing the following will install the python plugin as well as the gevent one:
 
 .. code-block:: sh
 
    pip install uwsgi
 
-will install the python plugin as well as the gevent one
 
 Building the plugin (uWSGI < 1.4)
 ---------------------------------
@@ -63,7 +64,9 @@ the argument of --gevent is the number of async cores to spawn
 A crazy example
 ---------------
 
-This example shows how to sleep in a request, how to make asynchronous network requests and how to continue doing logic after a request has been closed.
+The following example shows how to sleep in a request, how to make asynchronous
+network requests and how to continue doing logic after a request has been
+closed.
 
 .. code-block:: python
 
@@ -100,13 +103,18 @@ This example shows how to sleep in a request, how to make asynchronous network r
 Monkey patching
 ---------------
 
-uWSGI uses native gevent api, so it does not need monkey patching. Your code (instead) may need it, so remember
-to call ``gevent.monkey.patch_all()`` at the start of your app. Since uWSGI 1.9, the convenience option ``--gevent-monkey-patch`` will do that for you.
+uWSGI uses native gevent api, so it does not need monkey patching. That said,
+your code may need it, so remember to call ``gevent.monkey.patch_all()`` at the
+start of your app. As of uWSGI 1.9, the convenience option
+``--gevent-monkey-patch`` will do that for you.
 
-A common example is using ``psycopg2_gevent`` with django. Django will make a connection to postgres for each thread (storing it in thread locals).
+A common example is using ``psycopg2_gevent`` with django. Django will make a
+connection to postgres for each thread (storing it in thread locals).
 
-As the uWSGI gevent plugin runs on a single thread this approach will lead to a deadlock in psycopg. Enabling monkey patch will allow you to
-map thread locals to greenlets (however you may want to avoid full monkey patching and only call ``gevent.monkey.patch_thread()``) and solves the issue:
+As the uWSGI gevent plugin runs on a single thread this approach will lead to a
+deadlock in psycopg. Enabling monkey patch will allow you to map thread locals
+to greenlets (though you could avoid full monkey patching and only call
+``gevent.monkey.patch_thread()``) and solves the issue:
 
 .. code-block:: python 
 
@@ -127,9 +135,13 @@ or (to monkey patch everything)
 Notes on clients and frontends
 ------------------------------
 
-* If you're testing a WSGI application that generates a stream of data, you should know that ``curl`` by default buffers data until a newline. So make sure you either disable curl's buffering with the ``-N`` flag or have regular newlines in your output.
-* If you are using Nginx in front of uWSGI and wish to stream data from your app, you'll probably want to disable Nginx's buffering.
+* If you're testing a WSGI application that generates a stream of data, you
+  should know that ``curl`` by default buffers data until a newline. So make sure
+  you either disable curl's buffering with the ``-N`` flag or have regular
+  newlines in your output.
+* If you are using Nginx in front of uWSGI and wish to stream data from your
+  app, you'll probably want to disable Nginx's buffering.
   
-  .. code-block:: nginx
+.. code-block:: nginx
   
     uwsgi_buffering off;

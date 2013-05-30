@@ -5,16 +5,21 @@ The JWSGI interface
 
 JWSGI is a port of the WSGI/PSGI/Rack way of thinking for Java.
 
-If, for some obscure reason, you'd feel like developing apps with JVM languages and you don't feel like deploying a huge servlet stack, JWSGI should be up your alley.
+If, for some obscure reason, you'd feel like developing apps with JVM languages
+and you don't feel like deploying a huge servlet stack, JWSGI should be up your
+alley.
 
-It is a very simple protocol where you call a public method that takes a ``HashMap`` as its sole argument.
-This HashMap contains CGI style variables and ``jwsgi.input`` containing a Java InputStream object.
+It is a very simple protocol: you call a public method that takes a ``HashMap``
+as its sole argument.  This HashMap contains CGI style variables and
+``jwsgi.input`` containing a Java InputStream object.
 
 The function has to returns an array of 3 Objects:
 
 * ``status`` (java.lang.Integer) (example: 200)
-* ``headers`` (HashMap) (example: {"Content-type": "text/html", "Server": "uWSGI", "Foo": ["one","two"]})
-* ``body`` (may be a String, an array of Strings, a File or an InputStream object)
+* ``headers`` (HashMap) (example: {"Content-type": "text/html", "Server":
+  "uWSGI", "Foo": ["one","two"]})
+* ``body`` (may be a String, an array of Strings, a File or an InputStream
+  object)
 
 Example
 -------
@@ -49,8 +54,9 @@ A simple JWSGI app looks like this:
 How to use it ?
 ***************
 
-You need both the 'jvm' plugin and the 'jwsgi' plugin. A build profile named 'jwsgi', is available
-in the project to allow a monolithic build with jvm+jwsgi:
+You need both the 'jvm' plugin and the 'jwsgi' plugin. A build profile named
+'jwsgi', is available in the project to allow a monolithic build with
+jvm+jwsgi:
 
 .. code-block:: sh
 
@@ -67,14 +73,17 @@ in the project to allow a monolithic build with jvm+jwsgi:
 
    .. code-block:: sh
 
-      ./uwsgi --socket /tmp/uwsgi.socket --plugins jvm,jwsgi --jwsgi MyApp:application --threads 40
+      ./uwsgi --socket /tmp/uwsgi.socket --plugins jvm,jwsgi --jwsgi
+      MyApp:application --threads 40
 
-  This will run a JWSGI application on UNIX socket /tmp/uwsgi.socket with 40 threads.
+  This will run a JWSGI application on UNIX socket /tmp/uwsgi.socket with 40
+  threads.
 
 Reading request body
 ********************
 
-The ``jwsgi.input`` item is an ``uwsgi.RequestBody`` object (subclass of java/io/InputStream). You can use it to access the request body.
+The ``jwsgi.input`` item is an ``uwsgi.RequestBody`` object (subclass of
+java/io/InputStream). You it to access the request body.
 
 .. code-block:: java
 
@@ -105,14 +114,15 @@ The ``jwsgi.input`` item is an ``uwsgi.RequestBody`` object (subclass of java/io
        }
    }
 
-Pay attention to the use of ``read(byte[])`` instead of the classical (and the only required by the InputStream specification) ``read()``. The argumentless ``read()`` function will inefficiently read one byte at time, while the second one reads a larger chunk at a time.
+Pay attention to the use of ``read(byte[])`` instead of the classical
+``read()``. The latter inefficiently reads one byte at time, while the former
+reads a larger chunk at a time.
 
 JWSGI and Groovy
 ****************
 
-Being a very low-level the JWSGI standard can be used as-is in other languages running on the JVM.
-
-As an example this is a Hello World groovy example:
+Being low-level, the JWSGI standard can be used as-is in other languages
+running on the JVM.  As an example this is a "Hello World" Groovy example:
 
 .. code-block:: groovy
 
@@ -121,7 +131,7 @@ As an example this is a Hello World groovy example:
         return [200, headers, "<h1>Hello World</h1"]
    }
 
-and another one serving a static file
+One serving a static file:
 
 .. code-block:: groovy
 
@@ -130,15 +140,15 @@ and another one serving a static file
         return [200, headers, new File("/etc/services")]
    }
 
-The second approach is very efficient as it will abuse uWSGI internal facilities (for example if you have offloading enabled, your worker thread will be suddenly freed).
-
-To load Groovy code, remember to compile it:
+The second approach is very efficient as it will abuse uWSGI internal
+facilities. For example if you have offloading enabled, your worker thread will
+be suddenly freed.  To load Groovy code, remember to compile it:
 
 .. code-block:: sh
 
    groovyc Foobar.groovy
 
-then you can run it
+Then run it:
 
 .. code-block:: sh
 
@@ -147,7 +157,8 @@ then you can run it
 JWSGI and Scala
 ***************
 
-Like Groovy you can write JWSGI apps with Scala. You only need the entry point function to use native Java objects:
+Like Groovy, you can write JWSGI apps with Scala. You only need the entry point
+function to use native Java objects:
 
 .. code-block:: scala
 
@@ -160,7 +171,7 @@ Like Groovy you can write JWSGI apps with Scala. You only need the entry point f
         }
    }
 
-or in a more Scala-ish way,
+Or in a more Scala-ish way:
 
 .. code-block:: scala
 
@@ -174,7 +185,7 @@ or in a more Scala-ish way,
         }
    }
 
-Once compiled with ``scalac <filename>`` you can run this as usual:
+Once compiled with ``scalac <filename>`` you run like this:
 
 .. code-block:: sh
 
