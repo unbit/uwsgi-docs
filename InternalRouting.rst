@@ -766,6 +766,22 @@ Plugin: ``router_memcached``
 
 
 ``proxyuwsgi``
-^^^^^^^^^
+^^^^^^^^^^^^^^
 
 Plugin: ``router_uwsgi``
+
+``harakiri``
+^^^^^^^^^^^^
+
+Set harakiri for the current request.
+
+``file``
+^^^^^^^^
+
+Directly transfer the specified filename *without* using acceleration (sendfile, offloading, etc.).
+
+.. code-block:: ini
+
+   [uwsgi]
+   http-socket = :9090
+   route-run = file:filename=/var/www/${PATH_INFO}

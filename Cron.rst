@@ -93,3 +93,101 @@ crons only if it is the Lord of the specified Legion:
    ; every two hours
    legion-cron = mycluster -1 -2 -1 -1 -1 /usr/bin/backup_my_home --recursive
 
+Unique crons
+************
+
+.. note:: This feature is available since 1.9.11.
+
+
+Some commands can take a long time to finish or just hang doing their thing. Sometimes this is okay, but there are also cases when running multiple instances of the same command can be dangerous.
+
+For such cases the ``unique-cron`` and ``unique-legion-cron`` options were added. The syntax is the same as with ``cron`` and ``legion-cron``, but the difference is that uWSGI will keep track of execution state and not execute the cronjob again until it is complete.
+
+Example:
+
+.. code-block:: ini
+
+   [uwsgi]
+   cron = -1 -1 -1 -1 -1 sleep 70
+
+This would execute ``sleep 70`` every minute, but sleep command will be running longer than our execution interval, we will end up with a growing number of sleep processes.
+To fix this we can simply replace ``cron`` with ``unique-cron`` and uWSGI will make sure that only single sleep process is running. A new process will be started right after the previous one finishes.
+
+Harakiri
+********
+
+.. note:: Available since 1.9.11.
+
+``--cron-harakiri`` will enforce a time limit on executed commands. If any command is taking longer it will be killed.
+
+.. code-block:: ini
+
+   [uwsgi]
+
+   cron = sleep 30
+   cron-harakiri = 10
+
+This will kill the cron command after 10 seconds. Note that ``cron-harakiri`` is a global limit, it affects all cron commands. To set a per-command time limit, use the ``cron2`` option (see below).
+
+New syntax for cron options
+***************************
+
+.. note:: Available since 1.9.11
+
+To allow better control over crons, a new option was added to uWSGI:
+
+.. code-block:: ini
+
+   [uwsgi]
+   cron2 = option1=value,option2=value command to execute
+
+Example:
+
+.. code-block:: ini
+
+   [uwsgi]
+
+   cron2 = minute=-2,unique=1 sleep 130
+
+Will spawn an unique cron command ``sleep 130`` every 2 minutes.
+
+Option list is optional, available options for every cron:
+
+* ``minute`` - minute part of crontab entry, default is -1 (interpreted as *)
+* ``hour`` - hour part of crontab entry, default is -1 (interpreted as *)
+* ``day`` - day part of crontab entry, default is -1 (interpreted as *)
+* ``month`` - month part of crontab entry, default is -1 (interpreted as *)
+* ``week`` - week part of crontab entry, default is -1 (interpreted as *)
+* ``unique`` - marks cron command as unique (see above), default is 0 (not unique)
+* ``harakiri`` - set harakiri timeout (in seconds) for this cron command, default is 0 (no harakiri)
+* ``legion`` - set legion name for use with this cron command, cron legions are only executed on the legion lord node.
+
+Note that you cannot use spaces in options list. (``minute=1, hour=2`` will not work, but ``minute=1,hour=2`` will work just fine.)
+If any option is missing, a default value is used.
+
+.. code-block:: ini
+
+   [uwsgi]
+   # execute ``my command`` every minute (-1 -1 -1 -1 -1 crontab).
+   cron2 = my command
+   # execute unique command ``/usr/local/bin/backup.sh`` at 5:30 every day.
+   cron2 = minute=30,hour=5,unique=1 /usr/local/bin/backup.sh
+
+
+.. code-block:: ini
+
+   [uwsgi]
+   legion = mycluster 225.1.1.1:1717 100 bf-cbc:hello
+   legion-node = mycluster 225.1.1.1:1717
+   cron2 = minute=-10,legion=mycluster my command
+
+This will disable harakiri for ``my command``, but other cron commands will still be killed after 10 seconds: 
+
+.. code-block:: ini
+
+   [uwsgi]
+   cron-harakiri = 10
+   cron2 = harakiri=0 my command
+   cron2 = my second command
+
+

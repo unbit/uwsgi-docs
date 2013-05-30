@@ -70,6 +70,19 @@ Table of Contents
    Logging
    LogFormat
    Glossary
+   
+Tutorials
+=========
+
+.. toctree::
+   :maxdepth: 1
+
+   CachingCookbook
+   Django_and_nginx
+   dreamhost
+   heroku_python
+   heroku_ruby
+
 
 uWSGI Subsystems
 ================
@@ -171,6 +184,7 @@ Language support
    :maxdepth: 2
  
    Python
+   PyPy
    PHP
    Perl
    Ruby
@@ -192,6 +206,7 @@ Release Notes
 .. toctree::
    :maxdepth: 1
 
+   Changelog-1.9.11
    Changelog-1.9.10
    Changelog-1.9.9
    Changelog-1.9.8
