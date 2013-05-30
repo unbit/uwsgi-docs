@@ -1,14 +1,17 @@
 The uWSGI FastRouter
 ====================
 
-For advanced setups uWSGI includes the "fastrouter" plugin, a proxy/load-balancer/router speaking the uwsgi protocol. It is built in by default.
-
-You can put it between your webserver and real uWSGI instances to have more control over the routing of HTTP requests to your application servers.
+For advanced setups uWSGI includes the "fastrouter" plugin, a
+proxy/load-balancer/router speaking the uwsgi protocol. It is built in by
+default.  You can put it between your webserver and real uWSGI instances to
+have more control over the routing of HTTP requests to your application
+servers.
 
 Getting started
 ---------------
 
-First of all you have to run the fastrouter, binding it to a specific address. Multiple addresses are supported, naturally.
+First of all you have to run the fastrouter, binding it to a specific address.
+Multiple addresses are supportd as well.
 
 .. code-block:: sh
 
@@ -16,35 +19,41 @@ First of all you have to run the fastrouter, binding it to a specific address. M
 
 .. note:: This is the most useless Fastrouter setup in the world.
 
-Congratulations! You have just run the most useless Fastrouter setup in the world. Simply binding the fastrouter to a couple of addresses will not instruct it on how to route requests. To give it intelligence you have to tell it how to route requests.
+Congratulations! You have just run the most useless Fastrouter setup in the
+world. Simply binding the fastrouter to a couple of addresses will not instruct
+it on how to route requests. To give it intelligence you have to tell it how to
+route requests.
 
 Way 1: --fastrouter-use-base
 ----------------------------
 
-This option will tell the fastrouter to connect to a UNIX socket with the same name of the requested host in a specified directory.
+This option will tell the fastrouter to connect to a UNIX socket with the same
+name of the requested host in a specified directory.
 
 .. code-block:: sh
 
     uwsgi --fastrouter 127.0.0.1:3017 --fastrouter-use-base /tmp/sockets
 
-If you receive a request for ``example.com`` the fastrouter will forward the request to ``/tmp/sockets/example.com``.
+If you receive a request for ``example.com`` the fastrouter will forward the
+request to ``/tmp/sockets/example.com``.
 
 Way 2: --fastrouter-use-pattern
 -------------------------------
 
-Same as the previous setup but you will be able to use a pattern, with ``%s`` mapping to the requested key/hostname.
+Same as the previous setup but you will be able to use a pattern, with ``%s``
+mapping to the requested key/hostname.
 
 .. code-block:: sh
 
     uwsgi --fastrouter 127.0.0.1:3017 --fastrouter-use-base /tmp/sockets/%s/uwsgi.sock
 
-Requests for ``example.com`` will be mapped to ``/tmp/sockets/example.com/uwsgi.sock``.
+Requests for ``example.com`` will be mapped to
+``/tmp/sockets/example.com/uwsgi.sock``.
 
 Way 3: --fastrouter-use-cache
 -----------------------------
 
 You can store the key/value mappings in the :doc:`uWSGI cache <Caching>`.
-
 Choose a way to fill the cache, for instance a Python script like this...
 
 .. code-block:: py
@@ -64,15 +73,18 @@ Then run your Fastrouter-enabled server, telling it to run the script first.
 Way 4: --fastrouter-subscription-server
 ---------------------------------------
 
-This is probably one of the best way for massive auto-scaling hosting. It uses the :doc:`subscription server <SubscriptionServer>` to allow instances to announce themselves and subscribe to the fastrouter.
-
-By default, the fastrouter subscription server can contain 30 key/value mappings. Increase this with ``fastrouter-subscription-slot`` as necessary.
+This is probably one of the best way for massive auto-scaling hosting. It uses
+the :doc:`subscription server <SubscriptionServer>` to allow instances to
+announce themselves and subscribe to the fastrouter.  By default, the
+fastrouter subscription server can contain 30 key/value mappings. Increase this
+with ``fastrouter-subscription-slot`` as necessary.
 
 .. code-block:: sh
 
     uwsgi --fastrouter 127.0.0.1:3017 --fastrouter-subscription-server 192.168.0.100:7000 --fastrouter-subscription-slot 80
 
-This will spawn a subscription server on address 192.168.0.100 port 7000 with 80 available slots.
+This will spawn a subscription server on address 192.168.0.100 port 7000 with
+80 available slots.
 
 Now you can spawn your instances subscribing to the fastrouter:
 
@@ -81,11 +93,13 @@ Now you can spawn your instances subscribing to the fastrouter:
     uwsgi --socket :3031 -M --subscribe-to 192.168.0.100:7000:example.com
     uwsgi --socket :3032 -M --subscribe-to 192.168.0.100:7000:unbit.it,5 --subscribe-to 192.168.0.100:7000:uwsgi.it
 
-As you probably noted, you can subscribe to multiple fastrouters, with multiple keys. Multiple instances subscribing to the same fastrouter with the same key will automatically get load balanced and monitored. Handy, isn't it?
-
-Like with the caching key/value store, ``modifier1`` can be set with a comma. (``,5`` above)
-
-Another feature of the subscription system is avoiding to choose ports. You can bind instances to random port and the subscription system will send the real value to the subscription server.
+As you probably noted, you can subscribe to multiple fastrouters, with multiple
+keys. Multiple instances subscribing to the same fastrouter with the same key
+will automatically get load balanced and monitored. Handy, isn't it?  Like with
+the caching key/value store, ``modifier1`` can be set with a comma. (``,5``
+above) Another feature of the subscription system is avoiding to choose ports.
+You can bind instances to random port and the subscription system will send the
+real value to the subscription server.
 
 .. code-block:: sh
 
@@ -95,7 +109,8 @@ Another feature of the subscription system is avoiding to choose ports. You can 
 Mapping files
 ^^^^^^^^^^^^^
 
-If you need to specify a massive amount of keys, you can use a mapping file instead.
+If you need to specify a massive amount of keys, you can use a mapping file
+instead.
 
 .. code-block:: plain
 
@@ -112,9 +127,9 @@ If you need to specify a massive amount of keys, you can use a mapping file inst
 Way 5: --fastrouter-use-code-string
 -----------------------------------
 
-If Darth Vader wears a t-shirt with your face (and in some other corner cases too), you can customize the fastrouter with code-driven mappings.
-
-Choose a uWSGI-supported language (like Python or Lua) and define your mapping function.
+If Darth Vader wears a t-shirt with your face (and in some other corner cases
+too), you can customize the fastrouter with code-driven mappings.  Choose a
+uWSGI-supported language (like Python or Lua) and define your mapping function.
 
 .. code-block:: py
 
@@ -125,9 +140,10 @@ Choose a uWSGI-supported language (like Python or Lua) and define your mapping f
 
     uwsgi --fastrouter 127.0.0.1:3017 --fastrouter-use-code-string 0:mapper.py:get
 
-This will instruct the fastrouter to load the script ``mapper.py`` using plugin (modifier1) 0 and call the 'get' global, passing it the key.
-
-In the previous (stupid) example you will always route requests to 127.0.0.1:3031. Let's create a more advanced system, for fun!
+This will instruct the fastrouter to load the script ``mapper.py`` using plugin
+(modifier1) 0 and call the 'get' global, passing it the key.  In the previous
+example you will always route requests to 127.0.0.1:3031. Let's create
+a more advanced system, for fun!
 
 .. code-block:: py
     
@@ -159,20 +175,23 @@ In the previous (stupid) example you will always route requests to 127.0.0.1:303
 
     uwsgi --fastrouter 127.0.0.1:3017 --fastrouter-use-code-string 0:megamapper.py:get
 
-With only few lines, you have implemented round-robin load-balancing with a fallback node. Pow!
+With only few lines we have implemented round-robin load-balancing with a
+fallback node. Pow!  You could add some form of node monitoring, starting
+threads in the script, or other insane things. (Be sure to add them to the
+docs!)
 
-You could add some form of node monitoring, starting threads in the script, or other insane things. (Be sure to add them to the docs!)
-
-.. attention:: Remember to not put blocking code in your functions. The fastrouter is totally non-blocking, do not ruin it!
+.. attention:: Remember to not put blocking code in your functions. The
+   fastrouter is totally non-blocking, do not ruin it!
 
 Cheap mode and shared sockets
 -----------------------------
 
-A common setup is having a webserver/proxy connected to a fastrouter and a series of uWSGI instances subscribed to it.
-
-Normally you'd use the webserver node as a uWSGI instance node. This node will subscribe to the local fastrouter. Well... don't waste cycles on that!
-
-Shared sockets are a way to share sockets among various uWSGI components. Let's use that to share a socket between the fastrouter and uWSGI instance.
+A common setup is having a webserver/proxy connected to a fastrouter and a
+series of uWSGI instances subscribed to it.  Normally you'd use the webserver
+node as a uWSGI instance node. This node will subscribe to the local
+fastrouter. Well... don't waste cycles on that!  Shared sockets are a way to
+share sockets among various uWSGI components. Let's use that to share a socket
+between the fastrouter and uWSGI instance.
 
 .. code-block:: ini
 
@@ -197,11 +216,12 @@ Shared sockets are a way to share sockets among various uWSGI components. Let's 
     fastrouter-cheap = true
     
 
-With this setup your requests will go directly to your app (no proxy overhead) or to the fastrouter (to pass requests to remote nodes).
-
-When the fastrouter is in cheap mode, it will not respond to requests until a node is available. This means that when there are no nodes subscribed, only your local app will respond.
-
-When all of the nodes go down, the fastrouter will return in cheap mode. Seeing a pattern? Another step to awesome autoscaling.
+With this setup your requests will go directly to your app (no proxy overhead)
+or to the fastrouter (to pass requests to remote nodes).  When the fastrouter
+is in cheap mode, it will not respond to requests until a node is available.
+This means that when there are no nodes subscribed, only your local app will
+respond.  When all of the nodes go down, the fastrouter will return in cheap
+mode. Seeing a pattern? Another step to awesome autoscaling.
 
 Notes
 -----
@@ -212,8 +232,9 @@ Notes
   * ``HTTP_HOST``
   * ``SERVER_NAME``
 
-* You can increase the number of async events the fastrouter can manage (by default it is system-dependent) using --fastrouter-events 
+* You can increase the number of async events the fastrouter can manage (by
+  default it is system-dependent) using --fastrouter-events 
 
-You can change the default timeout with --fastrouter-timeout
-
-By default the fastrouter will set fd socket passing when used over unix sockets. If you do not want it add --no-fd-passing
+You can change the default timeout with --fastrouter-timeout By default the
+fastrouter will set fd socket passing when used over unix sockets. If you do
+not want it add --no-fd-passing

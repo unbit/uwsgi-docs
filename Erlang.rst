@@ -1,15 +1,14 @@
 Integrating uWSGI with Erlang
 =============================
 
-Starting from the 0.9.5 release, the uWSGI server can act as an Erlang C-Node and exchange messages and RPC with Erlang nodes.
+The uWSGI server can act as an Erlang C-Node and exchange messages and RPC with Erlang nodes.
 
 Building
 --------
 
-First of all you need the ``ei`` libraries and headers. They are included in the official erlang tarball. If you are on Debian/Ubuntu, install the ``erlang-dev`` package.
-
-As usual with language support in uWSGI, you can build Erlang support embedded or as a plugin.
-
+First of all you need the ``ei`` libraries and headers. They are included in
+the official erlang tarball. If you are on Debian/Ubuntu, install the
+``erlang-dev`` package.  Erlang support can be embedded or built as a plugin.
 For embedding, add the ``erlang`` and ``pyerl`` plugins to your buildconf.
 
 .. code-block:: ini
@@ -23,22 +22,25 @@ or build both as plugins
     python uwsgiconfig --plugin plugins/erlang
     python uwsgiconfig --plugin plugins/pyerl
 
-The Erlang plugin will allow uWSGI to became a Erlang C-Node. The ``pyerl`` plugin will add Erlang functions to the Python plugin.
+The Erlang plugin will allow uWSGI to became a Erlang C-Node. The ``pyerl``
+plugin will add Erlang functions to the Python plugin.
 
 Activating Erlang support
 -------------------------
 
-You only need to set two options to enable Erlang support in your Erlang-enabled uWSGI build.
-
-The ``erlang`` option sets the Erlang node name of your uWSGI server. It may be specified in simple or extended format:
+You only need to set two options to enable Erlang support in your
+Erlang-enabled uWSGI build.  The ``erlang`` option sets the Erlang node name of
+your uWSGI server. It may be specified in simple or extended format:
 
 * ``nodename@ip``
 * ``nodename@address``
 * ``nodename``
 
-The ``erlang-cookie`` option sets the cookie for inter-node communications. If you do not specify it, the value is taken from the :file:`~/.erlang.cookie` file.
+The ``erlang-cookie`` option sets the cookie for inter-node communications. If
+you do not specify it, the value is taken from the :file:`~/.erlang.cookie`
+file. 
 
-So, let's run uWSGI with Erlang enabled:
+To run uWSGI with Erlang enabled:
 
 .. code-block:: sh
 
@@ -77,9 +79,9 @@ A simple RPC hello world example
       uwsgitest:hello().
       'hello world !'
 
-Great - now that our Erlang module is working, we are ready for RPC!
-
-Return to your uWSGI server machine and define a new WSGI module -- let's call it :file:`erhello.py`.
+Great - now that our Erlang module is working, we are ready for RPC!  Return to
+your uWSGI server machine and define a new WSGI module -- let's call it
+:file:`erhello.py`.
 
 .. code-block:: py
 
@@ -128,11 +130,9 @@ tuple       tuple
 Sending messages to Erlang nodes
 --------------------------------
 
-One of the most powerful features of Erlang is its extremely useful inter-node message passing system.
-
-uWSGI can communicate with Erlang nodes as well.
-
-Lets define a new Erlang module that simply will echo back whatever we send to it.
+One of the most powerful features of Erlang is the inter-node message passing
+system.  uWSGI can communicate with Erlang nodes as well.  Lets define a new
+Erlang module that simply will echo back whatever we send to it.
 
 .. code-block:: erlang
 
@@ -153,27 +153,27 @@ Lets define a new Erlang module that simply will echo back whatever we send to i
     start() ->
             register(echoer, spawn(uwsgiecho, loop, [])).
 
-(Remember to register your process with the Erlang ``register`` function. Using pids to identify processes is a pain in the ass.)
-
-Now you can send messages with :py:meth:`uwsgi.erlang_send_message`.
+Remember to register your process with the Erlang ``register`` function. Using
+pids to identify processes is problematic.  Now you can send messages with
+:py:meth:`uwsgi.erlang_send_message`.
 
 .. code-block:: py
 
     uwsgi.erlang_send_message(node, "echoer", "Hello echo server !!!" )
 
-The second argument is the registered process name. If you do not specify the name, pass a 3-tuple of Python elements to be interpreted as a Pid.
-
-If your Erlang server returns messages to your requests you can receive them with :py:meth:`uwsgi.erlang_recv_message`.
-
-Remember that even if Erlang needs a process name/pid to send messages, they will be blissfully ignored by uWSGI. (Look at the useless atom in the uwsgiecho code before.)
+The second argument is the registered process name. If you do not specify the
+name, pass a 3-tuple of Python elements to be interpreted as a Pid. If your
+Erlang server returns messages to your requests you can receive them with
+:py:meth:`uwsgi.erlang_recv_message`. Remember that even if Erlang needs a
+process name/pid to send messages, they will be blissfully ignored by uWSGI.
 
 
 Receiving erlang messages
 -------------------------
 
-Sometimes you want to directly send messages from an Erlang node to the uWSGI server.
-
-To receive Erlang messages you have to register "Erlang processes" in your Python code.
+Sometimes you want to directly send messages from an Erlang node to the uWSGI
+server. To receive Erlang messages you have to register "Erlang processes" in
+your Python code.
 
 .. code-block:: py
 
@@ -200,19 +200,22 @@ You can call uWSGI :doc:`RPC` functions directly from Erlang.
 
     rpc:call('testnode@192.168.173.15', useless, myfunction, []).
 
-this will call the "myfunction" uWSGI RPC function on a uWSGI server configured as an Erlang node.
+this will call the "myfunction" uWSGI RPC function on a uWSGI server configured
+as an Erlang node.
 
 Connection persistence
 ----------------------
 
-On high-loaded sites opening and closing connections for every Erlang interaction is overkill. Open a connection on your app initialization with :meth:`uwsgi.erlang_connect` and hold on to the file descriptor.
+On high-loaded sites opening and closing connections for every Erlang
+interaction is overkill. Open a connection on your app initialization with
+:meth:`uwsgi.erlang_connect` and hold on to the file descriptor.
 
 What about Mnesia?
 ------------------
 
-We suggest you to use Mnesia_ when you need a high-availability site.
-
-Simply build an Erlang module that exposes all the database interaction you need and use :py:meth:`uwsgi.erlang_rpc` to interact with it.
+We suggest you to use Mnesia_ when you need a high-availability site. Build an
+Erlang module to expose all the database interaction you need and use
+:py:meth:`uwsgi.erlang_rpc` to interact with it.
 
 .. _Mnesia: http://en.wikipedia.org/wiki/Mnesia
 
@@ -220,8 +223,10 @@ Simply build an Erlang module that exposes all the database interaction you need
 Can I run EWGI_ applications on top of uWSGI?
 ---------------------------------------------
 
-For now, no. The best way to do this would be to develop a plugin and assign a special modifier for EWGI apps.
+For now, no. The best way to do this would be to develop a plugin and assign a
+special modifier for EWGI apps.
 
-But before that happens, you can wrap the incoming request into EWGI form in Python code and use :py:meth:`uwsgi.erlang_rpc` to call your Erlang app.
+But before that happens, you can wrap the incoming request into EWGI form in
+Python code and use :py:meth:`uwsgi.erlang_rpc` to call your Erlang app.
 
 .. _EWGI: http://code.google.com/p/ewgi/wiki/EWGISpecification
