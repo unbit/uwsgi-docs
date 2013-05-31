@@ -101,7 +101,7 @@ You can use it for implementing streaming mode when buffering will be applied. A
    ; after each chunk converted to upper case, flush to the client
    route-run = flush:
    ; buffer the whole response in memory for finally storing it in a file
-   route-run = tofile=filename=/tmp/mycache
+   route-run = tofile:filename=/tmp/mycache
    ...
 
 You can call flush multiple times and in various parts of the chain. Experiment a bit with it...
