@@ -6,6 +6,11 @@ Work in progress, most of the following topics are under development
 Bugfixes
 ^^^^^^^^
 
+- offloading cache writes will return the correct status code and not 202
+- you can now control the path of temporary files setting the TMPDIR environment variable (this fixes an old issue for users without control over /tmp)
+- fixed a compilation error on amqp imperial monitor
+- cron commands are correctly escaped when reported in the stats server
+
 New Features
 ^^^^^^^^^^^^
 
@@ -25,32 +30,43 @@ is followed by the end of the request we can offload the data write to a thread 
 
 100megs are a huge value, but even 1MB can cause a dozen of poll()/write() syscalls that blocks your worker for a bunch of milliseconds
 
-Thanks to the 'memory offload' facility added in 1.9.11 implementing it will be very easy.
+Thanks to the 'memory offload' facility added in 1.9.11 implementing it has been very easy.
 
-Challenges:
-
-how this will touch the translation subsystem ? maybe delegating the offload to a translation filter would be a lot more 'clean'
-
-how to detect if offloading can be used ? A language independent way would be better
-
-it will be cool to 'signal' big responses via the internal routing subsystem:
+The offloading happens via the :doc:`Transformations`
 
 .. code-block:: ini
 
    [uwsgi]
-   ...
-   offload-threads = 8
-   route = ^/bigxml offload:memory
+   socket = :3031
+   wsgi-file = myapp.py
+   ; offload all of the application writes
+   route-run = offload:
    
-The offload engine could be extended to support multiple instructions so we could enqueue response chunks built by a generator:
+By default the response is buffered to memory until it reaches 1MB size. After that it will be buffered to disk and the offload engine
+will use sendfile().
 
-.. code-block:: python
+You can set the limit (in bytes) after disk buffering passing an argument to the offload:
 
-   def application(environ, start_response):
-       start_response('200 OK', [('Content-Type', 'text/plain')])
-       for i in range(100000):
-           yield 'u' * 1000
+.. code-block:: ini
 
-every yield will enqueue the memory chunk.
+   [uwsgi]
+   socket = :3031
+   wsgi-file = myapp.py
+   ; offload all of the application writes (buffer to disk after 1k)
+   route-run = offload:1024
+   
+"offload" MUST BE the last transformation in the chain
 
-Problem: if too much chunks are enqueued memory usage could be a serious problem
+.. code-block:: ini
+
+   [uwsgi]
+   socket = :3031
+   wsgi-file = myapp.py
+   ; gzip the response
+   route-run = gzip:
+   ; offload all of the application writes (buffer to disk after 1k)
+   route-run = offload:1024
+   
+   
+JWSGI and JVM improvements
+**************************
