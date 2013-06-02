@@ -10,6 +10,7 @@ Bugfixes
 - you can now control the path of temporary files setting the TMPDIR environment variable (this fixes an old issue for users without control over /tmp)
 - fixed a compilation error on amqp imperial monitor
 - cron commands are correctly escaped when reported in the stats server
+- fixed fastcgi parser corner-case bug with big uploads
 
 New Features
 ^^^^^^^^^^^^
