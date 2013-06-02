@@ -91,7 +91,10 @@ Running Typo
   
   sudo gem install typo
   typo install /tmp/mytypo
-  ./uwsgi -s :3031 --master --processes 4 --memory-report --rails /tmp/mytypo --post-buffering 4096 --env RAILS_ENV=production
+  ./uwsgi -s :3031 --lazy-apps --master --processes 4 --memory-report --rails /tmp/mytypo --post-buffering 4096 --env RAILS_ENV=production
+
+--lazy-apps is vital here as typo (like a lot of apps) is not fork-friendly (it does not expect is loaded in the master and then fork() is called). With this option
+the app is fully loaded one-time per-worker.
 
 Nginx configuration:
 
