@@ -4428,7 +4428,7 @@ Load a paste.deploy config file containing uwsgi section (load loggers too).
 ~~~~~~~~~~~~~~~~~
 **Argument:** no argument
 
-Force reload of os.environ at each request.
+Force reloading ``os.environ`` at each request.
 
 .. _OptionNoSite:
 
@@ -4436,7 +4436,7 @@ Force reload of os.environ at each request.
 ~~~~~~~~~~~
 **Argument:** no argument
 
-Do not import site module.
+Do not import the ``site`` module while initializing Python. This is usually only required for dynamic virtualenvs. If in doubt, do not enable.
 
 .. _OptionPyshell:
 
