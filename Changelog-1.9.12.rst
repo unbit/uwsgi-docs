@@ -15,8 +15,8 @@ Bugfixes
 New Features
 ^^^^^^^^^^^^
 
-Offloading big responses
-************************
+Offloading responses
+********************
 
 Take the following WSGI app:
 
@@ -71,3 +71,12 @@ You can set the limit (in bytes) after disk buffering passing an argument to the
    
 JWSGI and JVM improvements
 **************************
+
+JRuby integration
+
+--touch-signal
+**************
+
+
+Availability
+^^^^^^^^^^^^
