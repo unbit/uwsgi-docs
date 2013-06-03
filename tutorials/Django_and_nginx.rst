@@ -167,7 +167,7 @@ If you haven't already done so, make sure that your ``mysite`` project actually 
 
 And if it that works, run it using uWSGI::
 
-    uwsgi --http :8000 --module mysite.wsgi
+    uwsgi --http :8000 --wsgi-file mysite.py
 
 * ``module mysite.wsgi``: load the specified wsgi module
 
@@ -206,7 +206,7 @@ Configure nginx for your site
 
 You will need the ``uwsgi_params`` file, which is available in the ``nginx``
 directory of the uWSGI distribution, or from
-https://github.com/unbit/uwsgi/blob/master/nginx/uwsgi_params.
+https://github.com/nginx/nginx/blob/master/conf/uwsgi_params
 
 Copy it into your project directory. In a moment we will tell nginx to refer to
 it.
