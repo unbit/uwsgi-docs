@@ -764,6 +764,39 @@ Plugin: ``router_memcached``
 
 Plugin: ``router_memcached``
 
+``memcachedstore``
+^^^^^^^^^
+
+Plugin: ``router_memcached``
+
+``memcached-store``
+^^^^^^^^^
+
+Plugin: ``router_memcached``
+
+
+
+``redis``
+^^^^^^^^^
+
+Plugin: ``router_redis``
+
+
+``redis-continue``
+^^^^^^^^^
+
+Plugin: ``router_redis``
+
+``redisstore``
+^^^^^^^^^
+
+Plugin: ``router_redis``
+
+``redis-store``
+^^^^^^^^^
+
+Plugin: ``router_redis``
+
 
 ``proxyuwsgi``
 ^^^^^^^^^^^^^^
