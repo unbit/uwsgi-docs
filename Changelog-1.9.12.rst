@@ -140,7 +140,7 @@ Based on the memcached router, a redis router has been added. It works in the sa
 
    [uwsgi]
    ...
-   route-run = redis:addr=127.0.0.1:11211,key=${REQUEST_URI}
+   route-run = redis:addr=127.0.0.1:6379,key=${REQUEST_URI}
    ...
 
 The redis router is builtin by default
