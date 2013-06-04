@@ -77,6 +77,15 @@ JRuby integration
 --touch-signal
 **************
 
+the "pipe" offload engine
+*************************
+
+memcached router improvements
+*****************************
+
+the new redis router
+********************
+
 
 Availability
 ^^^^^^^^^^^^
