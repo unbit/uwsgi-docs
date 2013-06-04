@@ -11,6 +11,7 @@ Bugfixes
 - fixed a compilation error on amqp imperial monitor
 - cron commands are correctly escaped when reported in the stats server
 - fixed fastcgi parser corner-case bug with big uploads
+- fixed support for newest cygwin
 
 New Features
 ^^^^^^^^^^^^
