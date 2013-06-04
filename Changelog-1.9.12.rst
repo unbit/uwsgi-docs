@@ -77,15 +77,77 @@ JRuby integration
 --touch-signal
 **************
 
+A new touch option has been added allowing the rise of a uwsgi signal when a file is touched:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   ; raise signal 17 on /tmp/foobar modifications
+   touch-signal = /tmp/foobar 17
+   ...
+
 the "pipe" offload engine
 *************************
+
+A new offload engine allowing transfer from a socket to the client has been added.
+
+it will be automatically used in the new router_memacached and router_redis plugins
+
 
 memcached router improvements
 *****************************
 
+
+You can now store responses in memcached (as you can already do with uWSGI caching)
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   route = ^/cacheme memcachedstore:addr=127.0.0.1:11211,key=${REQUEST_URI}
+   route = ^/cacheme2 memcachedstore:addr=192.168.0.1:11211,key=${REQUEST_URI}foobar
+   ...
+   
+obviously you can get them too
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   route-run = memcached:addr=127.0.0.1:11211,key=${REQUEST_URI}
+   ...
+   
+The memcached router is now builtin in the default profiles
+
 the new redis router
 ********************
 
+Based on the memcached router, a redis router has been added. It works in the same way:
+
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   route = ^/cacheme redisstore:addr=127.0.0.1:6379,key=${REQUEST_URI}
+   route = ^/cacheme2 redisstore:addr=192.168.0.1:6379,key=${REQUEST_URI}foobar
+   ...
+   
+... and get the values
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   route-run = redis:addr=127.0.0.1:11211,key=${REQUEST_URI}
+   ...
+
+The redis router is builtin by default
 
 Availability
 ^^^^^^^^^^^^
+
+uWSGI 1.9.12 will be available since 20130605 at the following url
+
+...
