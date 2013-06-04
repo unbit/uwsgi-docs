@@ -35,6 +35,8 @@ Ubuntu 10.04
 
     # Add ppa with libphp5-embed package
     sudo add-apt-repository ppa:l-mierzwa/lucid-php5
+    # Update to use package from ppa
+    sudo apt-get update
     # Install needed dependencies
     sudo apt-get install php5-dev libphp5-embed libonig-dev libqdbm-dev
     # Compile uWSGI PHP plugin
