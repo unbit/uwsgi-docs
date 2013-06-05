@@ -1,7 +1,7 @@
 uWSGI 1.9.12
 ============
 
-Work in progress, most of the following topics are under development
+Changelog [20130605]
 
 Bugfixes
 ^^^^^^^^
@@ -217,6 +217,6 @@ the router_hash plugin is compiled-in by default
 Availability
 ^^^^^^^^^^^^
 
-uWSGI 1.9.12 will be available since 20130605 at the following url
+uWSGI 1.9.12 will be available starting from 20130605 at the following url
 
-...
+http://projects.unbit.it/downloads/uwsgi-1.9.12.tar.gz
