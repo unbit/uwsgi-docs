@@ -76,7 +76,7 @@ JWSGI and JVM improvements
 The JVM plugin has been extended to support more objects helper (like ArrayList), while JWSGI can now be used as
 a low-level layer to add support for more JVM-based languages.
 
-JRuby integration is the first attempt of such a usage. We have just releases a JWSGI to Rack adapter allowing you tun ran
+JRuby integration is the first attempt of such a usage. We have just releases a JWSGI to Rack adapter allowing you tun run
 Ruby/Rack apps on top of JRUBY:
 
 https://github.com/unbit/jwsgi-rack
