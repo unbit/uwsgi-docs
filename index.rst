@@ -77,12 +77,11 @@ Tutorials
 .. toctree::
    :maxdepth: 1
 
-   CachingCookbook
-   Django_and_nginx
-   dreamhost
-   heroku_python
-   heroku_ruby
-
+   :doc:`tutorials/CachingCookbook`
+   :doc:`tutorials/Django_and_nginx`
+   :doc:`tutorials/dreamhost`
+   :doc:`tutorials/heroku_python`
+   :doc:`tutorials/heroku_ruby`
 
 uWSGI Subsystems
 ================
@@ -206,6 +205,7 @@ Release Notes
 .. toctree::
    :maxdepth: 1
 
+   Changelog-1.9.12
    Changelog-1.9.11
    Changelog-1.9.10
    Changelog-1.9.9
