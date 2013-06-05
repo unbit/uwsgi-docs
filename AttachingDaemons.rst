@@ -1,4 +1,3 @@
-
 Managing external daemons/services with uWSGI (1.3.1)
 =====================================================
 
@@ -14,7 +13,7 @@ Currently uWSGI supports 3 categories of processes:
 
 * ``--attach-daemon`` -- directly attached non daemonized processes
 * ``--smart-attach-daemon`` -- pidfile governed (both foreground and daemonized)
-* pidfile governed with daemonization management
+* ``--smart-attach-daemon2`` -- pidfile governed with daemonization management
 
 The first category allows you to directly attach processes to the uWSGI master.
 When the master dies or is reloaded these processes are destroyed. This is the
