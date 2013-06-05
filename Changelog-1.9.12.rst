@@ -190,7 +190,7 @@ This an example usage for redis:
 
    [uwsgi]
    ...
-   ; hash the list of servers and return the value in the MYNODe var
+   ; hash the list of servers and return the value in the MYNODE var
    route = ^/cacheme_as/(.*) hash:items=127.0.0.1:11211;192.168.0.1:11222;192.168.0.2:22122;192.168.0.4:11321,key=$1,var=MYNODE
    ; log the result
    route = ^/cacheme_as/(.*) log:${MYNODE} is the choosen memcached server !!!
