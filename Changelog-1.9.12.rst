@@ -171,7 +171,7 @@ We get "1", so we will get the second items in the list (we are obviously zero-i
 
 Do you recognize the pattern ?
 
-Yes, it is the standard way to distribute items on multiple servers (memcached client for example uses it from ages).
+Yes, it is the standard way to distribute items on multiple servers (memcached clients for example uses it from ages).
 
 The hash router exposes this system allowing you to distribute items in you redis/memcached servers or to make other funny things.
 
@@ -183,6 +183,20 @@ This an example usage for redis:
    ...
    ; hash the list of servers and return the value in the MYNODe var
    route = ^/cacheme_as/(.*) hash:items=127.0.0.1:11211;192.168.0.1:11222;192.168.0.2:22122;192.168.0.4:11321,key=$1,var=MYNODE
+   ; log the result
+   route = ^/cacheme_as/(.*) log:${MYNODE} is the choosen memcached server !!!
+   ; use MYNODE as the server address
+   route = ^/cacheme_as/(.*) memcached:addr=${MYNODE},key=$1
+   ...
+   
+you can even choose the hashing algo from those supported in uWSGI
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   ; hash the list of servers with murmur2 and return the value in the MYNODe var
+   route = ^/cacheme_as/(.*) hash:algo=murmur2,items=127.0.0.1:11211;192.168.0.1:11222;192.168.0.2:22122;192.168.0.4:11321,key=$1,var=MYNODE
    ; log the result
    route = ^/cacheme_as/(.*) log:${MYNODE} is the choosen memcached server !!!
    ; use MYNODE as the server address
