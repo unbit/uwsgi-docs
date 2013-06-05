@@ -88,7 +88,7 @@ A new touch option has been added allowing the rise of a uwsgi signal when a fil
    touch-signal = /tmp/foobar 17
    ...
 
-the "pipe" offload engine
+The "pipe" offload engine
 *************************
 
 A new offload engine allowing transfer from a socket to the client has been added.
@@ -121,7 +121,7 @@ obviously you can get them too
    
 The memcached router is now builtin in the default profiles
 
-the new redis router
+The new redis router
 ********************
 
 Based on the memcached router, a redis router has been added. It works in the same way:
@@ -145,6 +145,51 @@ Based on the memcached router, a redis router has been added. It works in the sa
    ...
 
 The redis router is builtin by default
+
+The "hash" router
+*****************
+
+this special routing action allows you to hash a string and return a value from a list (indexed with the hashed key).
+
+Take the following list:
+
+127.0.0.1:11211
+
+192.168.0.1:11222
+
+192.168.0.2:22122
+
+192.168.0.4:11321
+
+and a string: 
+
+/foobar
+
+we hash the string /foobar using djb33x algorithm and we apply the modulo 4 (the size of the items list) to the result.
+
+We get "1", so we will get the second items in the list (we are obviously zero-indexed).
+
+Do you recognize the pattern ?
+
+Yes, it is the standard way to distribute items on multiple servers (memcached client for example uses it from ages).
+
+The hash router exposes this system allowing you to distribute items in you redis/memcached servers or to make other funny things.
+
+This an example usage for redis:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   ; hash the list of servers and return the value in the MYNODe var
+   route = ^/cacheme_as/(.*) hash:items=127.0.0.1:11211;192.168.0.1:11222;192.168.0.2:22122;192.168.0.4:11321,key=$1,var=MYNODE
+   ; log the result
+   route = ^/cacheme_as/(.*) log:${MYNODE} is the choosen memcached server !!!
+   ; use MYNODE as the server address
+   route = ^/cacheme_as/(.*) memcached:addr=${MYNODE},key=$1
+   ...
+
+the router_hash plugin is compiled-in by default
 
 Availability
 ^^^^^^^^^^^^
