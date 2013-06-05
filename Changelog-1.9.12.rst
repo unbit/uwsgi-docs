@@ -204,7 +204,7 @@ you can even choose the hashing algo from those supported in uWSGI
 
    [uwsgi]
    ...
-   ; hash the list of servers with murmur2 and return the value in the MYNODe var
+   ; hash the list of servers with murmur2 and return the value in the MYNODE var
    route = ^/cacheme_as/(.*) hash:algo=murmur2,items=127.0.0.1:11211;192.168.0.1:11222;192.168.0.2:22122;192.168.0.4:11321,key=$1,var=MYNODE
    ; log the result
    route = ^/cacheme_as/(.*) log:${MYNODE} is the choosen memcached server !!!
