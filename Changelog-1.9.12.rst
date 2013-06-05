@@ -73,7 +73,16 @@ You can set the limit (in bytes) after disk buffering passing an argument to the
 JWSGI and JVM improvements
 **************************
 
-JRuby integration
+The JVM plugin has been extended to support more objects helper (like ArrayList), while JWSGI can now be used as
+a low-level layer to add support for more JVM-based languages.
+
+JRuby integration is the first attempt of such a usage. We have just releases a JWSGI to Rack adapter allowing you tun ran
+Ruby/Rack apps on top of JRUBY:
+
+https://github.com/unbit/jwsgi-rack
+
+
+A similar approach for Jython is on work
 
 --touch-signal
 **************
