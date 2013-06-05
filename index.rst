@@ -75,10 +75,15 @@ Tutorials
 =========
 
    :doc:`tutorials/CachingCookbook`
+   
    :doc:`tutorials/Django_and_nginx`
+   
    :doc:`tutorials/dreamhost`
+   
    :doc:`tutorials/heroku_python`
+   
    :doc:`tutorials/heroku_ruby`
+   
 
 uWSGI Subsystems
 ================
