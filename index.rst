@@ -74,9 +74,6 @@ Table of Contents
 Tutorials
 =========
 
-.. toctree::
-   :maxdepth: 1
-
    :doc:`tutorials/CachingCookbook`
    :doc:`tutorials/Django_and_nginx`
    :doc:`tutorials/dreamhost`
