@@ -185,7 +185,7 @@ In this quickstart we will use .ini files.
    chdir = /home/foobar/myproject/
    pythonpath = ..
    env = DJANGO_SETTINGS_MODULE=myproject.settings
-   module = django.core.handlers.wsgi.WSGIHandler()
+   module = django.core.handlers.wsgi:WSGIHandler()
    processes = 4
    threads = 2
    stats = 127.0.0.1:9191
