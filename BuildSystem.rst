@@ -1,7 +1,7 @@
 The uWSGI build system
 ======================
 
-- This is updated to 1.9.13 -
+- This is updated to 1.9.13
 
 This page describes how the uWSGI build system works and how it can be customized
 
