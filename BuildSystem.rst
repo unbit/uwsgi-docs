@@ -64,6 +64,36 @@ UWSGI_FORCE_REBUILD
 Plugins and uwsgiplugin.py
 **************************
 
+
+A uWSGI plugin is a shared library exporting the <name>_plugin symbol. Where <name> is the name of the plugin.
+
+As an example the psgi plugin will export the psgi_plugin symbol as well as pypy will export he pypy_plugin symbol and so on.
+
+This symbol is a uwsgi_plugin C struct defining the hooks of the plugin.
+
+When you ask uWSGI to load a plugin it simply calls dlopen() and get the uwsgi_plugin struct via dlsym().
+
+The vast majority of the uWSGI project is developed as a plugin, this ensure a modular approach to configuration and an obviously saner development style.
+
+The sysadmin is free to embed each plugins in the server binary or to build it as an external shared library.
+
+Embedded plugins are defined in the 'embedded_plugins' directive of the build profile. You can add more embedded plugins
+from command line using UWSGI_EMBED_PLUGINS environment variable (see below).
+
+Instead, if you want to build a plugin as a shared library just run uwsgiconfig.py with the --plugin option
+
+.. code-block:: ini
+
+   python uwsgiconfig.py --plugin plugins/psgi
+   
+this will build the plugin in plugins/psgi to the psgi_plugin.so file
+
+To specify a build profile when you build a plugin you can pass it as additional argument
+
+.. code-block:: ini
+
+   python uwsgiconfig.py --plugin plugins/psgi mybuildprofile
+
 UWSGI_INCLUDES
 **************
 
