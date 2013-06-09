@@ -82,7 +82,7 @@ from command line using UWSGI_EMBED_PLUGINS environment variable (see below).
 
 Instead, if you want to build a plugin as a shared library just run uwsgiconfig.py with the --plugin option
 
-.. code-block:: ini
+.. code-block:: sh
 
    python uwsgiconfig.py --plugin plugins/psgi
    
@@ -90,7 +90,7 @@ this will build the plugin in plugins/psgi to the psgi_plugin.so file
 
 To specify a build profile when you build a plugin you can pass it as additional argument
 
-.. code-block:: ini
+.. code-block:: sh
 
    python uwsgiconfig.py --plugin plugins/psgi mybuildprofile
 
