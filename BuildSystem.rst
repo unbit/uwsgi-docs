@@ -19,7 +19,7 @@ For such a reason, to compile uWSGI you only need to have a c compiler suite (gc
 could have been a better choice, and maybe it is the truth (it is generally installed by default in lot of operating systems), but we decided to stay with python mainly
 because when uWSGI started it was a python-only application. (Obviously if you want to develop an alternative build system you are free to do it)
 
-The uwsgiconfig.py basically detect the availabel features in the system and build a uwsgi binary (and eventually its plugins) using the
+The uwsgiconfig.py basically detect the available features in the system and build a uwsgi binary (and eventually its plugins) using the
 so called 'build profile'
 
 build profiles
