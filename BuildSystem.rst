@@ -31,8 +31,32 @@ First example
 CC and CPP
 **********
 
+This 2 environment variables for uwsgiconfig.py to use an alternative C compiler and C preprocessor.
+
+If they are not defined the procedure is the following:
+
+For CC -> try to get the CC config_var from the python binary running uwsgiconfig.py, fallback to 'gcc'
+
+For CPP -> fallback to 'cpp'
+
+
+As an example, on a system with both gcc and clang you will end with
+
+.. code-block:: sh
+
+   CC=clang CPP=clang-cpp python uwsgiconfig.py --build
+
 CPUCOUNT
 ********
+
+In the spirit of "easy and fast build even on production systems", uwsgiconfig.py tries to use all of your cpu cores spawning multiple
+instances of the c compiler (one per-core).
+
+You can override this system using the CPUCOUNT environment variable, forcing the number of detected cpu cores (setting to 1 will disable parallel build).
+
+.. code-block:: sh
+
+   CPUCOUNT=2 python uwsgiconfig.py --build
 
 UWSGI_FORCE_REBUILD
 *******************
@@ -42,6 +66,14 @@ Plugins and uwsgiplugin.py
 
 UWSGI_INCLUDES
 **************
+
+- this has been added in 1.9.13
+
+On startup, the CPP binary is run to detect default include paths. You can add more paths using the UWSGI_INCLUDES environment variable
+
+.. code-block:: sh
+
+   UWSGI_INCLUDES=/usr/local/include,/opt/dev/include python uwsgiconfig.py --build
 
 UWSGI_EMBED_PLUGINS
 *******************
