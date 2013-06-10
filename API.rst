@@ -172,3 +172,10 @@ uwsgi.mule_id()
 returns the current mule id (as integer).
 
 0 means the calling process is not a mule
+
+uwsgi.signal_registered(signum)
+*******************************
+
+check if "signum" is registered
+
+returns boolean
