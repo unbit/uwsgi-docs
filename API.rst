@@ -144,3 +144,8 @@ uwsgi.setprocname(name)
 ***********************
 
 set the name of the calling process
+
+uwsgi.add_cron(signum, minute, hour, day, month, week)
+******************************************************
+
+register a cron raising the uwsgi signal "signum"
