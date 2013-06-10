@@ -44,6 +44,8 @@ get "key" from the specified "cache". If "cache" is not_defined, the default loc
 
 To get an item from a remote cache use the cachename@addr:port syntax for the "cache" value
 
+returns not_defined if the item is not found or an error has occurred
+
 uwsgi.add_timer(signum, secs)
 *****************************
 
