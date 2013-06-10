@@ -149,3 +149,9 @@ uwsgi.add_cron(signum, minute, hour, day, month, week)
 ******************************************************
 
 register a cron raising the uwsgi signal "signum"
+
+
+uwsgi.disconnect()
+******************
+
+disconnect the client without stopping the request handler
