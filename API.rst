@@ -157,3 +157,18 @@ uwsgi.disconnect()
 ******************
 
 disconnect the client without stopping the request handler
+
+
+uwsgi.worker_id()
+*****************
+
+returns the current worker id (as integer).
+
+0 means the calling process is not a worker
+
+uwsgi.mule_id()
+*****************
+
+returns the current mule id (as integer).
+
+0 means the calling process is not a mule
