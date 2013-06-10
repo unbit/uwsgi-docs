@@ -140,3 +140,7 @@ uwsgi.close(fd)
 
 close the specified file descriptor
 
+uwsgi.setprocname(name)
+***********************
+
+set the name of the calling process
