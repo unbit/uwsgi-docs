@@ -179,3 +179,25 @@ uwsgi.signal_registered(signum)
 check if "signum" is registered
 
 returns boolean
+
+uwsgi.opt
+*********
+
+This is a hash/dictionary of all the specified options for the instance (both registered and virtuals)
+
+uwsgi.version
+*************
+
+the uWSGI version string
+
+uwsgi.hostname
+**************
+
+the server hostname
+
+uwsgi.register_signal(signum, kind, handler)
+********************************************
+
+register the uwsgi signal "signum" of the specified "kind" mapped to "handler"
+
+raise an Exception on error
