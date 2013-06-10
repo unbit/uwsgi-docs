@@ -63,3 +63,80 @@ uwsgi.unlock(num=0)
 *******************
 
 release the specified user lock
+
+uwsgi.masterpid()
+*****************
+
+return the current pid of the master process
+
+uwsgi.alarm(alarm, msg)
+***********************
+
+raise the specified "alarm" with the message "msg"
+
+uwsgi.suspend()
+***************
+
+suspend the current async core and give cpu to the next core in the schedule chain
+
+uwsgi.async_sleep(secs)
+***********************
+
+suspend the current async core for the specified number of seconds
+
+(requires uwsgi.suspend() or form of "yield" to be committed)
+
+uwsgi.connection_fd()
+*********************
+
+returns the file descriptor of the connection opened with the client
+
+uwsgi.async_connect(addr)
+*************************
+
+returns the file descriptor of a non-blocking connection to the specified "addr"
+
+will raise an exception on error
+
+uwsgi.wait_fd_read(fd[, timeout])
+*********************************
+
+(requires uwsgi.suspend() or form of "yield" to be committed)
+
+will raise an exception on error
+
+uwsgi.wait_fd_write(fd[, timeout])
+**********************************
+
+(requires uwsgi.suspend() or form of "yield" to be committed)
+
+will raise an exception on error
+
+uwsgi.ready_fd()
+****************
+
+after resume from suspend() returns the currently available file descriptor or -1 if a timeout was the cause of resume
+
+uwsgi.send([fd,] data)
+**********************
+
+send the specified "data" to the file descriptor "fd".
+
+If "fd" is not specified the output of uwsgi.connection_fd() will be used
+
+The position of arguments is a bit strange, but allows easier integration with POSIX write()
+
+uwsgi.send([fd,] len)
+*********************
+
+receive at most "len" bytes from the specified "fd"
+
+If "fd" is not specified the output of uwsgi.connection_fd() will be used
+
+The position of arguments is a bit strange, but allows easier integration with POSIX read()
+
+uwsgi.close(fd)
+***************
+
+close the specified file descriptor
+
