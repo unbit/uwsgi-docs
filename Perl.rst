@@ -4,14 +4,15 @@ uWSGI Perl support (PSGI)
 :term:`PSGI` is the equivalent of :term:`WSGI` in the Perl world.
 
 * http://plackperl.org/
-* http://github.com/miyagawa/psgi-specs/blob/master/PSGI.pod
+* https://github.com/plack/psgi-specs/blob/master/PSGI.pod
 
 The PSGI plugin is officially supported and has an officially assigned uwsgi modifier, ``5``. So as usual, when you're in the business of dispatching requests to Perl apps, set the ``modifier1`` value to 1 in your web server configuration.
 
 Compiling the PSGI plugin
 -------------------------
 
-You can build a PSGI-only uWSGI server using the supplied :file:`buildconf/psgi.ini` file.
+You can build a PSGI-only uWSGI server using the supplied :file:`buildconf/psgi.ini` file. Make sure that 
+the ``ExtUtils::Embed`` module and its prerequisites are installed before building the PSGI plugin.
 
 .. code-block:: sh
 
