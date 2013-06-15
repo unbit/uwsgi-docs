@@ -3,10 +3,10 @@ uWSGI Subscription Server
 
 Some components of the uWSGI stack require a key-value mapping system.
 
-For example the :doc:`FastRouter<FastRouter>` needs to know which server to contact for a specific request.
+For example the :doc:`FastRouter` needs to know which server to contact for a specific request.
 
-In big networks with a lot of nodes manually managing this configuration could be a proper pain in the ass.
-As uWSGI doesn't want to be a PITA, it implements a subscription system where the node itself announces its presence to Subscription Servers, which will in turn populate their internal dictionaries.
+In big networks with a lot of nodes manually managing this configuration could be a real hell.
+uWSGI implements a subscription system where the node itself announces its presence to Subscription Servers, which will in turn populate their internal dictionaries.
 
 .. code-block:: sh
 
