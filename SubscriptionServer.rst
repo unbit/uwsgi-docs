@@ -121,7 +121,7 @@ Using SSH keys
 
 They are generally loved by developers (well, more than classic pem files).
 
-Both -subscribe-to and --subscribe2 (see below) supports ssh private keys, while for the server part you have the encode the public key in pkcs8:
+Both --subscribe-to and --subscribe2 (see below) support ssh private keys, while for the server part you have the encode the public key in pkcs8:
 
 .. code-block:: sh
 
