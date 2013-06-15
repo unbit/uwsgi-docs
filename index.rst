@@ -14,7 +14,7 @@ Versatility, performance, low-resource usage and reliability are the strengths o
 Included components (updated to latest stable release)
 ======================================================
 
-The Core (implements configuration, processes management, sockets creation, monitoring, logging, shared memory areas, ipc, cluster membership and the SubscriptionSystem)
+The Core (implements configuration, processes management, sockets creation, monitoring, logging, shared memory areas, ipc, cluster membership and the :doc:`SubscriptionServer`)
 
 Request plugins (implement application server interfaces for various languages and platforms: WSGI, PSGI, Rack, Lua WSAPI, CGI, PHP, Go ...)
 
