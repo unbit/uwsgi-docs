@@ -126,3 +126,32 @@ Both -subscribe-to and --subscribe2 (see below) supports ssh private keys, while
 .. code-block:: sh
 
    ssh-keygen -f chiavessh001.pub -e -m pkcs8
+   
+--subscribe2
+------------
+
+This is the keyval version of --subscribe-to. It supports more tricks and a (generally) more readable syntax:
+
+.. code-block:: sh
+
+   uwsgi -s 127.*:0 --subscribe2 server=127.0.0.1:7171,key=ubuntu64.local:9090,sign=SHA1:chiavessh001
+   
+   
+Supported fields are:
+
+`server` the address of the subscription server
+
+`key` the key to subscribe (generally the domain name)
+
+`addr` the address to subscribe (the value of the item)
+
+`socket` the socket number (zero-based), this is like 'addr' by take the uWSGI internal socket number
+
+`weight` the load balancing value
+
+`modifier1` and `modifier2`
+
+`sign` <algo>:<file> the signature for the secured system
+
+`check` it takes a file as argument. If it exists the packet is sent, otherwise it is skipped
+
