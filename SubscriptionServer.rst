@@ -65,7 +65,7 @@ Now simply subscribe your nodes to the HTTP subscription server.
 Securing the Subscription System
 --------------------------------
 
-The subscription system is meant for "trusted" networks. All of the nodes in your network can potentially make one goddamn mess with it.
+The subscription system is meant for "trusted" networks. All of the nodes in your network can potentially make a total mess with it.
 
 If you are building an infrastructure for untrusted users or you simply need more control over who can subscribe to a Subscription Server you can use openssl rsa public/private key pairs for "signing" you subscription requests.
 
@@ -103,7 +103,7 @@ On the client side you need to pass your private key along with other ``subscrib
     subscribe-to = 127.0.0.1:2626:test.uwsgi.it:8000,5,SHA1:/home/foobar/private.pem
     psgi = test.psgi
 
-Let's analyze the ``subscribe-to`` incantation:
+Let's analyze the ``subscribe-to`` usage:
 
 * ``127.0.0.1:2626`` is the subscription server we want to subscribe to.
 * ``test.uwsgi.it:8000`` is the subscription key.
@@ -115,3 +115,14 @@ Let's analyze the ``subscribe-to`` incantation:
 To avoid replay attacks, each subscription packet has an increasing number (normally the unix time) avoiding the allowance of duplicated packets.
 Even if an attacker manages to sniff a subscription packet it will be unusable as it is already processed previously.
 Obviously if someone manages to steal your private key he will be able to build forged packets.
+
+Using SSH keys
+**************
+
+They are generally loved by developers (well, more than classic pem files).
+
+Both -subscribe-to and --subscribe2 (see below) supports ssh private keys, while for the server part you have the encode the public key in pkcs8:
+
+.. code-block:: sh
+
+   ssh-keygen -f chiavessh001.pub -e -m pkcs8
