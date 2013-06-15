@@ -139,19 +139,19 @@ This is the keyval version of --subscribe-to. It supports more tricks and a (gen
    
 Supported fields are:
 
-`server` the address of the subscription server
+``server`` the address of the subscription server
 
-`key` the key to subscribe (generally the domain name)
+``key`` the key to subscribe (generally the domain name)
 
-`addr` the address to subscribe (the value of the item)
+``addr`` the address to subscribe (the value of the item)
 
-`socket` the socket number (zero-based), this is like 'addr' by take the uWSGI internal socket number
+``socket`` the socket number (zero-based), this is like 'addr' by take the uWSGI internal socket number
 
-`weight` the load balancing value
+``weight`` the load balancing value
 
-`modifier1` and `modifier2`
+``modifier1`` and ``modifier2``
 
-`sign` <algo>:<file> the signature for the secured system
+``sign`` <algo>:<file> the signature for the secured system
 
-`check` it takes a file as argument. If it exists the packet is sent, otherwise it is skipped
+``check`` it takes a file as argument. If it exists the packet is sent, otherwise it is skipped
 
