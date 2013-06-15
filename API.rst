@@ -201,3 +201,10 @@ uwsgi.register_signal(signum, kind, handler)
 register the uwsgi signal "signum" of the specified "kind" mapped to "handler"
 
 raise an Exception on error
+
+uwsgi.set_user_harakiri(sec)
+****************************
+
+set the user harakiri (for workers, mules and spoolers).
+
+A value of 0, reset the timer
