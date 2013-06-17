@@ -26,3 +26,7 @@ setmethod, seturi and setpathinfo routing action
 
 UWSGI_INCLUDES
 **************
+
+
+Improved set_user_harakiri api function
+***************************************
