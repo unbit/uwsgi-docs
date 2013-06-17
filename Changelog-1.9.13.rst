@@ -21,8 +21,8 @@ Chunked input api
 Toward better third-party plugins management: the --dot-h option
 ****************************************************************
 
-setmethod routing action
-************************
+setmethod, seturi and setpathinfo routing action
+************************************************
 
 UWSGI_INCLUDES
 **************
