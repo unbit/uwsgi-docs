@@ -1,14 +1,23 @@
 uWSGI 1.9.13
 ============
 
-This is a work in progress
+Changelog [20130622]
 
 Bugfixes
 ^^^^^^^^
 
 - Fixed a corner case bug when response offloading is enabled, but no request plugin is loaded
 - Fixed harakiri routing when multiple rules are in place (return NEXT instead of CONTINUE)
-- fix curl crashing master on slow dns responses
+- Fixed curl crashing master on slow dns responses (Łukasz Mierzwa)
+- Removed PTRACE check in uwsgi.h (it is no more needed since uWSGI 1.0)
+- Fixed --print-sym
+- Added a newline in --cflags
+- Improved python3 detection and compilation
+- Fixed Coro::AnyEvent loop engine (John Berthels)
+- Rack api functions are now static
+- Better fastcgi handling of big uploads
+- Improved GCC usage on Darwin for Python non-apple builds
+-
 
 New features
 ^^^^^^^^^^^^
