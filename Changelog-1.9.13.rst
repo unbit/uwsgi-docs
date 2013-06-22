@@ -104,8 +104,31 @@ this is a commodity option (mainly useful for testing) allowing you to store an 
 the router_xmldir plugin
 ************************
 
+This is a proof of concept plugin aimed at stressing the transformation api.
+
+It basically generates an xml representation of a directory. This could be useful to
+implement apache-style directoryindex:
+
+Check this example using xslt:
+
+https://github.com/unbit/uwsgi/issues/271#issuecomment-19820204
+
 Implement __call__ for @spool* decorators
 *****************************************
+
+Thanks to 'anaconda', you can now directly call functions mapped to the spooler, so instead of
+
+.. code-block:: py
+
+    myfunc.spool(args)
+    
+you can directly do:
+
+.. code-block:: py
+
+    myfunc(args)
+    
+the old way is obviously supported
 
 the uwsgi[lq] routing var
 *************************
@@ -128,3 +151,7 @@ If you want to generate a core files, you may want to trigger a SIGABRT soon aft
 
 Availability
 ^^^^^^^^^^^^
+
+uWSGI 1.9.13 will be available 22th June 2013 at this url:
+
+http://projects.unbit.it/downloads/uwsgi-1.9.13.tar.gz
