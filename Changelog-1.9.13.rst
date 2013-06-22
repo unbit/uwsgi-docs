@@ -28,6 +28,19 @@ New features
 PyPy performance and features improvents
 ****************************************
 
+The PyPy plugin has been improved a lot. The amount of C code has been reduced by 70%, so, now, the vast majority of the plugin is
+written in python. The c helpers have been removed allowing the pyton part to directly call native uWSGI functions via cffi.
+
+Support for PyPy continulets (and their greenlet abstraction) has been added (while waiting for a solid gevent port for pypy) and a chat example is already available
+(using the uwsgi async api):
+
+https://github.com/unbit/uwsgi/tree/master/t/pypy
+
+https://github.com/unbit/uwsgi/blob/master/contrib/pypy/uwsgi_pypy_greenlets.py
+
+The pypy uwsgi api has been improved and now you can use the uwsgidecorators module (even if the spooler subsystem is still missing)
+
+
 Chunked input api
 *****************
 
@@ -44,8 +57,12 @@ UWSGI_INCLUDES
 Improved set_user_harakiri api function
 ***************************************
 
+Now the uwsgi.set_user_harakiri automatically recognize mules and spoolers. It has been added to the ruby/rack, pypy and perl/psgi plugins
+
 --add-cache-item [cache ]KEY=VALUE
 **********************************
+
+this is a commodity option (mainly useful for testing) allowing you to store an item in a uWSGI cache during startup
 
 the router_xmldir plugin
 ************************
@@ -56,8 +73,21 @@ Implement __call__ for @spool* decorators
 the uwsgi[lq] routing var
 *************************
 
+this routing var exports the current size of the listen_queue:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   route-if = higher:${uwsgi[lq]};70 break:503 Server Overload
+   ...
+
 --use-abort
 ***********
+
+On some system the SEGV signal handler cannot be correctly restored after the uWSGI backtrace.
+
+If you want to generate a core files, you may want to trigger a SIGABRT soon after the backtrace.
 
 Availability
 ^^^^^^^^^^^^
