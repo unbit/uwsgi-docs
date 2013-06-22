@@ -19,6 +19,8 @@ Bugfixes
 - Improved GCC usage on Darwin for Python non-apple builds
 - Fixed XCLIENT usage in rawrouter
 - Use the clang preprocessor instead of hardcoded 'cpp' when CC=clang is used
+- Set 16bit options to 65535 when higher values are requested
+- Fixed virtualhosting (it is now compatible with 1.4 configurations)
 
 New features
 ^^^^^^^^^^^^
