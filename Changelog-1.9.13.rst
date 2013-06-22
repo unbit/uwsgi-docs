@@ -58,7 +58,8 @@ uwsgi.chunked_read_nb()
 
 A non blocking chat example:
 
-.. code-block:: ini
+.. code-block:: py
+
    import uwsgi
    def application(e, sr):
        while True:
