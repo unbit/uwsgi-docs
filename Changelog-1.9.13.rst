@@ -43,3 +43,21 @@ UWSGI_INCLUDES
 
 Improved set_user_harakiri api function
 ***************************************
+
+--add-cache-item [cache ]KEY=VALUE
+**********************************
+
+the router_xmldir plugin
+************************
+
+Implement __call__ for @spool* decorators
+*****************************************
+
+the uwsgi[lq] routing var
+*************************
+
+--use-abort
+***********
+
+Availability
+^^^^^^^^^^^^
