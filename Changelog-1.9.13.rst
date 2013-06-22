@@ -17,7 +17,7 @@ Bugfixes
 - Rack api functions are now static
 - Better fastcgi handling of big uploads
 - Improved GCC usage on Darwin for Python non-apple builds
--
+- Fixed XCLIENT usage in rawrouter
 
 New features
 ^^^^^^^^^^^^
