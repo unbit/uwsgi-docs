@@ -147,7 +147,7 @@ this routing var exports the current size of the listen_queue:
 
 On some system the SEGV signal handler cannot be correctly restored after the uWSGI backtrace.
 
-If you want to generate a core files, you may want to trigger a SIGABRT soon after the backtrace.
+If you want to generate a core file, you may want to trigger a SIGABRT soon after the backtrace.
 
 Availability
 ^^^^^^^^^^^^
