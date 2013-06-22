@@ -18,6 +18,7 @@ Bugfixes
 - Better fastcgi handling of big uploads
 - Improved GCC usage on Darwin for Python non-apple builds
 - Fixed XCLIENT usage in rawrouter
+- Use the clang preprocessor instead of hardcoded 'cpp' when CC=clang is used
 
 New features
 ^^^^^^^^^^^^
