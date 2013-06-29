@@ -10,7 +10,7 @@ By default the Emperor will scan specific directories for supported (.ini, .xml,
 The ``dir://`` and ``glob://`` plugins are embedded in the core, so they need not be loaded, and are automatically detected. The ``dir://`` plugin is the default.
 
 * Whenever an imperial monitor detects a new configuration file, a new uWSGI instance will be spawned with that configuration.
-* Whenever a configuration file is modified (its modification time changed, so ``touch`` may be your friend), the corresponding app will be reloaded.
+* Whenever a configuration file is modified (its modification time changed, so ``touch --no-dereference`` may be your friend), the corresponding app will be reloaded.
 * Whenever a config file is removed, the corresponding app will be stopped.
 * If the emperor dies, all the vassals die.
 * If a vassal dies for any reason, the emperor will respawn it.
@@ -49,6 +49,10 @@ And then for each app create a symlink::
 
   ln -s /opt/apps/app.skel /opt/apps/app1.ini
   ln -s /opt/apps/app.skel /opt/apps/app2.ini
+
+Finally, start the Emperor with the ``--emperor-nofollow`` option. Now you can reload each vassal separately with the command::
+
+  touch --no-dereference $INI_FILE
 
 .. _Django: http://djangoproject.com
 
