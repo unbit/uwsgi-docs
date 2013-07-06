@@ -315,4 +315,31 @@ I have to admit, i am not a big fun of supervisord. It is a good software withou
 a better approach to the deployment problems. In addition to this, if you want to have a "scriptable"/"extendable" process supervisor i think Circus
 (http://circus.readthedocs.org/) is a lot more fun and capable (the first thing i have done after implementing socket activation in the uWSGI Emperor was making a pull request [merged, if you care] for the same feature in Curcus)
 
-Obviously supervisord works and is used by lot of people, but as a heavy uWSGI users
+Obviously supervisord works and is used by lot of people, but as a heavy uWSGI users i tend to abuse its feature to accomplish a result.
+
+The first approach i would have used is binding to 10 different ports and mapping each of them to a specific process:
+
+.. code-block:: ini
+
+    [uwsgi]
+    processes = 5
+    threads = 5
+    
+    ; create 5 sockets
+    socket = :9091
+    socket = :9092
+    socket = :9093
+    socket = :9094
+    socket = :9095
+    
+    ; map each socket (zero-indexed) to the specific worker
+    map-socket = 0:1
+    map-socket = 1:2
+    map-socket = 2:3
+    map-socket = 3:4
+    map-socket = 4:5
+
+now you have a master monitoring 5 processes each one bound to a different address (no --thunder-lock needed)
+
+Bonus chapter 2: securing SysV IPC semaphores
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
