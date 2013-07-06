@@ -363,3 +363,16 @@ now make symbolic link for each instance+port you want to spawn:
 
 Bonus chapter 2: securing SysV IPC semaphores
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+My company hosting platform in heavily based on Linux cgroups and namespaces.
+
+The first (cgroups) are used to limit/account resource usage, while the second (namespaces) are used to give
+an "isolated" system view to users (like seeing a dedicated hostname or root filesystem)
+
+As we allow users to spawn PostgreSQL instances in their accounts we need to limit SysV objects.
+
+Lucky enough, modern Linux kernels have a namespace for IPC, so calling unshare(CLONE_NEWIPC) will create a whole new set (detached from the others)
+of IPC objects.
+
+Calling ```--unshare ipc``` in customer-dedicated Emperors is a common approach. When combined with memory cgroup you will end with a pretty secure
+setup.
