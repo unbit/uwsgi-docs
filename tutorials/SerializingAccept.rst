@@ -243,7 +243,7 @@ Each of this engine is different from the others, dealing with them has been a p
 
 The "ROBUST" term is pthread-borrowed. If a lock is "robust", it means if the process locking it dies, the lock is released.
 
-You would expect it from all of the lock engine, but sadly only few of the works reliably.
+You would expect it from all of the lock engine, but sadly only few of them works reliably.
 
 For such a reason the uWSGI master process has to allocate an additional thread (the 'deadlock' detector) constantly checking for non-robust unreleased locks mapped to dead processes.
 
