@@ -271,4 +271,5 @@ kind of code is basically impossibile, so we cannot be sure all is in the right 
 Linux pthread robust mutexes are solid, we are "pretty" sure about that, so you should be able to enable --thunder-lock
 on modern Linux systems with a 99.999999% success rates, but we prefer (for now) users consciously enable it
 
-
+When SysV IPC semaphores are a better choice
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
