@@ -310,6 +310,8 @@ Conclusions
 
 You can have the best (or the worst) software of the whole universe, but without docs it does not exist.
 
+The Apache team still slam the face of the vast majority of us trying to touch their market share :)
+
 Bonus chapter: using the Zeeg approach in a uWSGI friendly way
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
