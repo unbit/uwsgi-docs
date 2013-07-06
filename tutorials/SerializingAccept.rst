@@ -100,7 +100,9 @@ Born as multiprocess-only, apache had to always deal with the thundering herd pr
 
 (Note: apache is really smart about that, when it only needs to wait on a single file descriptor, it only calls accept() taking advantage of modern kernels anti-thundering herd policies)
 
-Even on modern Apache releases, stracing one of its process you will see something like that (it is a Linux system):
+(Update: Apache 2.x even allows you to choose which lock technique to use, included flock/fcntl for very ancient systems)
+
+Even on modern Apache releases, stracing one of its process (bound to multiple interfaces) you will see something like that (it is a Linux system):
 
 .. code-block:: c
 
