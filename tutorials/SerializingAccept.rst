@@ -47,7 +47,7 @@ subsystem (more on this later)
 
 In modern times, the vast majority of UNIX systems have evolved, and now the kernel ensure (more or less) only one process/thread is woke up on a connection event.
 
-Ok, problem solved, what we are talking abut ?
+Ok, problem solved, what we are talking about ?
 
 select()/poll()/kqueue()/epoll()/...
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
