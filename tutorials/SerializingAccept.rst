@@ -30,7 +30,7 @@ That means a vast amount of wasted cpu cycles (the kernel scheduler has to give 
 
 This behaviour (for various reasons) is amplified when instead of processes you use threads (so, you have multiple threads blocked on accept())
 
-The "de-facto" soluction was placing a lock before the accept() call to serialize its usage:
+The "de-facto" solution was placing a lock before the accept() call to serialize its usage:
 
 .. code-block:: c
 
