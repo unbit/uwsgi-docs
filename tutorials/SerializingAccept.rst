@@ -291,3 +291,15 @@ they (currently) choose to use the "ipcsem" lock engine with:
 The funny thing (this time) is that you can easily test how the lock is working good. Just start blasting the server and you will see
 in the request logs how the reported pid is different each time, while with system-specific locking the pid are pretty randomic with a pretty heavy tendence
 of favouring the last used process.
+
+
+What about other portable lock engines ?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In addition to "ipcsem", uWSGI (where available) adds "posixsem" too.
+
+They are used by default only on FreeBSD >= 9, but are available on Linux too.
+
+They are not "ROBUST", but they do not need shared kernel resources, so if you trust our deadlock detector they are
+a pretty-good approach. (Note: Graham Dumpleton pointed me to the fact they can be enabled on Apache 2.x too)
+
