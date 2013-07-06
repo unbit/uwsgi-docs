@@ -267,7 +267,7 @@ For example for having ROBUST pthread mutexes you need a modern kernel with a mo
 newer glibc and the opposite too. This lead to the inhability of correctly detect which is the best locking engine for a platform, and so, when the uwsgiconfig.py script is in doubt
 it fallback to the safest approach (like non-robust pthread mutexes on linux).
 
-The deadlock-detector shouls save you from most of the problem, but the "should" word is the key. Making a test suite (or even a single unit test) on such
+The deadlock-detector should save you from most of the problem, but the "should" word is the key. Making a test suite (or even a single unit test) on such
 kind of code is basically impossibile, so we cannot be sure all is in the right place (and reporting threading bugs is hard for users as well as skilled developer, unless you work on pypy ;)
 
 Linux pthread robust mutexes are solid, we are "pretty" sure about that, so you should be able to enable --thunder-lock
