@@ -143,7 +143,7 @@ How application server developers solved it
 Fast answer: they generally do not solve/care it
 
 Serving static files or proxying (the main activities of a webserver) is generaly a fast, non-blocking (very deterministic under various points of view) activity. Instead a webapplication
-is way slower and havier, so,  even on moderately loaded sites, the amount of sleeping processes is generally low.
+is way slower and heavier, so,  even on moderately loaded sites, the amount of sleeping processes is generally low.
 
 On higly loaded sites you will pray for a free process, and in non-loaded sites the thundering herd problem is completely irrelevant (unless you are running
 your site on a 386)
