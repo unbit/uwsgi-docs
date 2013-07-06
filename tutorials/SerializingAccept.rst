@@ -243,7 +243,7 @@ The "ROBUST" term is pthread-borrowed. If a lock is "robust", it means if the pr
 
 You would expect it from all of the lock engine, but sadly only few of the works reliably.
 
-For such a reason the master process has to allocate an additional thread (the 'deadlock' detector) constantly checking for non-robust unreleased locks mapped to dead processes.
+For such a reason the uWSGI master process has to allocate an additional thread (the 'deadlock' detector) constantly checking for non-robust unreleased locks mapped to dead processes.
 
 It is a pain, whoever tell you IPC locking is easy should be accepted in a JEDI school...
 
@@ -311,7 +311,7 @@ You can have the best (or the worst) software of the whole universe, but without
 Bonus chapter: using the Zeeg approach in a uWSGI friendly way
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-I have to admit, i am not a big fun of supervisord. It is a good software without doubts, but i consider the Emperor and the --attach-daemon facilities
+I have to admit, i am not a big fan of supervisord. It is a good software without doubts, but i consider the Emperor and the --attach-daemon facilities
 a better approach to the deployment problems. In addition to this, if you want to have a "scriptable"/"extendable" process supervisor i think Circus
 (http://circus.readthedocs.org/) is a lot more fun and capable (the first thing i have done after implementing socket activation in the uWSGI Emperor was making a pull request [merged, if you care] for the same feature in Curcus)
 
