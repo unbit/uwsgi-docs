@@ -256,8 +256,18 @@ is not the default when multiprocess + multithread is requested.
 
 This is a good question with a simple answer: we are cowards who cares only money.
 
-uWSGI is completely open sources, but its development is sponsored (in various way) by the companies using it and by Unbit.it customers.
+uWSGI is completely open source, but its development is sponsored (in various way) by the companies using it and by Unbit.it customers.
 
-Enabling "risky" features by default is too much for us, and in addition to this, the 
+Enabling "risky" features by default for a "common" usage (like multiprocess+multithread) is too much for us, and in addition to this, the
+situation (expecially on linux) of library/kernel incompatibilities is a real pain.
+
+For example for having ROBUST pthread mutexes you need a modern kernel with a modern glibc, but commonly used distros (like the centos family) have a mix of older kernels with
+newer glibc and the opposite too. This lead to the inhability of correctly detect which is the best locking engine for a platform, and so, when the uwsgiconfig.py script is in doubt
+it fallback to the safest approach (like non-robust pthread mutexes on linux).
+
+The deadlock-detector shouls save you from most of the problem, but the "should" word is the key. Making a test suite (or even a single unit test) on such
+kind of code is basically impossibile, so we cannot be sure all is in the right place (and reporting threading bugs is hard for users as well as skilled developer, unless you work on pypy ;)
+
+
 
 
