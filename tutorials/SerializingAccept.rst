@@ -341,5 +341,25 @@ The first approach i would have used is binding to 10 different ports and mappin
 
 now you have a master monitoring 5 processes each one bound to a different address (no --thunder-lock needed)
 
+For the Emperor fanboys you can make such a template (call it foo.template):
+
+.. code-block:: ini
+
+    [uwsgi]
+    processes = 1
+    threads = 10
+    socket = :%n
+    
+now make symbolic link for each instance+port you want to spawn:
+
+.. code-block:: sh
+
+    ln -s foo.template 9091.ini
+    ln -s foo.template 9092.ini
+    ln -s foo.template 9093.ini
+    ln -s foo.template 9094.ini
+    ln -s foo.template 9095.ini
+    ln -s foo.template 9096.ini
+
 Bonus chapter 2: securing SysV IPC semaphores
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
