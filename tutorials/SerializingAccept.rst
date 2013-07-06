@@ -273,3 +273,21 @@ on modern Linux systems with a 99.999999% success rates, but we prefer (for now)
 
 When SysV IPC semaphores are a better choice
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Yes, there are cases on which SysV IPC semaphores gives you better results than system-specific features.
+
+Marcin Deranek of Booking.com is battle testing uWSGI by months and helped us fixing corner-case situations even in the locking area.
+
+He noted system-specific lock-engines tend to favour the kernel scheduler (when choosing which process wins the next lock after an unlock) instead
+of a round-robin distribution.
+
+As for their specific need an equal distribution of requests among processes is better (they use uWSGI with perl, so no threading is in place, but they spawn lot of processes)
+they (currently) choose to use the "ipcsem" lock engine with:
+
+.. code-block:: sh
+
+   uwsgi --lock-engine ipcsem --thunder-lock --processes 100 --psgi ....
+   
+The funny thing (this time) is that you can easily test how the lock is working good. Just start blasting the server and you will see
+in the request logs how the reported pid is different each time, while with system-specific locking the pid are pretty randomic with a pretty heavy tendence
+of favouring the last used process.
