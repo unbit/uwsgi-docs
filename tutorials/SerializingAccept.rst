@@ -156,7 +156,7 @@ you will highly reduce the thundering herd problem.
 No-problem ??? So, again, what we are talking about ?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We are talking about "common cases", and for common cases there a plethora of valid choices (instead of uWSGI, obviously) and the vast majrity of problems
+We are talking about "common cases", and for common cases there are a plethora of valid choices (instead of uWSGI, obviously) and the vast majrity of problems
 are non-existent. 
 
 Since the beginning of the uWSGI project, being developed by an hosting company where "common cases" do not exist, we cared a lot
