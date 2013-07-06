@@ -171,6 +171,35 @@ For such a reason when you enable multiple threads in uWSGI a pthread mutex is a
 
 Another problem solved (and strange for uWSGI, without the need of an option ;)
 
+But...
+
+The Zeeg problem: Multiple processes with multiple threads
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+On Jun 27th, 2013 David Cramer wrote an interesting blog post (you may not agree with its conclusions, but it does not matter now, you can continue hating uWSGI safely or making funny jokes about its naming choices or the number of options)
+
+http://justcramer.com/2013/06/27/serving-python-web-applications/
+
+The problem David faced was a so strong thundering herd, that its response time was damaged by it (non constant performance was the main result of its tests)
+
+Why it happened ? Was not the mutex allocated by uWSGI solving it ?
+
+David is (was) running uWSGI with 10 process and each of them with 10 threads:
+
+.. code-block:: sh
+
+   uwsgi --processes 10 --threads 10
+   
+while the mutex protect each thread in a single process to call accept() on the same request, there is no such mechanism (or better, it is not enabled by default, see below) to protect
+multiple processes from doing it, so given the number of threads (100) available for managing requests, it is unlikely that a single process
+is completely blocked (read: with all of its 10 threads blocked in a request) so welcome back to the thundering herd.
+
+How David solved it ?
+^^^^^^^^^^^^^^^^^^^^^
+
+uWSGI is a contrversial software, no shame in that. There are users fiercely hating it and others morbidly loving it, but all agree that docs could be way better ([OT] it is good when all the people agree on something, but pull requests on uwsgi-docs are embarassingly low and all from the same people.... come on, help us !!!)
+
+David used an empirical approach, spotted its problem and decied to solve it running independent uwsgi processes bound on different sockets and configured nginx to round robin between them.
 
 
 
