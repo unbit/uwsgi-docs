@@ -98,6 +98,8 @@ It survived decades of IT evolutions and its still one of the most important tec
 
 Born as multiprocess-only, apache had to always deal with the thundering herd problem and they solved it using SysV ipc semaphores.
 
+(Note: apache is really smart about that, when it only needs to wait on a single file descriptor, it only calls accept() taking advantage of modern kernels anti-thundering herd policies)
+
 Even on modern Apache releases, stracing one of its process you will see something like that (it is a Linux system):
 
 .. code-block:: c
@@ -199,7 +201,53 @@ How David solved it ?
 
 uWSGI is a contrversial software, no shame in that. There are users fiercely hating it and others morbidly loving it, but all agree that docs could be way better ([OT] it is good when all the people agree on something, but pull requests on uwsgi-docs are embarassingly low and all from the same people.... come on, help us !!!)
 
-David used an empirical approach, spotted its problem and decied to solve it running independent uwsgi processes bound on different sockets and configured nginx to round robin between them.
+David used an empirical approach, spotted its problem and decided to solve it running independent uwsgi processes bound on different sockets and configured nginx to round robin between them.
+
+It is a very elegant approach, but it has a problem: nginx cannot know if the process on which is sending the request has all of its thread busy. It is a working but suboptimal solution.
+
+The best way would be having an inter-process locking (like apache), serializing all of the accept() in both threads and processes
+
+uWSGI docs sucks: --thunder-lock
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Michael Hood (you will find its name in the david's post comments too) signalled the problem in the uWSGI mailing-list/issue tracker some time ago, he even come out with an initial patch, that ended with the --thunder-lock option (this is why open-source is better ;)
+
+--thunder-lock is available since uWSGI 1.4.6 but never got documentation (of any kind)
+
+Only the people following the mailing-list (or facing the specific problem) know about it.
+
+SysV IPC semaphores are bad how you solved it ?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Interprocess locking has been an issue since uWSGI 0.0.0.0.0.1, but we solved it in the first public release of the project (in 2009).
+
+We basically checked each operating system capabilities and choosen the best/fastest ipc locking they could offer, filling our code
+with dozens of #ifdef.
+
+When you start uWSGI you should see in its logs which "lock engine" has been choosen.
+
+There is support for a lot of them:
+
+ - pthread mutexes with _PROCESS_SHARED and _ROBUST attributes (modern Linux and Solaris)
+ - pthread mutexes with _PROCESS_SHARED (older Linux)
+ - OSX Spinlocks (MacOSX, Darwin)
+ - Posix semaphores (FreeBSD >= 9)
+ - Windows mutexes (Windows/Cygwin)
+ - SysV IPC semaphores (fallback for all the other systems)
+ 
+Their usage is required for uWSGI-specific features like caching, rpc and all of those features requiring changing shared memory structures (allocated with mmap() + _SHARED)
+
+Each of this engine is different from the others, dealing with them has been a pain and (more important) some of them are not "ROBUST".
+
+The "ROBUST" term is pthread-borrowed. If a lock is "robust", it means if the process locking it dies, the lock is released.
+
+You would expect it from all of the lock engine, but sadly only few of the works reliably.
+
+For such a reason the master process has to allocate an additional thread (the 'deadlock' detector) constantly checking for non-robust unreleased locks mapped to dead processes.
+
+It is a pain, whoever tell you IPC locking is easy should be accepted in a JEDI school...
+
+
 
 
 
