@@ -303,3 +303,16 @@ They are used by default only on FreeBSD >= 9, but are available on Linux too.
 They are not "ROBUST", but they do not need shared kernel resources, so if you trust our deadlock detector they are
 a pretty-good approach. (Note: Graham Dumpleton pointed me to the fact they can be enabled on Apache 2.x too)
 
+Conclusions
+^^^^^^^^^^^
+
+You can have the best (or the worst) software of the whole universe, but without docs it does not exist.
+
+Bonus chapter: using the Zeeg approach in a uWSGI friendly way
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+I have to admit, i am not a big fun of supervisord. It is a good software without doubts, but i consider the Emperor and the --attach-daemon facilities
+a better approach to the deployment problems. In addition to this, if you want to have a "scriptable"/"extendable" process supervisor i think Circus
+(http://circus.readthedocs.org/) is a lot more fun and capable (the first thing i have done after implementing socket activation in the uWSGI Emperor was making a pull request [merged, if you care] for the same feature in Curcus)
+
+Obviously supervisord works and is used by lot of people, but as a heavy uWSGI users
