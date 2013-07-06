@@ -268,6 +268,7 @@ it fallback to the safest approach (like non-robust pthread mutexes on linux).
 The deadlock-detector shouls save you from most of the problem, but the "should" word is the key. Making a test suite (or even a single unit test) on such
 kind of code is basically impossibile, so we cannot be sure all is in the right place (and reporting threading bugs is hard for users as well as skilled developer, unless you work on pypy ;)
 
-
+Linux pthread robust mutexes are solid, we are "pretty" sure about that, so you should be able to enable --thunder-lock
+on modern Linux systems with a 99.999999% success rates, but we prefer (for now) users consciously enable it
 
 
