@@ -190,7 +190,7 @@ David is (was) running uWSGI with 10 process and each of them with 10 threads:
 
 .. code-block:: sh
 
-   uwsgi --processes 10 --threads 10
+   uwsgi --processes 10 --threads 10 ...
    
 while the mutex protect each thread in a single process to call accept() on the same request, there is no such mechanism (or better, it is not enabled by default, see below) to protect
 multiple processes from doing it, so given the number of threads (100) available for managing requests, it is unlikely that a single process
@@ -248,6 +248,16 @@ For such a reason the master process has to allocate an additional thread (the '
 It is a pain, whoever tell you IPC locking is easy should be accepted in a JEDI school...
 
 
+uWSGI developers are fu*!ing cowards
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Both David Cramer and Graham Dumpleton (yes, he is the mod_wsgi author but heavily contributed to uWSGI development as well to the other WSGI servers, this is another reason why open source is better) asked why --thunder-lock
+is not the default when multiprocess + multithread is requested.
+
+This is a good question with a simple answer: we are cowards who cares only money.
+
+uWSGI is completely open sources, but its development is sponsored (in various way) by the companies using it and by Unbit.it customers.
+
+Enabling "risky" features by default is too much for us, and in addition to this, the 
 
 
