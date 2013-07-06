@@ -136,7 +136,7 @@ Application servers are not dangerous, users are. And application servers are ru
 How application server developers solved it
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Fast answer: they generally does not solve/care it
+Fast answer: they generally do not solve/care it
 
 Serving static files or proxying (the main activities of a webserver) is generaly a fast, non-blocking (very deterministic under various points of view) activity. Instead a webapplication
 is way slower and havier, so,  even on moderately loaded sites, the amount of sleeping processes is generally low.
@@ -158,7 +158,18 @@ are non-existent.
 Since the beginning of the uWSGI project, being developed by an hosting company where "common cases" do not exist, we cared a lot
 corner-case problems, bizarre setups and those problems the vast majority of users never need to care about.
 
-In addition to this, uWSGI supports operational modes other application servers
+In addition to this, uWSGI supports operational modes only common/available in general-purpose webservers like apache (i have to say apache is probably the only general purpose webserver
+as it allows basically anything in its process space in a relatively safe and solid way), so lot of new problems combined with user bad-behaviours arises.
+
+One of the most challenging devleopment phase of uWSGI was adding multithreading. Threads are powerful, but are really hard to manage right.
+
+Threads are way cheaper than processes, so you generally allocate dozens of them for your app (remember, not used memory is wasted memory).
+
+Dozens (or hundreds) of threads waiting for the same set of file descriptors bring us back to a thundering herd problem (unless all of your threads are constantly used)
+
+For such a reason when you enable multiple threads in uWSGI a pthread mutex is allocated, serializing epoll()/kqueue()/poll()/select()... usage in each thread.
+
+Another problem solved (and strange for uWSGI, without the need of an option ;)
 
 
 
