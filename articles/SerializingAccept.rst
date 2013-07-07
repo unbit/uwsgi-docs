@@ -300,7 +300,7 @@ The funny thing (this time) is that you can easily test how the lock is working 
 in the request logs how the reported pid is different each time, while with system-specific locking the pid are pretty randomic with a pretty heavy tendence
 of favouring the last used process.
 
-Funny enough, the first problem they faced was the ipcsem leakage (when you are in emergency, graceful reload/stop is your enemy and kill -9 will be your silver buller)
+Funny enough, the first problem they faced was the ipcsem leakage (when you are in emergency, graceful reload/stop is your enemy and kill -9 will be your silver bullet)
 
 To fix it, the --ftok option is available allowing you to give a unique id to the semaphore object and to reuse it if it is available from a previous run:
 
