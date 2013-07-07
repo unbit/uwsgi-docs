@@ -335,7 +335,7 @@ I have to admit, i am not a big fan of supervisord. It is a good software withou
 a better approach to the deployment problems. In addition to this, if you want to have a "scriptable"/"extendable" process supervisor i think Circus
 (http://circus.readthedocs.org/) is a lot more fun and capable (the first thing i have done after implementing socket activation in the uWSGI Emperor was making a pull request [merged, if you care] for the same feature in Circus)
 
-Obviously supervisord works and is used by lot of people, but as a heavy uWSGI user i tend to abuse its feature to accomplish a result.
+Obviously supervisord works and is used by lot of people, but as a heavy uWSGI user i tend to abuse its features to accomplish a result.
 
 The first approach i would have used is binding to 10 different ports and mapping each of them to a specific process:
 
