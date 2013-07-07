@@ -162,7 +162,7 @@ you will highly reduce the thundering herd problem. (check the family of --cheap
 No-problem ??? So, again, what we are talking about ?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We are talking about "common cases", and for common cases there are a plethora of valid choices (instead of uWSGI, obviously) and the vast majrity of problems
+We are talking about "common cases", and for common cases there are a plethora of valid choices (instead of uWSGI, obviously) and the vast majority of problems
 we are talking about are non-existent. 
 
 Since the beginning of the uWSGI project, being developed by an hosting company where "common cases" do not exist, we cared a lot
@@ -335,7 +335,7 @@ I have to admit, i am not a big fan of supervisord. It is a good software withou
 a better approach to the deployment problems. In addition to this, if you want to have a "scriptable"/"extendable" process supervisor i think Circus
 (http://circus.readthedocs.org/) is a lot more fun and capable (the first thing i have done after implementing socket activation in the uWSGI Emperor was making a pull request [merged, if you care] for the same feature in Circus)
 
-Obviously supervisord works and is used by lot of people, but as a heavy uWSGI users i tend to abuse its feature to accomplish a result.
+Obviously supervisord works and is used by lot of people, but as a heavy uWSGI user i tend to abuse its feature to accomplish a result.
 
 The first approach i would have used is binding to 10 different ports and mapping each of them to a specific process:
 
