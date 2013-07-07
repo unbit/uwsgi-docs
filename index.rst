@@ -85,6 +85,12 @@ Tutorials
    :doc:`tutorials/heroku_ruby`
    
 
+Articles
+========
+
+   :doc:`articles/SerializingAccept` 
+   
+
 uWSGI Subsystems
 ================
 
