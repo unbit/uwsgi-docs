@@ -527,3 +527,11 @@ IPC objects.
 
 Calling ``--unshare ipc`` in customer-dedicated Emperors is a common approach.
 When combined with memory cgroup you will end with a pretty secure setup.
+
+
+Credits:
+^^^^^^^^
+
+Author: Roberto De Ioris
+
+Fixed by: Honza Pokorny
