@@ -1,11 +1,12 @@
 Serializing accept(), AKA Thundering Herd, AKA the Zeeg Problem
 ===============================================================
 
-One of the hystorical problems in the UNIX world is the "thundering herd".
+One of the historical problems in the UNIX world is the "thundering herd".
 
-What is it ?
+What is it?
 
-Take a process binding to a networking address (it could be AF_INET, AF_UNIX or whatever you want) and then forking itself:
+Take a process binding to a networking address (it could be ``AF_INET``,
+``AF_UNIX`` or whatever you want) and then forking itself:
 
 .. code-block:: c
 
@@ -13,8 +14,9 @@ Take a process binding to a networking address (it could be AF_INET, AF_UNIX or 
    bind(s, ...)
    listen(s, ...)
    fork()
-   
-after having forked itself a bunch of times, each process will generally start blocking on accept()
+
+After having forked itself a bunch of times, each process will generally start
+blocking on ``accept()``
 
 .. code-block:: c
 
@@ -23,16 +25,21 @@ after having forked itself a bunch of times, each process will generally start b
        if (client < 0) continue;
        ...
    }
-   
-The funny problem is that on older/classic UNIX, accept() is woke up in each process blocked on it whenever a connestion is attempted on the socket.
 
-Only one of those processes will be able to truly accept the connection, the others will get a boring EAGAIN.
+The funny problem is that on older/classic UNIX, ``accept()`` is woken up in
+each process blocked on it whenever a connection is attempted on the socket.
 
-That means a vast amount of wasted cpu cycles (the kernel scheduler has to give control to all of the sleeping processes waiting on that socket)
+Only one of those processes will be able to truly accept the connection, the
+others will get a boring ``EAGAIN``.
 
-This behaviour (for various reasons) is amplified when instead of processes you use threads (so, you have multiple threads blocked on accept())
+This results in a vast number of wasted cpu cycles (the kernel scheduler has to
+give control to all of the sleeping processes waiting on that socket).
 
-The "de-facto" solution was placing a lock before the accept() call to serialize its usage:
+This behaviour (for various reasons) is amplified when instead of processes you
+use threads (so, you have multiple threads blocked on ``accept()``).
+
+The de facto solution was placing a lock before the ``accept()`` call to serialize
+its usage:
 
 .. code-block:: c
 
@@ -43,21 +50,28 @@ The "de-facto" solution was placing a lock before the accept() call to serialize
        if (client < 0) continue;
        ...
    }
-   
-For threads, dealing with locks is generally easier, but for processes you have to fight with system-specific solutions or fallback to the venerable SysV ipc
-subsystem (more on this later)
 
-In modern times, the vast majority of UNIX systems have evolved, and now the kernel ensure (more or less) only one process/thread is woke up on a connection event.
+For threads, dealing with locks is generally easier but for processes you have
+to fight with system-specific solutions or fall back to the venerable SysV ipc
+subsystem (more on this later).
 
-Ok, problem solved, what we are talking about ?
+In modern times, the vast majority of UNIX systems have evolved, and now the
+kernel ensures (more or less) only one process/thread is woken up on a
+connection event.
+
+Ok, problem solved, what we are talking about?
 
 select()/poll()/kqueue()/epoll()/...
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the pre-1.0 era, uWSGI was a lot simpler (and less interesting) than the current form. It did not have the signal framework and it was not able to listen to multiple addresses, for this reason
-its loop engine was only calling accept() in each process/thread, and thundering herd (thanks to modern kernels) was not a problem.
+In the pre-1.0 era, uWSGI was a lot simpler (and less interesting) than the
+current form. It did not have the signal framework and it was not able to
+listen to multiple addresses; for this reason its loop engine was only calling
+``accept()`` in each process/thread, and thundering herd (thanks to modern
+kernels) was not a problem.
 
-Evolution has a price, so after a bit the standard loop engine of a uWSGI process/thread moved from:
+Evolution has a price, so after a while the standard loop engine of a uWSGI
+process/thread moved from:
 
 .. code-block:: c
 
@@ -66,8 +80,8 @@ Evolution has a price, so after a bit the standard loop engine of a uWSGI proces
        if (client < 0) continue;
        ...
    }
-   
-to a more "complex":
+
+to a more complex:
 
 .. code-block:: c
 
@@ -82,29 +96,42 @@ to a more "complex":
        }
        ...
    }
-   
-The problem is now the wait_for_fds() example function: it will call something like select(), poll() or the more modern epoll() and kqueue()
 
-This kind of system calls are "monitors" for file descriptors, and they are woke up in all of the processes/threads waiting for the same file descriptor.
+The problem is now the ``wait_for_fds()`` example function: it will call
+something like ``select()``, ``poll()`` or the more modern ``epoll()`` and
+``kqueue()``.
 
-Before you start blaming your kernel developers, this is the right approach, as the kernel cannot knows if you are waiting for those file descriptors to call accept() or to make something funnier.
+These kinds of system calls are "monitors" for file descriptors, and they are
+woken up in all of the processes/threads waiting for the same file descriptor.
+
+Before you start blaming your kernel developers, this is the right approach, as
+the kernel cannot know if you are waiting for those file descriptors to call
+``accept()`` or to make something funnier.
 
 So, welcome again to the thundering herd.
 
 Application Servers VS WebServers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The popular, battle tested, solid, multiprocess reference webserver is for sure Apache HTTPD.
+The popular, battle tested, solid, multiprocess reference webserver is Apache
+HTTPD.
 
-It survived decades of IT evolutions and its still one of the most important technologies powering the whole Internet.
+It survived decades of IT evolutions and it's still one of the most important
+technologies powering the whole Internet.
 
-Born as multiprocess-only, apache had to always deal with the thundering herd problem and they solved it using SysV ipc semaphores.
+Born as multiprocess-only, Apache had to always deal with the thundering herd
+problem and they solved it using SysV ipc semaphores.
 
-(Note: apache is really smart about that, when it only needs to wait on a single file descriptor, it only calls accept() taking advantage of modern kernels anti-thundering herd policies)
+(Note: Apache is really smart about that, when it only needs to wait on a
+single file descriptor, it only calls ``accept()`` taking advantage of modern
+kernels anti-thundering herd policies)
 
-(Update: Apache 2.x even allows you to choose which lock technique to use, included flock/fcntl for very ancient systems, but on the vast majority of the system, when in multiprocess mode it will use the sysv semaphores)
+(Update: Apache 2.x even allows you to choose which lock technique to use,
+included flock/fcntl for very ancient systems, but on the vast majority of the
+system, when in multiprocess mode it will use the sysv semaphores)
 
-Even on modern Apache releases, stracing one of its process (bound to multiple interfaces) you will see something like that (it is a Linux system):
+Even on modern Apache releases, stracing one of its process (bound to multiple
+interfaces) you will see something like that (it is a Linux system):
 
 .. code-block:: c
 
@@ -113,71 +140,106 @@ Even on modern Apache releases, stracing one of its process (bound to multiple i
    accept(...);
    semop(...); // unlock
    ... // manage the request
-   
+
 the SysV semaphore protect your epoll_wait from thundering herd.
 
 So, another problem solved, the world is a such a beatiful place... but ....
 
-```SysV IPC is not good for application servers :(```
+**SysV IPC is not good for application servers :(***
 
-The definition of "application server" is pretty generic, in this case we refer to one or more process/processes generated by an unprivileged (non-root) user
-binding on one or more network address and running custom, highly undeterministic code.
+The definition of "application server" is pretty generic, in this case we refer
+to one or more process/processes generated by an unprivileged (non-root) user
+binding on one or more network address and running custom, highly
+non-deterministic code.
 
-Even if you had a minimal/basic knowledge on how SysV IPC works, you will know each of its component is a limited resource in the system
-(and in moderns BSDs this limits are set to ridicolously low values, PostgreSQL FreeBSD users know this problem very well).
+Even if you had a minimal/basic knowledge on how SysV IPC works, you will know
+each of its components is a limited resource in the system (and in modern BSDs
+these limits are set to ridiculously low values, PostgreSQL FreeBSD users know
+this problem very well).
 
-Just run 'ipcs' in your terminal to get a list of the allocated objects in your kernel. Yes, in your kernel. SysV ipc objects are persistent resources, they need
-to be removed manually by the user. The same user that could allocate hundreds of those objects and fill your limited SysV IPC memory.
+Just run 'ipcs' in your terminal to get a list of the allocated objects in your
+kernel. Yes, in your kernel. SysV ipc objects are persistent resources, they
+need to be removed manually by the user. The same user that could allocate
+hundreds of those objects and fill your limited SysV IPC memory.
 
-One of the most common problems in the apache world caused by the SysV ipc usage is the leakage when you brutally kills apache instances
-(yes, you should never do it, but you have not much choices if you are so brave/fool to host unreliable php apps in your webserver process)
+One of the most common problems in the Apache world caused by the SysV ipc
+usage is the leakage when you brutally kills Apache instances (yes, you should
+never do it, but you don't have a choice if you are so brave/fool to host
+unreliable PHP apps in your webserver process).
 
-To better understand it, spawn an apache and `killall -9 apache2`. Respawn it and run 'ipcs' you will get a new semaphore object every time. Do you see the problem ? (to Apache gurus: yes i know there are hacky tricks to avoid that, but this is the default behaviour)
+To better understand it, spawn Apache and ``killall -9 apache2``. Respawn it
+and run 'ipcs' you will get a new semaphore object every time. Do you see the
+problem? (to Apache gurus: yes I know there are hacky tricks to avoid that,
+but this is the default behaviour)
 
-Apache is generally a system service, managed by a consciuos sysadmin, so except few cases you can continue trusting it for more decades, even if it decides to use more SysV ipc objects :)
+Apache is generally a system service, managed by a conscious sysadmin, so
+except few cases you can continue trusting it for more decades, even if it
+decides to use more SysV ipc objects :)
 
-Your application server, sadly, is managed by different kind of users, from the most skilled one, to the one who should change job as soon as possibile to the one with the site cracked by a moron wanting to
-take control of your server.
+Your application server, sadly, is managed by different kind of users, from the
+most skilled one to the one who should change job as soon as possible to the
+one with the site cracked by a moron wanting to take control of your server.
 
-Application servers are not dangerous, users are. And application servers are run by users. The world is an ugly place.
+Application servers are not dangerous, users are. And application servers are
+run by users. The world is an ugly place.
 
 How application server developers solved it
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Fast answer: they generally do not solve/care it
 
-Note: we are talking about multiprocessing, we have already seen multithreading is easy to solve
+Note: we are talking about multiprocessing, we have already seen multithreading
+is easy to solve.
 
-Serving static files or proxying (the main activities of a webserver) is generaly a fast, non-blocking (very deterministic under various points of view) activity. Instead a webapplication
-is way slower and heavier, so, even on moderately loaded sites, the amount of sleeping processes is generally low.
+Serving static files or proxying (the main activities of a webserver) is
+generally a fast, non-blocking (very deterministic under various points of view)
+activity. Instead, a web application is way slower and heavier, so, even on
+moderately loaded sites, the amount of sleeping processes is generally low.
 
-On highly loaded sites you will pray for a free process, and in non-loaded sites the thundering herd problem is completely irrelevant (unless you are running
-your site on a 386)
+On highly loaded sites you will pray for a free process, and in non-loaded
+sites the thundering herd problem is completely irrelevant (unless you are
+running your site on a 386).
 
-Given the relatively low number of processes you generally allocate for an application server, we can say thundering herd is a no-problem
+Given the relatively low number of processes you generally allocate for an
+application server, we can say thundering herd is a no-problem.
 
-Another approach is dynamic process spawning. If you ensure your application server has always the minimum required number of processes running
-you will highly reduce the thundering herd problem. (check the family of --cheaper uWSGI options)
+Another approach is dynamic process spawning. If you ensure your application
+server has always the minimum required number of processes running you will
+highly reduce the thundering herd problem. (check the family of --cheaper uWSGI
+options)
 
 No-problem ??? So, again, what we are talking about ?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We are talking about "common cases", and for common cases there are a plethora of valid choices (instead of uWSGI, obviously) and the vast majority of problems
-we are talking about are non-existent. 
+We are talking about "common cases", and for common cases there are a plethora
+of valid choices (instead of uWSGI, obviously) and the vast majority of
+problems we are talking about are non-existent.
 
-Since the beginning of the uWSGI project, being developed by an hosting company where "common cases" do not exist, we cared a lot
-corner-case problems, bizarre setups and those problems the vast majority of users never need to care about.
+Since the beginning of the uWSGI project, being developed by a hosting company
+where "common cases" do not exist, we cared a lot about corner-case problems,
+bizarre setups and those problems the vast majority of users never need to care
+about.
 
-In addition to this, uWSGI supports operational modes only common/available in general-purpose webservers like apache (i have to say apache is probably the only general purpose webserver
-as it allows basically anything in its process space in a relatively safe and solid way), so lot of new problems combined with user bad-behaviours arises.
+In addition to this, uWSGI supports operational modes only common/available in
+general-purpose webservers like Apache (I have to say Apache is probably the
+only general purpose webserver as it allows basically anything in its process
+space in a relatively safe and solid way), so lot of new problems combined with
+user bad-behaviour arise.
 
-One of the most challenging devleopment phase of uWSGI was adding multithreading. Threads are powerful, but are really hard to manage in the right way.
+One of the most challenging development phase of uWSGI was adding
+multithreading. Threads are powerful, but are really hard to manage in the
+right way.
 
-Threads are way cheaper than processes, so you generally allocate dozens of them for your app (remember, not used memory is wasted memory).
+Threads are way cheaper than processes, so you generally allocate dozens of
+them for your app (remember, not used memory is wasted memory).
 
-Dozens (or hundreds) of threads waiting for the same set of file descriptors bring us back to a thundering herd problem (unless all of your threads are constantly used)
+Dozens (or hundreds) of threads waiting for the same set of file descriptors
+bring us back to a thundering herd problem (unless all of your threads are
+constantly used).
 
-For such a reason when you enable multiple threads in uWSGI a pthread mutex is allocated, serializing epoll()/kqueue()/poll()/select()... usage in each thread.
+For such a reason when you enable multiple threads in uWSGI a pthread mutex is
+allocated, serializing epoll()/kqueue()/poll()/select()... usage in each
+thread.
 
 Another problem solved (and strange for uWSGI, without the need of an option ;)
 
@@ -186,53 +248,78 @@ But...
 The Zeeg problem: Multiple processes with multiple threads
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-On Jun 27th, 2013 David Cramer wrote an interesting blog post (you may not agree with its conclusions, but it does not matter now, you can continue hating uWSGI safely or making funny jokes about its naming choices or the number of options)
+On June 27, 2013, David Cramer wrote an interesting blog post (you may not
+agree with its conclusions, but it does not matter now, you can continue hating
+uWSGI safely or making funny jokes about its naming choices or the number of
+options).
 
 http://justcramer.com/2013/06/27/serving-python-web-applications/
 
-The problem David faced was a so strong thundering herd, that its response time was damaged by it (non constant performance was the main result of its tests)
+The problem David faced was such a strong thundering herd that its response
+time was damaged by it (non constant performance was the main result of its
+tests).
 
-Why it happened ? Was not the mutex allocated by uWSGI solving it ?
+Why did it happen? Wasn't the mutex allocated by uWSGI solving it?
 
 David is (was) running uWSGI with 10 process and each of them with 10 threads:
 
 .. code-block:: sh
 
    uwsgi --processes 10 --threads 10 ...
-   
-while the mutex protect each thread in a single process to call accept() on the same request, there is no such mechanism (or better, it is not enabled by default, see below) to protect
-multiple processes from doing it, so given the number of threads (100) available for managing requests, it is unlikely that a single process
-is completely blocked (read: with all of its 10 threads blocked in a request) so welcome back to the thundering herd.
+
+While the mutex protects each thread in a single process to call ``accept()``
+on the same request, there is no such mechanism (or better, it is not enabled
+by default, see below) to protect multiple processes from doing it, so given
+the number of threads (100) available for managing requests, it is unlikely
+that a single process is completely blocked (read: with all of its 10 threads
+blocked in a request) so welcome back to the thundering herd.
 
 How David solved it ?
 ^^^^^^^^^^^^^^^^^^^^^
 
-uWSGI is a contrversial software, no shame in that. There are users fiercely hating it and others morbidly loving it, but all agree that docs could be way better ([OT] it is good when all the people agree on something, but pull requests on uwsgi-docs are embarassingly low and all from the same people.... come on, help us !!!)
+uWSGI is a controversial piece of software, no shame in that. There are users
+fiercely hating it and others morbidly loving it, but all agree that docs could
+be way better ([OT] it is good when all the people agree on something, but pull
+requests on uwsgi-docs are embarrassingly low and all from the same people....
+come on, help us !!!)
 
-David used an empirical approach, spotted its problem and decided to solve it running independent uwsgi processes bound on different sockets and configured nginx to round robin between them.
+David used an empirical approach, spotted its problem and decided to solve it
+running independent uwsgi processes bound on different sockets and configured
+nginx to round robin between them.
 
-It is a very elegant approach, but it has a problem: nginx cannot know if the process on which is sending the request has all of its thread busy. It is a working but suboptimal solution.
+It is a very elegant approach, but it has a problem: nginx cannot know if the
+process on which is sending the request has all of its thread busy. It is a
+working but suboptimal solution.
 
-The best way would be having an inter-process locking (like apache), serializing all of the accept() in both threads and processes
+The best way would be having an inter-process locking (like Apache),
+serializing all of the ``accept()`` in both threads and processes
 
 uWSGI docs sucks: --thunder-lock
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Michael Hood (you will find its name in the david's post comments too) signalled the problem in the uWSGI mailing-list/issue tracker some time ago, he even come out with an initial patch, that ended with the --thunder-lock option (this is why open-source is better ;)
+Michael Hood (you will find his name in the comments of David's post, too)
+signalled the problem in the uWSGI mailing-list/issue tracker some time ago, he
+even came out with an initial patch that ended with the ``--thunder-lock``
+option (this is why open-source is better ;)
 
---thunder-lock is available since uWSGI 1.4.6 but never got documentation (of any kind)
+``--thunder-lock`` is available since uWSGI 1.4.6 but never got documentation (of
+any kind)
 
-Only the people following the mailing-list (or facing the specific problem) know about it.
+Only the people following the mailing-list (or facing the specific problem)
+know about it.
 
 SysV IPC semaphores are bad how you solved it ?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Interprocess locking has been an issue since uWSGI 0.0.0.0.0.1, but we solved it in the first public release of the project (in 2009).
+Interprocess locking has been an issue since uWSGI 0.0.0.0.0.1, but we solved
+it in the first public release of the project (in 2009).
 
-We basically checked each operating system capabilities and choosen the best/fastest ipc locking they could offer, filling our code
-with dozens of #ifdef.
+We basically checked each operating system capabilities and chose the
+best/fastest ipc locking they could offer, filling our code with dozens of
+#ifdef.
 
-When you start uWSGI you should see in its logs which "lock engine" has been choosen.
+When you start uWSGI you should see in its logs which "lock engine" has been
+chosen.
 
 There is support for a lot of them:
 
@@ -242,73 +329,104 @@ There is support for a lot of them:
  - Posix semaphores (FreeBSD >= 9)
  - Windows mutexes (Windows/Cygwin)
  - SysV IPC semaphores (fallback for all the other systems)
- 
-Their usage is required for uWSGI-specific features like caching, rpc and all of those features requiring changing shared memory structures (allocated with mmap() + _SHARED)
 
-Each of this engine is different from the others, dealing with them has been a pain and (more important) some of them are not "ROBUST".
+Their usage is required for uWSGI-specific features like caching, rpc and all
+of those features requiring changing shared memory structures (allocated with
+mmap() + _SHARED)
 
-The "ROBUST" term is pthread-borrowed. If a lock is "robust", it means if the process locking it dies, the lock is released.
+Each of these engines is different from the others and dealing with them has
+been a pain and (more important) some of them are not "ROBUST".
 
-You would expect it from all of the lock engine, but sadly only few of them works reliably.
+The "ROBUST" term is pthread-borrowed. If a lock is "robust", it means if the
+process locking it dies, the lock is released.
 
-For such a reason the uWSGI master process has to allocate an additional thread (the 'deadlock' detector) constantly checking for non-robust unreleased locks mapped to dead processes.
+You would expect it from all of the lock engines, but sadly only few of them
+works reliably.
 
-It is a pain, whoever tell you IPC locking is easy should be accepted in a JEDI school...
+For this reason the uWSGI master process has to allocate an additional thread
+(the 'deadlock' detector) constantly checking for non-robust unreleased locks
+mapped to dead processes.
 
+It is a pain, however, anyone will tell you IPC locking is easy should be
+accepted in a JEDI school...
 
 uWSGI developers are fu*!ing cowards
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Both David Cramer and Graham Dumpleton (yes, he is the mod_wsgi author but heavily contributed to uWSGI development as well to the other WSGI servers, this is another reason why open source is better) asked why --thunder-lock
+Both David Cramer and Graham Dumpleton (yes, he is the mod_wsgi author but
+heavily contributed to uWSGI development as well to the other WSGI servers,
+this is another reason why open source is better) asked why ``--thunder-lock``
 is not the default when multiprocess + multithread is requested.
 
-This is a good question with a simple answer: we are cowards who cares only money.
+This is a good question with a simple answer: we are cowards who only care
+about money.
 
-uWSGI is completely open source, but its development is sponsored (in various way) by the companies using it and by Unbit.it customers.
+uWSGI is completely open source, but its development is sponsored (in various
+way) by the companies using it and by Unbit.it customers.
 
-Enabling "risky" features by default for a "common" usage (like multiprocess+multithread) is too much for us, and in addition to this, the
-situation (expecially on linux) of library/kernel incompatibilities is a real pain.
+Enabling "risky" features by default for a "common" usage (like
+multiprocess+multithread) is too much for us, and in addition to this, the
+situation (especially on linux) of library/kernel incompatibilities is a real
+pain.
 
-As an example for having ROBUST pthread mutexes you need a modern kernel with a modern glibc, but commonly used distros (like the centos family) have a mix of older kernels with
-newer glibc and the opposite too. This lead to the inhability of correctly detect which is the best locking engine for a platform, and so, when the uwsgiconfig.py script is in doubt
-it fallback to the safest approach (like non-robust pthread mutexes on linux).
+As an example for having ROBUST pthread mutexes you need a modern kernel with a
+modern glibc, but commonly used distros (like the centos family) have a mix of
+older kernels with newer glibc and the opposite too. This leads to the
+inability to correctly detect which is the best locking engine for a platform,
+and so, when the uwsgiconfig.py script is in doubt it falls back to the safest
+approach (like non-robust pthread mutexes on linux).
 
-The deadlock-detector should save you from most of the problem, but the "should" word is the key. Making a test suite (or even a single unit test) on such
-kind of code is basically impossibile (well, at least for me), so we cannot be sure all is in the right place (and reporting threading bugs is hard for users as well as skilled developer, unless you work on pypy ;)
+The deadlock-detector should save you from most of the problem, but the
+"should" word is the key. Making a test suite (or even a single unit test) on
+this kind of code is basically impossible (well, at least for me), so we
+cannot be sure all is in the right place (and reporting threading bugs is hard
+for users as well as skilled developer, unless you work on pypy ;)
 
-Linux pthread robust mutexes are solid, we are "pretty" sure about that, so you should be able to enable --thunder-lock
-on modern Linux systems with a 99.999999% success rates, but we prefer (for now) users consciously enable it
+Linux pthread robust mutexes are solid, we are "pretty" sure about that, so you
+should be able to enable ``--thunder-lock`` on modern Linux systems with a
+99.999999% success rates, but we prefer (for now) users consciously enable it
 
 When SysV IPC semaphores are a better choice
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Yes, there are cases on which SysV IPC semaphores gives you better results than system-specific features.
+Yes, there are cases on which SysV IPC semaphores gives you better results than
+system-specific features.
 
-Marcin Deranek of Booking.com is battle testing uWSGI by months and helped us fixing corner-case situations even in the locking area.
+Marcin Deranek of Booking.com has been battle-testing uWSGI for months and
+helped us with fixing corner-case situations even in the locking area.
 
-He noted system-specific lock-engines tend to favour the kernel scheduler (when choosing which process wins the next lock after an unlock) instead
-of a round-robin distribution.
+He noted system-specific lock-engines tend to favour the kernel scheduler (when
+choosing which process wins the next lock after an unlock) instead of a
+round-robin distribution.
 
-As for their specific need an equal distribution of requests among processes is better (they use uWSGI with perl, so no threading is in place, but they spawn lot of processes)
-they (currently) choose to use the "ipcsem" lock engine with:
+As for their specific need for an equal distribution of requests among
+processes is better (they use uWSGI with perl, so no threading is in place, but
+they spawn lot of processes) they (currently) choose to use the "ipcsem" lock
+engine with:
 
 .. code-block:: sh
 
    uwsgi --lock-engine ipcsem --thunder-lock --processes 100 --psgi ....
-   
-The funny thing (this time) is that you can easily test how the lock is working good. Just start blasting the server and you will see
-in the request logs how the reported pid is different each time, while with system-specific locking the pid are pretty randomic with a pretty heavy tendence
-of favouring the last used process.
 
-Funny enough, the first problem they faced was the ipcsem leakage (when you are in emergency, graceful reload/stop is your enemy and kill -9 will be your silver bullet)
+The funny thing (this time) is that you can easily test if the lock is working
+well. Just start blasting the server and you will see in the request logs how
+the reported pid is different each time, while with system-specific locking the
+pids are pretty random with a pretty heavy tendency of favouring the last used
+process.
 
-To fix it, the --ftok option is available allowing you to give a unique id to the semaphore object and to reuse it if it is available from a previous run:
+Funny enough, the first problem they faced was the ipcsem leakage (when you are
+in emergency, graceful reload/stop is your enemy and kill -9 will be your
+silver bullet)
+
+To fix it, the --ftok option is available allowing you to give a unique id to
+the semaphore object and to reuse it if it is available from a previous run:
 
 .. code-block:: sh
 
    uwsgi --lock-engine ipcsem --thunder-lock --processes 100 --ftok /tmp/foobar --psgi ....
-   
---ftok takes a file as an argument, it will use it to build the unique id. A common pattern is using the pidfile for it
+
+--ftok takes a file as an argument, it will use it to build the unique id. A
+common pattern is using the pidfile for it
 
 
 What about other portable lock engines ?
@@ -318,40 +436,49 @@ In addition to "ipcsem", uWSGI (where available) adds "posixsem" too.
 
 They are used by default only on FreeBSD >= 9, but are available on Linux too.
 
-They are not "ROBUST", but they do not need shared kernel resources, so if you trust our deadlock detector they are
-a pretty-good approach. (Note: Graham Dumpleton pointed me to the fact they can be enabled on Apache 2.x too)
+They are not "ROBUST", but they do not need shared kernel resources, so if you
+trust our deadlock detector they are a pretty-good approach. (Note: Graham
+Dumpleton pointed me to the fact they can be enabled on Apache 2.x too)
 
 Conclusions
 ^^^^^^^^^^^
 
-You can have the best (or the worst) software of the whole universe, but without docs it does not exist.
+You can have the best (or the worst) software of the whole universe, but
+without docs it does not exist.
 
-The Apache team still slam the face of the vast majority of us trying to touch their market share :)
+The Apache team still slam the face of the vast majority of us trying to touch
+their market share :)
 
 Bonus chapter: using the Zeeg approach in a uWSGI friendly way
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-I have to admit, i am not a big fan of supervisord. It is a good software without doubts, but i consider the Emperor and the --attach-daemon facilities
-a better approach to the deployment problems. In addition to this, if you want to have a "scriptable"/"extendable" process supervisor i think Circus
-(http://circus.readthedocs.org/) is a lot more fun and capable (the first thing i have done after implementing socket activation in the uWSGI Emperor was making a pull request [merged, if you care] for the same feature in Circus)
+I have to admit, I am not a big fan of supervisord. It is a good software
+without doubts, but I consider the Emperor and the --attach-daemon facilities a
+better approach to the deployment problems. In addition to this, if you want to
+have a "scriptable"/"extendable" process supervisor I think Circus
+(http://circus.readthedocs.org/) is a lot more fun and capable (the first thing
+I have done after implementing socket activation in the uWSGI Emperor was
+making a pull request [merged, if you care] for the same feature in Circus).
 
-Obviously supervisord works and is used by lot of people, but as a heavy uWSGI user i tend to abuse its features to accomplish a result.
+Obviously supervisord works and is used by lot of people, but as a heavy uWSGI
+user I tend to abuse its features to accomplish a result.
 
-The first approach i would have used is binding to 10 different ports and mapping each of them to a specific process:
+The first approach I would use is binding to 10 different ports and mapping
+each of them to a specific process:
 
 .. code-block:: ini
 
     [uwsgi]
     processes = 5
     threads = 5
-    
+
     ; create 5 sockets
     socket = :9091
     socket = :9092
     socket = :9093
     socket = :9094
     socket = :9095
-    
+
     ; map each socket (zero-indexed) to the specific worker
     map-socket = 0:1
     map-socket = 1:2
@@ -359,7 +486,8 @@ The first approach i would have used is binding to 10 different ports and mappin
     map-socket = 3:4
     map-socket = 4:5
 
-now you have a master monitoring 5 processes each one bound to a different address (no --thunder-lock needed)
+Now you have a master monitoring 5 processes, each one bound to a different
+address (no ``--thunder-lock`` needed)
 
 For the Emperor fanboys you can make such a template (call it foo.template):
 
@@ -369,8 +497,8 @@ For the Emperor fanboys you can make such a template (call it foo.template):
     processes = 1
     threads = 10
     socket = :%n
-    
-now make symbolic link for each instance+port you want to spawn:
+
+Now make a symbolic link for each instance+port you want to spawn:
 
 .. code-block:: sh
 
@@ -386,13 +514,16 @@ Bonus chapter 2: securing SysV IPC semaphores
 
 My company hosting platform in heavily based on Linux cgroups and namespaces.
 
-The first (cgroups) are used to limit/account resource usage, while the second (namespaces) are used to give
-an "isolated" system view to users (like seeing a dedicated hostname or root filesystem)
+The first (cgroups) are used to limit/account resource usage, while the second
+(namespaces) are used to give an "isolated" system view to users (like seeing a
+dedicated hostname or root filesystem).
 
-As we allow users to spawn PostgreSQL instances in their accounts we need to limit SysV objects.
+As we allow users to spawn PostgreSQL instances in their accounts we need to
+limit SysV objects.
 
-Lucky enough, modern Linux kernels have a namespace for IPC, so calling unshare(CLONE_NEWIPC) will create a whole new set (detached from the others)
-of IPC objects.
+Luckily, modern Linux kernels have a namespace for IPC, so calling
+unshare(CLONE_NEWIPC) will create a whole new set (detached from the others) of
+IPC objects.
 
-Calling ```--unshare ipc``` in customer-dedicated Emperors is a common approach. When combined with memory cgroup you will end with a pretty secure
-setup.
+Calling ``--unshare ipc`` in customer-dedicated Emperors is a common approach.
+When combined with memory cgroup you will end with a pretty secure setup.
