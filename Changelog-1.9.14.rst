@@ -27,6 +27,41 @@ Bugfixes
 New features
 ************
 
+Ruby 1.9.x/2.x native threads support
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+uClibc support
+^^^^^^^^^^^^^^
+
+Lua 5.2 support
+^^^^^^^^^^^^^^^
+
+setscheme, setdocroot
+^^^^^^^^^^^^^^^^^^^^^
+
+sendfile, fastfile
+^^^^^^^^^^^^^^^^^^
+
+--reload-on-fd and --brutal-reload-on-fd
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Spooler improvements
+^^^^^^^^^^^^^^^^^^^^
+
+Author: Roberto Leandrini
+
+--emperor-nofollow
+^^^^^^^^^^^^^^^^^^
+
+daemontools envdir support
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Breaking News !!!
+*****************
+
+Servlet 2.5 support development has just started. The plugin is present in the tree but it is unusable (it is an hardcoded
+jsp engine). We expect a beta version after the summer. Obviously we shameless consider :doc:`JWSGI` a better approach than servlet for non-Enterprise people ;)
 
 Availability
 ************
