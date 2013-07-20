@@ -11,7 +11,7 @@ Bugfixes
 - fixed url decoding in http and http-socket (it now supports lowercase hex)
 - more user-friendly error message for undeletable unix sockets
 - fixed --http-auto-chunked in http 1.1 keepalive mode (André Cruz)
-- fixed python wheel support
+- fixed python wheel support (Fraser Nevett)
 - fixed --safe-fd (was not correctly honoured by the Emperor)
 - fixed ruby 2.x reloading
 - improved support for OSX Tiger (yes, OSX 10.4)
