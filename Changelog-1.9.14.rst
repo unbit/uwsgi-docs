@@ -72,13 +72,13 @@ A new interface for plugin writers named "fsmon" has been added, allowing easy i
 
 Three new options have been added:
 
-   --fs-reload <path>
+   `--fs-reload <path>`
    
    
-   --fs-brutal-reload <path>
+   `--fs-brutal-reload <path>`
    
    
-   --fs-signal <path> <signal>
+   `--fs-signal <path> <signal>`
    
 Contrary to the --touch-* options they are realtime (the master is woke up as soon as the item changes) and. uses kernel facilities
 (currently only inotify() and kqueue() are supported). Thanks to this choice you can now monitor a whole directory for changes (without the need of external
