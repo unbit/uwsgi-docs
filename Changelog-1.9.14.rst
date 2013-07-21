@@ -182,3 +182,7 @@ jsp engine). We expect a beta version after the summer. Obviously we shameless c
 
 Availability
 ************
+
+Download uWSGI 1.9.14 from
+
+http://projects.unbit.it/downloads/uwsgi-1.9.14.tar.gz
