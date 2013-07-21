@@ -65,6 +65,23 @@ it will generate a total of 16 threads
 Filesystem monitoring interface (fsmon)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Currently uWSGI is able to monitor filesystem changes using the "simple" --touch-* facility or the signal framework (using various
+operating system api like inotify or kqueue).
+
+A new interface for plugin writers named "fsmon" has been added, allowing easy implementation of realtime filesystem monitors.
+
+Three new options have been added:
+
+   --fs-reload <path>
+   
+   --fs-brutal-reload <path>
+   
+   --fs-signal <path> <signal>
+   
+Contrary to the --touch-* options they are realtime (the master is woke up as soon as the item changes) and. uses kernel facilities
+(currently only inotify() and kqueue() are supported). Thanks to this choice you can now monitor a whole directory for changes (without the need of external
+processes/wrapper like inotifywatch)
+
 uClibc support
 ^^^^^^^^^^^^^^
 
