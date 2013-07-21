@@ -8,7 +8,7 @@ Bugfixes
 ********
 
 - fixed python modifier1 management (was hardcoded to 0)
-- fixed url decoding in http and http-socket (it now supports lowercase hex)
+- fixed url decoding in http and http-socket (it now supports lowercase hex, spotted by Miles Shang)
 - more user-friendly error message for undeletable unix sockets
 - fixed --http-auto-chunked in http 1.1 keepalive mode (André Cruz)
 - fixed python wheel support (Fraser Nevett)
