@@ -115,6 +115,27 @@ The first one forces the use of the sendfile() syscall (where available), while 
 --reload-on-fd and --brutal-reload-on-fd
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Two new options allowing you to reload an instance when a file descriptor is ready.
+
+Currently the best usage scenario is for the oom_control cgroup interface (via eventfd).
+
+Supposing you have a process wrapper allocating an eventfd() reporting OOM events (and exposed as the 'OOM' environment var) you can force a uWSGI reload
+when out of memory with:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   reload-on-fd = $(OOM):8 OUT OF MEMORY !!!
+   
+
+it means:
+
+monitor the $(OOM) file descriptor and read 8 bytes from it when ready (it is an eventfd() requirement), then print "OUT OF MEMORY !!!" in the logs and gracefully reload the instance.
+
+Obviously this is only a way to use it. The UNIX world is file-descriptor based so you have plenty of funny ways to use it.
+
+
 Spooler improvements
 ^^^^^^^^^^^^^^^^^^^^
 
