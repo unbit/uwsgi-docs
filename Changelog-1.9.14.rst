@@ -160,6 +160,10 @@ xmldir improvements
 
 Author: Guido Berhoerster
 
+The xmldir plugins has been improved supporting iconv-based utf8 encoding. Various minor fixes have been committed.
+
+The examples directory containes two new files showing an xmldir+xslt usage
+
 
 Breaking News !!!
 *****************
