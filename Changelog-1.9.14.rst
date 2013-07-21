@@ -68,14 +68,30 @@ Filesystem monitoring interface (fsmon)
 uClibc support
 ^^^^^^^^^^^^^^
 
+Author: Natanael Copa
+
+uWSGI can now be built on uclibc-based systems (generally, embedded systems)
+
+Alpine Linux is the operating system on which the support has been tested
+
 Lua 5.2 support
 ^^^^^^^^^^^^^^^
+
+Author: Natanael Copa
+
+the lua plugins now supports Lua 5.2
 
 setscheme, setdocroot
 ^^^^^^^^^^^^^^^^^^^^^
 
+This two new routing actions allow you to dinamically override DOCUMENT_ROOT and UWSGI_SCHEME
+
 sendfile, fastfile
 ^^^^^^^^^^^^^^^^^^
+
+This two actions (added to the router_static plugin) allows you to return static files to the client bypassing the DOCUMENT_ROOT check.
+
+The first one forces the use of the sendfile() syscall (where available), while the second automatically tries to choose the best serving strategy (like offloading)
 
 --reload-on-fd and --brutal-reload-on-fd
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
