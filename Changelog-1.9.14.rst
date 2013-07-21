@@ -141,6 +141,15 @@ Spooler improvements
 
 Author: Roberto Leandrini
 
+
+Effectively all of the work has been done in uwsgidecorators.py
+
+You can now pass to all of the available spooler-related decorators the "pass_arguments=True" option, to automatically
+serialize the spooler function parameters. This is an abstraction avoiding you the need to serialize/deserialize arguments.
+
+In addition to this the decorators have been extended to implement __call__ in this way you can directly call spoller decorated functions
+as normal functions.
+
 --emperor-nofollow
 ^^^^^^^^^^^^^^^^^^
 
