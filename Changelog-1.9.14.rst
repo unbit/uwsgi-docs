@@ -74,7 +74,9 @@ Three new options have been added:
 
    --fs-reload <path>
    
+   
    --fs-brutal-reload <path>
+   
    
    --fs-signal <path> <signal>
    
@@ -121,8 +123,16 @@ Author: Roberto Leandrini
 --emperor-nofollow
 ^^^^^^^^^^^^^^^^^^
 
+Enabling this option will allows the Emperor to watch for symbolic links mtime update instead of the mtime of the real file.
+
+Alberto Scotto is working on an updated version supporting both (should be ready for the next release)
+
 daemontools envdir support
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Albeit daemontools look old-fashioned, things like envdirs (http://cr.yp.to/daemontools/envdir.html) are heavily used in various context.
+
+uWSGI got two new options (--envdir <path> and --early-envdir <path>) allowing you to support this special (arcaic ?) configuration way.
 
 xmldir improvements
 ^^^^^^^^^^^^^^^^^^^
