@@ -44,7 +44,7 @@ A note regarding threads and fibers
 -----------------------------------
 
 Adding threading support in Ruby 1.8 is out of discussion. Thread support in this versions is practically useless in a server like uWSGI.
-Ruby 1.9 has a threading mode very similar to the Python one, so adding it will be very simple (and super fast). Expect an update soon.
+Ruby 1.9 has a threading mode very similar to the Python one, its support is available starting from uWSGI 1.9.14 using the "rbthreads" plugin.
 
 Fibers are a new feature of Ruby 1.9. They are an implementation of coroutines/green threads/stop resume/cooperative multithreading, or whatever you'd like to call this class of funny technologies. See :doc:`FiberLoop`.
 
