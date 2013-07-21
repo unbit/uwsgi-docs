@@ -1,7 +1,7 @@
 uWSGI 1.9.14
 ============
 
-Changelog [20130720]
+Changelog [20130721]
 
 
 Bugfixes
@@ -30,6 +30,9 @@ New features
 Ruby 1.9.x/2.x native threads support
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Filesystem monitoring interface (fsmon)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 uClibc support
 ^^^^^^^^^^^^^^
 
@@ -55,6 +58,11 @@ Author: Roberto Leandrini
 
 daemontools envdir support
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+xmldir improvements
+^^^^^^^^^^^^^^^^^^^
+
+Author: Guido Berhoerster
 
 
 Breaking News !!!
