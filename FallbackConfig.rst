@@ -67,7 +67,7 @@ an alternate application:
 
    uwsgi --fallback-config safe.ini --need-app --http-socket :8080 --wsgi-file brokenapp.py
    
-Here the key is --need-app. It will call exit(1) if the instance has not been able to load at least an application.
+Here the key is --need-app. It will call exit(1) if the instance has not been able to load at least one application.
 
 Multiple fallback levels
 ************************
