@@ -68,3 +68,36 @@ an alternate application:
    uwsgi --fallback-config safe.ini --need-app --http-socket :8080 --wsgi-file brokenapp.py
    
 Here the key is --need-app. It will call exit(1) if the instance has not been able to load at least an application.
+
+Multiple fallback levels
+************************
+
+Your fallback config file can specify a fallback-config directive too, allowing multiple fallback levels. BEWARE OF LOOPS !!!3
+
+How it works
+************
+
+The objective is catching the exit code of a process before the process itself is destroyed (we do not want to call another fork(), or destroy already opened file descriptors)
+
+uWSGI makes heavy usage of atexit() hooks, so we only need to register the fallback handler as the first one (hooks are executed in reverse order).
+
+In addition to this we need to get the exit code in our atexit() hook, something is not supported by default (the on_exit() function is now deprecated).
+
+The solution is "patching" exit(x) with uwsgi_exit(x) that is a simple wrapper setting uwsgi.last_exit_code memory pointer.
+
+Now the hook only needs to check for uwsgi.last_exit_code == 1 and eventually execve() the binary again passing to fallback config to it
+
+.. code-block:: c
+
+   char *argv[3];
+   argv[0] = uwsgi.binary_path;
+   argv[1] = uwsgi.fallback_config;
+   argv[2] = NULL;
+   execvp(uwsgi.binary_path, argv);
+   
+Notes
+*****
+
+Try to place --fallback-config as soon as possibile in your config tree. The various config parsers may fail (calling exit(1)) before the fallback file is registered
+
+
