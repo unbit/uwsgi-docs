@@ -85,7 +85,7 @@ In addition to this we need to get the exit code in our atexit() hook, something
 
 The solution is "patching" exit(x) with uwsgi_exit(x) that is a simple wrapper setting uwsgi.last_exit_code memory pointer.
 
-Now the hook only needs to check for uwsgi.last_exit_code == 1 and eventually execve() the binary again passing to fallback config to it
+Now the hook only needs to check for uwsgi.last_exit_code == 1 and eventually execve() the binary again passing the fallback config to it
 
 .. code-block:: c
 
