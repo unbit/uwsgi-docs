@@ -131,6 +131,11 @@ Packet descriptions
      - invoke the :doc:`GridFS`
    
    * - 26
+     - size of CGI vars
+     - 0- 255
+     - invoke the :doc:`GlusterFS`
+     
+   * - 27
      - 0
      - 0- 255
      - call the :doc:`FastFuncs` specified by the modifier2 field
