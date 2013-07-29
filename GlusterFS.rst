@@ -147,3 +147,12 @@ Internal routing
 
 The :doc:`InternalRouting` allows you to rewrite requests to change the requested files. Currently the glusterfs plugin only uses the PATH_INFO, so you can change it
 via the 'setpathinfo' directive
+
+Caching is supported too. Check the tutorial (linked in the homepage) for some cool idea
+
+Notes:
+^^^^^^
+
+The plugin automatically enables the mime type engine.
+
+Support for Last-Modified header is on work
