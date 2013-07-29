@@ -89,8 +89,56 @@ You can now start your HTTP serving fastly serving glusterfs files (remember no 
    ; set the default modifier1 to the glusterfs one
    http-socket-modifier1 = 27
    ; mount our glusterfs filesystem
-   glusterfs-mount = mountpoint=/,volume=unbit001,server=127.0.0.1:0
+   glusterfs-mount = mountpoint=/,volume=unbit001,server=192.168.173.1:0
    ; spawn 30 threads
    threads = 30
    
 
+High availability
+^^^^^^^^^^^^^^^^^
+
+The main GlusterFS selling point is high availability. With the prevopus setup we introduced a SPOF with the control daemon.
+
+The 'server' option allows you to specify multiple control daemons (they are tried until one responds)
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; bind on port 9090
+   http-socket = :9090
+   ; set the default modifier1 to the glusterfs one
+   http-socket-modifier1 = 27
+   ; mount our glusterfs filesystem
+   glusterfs-mount = mountpoint=/,volume=unbit001,server=192.168.173.1:0;192.168.173.2:0;192.168.173.3:0
+   ; spawn 30 threads
+   threads = 30
+   
+The '0' port is a glusterfs convention, it means 'the default port' (generally 24007). You can specify whatever port you need/want
+
+Multiple mountpoints
+^^^^^^^^^^^^^^^^^^^^
+
+If your webserver (like nginx or the uWSGI http router) is capable of setting protocol vars (like SCRIPT_NAME or UWSGI_APPID) you can mount multiple
+glusterfs filesystems in the same instance:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; bind on port 9090
+   http-socket = :9090
+   ; set the default modifier1 to the glusterfs one
+   http-socket-modifier1 = 27
+   ; mount our glusterfs filesystem
+   glusterfs-mount = mountpoint=/,volume=unbit001,server=192.168.173.1:0;192.168.173.2:0;192.168.173.3:0
+   glusterfs-mount = mountpoint=/foo,volume=unbit002,server=192.168.173.1:0;192.168.173.2:0;192.168.173.3:0
+   glusterfs-mount = mountpoint=/bar,volume=unbit003,server=192.168.173.1:0;192.168.173.2:0;192.168.173.3:0
+   ; spawn 30 threads
+   threads = 30
+   
+Multiprocess VS multithread
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Currently a mix of the both will offers you best performance and availability.
+
+Async support is on work
+   
