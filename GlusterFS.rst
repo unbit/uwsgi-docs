@@ -155,4 +155,4 @@ Notes:
 
 The plugin automatically enables the mime type engine.
 
-Support for Last-Modified header is on work
+There is no directory index support
