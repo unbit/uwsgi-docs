@@ -141,4 +141,9 @@ Multiprocess VS multithread
 Currently a mix of the both will offers you best performance and availability.
 
 Async support is on work
-   
+
+Internal routing
+^^^^^^^^^^^^^^^^
+
+The :doc:`InternalRouting` allows you to rewrite requests to change the requested files. Currently the glusterfs plugin only uses the PATH_INFO, so you can change it
+via the 'setpathinfo' directive
