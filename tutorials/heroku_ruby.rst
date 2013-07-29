@@ -165,10 +165,24 @@ where n is the number of requests after the GC is called.
 Concurrency
 ***********
 
-Albeit uWSGI supports lot of different paradigms for concurrency, the multiprocess one is suggested for ruby apps.
+Albeit uWSGI supports lot of different paradigms for concurrency, the multiprocess one is suggested for the vast majority of ruby/rack apps.
 
 Basically all popular ruby-frameworks rely on that. Remember that your app is limited so spawn a number of processes
 that can fit in your Heroku dyno.
+
+Starting from uWSGI 1.9.14, native ruby 1.9/2.x threads support has been added. Rails4 (only in production mode !!!) supports them:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   ; spawn 8 threads per-process
+   threads = 8
+   ; maps them as ruby threads
+   rbthreads = true
+   ; do not forget to set production mode for rails4 apps !!!
+   env = RAILS_ENV=production
+   ...
 
 Harakiri
 ********
