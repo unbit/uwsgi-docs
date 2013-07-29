@@ -12,7 +12,7 @@ This approach (compared to serving via fuse or nfs) has various advantages in te
 
 
 Step1: glusterfs installation
-=============================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 we build glusterfs from official sources, installing it in /opt/glusterfs on 3 nodes (192.168.173.1, 192.168.173.2, 192.168.173.3).
 
@@ -31,7 +31,7 @@ now start the configuration/control daemon with:
 from now on we can start configuring our cluster
 
 Step2: the first cluster
-========================
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 run the control client to access the glusterfs shell:
 
@@ -66,3 +66,31 @@ and start it:
    volume start unbit001
    
 Now you should be able to mount your glusterfs filesystem and start writing files in it (you can use nfs or fuse)
+
+Step3: uWSGI
+^^^^^^^^^^^^
+
+a build profile, named 'glusterfs' is already available, so you can simply do:
+
+.. code-block:: sh
+
+   PKG_CONFIG_PATH=/opt/glusterfs/lib/pkgconfig/ UWSGI_PROFILE=glusterfs make
+   
+The profile currently disable 'matheval' support as the glusterfs libraries use bison/yacc with the same function prefixes (causing nameclash).
+
+
+You can now start your HTTP serving fastly serving glusterfs files (remember no nfs or fuse are involved):
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; bind on port 9090
+   http-socket = :9090
+   ; set the default modifier1 to the glusterfs one
+   http-socket-modifier1 = 27
+   ; mount our glusterfs filesystem
+   glusterfs-mount = mountpoint=/,volume=unbit001,server=127.0.0.1:0
+   ; spawn 30 threads
+   threads = 30
+   
+
