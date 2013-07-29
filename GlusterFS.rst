@@ -53,11 +53,16 @@ the first step is "discovering" the other nodes:
 remember, you do not need to run "peer probe" for the same address of the machine on which you are running
 the glusterfs console. You have to repeat the procedure on each node of the cluser.
 
-Now we can create a replica volume:
+Now we can create a replica volume (/exports/brick001 dir has to exist in every node):
 
 .. code-block:: sh
 
-   gluster volume create unbit001 replica 3 192.168.173.1:/exports/brick001 192.168.173.2:/exports/brick001 192.168.173.3:/exports/brick001
+   volume create unbit001 replica 3 192.168.173.1:/exports/brick001 192.168.173.2:/exports/brick001 192.168.173.3:/exports/brick001
    
 and start it:
 
+.. code-block:: sh
+
+   volume start unbit001
+   
+Now you should be able to mount your glusterfs filesystem and start writing files in it (you can use nfs or fuse)
