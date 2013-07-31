@@ -150,6 +150,19 @@ via the 'setpathinfo' directive
 
 Caching is supported too. Check the tutorial (linked in the homepage) for some cool idea
 
+
+Using capabilities (on Linux)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If your cluster requires clients to bind on privileged ports (<1024) and you do not want to change that thing (and obviously you do not want to run uWSGI as root)
+you may want to give your uWSGI instance the NET_BIND_SERVICE capability. Just ensure you have a capabilities-enabled uWSGI and add
+
+.. code-block:: sh
+
+   ... --cap net_bind_service ...
+   
+to all of the instances you want to connect to glusterfs
+
 Notes:
 ^^^^^^
 
