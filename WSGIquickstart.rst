@@ -8,6 +8,9 @@ Python here is meant as CPython, for PyPy you need to use the specific plugin: :
 Installing uWSGI with python support
 ************************************
 
+Suggestion: when you start learning uWSGI try to build from official sources, using distro-supplied packages could bring you
+lot of headaches. When things are clear you can use modular builds (like the ones available in your distro)
+
 uWSGI is a (big) C application, so you need a C compiler (like the gcc or clang) and python development headers.
 
 On a debian-based distro a
