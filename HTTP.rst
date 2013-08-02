@@ -99,7 +99,7 @@ Can I use uWSGI's HTTP capabilities in production?
 If you need a load balancer/proxy it can be a very good idea. It will
 automatically find new uWSGI instances and can load balance in various ways.
 If you want to use it as a real webserver you should take into account that
-serving static files in uWSGI instances possible, but not as good as using a
+serving static files in uWSGI instances is possible, but not as good as using a
 dedicated full-featured web server.  If you host static assets in the cloud or
 on a CDN, using uWSGI's HTTP capabilities you can definitely avoid configuring
 a full webserver.
