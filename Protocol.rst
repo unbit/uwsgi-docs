@@ -140,6 +140,11 @@ Packet descriptions
      - 0- 255
      - call the :doc:`FastFuncs` specified by the modifier2 field
    
+   * - 28
+     - 0
+     - 0- 255
+     - invoke the :doc:`Rados`
+   
    * - 30
      - size of WSGI block vars (HTTP request body excluded)
      - 0 (if defined the size of the block vars is 24bit le, for now none of the webserver handlers support this feature)
