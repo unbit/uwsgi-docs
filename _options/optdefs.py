@@ -57,7 +57,7 @@ def core_options():
 
         s.o("harakiri", int, "Harakiri timeout in seconds", help="""
         Every request that will take longer than the seconds specified in the harakiri timeout will be dropped and the corresponding worker is thereafter recycled.""")
-        
+
         s.o("harakiri-verbose", True, "Enable verbose Harakiri mode.", help="""
         When a request is killed by Harakiri you will get a message in the uWSGI log.
         Enabling this option will print additional info (for example, the current syscall will be reported on Linux platforms).
@@ -66,12 +66,12 @@ def core_options():
         s.o(("harakiri-no-arh", "no-harakiri-arh", "no-harakiri-after-req-hook"), True, "Disallow Harakiri killings during after-request hook methods.")
         s.o("mule-harakiri", int, "Set harakiri timeout for mule tasks")
         s.o("master", True, "Enable uWSGI master process", short_name='M')
-        
+
         s.o("reaper", True, "call waitpid(-1,...) after each request to get rid of zombies", short_name="r", help="""
         Enables reaper mode. After each request the server will call ``waitpid(-1)`` to get rid of zombie processes.
         If you spawn subprocesses in your app and you happen to end up with zombie processes all over the place you can enable this option. (It really would be better if you could fix your application's process spawning usage though.)
         """)
-        
+
         s.o("max-requests", int, "reload workers after the specified amount of managed requests (avoid memory leaks)", short_name='R', help="""
         When a worker reaches this number of requests it will get recycled (killed and restarted). You can use this option to "dumb fight" memory leaks.
         Also take a look at the ``reload-on-as`` and ``reload-on-rss`` options as they are more useful for memory leaks.
@@ -151,7 +151,7 @@ def core_options():
         s.o("ldap", int, "load configuration from ldap server", docs = ["LDAP"])
         s.o("ldap-schema", True, "dump uWSGI ldap schema", docs = ["LDAP"])
         s.o("ldap-schema-ldif", True, "dump uWSGI ldap schema in ldif format", docs = ["LDAP"])
-        
+
 
 
 
@@ -262,7 +262,7 @@ def core_options():
         s.o("async", int, "enable async mode with specified cores", docs=["Async"])
         s.o("max-fd", int, "set maximum number of file descriptors (requires root privileges)")
         s.o("master-as-root", True, "leave master process running as root")
-        
+
 
     with config.section("Miscellaneous") as s:
         s.o("skip-zero", True, "skip check of file descriptor 0")
@@ -454,7 +454,7 @@ def core_options():
         s.o("cluster-nodes", "address:port", "get nodes list from the specified cluster without joining it.", help="This list is used internally by the uwsgi load balancing api.")
         s.o("cluster-reload", "address:port", "send a graceful reload message to the cluster")
         s.o("cluster-log", "address:port","send a log line to the cluster", help="For instance, ``--cluster-log \"Hello, world!\"`` will print that to each cluster node's log file.")
-    
+
     with config.section("Subscriptions", docs=["SubscriptionServer"]) as s:
         s.o("subscriptions-sign-check", str, "set digest algorithm and certificate directory for secured subscription system")
         s.o("subscriptions-sign-check-tolerance", int, "set the maximum tolerance (in seconds) of clock skew for secured subscription system")
@@ -464,18 +464,18 @@ def core_options():
         s.o("subscribe-freq", int, "send subscription announce at the specified interval")
         s.o("subscription-tolerance", int, "set tolerance for subscription servers")
         s.o("unsubscribe-on-graceful-reload", True, "force unsubscribe request even during graceful reload")
-    
+
     with config.section("Router", docs=["InternalRouting"]) as s:
         s.o("route", [str], "add a route")
         s.o("route-host", [str], "add a route based on Host header")
         s.o("route-uri", [str], "add a route based on REQUEST_URI")
         s.o("route-qs", [str], "add a route based on QUERY_STRING")
         s.o(("router-list", "routers-list"), True, "list enabled routers")
-        
+
     with config.section("Static files", refname="OptionsStatic") as s:
         s.o(("static-check", "check-static"), [str], "check for static files in the specified directory", help="""
         Specify a directory that uWSGI will check before passing control to a specific handler.
-        
+
         uWSGI will check if the requested ``PATH_INFO`` has a file correspondence in this directory and serve it.
 
         For example, with ``check-static /var/www/example.com``, uWSGI will check if :file:`/var/www/example.com/foo.png` exists and directly serve it using `sendfile()` (or another configured method).
@@ -505,7 +505,7 @@ def core_options():
         """)
 
         s.o("check-cache", True, "check for response data in the cache based on PATH_INFO")
-    
+
     with config.section("Clocks") as s:
         s.o("clock", str, "set a clock source")
         s.o(("clock-list","clocks-list"), True, "list enabled clocks")
@@ -551,6 +551,7 @@ def python_options():
         s.o("py-auto-reload-ignore", [str], "ignore the specified module during auto-reload scan")
         s.o(("wsgi-env-behaviour", "wsgi-env-behavior"), str, "set the strategy for allocating/deallocating the WSGI env")
         s.o("start_response-nodelay", True, "send WSGI http headers as soon as possible (PEP violation)")
+        s.o("python-version", True, "report python version")
     return config
 
 def carbon_options():
@@ -592,6 +593,7 @@ def cheaper_options():
         s.o("cheaper-busyness-backlog-alert", int, "spawn emergency worker if anytime listen queue is higher than this value (default 33) (Linux only)")
         s.o("cheaper-busyness-backlog-multiplier", long, "set cheaper multiplier used for emergency workers (default 3) (Linux only)")
         s.o("cheaper-busyness-backlog-step", int, "number of emergency workers to spawn at a time (default 1) (Linux only)")
+        s.o("cheaper-busyness-backlog-nonzero", long, "spawn emergency worker(s) if backlog is > 0 for more then N seconds (default 60)")
     return config
 
 def erlang_options():
@@ -655,11 +657,19 @@ def http_options():
         s.o("http-cheap", True, "run the http router in cheap mode")
         s.o(("http-stats", "http-stats-server", "http-ss"), str, "run the http router stats server")
         s.o("http-harakiri", int, "enable http router harakiri")
+        s.o("http-modifier2", int, "set uwsgi protocol modifier2")
+        s.o("http-auto-chunked", True, "automatically transform output to chunked encoding during HTTP 1.1 keepalive (if needed)")
+        s.o("http-auto-gzip", True, "automatically gzip content if uWSGI-Encoding header is set to gzip, but content size (Content-Length/Transfer-Encoding) and Content-Encoding are not specified")
+        s.o("http-websockets", True, "automatically detect websockets connections and put the session in raw mode")
+        s.o("http-stud-prefix", 'add addr list', "expect a stud prefix (1byte family + 4/16 bytes address) on connections from the specified address")
 
     with config.section("HTTPS", docs = ["HTTPS"]) as s:
         s.o("https", 'https config', "add an https router/server on the specified address with specified certificate and key")
         s.o("https-export-cert", True, "export uwsgi variable HTTPS_CC containing the raw client certificate")
         s.o("http-to-https", 'address', "add an HTTP router/server on the specified address and redirect all of the requests to HTTPS")
+        s.o("https2", 'https2', "add an https/spdy router/server using keyval options")
+        s.o("https-session-context", str, "set the session id context to the specified value")
+
     return config
 
 def jvm_options():
@@ -671,35 +681,35 @@ def jvm_options():
 
 def lua_options():
     config = Config("Lua")
-    
+
     with config.section("Lua", docs = ["Lua"]) as s:
         s.o("lua", str, "load lua wsapi app")
-    
+
     return config
 
 
 def nagios_options():
     config = Config("Nagios")
-    
+
     with config.section("Nagios output", docs = ["Nagios"]) as s:
         s.o("nagios", True, "Output Nagios-friendly status check information")
-    
+
     return config
 
 
 def pam_options():
     config = Config("PAM")
-    
+
     with config.section("PAM", docs = ["PAM"]) as s:
         s.o("pam", str, "set the pam service name to use")
         s.o("pam-user", str, "set a fake user for pam")
-    
+
     return config
 
 
 def php_options():
     config = Config("PHP")
-    
+
     with config.section("PHP", docs = ["PHP"]) as s:
         s.o(("php-ini", "php-config"), 'php ini', "Use this PHP.ini")
         s.o(("php-ini-append", "php-config-append"), [str], "Append this (these) php.inis to the first one")
@@ -711,34 +721,42 @@ def php_options():
         s.o("php-server-software", str, "force the SERVER_SOFTWARE value reported to PHP")
         s.o("php-app", str, "run _only_ this file whenever a request to the PHP plugin is made")
         s.o("php-dump-config", True, "dump php config (even if modified via --php-set or append options)")
-    
+        s.o("php-allowed-script", [str], "list the allowed php scripts (require absolute path)")
+        s.o("php-app-qs", str, "when in app mode force QUERY_STRING to the specified value + REQUEST_URI")
+        s.o("php-fallback", str, "run the specified php script when the request one does not exist")
+        s.o("php-app-bypass", 'add regexp list', "if the regexp matches the uri the --php-app is bypassed")
+        s.o("php-var", [str], "add/overwrite a CGI variable at each request")
+
     return config
 
 
 def ping_options():
     config = Config("Ping")
-    
+
     with config.section("Ping", docs = ["Ping"]) as s:
         s.o("ping", str, "ping specified uwsgi host", help="If the ping is successful the process exits with a 0 code, otherwise with a value > 0.")
         s.o("ping-timeout", int, "set ping timeout", default=3, help="The maximum number of seconds to wait before considering a uWSGI instance dead")
-    
+
     return config
 
 
 def perl_options():
     config = Config("Perl (PSGI plugin)", "Perl")
-    
+
     with config.section("Perl", docs = ["Perl"]) as s:
         s.o("psgi", str, "load a psgi app")
         s.o("perl-no-die-catch", True, "do not catch $SIG{__DIE__}")
         s.o("perl-local-lib", str, "set perl locallib path")
-    
+        s.o("perl-version", True, "print perl version")
+        s.o("perl-args", str, "add items (space separated) to @ARGV")
+        s.o("perl-arg", [str], "add an item to @ARGV")
+
     return config
 
 
 def ruby_options():
     config = Config("Ruby")
-    
+
     with config.section("Ruby", docs = ["Ruby"]) as s:
         s.o("rails", str, "load a Ruby on Rails <= 2.x app")
         s.o("rack", str, "load a Rack app")
@@ -749,13 +767,15 @@ def ruby_options():
         s.o("rvm-path", [str], "search for rvm in the specified directory")
         s.o("rbshell", optional(True), "run a Ruby/irb shell")
         s.o(("rb-threads", "rbthreads", "ruby-threads"), int, "set the number of Ruby threads to run (Ruby 1.9+)")
-    
+        s.o(("rb-lib", "ruby-lib"), [str], "add a directory to the ruby libdir search path")
+        s.o("rbshell-oneshot", True, "set ruby/irb shell (one shot)")
+
     return config
 
 
 def rawrouter_options():
     config = Config("Rawrouter")
-    
+
     with config.section("Rawrouter", docs = ["Rawrouter"]) as s:
         s.o("rawrouter", 'corerouter', "run the rawrouter on the specified port")
         s.o(("rawrouter-processes", "rawrouter-workers"), int, "prefork the specified number of rawrouter processes")
@@ -776,35 +796,126 @@ def rawrouter_options():
         s.o("rawrouter-timeout", int, "set rawrouter timeout")
         s.o(("rawrouter-stats", "rawrouter-stats-server", "rawrouter-ss"), str, "run the rawrouter stats server")
         s.o("rawrouter-harakiri", int, "enable rawrouter harakiri")
-    
+
     return config
 
 
 def rrdtool_options():
     config = Config("RRDtool")
-    
+
     with config.section("RRDtool", docs = ["RRDtool"]) as s:
         s.o("rrdtool", [str], "collect request data in the specified rrd file")
         s.o("rrdtool-freq", int, "set collect frequency")
         s.o("rrdtool-max-ds", int, "set maximum number of data sources")
-    
+
     return config
 
 
 def async_options():
     config = Config("Async engines")
-    
+
     with config.section("Greenlet", docs = ["Greenlet"]) as s:
         s.o("greenlet", True, "enable greenlet as suspend engine")
-    
+
     with config.section("Gevent", docs = ["Gevent"]) as s:
         s.o("gevent", int, "a shortcut enabling gevent loop engine with the specified number of async cores and optimal parameters")
-    
+
     with config.section("Stackless", docs = ["Stackless"]) as s:
         s.o("stackless", True, "use stackless as suspend engine")
 
     with config.section("uGreen", docs = ["uGreen"]) as s:
         s.o("ugreen", True, "Enable uGreen as suspend/resume engine")
         s.o("ugreen-stacksize", int, "set ugreen stack size in pages")
-    
+
+    with config.section("Fiber") as s:
+        s.o("fiber", True, "Enable Ruby fiber as suspend engine")
+
+    return config
+
+def go_options():
+    config = Config("Go")
+
+    with config.section("Gccgo", docs = ["Go"]) as s:
+        s.o(("go-load", "gccgo-load"), [str], "load a go shared library in the process address space, eventually patching main.main and __go_init_main")
+        s.o(("go-args", "gccgo-args"), str, "set go commandline arguments")
+
+    with config.section("Go_plugin", docs = ["Go"]) as s:
+        s.o("goroutines", 'setup goroutines', "a shortcut setting optimal options for goroutine-based apps, takes the number of goroutines to spawn as argument")
+
+    return config
+
+
+
+def geoip_options():
+    config = Config("GeoIP")
+
+    with config.section("GeoIP", docs = []) as s:
+        s.o("geoip-country", str, "load the specified geoip country database")
+        s.o("geoip-city", str, "load the specified geoip city database")
+
+    return config
+
+def mono_options():
+    config = Config("Mono")
+
+    with config.section("Mono", docs = ["Mono"]) as s:
+        s.o("mono-app", [str], "load a Mono asp.net app from the specified directory")
+        s.o("mono-gc-freq", long, "run the Mono GC every <n> requests (default: run after every request)")
+        s.o("mono-key", [str], "select the ApplicationHost based on the specified CGI var")
+        s.o("mono-version", str, "set the Mono jit version")
+        s.o("mono-config", str, "set the Mono config file")
+        s.o("mono-assembly", str, "load the specified main assembly (default: uwsgi.dll)")
+        s.o("mono-exec", [str], "exec the specified assembly just before app loading")
+        s.o("mono-index", [str], "add an asp.net index file")
+
+    return config
+
+def rsyslog_options():
+    config = Config("Rsyslog")
+
+    with config.section("Rsyslog", docs = []) as s:
+        s.o("rsyslog-packet-size", int, "set maximum packet size for syslog messages (default 1024) WARNING! using packets > 1024 breaks RFC 3164 (#4.1)")
+        s.o("rsyslog-split-messages", True, "split big messages into multiple chunks if they are bigger than allowed packet size (default is false)")
+
+    return config
+
+def webdav_options():
+    config = Config("WebDAV")
+
+    with config.section("WebDAV", docs = []) as s:
+        s.o("webdav-mount", [str], "map a filesystem directory as a webdav store")
+        s.o("webdav-css", [str], "add a css url for automatic webdav directory listing")
+        s.o(("webdav-javascript", "webdav-js"), [str], "add a javascript url for automatic webdav directory listing")
+        s.o("webdav-class-directory", str, "set the css directory class for automatic webdav directory listing")
+        s.o("webdav-div", str, "set the div id for automatic webdav directory listing")
+        s.o("webdav-lock-cache", str, "set the cache to use for webdav locking")
+        s.o("webdav-principal-base", str, "enable WebDAV Current Principal Extension using the specified base")
+        s.o("webdav-add-option", [str], "add a WebDAV standard to the OPTIONS response")
+        s.o("webdav-add-prop", [str], "add a WebDAV property to all resources")
+        s.o("webdav-add-collection-prop", [str], "add a WebDAV property to all collections")
+        s.o("webdav-add-object-prop", [str], "add a WebDAV property to all objects")
+        s.o("webdav-add-prop-href", [str], "add a WebDAV property to all resources (href value)")
+        s.o("webdav-add-collection-prop-href", [str], "add a WebDAV property to all collections (href value)")
+        s.o("webdav-add-object-prop-href", [str], "add a WebDAV property to all objects (href value)")
+        s.o("webdav-add-prop-comp", [str], "add a WebDAV property to all resources (xml value)")
+        s.o("webdav-add-collection-prop-comp", [str], "add a WebDAV property to all collections (xml value)")
+        s.o("webdav-add-object-prop-comp", [str], "add a WebDAV property to all objects (xml value)")
+        s.o("webdav-add-rtype-prop", [str], "add a WebDAV resourcetype property to all resources")
+        s.o("webdav-add-rtype-collection-prop", [str], "add a WebDAV resourcetype property to all collections")
+        s.o("webdav-add-rtype-object-prop", [str], "add a WebDAV resourcetype property to all objects")
+        s.o("webdav-skip-prop", [str], "do not add the specified prop if available in resource xattr")
+
+    return config
+
+
+def xslt_options():
+    config = Config("XSLT")
+
+    with config.section("XSLT", docs = []) as s:
+        s.o("xslt-docroot", [str], "add a document_root for xslt processing")
+        s.o("xslt-ext", [str], "search for xslt stylesheets with the specified extension")
+        s.o("xslt-var", [str], "get the xslt stylesheet path from the specified request var")
+        s.o("xslt-stylesheet", [str], "if no xslt stylesheet file can be found, use the specified one")
+        s.o("xslt-content-type", str, "set the content-type for the xslt rsult (default: text/html)")
+
     return config
