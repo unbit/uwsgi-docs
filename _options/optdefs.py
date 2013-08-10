@@ -548,6 +548,7 @@ def python_options():
         s.o("web3", str, "load a web3 app")
         s.o("pump", str, "load a pump app")
         s.o("wsgi-lite", str, "load a wsgi-lite app")
+        s.o("pecan", str, "Load a pecan config file.", docs=["PythonPecan"])
         s.o("ini-paste", 'paste .INI', "load a paste.deploy config file containing uwsgi section")
         s.o("ini-paste-logged", 'paste .INI', "load a paste.deploy config file containing uwsgi section (load loggers too)")
         s.o("reload-os-env", True, "Force reloading ``os.environ`` at each request")
