@@ -86,7 +86,7 @@ Paste support
 
 If you are a user or developer of Paste-compatible frameworks, such as Pylons and Turbogears or applications using them, you can use the uWSGI ``--paste`` option to conveniently deploy your application.
 
-For example, you have a virtualenv in :file:`/opt/tg2env` containing a Turbogears app called ``addressbook`` configured in :file:`/opt/tg2env/addressbook/development.ini`::
+For example, if you have a virtualenv in :file:`/opt/tg2env` containing a Turbogears app called ``addressbook`` configured in :file:`/opt/tg2env/addressbook/development.ini`::
 
   uwsgi --paste config:/opt/tg2env/addressbook/development.ini --socket :3031 -H /opt/tg2env
 
@@ -99,6 +99,26 @@ That's it! No additional configuration or Python modules to write.
     AssertionError: The EvalException middleware is not usable in a multi-process environment
 
   in which case you'll have to set the ``debug`` option in your paste configuration file to False -- or revert to single process environment.
+
+
+.. _PythonPecan:
+
+Pecan support
+-------------
+
+If you are a user or developer of the Pecan WSGI framework, you can use the uWSGI ``--pecan`` option to conveniently deploy your application.
+
+For example, if you have a virtualenv in :file:`/opt/pecanenv` containing a Pecan app called ``addressbook`` configured in :file:`/opt/pecanenv/addressbook/development.py`::
+
+  uwsgi --pecan /opt/pecanenv/addressbook/development.py --socket :3031 -H /opt/pecanenv
+
+.. warning::
+
+  If you setup multiple process/workers (:term:`master` mode) you will receive an error::
+
+    AssertionError: The DebugMiddleware middleware is not usable in a multi-process environment
+
+  in which case you'll have to set the ``debug`` option in your pecan configuration file to False -- or revert to single process environment.
 
 Using the uwsgi_admin Django app
 --------------------------------
