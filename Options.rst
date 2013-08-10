@@ -4406,6 +4406,16 @@ Load a pump app.
 
 Load a wsgi-lite app.
 
+.. _OptionPecan:
+
+``pecan``
+~~~~~~~~~
+**Argument:** string
+
+Load a pecan config file.
+
+.. seealso:: :doc:`PythonPecan`
+
 .. _OptionIniPaste:
 
 ``ini-paste``
