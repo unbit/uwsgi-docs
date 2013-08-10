@@ -1,5 +1,7 @@
 from optutil import Config
 import os
+import sys
+import json
 
 PRELUDE = """
 .. *********************************************************************
@@ -88,14 +90,14 @@ def read_configs():
     filenames = []
     configs = []
     for funcname, func in funcs:
-        print "Calling %r..." % funcname
+        print >>sys.stderr, "Calling %r..." % funcname
         config = func()
         filename = "Options%s.rst" % config.filename_part
         configs.append((filename, config))
 
     return configs
 
-def main():
+def write_rst():
 
     rst_lines = []
     for filename, config in read_configs():
@@ -104,6 +106,23 @@ def main():
     print "Writing Options.rst..."
     write_output([FULL_PRELUDE] + rst_lines, "Options.rst")
 
+def find_documented_options():
+    options = set()
+    for filename, config in read_configs():
+        for section in config.sections:
+            for opt in section.options:
+                options |= set(opt.names)
+    print json.dumps(sorted(options))
+
+def main():
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--action", default="generate", help="action (generate, list)")
+    args = ap.parse_args()
+    if args.action == "generate":
+        return write_rst()
+    if args.action == "list":
+        return find_documented_options()
 
 if __name__ == '__main__':
     main()

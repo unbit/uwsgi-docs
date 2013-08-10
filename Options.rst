@@ -183,6 +183,86 @@ Mainly useful for SNMP or shared UDP logging.
 
 Enable REUSE_PORT flag on socket to allow multiple instances binding on the same address (BSD only).
 
+.. _OptionHttpSocketModifier1:
+
+``http-socket-modifier1``
+~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** number
+
+Force the specified modifier1 when using HTTP protocol.
+
+.. _OptionHttpSocketModifier2:
+
+``http-socket-modifier2``
+~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** number
+
+Force the specified modifier2 when using HTTP protocol.
+
+.. _OptionFastcgiNphSocket:
+
+``fastcgi-nph-socket``
+~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** *add socket*
+
+Bind to the specified UNIX/TCP socket using FastCGI protocol (nph mode).
+
+.. _OptionFastcgiModifier1:
+
+``fastcgi-modifier1``
+~~~~~~~~~~~~~~~~~~~~~
+**Argument:** number
+
+Force the specified modifier1 when using FastCGI protocol.
+
+.. _OptionFastcgiModifier2:
+
+``fastcgi-modifier2``
+~~~~~~~~~~~~~~~~~~~~~
+**Argument:** number
+
+Force the specified modifier2 when using FastCGI protocol.
+
+.. _OptionScgiSocket:
+
+``scgi-socket``
+~~~~~~~~~~~~~~~
+**Argument:** *add socket*
+
+Bind to the specified UNIX/TCP socket using SCGI protocol.
+
+.. _OptionScgiNphSocket:
+
+``scgi-nph-socket``
+~~~~~~~~~~~~~~~~~~~
+**Argument:** *add socket*
+
+Bind to the specified UNIX/TCP socket using SCGI protocol (nph mode).
+
+.. _OptionScgiModifier1:
+
+``scgi-modifier1``
+~~~~~~~~~~~~~~~~~~
+**Argument:** number
+
+Force the specified modifier1 when using SCGI protocol.
+
+.. _OptionScgiModifier2:
+
+``scgi-modifier2``
+~~~~~~~~~~~~~~~~~~
+**Argument:** number
+
+Force the specified modifier2 when using SCGI protocol.
+
+.. _OptionUndeferredSharedSocket:
+
+``undeferred-shared-socket``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** *add shared socket*
+
+Create a shared sacket for advanced jailing or ipc (undeferred mode).
+
 
 Process Management
 ^^^^^^^^^^^^^^^^^^
@@ -1720,6 +1800,14 @@ Leave master process running as root.
 Miscellaneous
 ^^^^^^^^^^^^^
 
+.. _OptionThunderLock:
+
+``thunder-lock``
+~~~~~~~~~~~~~~~~
+**Argument:** no argument
+
+Serialize accept() usage (if possibie).
+
 .. _OptionSkipZero:
 
 ``skip-zero``
@@ -2079,7 +2167,7 @@ Run the specified command as worker instead of uWSGI itself.
 
 This could be used to run a PHP FastCGI server pool::
 
-    /usr/bin/uwsgi --workers 4 --worker-exec /usr/bin/php53-cgi 
+    /usr/bin/uwsgi --workers 4 --worker-exec /usr/bin/php53-cgi
 
 
 
@@ -3198,6 +3286,14 @@ Gevent
 
 A shortcut enabling gevent loop engine with the specified number of async cores and optimal parameters.
 
+.. _OptionGeventMonkeyPatch:
+
+``gevent-monkey-patch``
+~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** no argument
+
+Call gevent.monkey.patch_all() automatically on startup.
+
 
 Stackless
 ^^^^^^^^^
@@ -3237,6 +3333,30 @@ Enable uGreen as suspend/resume engine.
 **Argument:** number
 
 Set ugreen stack size in pages.
+
+
+Fiber
+^^^^^
+
+.. _OptionFiber:
+
+``fiber``
+~~~~~~~~~
+**Argument:** no argument
+
+Enable Ruby fiber as suspend engine.
+
+
+CoroAE
+^^^^^^
+
+.. _OptionCoroae:
+
+``coroae``
+~~~~~~~~~~
+**Argument:** *setup coroae*
+
+A shortcut enabling Coro::AnyEvent loop engine with the specified number of async cores and optimal parameters.
 
 
 
@@ -3308,6 +3428,38 @@ Set maximum number of retries in case of connection errors (default 1).
 **Argument:** number
 
 Set connection retry delay in seconds (default 7).
+
+.. _OptionCarbonRoot:
+
+``carbon-root``
+~~~~~~~~~~~~~~~
+**Argument:** string
+
+Set carbon metrics root node (default 'uwsgi').
+
+.. _OptionCarbonHostnameDots:
+
+``carbon-hostname-dots``
+~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Set char to use as a replacement for dots in hostname (dots are not replaced by default).
+
+.. _OptionCarbonNameResolve:
+
+``carbon-name-resolve``, ``carbon-resolve-names``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** no argument
+
+Allow using hostname as carbon server address (default disabled).
+
+.. _OptionCarbonIdleAvg:
+
+``carbon-idle-avg``
+~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Average values source during idle period (no requests), can be 'last', 'zero', 'none' (default is last).
 
 
 
@@ -3490,6 +3642,14 @@ Set cheaper multiplier used for emergency workers (default 3) (Linux only).
 **Argument:** number
 
 Number of emergency workers to spawn at a time (default 1) (Linux only).
+
+.. _OptionCheaperBusynessBacklogNonzero:
+
+``cheaper-busyness-backlog-nonzero``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** number
+
+Spawn emergency worker(s) if backlog is > 0 for more then N seconds (default 60).
 
 
 
@@ -3705,6 +3865,99 @@ Enable fastrouter harakiri.
 
 
 
+.. _OptionsGeoip:
+
+GeoIP
+^^^^^
+
+.. _OptionGeoipCountry:
+
+``geoip-country``
+~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Load the specified geoip country database.
+
+.. _OptionGeoipCity:
+
+``geoip-city``
+~~~~~~~~~~~~~~
+**Argument:** string
+
+Load the specified geoip city database.
+
+
+
+.. _OptionsGlusterfs:
+
+GlusterFS
+^^^^^^^^^
+
+.. _OptionGlusterfsMount:
+
+``glusterfs-mount``
+~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Virtual mount the specified glusterfs volume in a uri.
+
+*This option may be declared multiple times.*
+
+.. _OptionGlusterfsTimeout:
+
+``glusterfs-timeout``
+~~~~~~~~~~~~~~~~~~~~~
+**Argument:** number
+
+Timeout for glusterfs async mode.
+
+
+
+.. _OptionsGo:
+
+Gccgo
+^^^^^
+
+.. seealso::
+
+   :doc:`Go`
+
+.. _OptionGoLoad:
+
+``go-load``, ``gccgo-load``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Load a go shared library in the process address space, eventually patching main.main and __go_init_main.
+
+*This option may be declared multiple times.*
+
+.. _OptionGoArgs:
+
+``go-args``, ``gccgo-args``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Set go commandline arguments.
+
+
+Go_plugin
+^^^^^^^^^
+
+.. seealso::
+
+   :doc:`Go`
+
+.. _OptionGoroutines:
+
+``goroutines``
+~~~~~~~~~~~~~~
+**Argument:** *setup goroutines*
+
+A shortcut setting optimal options for goroutine-based apps, takes the number of goroutines to spawn as argument.
+
+
+
 .. _OptionsHTTP:
 
 HTTP
@@ -3912,6 +4165,46 @@ Run the http router stats server.
 
 Enable http router harakiri.
 
+.. _OptionHttpModifier2:
+
+``http-modifier2``
+~~~~~~~~~~~~~~~~~~
+**Argument:** number
+
+Set uwsgi protocol modifier2.
+
+.. _OptionHttpAutoChunked:
+
+``http-auto-chunked``
+~~~~~~~~~~~~~~~~~~~~~
+**Argument:** no argument
+
+Automatically transform output to chunked encoding during HTTP 1.1 keepalive (if needed).
+
+.. _OptionHttpAutoGzip:
+
+``http-auto-gzip``
+~~~~~~~~~~~~~~~~~~
+**Argument:** no argument
+
+Automatically gzip content if uWSGI-Encoding header is set to gzip, but content size (Content-Length/Transfer-Encoding) and Content-Encoding are not specified.
+
+.. _OptionHttpWebsockets:
+
+``http-websockets``
+~~~~~~~~~~~~~~~~~~~
+**Argument:** no argument
+
+Automatically detect websockets connections and put the session in raw mode.
+
+.. _OptionHttpStudPrefix:
+
+``http-stud-prefix``
+~~~~~~~~~~~~~~~~~~~~
+**Argument:** *add addr list*
+
+Expect a stud prefix (1byte family + 4/16 bytes address) on connections from the specified address.
+
 
 HTTPS
 ^^^^^
@@ -3944,6 +4237,22 @@ Export uwsgi variable HTTPS_CC containing the raw client certificate.
 
 Add an HTTP router/server on the specified address and redirect all of the requests to HTTPS.
 
+.. _OptionHttps2:
+
+``https2``
+~~~~~~~~~~
+**Argument:** *https2*
+
+Add an https/spdy router/server using keyval options.
+
+.. _OptionHttpsSessionContext:
+
+``https-session-context``
+~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Set the session id context to the specified value.
+
 
 
 .. _OptionsJVM:
@@ -3961,7 +4270,7 @@ JVM
 ~~~~~~~~~~~~~~~~~~
 **Argument:** string
 
-Load the specified class.
+Load the specified class and call its main() function.
 
 .. _OptionJvmClasspath:
 
@@ -3972,6 +4281,34 @@ Load the specified class.
 Add the specified directory to the classpath.
 
 *This option may be declared multiple times.*
+
+.. _OptionJvmOpt:
+
+``jvm-opt``
+~~~~~~~~~~~
+**Argument:** string
+
+Add the specified jvm option.
+
+*This option may be declared multiple times.*
+
+.. _OptionJvmClass:
+
+``jvm-class``
+~~~~~~~~~~~~~
+**Argument:** string
+
+Load the specified class.
+
+*This option may be declared multiple times.*
+
+.. _OptionJwsgi:
+
+``jwsgi``
+~~~~~~~~~
+**Argument:** string
+
+Load the specified JWSGI application (syntax class:method).
 
 
 
@@ -3991,6 +4328,107 @@ Lua
 **Argument:** string
 
 Load lua wsapi app.
+
+.. _OptionLuaLoad:
+
+``lua-load``
+~~~~~~~~~~~~
+**Argument:** string
+
+Load a lua file.
+
+*This option may be declared multiple times.*
+
+.. _OptionLuaShell:
+
+``lua-shell``, ``luashell``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** no argument
+
+Run the lua interactive shell (debug.debug()).
+
+
+
+.. _OptionsMono:
+
+Mono
+^^^^
+
+.. seealso::
+
+   :doc:`Mono`
+
+.. _OptionMonoApp:
+
+``mono-app``
+~~~~~~~~~~~~
+**Argument:** string
+
+Load a Mono asp.net app from the specified directory.
+
+*This option may be declared multiple times.*
+
+.. _OptionMonoGcFreq:
+
+``mono-gc-freq``
+~~~~~~~~~~~~~~~~
+**Argument:** number
+
+Run the Mono GC every <n> requests (default: run after every request).
+
+.. _OptionMonoKey:
+
+``mono-key``
+~~~~~~~~~~~~
+**Argument:** string
+
+Select the ApplicationHost based on the specified CGI var.
+
+*This option may be declared multiple times.*
+
+.. _OptionMonoVersion:
+
+``mono-version``
+~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Set the Mono jit version.
+
+.. _OptionMonoConfig:
+
+``mono-config``
+~~~~~~~~~~~~~~~
+**Argument:** string
+
+Set the Mono config file.
+
+.. _OptionMonoAssembly:
+
+``mono-assembly``
+~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Load the specified main assembly (default: uwsgi.dll).
+
+.. _OptionMonoExec:
+
+``mono-exec``
+~~~~~~~~~~~~~
+**Argument:** string
+
+Exec the specified assembly just before app loading.
+
+*This option may be declared multiple times.*
+
+.. _OptionMonoIndex:
+
+``mono-index``
+~~~~~~~~~~~~~~
+**Argument:** string
+
+Add an asp.net index file.
+
+*This option may be declared multiple times.*
 
 
 
@@ -4072,6 +4510,32 @@ Do not catch $SIG{__DIE__}.
 **Argument:** string
 
 Set perl locallib path.
+
+.. _OptionPerlVersion:
+
+``perl-version``
+~~~~~~~~~~~~~~~~
+**Argument:** no argument
+
+Print perl version.
+
+.. _OptionPerlArgs:
+
+``perl-args``
+~~~~~~~~~~~~~
+**Argument:** string
+
+Add items (space separated) to @ARGV.
+
+.. _OptionPerlArg:
+
+``perl-arg``
+~~~~~~~~~~~~
+**Argument:** string
+
+Add an item to @ARGV.
+
+*This option may be declared multiple times.*
 
 
 
@@ -4174,6 +4638,50 @@ Run _only_ this file whenever a request to the PHP plugin is made.
 
 Dump php config (even if modified via --php-set or append options).
 
+.. _OptionPhpAllowedScript:
+
+``php-allowed-script``
+~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+List the allowed php scripts (require absolute path).
+
+*This option may be declared multiple times.*
+
+.. _OptionPhpAppQs:
+
+``php-app-qs``
+~~~~~~~~~~~~~~
+**Argument:** string
+
+When in app mode force QUERY_STRING to the specified value + REQUEST_URI.
+
+.. _OptionPhpFallback:
+
+``php-fallback``
+~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Run the specified php script when the request one does not exist.
+
+.. _OptionPhpAppBypass:
+
+``php-app-bypass``
+~~~~~~~~~~~~~~~~~~
+**Argument:** *add regexp list*
+
+If the regexp matches the uri the --php-app is bypassed.
+
+.. _OptionPhpVar:
+
+``php-var``
+~~~~~~~~~~~
+**Argument:** string
+
+Add/overwrite a CGI variable at each request.
+
+*This option may be declared multiple times.*
+
 
 
 .. _OptionsPing:
@@ -4205,6 +4713,103 @@ If the ping is successful the process exits with a 0 code, otherwise with a valu
 Set ping timeout.
 
 The maximum number of seconds to wait before considering a uWSGI instance dead
+
+
+
+.. _OptionsPypy:
+
+PyPy
+^^^^
+
+.. _OptionPypyLib:
+
+``pypy-lib``
+~~~~~~~~~~~~
+**Argument:** string
+
+Set the path/name of the pypy library.
+
+.. _OptionPypySetup:
+
+``pypy-setup``
+~~~~~~~~~~~~~~
+**Argument:** string
+
+Set the path of the python setup script.
+
+.. _OptionPypyHome:
+
+``pypy-home``
+~~~~~~~~~~~~~
+**Argument:** string
+
+Set the home of pypy library.
+
+.. _OptionPypyWsgi:
+
+``pypy-wsgi``
+~~~~~~~~~~~~~
+**Argument:** string
+
+Load a WSGI module.
+
+.. _OptionPypyWsgiFile:
+
+``pypy-wsgi-file``
+~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Load a WSGI/mod_wsgi file.
+
+.. _OptionPypyEval:
+
+``pypy-eval``
+~~~~~~~~~~~~~
+**Argument:** string
+
+Evaluate pypy code before fork().
+
+*This option may be declared multiple times.*
+
+.. _OptionPypyEvalPostFork:
+
+``pypy-eval-post-fork``
+~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Evaluate pypy code soon after fork().
+
+*This option may be declared multiple times.*
+
+.. _OptionPypyExec:
+
+``pypy-exec``
+~~~~~~~~~~~~~
+**Argument:** string
+
+Execute pypy code from file before fork().
+
+*This option may be declared multiple times.*
+
+.. _OptionPypyExecPostFork:
+
+``pypy-exec-post-fork``
+~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Execute pypy code from file soon after fork().
+
+*This option may be declared multiple times.*
+
+.. _OptionPypyPp:
+
+``pypy-pp``, ``pypy-python-path``, ``pypy-pythonpath``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Add an item to the pythonpath.
+
+*This option may be declared multiple times.*
 
 
 
@@ -4504,6 +5109,14 @@ Set the strategy for allocating/deallocating the WSGI env.
 
 Send WSGI http headers as soon as possible (PEP violation).
 
+.. _OptionPythonVersion:
+
+``python-version``
+~~~~~~~~~~~~~~~~~~
+**Argument:** no argument
+
+Report python version.
+
 
 
 .. _OptionsRawrouter:
@@ -4671,6 +5284,39 @@ Run the rawrouter stats server.
 
 Enable rawrouter harakiri.
 
+.. _OptionRawrouterMaxRetries:
+
+``rawrouter-max-retries``
+~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** number
+
+Set the maximum number of retries/fallbacks to other nodes.
+
+
+
+.. _OptionsRing:
+
+Ring
+^^^^
+
+.. _OptionRingLoad:
+
+``ring-load``, ``clojure-load``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Load the specified clojure script.
+
+*This option may be declared multiple times.*
+
+.. _OptionRingApp:
+
+``ring-app``
+~~~~~~~~~~~~
+**Argument:** string
+
+Map the specified ring application (syntax namespace:function).
+
 
 
 .. _OptionsRrdtool:
@@ -4707,6 +5353,29 @@ Set collect frequency.
 **Argument:** number
 
 Set maximum number of data sources.
+
+
+
+.. _OptionsRsyslog:
+
+Rsyslog
+^^^^^^^
+
+.. _OptionRsyslogPacketSize:
+
+``rsyslog-packet-size``
+~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** number
+
+Set maximum packet size for syslog messages (default 1024) WARNING! using packets > 1024 breaks RFC 3164 (#4.1).
+
+.. _OptionRsyslogSplitMessages:
+
+``rsyslog-split-messages``
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** no argument
+
+Split big messages into multiple chunks if they are bigger than allowed packet size (default is false).
 
 
 
@@ -4796,3 +5465,507 @@ Run a Ruby/irb shell.
 **Argument:** number
 
 Set the number of Ruby threads to run (Ruby 1.9+).
+
+.. _OptionRbLib:
+
+``rb-lib``, ``ruby-lib``
+~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Add a directory to the ruby libdir search path.
+
+*This option may be declared multiple times.*
+
+.. _OptionRbshellOneshot:
+
+``rbshell-oneshot``
+~~~~~~~~~~~~~~~~~~~
+**Argument:** no argument
+
+Set ruby/irb shell (one shot).
+
+
+
+.. _OptionsSSL:
+
+SSL Router
+^^^^^^^^^^
+
+.. _OptionSslrouter:
+
+``sslrouter``
+~~~~~~~~~~~~~
+**Argument:** *sslrouter*
+
+Run the sslrouter on the specified port.
+
+.. _OptionSslrouter2:
+
+``sslrouter2``
+~~~~~~~~~~~~~~
+**Argument:** *sslrouter2*
+
+Run the sslrouter on the specified port (key-value based).
+
+.. _OptionSslrouterSessionContext:
+
+``sslrouter-session-context``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Set the session id context to the specified value.
+
+.. _OptionSslrouterProcesses:
+
+``sslrouter-processes``, ``sslrouter-workers``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** number
+
+Prefork the specified number of sslrouter processes.
+
+.. _OptionSslrouterZerg:
+
+``sslrouter-zerg``
+~~~~~~~~~~~~~~~~~~
+**Argument:** *corerouter zerg*
+
+Attach the sslrouter to a zerg server.
+
+.. _OptionSslrouterUseCache:
+
+``sslrouter-use-cache``
+~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** optional string
+
+Use uWSGI cache as hostname->server mapper for the sslrouter.
+
+.. _OptionSslrouterUsePattern:
+
+``sslrouter-use-pattern``
+~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** *corerouter use pattern*
+
+Use a pattern for sslrouter hostname->server mapping.
+
+.. _OptionSslrouterUseBase:
+
+``sslrouter-use-base``
+~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** *corerouter use base*
+
+Use a base dir for sslrouter hostname->server mapping.
+
+.. _OptionSslrouterFallback:
+
+``sslrouter-fallback``
+~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Fallback to the specified node in case of error.
+
+*This option may be declared multiple times.*
+
+.. _OptionSslrouterUseCodeString:
+
+``sslrouter-use-code-string``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** *corerouter cs*
+
+Use code string as hostname->server mapper for the sslrouter.
+
+.. _OptionSslrouterUseSocket:
+
+``sslrouter-use-socket``
+~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** optional *corerouter use socket*
+
+Forward request to the specified uwsgi socket.
+
+.. _OptionSslrouterTo:
+
+``sslrouter-to``
+~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Forward requests to the specified uwsgi server (you can specify it multiple times for load balancing).
+
+*This option may be declared multiple times.*
+
+.. _OptionSslrouterGracetime:
+
+``sslrouter-gracetime``
+~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** number
+
+Retry connections to dead static nodes after the specified amount of seconds.
+
+.. _OptionSslrouterEvents:
+
+``sslrouter-events``
+~~~~~~~~~~~~~~~~~~~~
+**Argument:** number
+
+Set the maximum number of concusrent events.
+
+.. _OptionSslrouterMaxRetries:
+
+``sslrouter-max-retries``
+~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** number
+
+Set the maximum number of retries/fallbacks to other nodes.
+
+.. _OptionSslrouterQuiet:
+
+``sslrouter-quiet``
+~~~~~~~~~~~~~~~~~~~
+**Argument:** no argument
+
+Do not report failed connections to instances.
+
+.. _OptionSslrouterCheap:
+
+``sslrouter-cheap``
+~~~~~~~~~~~~~~~~~~~
+**Argument:** no argument
+
+Run the sslrouter in cheap mode.
+
+.. _OptionSslrouterSubscriptionServer:
+
+``sslrouter-subscription-server``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** *corerouter ss*
+
+Run the sslrouter subscription server on the spcified address.
+
+.. _OptionSslrouterTimeout:
+
+``sslrouter-timeout``
+~~~~~~~~~~~~~~~~~~~~~
+**Argument:** number
+
+Set sslrouter timeout.
+
+.. _OptionSslrouterStats:
+
+``sslrouter-stats``, ``sslrouter-stats-server``, ``sslrouter-ss``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Run the sslrouter stats server.
+
+.. _OptionSslrouterHarakiri:
+
+``sslrouter-harakiri``
+~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** number
+
+Enable sslrouter harakiri.
+
+.. _OptionSslrouterSni:
+
+``sslrouter-sni``
+~~~~~~~~~~~~~~~~~
+**Argument:** no argument
+
+Use SNI to route requests.
+
+
+
+.. _OptionsSymcall:
+
+Symcall
+^^^^^^^
+
+.. _OptionSymcall:
+
+``symcall``
+~~~~~~~~~~~
+**Argument:** string
+
+Load the specified C symbol as the symcall request handler.
+
+.. _OptionSymcallRegisterRpc:
+
+``symcall-register-rpc``
+~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Load the specified C symbol as an RPC function (syntax: name function).
+
+*This option may be declared multiple times.*
+
+.. _OptionSymcallPostFork:
+
+``symcall-post-fork``
+~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Call the specified C symbol after each fork().
+
+*This option may be declared multiple times.*
+
+
+
+.. _OptionsWebdav:
+
+WebDAV
+^^^^^^
+
+.. _OptionWebdavMount:
+
+``webdav-mount``
+~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Map a filesystem directory as a webdav store.
+
+*This option may be declared multiple times.*
+
+.. _OptionWebdavCss:
+
+``webdav-css``
+~~~~~~~~~~~~~~
+**Argument:** string
+
+Add a css url for automatic webdav directory listing.
+
+*This option may be declared multiple times.*
+
+.. _OptionWebdavJavascript:
+
+``webdav-javascript``, ``webdav-js``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Add a javascript url for automatic webdav directory listing.
+
+*This option may be declared multiple times.*
+
+.. _OptionWebdavClassDirectory:
+
+``webdav-class-directory``
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Set the css directory class for automatic webdav directory listing.
+
+.. _OptionWebdavDiv:
+
+``webdav-div``
+~~~~~~~~~~~~~~
+**Argument:** string
+
+Set the div id for automatic webdav directory listing.
+
+.. _OptionWebdavLockCache:
+
+``webdav-lock-cache``
+~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Set the cache to use for webdav locking.
+
+.. _OptionWebdavPrincipalBase:
+
+``webdav-principal-base``
+~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Enable WebDAV Current Principal Extension using the specified base.
+
+.. _OptionWebdavAddOption:
+
+``webdav-add-option``
+~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Add a WebDAV standard to the OPTIONS response.
+
+*This option may be declared multiple times.*
+
+.. _OptionWebdavAddProp:
+
+``webdav-add-prop``
+~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Add a WebDAV property to all resources.
+
+*This option may be declared multiple times.*
+
+.. _OptionWebdavAddCollectionProp:
+
+``webdav-add-collection-prop``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Add a WebDAV property to all collections.
+
+*This option may be declared multiple times.*
+
+.. _OptionWebdavAddObjectProp:
+
+``webdav-add-object-prop``
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Add a WebDAV property to all objects.
+
+*This option may be declared multiple times.*
+
+.. _OptionWebdavAddPropHref:
+
+``webdav-add-prop-href``
+~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Add a WebDAV property to all resources (href value).
+
+*This option may be declared multiple times.*
+
+.. _OptionWebdavAddCollectionPropHref:
+
+``webdav-add-collection-prop-href``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Add a WebDAV property to all collections (href value).
+
+*This option may be declared multiple times.*
+
+.. _OptionWebdavAddObjectPropHref:
+
+``webdav-add-object-prop-href``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Add a WebDAV property to all objects (href value).
+
+*This option may be declared multiple times.*
+
+.. _OptionWebdavAddPropComp:
+
+``webdav-add-prop-comp``
+~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Add a WebDAV property to all resources (xml value).
+
+*This option may be declared multiple times.*
+
+.. _OptionWebdavAddCollectionPropComp:
+
+``webdav-add-collection-prop-comp``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Add a WebDAV property to all collections (xml value).
+
+*This option may be declared multiple times.*
+
+.. _OptionWebdavAddObjectPropComp:
+
+``webdav-add-object-prop-comp``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Add a WebDAV property to all objects (xml value).
+
+*This option may be declared multiple times.*
+
+.. _OptionWebdavAddRtypeProp:
+
+``webdav-add-rtype-prop``
+~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Add a WebDAV resourcetype property to all resources.
+
+*This option may be declared multiple times.*
+
+.. _OptionWebdavAddRtypeCollectionProp:
+
+``webdav-add-rtype-collection-prop``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Add a WebDAV resourcetype property to all collections.
+
+*This option may be declared multiple times.*
+
+.. _OptionWebdavAddRtypeObjectProp:
+
+``webdav-add-rtype-object-prop``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Add a WebDAV resourcetype property to all objects.
+
+*This option may be declared multiple times.*
+
+.. _OptionWebdavSkipProp:
+
+``webdav-skip-prop``
+~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Do not add the specified prop if available in resource xattr.
+
+*This option may be declared multiple times.*
+
+
+
+.. _OptionsXSLT:
+
+XSLT
+^^^^
+
+.. _OptionXsltDocroot:
+
+``xslt-docroot``
+~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Add a document_root for xslt processing.
+
+*This option may be declared multiple times.*
+
+.. _OptionXsltExt:
+
+``xslt-ext``
+~~~~~~~~~~~~
+**Argument:** string
+
+Search for xslt stylesheets with the specified extension.
+
+*This option may be declared multiple times.*
+
+.. _OptionXsltVar:
+
+``xslt-var``
+~~~~~~~~~~~~
+**Argument:** string
+
+Get the xslt stylesheet path from the specified request var.
+
+*This option may be declared multiple times.*
+
+.. _OptionXsltStylesheet:
+
+``xslt-stylesheet``
+~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+If no xslt stylesheet file can be found, use the specified one.
+
+*This option may be declared multiple times.*
+
+.. _OptionXsltContentType:
+
+``xslt-content-type``
+~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Set the content-type for the xslt rsult (default: text/html).
