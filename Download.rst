@@ -8,7 +8,7 @@ Release   Date        Link
 ========  ==========  ===================================================
 Unstable  \-          https://github.com/unbit/uwsgi/
 Stable    2013-07-21  http://projects.unbit.it/downloads/uwsgi-1.9.14.tar.gz
-LTS       2013-03-09  http://projects.unbit.it/downloads/uwsgi-1.4.9.tar.gz
+LTS       2013-08-23  http://projects.unbit.it/downloads/uwsgi-1.4.10.tar.gz
 ========  ==========  ===================================================
 
 uWSGI is also available as a package in several os/distributions.
