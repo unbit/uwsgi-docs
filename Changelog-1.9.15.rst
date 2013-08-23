@@ -78,5 +78,8 @@ file monitor support for OpenBSD,NetBSD,DragonFlyBSD
 --cwd
 *****
 
+--add-gid
+*********
+
 Availability
 ^^^^^^^^^^^^
