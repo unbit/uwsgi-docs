@@ -210,6 +210,8 @@ Language support
 Release Notes
 =============
 
+Stable releases
+
 .. toctree::
    :maxdepth: 1
 
@@ -228,6 +230,13 @@ Release Notes
    Changelog-1.9.2
    Changelog-1.9.1
    Changelog-1.9
+   
+LTS releases
+
+.. toctree::
+   :maxdepth: 1
+
+   Changelog-1.4.10
 
 
 Contact
