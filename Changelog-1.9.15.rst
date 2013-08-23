@@ -36,6 +36,9 @@ uwsgi.cache_keys([cache])
 added `%(ftime)` to logformat
 *****************************
 
+protect destruction of UNIX sockets when another instance binds them
+********************************************************************
+
 --worker-exec2
 **************
 
