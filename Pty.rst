@@ -1,7 +1,7 @@
 The Pty plugin
 ==============
 
-- Available since uWSGI 1.9.15, supported on Linux and OSX
+- Available since uWSGI 1.9.15, supported on Linux, OpenBSD, FreeBSD and OSX
 
 This plugin allows you to attach pseudo terminals to your applications.
 
@@ -25,5 +25,18 @@ The plugin is not included in the default build profiles, so you have to build i
 Example 1: Rack application shared debugging
 ********************************************
 
-Example 2: Python control thread
-********************************
+Example 2: IPython control thread
+*********************************
+
+.. code-block:: py
+
+   import IPython
+   from uwsgidecorators import *
+
+   @postfork
+   @thread
+   def tshell():
+       while True:
+           IPython.embed()
+           
+
