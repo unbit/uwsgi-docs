@@ -13,21 +13,20 @@ The plugin loads ``libpypy-s.so`` on startup, sets the home of the PyPy installa
 implementing the plugin logic. So yes, most of the plugin is implemented in Python, and theoretically this approach will allow
 writing uWSGI plugins directly in Python in addition to C, C++ and Objective-C.
 
-As of May 2013 all of the required patches to PyPy are available in its Mercurial repository on Bitbucket. Binary packages/tarballs
-are not available, so you will need to build/translate libpypy-c by yourself, or download one of the following files (they require libssl 1.0):
+As of August 2013 all of the required patches to PyPy have been merged, so you can get an official source tarball release.
+Unfortunately you still need to build/translate libpypy-c by yourself, or download one of the following files (they require libssl 1.0):
 
 * Linux x86 32-bit: http://projects.unbit.it/downloads/pypy/libpypy-c-x86_32_20130524.so
 * Linux x86 32-bit (with debug symbols): http://projects.unbit.it/downloads/pypy/libpypy-c-x86_32_20130524-dbg.so
 * Linux x86 64-bit: http://projects.unbit.it/downloads/pypy/libpypy-c-x86_64_20130524.so
 * Linux x86 64-bit (with debug symbols): http://projects.unbit.it/downloads/pypy/libpypy-c-x86_64_20130524-dbg.so
 
-In addition to the library you need to download a nightly build of PyPy (use the JITted one) from the PyPy website. You will use
-this directory as the PyPy home (see below).
+In addition to the library you need to obviously download an official binary tarball too.
 
 Building libpypy-c (if needed)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Get the PyPy Mercurial tip from Bitbucket and translate it. This should require no more than 50 minutes, but be sure to have at least 2 gigabytes of free memory on 32-bit systems and 4 gigabytes for 64-bit systems.
+Get PyPy sources and translate it. This should require no more than 50 minutes, but be sure to have at least 2 gigabytes of free memory on 32-bit systems and 4 gigabytes for 64-bit systems.
 
 .. code-block:: sh
 
