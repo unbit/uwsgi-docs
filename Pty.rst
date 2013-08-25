@@ -33,7 +33,7 @@ Example 2: IPython control thread
    import IPython
    from uwsgidecorators import *
 
-   # only worker has the pty attached
+   # only worker 1 has the pty attached
    @postfork(1)
    @thread
    def tshell():
