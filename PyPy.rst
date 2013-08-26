@@ -235,19 +235,31 @@ you will end with a libuwsgi.so shared library you can load with ctypes:
 
 .. code-block:: py
 
+   #/usr/bin/pypy
    import sys
    import ctypes
+   # load the uwsgi library in the global namespace
    uwsgi = ctypes.CDLL('./libuwsgi.so',mode=ctypes.RTLD_GLOBAL)
 
+   # build command line args
    argv = (ctypes.c_char_p * len(sys.argv))()
    pos = 0
    for arg in sys.argv:
        argv[pos] = arg
        pos+=1
 
+   # inform the uwsgi engine, the passed environ is not safe to overwrite
    envs = (ctypes.c_char_p * 1)()
 
    uwsgi.uwsgi_init(len(sys.argv), argv, envs)
+   
+You can now run the script as a standard uwsgi binary:
+
+.. code-block::
+
+   ./fakeuwsgi.py --http-socket :9090 --master --processes 2 --threads 8 --pypy-wsgi myapp
+   
+as you can see there is no need to specify --pypy-home or --pypy-lib as the pypy environment is already available.
    
 Notes
 ^^^^^
