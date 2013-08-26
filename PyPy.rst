@@ -23,6 +23,11 @@ Unfortunately you still need to build/translate libpypy-c by yourself, or downlo
 
 In addition to the library you need to obviously download an official binary tarball too.
 
+UPDATE:
+
+As of August 2013, libpypy-c is not automatically build in pypy release tarballs or nightly builds. If you do not want
+to translate the whole tree every time, you can try the "alternative approach" (described below)
+
 Building libpypy-c (if needed)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -211,6 +216,38 @@ Options
 * ``pypy-exec`` - execute the specified python script before ``fork()``
 * ``pypy-exec-post-fork`` - execute the specified python script after each ``fork()``
 * ``pypy-pp/pypy-python-path/pypy-pythonpath`` - add the specified item to the pythonpath
+
+The alternative approach
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The PyPy plugin in uWSGI 1.9.15 has been extended to automatically detect if uWSGI has been called as a shared library
+by the pypy binary itself (via ctypes for example).
+
+This approach (albeit suboptimal) could be useful to test new pypy releases ('til the PyPy guys start building libpypy-c).
+
+To build a uWSGI shared library with the pypy plugin embedded run:
+
+.. code-block:: sh
+
+   UWSGI_PROFILE=pypy UWSGI_AS_LIB=libuwsgi.so make
+   
+you will end with a libuwsgi.so shared library you can load with ctypes:
+
+.. code-block:: py
+
+   import sys
+   import ctypes
+   uwsgi = ctypes.CDLL('./libuwsgi.so',mode=ctypes.RTLD_GLOBAL)
+
+   argv = (ctypes.c_char_p * len(sys.argv))()
+   pos = 0
+   for arg in sys.argv:
+       argv[pos] = arg
+       pos+=1
+
+   envs = (ctypes.c_char_p * 1)()
+
+   uwsgi.uwsgi_init(len(sys.argv), argv, envs)
    
 Notes
 ^^^^^
