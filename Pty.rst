@@ -25,6 +25,18 @@ The plugin is not included in the default build profiles, so you have to build i
 Example 1: Rack application shared debugging
 ********************************************
 
+.. code-block:: sh
+
+   UWSGI_PROFILE=ruby2 UWSGI_EMBED_PLUGINS=pty make
+   
+.. code-block:: sh
+
+   ./uwsgi --rbshell="require 'pry';binding.pry" --socket /tmp/foo.socket --master --pty-socket :5000
+   
+.. code-block:: sh
+
+   ./uwsgi --pty-connect :5000
+
 Example 2: IPython control thread
 *********************************
 
