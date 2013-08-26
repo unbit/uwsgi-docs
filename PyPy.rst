@@ -242,7 +242,7 @@ you will end with a libuwsgi.so shared library you can load with ctypes:
    uwsgi = ctypes.CDLL('./libuwsgi.so',mode=ctypes.RTLD_GLOBAL)
 
    # build command line args
-   argv = (ctypes.c_char_p * len(sys.argv))()
+   argv = (ctypes.c_char_p * (len(sys.argv)+1))()
    pos = 0
    for arg in sys.argv:
        argv[pos] = arg
