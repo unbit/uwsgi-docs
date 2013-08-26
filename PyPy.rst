@@ -255,7 +255,7 @@ you will end with a libuwsgi.so shared library you can load with ctypes:
    
 You can now run the script as a standard uwsgi binary:
 
-.. code-block::
+.. code-block:: sh
 
    ./fakeuwsgi.py --http-socket :9090 --master --processes 2 --threads 8 --pypy-wsgi myapp
    
@@ -264,7 +264,7 @@ as you can see there is no need to specify --pypy-home or --pypy-lib as the pypy
 in library mode (under pypy) uWSGI cannot change its process name (under Linux and Solaris, as "environ" is no more valid) and a reload
 could need a bit of help for finding the right commandline. Generally this trick will be more than enough:
 
-.. code-block::
+.. code-block:: sh
 
    ./fakeuwsgi.py --http-socket :9090 --master --processes 2 --threads 8 --pypy-wsgi myapp --binary-path ./fakeuwsgi.py
 
