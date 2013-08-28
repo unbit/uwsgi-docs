@@ -44,7 +44,7 @@ What we want to allow to our users
 - run cron scripts
 - run private services (redis, beanstalkd, memcached...)
 - applications can connect to the internet
-- ...
+- multiple domain names can map to the same instance
 
 ...and what we want to forbid
 *****************************
@@ -59,11 +59,39 @@ What we want to allow to our users
 The Operating System
 ********************
 
+The Webserver
+*************
+
+As we do not need to worry about php and the abuse of .htaccess files, we can choose any server we want.
+
+We prefer nginx (even if we [Unbit] are slowly moving to the uWSGI http/https/spdy router), but you can use whatever you like.
+
 The "control panel"
 *******************
 
+This is the thing you need to develop, the more your panel is usable and powerful the more your users will be happy.
+
+Your control panel is probably the thing will make your hosting company successfull.
+
+The objective of your control panel is generating "vassal files" (see below). Vassal files can be .ini, xml, yaml and json (unless you have particular reasons to use other formats).
+
+The vassal file contains the whole structure of a customer micro-system. As soon as a vassal file is created it will be deployed (and when it is changed it will be reloaded)
+
 uWSGI 'language' plugins
 ************************
+
+We want to support multiple kind of applications. The better approach will be having a single uWSGI binary and a series of 'language plugins' (one for each language you want to support).
+
+You can support multiple versions of the same language. Just build the corresponding plugin.
+
+In Unbit we make an extremely modular uWSGi distribution (basically all is a plugin). This is required as we account any MB of memory
+so we allow users to enable only the required features to gain much memory as possible.
+
+If you are still not a black-belt in uWSGI mastering, i suggest you to start with the included 'nolang' build profile.
+
+It will build a standard uwsgi binary without any language builtin.
+
+...
 
 Linux namespaces
 ****************
@@ -77,11 +105,15 @@ uWSGI Emperor and vassals
 Networking
 **********
 
+This is probably the most complex part
+
 Cron
 ****
 
 Static file serving
 *******************
+
+
 
 Additional daemons
 ******************
