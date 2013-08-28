@@ -3,6 +3,8 @@ Massive "secure" Hosting with the Emperor and Linux Namespaces, AKA "Improving p
 
 Author: Roberto De Ioris
 
+*** WORK IN PROGRESS ***
+
 Intro
 *****
 
