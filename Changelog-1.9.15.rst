@@ -12,6 +12,7 @@ Bugfixes
 * improved ruby libraries management on heroku
 * fixed http-keepalive memleak
 * fixed spooler body management under CPython
+* fixed unshare() usage of 'fs'
 
 
 
@@ -80,6 +81,9 @@ file monitor support for OpenBSD,NetBSD,DragonFlyBSD
 
 --add-gid
 *********
+
+Emperor and Linux namespaces improvements
+*****************************************
 
 Availability
 ^^^^^^^^^^^^
