@@ -1,4 +1,4 @@
-Massive "secure" Hosting with the Emperor and Linux Namespaces, AKA "Improving pythonanywhere,com"
+Massive "secure" Hosting with the Emperor and Linux Namespaces, AKA "Improving pythonanywhere.com"
 ==================================================================================================
 
 Author: Roberto De Ioris
@@ -17,6 +17,13 @@ What we want to allow to our users
 
 ...and what we want to forbid
 *****************************
+
+- users cannot see the processes of the other accounts in the machine. Their init process has to be the uWSGI master
+- users cannot see the files of the other accounts in the machine
+- users cannot connect to private services (memcached, redis...) of the other accounts in the machine
+- users cannot read/write ipc semaphores, shared memory and message queues of the other accounts in the machine
+- users cannot allocate more memory than the amount they payed for
+- users cannot use more cpu power than the amount they payed for
 
 uWSGI 'language' plugins
 ************************
@@ -38,3 +45,6 @@ Static file serving
 
 Additional daemons
 ******************
+
+Bonus: KSM
+**********
