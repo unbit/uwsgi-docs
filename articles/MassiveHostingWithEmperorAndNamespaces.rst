@@ -48,3 +48,9 @@ Additional daemons
 
 Bonus: KSM
 **********
+
+What is missing
+***************
+
+- SSH/shells
+- Accounting network usage
