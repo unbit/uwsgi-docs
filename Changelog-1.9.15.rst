@@ -25,6 +25,14 @@ The PTY plugin
 strict mode
 ***********
 
+one of the most common error when writing uWSGI config files, are typos in option names.
+
+As you can add any option in uWSGI config files, the system will accept anythyng you will write even if it is not a real uWSGI option.
+
+While this approach is very powerful and allow lot of funny hacks, it ca cause lot of headaches.
+
+If you want to check all of your options in one step, you can now add the --strict option. Unknown options will trigger an error.
+
 fallback configs
 ****************
 
