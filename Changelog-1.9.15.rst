@@ -57,6 +57,8 @@ you can run the client in various windows, it will be shared by all of the peers
 
 We are sure new funny uses for it will popup pretty soon
 
+preliminary documentation is available at :doc:`Pty`
+
 strict mode
 ***********
 
@@ -122,6 +124,10 @@ you will get in your logs:
 uwsgi.cache_keys([cache])
 *************************
 
+This api function has been added to the python and pypy plugins. It allows you to iterate the keys of a local uWSGI cache.
+
+It returns a list.
+
 added `%(ftime)` to logformat
 *****************************
 
@@ -158,17 +164,31 @@ The GlusterFS plugin (beta)
 --force-gateway
 ***************
 
+all of the gateways (fastrouter, httprouter, rawrouter, sslrouter ...) has to be run under the master process.
+
+By specifying --force-gateway, you will bypass this limit
+
 preliminary python3 profiler (beta)
 ***********************************
+
+The --profiler pycall|pyline profilers have been added to python3. They are beta quality (they leaks memory), but should be usable.
 
 file monitor support for OpenBSD,NetBSD,DragonFlyBSD
 ****************************************************
 
+Both --fs-reload and the @fmon decorator now work on this operating systems.
+
 --cwd
 *****
 
+you can force the startup "current working directory" (used by --vacuum and the reloading subsystem) with this option.
+
+It is useful in chroot setups where the binary executable change its place.
+
 --add-gid
 *********
+
+This options allows you to add additional group ids to the current process. You can specify it multiple times.
 
 Emperor and Linux namespaces improvements
 *****************************************
