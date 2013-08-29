@@ -1,6 +1,8 @@
 uWSGI 1.9.15
 ============
 
+Changelog [20130829]
+
 Bugfixes
 ^^^^^^^^
 
