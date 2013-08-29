@@ -32,7 +32,7 @@ Pseudoterminals are then reachable via network (UNIX or TCP sockets).
 
 You can use them for shared debugging or to have input channels on your webapps.
 
-The plugin is in early stage of development (very few features) and it is not built in by default, but you can already male funny things like:
+The plugin is in early stage of development (very few features) and it is not built in by default, but you can already make funny things like:
 
 .. code-block:: ini
 
@@ -77,9 +77,9 @@ If you want to check all of your options in one step, you can now add the --stri
 fallback configs
 ****************
 
-Being very cheap (in term of resources) and supporting lot of operating system and architecture, uWSGI is heavily used in embedded systems.
+Being very cheap (in term of resources) and supporting lot of operating systems and architectures, uWSGI is heavily used in embedded systems.
 
-One of the common feature in such a device is the "reset to factory defaults" feature.
+One of the common feature in such devices is the "reset to factory defaults".
 
 uWSGI now natively support this kind of operation, thanks to the --fallback-config option.
 
@@ -153,7 +153,7 @@ This should help avoiding sysadmin destructive race conditions or misconfigurati
 --worker-exec2
 **************
 
-this is line --worker-exec but happens after post_fork hooks
+this is like --worker-exec but happens after post_fork hooks
 
 allow post_fork hook on general plugins
 ***************************************
@@ -215,6 +215,8 @@ we want to call our function just before our application is loaded:
    ; set the hook
    call-pre-app = i_am_hello_world_for_uwsgi
    ...
+
+
    
 your custom function will be called just before app loading.
 
@@ -226,11 +228,11 @@ Note: dlopen is a wrapper for the dlopen() function, so all the same rules apply
 init_func support for plugins, and --need-plugin variant
 ********************************************************
 
-when loading a plugin you can call a symbol in soon after dlopen():
+when loading a plugin you can call a symbol defined in it soon after dlopen():
 
 .. code-block:: sh
 
-   uwsgi --plugin foobar|myfunc ...
+   uwsgi --plugin "foobar|myfunc" ...
    
 uWSGI will call the 'myfunc' symbol exposed by the 'foobar' plugin
 
@@ -244,6 +246,7 @@ Author: Ryan Petrello
 A new python loader (--pecan) has been added for the pecan WSGI framework
 
 http://pecanpy.org/
+
 https://uwsgi-docs.readthedocs.org/en/latest/Python.html#pecan-support
 
 UWSGI_REMOVE_INCLUDES
@@ -251,7 +254,7 @@ UWSGI_REMOVE_INCLUDES
 
 during the build phase you can remove include headers with the UWSGI_REMOVE_INCLUDES environment variable.
 
-This is useful for cross-compiling where some automatically detected includes could be wrong
+This is useful for cross-compilation where some automatically detected includes could be wrong
 
 router_expires
 **************
@@ -279,7 +282,7 @@ The GlusterFS plugin (beta)
 
 This new plugin make use ot the new glusterfs c api, avoiding the overhead of fuse when serving files stored on glusterfs servers.
 
-The plugin supports the multiprocess and multithreades modes, while async modes are currently in beta.
+The plugin supports the multiprocess and multithreads modes, while async modes are currently in beta.
 
 Documentation is available: :doc:`GlusterFS`
 
