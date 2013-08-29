@@ -160,8 +160,16 @@ router_expires
 announce Legion's death on reload/shutdown
 ******************************************
 
+Every legion member will now announce its death as soon as a reload (or a shutdown) of the instance is triggered
+
 The GlusterFS plugin (beta)
 ***************************
+
+This new plugin make use ot the new glusterfs c api, avoiding the overhead of fuse when serving files stored on glusterfs servers.
+
+The plugin supports the multiprocess and multithreades modes, while async modes are currently in beta.
+
+Documentation is available: :doc:`GlusterFS`
 
 --force-gateway
 ***************
@@ -173,7 +181,7 @@ By specifying --force-gateway, you will bypass this limit
 preliminary python3 profiler (beta)
 ***********************************
 
-The --profiler pycall|pyline profilers have been added to python3. They are beta quality (they leaks memory), but should be usable.
+The --profiler pycall/pyline profilers have been added to python3. They are beta quality (they leaks memory), but should be usable.
 
 file monitor support for OpenBSD,NetBSD,DragonFlyBSD
 ****************************************************
