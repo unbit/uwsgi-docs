@@ -22,6 +22,41 @@ New features
 The PTY plugin
 **************
 
+This new plugin allows you to generate pseudoterminals and attach them to your workers.
+
+Pseudoterminals are then reachable via network (UNIX or TCP sockets).
+
+You can use them for shared debugging or to have input channels on your webapps.
+
+The plugin is in early stage of development (very few features) and it is not built in by default, but you can already male funny things like:
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugin = pty,rack
+   ; generate a new pseudoterminal on port 5000 and map it to the first worker
+   pty-socket = 127.0.0.1:5000
+   
+   ; classic options
+   master = true
+   processes = 2
+   rack = myapp.ru
+   socket = /tmp/uwsgi.socket
+   
+   ; run a ruby interactive console (will use the pseudoterminal)
+   ; we use pry as it kick asses
+   rbshell = require 'pry';binding.pry
+   
+now you can access the pseudoterminal with
+
+.. code-block:: sh
+
+   uwsgi --plugin pty --pty-connect 127.0.0.1:5000
+   
+you can run the client in various windows, it will be shared by all of the peers (all will access the same pseudoterminal).
+
+We are sure new funny uses for it will popup pretty soon
+
 strict mode
 ***********
 
