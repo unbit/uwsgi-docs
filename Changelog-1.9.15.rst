@@ -16,6 +16,7 @@ Bugfixes
 * fixed spooler body management under CPython
 * fixed unshare() usage of 'fs'
 * fixed UWSGI_PROFILE usage when building plugins with --plugin
+* improved SmartOS support and added OmniOS support 
 
 
 
@@ -162,6 +163,66 @@ general plugins (the ones without the .request hook) can now expose the .post_fo
 --call hooks
 ************
 
+In the same spirit of exec-* hooks, call hooks works in the same way but directly calling functions
+in the current process address space (they have to be exposed as valid symbols)
+
+take this c source (call it hello.c):
+
+.. code-block:: c
+
+   #include <stdio.h>
+   
+   void i_am_hello_world_for_uwsgi() {
+       printf("Hello World!!!\n");
+   }
+   
+and compile it as a shared library:
+
+.. code-block:: sh
+
+    gcc -o libhello.so -shared -fPIC hello.c
+    
+now choose when (and where) to call it in uWSGI:
+
+.. code-block:: sh
+
+   ./uwsgi --help | grep -- --call-
+    --call-pre-jail                        call the specified function before jailing
+    --call-post-jail                       call the specified function after jailing
+    --call-in-jail                         call the specified function in jail after initialization
+    --call-as-root                         call the specified function before privileges drop
+    --call-as-user                         call the specified function after privileges drop
+    --call-as-user-atexit                  call the specified function before app exit and reload
+    --call-pre-app                         call the specified function before app loading
+    --call-post-app                        call the specified function after app loading
+    --call-as-vassal                       call the specified function() before exec()ing the vassal
+    --call-as-vassal1                      call the specified function(char *) before exec()ing the vassal
+    --call-as-vassal3                      call the specified function(char *, uid_t, gid_t) before exec()ing the vassal
+    --call-as-emperor                      call the specified function() in the emperor after the vassal has been started
+    --call-as-emperor1                     call the specified function(char *) in the emperor after the vassal has been started
+    --call-as-emperor2                     call the specified function(char *, pid_t) in the emperor after the vassal has been started
+    --call-as-emperor4                     call the specified function(char *, pid_t, uid_t, gid_t) in the emperor after the vassal has been started
+   
+options ending with a number are variants expecting arguments (the suffix is the number of arguments they take)
+
+we want to call our function just before our application is loaded:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; load the shared library
+   dlopen = ./libhello.so
+   ; set the hook
+   call-pre-app = i_am_hello_world_for_uwsgi
+   ...
+   
+your custom function will be called just before app loading.
+
+Take in account those functions are called in the process address space, so you can make
+all sort of (black) magic with them.
+
+Note: dlopen is a wrapper for the dlopen() function, so all the same rules apply (read: USE ABSOLUTE PATHS !!!)
+   
 init_func support for plugins, and --need-plugin variant
 ********************************************************
 
@@ -178,11 +239,35 @@ uWSGI will call the 'myfunc' symbol exposed by the 'foobar' plugin
 added commodity loader for the pecan framework
 **********************************************
 
+Author: Ryan Petrello
+
+A new python loader (--pecan) has been added for the pecan WSGI framework
+
+http://pecanpy.org/
+https://uwsgi-docs.readthedocs.org/en/latest/Python.html#pecan-support
+
 UWSGI_REMOVE_INCLUDES
 *********************
 
+during the build phase you can remove include headers with the UWSGI_REMOVE_INCLUDES environment variable.
+
+This is useful for cross-compiling where some automatically detected includes could be wrong
+
 router_expires
 **************
+
+We already have various options in the uWSGI core to set Expires header.
+
+This router has been added to allow customizing them:
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = /^foobar1(.*)/ expires:filename=foo$1poo,value=30
+   route = /^foobar2(.*)/ expires:unix=${time[unix]},value=30
+
+the router takes a filename mtime or a unix time, adds 'value' to it, and return it as an http date.
+
 
 announce Legion's death on reload/shutdown
 ******************************************
