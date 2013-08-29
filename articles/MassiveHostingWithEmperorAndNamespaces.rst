@@ -20,7 +20,8 @@ Since 2005 i work as chief sysadmin in the italian ISP Unbit (http://unbit.it) a
 Unbit is a developer-oriented service, we allow hosting basically anything you want without forcing you to a VPS, simply abusing Linux kernel facilities (it is very similar to what currently Heroku
 does but about 5 years before Heroku existed ;)
 
-We are probably one of the few hosting company making kernel hacking and releasing the vast majority of its software as open source.
+In 2009 we started the uWSGI project, initially as a WSGI server, then we slowly realized that its paradigms could be applied to all our infrastructure, so now it is becoming
+a sort of "hosting platform" for various languages. We plan to use only uWSGI for the whole Unbit hosting stack by 2014.
 
 Before you get excited, Unbit accepts only Italian customers (we are not racists, it is a policy for avoiding legal problems with the other hosting companies we work with) and our prices
 are quite high as we do not make any kind of over-selling (and more important we do not give free-accounts ;)
@@ -33,9 +34,11 @@ During summer 2013 i worked a bit with the pythonanywhere.com guys (mainly with 
 
 They heavily use uWSGI features for their service, so they helped popping-up new ideas and solutions in my mind.
 
-In uWSGI 1.9.15 lot of new patches for advanced Linux namespaces usage have been merged.
+In uWSGI 1.9.15 lot of new patches for advanced Linux namespaces usage have been merged, thanks to the collaboration with pythonanywhere.com guys.
 
-This article will show one of the approaches you can follow to build your service for hosting unreliable webapps (yes, even if you have the largest collection of pacifist customers, they have to be considered 'unreliable' and 'evil', otherwise you are not a good sysadmin)
+Based on the experiences of the two companies, this article will show one of the approaches you can follow to build your service for hosting unreliable webapps (yes, even if you have the largest collection of pacifist customers, they have to be considered 'unreliable' and 'evil', otherwise you are not a good sysadmin).
+
+It is not a step-by-step tutorial, but some kind of cookbook to give you some basis for improving and adapting the concepts for your needs.
 
 What we want to allow to our users
 **********************************
