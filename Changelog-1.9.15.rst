@@ -360,14 +360,15 @@ This is useful when waiting for the emperor to move a veth to the vassal namespa
    exec-as-emperor = ip link add veth0 type veth peer name veth1
    ; do not use the $(UWSGI_VASSAL_PID) form, otherwise the config parser will expand it on startup !!!
    exec-as-emperor = ip link set veth1 netns $UWSGI_VASSAL_PID
-   
+
+
 .. code-block:: ini
 
    [uwsgi]
    ; suspend until the emperor attach veth1
    wait-for-interface = veth1
    ; the following hook will be run only after veth1 is available
-   exec-as-root = sethostname vassal001
+   exec-as-root = hostname vassal001
    exec-as-root = ifconfig lo up
    exec-as-root = ifconfig veth1 192.168.0.2
    uid = vassal001
