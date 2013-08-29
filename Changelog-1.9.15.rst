@@ -246,6 +246,7 @@ This is useful when waiting for the emperor to move a veth to the vassal namespa
    ; each vassal should have its veth pair, so the following commands should be improved
    exec-as-emperor = ip link del veth0
    exec-as-emperor = ip link add veth0 type veth peer name veth1
+   ; do not use the $(UWSGI_VASSAL_PID) form, otherwise the config parser will expand it on startup !!!
    exec-as-emperor = ip link set veth1 netns $UWSGI_VASSAL_PID
    
 .. code-block:: ini
