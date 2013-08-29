@@ -15,6 +15,7 @@ Bugfixes
 * fixed http-keepalive memleak
 * fixed spooler body management under CPython
 * fixed unshare() usage of 'fs'
+* fixed UWSGI_PROFILE usage when building plugins with --plugin
 
 
 
