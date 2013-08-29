@@ -123,6 +123,10 @@ you will get in your logs:
 --perl-exec and --perl-exec-post-fork
 *************************************
 
+You can now run custom perl code before and after the fork() calls.
+
+Both options simply take the perl script as the argument
+
 uwsgi.cache_keys([cache])
 *************************
 
@@ -133,20 +137,42 @@ It returns a list.
 added `%(ftime)` to logformat
 *****************************
 
+this is like 'ltime' but honouring the --log-date format
+
 protect destruction of UNIX sockets when another instance binds them
 ********************************************************************
+
+on startup uWSGI now get the inode of the just created unix socket.
+
+On vacuum if the inode is changed the unlink of the socket is skipped.
+
+This should help avoiding sysadmin destructive race conditions or misconfigurations
 
 --worker-exec2
 **************
 
+this is line --worker-exec but happens after post_fork hooks
+
 allow post_fork hook on general plugins
 ***************************************
+
+general plugins (the ones without the .request hook) can now expose the .post_fork hook
 
 --call hooks
 ************
 
 init_func support for plugins, and --need-plugin variant
 ********************************************************
+
+when loading a plugin you can call a symbol in soon after dlopen():
+
+.. code-block:: sh
+
+   uwsgi --plugin foobar|myfunc ...
+   
+uWSGI will call the 'myfunc' symbol exposed by the 'foobar' plugin
+
+--need-plugin is like --plugin but will exit(1) the process if plugin loading fails
 
 added commodity loader for the pecan framework
 **********************************************
