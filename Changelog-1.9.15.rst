@@ -203,6 +203,66 @@ This options allows you to add additional group ids to the current process. You 
 Emperor and Linux namespaces improvements
 *****************************************
 
+Thanks to the cooperation with the pythonanywhere.com guys the Emperor has been improved for better Linux namespaces integration.
+
+The --emperor-use-clone option allows you to use clone() instead of fork() for your vassal's spawn. In this way you can create the vassals
+directly in a new namespace. The function takes the same parameters of the --unshare one
+
+.. code-block:: sh
+
+   uwsgi --emperor /etc/vassals --emperor-use-clone pid,uts
+   
+will create each vassal in a new pid and uts namespace
+
+while
+
+.. code-block:: sh
+
+   uwsgi --emperor /etc/vassals --emperor-use-clone pid,uts,net,ipc,fs
+   
+will basically use all of the currently available namespaces.
+
+Two new exec (and call) hooks are available:
+
+--exec-as-emperor will run commands in the emperor soon after a vassal has been spawn (setting 4 env vars, UWSGI_VASSAL_CONFIG, UWSGI_VASSAL_PID, UWSGI_VASSAL_UID and UWSGI_VASSAL_GID)
+
+--exec-as-vassal will run commands in the vassal just before calling exec() (so directly in the new namespaces)
+
+
+--wait-for-interface
+^^^^^^^^^^^^^^^^^^^^
+
+As dealing with the Linux network namespace introduces lot of race conditions (expecially when working with virtual ethernets), this new option
+allows you to pause an instance until a network interface is available.
+
+This is useful when waiting for the emperor to move a veth to the vassal namespace, avoiding the vassal to run commands on the interface before is available
+
+
+.. code-block:: ini
+
+   [uwsgi]
+   emperor = /etc/uwsgi/vassals
+   emperor-use-clone = pid,net,fs,ipc,uts
+   ; each vassal should have its veth pair, so the following commands should be improved
+   exec-as-emperor = ip link del veth0
+   exec-as-emperor = ip link add veth0 type veth peer name veth1
+   exec-as-emperor = ip link set veth1 netns $UWSGI_VASSAL_PID
+   
+.. code-block:: ini
+
+   [uwsgi]
+   ; suspend until the emperor attach veth1
+   wait-for-interface = veth1
+   ; the following hook will be run only after veth1 is available
+   exec-as-root = sethostname vassal001
+   exec-as-root = ifconfig lo up
+   exec-as-root = ifconfig veth1 192.168.0.2
+   uid = vassal001
+   gid = vassal001
+   socket = :3031
+   ...
+
+
 Availability
 ^^^^^^^^^^^^
 
