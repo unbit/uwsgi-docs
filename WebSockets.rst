@@ -53,38 +53,6 @@ The function can receive messages from a named channel (see below) and automatic
 
 It will always return only websocket messages sent from the browser -- any other communication happens in the background.
 
-Channels
-********
-
-Channels are a new feature in uWSGI 1.9. They are a pretty complex (from an implementation point of view) messaging system but are really easy to use for end-users.
-
-Channels must be created on startup using the ``--channel <name>`` option. You can have as many channels you need, but remember that
-each channel is pretty expensive as it will allocate 2 file descriptors (via ``socketpair()``) for each core of the instance.
-
-Joining a websocket to a channel will automagically forward all of the messages sent to the channel to the websocket connection.
-
-``uwsgi.websocket_channel_join(channel)``
-
-You can implement a chat room with only few lines of code (really!):
-
-.. code-block:: python
-
-   def application(env, start_response):
-       # complete the handshake
-       uwsgi.websocket_handshake(env['HTTP_SEC_WEBSOCKET_KEY'], env.get('HTTP_ORIGIN', ''))
-       # join the channel 'room001'
-       uwsgi.websocket_channel_join('room001')
-       # enter the main cycle
-       while True:
-           # wait for messages (this will automatically forward channel messages to the socket)
-           msg = uwsgi.websocket_recv()
-           # when a message is available, forward it to the channel
-           uwsgi.channel_send('room001', msg) 
-
-That's all. (Really!)
-
-When you call ``uwsgi.channel_send(...)`` all of the cores blocked in ``uwsgi.websocket_recv()`` will automatically
-forward the packet to the browser.
 
 
 PING/PONG
@@ -101,26 +69,45 @@ Available proxies
 
 Unfortunately not all of the HTTP webserver/proxies work flawlessly with websockets.
 
-* The uWSGI HTTP/HTTPS/SPDY router supports them without problems. Just remember to add the ``--http-raw-body`` option.
+* The uWSGI HTTP/HTTPS/SPDY router supports them without problems. Just remember to add the ``--http-websockets`` option.
 
   .. code-block:: sh
 
+   uwsgi --http :8080 --http-websockets --wsgi-file myapp.py
+   
+or
+
+.. code-block:: sh
+
    uwsgi --http :8080 --http-raw-body --wsgi-file myapp.py
+   
+it is a bit more rawer but supports things like chunked input
 
 * Haproxy works fine.
+
+* nginx >= 1.4 works fine and without additional configuration
 
 Languages support
 *****************
 
-* Python
-* Perl
+* Python https://github.com/unbit/uwsgi/blob/master/tests/websockets_echo.py
+* Perl https://github.com/unbit/uwsgi/blob/master/tests/websockets_echo.pl
+* PyPy https://github.com/unbit/uwsgi/blob/master/tests/websockets_chat_async.py
+* Ruby https://github.com/unbit/uwsgi/blob/master/tests/websockets_echo.ru
 
-Concurrency models
-******************
+Supported Concurrency models
+****************************
 
-* Multithread
+* Multiprocess
+* Multithreaded
+* uWSGI native async api
+* Coro::AnyEvent
 * gevent
-* Goroutines
+* Ruby fibers + uWSGI async
+* Ruby threads
+* greenlet + uWSGI async
+* uGreen + uWSGI async
+* PyPy continulets
 
 wss:// (websockets over https)
 ******************************
@@ -135,10 +122,20 @@ n/a
 Routing
 *******
 
+The http proxy internal router supports websocket out of the box (assuming your front-line proxy already supports them)
+
 .. code-block:: ini
 
    [uwsgi]
    route = ^/websocket uwsgi:127.0.0.1:3032
 
-Performance tips
-****************
+Api
+***
+
+uwsgi.websocket_handshake(key, origin)
+
+uwsgi.websocket_recv()
+
+uwsgi.websocket_send(msg)
+
+uwsgi.websocket_recv_nb()
