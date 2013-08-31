@@ -117,7 +117,7 @@ uWSGI Subsystems
    SNI
    GeoIP
    Transformations
-   Websockets
+   WebSockets
 
 
 
