@@ -5,9 +5,7 @@ In uWSGI 1.9, a high performance websocket (RFC 6455) implementation has been ad
 
 Although many different solutions exist for WebSockets, most of them rely on a higher-level language implementation, that rarely is good enough for topics like gaming or streaming.
 
-The uWSGI websockets implementation is compiled in by default and can be combined with the Channels subsystem (another new feature of the 1.9 tree).
-
-Channels allow you to quickly exchange messages (managed with various Unix IPC techniques) with all of the cores of the uWSGI instance (and pretty soon with other instances too) without the need of an external queue like ZeroMQ or Redis.
+The uWSGI websockets implementation is compiled in by default
 
 Websocket support is sponsored by 20Tab S.r.l. http://20tab.com/
 
@@ -53,7 +51,11 @@ The function can receive messages from a named channel (see below) and automatic
 
 It will always return only websocket messages sent from the browser -- any other communication happens in the background.
 
+There is a non-blocking variant too:
 
+``msg = uwsgi.websocket_recv_nb()``
+
+check: https://github.com/unbit/uwsgi/blob/master/tests/websockets_chat_async.py
 
 PING/PONG
 *********
