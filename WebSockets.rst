@@ -1,5 +1,5 @@
-WebSocket support (from 1.9-dev)
-================================
+WebSocket supports
+==================
 
 In uWSGI 1.9, a high performance websocket (RFC 6455) implementation has been added.
 
