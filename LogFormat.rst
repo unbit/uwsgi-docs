@@ -77,7 +77,7 @@ With the following log format you will be able to access code-defined logvars.
 
 .. code-block:: sh
 
-   uwsgi --logformat "worker id =``%(worker_id) for request \"%(method) %(uri)`` %(proto)\" test = %(foo)"
+   uwsgi --logformat "worker id = %(worker_id) for request \"%(method) %(uri)`` %(proto)\" test = %(foo)"
 
 
 Apache style combined request logging
@@ -89,7 +89,7 @@ To generate Apache compatible logs:
 
    [uwsgi]
    ...
-   log-format =``%(addr) - %(user) [%(ltime)] "%(method) %(uri) %(proto)" %(status) %(size)`` "%(referer)" "%(uagent)"
+   log-format = %(addr) - %(user) [%(ltime)] "%(method) %(uri) %(proto)" %(status) %(size)`` "%(referer)" "%(uagent)"
    ...
 
 
