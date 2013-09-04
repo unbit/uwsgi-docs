@@ -20,8 +20,8 @@ where an Emperor (for example) manages hundreds of unrelated uWSGI instances, th
 
 Managing jails directly in uWSGI config files highly reduce sysadmin costs and helps having a better organization of the whole infrastructure.
 
-Old-style jails
-***************
+Old-style jails (FreeBSD < 8)
+*****************************
 
 FreeBSD exposes two main api for managing jails. The old (and easier) one is based on the jail() function.
 
@@ -58,7 +58,89 @@ In our case the --exec-pre-jail hook will do the trick
    ; load the application (remember we are in the jail)
    wsgi-file = myapp.wsgi
    
+   ; drop privileges
+   uid = kratos
+   gid = kratos
+   
    ; common options
    master = true
    processes = 2
 
+New style jails (FreeBSD >= 8)
+******************************
+
+FreeBSD 8 introdiced a new advanced api for managing jails. Based on the jail_set() syscall, libjail exposes dozens of features
+and allows fine-tuning of your jails. To use the new api you need the --jail2 option (aliased as --libjail)
+
+``--jail2 <key>[=value]``
+
+Each --jail2 option maps 1:1 with a jail attribute so you can basically tune everything !
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; create the jail with /jails/001 as rootfs
+   jail2 = path=/jails/001
+   ; set hostname to 'foobar'
+   jail2 = host.hostname=foobar
+   ; create the alias on 'em0'
+   exec-pre-jail = ifconfig em0 192.168.0.40 alias
+   ; attach the alias to the jail
+   jail2 = ip4.addr=192.168.0.40
+   
+   ; bind the http-socket (we are now in the jail)
+   http-socket = 192.168.0.40:8080
+   
+   ; load the application (remember we are in the jail)
+   wsgi-file = myapp.wsgi
+   
+   ; drop privileges
+   uid = kratos
+   gid = kratos
+   
+   ; common options
+   master = true
+   processes = 2
+   
+   
+DevFS
+*****
+
+The DevFS virtual filesystem manages the /dev directory on FreeBSD.
+
+The /dev filesystem is not mounted in the jail, but you can need it for literally hundreds of reasons.
+
+The "saner" way to manage devfs is allowing it to be mountable in the jail itself:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; create the jail with /jails/001 as rootfs
+   jail2 = path=/jails/001
+   ; set hostname to 'foobar'
+   jail2 = host.hostname=foobar
+   ; create the alias on 'em0'
+   exec-pre-jail = ifconfig em0 192.168.0.40 alias
+   ; attach the alias to the jail
+   jail2 = ip4.addr=192.168.0.40
+   
+   ; allows mount of devfs in the jail
+   jail2 = enforce_statfs=1
+   jail2 = allow.mount
+   jail2 = allow.mount.devfs
+   ; ... and mount it
+   exec-post-jail = mount -t devfs devfs /dev
+   
+   ; bind the http-socket (we are now in the jail)
+   http-socket = 192.168.0.40:8080
+   
+   ; load the application (remember we are in the jail)
+   wsgi-file = myapp.wsgi
+   
+   ; drop privileges
+   uid = kratos
+   gid = kratos
+   
+   ; common options
+   master = true
+   processes = 2
