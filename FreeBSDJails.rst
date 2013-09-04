@@ -44,20 +44,21 @@ In our case the --exec-pre-jail hook will do the trick
 
 .. code-block:: ini
 
-[uwsgi]
-; create the jail with /jails/001 as rootfs and 'foobar' as hostname
-jail = /jails/001 foobar
-; create the alias on 'em0'
-exec-pre-jail = ifconfig em0 192.168.0.40 alias
-; attach the alias to the jail
-jail-ip4 = 192.168.0.40
+   [uwsgi]
+   ; create the jail with /jails/001 as rootfs and 'foobar' as hostname
+   jail = /jails/001 foobar
+   ; create the alias on 'em0'
+   exec-pre-jail = ifconfig em0 192.168.0.40 alias
+   ; attach the alias to the jail
+   jail-ip4 = 192.168.0.40
+   
+   ; bind the http-socket (we are now in the jail)
+   http-socket = 192.168.0.40:8080
+   
+   ; load the application (remember we are in the jail)
+   wsgi-file = myapp.wsgi
+   
+   ; common options
+   master = true
+   processes = 2
 
-; bind the http-socket (we are now in the jail)
-http-socket = 192.168.0.40:8080
-
-; load the application (remember we are in the jail)
-wsgi-file = myapp.wsgi
-
-; common options
-master = true
-processes = 2
