@@ -202,6 +202,15 @@ for use with external applications.
 Attaching to a jail
 *******************
 
+You can attach uWSGI instances to already running jails (they can be standard persistent jail too) using --jail-attach <id>
+
+The id argument can be a jid or the name of the jail.
+
+This feature requires FreeBSD 8
 
 Notes
 *****
+
+A jail is destroyed when the last process running in it dies
+
+By default everything mounted under the rootfs (before entering the jail) will be seen by the jail it self (we have seen it before when dealing with devfs)
