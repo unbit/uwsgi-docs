@@ -188,3 +188,5 @@ Reloading
 Reloading (or binary patching) is a bit annoying to manage as uWSGI need to re-exec itself, so you need a copy of the binary, plugins and the config file
 in your jail (unless you can sacrifice graceful reload and simply delegate the Emperor to respawn the instance)
 
+Another approach is (like with devfs) mounting the directory with the uwsgi binary (and the eventual plugins) in the jail itself and instruct
+uWSGI to use this new path with --binary-path
