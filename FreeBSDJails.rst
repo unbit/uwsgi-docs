@@ -117,7 +117,7 @@ Two main paooraches are available: mounting it in the /dev/ directory of the roo
 
    [uwsgi]
    ; avoid re-mounting the file system every time
-   if-not-exists = /jails/001/dev
+   if-not-exists = /jails/001/dev/zero
      exec-pre-jail = mount -t devfs devfs /jails/001/dev
    endif =
    ; create the jail with /jails/001 as rootfs
@@ -163,7 +163,7 @@ or (allow the jail itself to mount it)
    jail2 = allow.mount
    jail2 = allow.mount.devfs
    ; ... and mount it
-   if-not-exists = /dev/null
+   if-not-exists = /dev/zero
      exec-post-jail = mount -t devfs devfs /dev
    endif =
    
