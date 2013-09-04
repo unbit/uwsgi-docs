@@ -110,7 +110,7 @@ The DevFS virtual filesystem manages the /dev directory on FreeBSD.
 
 The /dev filesystem is not mounted in the jail, but you can need it for literally hundreds of reasons.
 
-Two main paooraches are available: mounting it in the /dev/ directory of the roots before creating the jail, or allowing the jail to mount it
+Two main approaches are available: mounting it in the /dev/ directory of the roots before creating the jail, or allowing the jail to mount it
 
 
 .. code-block:: ini
