@@ -144,6 +144,7 @@ Securing uWSGI
    Cgroups
    KSM
    Namespaces
+   FreeBSDJails
 
 
 Keeping an eye on your apps
