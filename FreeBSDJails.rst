@@ -190,3 +190,18 @@ in your jail (unless you can sacrifice graceful reload and simply delegate the E
 
 Another approach is (like with devfs) mounting the directory with the uwsgi binary (and the eventual plugins) in the jail itself and instruct
 uWSGI to use this new path with --binary-path
+
+
+The jidfile
+***********
+
+Each jail can be referenced by a unique name (optional) or its "jid". This is similar to a "pid", as you can use it
+to send commands (and updates) to an already running jail. The --jidfile <file> option allows you to store the jid in a file
+for use with external applications.
+
+Attaching to a jail
+*******************
+
+
+Notes
+*****
