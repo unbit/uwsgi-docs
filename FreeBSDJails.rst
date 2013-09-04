@@ -110,7 +110,41 @@ The DevFS virtual filesystem manages the /dev directory on FreeBSD.
 
 The /dev filesystem is not mounted in the jail, but you can need it for literally hundreds of reasons.
 
-The "saner" way to manage devfs is allowing it to be mountable in the jail itself:
+Two main paooraches are available: mounting it in the /dev/ directory of the roots before creating the jail, or allowing the jail to mount it
+
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; avoid re-mounting the file system every time
+   if-not-exists = /jails/001/dev
+     exec-pre-jail = mount -t devfs devfs /jails/001/dev
+   endif =
+   ; create the jail with /jails/001 as rootfs
+   jail2 = path=/jails/001
+   ; set hostname to 'foobar'
+   jail2 = host.hostname=foobar
+   ; create the alias on 'em0'
+   exec-pre-jail = ifconfig em0 192.168.0.40 alias
+   ; attach the alias to the jail
+   jail2 = ip4.addr=192.168.0.40
+   
+   ; bind the http-socket (we are now in the jail)
+   http-socket = 192.168.0.40:8080
+   
+   ; load the application (remember we are in the jail)
+   wsgi-file = myapp.wsgi
+   
+   ; drop privileges
+   uid = kratos
+   gid = kratos
+   
+   ; common options
+   master = true
+   processes = 2
+
+
+or (allow the jail itself to mount it)
 
 .. code-block:: ini
 
@@ -129,7 +163,9 @@ The "saner" way to manage devfs is allowing it to be mountable in the jail itsel
    jail2 = allow.mount
    jail2 = allow.mount.devfs
    ; ... and mount it
-   exec-post-jail = mount -t devfs devfs /dev
+   if-not-exists = /dev/null
+     exec-post-jail = mount -t devfs devfs /dev
+   endif =
    
    ; bind the http-socket (we are now in the jail)
    http-socket = 192.168.0.40:8080
@@ -144,3 +180,11 @@ The "saner" way to manage devfs is allowing it to be mountable in the jail itsel
    ; common options
    master = true
    processes = 2
+
+
+Reloading
+*********
+
+Reloading (or binary patching) is a bit annoying to manage as uWSGI need to re-exec itself, so you need a copy of the binary, plugins and the config file
+in your jail (unless you can sacrifice graceful reload and simply delegate the Emperor to respawn the instance)
+
