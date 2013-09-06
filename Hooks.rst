@@ -20,21 +20,21 @@ Each phase can be "fatal", if so, a failing hook will mean failing of the whole 
 
 Currently (September 2013) the following phases are available:
 
-`pre-jail` run before any attempt to drop privileges or put the process in some form of jail. it is fatal.
+``pre-jail`` run before any attempt to drop privileges or put the process in some form of jail. it is fatal.
 
-`post-jail` run soon after any jailing, but before privileges drop. If jailing requires fork(), the parent process run this phase. it is fatal.
+``post-jail`` run soon after any jailing, but before privileges drop. If jailing requires fork(), the parent process run this phase. it is fatal.
 
-`in-jail` run soon after jayling, but after post-jail. If jailing requires fork(), the chidlren run this phase. it is fatal.
+``in-jail`` run soon after jayling, but after post-jail. If jailing requires fork(), the chidlren run this phase. it is fatal.
 
-`as-root` run soon before privileges drop (last chance to run something as root). it is fatal.
+``as-root`` run soon before privileges drop (last chance to run something as root). it is fatal.
 
-`as-user` run soon after privileges drop. it is fatal.
+``as-user`` run soon after privileges drop. it is fatal.
 
-`as-user-atexit` run before shutdown of the instance. it is non-fatal.
+``as-user-atexit`` run before shutdown of the instance. it is non-fatal.
 
-`as-emperor` run soon after the spawn of a vassal in the Emperor process. it is non-fatal.
+``as-emperor`` run soon after the spawn of a vassal in the Emperor process. it is non-fatal.
 
-`as-vassal` run in the vassal before executing the uwsgi binary. it is fatal.
+``as-vassal`` run in the vassal before executing the uwsgi binary. it is fatal.
 
 The "hardcoded" hooks
 ^^^^^^^^^^^^^^^^^^^^^
