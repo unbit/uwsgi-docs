@@ -134,3 +134,39 @@ The only exception to the rule are the `as-emperor` and `as-vassal` phases. For 
 
 The "advanced" hooks
 ^^^^^^^^^^^^^^^^^^^^
+
+A problem (limiting their versatility) with 'hardcoded' hooks, is that you cannot control the order of the whole chain (as each phase executes each hooks grouped by type). If you want more control
+"advanced" hooks are the best choice.
+
+Each phase has a single chain in which you specify the hook the call and which handler.
+
+Handlers specify how to run hooks. New handlers can be registered by plugins.
+
+Currently the handlers exposed by the core are:
+
+``exec``
+
+``call``
+
+``callret``
+
+``callint``
+
+``callintret``
+
+``mount``
+
+``umount``
+
+``cd``
+
+``exit``
+
+``print``
+
+.. code-block:: ini
+
+   [uwsgi]
+   hook-as-root = mount:proc none /proc
+   hook-as-root = exec:cat /proc/self/mounts
+   ...
