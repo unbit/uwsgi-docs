@@ -30,6 +30,10 @@ Currently (September 2013) the following phases are available:
 
 ``as-user`` run soon after privileges drop. it is fatal.
 
+``pre-app`` run before applications loading. it is fatal.
+
+``post-app`` run after applications loading. it is fatal.
+
 ``as-user-atexit`` run before shutdown of the instance. it is non-fatal.
 
 ``as-emperor`` run soon after the spawn of a vassal in the Emperor process. it is non-fatal.
