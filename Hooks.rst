@@ -167,6 +167,7 @@ Currently the handlers exposed by the core are:
 .. code-block:: ini
 
    [uwsgi]
+   ...
    hook-as-root = mount:proc none /proc
    hook-as-root = exec:cat /proc/self/mounts
    hook-pre-app = callint:putenv PATH=bin:$(PATH)
