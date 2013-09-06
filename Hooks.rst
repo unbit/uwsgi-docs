@@ -169,4 +169,7 @@ Currently the handlers exposed by the core are:
    [uwsgi]
    hook-as-root = mount:proc none /proc
    hook-as-root = exec:cat /proc/self/mounts
+   hook-pre-app = callint:putenv PATH=bin:$(PATH)
+   hook-post-app = call:uwsgi_log application has been loaded
+   hook-as-user-atexit = print:goodbye cruel world
    ...
