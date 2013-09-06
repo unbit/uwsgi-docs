@@ -39,7 +39,7 @@ Currently (September 2013) the following phases are available:
 The "hardcoded" hooks
 ^^^^^^^^^^^^^^^^^^^^^
 
-As sais before the purpose of the hook subsystem is allowing to attach "hooks" to the various uWSGI phases.
+As said before the purpose of the hook subsystem is allowing to attach "hooks" to the various uWSGI phases.
 
 There are two kind of hooks, the simple ones are the so-called "hardcoded". They exposes common patterns at the cost of versatility.
 
@@ -126,3 +126,7 @@ Remember, you can attach all of the hooks you need to a hook-phase pair:
    ...
    
 The only exception to the rule are the `as-emperor` and `as-vassal` phases. For various reasons they expose a bunch of handy variants
+
+
+The "advanced" hooks
+^^^^^^^^^^^^^^^^^^^^
