@@ -144,25 +144,25 @@ Handlers specify how to run hooks. New handlers can be registered by plugins.
 
 Currently the handlers exposed by the core are:
 
-``exec``
+``exec`` same as the 'exec' hardcoded options
 
-``call``
+``call`` call the specified symbol ignoring return value
 
-``callret``
+``callret`` call the specified symbol expecting an int return. anything != 0 means failure
 
-``callint``
+``callint`` call the specified symbol parsing the argument as an int
 
-``callintret``
+``callintret`` call the specified symbol parsing the argument as an int and expecting an int return.
 
-``mount``
+``mount`` same as 'mount' hardcoded options
 
-``umount``
+``umount`` same as 'umount' hardcoded options
 
-``cd``
+``cd`` commodity handler, you can obtain the same using callint:chdir <directory>
 
-``exit``
+``exit`` commodity handler, you can obtain the same using callint:exit [num]
 
-``print``
+``print`` commodity handler, you can obtain the same calling the uwsgi_log symbol
 
 .. code-block:: ini
 
