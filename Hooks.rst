@@ -43,12 +43,86 @@ As sais before the purpose of the hook subsystem is allowing to attach "hooks" t
 
 There are two kind of hooks, the simple ones are the so-called "hardcoded". They exposes common patterns at the cost of versatility.
 
-Currently (Semptember 2013) the following "hardcoded" hooks are available:
+Currently (Semptember 2013) the following "hardcoded" hooks are available (they run in the order they are showed below):
 
-``exec`` run shell commands
-
-``call`` call functions in the current process address space
 
 ``mount`` mount filesystems
+***************************
+
+arguments: <filesystem> <src> <mountpoint> [flags]
+
+the exposed flags are the one available for the operating system. As an example on linux you will options like bind, recursive, readonly and so on
 
 ``umount`` un-mount filesystems
+*******************************
+
+arguments: <mountpoint> [flags]
+
+``exec`` run shell commands
+***************************
+
+arguments: <command> [args...]
+
+run the command under /bin/sh.
+
+If for some reason you do not want to use /bin/sh as the running shell, you can override it with the --binsh option (you can specify multiple --binsh option, they will be tried until one valid shell is found)
+
+``call`` call functions in the current process address space
+************************************************************
+
+arguments: <symbol> [args...]
+
+generally the arguments are ignored (the only exceptions are the emperor/vassal phases, see below) as the system expect to call symbol without arguments.
+
+<symbol> can be any symbol currently available in the process address space.
+
+This allows funny tricks, abusing the --dlopen uWSGI option:
+
+.. code-block:: c
+
+   // foo.c
+   #include <stdio.h>
+   void foo_hello() {
+           printf("i am the foo_hello function called by a hook !!!\n");
+   }
+   
+build it as shared library:
+
+.. code-block:: sh
+
+   gcc -o foo.so -shared -fPIC foo.c
+   
+and load into the uWSGI symbols table:
+
+.. code-block:: sh
+
+   uwsgi --dlopen ./foo.so ...
+   
+from now on the "foo_hello" symbol is available in the uWSGI symbols table, ready to be called by the 'call' hooks
+
+Pay attention as --dlopen is a wrapper for the C function dlopen(), so beware of absolute paths and library search paths (if you do not want headaches, use always absolute paths when dealing with shared libraries)
+
+Attaching "hardcoded" hooks
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Each hardcoded hooks exposes is set of options for each phase (with some exception)
+
+Each option is composed by the name of the hook and its phase, so to run a command in the 'as-root' phase you will use --exec-as-root, or --exec-as-user for the 'as-user' phase.
+
+Remember, you can attach all of the hooks you need to a hook-phase pair:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   exec-as-root = cat /proc/cpuinfo
+   exec-as-root = echo 1 > /proc/sys/net/ipv4/ip_forward
+   
+   exec-as-user = ls /tmp
+   exec-as-user-at-exit = rm /tmp/foobar
+   
+   dlopen = ./foo.so
+   call-as-user = foo_hello
+   ...
+   
+The only exception to the rule are the `as-emperor` and `as-vassal` phases. For various reasons they expose a bunch of handy variants
