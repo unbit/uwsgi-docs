@@ -98,8 +98,6 @@ The following item types are supported:
 
 ``false`` boolean FALSE
 
-``ext`` msgpack extension, the argument is the extension blob
-
 in addition to msgpack types, a series of dynamic types are available:
 
 ``msg`` translate the logline to a msgpack string with newline chopped
