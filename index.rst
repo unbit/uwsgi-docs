@@ -69,6 +69,7 @@ Table of Contents
    Embed
    Logging
    LogFormat
+   LogEncoders
    Glossary
    
 Tutorials
