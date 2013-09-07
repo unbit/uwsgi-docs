@@ -70,7 +70,9 @@ a map of 3 items | the string boo | the number 30| the string foo| the string ba
 
 The <format> string is a representation of this way:
 
-map:2|str:foo|str:bar|str:test|int:17
+.. code-block:: sh
+   
+   map:2|str:foo|str:bar|str:test|int:17
 
 The pipe is the seprator of each item. The string before the colon is the type of item, followed by the optional argument
 
