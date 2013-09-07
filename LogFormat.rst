@@ -7,7 +7,7 @@ syntax is simple:
 .. code-block:: ini
 
    [uwsgi]
-   logformat = i am a logline reporting "%(method)``%(uri) %(proto)" returning with status %(status)`` 
+   logformat = i am a logline reporting "%(method) %(uri) %(proto)" returning with status %(status)`` 
 
 All of the %() marked variables are substituted using specific rules. Three
 kinds of logvars are defined:
@@ -77,7 +77,7 @@ With the following log format you will be able to access code-defined logvars.
 
 .. code-block:: sh
 
-   uwsgi --logformat "worker id = %(worker_id) for request \"%(method) %(uri)`` %(proto)\" test = %(foo)"
+   uwsgi --logformat "worker id = %(worker_id) for request \"%(method) %(uri) %(proto)\" test = %(foo)"
 
 
 Apache style combined request logging
