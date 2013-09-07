@@ -17,6 +17,8 @@ Encoders can be added by plugins, and can be enabled in chain (the output of an 
    ; after gzip add a 'clear' prefix to easy decode
    log-encoder = prefix i am gzip encoded
    ...
+
+
    
    
 with this configuration the log server will receive the "i am gzip encoded" string followed by the tru log message encoded in gzip
