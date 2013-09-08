@@ -256,6 +256,29 @@ rewrite the first 2 rules as one:
 
    route-host = (.*) goto:$1
    
+Collecting response headers
+***************************
+
+As we have already seen, each uWSGI request has a set of variables associated. They are generally the CGI vars passed by the webserver, but you can
+extend them with other variables too (check the 'addvar' action).
+
+uWSGI 1.9.16 added a new feature allowing you to store the content of a response header in a request var. This simplify the write of more advanced rules.
+
+For example you may want to gzip all of the text/html responses:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; store Content-Type response header in MY_CONTENT_TYPE var
+   collect-header = Content-Type MY_CONTENT_TYPE
+   ; if response is text/html, and client supports it, gzip it
+   response-route-if = equal:${MY_CONTENT_TYPE};text/html goto:gzipme
+   response-route-run = last:
+   
+   response-route-label = gzipme
+   ; gzip only if the client support it
+   response-route-if = contains:${HTTP_ACCEPT_ENCODING};gzip gzip:
+   
 The available actions
 *********************
 
