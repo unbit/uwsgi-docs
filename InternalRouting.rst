@@ -13,6 +13,23 @@ Please, before blasting it for being messy, not-elegant nor Turing-complete,
 remember that it must be FAST and only FAST.  If you need elegance and more
 complexity, do that in your code.
 
+The routing chains
+******************
+
+During the request cycle, various "chains" are traversed. Each chain contains a routing table (see below).
+
+Chains can be "recursive". A "recursive" chain can be called multiple times in a request cycle.
+
+This is the order of chains:
+
+``request`` it is applied before the request is passed to the plugin
+
+``error`` it is applied as soon as an HTTP status code is generate (recursive chain)
+
+``response`` it is is applied after the last response header has been generated (just before sending the body)
+
+``final`` it is aplied after the response has been sent to the client
+
 The internal routing table
 **************************
 
@@ -27,8 +44,10 @@ supported:
 * ``uri`` (check REQUEST_URI)
 * ``qs`` (check QUERY_STRING)
 * ``remote-addr`` (check REMOTE_ADDR)
+* ``remote-user`` (check REMOTE_USER)
 * ``referer`` (check HTTP_REFERER)
 * ``user-agent`` (check HTTP_USER_AGENT)
+* ``status`` (check HTTP response status code, not available in the request chain)
 * ``default`` (default subject, maps to PATH_INFO)
 
 In addition to this, a pluggable system of lower-level conditions is available.
@@ -166,7 +185,7 @@ routing variables are also available.
 * ``math`` -- requires matheval support. Example: math[CONTENT_LENGTH+1]
 * ``base64`` -- encode the specified var in base64
 * ``hex`` -- encode the specified var in hex
-* ``uwsgi`` -- return internal uWSGI information, uwsgi[wid] and uwsgi[pid] are currently supported
+* ``uwsgi`` -- return internal uWSGI information, uwsgi[wid], uwsgi[pid], uwsgi[uuid] and uwsgi[status] are currently supported
 
 Is --route-if not enough? Why --route-uri and friends?
 ******************************************************
@@ -818,3 +837,24 @@ Directly transfer the specified filename *without* using acceleration (sendfile,
    [uwsgi]
    http-socket = :9090
    route-run = file:filename=/var/www/${PATH_INFO}
+   
+``clearheaders``
+^^^^^^^^^^^^^^^^
+
+clear the response headers, setting a new HTTP status code, useful for resetting a response
+
+.. code-block:: ini
+
+   [uwsgi]
+   http-socket = :9090
+   response-route = ^/foo goto:foobar
+   response-route-run = last:
+   
+   response-route-label = foobar
+   response-route-run = clearheaders:404 Not Found
+   response-route-run = addheader:Content-Type: text/html
+   
+``resetheaders``
+^^^^^^^^^^^^^^^^
+
+alias for clearheaders
