@@ -30,6 +30,16 @@ This is the order of chains:
 
 ``final`` it is aplied after the response has been sent to the client
 
+The ``request`` chain is (for convention) the 'default' one, so its options are not prefixed, while the others requires a prefix.
+
+Example:
+
+``route-user-agent`` -> happens in the request chain
+
+while
+
+``response-route-uri`` -> happens in the response chain
+
 The internal routing table
 **************************
 
