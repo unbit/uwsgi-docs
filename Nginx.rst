@@ -84,7 +84,7 @@ The uWSGI server can load applications on demand when passed special vars.
 
 uWSGI can be launched without passing it any application configuration::
 
-  ./uwsgi -s /tmp/uwsgi.sock -C -M -A 4 -m
+  ./uwsgi -s /tmp/uwsgi.sock
 
 
 If a request sets the ``UWSGI_SCRIPT`` var, the server will load the specified module::
