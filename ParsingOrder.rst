@@ -17,7 +17,8 @@ file1.ini (the one requested from the command line)
    ini = file2.ini
    socket = :3032
    chdir = /var/www
-   file2.ini
+   
+file2.ini
 
 .. code-block:: ini
 
@@ -25,7 +26,8 @@ file1.ini (the one requested from the command line)
    master = true
    memory-report = true
    processes = 4
-   internally will be assembled in:
+   
+internally will be assembled in:
 
 
 .. code-block:: ini
@@ -38,7 +40,8 @@ file1.ini (the one requested from the command line)
    processes = 4
    socket = :3032
    chdir = /var/www
-   A more complex example:
+   
+A more complex example:
 
 file1.ini (the one requested from the command line)
 
@@ -49,7 +52,8 @@ file1.ini (the one requested from the command line)
    ini = file2.ini
    socket = :3032
    chdir = /var/www
-   file2.ini
+   
+file2.ini
 
 .. code-block:: ini
 
@@ -58,7 +62,8 @@ file1.ini (the one requested from the command line)
    xml = file3.xml
    memory-report = true
    processes = 4
-   file3.xml
+   
+file3.xml
 
 .. code-block:: xml
 
