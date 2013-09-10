@@ -100,7 +100,8 @@ The first step is substituting all of the $(VALUE) occurence with the value of t
 
    [uwsgi]
    foobar = $(PATH)
-   foobar value will be the content of shell's PATH variable
+   
+foobar value will be the content of shell's PATH variable
 
 The second step will expand text files embraced in @(FILENAME)
 
@@ -108,7 +109,8 @@ The second step will expand text files embraced in @(FILENAME)
 
    [uwsgi]
    nodename = @(/etc/hostname)
-   nodename value will be the content of /etc/hostname
+   
+nodename value will be the content of /etc/hostname
 
 The last step is placeholder substitution. A placeholder is a reference to another option:
 
