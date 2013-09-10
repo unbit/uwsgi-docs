@@ -59,6 +59,7 @@ Table of Contents
    ConfigLogic
    Options
    CustomOptions
+   ParsingOrder
    Vars
    Protocol
    AttachingDaemons
@@ -70,6 +71,7 @@ Table of Contents
    Logging
    LogFormat
    LogEncoders
+   Hooks
    Glossary
    
 Tutorials
