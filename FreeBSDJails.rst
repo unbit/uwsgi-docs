@@ -102,6 +102,21 @@ Each --jail2 option maps 1:1 with a jail attribute so you can basically tune eve
    master = true
    processes = 2
    
+
+Note for FreeBSD >= 8.4 but < 9.0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+uWSGI uses ipc semaphores on FreeBSD < 9 (newer FreeBSD releases have POSIX semaphores support).
+
+Since FreeBSD 8.4 you need to explicitely allows sysvipc in jails. So be sure to have
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   jail2 = allow.sysvipc=1
+   ...
+   
    
 DevFS
 *****
