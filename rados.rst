@@ -61,9 +61,9 @@ You can now start your HTTP to serve RADOS objects:
 
 the 'rados-mount' parameter takes three subparameters:
 
-mountpoint: required, the URL prefix on which the RADOS objects will appear.
-pool: required, the RADOS pool to serve.
-config: optional, the path to the ceph config file.
+ - mountpoint: required, the URL prefix on which the RADOS objects will appear.
+ - pool: required, the RADOS pool to serve.
+ - config: optional, the path to the ceph config file.
 
 in this example, your content will be served at http://localhost:9090/rad/list.html, http://localhost:9090/rad/imgs/first.jpeg
 and http://localhost:9090/rad/imgs/second.jpeg.
