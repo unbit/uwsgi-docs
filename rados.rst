@@ -52,9 +52,9 @@ You can now start your HTTP to serve RADOS objects:
    [uwsgi]
    ; bind on port 9090
    http-socket = :9090
-   ; set the default modifier1 to the glusterfs one
+   ; set the default modifier1 to the rados one
    http-socket-modifier1 = 28
-   ; mount our glusterfs filesystem
+   ; mount our rados pool
    rados-mount = mountpoint=/rad/,pool=data,config=/etc/ceph/ceph.conf
    ; spawn 30 threads
    threads = 30
