@@ -91,9 +91,16 @@ The following variables (for format and json) are available:
 
 ``${micros}`` the current unix time in microseconds
 
-``${strftime:xxx}``` strftime using the xxx format
+``${strftime:xxx}`` strftime using the xxx format:
 
 
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   log-encoder = json {"unix":${unix}, "msg":"${msg}", "date":"${strftime:%d/%m/%Y %H:%M:%S}"}
+   ...
 
   
 The ``msgpack`` encoder
