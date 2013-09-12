@@ -106,7 +106,7 @@ The following variables (for format and json) are available:
 The ``msgpack`` encoder
 ***********************
 
-This is the first plugin officially added to uWSGI sources. It allows encoding of loglines in msgpack (http://msgpack.org/) format.
+This is the first log-encoder plugin officially added to uWSGI sources. It allows encoding of loglines in msgpack (http://msgpack.org/) format.
 
 The syntax is pretty versatile as it has been developed for adding any information to a single packet
 
