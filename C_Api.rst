@@ -7,9 +7,6 @@ the wsgi_request struct
 the uwsgi_server struct
 ***********************
 
-I/O
-***
-
 Headers and response
 ********************
 
@@ -18,6 +15,9 @@ buffers
 
 strings
 *******
+
+non-blocking I/O
+****************
 
 Offloading
 **********
