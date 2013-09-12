@@ -13,7 +13,7 @@ Note that it's not the CephFS filesystem, nor the 'radosgw' S3/Swift-compatible 
 Step1: Ceph cluster and content
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you want to try a minimsl Ceph instalation, you can follow this guide: http://ceph.com/docs/master/start/ note that
+If you want to try a minimal Ceph instalation, you can follow this guide: http://ceph.com/docs/master/start/. note that
 you only need the OSD and MON daemons, the MDS are needed only for CephFS filesystems.
 
 Once you get it running, you should have a configuration file (by default on /etc/ceph/ceph.con), and should be able to use the `rados` utility.
@@ -38,7 +38,7 @@ note that RADOS doesn't have a concept of directories, but the object names can 
 Step2: uWSGI
 ^^^^^^^^^^^^
 
-a build profile, named 'rados' is already available, so you can simply do:
+A build profile, named 'rados' is already available, so you can simply do:
 
 .. code-block:: sh
 
