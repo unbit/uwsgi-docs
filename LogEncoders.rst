@@ -46,6 +46,55 @@ If you want to encode request logs to use --log-req-encoder:
    ; after gzip add a 'clear' prefix to easy decode
    log-req-encoder = prefix i am gzip encoded
    ...
+   
+   
+``Core`` encoders
+*****************
+
+The following encoders are available in the uwsgi 'core':
+
+``prefix`` add a raw prefix to each log msg
+
+``suffix`` add a raw suffix to each log msg
+
+``nl`` add a newline char to each log msg
+
+``gzip`` compress each msg with gzip (requires zlib)
+
+``compress`` compress each msg with zlib compress (requires zlib)
+
+``format`` apply the specified format to each log msg:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   log-encoder = format [FOO ${msg} BAR]
+   ...
+   
+``json`` like ``format`` but each variable is json escaped
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   log-encoder = format {"unix":${unix}, "msg":"${msg}"}
+   ...
+   
+The following variables (for format and json) are available:
+
+``${msg}`` the raw log message (newline stripped)
+
+``${msgnl}`` the raw log message (with newline)
+
+``${unix}`` the current unix time
+
+``${micros}`` the current unix time in microseconds
+
+``${strftime:xxx}``` strftime using the xxx format
+
+
+
   
 The ``msgpack`` encoder
 ***********************
