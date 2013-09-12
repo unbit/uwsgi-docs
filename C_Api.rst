@@ -31,6 +31,9 @@ Cookies
 Caches
 ******
 
+Signals
+*******
+
 Locking
 *******
 
