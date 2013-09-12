@@ -78,7 +78,7 @@ The following encoders are available in the uwsgi 'core':
 
    [uwsgi]
    ...
-   log-encoder = format {"unix":${unix}, "msg":"${msg}"}
+   log-encoder = json {"unix":${unix}, "msg":"${msg}"}
    ...
    
 The following variables (for format and json) are available:
