@@ -210,6 +210,8 @@ Language support
    SSI
    V8
    GridFS
+   GlusterFS
+   Rados
 
 
 Release Notes
