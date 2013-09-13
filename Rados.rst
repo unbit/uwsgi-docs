@@ -5,7 +5,9 @@ Available from uWSGI 1.9.16
 
 official modifier1: 28
 
-The 'rados' plugin allows you to serve files stored in a Ceph cluster directly using the librados API.
+Author: Javier Guerra
+
+The 'rados' plugin allows you to serve objects stored in a Ceph cluster directly using the librados API.
 
 Note that it's not the CephFS filesystem, nor the 'radosgw' S3/Swift-compatible layer; RADOS is the bare object-storage layer.
 
@@ -90,3 +92,5 @@ Notes:
 The plugin automatically enables the mime type engine.
 
 There is no directory index support
+
+Async support is on work
