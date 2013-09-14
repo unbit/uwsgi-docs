@@ -60,12 +60,14 @@ memory used by all workers reached given limit.
    # we use 160MB hard limit below (values are in bytes)
    cheaper-rss-limit-hard = 167772160
 
-Hard limit is optional, soft limit alone can be used.
-Hard value must be higher then soft value, both values shouldn't be too close to each other.
-Hard value should be soft + at least average worker memory usage for given app.
-Soft value is the limiter for cheaper, it won't spawn more workers, but already running workers
-memory usage might grow, to handle that reload-on-rss can be set to.
-To set unbreakable barrier for app memory usage cgroups are recommended.
+Notes:
+
+- Hard limit is optional, soft limit alone can be used.
+- Hard value must be higher then soft value, both values shouldn't be too close to each other.
+- Hard value should be soft + at least average worker memory usage for given app.
+- Soft value is the limiter for cheaper, it won't spawn more workers, but already running workers
+  memory usage might grow, to handle that reload-on-rss can be set to. To set unbreakable barrier
+  for app memory usage cgroups are recommended.
 
 
 ``spare`` cheaper algorithm
