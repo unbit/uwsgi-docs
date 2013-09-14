@@ -20,10 +20,39 @@ Bugfixes/Improvements
 - do not call pre-jail hook on reload
 - force linking with -lrt on solaris
 - report thunder lock status
-
+- allow custom priority in rsyslog plugin
 
 New features
 ************
+
+FreeBSD jails native support
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Rados plugin
+^^^^^^^^^^^^^^^^
+
+The TunTap router
+^^^^^^^^^^^^^^^^^
+
+Linux O_TMPFILE
+^^^^^^^^^^^^^^^
+
+Linux pivot-root
+^^^^^^^^^^^^^^^^
+
+Cheaper memlimit
+^^^^^^^^^^^^^^^^
+
+Log encoders
+^^^^^^^^^^^^
+
+New "advanced" Hooks
+^^^^^^^^^^^^^^^^^^^^
+
+New mount/umount hooks
+^^^^^^^^^^^^^^^^^^^^^^
+
+
 
 
 Availability
