@@ -41,6 +41,33 @@ workers it will spawn ``cheaper-step`` of them. This is useful if you have a
 high maximum number of workers -- in the event of a sudden load spike it would
 otherwise take a lot of time to spawn enough workers one by one.
 
+Setting memory limits
+---------------------
+
+Starting with 1.9.16 rss memory limits can be set to stop cheaper spawning
+new workers if process count limit was not reached, but total sum of rss
+memory used by all workers reached given limit.
+
+.. code-block:: ini
+
+   # soft limit will prevent cheaper from spawning new workers
+   # if workers total rss memory is equal or higher
+   # we use 128MB soft limit below (values are in bytes)
+   cheaper-rss-limit-soft = 134217728
+
+   # hard limit will force cheaper to cheap single worker
+   # if workers total rss memory is equal or higher
+   # we use 160MB hard limit below (values are in bytes)
+   cheaper-rss-limit-hard = 167772160
+
+Hard limit is optional, soft limit alone can be used.
+Hard value must be higher then soft value, both values shouldn't be too close to each other.
+Hard value should be soft + at least average worker memory usage for given app.
+Soft value is the limiter for cheaper, it won't spawn more workers, but already running workers
+memory usage might grow, to handle that reload-on-rss can be set to.
+To set unbreakable barrier for app memory usage cgroups are recommended.
+
+
 ``spare`` cheaper algorithm
 ---------------------------
 
