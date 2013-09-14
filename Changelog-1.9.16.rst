@@ -84,7 +84,7 @@ An Example Emperor
 
    [uwsgi]
    tuntap-router = emperor0 /tmp/tuntap.socket
-   exec-as-root = ifconfig emperor0 192.168.0.1 netmask 255.255.255.0
+   exec-as-root = ifconfig emperor0 192.168.0.1 netmask 255.255.255.0 up
    exec-as-root = iptables -t nat -F
    exec-as-root = iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
    exec-as-root = echo 1 >/proc/sys/net/ipv4/ip_forward
@@ -98,7 +98,7 @@ and one of its vassals:
    [uwsgi]
    tuntap-device = uwsgi0 /tmp/tuntap.socket
    exec-as-root = ifconfig lo up
-   exec-as-root = ifconfig uwsgi0 192.168.0.2 netmask 255.255.255.0
+   exec-as-root = ifconfig uwsgi0 192.168.0.2 netmask 255.255.255.0 up
    exec-as-root = route add default gw 192.168.0.1
    exec-as-root = hostname foobar
    socket = /var/www/foobar.socket
