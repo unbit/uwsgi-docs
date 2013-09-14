@@ -1,7 +1,7 @@
 uWSGI 1.9.16
 ============
 
-Changelog [201309xx]
+Changelog [20130914]
 
 
 Important change in the gevent plugin shutdown/reload procedure !!!
@@ -57,3 +57,7 @@ New mount/umount hooks
 
 Availability
 ************
+
+uWSGI 1.9.16 has been released on September 14th 2013. You can download it from:
+
+http://projects.unbit.it/downloads/uwsgi-1.9.16.tar.gz
