@@ -113,6 +113,42 @@ completely lost. With --lazy-apps you will have all of your users totally unconc
 
 So, uWSGI default fork() behaviour is generally wrong for massive hosting, so add --lazy-apps and eventually give the advanced users the freedom to change it when needed.
 
+
+The filesystem layout
+*********************
+
+Distro upgrades are always a bloodbath. It is a pretty optimistic analysis. trust me.
+
+But "tempus fugit" so sooner or later one of your customer will start asking for a more recent packages set...
+
+You can upgrade, but you will automatically place the vast majority of your customers in berserk mode, as very probably their apps
+will no more work.
+
+A solution for making everyone happy is having different distribution in your system (yes, it sounds silly, but please continue reading).
+
+Debbotstrap is a great tool. Let's create under the /distros directory our set of distributions:
+
+.. code-block:: sh
+
+   debootstrap lucid /distros/lucid
+   debootstrap etch /distros/etch
+   debootstrap precise /distros/precise
+   debootstrap saucy /distros/saucy
+   ...
+   
+Each user will be able to choose (and change) its distro, as thanks to our setup (see below) its root filesystem will be a readonly mount
+of one of the available distros.
+
+The final layout will be:
+
+/ (rootfs, mapped readonly to one of the dir in /distros)
+/proc (needed for showing processes and getting system informations)
+/tmp (each user should have a dedicated /tmp)
+/dev (should contain at least zero and null, but can be a bind mount to the system /dev too)
+/dev/pts (required for pseudoterminals)
+/opt (this could be a bind mount shared by all of the users containing distribution independent files)
+
+
 Linux namespaces
 ****************
 
