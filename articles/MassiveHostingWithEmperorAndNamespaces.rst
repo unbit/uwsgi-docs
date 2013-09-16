@@ -141,12 +141,12 @@ of one of the available distros.
 
 The final layout will be:
 
-/ (rootfs, mapped readonly to one of the dir in /distros)
-/proc (needed for showing processes and getting system informations)
-/tmp (each user should have a dedicated /tmp)
-/dev (should contain at least zero and null, but can be a bind mount to the system /dev too)
-/dev/pts (required for pseudoterminals)
-/opt (this could be a bind mount shared by all of the users containing distribution independent files)
+* / (rootfs, mapped readonly to one of the dir in /distros)
+* /proc (needed for showing processes and getting system informations)
+* /tmp (each user should have a dedicated /tmp)
+* /dev (should contain at least zero and null, but can be a bind mount to the system /dev too)
+* /dev/pts (required for pseudoterminals)
+* /opt (this could be a bind mount shared by all of the users containing distribution independent files)
 
 
 Linux namespaces
