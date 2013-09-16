@@ -110,7 +110,7 @@ This is the first log-encoder plugin officially added to uWSGI sources. It allow
 
 The syntax is pretty versatile as it has been developed for adding any information to a single packet
 
-``log-format = msgpack <format>``
+``log-encoder = msgpack <format>``
 
 format is pretty complex as it is a list of the single items in the whole packet.
 
