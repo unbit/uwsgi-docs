@@ -116,10 +116,39 @@ Cron
 Static file serving
 *******************
 
-
-
 Additional daemons
 ******************
+
+SSH
+***
+
+Managing ssh could be really tricky with namespace setups. The Linux syscall "setns" allows "attaching" to an already running namespace.
+
+It generally works, but i will now tell you a technical reason why i do not want to use it for my services: i do not like it. period.
+
+We have already seen unix sockets works very well as a communication channel between namespaces, why not use them to "enter" an already running namespace ?
+
+If you work as a unix sysadmin, you cannot ignore pseudoterminals (or terminals in general). It is one of the oldest (and rawest) api of the unix world, by the work by ages. And they works great.
+
+The uWSGI distribution come with 2 pty-related plugin: pty and forkptyrouter.
+
+The first one simply attach a single pseudoterminal to your workers and bind to a network address. Connecting to this address give access
+to the pseudoterminal. This trick allows for advanced techniques like shared debugging. The pty plugin exposes the client part too, so you can use the uwsgi binary itself to connect to this pty.
+
+How this can be useful for our ssh access ? It is not.
+
+What we need now is the forkptyrouter (or forkpty-router for better readability). It works very similar to the pty server with the difference
+it generate a new pty for each connection. Exacly like ssh does.
+
+The forkpty-router run into the namespace, so any process attached to it will effectively run in the namespace itself.
+
+You should now see the point: our customers login via ssh as non-namespaced account but instead giving them the default shell we force them to connect
+to the pty-router.
+
+The "downside" of this approach is that we need two pty for each ssh peer (one for client -> ssh and the other for ssh -> namespace).
+
+To force the ssh server to run a specific command, use the ForceCommand directive in the sshd_config
+
 
 Bonus: KSM
 **********
@@ -127,6 +156,5 @@ Bonus: KSM
 What is missing
 ***************
 
-- SSH/shells
 - Accounting network usage
 - Scaling to multiple machines
