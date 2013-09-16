@@ -96,8 +96,84 @@ It will build a standard uwsgi binary without any language builtin.
 
 ...
 
+Lazy apps VS prefork
+********************
+
+One of the controversial design choices of uWSGI is "preforking by default".
+
+It means your app is loaded on startup and then fork() is called for each worker.
+
+While this is the common approach in the UNIX world and it is an expected behaviour for a Perl developer
+(that is historically more near to the UNIX world) it is totally unknown and unexpected by a Python (and maybe Ruby) one.
+
+So one of the choices you need to make when building a uWSGI-based service is how to manage the fork() behaviour.
+
+If you are unsure let me tell you one thing: with preforking behaviour you will make some user very happy, and lot of users
+completely lost. With --lazy-apps you will have all of your users totally unconcerned. Trust me, few happy users cannot make you happy too when you have angry customers too.
+
+So, uWSGI default fork() behaviour is generally wrong for massive hosting, so add --lazy-apps and eventually give the advanced users the freedom to change it when needed.
+
 Linux namespaces
 ****************
+
+This is the first step to limit users.
+
+For this setup we will use 5 namespaces: filesystem, sysv ipc, uts, networking and pid
+
+filesystem (fs)
+^^^^^^^^^^^^^^^
+
+this allows changing the filesystems layout (mountpoints).
+
+Instead of chroot() in each vassal, we will use the --pivot-root option (it is linux specific) that combined with
+mount namespace allows fine-grained configuration of the filesystem layout
+
+sysv ipc (ipc)
+^^^^^^^^^^^^^^
+
+sysv ipc exposes 3 primitives: semaphores, shared memory and message queues.
+
+unsharing it creates a dedicated set of this 3 features
+
+uts (uts)
+^^^^^^^^^
+
+this namespace allows you to have a dedicated hostname
+
+networking (net)
+^^^^^^^^^^^^^^^^
+
+when you unshare for the main network namespace, you will lose access to interface addresses. A new loopback will be allocated.
+
+processes (pid)
+^^^^^^^^^^^^^^^
+
+this namespace allows you to hide the user the processes not being part of the user namspace itself.
+
+The uWSGI master process will be the pid 1 for the user.
+
+Namespacing the Emperor
+^^^^^^^^^^^^^^^^^^^^^^^
+
+The --emperor-use-clone option allows the Emperor to directly spawn vassals in a new namespace.
+
+Our config will be something like:
+
+.. code-block:: ini
+
+   [uwsgi]
+   emperor = /etc/uwsgi/vassals
+   emperor-user-clone = fs,ipc,uts,net,pid
+  
+while each vassal will be
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; set the hostname
+   exec-as-root = hostname foobar
+   ; bring up loopback
+   exec-as-root = ifconfig lo up
 
 Linux cgroups
 *************
