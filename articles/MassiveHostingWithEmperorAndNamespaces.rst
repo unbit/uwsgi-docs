@@ -1,5 +1,5 @@
-Massive "secure" Hosting with the Emperor and Linux Namespaces, AKA "Improving pythonanywhere.com"
-==================================================================================================
+Massive "secure" Hosting with the Emperor and Linux Namespaces, AKA "Improving unbit.it and pythonanywhere.com"
+===============================================================================================================
 
 Author: Roberto De Ioris
 
@@ -220,7 +220,69 @@ uWSGI Emperor and vassals
 Networking
 **********
 
-This is probably the most complex part
+This is probably the most complex part. The "ortodox" way to give networking to a jailed setup is using veth or macvlan.
+
+The first one is a "network pipe" composed by two virtual interfaces. After the namespace is created you can move one of the end of the pipe to the namespace.
+
+Macvlan, instead works by assigning an additional mac address to the physical interface.
+
+Both solutions are great for VPS-like setups, but here we need networking only to connect to external services (inbound connections are managed by the http proxy).
+
+Both veth and macvlan approaches are hard to manage correctly, and while in 1.9.15 we introduced lot of features to simplify the required steps, in 1.9.16 we decided
+to create an ad-hoc solution based on tuntap devices.
+
+Basically for each vassal we create a tun device (it is a virtuale network interface manageable via user space) connected (via unix sockets) to another tun device in the main namespace.
+
+The tuntap-router is a software-based ip router, it mainly get packets fro ma tuntap device and forward them to a unix socket (and the opposite).
+
+This approach simplify the whole setup extremely, and, as a killer feature an ultra simpel firewall is embedded in the process to configure internal rules.
+
+The tuntap router should run in the Emperor (it is a uWSGI gateway so this time we need the master process):
+
+.. code-block:: ini
+
+   [uwsgi]
+   emperor = /etc/uwsgi/vassals
+   emperor-user-clone = fs,ipc,uts,net,pid
+   master = true
+   ; create the tun interface 'emperor0' reachable by /var/run/tuntap.socket
+   tuntap-router = emperor0 /var/run/tuntap.socket
+   ; give an internal ip address to 'emperor0'
+   exec-as-root = ifconfig emperor0 192.168.0.1 netmask 255.255.255.0
+   ; configure NAT for vassals
+   exec-as-root = iptables -t nat -F
+   exec-as-root = iptables -t nat -A POSTROUTING -o eth0 -s 192.168.0.0/24 -j MASQUERADE
+   exec-as-root = echo 1 > /proc/sys/net/ipv4/ip_forward
+   
+   ; configure the internal firewall to disallow communication between vassals
+   tuntap-router-firewall-out = allow 192.168.0.0/24 192.168.0.1
+   tuntap-router-firewall-out = deny 192.168.0.0/24 192.168.0.0/24
+   tuntap-router-firewall-out = allow 192.168.0.0/24 0.0.0.0
+   ; we need this rule as default policy is 'allow'
+   tuntap-router-firewall-out = deny
+   tuntap-router-firewall-in = allow 192.168.0.1 192.168.0.0/24
+   tuntap-router-firewall-in = deny 192.168.0.0/24 192.168.0.0/24
+   tuntap-router-firewall-in = allow 0.0.0.0 192.168.0.0/24
+   ; we need this rule as default policy is 'allow'
+   tuntap-router-firewall-in = deny
+   
+and a vassal
+
+.. code-block:: ini
+
+   [uwsgi]
+   master = true
+   ; set the hostname
+   exec-as-root = hostname foobar
+   ; bring up loopback
+   exec-as-root = ifconfig lo up
+   ; bring up the tuntap device and connect to the emperor
+   tuntap-device = uwsgi0 /var/run/tuntap.socket
+   ; configure the 'uwsgi0' interface
+   exec-as-root = ifconfig uwsgi0 192.168.0.2 netmask 255.255.255.0
+   ; use the tuntap router as default gw
+   exec-as-root = route add default gw 192.168.0.1
+   ...
 
 Cron
 ****
