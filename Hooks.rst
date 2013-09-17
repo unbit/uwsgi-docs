@@ -20,6 +20,8 @@ Each phase can be "fatal", if so, a failing hook will mean failing of the whole 
 
 Currently (September 2013) the following phases are available:
 
+``asap`` run directly after configuration file has been parsed, before anything else is done. it is fatal.
+
 ``pre-jail`` run before any attempt to drop privileges or put the process in some form of jail. it is fatal.
 
 ``post-jail`` run soon after any jailing, but before privileges drop. If jailing requires fork(), the parent process run this phase. it is fatal.
