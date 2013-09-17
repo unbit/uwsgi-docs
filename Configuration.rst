@@ -57,6 +57,9 @@ Python via :py:data:`uwsgi.magic_table`) are defined.
 %0..%9   a specific component of the full path of the directory containing the config file (version 1.3+)
 ======== ==
 
+Note that these refer to the file they appear in, even if that file is
+included from another file.
+
 For example, here's :file:`funnyapp.ini`.
 
 .. code-block:: ini
@@ -107,6 +110,10 @@ via :py:data:`uwsgi.opt`.
 
 This feature can be (ab)used to reduce the number of configuration files
 required by your application.
+
+Similarly, contents of evironment variables and external text files can
+be included using the `@(file_name)` and `%(ENV_VAR)` syntax. See also
+:doc:`ParsingOrder`.
 
 
 Command line arguments
