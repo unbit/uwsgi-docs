@@ -318,7 +318,7 @@ This plugin, ``foolog.c`` will write your messages in the file specified with
 
 .. code-block:: c
 
-    #include "../../uwsgi.h"
+    #include <uwsgi.h>
     
     ssize_t uwsgi_foolog_logger(struct uwsgi_logger *ul, char *message, size_t len) {
     
