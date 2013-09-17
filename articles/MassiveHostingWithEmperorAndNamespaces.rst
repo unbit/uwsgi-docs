@@ -145,7 +145,8 @@ The final layout will be:
 * /proc (needed for showing processes and getting system informations)
 * /tmp (each user should have a dedicated /tmp)
 * /dev (should contain at least zero and null, but can be a bind mount to the system /dev too)
-* /dev/pts (required for pseudoterminals)
+* /dev/pts (required for pseudoterminals, shared by all vassals [til linux pts namespace will be released])
+* /var/run (all of the sockets will be bound here, and symlinked by the main rootfs for nginx and ssh access)
 * /opt (this could be a bind mount shared by all of the users containing distribution independent files)
 
 
