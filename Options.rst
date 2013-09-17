@@ -557,6 +557,18 @@ not* replace placeholders etc.).
 
 *This option may be declared multiple times.*
 
+.. _OptionVassalsInclude:
+
+``vassals-include``
+~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Add given config templates to vassals' config.
+
+This works by passing the ``include`` option when starting each vassal
+(which differs from ``inherit`` in that ``include`` *will* replace
+placeholders etc.).
+
 *This option may be declared multiple times.*
 
 .. _OptionVassalsStartHook:

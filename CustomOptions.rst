@@ -104,14 +104,14 @@ configure it to automatically import your shortcuts in each vassal.
 
 .. code-block:: sh
 
-  uwsgi --emperor /etc/uwsgi/vassals --vassals-inherit /etc/uwsgi/shortcuts.ini
+  uwsgi --emperor /etc/uwsgi/vassals --vassals-include /etc/uwsgi/shortcuts.ini
 
 
 For multiple shortcuts use:
 
 .. code-block:: sh
 
-  uwsgi --emperor /etc/uwsgi/vassals --vassals-inherit /etc/uwsgi/shortcuts.ini --vassals-inherit /etc/uwsgi/shortcuts2.ini --vassals-inherit /etc/uwsgi/shortcuts3.ini
+  uwsgi --emperor /etc/uwsgi/vassals --vassals-include /etc/uwsgi/shortcuts.ini --vassals-include /etc/uwsgi/shortcuts2.ini --vassals-include /etc/uwsgi/shortcuts3.ini
 
 Or (with a bit of :doc:`configuration logic magic<ConfigLogic>`):
 
@@ -121,7 +121,7 @@ Or (with a bit of :doc:`configuration logic magic<ConfigLogic>`):
   emperor = /etc/uwsgi/vassals
   
   for = shortcuts shortcuts2 shortcuts3
-    vassals-inherit = /etc/uwsgi/%(_).ini
+    vassals-include = /etc/uwsgi/%(_).ini
   endfor =
 
 An advanced trick: embedding shortcuts in your uWSGI binary
