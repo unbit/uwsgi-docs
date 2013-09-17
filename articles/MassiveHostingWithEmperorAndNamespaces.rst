@@ -288,6 +288,17 @@ and a vassal
 Cron
 ****
 
+Cron tasks are added to the vassal file, the syntax is a bit different from classic crontabs as intead of * and the , we only use numbers
+(yes it is a bit less versatile than classic cron, but uWSGI config files allows for cycle and other constructs)
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; run at 23:59 every day
+   cron = 59 23 -1 -1 -1 myscript arg1
+   ; run every five minutes on saturday
+   cron = -5 -1 -1 -1 6
+
 Static file serving
 *******************
 
