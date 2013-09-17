@@ -7,6 +7,8 @@ Starting from uWSGI 1.1 (thanks to its new options subsystem) we have a general 
 
 Top-bottom means options are internally ordered as they are parsed, while "expand asap" means to inject the options of a requested config file, interrupting the currently parsed one:
 
+Note that the ``inherit`` option behaves differently from the other inlcude options: It is expanded *after* variable expansion, so any environment variables, external files and placeholders are *not* expanded. Magic variables (*e.g.* ``%n``) are expanded normally.
+
 file1.ini (the one requested from the command line)
 
 
