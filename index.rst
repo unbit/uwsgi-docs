@@ -57,6 +57,7 @@ Table of Contents
    ThingsToKnow
    Configuration
    ConfigLogic
+   ParsingOrder
    Options
    CustomOptions
    ParsingOrder
