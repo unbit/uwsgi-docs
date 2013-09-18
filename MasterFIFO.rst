@@ -13,6 +13,14 @@ To create the fifo just add `--master-fifo <filename>` then start issuing comman
 .. code-block:: sh
 
    echo r > /tmp/yourfifo
+   
+you can send multiple commands in one shot:
+
+.. code-block:: sh
+
+   echo +++s > /tmp/yourfifo
+   
+will add 3 workers and will print stats
 
 Available commands
 ******************
