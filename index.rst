@@ -64,7 +64,6 @@ Table of Contents
    Vars
    Protocol
    AttachingDaemons
-   ManagementFlag
    MasterFIFO
    Inetd
    Upstart
