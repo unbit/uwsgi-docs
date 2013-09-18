@@ -29,6 +29,7 @@ Available commands
 * 'R' send brutal reload
 * 's' print stats in the logs
 * 'w' gracefully reload workers
+* 'W' brutally reload workers
 
 Notes
 *****
