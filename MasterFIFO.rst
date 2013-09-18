@@ -11,5 +11,5 @@ Available commands:
 * 'L' trigger log rotation
 * 'c' trigger chain reload
 * 'f' re-fork the master
-* 's' suspend the instance
+* 'p' pause/resume the instance
 * 'b' re-bind unix sockets
