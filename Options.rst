@@ -551,6 +551,24 @@ List enabled imperial monitors.
 
 Add given config templates to vassals' config.
 
+This works by passing the ``inherit`` option when starting each vassal
+(which differns from the ``include`` option in that ``inherit`` *will
+not* replace placeholders etc.).
+
+*This option may be declared multiple times.*
+
+.. _OptionVassalsInclude:
+
+``vassals-include``
+~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Add given config templates to vassals' config.
+
+This works by passing the ``include`` option when starting each vassal
+(which differs from ``inherit`` in that ``include`` *will* replace
+placeholders etc.).
+
 *This option may be declared multiple times.*
 
 .. _OptionVassalsStartHook:
@@ -782,6 +800,14 @@ Declare a new custom uWSGI option.
 
 Use the specified file as configuration template.
 
+The file type of the included file is automatically detected based on filename extension.
+
+Note that environment variables, external file includes and placeholders
+are *not* expanded inside the inherited configuration. Magic variables
+(*e.g.* ``%n``) are expanded normally.
+
+.. seealso:: :doc:`ParsingOrder`
+
 .. _OptionInclude:
 
 ``include``
@@ -789,6 +815,8 @@ Use the specified file as configuration template.
 **Argument:** string
 
 Include the specified file as if its configuration entries had been declared here (available post 1.3).
+
+The file type of the included file is automatically detected based on filename extension.
 
 .. _OptionPlugins:
 

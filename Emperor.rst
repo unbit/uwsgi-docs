@@ -70,6 +70,25 @@ For example::
 
 will let you avoid specifying the socket option in configuration files.
 
+Alternatively, you can use the ``--vassals-include`` option let each
+vassal automatically include a complete config file::
+
+  uwsgi --emperor /opt/apps --vassals-include /etc/uwsgi/vassals-default.ini
+
+Note that if you do this, ``%n`` (and other magic variables) in the
+included file will resolve to the name of the included file, not the
+original vassal configuration file. If you want to set options in the
+included file using the vassal name, you'll have to use placeholders.
+For example, in the vassal config, you write::
+
+  [uwsgi]
+  vassal_name = %n
+  ... more options
+
+In the ``vassal-defaults.ini``, you write::
+
+  [uwsgi]
+  socket = /tmp/sockets/%(vassal_name).sock
 
 .. _Tyrant:
 
