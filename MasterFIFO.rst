@@ -3,7 +3,6 @@ The Master FIFO
 
 Available commands:
 
-* 'b' re-bind unix sockets
 * 'c' trigger chain reload
 * 'f' re-fork the master
 * 'l' reopen log file (need --log-master and --logto/--logto2)
