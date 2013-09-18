@@ -22,6 +22,7 @@ Available commands
 * 'l' reopen log file (need --log-master and --logto/--logto2)
 * 'L' trigger log rotation (need --log-master and --logto/--logto2)
 * 'p' pause/resume the instance
+* 'P' update pidfiles (can be useful after master re-fork)
 * 'q' gracefully shutdown the instance
 * 'Q' brutally shutdown the instance
 * 'r' send graceful reload
