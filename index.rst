@@ -65,6 +65,7 @@ Table of Contents
    Protocol
    AttachingDaemons
    ManagementFlag
+   MasterFIFO
    Inetd
    Upstart
    SystemD
