@@ -13,3 +13,4 @@ Available commands:
 * 'f' re-fork the master
 * 'p' pause/resume the instance
 * 'b' re-bind unix sockets
+* 's' print stats in the logs
