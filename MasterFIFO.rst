@@ -6,8 +6,8 @@ Available commands:
 * 'b' re-bind unix sockets
 * 'c' trigger chain reload
 * 'f' re-fork the master
-* 'l' reopen log file
-* 'L' trigger log rotation
+* 'l' reopen log file (need --log-master and --logto/--logto2)
+* 'L' trigger log rotation (need --log-master and --logto/--logto2)
 * 'p' pause/resume the instance
 * 'r' send graceful reload
 * 'R' send brutal reload
