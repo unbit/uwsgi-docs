@@ -37,3 +37,5 @@ Notes
 The FIFO is created in non-blocking modes and recreated by the master every time a client disconnects.
 
 You can override (or add) commands using the global array uwsgi_fifo_table via plugins or c hooks
+
+Only the uid running the master has write access to the fifo
