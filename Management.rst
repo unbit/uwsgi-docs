@@ -106,3 +106,8 @@ When dealing with background processes, you'll need to use the master pidfile ag
     kill -INT `cat /tmp/project-master.pid`
     # or for convenience...
     uwsgi --stop /tmp/project-master.pid
+
+The Master FIFO
+---------------
+
+Starting from uWSGI 1.9.17 a new management system has been added using unix named pipes (fifo): :doc:`MasterFIFO`
