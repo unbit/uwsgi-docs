@@ -47,6 +47,24 @@ If you want to encode request logs to use --log-req-encoder:
    log-req-encoder = prefix i am gzip encoded
    ...
    
+Routing encoders
+****************
+
+Log routing allows sending each logline to a different log engine based on regexps. You can use the same system with encoders too:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; by default send logs to udp address 192.168.173.13:1717
+   logger = socket:192.168.173.13:1717
+   ; an alternative logger using the same address
+   logger = secondlogger socket:192.168.173.13:1717
+   ; use 'secondlogger' for the logline containing 'uWSGI'
+   log-route = secondlogger uWSGI
+   ; before sending a logline to the 'secondlogger' logger encode it in gzip
+   log-encoder = gzip:secondlogger
+   ...
+
    
 ``Core`` encoders
 *****************
