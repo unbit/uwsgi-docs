@@ -167,7 +167,7 @@ If you haven't already done so, make sure that your ``mysite`` project actually 
 
 And if it that works, run it using uWSGI::
 
-    uwsgi --http :8000 --wsgi-file mysite.py
+    uwsgi --http :8000 --module mysite.wsgi
 
 * ``module mysite.wsgi``: load the specified wsgi module
 
