@@ -56,7 +56,7 @@ Routable log encoders
 
 You can now attach log encoders to specific log routes:
 
-.. code-block:: ini
+..code-block:: ini
 
    [uwsgi]
    logger = stderr file:/dev/tty
@@ -90,7 +90,7 @@ Author: INADA Naoki
 
 You can now send liglines to the stdin of an external command:
 
-.. code-block:: ini
+..code-block:: ini
 
    req-logger = pipe:/usr/local/bin/mylogger
 
@@ -99,7 +99,7 @@ added "fd" logger to "logfile" plugin
 
 you can directly send logs to a file descriptors:
 
-.. code-block:: ini
+..code-block:: ini
 
    req-logger = fd:17
 
