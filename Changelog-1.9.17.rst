@@ -51,3 +51,9 @@ added "fd" logger to "logfile" plugin
 
 Availability
 ************
+
+uWSGI 1.9.17 has been released on Semptember 22th 2013
+
+You can download it from:
+
+http://projects.unbit.it/downloads/uwsgi-1.9.17.tar.gz
