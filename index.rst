@@ -49,7 +49,7 @@ Table of Contents
 
    Download
    Install
-   BuildSystem (check it if you have problems building uWSGI)
+   BuildSystem
    Management
    LanguagesAndPlatforms
    SupportedPlatforms
