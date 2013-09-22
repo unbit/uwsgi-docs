@@ -49,6 +49,7 @@ Table of Contents
 
    Download
    Install
+   BuildSystem (check it if you have problems building uWSGI)
    Management
    LanguagesAndPlatforms
    SupportedPlatforms
