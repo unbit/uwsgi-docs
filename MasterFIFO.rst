@@ -25,6 +25,7 @@ will add 3 workers and will print stats
 Available commands
 ******************
 
+* '0' to '9' set the fifo slot (see below)
 * '-' decrease the number of workers when in cheaper mode (add ``--cheaper-algo manual`` for full control)
 * '+' increase the number of workers when in cheaper mode (add ``--cheaper-algo manual`` for full control)
 * 'c' trigger chain reload
@@ -41,6 +42,43 @@ Available commands
 * 's' print stats in the logs
 * 'w' gracefully reload workers
 * 'W' brutally reload workers
+
+FIFO slots
+**********
+
+uWSGI supports up to 10 different fifo files. By default the first specified is bound (mapped as '0').
+
+During the whole instance lifetime you can change from one fifo file to another simply sending the number of the fifo slot to use:
+
+.. code-block:: ini
+
+   [uwsgi]
+   master-fifo = /tmp/fifo0
+   master-fifo = /tmp/fifo1
+   master-fifo = /var/run/foofifo
+   processes = 2
+   ...
+
+By default /tmp/fifo0 will be allocated, but after sending:
+
+.. code-block:: sh
+
+   echo 1 > /tmp/fifo0
+   
+the /tmp/fifo1 file will be bound
+
+This is very useful to map fifo files to specific instance when you abuse the 'fork the master' command (the 'f' one):
+
+.. code-block:: sh
+
+   echo 1fp > /tmp/fifo0
+   
+after sending this command, a new uwsgi instance (inheriting all of the bound sockets) will be spawned, the old one will be put in "paused" mode (p command).
+
+As we have sent the '1' command before 'f' and 'p' the old instance will now accepts commands on /tmp/fifo1 (the slot 1) will the new one will use the default one (the '0')
+
+There are lot of tricks you can accomplish, and lot of way to abuse the forking of the master. Just take in account that corner-case problems
+can raise all over the place, expecially if you use the most complex features of uWSGI.
 
 Notes
 *****
