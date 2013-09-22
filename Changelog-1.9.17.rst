@@ -10,6 +10,7 @@ Bugfixes
 - the 'pty' client is now blocking (safer approach)
 - removed strtok() usage (substituted by a new uwsgi api function on top of strtok_r() )
 - fixed --pty-exec (Credits: C Anthony Risinger)
+- listen_queue/somaxconn linux check is now done even for UNIX sockets
 
 
 
