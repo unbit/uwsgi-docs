@@ -107,7 +107,7 @@ logpipe
 
 Author: INADA Naoki
 
-You can now send liglines to the stdin of an external command:
+You can now send loglines to the stdin of an external command:
 
 .. code-block:: ini
 
