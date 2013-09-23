@@ -176,7 +176,7 @@ Using config files
 ******************
 
 uWSGI has literally hundreds of options. Dealing with them via command line is basically silly, so try to always use config files.
-uWSGI supports various standards (xml, .ini, json, yaml...). Moving from one to aother is pretty simple. The same options you can use via command line can be used
+uWSGI supports various standards (xml, .ini, json, yaml...). Moving from one to another is pretty simple. The same options you can use via command line can be used
 on config files simply removing the ``--`` prefix:
 
 .. code-block:: ini
@@ -205,7 +205,7 @@ To run uWSGI using a config file, just specify it as argument:
    uwsgi yourconfig.ini
    
 if for some reason your config cannot end with the expected extension (.ini, .xml, .yml, .js) you can force the binary to
-use a specifi parser in this way:
+use a specific parser in this way:
 
 .. code-block:: sh
 
@@ -231,7 +231,7 @@ You can even pipe configs (using the dash to force reading from stdin):
 Automatically starting uWSGI on boot
 ************************************
 
-If you think about writing some init.d script for spawning uWSGI, just sit (and calm) down and check if your system does not offer you a better (more modern) approach.
+If you are thinking about writing some init.d script for spawning uWSGI, just sit (and calm) down and check if your system does not offer you a better (more modern) approach.
 
 Each distribution has choosen its startup system (:doc:`Upstart<Upstart>`, :doc:`SystemD`...) and there are tons of process managers available (supervisord, god...).
 
@@ -255,7 +255,7 @@ ALWAYS avoid running your uWSGI instances as root. You can drop privileges using
    processes = 8
 
 
-A common problem with webapp deployment is "stuck requests". All of your threads/workers are stuck blocked on a request and your app cannot accept more requests.
+A common problem with webapp deployment is "stuck requests". All of your threads/workers are stuck blocked on a request and your app cannot accept more of them.
 
 To avoid that problem you can set an ``harakiri`` timer. It is a monitor (managed by the master process) that will destroy processes stuck for more than the specified number of seconds
 
