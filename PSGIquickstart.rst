@@ -8,7 +8,7 @@ The following instructions will guide you through installing and running a perl-
 Installing uWSGI with Perl support
 **********************************
 
-To build uWSGI you need a c compiler (gcc and clang are supported) and the python binary (it will only run the uwsgiconfig.py script that will run the various
+To build uWSGI you need a c compiler (gcc and clang are supported) and the python binary (it will only run the uwsgiconfig.py script that will execute the various
 compilation steps). As we are building a uWSGI binary with perl support we need perl development headers too (libperl-dev package on debian-based distros)
 
 You can build uWSGI manually:
