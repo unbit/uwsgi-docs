@@ -149,7 +149,7 @@ natively speak the uwsgi protocol.
 Automatically starting uWSGI on boot
 ************************************
 
-If you think about writing some init.d script for spawning uWSGI, just sit down and realize that we are no more in 1995.
+If you think about writing some init.d script for spawning uWSGI, just sit (and calm) down and check if your system does not offer you a better (more modern) approach.
 
 Each distribution has choosen its startup system (:doc:`Upstart<Upstart>`, :doc:`SystemD`...) and there are tons of process managers available (supervisord, god...).
 
