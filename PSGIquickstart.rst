@@ -77,7 +77,7 @@ uWSGI supports various languages and platform. When the server receives a reques
 
 Each uWSGI plugin has an assigned number (the modifier), the perl/psgi one has the 5. So --http-modifier1 5 means "route to the psgi plugin"
 
-Albeit uWSGI has a more "human-friendly" :doc:`<InternalRouting>internal routing system` using modifiers is the fastest way, so, if possible always use them
+Albeit uWSGI has a more "human-friendly" :doc:`internal routing system <InternalRouting>` using modifiers is the fastest way, so, if possible always use them
 
 
 Using a full webserver: nginx
