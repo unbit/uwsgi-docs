@@ -1,5 +1,5 @@
-The uWSGI offloading subsystem (1.4-rc2)
-========================================
+The uWSGI offloading subsystem
+==============================
 
 Offloading is a way to optimize tiny tasks, delegating them to one or more threads.
 
