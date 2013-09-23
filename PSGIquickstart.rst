@@ -30,7 +30,7 @@ or using the network installer:
 
    curl http://uwsgi.it/install | bash -s psgi /tmp/uwsgi
    
-that will create a uWSGI binary in /tmp/uwsgi (feel free to change to path to whatever you want)
+that will create a uWSGI binary in /tmp/uwsgi (feel free to change the path to whatever you want)
 
 Note for distro packages
 ************************
