@@ -58,13 +58,17 @@ save it to a file named myapp.pl
 
 then run it via uWSGI in http mode:
 
-uwsgi --http :8080 --http-modifier1 5 --psgi myapp.pl
+.. code-block:: sh
+
+   uwsgi --http :8080 --http-modifier1 5 --psgi myapp.pl
 
 (remember to replace 'uwsgi' if it is not in your current $PATH)
 
 or if you are using a modular build (like the one of your distro)
 
-uwsgi --plugins http,psgi --http :8080 --http-modifier1 5 --psgi myapp.pl
+.. code-block:: sh
+
+   uwsgi --plugins http,psgi --http :8080 --http-modifier1 5 --psgi myapp.pl
 
 What is that '--http-modifier1 5' thing ???
 *******************************************
