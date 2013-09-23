@@ -181,6 +181,53 @@ vassal, add the :ref:`OptionHeartbeat` option.
 
 .. TODO: Clarify the above admonition
 
+Using Linux namespaces for vassals
+----------------------------------
+
+On Linux you can tell the Emperor to run vassals in "unshared" contexts. That means you can run each vassal with a dedicated view of the filesystems, ipc, uts, networking, pids and uids.
+
+Things you generally do with tools like ``lxc`` or its abstractions like ``docker`` are native in uWSGI.
+
+For example if you want to run each vassals in a new namespace:
+
+.. code-block:: ini
+
+   [uwsgi]
+   emperor = /etc/uwsgi/vassals
+   emperor-use-clone = fs,net,ipc,pid,uts
+   
+now each vassal will be able to modify the filesystem layout, networking, hostname and so on without damaging the main system.
+
+A couple of helper daemons are included in the uWSGI distribution to simplify management of jailed vassals. Most notably the ``tuntap router`` allows full user-space networking in jails, while
+the ``forkpty router`` allows allocation of pseudoterminals in jails
+
+It is not needed to unshare all of the subsystem in your vassals, sometimes you only want to give dedicated ipc and hostname to a vassal and hide from the processes list:
+
+.. code-block:: ini
+
+   [uwsgi]
+   emperor = /etc/uwsgi/vassals
+   emperor-use-clone = fs,ipc,pid,uts
+   
+a vassal could be:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; set the hostname
+   exec-as-root = hostname foobar
+   ; umount /proc and remount to hide processes
+   ; as we are in the 'fs' namespace umounting /proc does not interfere with the main one
+   exec-as-root = umount /proc
+   exec-as-root = mount -t proc none /proc
+   ; drop privileges
+   uid = foobar
+   gid = foobar
+   ; bind to the socket
+   socket = /tmp/myapp.socket
+   psgi = myapp.pl
+
+
 The Imperial Bureau of Statistics
 ---------------------------------
 
