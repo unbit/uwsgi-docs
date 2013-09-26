@@ -117,7 +117,8 @@ The following variables (for format and json) are available:
 
    [uwsgi]
    ...
-   log-encoder = json {"unix":${unix}, "msg":"${msg}", "date":"${strftime:%d/%m/%Y %H:%M:%S}"}
+   ; we need to escape % to avoid magic vars nameclash
+   log-encoder = json {"unix":${unix}, "msg":"${msg}", "date":"${strftime:%%d/%%m/%%Y %%H:%%M:%%S}"}
    ...
 
   
