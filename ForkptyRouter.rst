@@ -95,7 +95,7 @@ a single instance can expose bot protocols on different sockets
    forkpty-router = /tmp/raw.socket
    forkpty-urouter = /tmp/uwsgi.socket
    
-Chancing the default command
+Changing the default command
 ****************************
 
 By default the forkpty router run /bin/sh on new connections.
