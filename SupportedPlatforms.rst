@@ -17,3 +17,5 @@ This is the list of officially supported operating systems and platforms.
 * OpenSolaris
 * OpenIndiana
 * OmniOS
+* Debian/kFreeBSD
+* GNU/Hurd
