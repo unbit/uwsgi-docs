@@ -223,6 +223,44 @@ The id argument can be a jid or the name of the jail.
 
 This feature requires FreeBSD 8
 
+Debian/kFreeBSD
+***************
+
+This is an official Debian project aiming at building an os with FreeBSD kernel and common Debian userspace.
+
+It works really well, and it has support for jails too.
+
+Let's create a jail with debootstrap
+
+.. code-block:: sh
+
+   debootstrap wheezy /jails/wheezy
+   
+add a network alias
+
+.. code-block:: sh
+
+   ifconfig em0 192.168.173.105 netmask 255.255.255.0 alias
+   
+(change em0 with your network interface name)
+
+and run it
+
+.. code-block:: sh
+
+   uwsgi --http-socket 192.168.173.105:8080 --jail /jails/wheezy -jail-ip4 192.168.173.105
+   
+
+Jails with Forkpty Router
+*************************
+
+You can easily attach to FreeBSD jails with :doc:`ForkptyRouter`
+
+Just remember to have /dev (well, /dev/ptmx) mounted in your jail to allow the forkpty() call
+
+Learn how to deal with devfs_ruleset to increase security of your devfs
+
+
 Notes
 *****
 
