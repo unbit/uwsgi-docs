@@ -82,7 +82,7 @@ To use the 'uwsgi' mode add a 'u':
 
    uwsgi --pty-uconnect /tmp/fpty.socket
    
-a single instance can expose bot protocols on different sockets
+a single instance can expose both protocols on different sockets
 
 .. code-block:: ini
 
