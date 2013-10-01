@@ -48,26 +48,41 @@ Python via :py:data:`uwsgi.magic_table`) are defined.
 %V       the uWSGI version
 %h       the hostname
 %o       the original config filename, as specified on the command line
-%O       same as %o but refer to the first non-template config file (useful for referring to the vassal file in Emperor mode)
+%O       same as %o but refer to the first non-template config file
+         (version 1.9.18)
 %p       the absolute path of the configuration file
 %P       same as %p but refer to the first non-template config file
+         (version 1.9.18)
 %s       the filename of the configuration file
 %S       same as %s but refer to the first non-template config file
+         (version 1.9.18)
 %d       the absolute path of the directory containing the configuration file
 %D       same as %d but refer to the first non-template config file
+         (version 1.9.18)
 %e       the extension of the configuration file
 %E       same as %e but refer to the first non-template config file
+         (version 1.9.18)
 %n       the filename without extension
 %N       same as %n but refer to the first non-template config file
+         (version 1.9.18)
 %c       the name of the directory containing the config file (version 1.3+)
 %C       same as %c but refer to the first non-template config file
+         (version 1.9.18)
 %x       the current section identifier, eg. `config.ini:section` (version 1.9-dev+)
 %X       same as %x but refer to the first non-template config file
+         (version 1.9.18)
 %0..%9   a specific component of the full path of the directory containing the config file (version 1.3+)
 ======== ==
 
-Note that these refer to the file they appear in, even if that file is
-included from another file.
+Note that most of these refer to the file they appear in, even if that
+file is included from another file.
+
+An exception are most of the uppercase versions, which refer to the
+first non-template config file loaded. This means the first config file
+not loaded through ``--include`` or ``--inherit``, but through for
+example ``--ini``, ``--yaml`` or ``--config``. These are intended to use
+with the emperor, to refer to the actual vassal config file instead of
+templates included with ``--vassals-include`` or ``--vassals-inherit``.
 
 For example, here's :file:`funnyapp.ini`.
 
