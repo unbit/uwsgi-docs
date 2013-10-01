@@ -10,7 +10,7 @@ The following statements are currently supported:
 * ``if-env`` / ``if-not-env``
 * ``if-exists`` / ``if-not-exists``
 * ``if-file`` / ``if-not-file``
-* ``if-opt`` / ``if-not-opt`` -- undocumented
+* ``if-opt`` / ``if-not-opt``
 * ``if-reload`` / ``if-not-reload`` -- undocumented
 
 Each of these statements exports a context value you can access with the
@@ -135,3 +135,50 @@ set to the filename found.
     if-file: config.ru
     rack: %(_)
     endif:
+
+if-opt
+------
+Check if the given option is set, or has a given value. The context
+placeholder is set to actual value of the option reference.
+
+To check if an option was set, pass just the option name to ``if-opt``.
+
+.. code-block:: yaml
+
+  uwsgi:
+    cheaper: 3
+    if-opt: cheaper
+    print: Running in cheaper mode, with initially %(_) processes
+    endif:
+
+To check if an option was set to a specific value, pass
+``option-name=value`` to ``if-opt``.
+
+.. code-block:: yaml
+
+  uwsgi:
+    # Set busyness parameters if it was chosen
+    if-opt: cheaper-algo=busyness
+    cheaper-busyness-max: 25
+    cheaper-busyness-min: 10
+    endif:
+
+Due to the way uWSGI parses its configs, you can only refer to options
+that uWSGI has previously seen. In particular, this means:
+
+* Only options that are set above the ``if-opt`` option are taken into
+  account. This includes any options set by previous ``include`` (or
+  type specific includes like ``ini``) options, but does not include
+  options set by previous ``inherit`` options).
+* ``if-opt`` is processed after expanding magic variables, but before
+  expanding placeholders and other variables. So if you use ``if-opt``
+  to compare the value of an option, check against the value as stated
+  in the config file, with only the magic variables filled in.
+
+  If you use the context placeholder ``%(_)`` inside the ``if-opt``
+  block, you should be ok: any placeholders will later be expanded.
+* If an option is specified multiple times, only the value of the first
+  one will be seen by ``if-opt``.
+* Only explicitely set values will be seen, not implicit defaults.
+
+.. seealso:: :doc:`ParsingOrder`
