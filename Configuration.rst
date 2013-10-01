@@ -247,6 +247,20 @@ An example:
     "workers": 3
   }}
 
+Again, a named section can be loaded using a colon after the filename.
+
+.. code-block:: json
+
+  {"app1": {
+    "plugin": "rack"
+  }, "app2": {
+    "plugin": "php"
+  }}
+
+And then load this using::
+
+  uwsgi --json myconf.json:app2
+
 .. note::
 
    The `Jansson`_ library is required during uWSGI build time to enable JSON
@@ -272,6 +286,19 @@ An example:
     socket: 127.0.0.1:8000
     master: 1
     workers: 3
+
+Again, a named section can be loaded using a colon after the filename.
+
+.. code-block:: yaml
+
+  app1:
+    plugin: rack
+  app2:
+    plugin: php
+
+And then load this using::
+
+  uwsgi --yaml myconf.yaml:app2
 
 
 SQLite configuration
