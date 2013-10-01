@@ -10,7 +10,7 @@ The following statements are currently supported:
 * ``if-env`` / ``if-not-env``
 * ``if-exists`` / ``if-not-exists``
 * ``if-file`` / ``if-not-file``
-* ``if-option`` / ``if-not-option`` -- undocumented
+* ``if-opt`` / ``if-not-opt`` -- undocumented
 * ``if-reload`` / ``if-not-reload`` -- undocumented
 
 Each of these statements exports a context value you can access with the
