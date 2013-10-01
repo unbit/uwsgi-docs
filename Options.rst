@@ -791,7 +791,21 @@ To use placeholder variables when using strict mode, use the
 ~~~~~~~
 **Argument:** string
 
-Set a custom placeholder for configuration.
+Set a configuration option. This option was created to work around a
+specific problem with commandline options on Solaris and should not
+normally need to be used.
+
+.. _OptionSetPlaceholder:
+
+``set-placeholder``, ``set-ph``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Set a placeholder variable. The value of this option should be in the
+form ``placeholder=value``. This option can be to set placeholders when
+the ``strict`` option is enabled
+
+This option is available since version 1.9.18.
 
 .. _OptionDeclareOption:
 

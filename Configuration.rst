@@ -102,12 +102,21 @@ setting a new configuration variable of your own devising.
   [uwsgi]
   ; These are placeholders...
   my_funny_domain = uwsgi.it
-  max_customer_address_space = 64
-  customers_base_dir = /var/www
+  set-ph = max_customer_address_space = 64
+  set-placeholder = customers_base_dir = /var/www
   ; And these aren't.
   socket = /tmp/sockets/%(my_funny_domain).sock
   chdir = %(customers_base_dir)/%(my_funny_domain)
   limit-as = %(max_customer_address_space)
+
+Placeholders can be assigned diractly, or using the ``set-placeholder``
+/ ``set-ph`` option. These latter options can be useful to:
+
+* Make it more explicit that you're setting placeholders instead of
+  regular options.
+* Set options on the commandline, since unknown options like
+  ``--foo=bar`` are rejected but ``--set-placeholder foo=bar`` is ok.
+* Set placeholders when strict mode is enabled.
 
 Placeholders are accessible, like any uWSGI option, in your application code
 via :py:data:`uwsgi.opt`.
