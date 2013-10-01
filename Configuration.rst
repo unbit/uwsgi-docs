@@ -171,6 +171,27 @@ that is::
 
   uwsgi --ini myconf.ini:app1
 
+Alternatively, you can load another section from the same file by
+omitting the filename and specifying just the section name. Note that
+technically, this loads the named section from the last .ini file loaded
+instead of the current one, so be careful when including other files.
+
+.. code-block:: ini
+
+  [uwsgi]
+  # This will load the app1 section below
+  ini = :app1
+  # This will load the defaults.ini file
+  ini = defaults.ini
+  # This will load the app2 section from the defaults.ini file!
+  ini = :app2
+
+  [app1]
+  plugin = rack
+
+  [app2]
+  plugin = php
+
 * Whitespace is insignificant within lines.
 * Lines starting with a semicolon (``;``) or a hash/octothorpe (``#``) are ignored as comments.
 * Boolean values may be set without the value part. Simply ``master`` is thus equivalent to ``master=true``. This may not be compatible with other INI parsers such as ``paste.deploy``.
