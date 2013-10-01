@@ -32,8 +32,7 @@ uWSGI supports loading configuration files over several methods other than simpl
 
   More esoteric file sources, such as the :doc:`Emperor<Emperor>`, embedded
   configuration (in two flavors), dynamic library symbols and ELF sections
-  could also be used.  This is undocumented, but it's possible. This is the
-  uWSGI way.
+  could also be used.
 
 .. _MagicVars:
 
@@ -46,14 +45,24 @@ Python via :py:data:`uwsgi.magic_table`) are defined.
 
 ======== ==
 %v       the vassals directory (pwd)
+%V       the uWSGI version
+%h       the hostname
 %o       the original config filename, as specified on the command line
+%O       same as %o but refer to the first non-template config file (useful for referring to the vassal file in Emperor mode)
 %p       the absolute path of the configuration file
+%P       same as %p but refer to the first non-template config file
 %s       the filename of the configuration file
+%S       same as %s but refer to the first non-template config file
 %d       the absolute path of the directory containing the configuration file
+%D       same as %d but refer to the first non-template config file
 %e       the extension of the configuration file
+%E       same as %e but refer to the first non-template config file
 %n       the filename without extension
+%N       same as %n but refer to the first non-template config file
 %c       the name of the directory containing the config file (version 1.3+)
+%C       same as %c but refer to the first non-template config file
 %x       the current section identifier, eg. `config.ini:section` (version 1.9-dev+)
+%X       same as %x but refer to the first non-template config file
 %0..%9   a specific component of the full path of the directory containing the config file (version 1.3+)
 ======== ==
 
