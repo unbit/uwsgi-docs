@@ -3493,8 +3493,8 @@ Average values source during idle period (no requests), can be 'last', 'zero', '
 
 .. _OptionsCGI:
 
-Config
-^^^^^^
+CGI
+^^^
 
 .. seealso::
 
