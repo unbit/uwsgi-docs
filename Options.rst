@@ -10,8 +10,6 @@ uWSGI and the various plugins it consists of is almost infinitely configurable.
 
 There's an exhaustive and exhausting list of all options below. Take a deep breath and don't panic -- the list below is long, but you don't need to know everything to start using uWSGI.
 
-.. :seealso:: :doc:`Quickstart`
-
 
 
 
@@ -776,13 +774,38 @@ Configuration
 
    :doc:`Configuration`
 
+.. _OptionStrict:
+``strict``
+~~~~~~~~~~
+**Argument:** no argument
+
+Enable strict configuration parsing. If any unknown option is
+encountered in a configuration file, an error is shown and uWSGI quits.
+
+To use placeholder variables when using strict mode, use the
+``set-placeholder`` option.
+
 .. _OptionSet:
 
 ``set``
 ~~~~~~~
 **Argument:** string
 
-Set a custom placeholder for configuration.
+Set a configuration option. This option was created to work around a
+specific problem with commandline options on Solaris and should not
+normally need to be used.
+
+.. _OptionSetPlaceholder:
+
+``set-placeholder``, ``set-ph``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** string
+
+Set a placeholder variable. The value of this option should be in the
+form ``placeholder=value``. This option can be to set placeholders when
+the ``strict`` option is enabled
+
+This option is available since version 1.9.18.
 
 .. _OptionDeclareOption:
 
@@ -3493,8 +3516,8 @@ Average values source during idle period (no requests), can be 'last', 'zero', '
 
 .. _OptionsCGI:
 
-Config
-^^^^^^
+CGI
+^^^
 
 .. seealso::
 
