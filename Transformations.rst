@@ -9,7 +9,7 @@ Transformations can be chained (the output of a transformation will be the input
 response headers.
 
 The most common example of transformation is gzip encoding. The output of your application is passed to a function compressing it with gzip
-and setting the Content-Encoding header.
+and setting the Content-Encoding header. This feature rely on 2 external packages: libpcre3-dev, libz-dev on Ubuntu.
 
 .. code-block:: ini
 
