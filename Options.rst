@@ -774,6 +774,17 @@ Configuration
 
    :doc:`Configuration`
 
+.. _OptionStrict:
+``strict``
+~~~~~~~~~~
+**Argument:** no argument
+
+Enable strict configuration parsing. If any unknown option is
+encountered in a configuration file, an error is shown and uWSGI quits.
+
+To use placeholder variables when using strict mode, use the
+``set-placeholder`` option.
+
 .. _OptionSet:
 
 ``set``
