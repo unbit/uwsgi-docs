@@ -50,6 +50,29 @@ For iterates over space-separated strings. The following three code blocks are e
 
   uwsgi --for="3031 3032 3033 3034 3035" --socket="127.0.0.1:%(_)" --endfor --module helloworld
 
+Note that the for-loop is applied to each line inside the block
+separately, not to the block as a whole. For example, this:
+
+.. code-block:: ini
+
+  [uwsgi]
+  for = a b c
+  socket = /var/run/%(_).socket
+  http-socket = /var/run/%(_)-http.socket
+  endfor =
+
+is expanded to:
+
+.. code-block:: ini
+
+  [uwsgi]
+  socket = /var/run/a.socket
+  socket = /var/run/b.socket
+  socket = /var/run/c.socket
+  http-socket = /var/run/a-http.socket
+  http-socket = /var/run/b-http.socket
+  http-socket = /var/run/c-http.socket
+
 if-env
 ------
 
