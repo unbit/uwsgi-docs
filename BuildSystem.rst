@@ -108,6 +108,15 @@ On startup, the CPP binary is run to detect default include paths. You can add m
 UWSGI_EMBED_PLUGINS
 *******************
 
+UWSGI_EMBED_CONFIG
+******************
+
+allows embedding the specified .ini file in the server binary (currently Linux only)
+
+On startup the server parses the embedded file as soon as possible.
+
+Custom options defined in the embedded config will be available as standard ones.
+
 UWSGI_BIN_NAME
 **************
 
