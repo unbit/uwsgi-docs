@@ -48,26 +48,41 @@ Python via :py:data:`uwsgi.magic_table`) are defined.
 %V       the uWSGI version
 %h       the hostname
 %o       the original config filename, as specified on the command line
-%O       same as %o but refer to the first non-template config file (useful for referring to the vassal file in Emperor mode)
+%O       same as %o but refer to the first non-template config file
+         (version 1.9.18)
 %p       the absolute path of the configuration file
 %P       same as %p but refer to the first non-template config file
+         (version 1.9.18)
 %s       the filename of the configuration file
 %S       same as %s but refer to the first non-template config file
+         (version 1.9.18)
 %d       the absolute path of the directory containing the configuration file
 %D       same as %d but refer to the first non-template config file
+         (version 1.9.18)
 %e       the extension of the configuration file
 %E       same as %e but refer to the first non-template config file
+         (version 1.9.18)
 %n       the filename without extension
 %N       same as %n but refer to the first non-template config file
+         (version 1.9.18)
 %c       the name of the directory containing the config file (version 1.3+)
 %C       same as %c but refer to the first non-template config file
+         (version 1.9.18)
 %x       the current section identifier, eg. `config.ini:section` (version 1.9-dev+)
 %X       same as %x but refer to the first non-template config file
+         (version 1.9.18)
 %0..%9   a specific component of the full path of the directory containing the config file (version 1.3+)
 ======== ==
 
-Note that these refer to the file they appear in, even if that file is
-included from another file.
+Note that most of these refer to the file they appear in, even if that
+file is included from another file.
+
+An exception are most of the uppercase versions, which refer to the
+first non-template config file loaded. This means the first config file
+not loaded through ``--include`` or ``--inherit``, but through for
+example ``--ini``, ``--yaml`` or ``--config``. These are intended to use
+with the emperor, to refer to the actual vassal config file instead of
+templates included with ``--vassals-include`` or ``--vassals-inherit``.
 
 For example, here's :file:`funnyapp.ini`.
 
@@ -102,12 +117,21 @@ setting a new configuration variable of your own devising.
   [uwsgi]
   ; These are placeholders...
   my_funny_domain = uwsgi.it
-  max_customer_address_space = 64
-  customers_base_dir = /var/www
+  set-ph = max_customer_address_space = 64
+  set-placeholder = customers_base_dir = /var/www
   ; And these aren't.
   socket = /tmp/sockets/%(my_funny_domain).sock
   chdir = %(customers_base_dir)/%(my_funny_domain)
   limit-as = %(max_customer_address_space)
+
+Placeholders can be assigned diractly, or using the ``set-placeholder``
+/ ``set-ph`` option. These latter options can be useful to:
+
+* Make it more explicit that you're setting placeholders instead of
+  regular options.
+* Set options on the commandline, since unknown options like
+  ``--foo=bar`` are rejected but ``--set-placeholder foo=bar`` is ok.
+* Set placeholders when strict mode is enabled.
 
 Placeholders are accessible, like any uWSGI option, in your application code
 via :py:data:`uwsgi.opt`.
@@ -171,6 +195,27 @@ that is::
 
   uwsgi --ini myconf.ini:app1
 
+Alternatively, you can load another section from the same file by
+omitting the filename and specifying just the section name. Note that
+technically, this loads the named section from the last .ini file loaded
+instead of the current one, so be careful when including other files.
+
+.. code-block:: ini
+
+  [uwsgi]
+  # This will load the app1 section below
+  ini = :app1
+  # This will load the defaults.ini file
+  ini = defaults.ini
+  # This will load the app2 section from the defaults.ini file!
+  ini = :app2
+
+  [app1]
+  plugin = rack
+
+  [app2]
+  plugin = php
+
 * Whitespace is insignificant within lines.
 * Lines starting with a semicolon (``;``) or a hash/octothorpe (``#``) are ignored as comments.
 * Boolean values may be set without the value part. Simply ``master`` is thus equivalent to ``master=true``. This may not be compatible with other INI parsers such as ``paste.deploy``.
@@ -226,6 +271,20 @@ An example:
     "workers": 3
   }}
 
+Again, a named section can be loaded using a colon after the filename.
+
+.. code-block:: json
+
+  {"app1": {
+    "plugin": "rack"
+  }, "app2": {
+    "plugin": "php"
+  }}
+
+And then load this using::
+
+  uwsgi --json myconf.json:app2
+
 .. note::
 
    The `Jansson`_ library is required during uWSGI build time to enable JSON
@@ -251,6 +310,19 @@ An example:
     socket: 127.0.0.1:8000
     master: 1
     workers: 3
+
+Again, a named section can be loaded using a colon after the filename.
+
+.. code-block:: yaml
+
+  app1:
+    plugin: rack
+  app2:
+    plugin: php
+
+And then load this using::
+
+  uwsgi --yaml myconf.yaml:app2
 
 
 SQLite configuration

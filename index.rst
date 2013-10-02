@@ -37,8 +37,6 @@ Quickstarts
 
    WSGIquickstart
    PSGIquickstart
-   RACKquickstart
-   LUAquickstart
 
 
 Table of Contents
