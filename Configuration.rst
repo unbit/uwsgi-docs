@@ -3,17 +3,25 @@ Configuring uWSGI
 
 uWSGI can be configured using several different methods. All configuration methods may be mixed and matched in the same invocation of uWSGI.
 
-In the following examples the "socket" configuration option will be set to
-`/tmp/uwsgi.sock` and `127.0.0.1:8000`, and Master mode will be enabled with 3
-workers.  In all file-based configuration methods, the use of placeholders of
-the format ``%(foo)`` is supported in option values.
-
-.. note:: Some of the configuration methods may require to be compiled in.
+.. note:: Some of the configuration methods may require a specific plugin (ie. sqlite and ldap).
 
 .. seealso:: :doc:`ConfigLogic`
 
-.. seealso:: If you run Python applications, you can avoid the use of a
-   configuration file to set up apps. See :ref:`PythonAppDict`.
+The configuration system is unified, so each command line option maps 1:1 with entries in the config files.
+
+Example:
+
+.. code-block:: sh
+
+   uwsgi --http-socket :9090 --psgi myapp.pl
+   
+can be written as
+
+.. code-block:: ini
+
+   [uwsgi]
+   http-socket = :9090
+   psgi = myapp.pl
 
 
 .. _LoadingConfig:
