@@ -42,6 +42,23 @@ the vassal is destroyed the Fuse process is destroyed to as well as its mountpoi
 A Vassal
 ********
 
+.. code-block:: ini
+
+   [uwsgi]
+   ; mount fuse filesystem under /app
+   exec-as-root = fuse-zip -r /var/www/app001.zip /app
+   uid = user001
+   gid = user001
+   http-socket = :9090
+   psgi = /app/myapp.pl
+
 
 Monitoring mountpoints
 **********************
+
+The problem with the current setup, is that if the fuse-zip process dies the instance will no more be able to access /app until it is respawned (and as the fuse processes run as root, we cannot use the master to monitor it)
+
+uWSGI 1.9.18 added the --mountpoint-check option. It forces the master to constantly verify the specified filesystem. If it fails the whole instance is bruttaly destroyed.
+
+As we are under The Emperor, soon after the vassal is destroyed it will be restarted in a clean state (allowing the Fuse mountpoint to be started again)
+
