@@ -45,10 +45,14 @@ A Vassal
 .. code-block:: ini
 
    [uwsgi]
-   ; mount fuse filesystem under /app
-   exec-as-user = fuse-zip -r /var/www/app001.zip /app
    uid = user001
    gid = user001
+   
+   ; mount fuse filesystem under /app (but only if it is not a reload)
+   if-not-reload =
+     exec-as-user = fuse-zip -r /var/www/app001.zip /app
+   endif =
+   
    http-socket = :9090
    psgi = /app/myapp.pl
 
@@ -62,3 +66,19 @@ uWSGI 1.9.18 added the --mountpoint-check option. It forces the master to consta
 
 As we are under The Emperor, soon after the vassal is destroyed it will be restarted in a clean state (allowing the Fuse mountpoint to be started again)
 
+
+.. code-block:: ini
+
+   [uwsgi]
+   uid = user001
+   gid = user001
+   
+   ; mount fuse filesystem under /app (but only if it is not a reload)
+   if-not-reload =
+     exec-as-user = fuse-zip -r /var/www/app001.zip /app
+   endif =
+   
+   http-socket = :9090
+   psgi = /app/myapp.pl
+   
+   mountpoint-check = /app
