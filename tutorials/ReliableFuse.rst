@@ -27,6 +27,18 @@ Our objective is storing our whole app in a zip archive and instruct uWSGI to mo
 The Emperor 
 ***********
 
+.. code-block:: ini
+
+   [uwsgi]
+   emperor = /etc/uwsgi/vassals
+   emperor-use-clone = fs,pid
+   
+The trick here is using Linux namespaces to create vassals in a new pid and filesystem namespace.
+
+The first one (fs) allows mountpoint created by the vassal to be available only in the vassal (without messing with the main system), while the pid one
+allows the uWSGI master to be the "init" process (pid 1) of the vassal. Being pid 1 means that wehn you die all of your children will die. In our scenario (where our vassal launch a Fuse process on startup) it means that when
+the vassal is destroyed the Fuse process is destroyed to as well as its mountpoint.
+
 A Vassal
 ********
 
