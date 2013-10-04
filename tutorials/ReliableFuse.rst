@@ -195,3 +195,18 @@ In our example we will run Fuse processes in the "pre-jail" phase, and deal with
    
 If your app tries to make some write to its filesystem, you will see all of the created/updated files to be available in its /cow directory.
 
+
+Notes
+^^^^^
+
+Some Fuse filesystem does not commit writes until it is unmounted.
+
+In such a case calling unmount on vassal shutdown is a good trick:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; vassals options ...
+   ...
+   ; umount on exit
+   exec-as-user-atexit = fusermount -u /app
