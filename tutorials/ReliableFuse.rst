@@ -2,7 +2,7 @@ Reliably use Fuse filesystem for uWSGI vassals (with Linux)
 ===========================================================
 
 
-Requirements: uWSGI 1.9.18, Linux kernel with fuse support.
+Requirements: uWSGI 1.9.18, Linux kernel with fuse and namespaces support.
 
 Fuse is a technology allowing the implementation of filesystems in user space.
 
