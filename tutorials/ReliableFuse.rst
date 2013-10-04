@@ -153,7 +153,7 @@ Here things get a bit more complicated. We need to launch the unionfs process (a
 
 In our example we will run Fuse processes in the "pre-jail" phase, and deal with mountpoints in the "as-root" phase (that happens after pivot_root)
 
-..code-block:: ini
+.. code-block:: ini
 
    [uwsgi]
    uid = user001
