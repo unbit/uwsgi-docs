@@ -17,7 +17,7 @@ The purpose of this tutorial is configuring an Emperor and a series of vassal, e
 
 
 A Zip filesystem
-****************
+^^^^^^^^^^^^^^^^
 
 fuse-zip (https://code.google.com/p/fuse-zip/) is a Fuse process exposing a zip file as a filesystem.
 
