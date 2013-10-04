@@ -156,6 +156,14 @@ In our example we will run Fuse processes in the "pre-jail" phase, and deal with
 .. code-block:: ini
 
    [uwsgi]
+   ; choose the approach that best suit for you here (plugins loading)
+   ; this will be used for the first run ...
+   plugins-dir = /ns/precise/opt/uwsgi/plugins
+   ; and this after a reload (where our rootfs is already /ns/precise)
+   plugins-dir = /opt/uwsgi/plugins
+   plugin = psgi
+   
+   ; drop privileges
    uid = user001
    gid = user001
    
