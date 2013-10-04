@@ -64,7 +64,7 @@ Monitoring mountpoints
 
 The problem with the current setup, is that if the fuse-zip process dies the instance will no more be able to access /app until it is respawned 
 
-uWSGI 1.9.18 added the --mountpoint-check option. It forces the master to constantly verify the specified filesystem. If it fails the whole instance is bruttaly destroyed.
+uWSGI 1.9.18 added the --mountpoint-check option. It forces the master to constantly verify the specified filesystem. If it fails the whole instance will be brutally destroyed.
 
 As we are under The Emperor, soon after the vassal is destroyed it will be restarted in a clean state (allowing the Fuse mountpoint to be started again)
 
