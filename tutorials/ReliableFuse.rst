@@ -55,6 +55,8 @@ A Vassal
    
    http-socket = :9090
    psgi = /app/myapp.pl
+   
+here we use the -r option of the fuse-zip command for a read-only mount
 
 
 Monitoring mountpoints
