@@ -170,7 +170,7 @@ In our example we will run Fuse processes in the "pre-jail" phase, and deal with
    ; chdir to / for avoiding problems after pivot_root
    hook-pre-jail = callret:chdir /
    ; run unionfs-fuse using chroot (it is required for avoiding deadlocks) and cow (we mount it under /ufs)
-   hook-pre-jail = exec:unionfs-fuse -ocow,chroot=/ns /precise=RO:/cow/%(uid)=RW /ufs
+   hook-pre-jail = exec:unionfs-fuse -ocow,chroot=/ns,default_permissions,allow_other /precise=RO:/cow/%(uid)=RW /ufs
 
    ; change the rootfs to the unionfs one
    ; the .old_root directory is where the old rootfs is still available
@@ -179,6 +179,8 @@ In our example we will run Fuse processes in the "pre-jail" phase, and deal with
    ; now we are in the new rootfs and in 'as-root' phase
    ; remount the /proc filesystem
    hook-as-root = mount:proc none /proc
+   ; bind mount the original /dev in the new rootfs (simplify things a lot)
+   hook-as-root = mount:none /.old_root/dev /dev bind
    ; recursively un-mount the old rootfs
    hook-as-root = umount:/.old_root rec,detach
    
