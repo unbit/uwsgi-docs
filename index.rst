@@ -87,6 +87,8 @@ Tutorials
    
    :doc:`tutorials/heroku_ruby`
    
+   :doc:`tutorials/ReliableFuse`
+   
 
 Articles
 ========
