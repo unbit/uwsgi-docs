@@ -84,3 +84,104 @@ As we are under The Emperor, soon after the vassal is destroyed it will be resta
    psgi = /app/myapp.pl
    
    mountpoint-check = /app
+   
+   
+Going Heavy Metal: A CoW rootfs (unionfs-fuse)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+unionfs-fuse (http://podgorny.cz/moin/UnionFsFuse) is a user space implementation of a union filesystem.
+
+A union filesystem is a stack of multiple filesystem, so directory with same name are merged in a single view.
+
+Union filesystems are more than this and one of the most useful features is copy on write.
+
+Enabling copy on writes means you will have an immutable/read-only mountpoint base and all of the modifications to it will go in another mountpoint.
+
+Our objective is having a readonly rootfs shared by all of our customers, and a writable mountpoint (configured as cow) for each customer, in which every modification will be stored.
+
+The Emperor
+***********
+
+There is no modification in the Emperor, the previous configuration can be used.
+
+What we need to do is prepare our filesystems.
+
+The layout will be:
+
+.. code-block:: c
+
+   /ufs (where we initially mount our unionfs for each vassal)
+   /ns
+     /ns/precise (the shared rootfs)
+     /ns/lucid (an alternative rootfs for old-fashioned customers)
+     /ns/saucy (another shared rootfs based on ubuntu saucy)
+     
+     /ns/cow (the customers writable areas)
+       /ns/cow/user001
+       /ns/cow/user002
+       /ns/cow/userXXX
+       ...
+       
+we create our rootfs:
+
+.. code-block:: sh
+
+   debootstrap precise /ns/precise
+   debootstrap lucid /ns/lucid
+   debootstrap saucy /ns/saucy
+   
+and we create the .old_root directory in each one (it is required for pivot_root , see below)
+
+.. code-block:: sh
+
+   mkdir /ns/precise/.old_root
+   mkdir /ns/lucid/.old_root
+   mkdir /ns/saucy/.old_root
+   
+   
+be sure to install the required libraries in each of them (expecially the libraries required for your language).
+
+The uwsgi binary must be able to be executed in this rootfs, so you have to invest a bit of time in it (a good approach is having a language plugin
+compiled for each distribution and placed on a common directory, for example each rootfs could have an /opt/uwsgi/plugins/psgi_plugin.so file and so on)
+
+A Vassal
+********
+
+Here things get a bit more complicated. We need to launch the unionfs process (as root as it must be our new rootfs) and then call pivot_root (a more advanced chroot available on Linux)
+
+:doc:`Hooks` are the best way to run custom commands (or function) in the various uWSGI startup phases.
+
+In our example we will run Fuse processes in the "pre-jail" phase, and deal with mountpoints in the "as-root" phase (that happens after pivot_root)
+
+..code-block:: ini
+
+   [uwsgi]
+   uid = user001
+   gid = user001
+   
+   ; chdir to / for avoiding problems after pivot_root
+   hook-pre-jail = callret:chdir /
+   ; run unionfs-fuse using chroot (it is required for avoiding deadlocks) and cow (we mount it under /ufs)
+   hook-pre-jail = exec:unionfs-fuse -ocow,chroot=/ns /precise=RO:/cow/%(uid)=RW /ufs
+
+   ; change the rootfs to the unionfs one
+   ; the .old_root directory is where the old rootfs is still available
+   pivot_root = /ufs /ufs/.old_root
+   
+   ; now we are in the new rootfs and in 'as-root' phase
+   ; remount the /proc filesystem
+   hook-as-root = mount:proc none /proc
+   ; recursively un-mount the old rootfs
+   hook-as-root = umount:/.old_root rec,detach
+   
+   ; common bind
+   http-socket = :9090
+   
+   ; load the app (fix it with your requirements)
+   psgi = /var/www/myapp.pl
+   
+   ; constantly check for the rootfs (seems odd but is is very useful)
+   mountpoint-check = /
+   
+If your app tries to make some write to its filesystem, you will see all of the created/updated files to be available in its /cow directory.
+
