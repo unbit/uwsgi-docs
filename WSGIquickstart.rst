@@ -64,7 +64,7 @@ Let's start with the simple hello world example (this is for python 2.x, python 
 
    def application(env, start_response):
        start_response('200 OK', [('Content-Type','text/html')])
-       return "Hello World"
+       return ["Hello World"]
 
 save it as foobar.py
 
@@ -77,7 +77,7 @@ The python 3.x version is the following:
 
    def application(env, start_response):
        start_response('200 OK', [('Content-Type','text/html')])
-       return b"Hello World"
+       return [b"Hello World"]
 
 Deploy it on HTTP port 9090
 ***************************
