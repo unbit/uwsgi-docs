@@ -151,6 +151,7 @@ Securing uWSGI
    Namespaces
    FreeBSDJails
    ForkptyRouter
+   TunTapRouter
 
 
 Keeping an eye on your apps
