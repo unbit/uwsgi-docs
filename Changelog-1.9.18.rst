@@ -1,6 +1,8 @@
 uWSGI 1.9.18
 ============
 
+WORK IN PROGRESS THINGS MAY CHANGE BEFORE OFFICIAL RELEASE
+
 Bugfixes
 ********
 
