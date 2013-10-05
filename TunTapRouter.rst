@@ -63,3 +63,51 @@ instructing it to route traffic to the Emperor tuntap unix socket:
    socket = /var/www/foobar.socket
    psgi-file = foobar.pl
    ...
+
+The embedded firewall
+*********************
+
+The TunTap router includes a very simple firewall for governing vassal's traffic
+
+Firewalling is based on 2 chains (in and out), and each rule is formed by 3 parameters: <action> <src> <dst>
+
+The firewall is applied to traffic from the clients to the tuntap device (out) and the opposite (in)
+
+
+The first matching rule stops the chain, if no rule applies, the policy is "allow"
+
+the following rules allows access from vassals to the internet, but block vassals intercommunication
+
+.. code-block:: ini
+
+   [uwsgi]
+   tuntap-router = emperor0 /tmp/tuntap.socket
+   
+   tuntap-router-firewall-out = allow 192.168.0.0/24 192.168.0.1
+   tuntap-router-firewall-out = deny 192.168.0.0/24 192.168.0.0/24
+   tuntap-router-firewall-out = allow 192.168.0.0/24 0.0.0.0
+   tuntap-router-firewall-out = deny
+   tuntap-router-firewall-in = allow 192.168.0.1 192.168.0.0/24
+   tuntap-router-firewall-in = deny 192.168.0.0/24 192.168.0.0/24
+   tuntap-router-firewall-in = allow 0.0.0.0 192.168.0.0/24
+   tuntap-router-firewall-in = deny
+   
+   exec-as-root = ifconfig emperor0 192.168.0.1 netmask 255.255.255.0 up
+   ; setup nat
+   exec-as-root = iptables -t nat -F
+   exec-as-root = iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+   ; enable linux ip forwarding
+   exec-as-root = echo 1 >/proc/sys/net/ipv4/ip_forward
+   ; force vassals to be created in a new network namespace
+   emperor-use-clone = net
+   emperor = /etc/vassals
+   
+   
+The Future
+**********
+
+This is becoming a very important part of the unbit.it networking stack. We are currently working on:
+
+- dynamic firewall rules (luajit resulted a great tool for writing fast networking rules)
+
+- federation/proxy of tuntap router (the tuntaprouter can multiplex vassals networking over a tcp connection to an external tuntap router [that is why you can bind a tuntap router to a tcp address])
