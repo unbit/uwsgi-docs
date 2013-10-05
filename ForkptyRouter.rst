@@ -1,7 +1,7 @@
 The Forkpty Router
 ==================
 
-Dealing with containers is now a common deployment pattern. One of the most annoying task when dealing with jails/namespaces
+Dealing with containers is now a common deployment pattern. One of the most annoying tasks when dealing with jails/namespaces
 is 'attaching' to already running instances.
 
 The forkpty router aims at simplifyng the process giving a pseudoterminal server to your uWSGI instances.
