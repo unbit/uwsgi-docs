@@ -48,7 +48,7 @@ The value of every item can be a callable, or its name as a string.
 Virtualenv support
 ------------------
 
-`virtualenvwww`_ is a mechanism that lets you isolate one (or more) Python applications' libraries (and interpreters, when not using uWSGI) from each other.
+`virtualenv <virtualenvwww_>`_ is a mechanism that lets you isolate one (or more) Python applications' libraries (and interpreters, when not using uWSGI) from each other.
 Virtualenvs should be used by any respectable modern Python application.
 
 .. _virtualenvwww: http://www.virtualenv.org/
@@ -84,7 +84,10 @@ Quickstart
 Paste support
 -------------
 
-If you are a user or developer of Paste-compatible frameworks, such as Pylons and Turbogears or applications using them, you can use the uWSGI ``--paste`` option to conveniently deploy your application.
+If you are a user or developer of Paste-compatible frameworks, such as Pylons_ and Turbogears_ or applications using them, you can use the uWSGI ``--paste`` option to conveniently deploy your application.
+
+.. _turbogears: http://turbogears.org
+.. _pylons: http://www.pylonsproject.org 
 
 For example, if you have a virtualenv in :file:`/opt/tg2env` containing a Turbogears app called ``addressbook`` configured in :file:`/opt/tg2env/addressbook/development.ini`::
 
@@ -106,7 +109,9 @@ That's it! No additional configuration or Python modules to write.
 Pecan support
 -------------
 
-If you are a user or developer of the Pecan WSGI framework, you can use the uWSGI ``--pecan`` option to conveniently deploy your application.
+If you are a user or developer of the Pecan_ WSGI framework, you can use the uWSGI ``--pecan`` option to conveniently deploy your application.
+
+.. _pecan: http://pecanpy.org
 
 For example, if you have a virtualenv in :file:`/opt/pecanenv` containing a Pecan app called ``addressbook`` configured in :file:`/opt/pecanenv/addressbook/development.py`::
 
