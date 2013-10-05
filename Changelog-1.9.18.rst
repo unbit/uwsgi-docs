@@ -36,7 +36,7 @@ and backward compatibility is granted too. (for the CPython C api experts: yes w
 
 The result is that now you can return every object supporting the buffer protocol (like bytearray, array.array...) without making any conversion.
 
-This is a violation of PEP, so if you feel a sinner just add the new option --wsgi-strict that will force the old mod_wsgi like behaviour.
+This is a violation of PEP, so if you feel a sinner (or want all of the sinner to be punished) just add the new option --wsgi-strict that will force the old mod_wsgi like behaviour.
 
 The "raw" mode (preview technology, only for CPython)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
