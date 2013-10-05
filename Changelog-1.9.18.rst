@@ -32,7 +32,7 @@ where not supported. Such uses are somewhat involuntary supported on pure-python
 before returning (very inefficient)
 
 The patch proposed by yihuang suggests the use of the low-level buffer protocol exposed by the CPython C api. Strings (in python2) and bytes (in python3) support the buffer protocol, so its use is transparent
-and backward compatibility granted. (for the CPython C api experts: yes we support both old and new protocol)
+and backward compatibility is granted too. (for the CPython C api experts: yes we support both old and new protocol)
 
 The result is that now you can return every object supporting the buffer protocol (like bytearray, array.array...) without making any conversion.
 
