@@ -63,6 +63,8 @@ You can then read()/write() to that file descriptor in full freedom.
 Raw mode disables request logging. We currently support it only for CPython, if we get reports (or interest) about it for the other languages we will add
 support for sure.
 
+IMPORTANT: raw mode is not a standard, so do not expect any middleware or common usage patterns will apply. Use it as a low-level socket wrapper. 
+
 Emperor improvements
 ^^^^^^^^^^^^^^^^^^^^
 
