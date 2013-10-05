@@ -41,6 +41,18 @@ This is a violation of PEP, so if you feel a sinner (or want all of the sinners 
 The "raw" mode (preview technology, only for CPython)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+While working on a new server-side project in Unbit we had the need to expose our web application using a very specific protocol (none of the ones supported by uWSGI).
+
+Our first way was adding the new protocol as a plugin, but soon we realize that is was too-specific. So we decided to introduce the RAW mode.
+
+Raw mode allows you to directly parse the request in your application callable. Instead of getting a list of CGI vars/headers in your callable
+you only get the file descriptor soon after accept().
+
+You can then read()/write() to that file descriptor in full freedom.
+
+Raw mode disables request logging. We currently support it only for CPython, if we get reports (or interest) about it for the other languages we will add
+support for sure.
+
 Emperor improvements
 ^^^^^^^^^^^^^^^^^^^^
 
