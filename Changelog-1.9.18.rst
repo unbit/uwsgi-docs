@@ -50,6 +50,16 @@ you only get the file descriptor soon after accept().
 
 You can then read()/write() to that file descriptor in full freedom.
 
+.. code-block:: python
+
+   import os
+   def application(fd):
+      os.write(fd, "Hello World")
+      
+.. code-block:: sh
+
+   uwsgi --raw-socket :7070 --python-raw yourapp.py
+
 Raw mode disables request logging. We currently support it only for CPython, if we get reports (or interest) about it for the other languages we will add
 support for sure.
 
