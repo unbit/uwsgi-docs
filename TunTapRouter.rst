@@ -111,3 +111,9 @@ This is becoming a very important part of the unbit.it networking stack. We are 
 - dynamic firewall rules (luajit resulted a great tool for writing fast networking rules)
 
 - federation/proxy of tuntap router (the tuntaprouter can multiplex vassals networking over a tcp connection to an external tuntap router [that is why you can bind a tuntap router to a tcp address])
+
+- authentication of vassals (maybe the old UNIX ancillary credentials could be enough)
+
+- a stats server for network statistics (rx/tx/errors)
+
+- a bandwidth shaper based on the blastbeat project
