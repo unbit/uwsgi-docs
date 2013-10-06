@@ -116,7 +116,7 @@ Whenever one of the module changes, the whole instance will be (gracefully) relo
 
 The monitor works by iterating over %INC after a request is served and the specified number of seconds (from the last run) is elapsed (this number of seconds is the value of the option)
 
-This could be sub-optimal (you wil get the new content starting from from the following request) it is the more solid for the way perl works.
+This could look sub-optimal (you wil get the new content starting from from the following request) but it is the more solid for the way perl works.
 
 If you want to skip specific files from the monitoring, just add them with --perl-auto-reload-ignore
 
