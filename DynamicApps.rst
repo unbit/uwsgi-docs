@@ -42,5 +42,8 @@ Now we can set the VirtualEnv dynamically using the ``UWSGI_PYHOME`` var::
      uwsgi_param UWSGI_SCRIPT mytrac;
      uwsgi_param UWSGI_PYHOME /Users/roberto/uwsgi/VENV2;
    }
+   
+
+
  
  
