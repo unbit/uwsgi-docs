@@ -32,7 +32,7 @@ first ``import site``, we can now simply set ``sys.prefix`` and
    // Some users would want to not disable initial site module loading, so the site module must be reloaded:
    PyImport_ReloadModule(site_module);
 
-Now we can set the VirtualEnv dynamically using the ``UWSGI_PYHOME`` var::
+Now we can set the VirtualEnv dynamically using the ``UWSGI_PYHOME`` var:
 
 
 .. code-block:: c
