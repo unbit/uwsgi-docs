@@ -102,6 +102,32 @@ the following rules allows access from vassals to the internet, but block vassal
    emperor-use-clone = net
    emperor = /etc/vassals
    
+Security
+********
+
+The "switching" part of the TunTap router (read: mapping ip addresses to vassals) is pretty simple: the first packet received from a vassal by the TunTap router
+register the vassal for that ip address. A good approach (from a security point of view) is sending a ping packet soon after network setup in the vassal:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; create uwsgi0 tun interface and force it to connect to the Emperor exposed unix socket
+   tuntap-device = uwsgi0 /tmp/tuntap.socket
+   ; bring up loopback
+   exec-as-root = ifconfig lo up
+   ; bring up interface uwsgi0
+   exec-as-root = ifconfig uwsgi0 192.168.0.2 netmask 255.255.255.0 up
+   ; and set the default gateway
+   exec-as-root = route add default gw 192.168.0.1
+   
+   ; ping something to register
+   exec-as-root = ping -c 1 192.168.0.1
+   
+   ; classic options
+   ...
+   
+after a vassal/ip pair is registered, only that combo will be valid (so other vassals will not be able to use that address until the one holding it dies)
+   
    
 The Future
 **********
