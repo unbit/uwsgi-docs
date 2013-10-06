@@ -1,6 +1,8 @@
 Adding applications dynamically
 ===============================
 
+NOTE: this is not the best approach for hosting multiple applications. You'd better to run a uWSGI instance for each app.
+
 You can start the uWSGI server without configuring an application.
 
 To load a new application you can use these variables in the uwsgi packet:
