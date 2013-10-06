@@ -23,6 +23,14 @@ the ``ExtUtils::Embed`` module and its prerequisites are installed before buildi
     # to build the uWSGI core, you have to pass
     # the configuration name you used while doing that:
     python uwsgiconfig --plugin plugins/psgi core
+    
+or (as always) you can use the network installer:
+
+.. code-block:: sh
+
+    curl http://uwsgi.it/install | bash -s psgi /tmp/uwsgi
+    
+to have a single-file uwsgi binary with perl support in /tmp/uwsgi
 
 Usage
 -----
@@ -99,6 +107,18 @@ You can load multiple almost-isolated apps in the same uWSGI process using the `
       }
     }
 
+The auto reloader (from uWSGI 1.9.18)
+-------------------------------------
+
+The option --perl-auto-reload <n> allows you to instruct uWSGI to monitor every single module imported by the perl vm.
+
+Whenever one of the module changes, the whole instance will be (gracefully) reloaded.
+
+The monitor works by iterating over %INC after a request is served and the specified number of seconds (from the last run) is elapsed (this number of seconds is the value of the option)
+
+This could be sub-optimal (you wil get the new content starting from from the following request) it is the more solid for the way perl works.
+
+If you want to skip specific files from the monitoring, just add them with --perl-auto-reload-ignore
 
 Notes
 -----
