@@ -198,7 +198,7 @@ For example if you want to run each vassals in a new namespace:
    
 now each vassal will be able to modify the filesystem layout, networking, hostname and so on without damaging the main system.
 
-A couple of helper daemons are included in the uWSGI distribution to simplify management of jailed vassals. Most notably the ``tuntap router`` allows full user-space networking in jails, while
+A couple of helper daemons are included in the uWSGI distribution to simplify management of jailed vassals. Most notably :doc:`TunTapRouter` allows full user-space networking in jails, while
 the ``forkpty router`` allows allocation of pseudoterminals in jails
 
 It is not needed to unshare all of the subsystem in your vassals, sometimes you only want to give dedicated ipc and hostname to a vassal and hide from the processes list:
