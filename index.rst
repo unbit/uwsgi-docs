@@ -1,11 +1,14 @@
 The uWSGI project
 =================
 
-The uWSGI project aims at developing a full stack for building (and hosting) clustered/distributed network applications.
+The uWSGI project aims at developing a full stack for building hosting services.
 
-Mainly targeted at the web and its standards, it has been successfully used in a lot of different contexts.
+Application servers (for various programming languages and protocols), proxies, process managers and monitors are all implemented
+using a common api and a common configuration style.
 
-Thanks to its pluggable architecture it can be extended without limits to support more platforms and languages. Currently, you can write plugins in C, C++ and Objective-C.
+Thanks to its pluggable architecture it can be extended to support more platforms and languages. 
+
+Currently, you can write plugins in C, C++ and Objective-C.
 
 The "WSGI" part in the name is a tribute to the namesake Python standard, as it has been the first developed plugin for the project.
 
@@ -26,8 +29,11 @@ Loop engines (implement concurrency, components can be run in preforking, thread
 
 .. note::
 
-  With a large open source project such as uWSGI the code and the documentation may not always be in sync.
-  The mailing list is the best source for help regarding uWSGI.
+  uWSGI is a very active project with a fast release cycle. For this reason the code and the documentation may not always be in sync.
+  We try to make our best to have good documentation but it is an hard work. Sorry for that.
+  If you are in trouble, the mailing list is the best source for help regarding uWSGI.
+  Contributors for documentation (in addition to code) are always welcome.
+
 
 Quickstarts
 ===========
