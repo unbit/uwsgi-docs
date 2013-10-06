@@ -34,6 +34,7 @@ first ``import site``, we can now simply set ``sys.prefix`` and
 
 Now we can set the VirtualEnv dynamically using the ``UWSGI_PYHOME`` var::
 
+
 .. code-block:: c
 
    location / {
