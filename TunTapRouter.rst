@@ -118,4 +118,3 @@ This is becoming a very important part of the unbit.it networking stack. We are 
 
 - a bandwidth shaper based on the blastbeat project
 
-- user space nat ? (is it whorty ?)
