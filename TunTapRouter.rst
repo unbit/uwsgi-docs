@@ -117,3 +117,5 @@ This is becoming a very important part of the unbit.it networking stack. We are 
 - a stats server for network statistics (rx/tx/errors)
 
 - a bandwidth shaper based on the blastbeat project
+
+- user space nat ? (is it whorty ?)
