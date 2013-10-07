@@ -109,8 +109,8 @@ the Django runserver does by default. You can use whatever port you want of
 course, but I have chosen this one so it doesn't conflict with anything a web
 server might be doing already.
 
-Basic uWSGI intallation and configuration
------------------------------------------
+Basic uWSGI installation and configuration
+------------------------------------------
 
 Install uWSGI into your virtualenv
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
