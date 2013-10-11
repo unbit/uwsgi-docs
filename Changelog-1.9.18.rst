@@ -1,7 +1,14 @@
 uWSGI 1.9.18
 ============
 
-WORK IN PROGRESS THINGS MAY CHANGE BEFORE OFFICIAL RELEASE
+License change
+**************
+
+This version of uWSGI is the first of the 1.9 tree using GPL2 + linking exception instead of plain GPL2.
+
+This new license should avoid any problems when using uWSGI as a shared library (or when linking it with non-GPL2 compatible libraries)
+
+Remember: if you need to make closed-source modifications to uWSGI you can buy a commercial license.
 
 Bugfixes
 ********
@@ -18,11 +25,57 @@ Bugfixes
 - fixed/improved cheaper memory limits (Łukasz Mierzwa)
 - correctly close inherited sockets in gateways
 - fix checks for MAP_FAILED in mmap() (instead of NULL)
+- fixed FastCGI non-blocking body read() (patch by Arkaitz Jimenez)
+- fixed attach.py script
+- avoid crashing on non-conformant PSGI response headers
 
 New Features
 ************
 
+Minimal build profiles
+^^^^^^^^^^^^^^^^^^^^^^
 
+Albeit the memory usage of the uWSGI core is generally between 1.8 and 2.5 megs, there are use cases in which you want an even minimal
+core and set of embedded plugins.
+
+Examples are user not making use of uWSGI specific features, or cases in which the library used by uWSGI nameclash with others (like openssl or zeromq).
+
+A bunch of 'minimal' build profiles have been added:
+
+ * pyonly (build a minimal CPython WSGI server)
+ * pypyonly (build a minimal PyPy WSGI server)
+ * plonly (build a minimal PSGI server)
+ * rbonly (build a minimal Rack server)
+ 
+the only supported configuration format is .ini and internal routing and legion subsystem are not builtin.
+
+For example if you want to install a minimal uWSGI binary via pip:
+
+.. code-block::sh
+
+   UWSGI_PROFILE=pyonly pip install uwsgi
+   
+Auto-fix modifier1
+^^^^^^^^^^^^^^^^^^
+
+Setting the modifier1 for non-python plugin is pretty annoying (read: you always forget about it).
+
+Now if the modifier1 of the request is zero, but the python plugin is not loaded (or there are no python apps loaded) the first configured app
+will be set instead (unless you disable with feature with --no-default-app).
+
+This means you can now run:
+
+.. code-block:: sh
+
+   uwsgi --http-socket :9090 --psgi myapp.pl
+   
+instead of
+
+.. code-block:: sh
+
+   uwsgi --http-socket :9090 --http-socket-modifier1 5 --psgi myapp.pl
+
+obviously try to always set the modifier1, this is only a handy hack
 
 The "raw" mode (preview technology, only for CPython)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -73,14 +126,70 @@ Use with care as it could mask errors and/or wrong behaviours.
 
 Note: if you tried 1.9.18-dev you may note this option was enabled by default. It was an error. Thanks to Graham Dumpleton (mod_wsgi author) for pointing it out.
 
-Emperor improvements
-^^^^^^^^^^^^^^^^^^^^
+Emperor and config improvements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Credits: Matthijs Kooijman
+
+The config system has been improved to be even more consistent in respect to strict mode (remainder: with --strict you basically check your config files for unknown options
+avoiding headaches caused by typos).
+
+New magic vars have been added exposing the name of the original config file (this simplify templating when in Emperor mode)
+
+The Emperor got support for Linux capabilities using the --emperor-cap option. The option takes the list of capability you want to maintain
+for your vassals when they start as root:
+
+.. code-block:: ini
+
+   [uwsgi]
+   emperor = /etc/uwsgi/vassals
+   emperor-cap = setuid,net_bind_service
+   
+with this setup your vassal will be only able to drop privileges and bind to ports < 1024
+
+Its best friend is the CLONE_NEWUSER flag of linux namespaces that is now fully supported on uWSGI:
+
+.. code-block:: ini
+
+   [uwsgi]
+   emperor = /etc/uwsgi/vassals
+   emperor-use-clone = user
+   emperor-cap = setuid,net_bind_service
+   
+this will create a new root user for the vassal with fewer privileges (CLONE_NEWUSER is pretty hard to understand, but the best thing
+to catch it is seeing it as a new root user with dedicated capabilities)
 
 Build system improvements
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
+The build system has been improved to link custom sources on the fly. This works great for low-level hooks:
+
+.. code-block:: c
+
+   // embed_me.c
+   #include <stdio.h>
+   
+   void hello_i_am_foobar() {
+           printf("I Am foobar");
+   }
+
+Now we can link this file to the main uWSGI binary in one shot:
+
+UWSGI_ADDITIONAL_SOURCES=embed_me.c make
+
+and you will automatically get access for your hooks:
+
+.. code-block:: sh
+
+   uwsgi --http-socket :9090 --call-asap hello_i_am_foobar
+   
+Finally, Riccardo Magliocchetti rewrote the build script to use optparse instead of raw/old-fashioned sys.argv parsing
+
+
 Pluginized the 'schemes' management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+schemes are 
 
 mountpoints checks
 ^^^^^^^^^^^^^^^^^^
@@ -88,5 +197,17 @@ mountpoints checks
 Preliminary libffi plugin
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
+As embedding c libraries for exposing hooks is becoming more common, we have started working on libffi integration, allowing
+safe (and sane) argument passing to hooks. More to came soon.
+
 Official support for kFreeBSD
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Debian/kFreeBSD is officially supported.
+
+You can even use FreeBSD jails too !!!
+
+:doc:`FreeBSDJails`
+
+Availability
+************
