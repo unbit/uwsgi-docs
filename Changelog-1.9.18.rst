@@ -41,7 +41,7 @@ Minimal build profiles
 Albeit the memory usage of the uWSGI core is generally between 1.8 and 2.5 megs, there are use cases in which you want an even minimal
 core and set of embedded plugins.
 
-Examples are user not making use of uWSGI specific features, or cases in which the libraries used by uWSGI nameclash with others (like openssl or zeromq).
+Examples are users not making use of uWSGI specific features, or cases in which the libraries used by uWSGI nameclash with others (like openssl or zeromq).
 
 A bunch of 'minimal' build profiles have been added:
 
@@ -146,7 +146,7 @@ Credits: Matthijs Kooijman
 The config system has been improved to be even more consistent in respect to strict mode (remainder: with --strict you basically check your config files for unknown options
 avoiding headaches caused by typos).
 
-New magic vars have been added exposing the name of the original config file (this simplify templating when in Emperor mode)
+New magic vars have been added exposing the name of the original config file (this simplify templating when in Emperor mode), check them at https://github.com/unbit/uwsgi-docs/blob/master/Configuration.rst#magic-variables
 
 The Emperor got support for Linux capabilities using the --emperor-cap option. The option takes the list of capability you want to maintain
 for your vassals when they start as root:
