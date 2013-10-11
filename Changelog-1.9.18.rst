@@ -204,10 +204,38 @@ Finally, Riccardo Magliocchetti rewrote the build script to use optparse instead
 Pluginized the 'schemes' management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-schemes are 
+schemes are the prefix part of uWSGI uri's. When you do
+
+.. code-block:: sh
+
+   uwsgi --ini http://foobar.local:9090/test.ini
+   
+the http:// is the scheme, signalling uWSGI it has to download the config file via http.
+
+Til now those 'schemes' where hardcoded. Now they are exposed as plugins, so you can add more of them (or override the default one).
+
+The new system has been applied to the PSGI plugin too (sorry we are sure only perl developers will understand that kind of poetry :P) so you can do things like:
+
+.. code-block:: sh
+
+   uwsgi --http-socket :1717 --psgi http://yourapps.local/dancer.pl
+   
+or
+
+.. code-block:: sh
+
+   ./uwsgi --binary-append-data yourapp.pl > blob001
+   cat blob001 >> ./uwsgi
+   ./uwsgi --http-socket :1717 --psgi data://0
 
 mountpoints checks
 ^^^^^^^^^^^^^^^^^^
+
+It could be hard to understand why an application server should check for mountpoints.
+
+In the same way understanding how writing filesystem in userspace was silly few years ago.
+
+So, check the article about managing Fuse filesystem with uWSGI: http://uwsgi-docs.readthedocs.org/en/latest/tutorials/ReliableFuse.html
 
 Preliminary libffi plugin
 ^^^^^^^^^^^^^^^^^^^^^^^^^
