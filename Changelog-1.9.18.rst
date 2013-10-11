@@ -28,6 +28,7 @@ Bugfixes
 - fixed FastCGI non-blocking body read() (patch by Arkaitz Jimenez)
 - fixed attach.py script
 - avoid crashing on non-conformant PSGI response headers
+- run the python autoreloader even in non-apps mode when non-lazy
 
 New Features
 ************
@@ -76,6 +77,13 @@ instead of
    uwsgi --http-socket :9090 --http-socket-modifier1 5 --psgi myapp.pl
 
 obviously try to always set the modifier1, this is only a handy hack
+
+Perl auto reloader
+^^^^^^^^^^^^^^^^^^
+
+The --perl-auto-reload option allows the psgi plugin to check for changed modules after every request. It takes the frequency (in seconds) of the scan.
+
+The scan happens after a request has been served. It is suboptimal, but it is the safest choice too.
 
 The "raw" mode (preview technology, only for CPython)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
