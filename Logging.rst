@@ -153,11 +153,20 @@ Logging to syslog
 ``logsyslog`` plugin -- embedded by default
 
 The ``logsyslog`` plugin routes logs to Unix standard syslog. You may pass an
-optional ID to send as the "facility" parameter for the log entry.
+optional ID to send and the "facility" for the log entry.
 
 .. code-block:: sh
 
     uwsgi --socket :3031 --logger syslog:uwsgi1234
+    
+or
+
+.. code-block:: sh
+
+    uwsgi --socket :3031 --logger syslog:uwsgi1234,local6
+    
+to send to the local6 facility
+
 
 Logging to remote syslog
 ------------------------
