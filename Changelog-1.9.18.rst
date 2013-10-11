@@ -175,7 +175,10 @@ The build system has been improved to link custom sources on the fly. This works
 
 Now we can link this file to the main uWSGI binary in one shot:
 
-UWSGI_ADDITIONAL_SOURCES=embed_me.c make
+
+.. code-block:: sh
+
+   UWSGI_ADDITIONAL_SOURCES=embed_me.c make
 
 and you will automatically get access for your hooks:
 
