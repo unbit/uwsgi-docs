@@ -51,7 +51,7 @@ the only supported configuration format is .ini and internal routing and legion 
 
 For example if you want to install a minimal uWSGI binary via pip:
 
-.. code-block::sh
+.. code-block:: sh
 
    UWSGI_PROFILE=pyonly pip install uwsgi
    
