@@ -56,6 +56,8 @@ For example if you want to install a minimal uWSGI binary via pip:
 
    UWSGI_PROFILE=pyonly pip install uwsgi
    
+IMPORTANT: minimal build profiles do not improve performance, for the way uWSGI is designed, unused features do not waste CPU. Minimal build profiles impact on final binary size only
+   
 Auto-fix modifier1
 ^^^^^^^^^^^^^^^^^^
 
