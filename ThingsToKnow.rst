@@ -3,11 +3,15 @@ Things to know (best practices and "issues")
 
 * The ``http`` and ``http-socket`` options are entirely different beasts.
   .. seealso:: :doc:`HTTP`
+  
+  
 
 * By default sending the ``SIGTERM`` signal to uWSGI means "brutally reload the stack" while the convention is to shut an application down on ``SIGTERM``. To shutdown uWSGI use ``SIGINT`` or ``SIGQUIT`` instead.
   If you absolutely can not live with uWSGI being so disrespectful towards ``SIGTERM``, by all means enable the ``die-on-term`` option.
 
 * If you plan to host multiple applications do yourself a favor and check the :doc:`Emperor`.
+
+
 
 * Always use uwsgitop, through :doc:`StatsServer` or something similar to monitor your apps' health.
 
@@ -45,3 +49,5 @@ Things to know (best practices and "issues")
 * If your (Linux) server seems to have lots of idle workers, but performance is still sub-par, you may want to look at the value of the ``ip_conntrack_max`` system variable (``/proc/sys/net/ipv4/ip_conntrack_max``) and increase it to see if it helps.
 
 * Some Linux distributions (read: Debian Etch 4) make a mix of newer kernels with very old userspace. This kind of combination can make the uWSGI build system spit out errors (most notably on ``unshare()``, pthread locking, ``inotify``...). You can force uWSGI to configure itself for an older system prefixing the 'make' (or whatever way you use to build it) with ``CFLAGS="-DOBSOLETE_LINUX_KERNEL"``
+
+* By default the stdin is remapped to /dev/null on startup. If you need a valid stdin (for debugging, piping and so on) add --honour-stdin
