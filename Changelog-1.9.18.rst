@@ -1,6 +1,8 @@
 uWSGI 1.9.18
 ============
 
+Changelog [20131011]
+
 License change
 **************
 
