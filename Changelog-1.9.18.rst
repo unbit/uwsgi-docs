@@ -212,7 +212,7 @@ schemes are the prefix part of uWSGI uri's. When you do
    
 the http:// is the scheme, signalling uWSGI it has to download the config file via http.
 
-Til now those 'schemes' where hardcoded. Now they are exposed as plugins, so you can add more of them (or override the default one).
+Til now those 'schemes' were hardcoded. Now they are exposed as plugins, so you can add more of them (or override the default one).
 
 The new system has been applied to the PSGI plugin too (sorry we are sure only perl developers will understand that kind of poetry :P) so you can do things like:
 
