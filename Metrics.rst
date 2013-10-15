@@ -25,6 +25,24 @@ ALIAS
 
 FUNC
 
+API
+***
+
+metric_get
+
+metric_set
+
+metric_inc
+
+metric_dec
+
+metric_mul
+
+metric_div
+
+SNMP integration
+****************
+
 
 Officially Registered Metrics
 *****************************
