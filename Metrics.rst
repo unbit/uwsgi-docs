@@ -1,6 +1,30 @@
 The Metrics subsystem
 =====================
 
+Metric types
+************
+
+COUNTER
+
+GAUGE
+
+ABSOLUTE
+
+Metric collectors
+*****************
+
+PTR
+
+FILE
+
+MANUAL
+
+SUM
+
+ALIAS
+
+FUNC
+
 
 Officially Registered Metrics
 *****************************
