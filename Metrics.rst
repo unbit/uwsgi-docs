@@ -10,3 +10,5 @@ Officially Registered Metrics
  * plugin/4 (namespace for metrics automatically added by plugins, example plugins.foo.bar)
  
  * core/5 (namespace for general instance informations)
+ 
+ * router/6 (namespace for corerouters, example router.http.active_sessions)
