@@ -357,6 +357,27 @@ When a worker reaches this number of requests it will get recycled (killed and r
 Also take a look at the ``reload-on-as`` and ``reload-on-rss`` options as they are more useful for memory leaks.
 
 
+.. _OptionMinWorkerLifetime:
+
+``min-worker-lifetime``
+~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** number
+
+Number of seconds worker must run before being reloaded.
+
+This option prevents worker from being reloaded too often, uWSGI won't reload any worker due to reaching maximum served requests (--max-requests) or eating too much memory (--reload-on-*) unless it has been runeen running for given number of seconds.
+Default is 60 seconds.
+
+
+.. _OptionMaxWorkerLifetime:
+
+``max-worker-lifetime``
+~~~~~~~~~~~~~~~~~~~~~~~
+**Argument:** number
+
+Maximum number of seconds worker can be running before being forced to reload.
+
+
 .. _OptionLimitAs:
 
 ``limit-as``
