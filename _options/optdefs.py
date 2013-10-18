@@ -87,6 +87,11 @@ def core_options():
         When a worker reaches this number of requests it will get recycled (killed and restarted). You can use this option to "dumb fight" memory leaks.
         Also take a look at the ``reload-on-as`` and ``reload-on-rss`` options as they are more useful for memory leaks.
         """)
+        s.o("min-worker-lifetime", int, "number of seconds worker must run before being reloaded", help="""
+        This option prevents worker from being reloaded too often, uWSGI won't reload any worker due to reaching maximum served requests (--max-requests) or eating too much memory (--reload-on-*) unless it has been running for given number of seconds.
+        Default is 60 seconds.
+        """)
+        s.o("max-worker-lifetime", int, "maximum number of seconds worker can be running before being forced to reload (disabled by default)")
         s.o("limit-as", int, "limit process address space (vsz) (in megabytes)", help="""
         Limits the address space usage of each uWSGI (worker) process using POSIX/UNIX ``setrlimit()``.
         For example, ``limit-as 256`` will disallow uWSGI processes to grow over 256MB of address space.
