@@ -54,3 +54,5 @@ Officially Registered Metrics
  * core/5 (namespace for general instance informations)
  
  * router/6 (namespace for corerouters, example router.http.active_sessions)
+ 
+ * socket/7 (namespace for sockets, example socket.0.listen_queue)
