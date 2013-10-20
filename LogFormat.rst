@@ -89,7 +89,7 @@ To generate Apache compatible logs:
 
    [uwsgi]
    ...
-   log-format = %(addr) - %(user) [%(ltime)] "%(method) %(uri) %(proto)" %(status) %(size)`` "%(referer)" "%(uagent)"
+   log-format = %(addr) - %(user) [%(ltime)] "%(method) %(uri) %(proto)" %(status) %(size) "%(referer)" "%(uagent)"
    ...
 
 
