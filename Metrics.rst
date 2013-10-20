@@ -40,6 +40,50 @@ metric_mul
 
 metric_div
 
+Stats pushers
+*************
+
+Collected metrics can be sent to external systems for analysis or graphs generation.
+
+Stats pushers are plugins aimed at sending metrics to those systems.
+
+There are two kinds of stats pusher: json and raw.
+
+json stats pusher send the whole json stats blob (the same you get from the stats server), while 'raw' ones send the metrics list.
+
+Currently available stats pushers:
+
+rrdtool
+^^^^^^^
+
+type: raw
+
+statsd
+^^^^^^
+
+type: raw
+
+carbon
+^^^^^^
+
+type: raw
+
+zabbix
+^^^^^^
+
+type: raw
+
+mongodb
+^^^^^^^
+
+type: json
+
+file
+^^^^
+
+type: json
+
+
 SNMP integration
 ****************
 
