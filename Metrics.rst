@@ -30,6 +30,9 @@ Metric collectors
 "manual" (the NULL collector)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Custom metrics
+**************
+
 API
 ***
 
