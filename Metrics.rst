@@ -33,6 +33,12 @@ Metric collectors
 Custom metrics
 **************
 
+The metrics directory
+*********************
+
+Restoring metrics (persistent metrics)
+**************************************
+
 API
 ***
 
