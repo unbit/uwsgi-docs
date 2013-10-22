@@ -95,6 +95,12 @@ type: json
 SNMP integration
 ****************
 
+Internal Routing integration
+****************************
+
+Request logging
+***************
+
 
 Officially Registered Metrics
 *****************************
