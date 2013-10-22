@@ -10,20 +10,25 @@ GAUGE
 
 ABSOLUTE
 
+ALIAS
+
 Metric collectors
 *****************
 
-PTR
+"ptr"
+^^^^^
 
-FILE
+"file"
+^^^^^^
 
-MANUAL
+"sum"
+^^^^^
 
-SUM
+"func"
+^^^^^^
 
-ALIAS
-
-FUNC
+"manual" (the NULL collector)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 API
 ***
