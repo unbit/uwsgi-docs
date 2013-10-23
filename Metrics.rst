@@ -1,6 +1,17 @@
 The Metrics subsystem
 =====================
 
+(available from 1.9.19)
+
+The uWSGI metrics subsystem allows you to manage "numbers" from your app.
+
+While the caching subsystem got math capabilities during 1.9 development cycle, the metrics subsystem
+is optimized by design for storing numbers and applying functions over them. So compared to the caching subsystem is way faster
+and requires a fraction of the memory.
+
+When enabled, the metric subsystem configures a vast amount of metrics but, in addition to this, you can configure your own metrics
+(for example you can account the number users or the hit of a particular url, as well as the memory consumption of your app or the whole server)
+
 Metric types
 ************
 
