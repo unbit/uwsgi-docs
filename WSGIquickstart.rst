@@ -242,6 +242,8 @@ Again a popular choice. Unzip the web2py source distribution on a directory of c
    module = wsgihandler
    master = true
    processes = 8
+   
+(Note: on recent web2py releases you may need to copy the wsgihandler.py script out of the 'handlers' directory)
 
 this time we used again the HTTP router. Just go to port 9090 with your browser and you will see the web2py welcome page.
 
