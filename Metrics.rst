@@ -9,37 +9,68 @@ While the caching subsystem got math capabilities during 1.9 development cycle, 
 is optimized by design for storing numbers and applying functions over them. So compared to the caching subsystem is way faster
 and requires a fraction of the memory.
 
-When enabled, the metric subsystem configures a vast amount of metrics but, in addition to this, you can configure your own metrics
+When enabled, the metric subsystem configures a vast amount of metrics (like requests per-core, memory usage...) but, in addition to this, you can configure your own metrics
 (for example you can account the number users or the hit of a particular url, as well as the memory consumption of your app or the whole server)
+
+To enable the metrics subsystem just add ``--enable-metrics`` to your options, or configure a stats pusher (see below).
 
 Metric types
 ************
 
+Before dealing with metrics you need to understand the various types represented by each metric:
+
+
 COUNTER
+^^^^^^^
+
+this is a generally-growing up number (like the number of requests)
 
 GAUGE
+^^^^^
+
+this is a number that can increase or decrease dinamically (like the memory used by a worker)
 
 ABSOLUTE
+^^^^^^^^
+
+this is an absolute number, like the memory of the whole server, or the size of the hard disk.
 
 ALIAS
+^^^^^
+
+this is a virtual metric pointing to another one (you can use it to give different names to already existent metrics)
 
 Metric collectors
 *****************
 
+Once you define a metric type, you need to tell uWSGI how to 'collect' the specific metric.
+
+There are various ''collectors'' available (and new can be added via plugins)
+
 "ptr"
 ^^^^^
+
+the value is collected from a memory pointer
 
 "file"
 ^^^^^^
 
+the value is collected from a file
+
 "sum"
 ^^^^^
+
+the value is the sum of other metrics
 
 "func"
 ^^^^^^
 
+the value is computed calling a specific function every time
+
 "manual" (the NULL collector)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+the value must be updated manually from applications using the metrics api
 
 Custom metrics
 **************
