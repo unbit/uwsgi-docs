@@ -141,8 +141,8 @@ file
 
 type: json
 
-Alarms
-******
+Alarms/Thresholds
+*****************
 
 You can configure one or more "thresholds" to each metric.
 
@@ -155,9 +155,12 @@ with a specified rate.
 
    [uwsgi]
    ...
-   metric-alarm = key=worker.0.avg_response_time,alarm=overload,rate=30
-   metric-alarm = key=loadavg,alarm=overload,rate=120
+   metric-alarm = key=worker.0.avg_response_time,value=2000,alarm=overload,rate=30
+   metric-alarm = key=loadavg,value=3,alarm=overload,rate=120
+   metric-threshold = key=mycounter,value=1000,reset=0
    ...
+   
+Note: --metric-threshold and --metric-alarm are the same option
 
 SNMP integration
 ****************
