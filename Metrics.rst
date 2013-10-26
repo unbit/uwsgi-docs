@@ -96,6 +96,8 @@ metric_mul
 
 metric_div
 
+metrics (tuple/array of metric keys, should be immutable and not-callable)
+
 Stats pushers
 *************
 
@@ -139,6 +141,23 @@ file
 
 type: json
 
+Alarms
+******
+
+You can configure one or more "thresholds" to each metric.
+
+Once this limit is reached the specified alarm (see :doc:`AlarmSubsystem`) is triggered.
+
+Once the alarm is delivered you may choose to reset the counter to aspecfic value (generally 0), or continue triggering alarms
+with a specified rate.
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   metric-alarm = key=worker.0.avg_response_time,alarm=overload,rate=30
+   metric-alarm = key=loadavg,alarm=overload,rate=120
+   ...
 
 SNMP integration
 ****************
