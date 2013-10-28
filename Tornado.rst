@@ -20,7 +20,7 @@ PyPy is currently not supported (albeit technically possibile thanks to continul
 Why ?
 *****
 The Tornado project includes a simple WSGI server by itself. In the same spirit of the Gevent plugin, the purpose of Loop engines is allowing external prejects
-to use (and abuse) the uWSGI api, for better performance, versatility and (maybe the mosti mportant thing) resource usage.
+to use (and abuse) the uWSGI api, for better performance, versatility and (maybe the most important thing) resource usage.
 
 All of the uWSGI subsystems are available (from caching to metrics) in your tornado apps, and the WSGI engine is the uWSGI one.
 
