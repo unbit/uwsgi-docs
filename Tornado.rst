@@ -11,7 +11,7 @@ The tornado loop engine allows you to integrate your uWSGI stack with the Tornad
 Basically every I/O operation of the server is mapped to a tornado IOLoop callback. Making RPC, remote caching, or simply writing responses
 is managed by the Tornado engine.
 
-As uWSGI is not written with a callback-based programming approach, integrating with those kind of libraries requires some fork of "suspend" engine (green threads/coroutines)
+As uWSGI is not written with a callback-based programming approach, integrating with those kind of libraries requires some form of "suspend" engine (green threads/coroutines)
 
 Currently the only supported suspend engine is the "greenlet" one. Stackless python could work too (needs testing).
 
