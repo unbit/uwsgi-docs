@@ -1,8 +1,9 @@
 The Tornado loop engine
 =======================
 
-Supported suspend engines: greenlet
-Supported CPython versions: all of tornado supported versions
+Supported suspend engines: ```greenlet```
+
+Supported CPython versions: ```all of tornado supported versions```
 
 
 The tornado loop engine allows you to integrate your uWSGI stack with the Tornado IOLoop class.
