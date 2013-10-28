@@ -1,6 +1,8 @@
 The Tornado loop engine
 =======================
 
+Available from: ```uWSGI 1.9.19-dev``
+
 Supported suspend engines: ```greenlet```
 
 Supported CPython versions: ```all of tornado supported versions```
@@ -33,6 +35,12 @@ The tornado plugin is currently not built-in by default. To have both tornado an
 .. code-block:: sh
 
    UWSGI_EMBED_PLUGINS=tornado,greenlet pip install tornado greenlet uwsgi
+   
+or (from uWSGi sources, if you already have tornado and greenlet installed)
+
+.. code-block:: sh
+
+   UWSGI_EMBED_PLUGINS=tornado,greenlet make
 
 Running it
 **********
@@ -192,4 +200,4 @@ to use different ports for each workers:
        ...
    
    
-   
+Remember: do no start the IOLoop class. uWSGI will do it by itself as soon as the setup is complete
