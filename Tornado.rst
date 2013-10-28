@@ -69,6 +69,8 @@ Thanks to greenlet we can suspend the execution of our WSGI callable until a tor
            print("Error:", response.error)
        else:
            me.result = response.body
+       # back to the WSGI callable
+       me.switch()
            
     def application(e, sr):
         me = greenlet.getcurrent()
