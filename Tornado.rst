@@ -112,7 +112,7 @@ Let's extend the previous example to wait 10 seconds before sending back the res
            print("Error:", response.error)
        else:
            me.result = response.body
-       # add abother callback in the chain
+       # add another callback in the chain
        me.timeout = io_loop.add_timeout(time.time() + 10, functools.partial(sleeper, me))
            
     def application(e, sr):
@@ -125,3 +125,38 @@ Let's extend the previous example to wait 10 seconds before sending back the res
         io_loop.remove_timeout(me.timeout)
         sr('200 OK', [('Content-Type','text/plain')])
         return me.result
+
+
+here we have chained to callback, with the last one being responsable for giving back control to the WSGI callable
+
+The code could looks ugly or overcomplex (compared to other approaches like gevent) but this is basically the most efficient way to
+increase concurrency (both in terms of memory usage and performance). Technologies like node.js are becoming popular thanks to the results they allow
+to accomplish.
+
+
+WSGI generators (aka yield all over the place)
+**********************************************
+
+Take the following WSGI app:
+
+.. code-block:: py
+
+   def application(e, sr):
+       sr('200 OK', [('Content-Type','text/html')])
+       yield "one"
+       yield "two"
+       yield "three"
+
+if you have already played with uWSGI async mode, you knows that every yield internally calls the used suspend engine (greenlet.switch() in our case).
+
+That means we will enter the tornado IOLoop engine soon after having called "application()". How we can give the control back to our callable if we are no waiting for events ?
+
+The uWSGI async api has been extended to support the "schedule_fix" hook. It allows you to call a hook soon after the suspend engine has been called.
+
+In the tornado's case this hhok is mapped to something like:
+
+.. code-block:: py
+
+   io_loop.add_callback(me.switch)
+   
+in this way after every yield and me.switch() function is called alowing the resume of the callable
