@@ -135,7 +135,7 @@ Let's extend the previous example to wait 10 seconds before sending back the res
         return me.result
 
 
-here we have chained to callback, with the last one being responsable for giving back control to the WSGI callable
+here we have chained two callbacks, with the last one being responsable for giving back control to the WSGI callable
 
 The code could looks ugly or overcomplex (compared to other approaches like gevent) but this is basically the most efficient way to
 increase concurrency (both in terms of memory usage and performance). Technologies like node.js are becoming popular thanks to the results they allow
