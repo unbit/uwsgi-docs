@@ -36,7 +36,7 @@ The tornado plugin is currently not built-in by default. To have both tornado an
 
    UWSGI_EMBED_PLUGINS=tornado,greenlet pip install tornado greenlet uwsgi
    
-or (from uWSGi sources, if you already have tornado and greenlet installed)
+or (from uWSGI sources, if you already have tornado and greenlet installed)
 
 .. code-block:: sh
 
