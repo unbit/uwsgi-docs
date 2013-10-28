@@ -89,7 +89,7 @@ As always, it is not the job of uWSGI to judge programming approaches. It is a t
 
 One of the things you will pretty soon experiment with this approach to programming is the callback-hell.
 
-Let's improve the previous exampel to wait 10 seconds before sending back the response to the client
+Let's extend the previous example to wait 10 seconds before sending back the response to the client
 
 .. code-block:: py
 
