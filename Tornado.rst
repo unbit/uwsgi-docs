@@ -45,6 +45,8 @@ The ``--tornado`` option is exposed by the tornado plugin, allowing you to set o
    
 this will run a uWSGI instance on http port 9090 using tornado as I/O (and time) management and greenlet as suspend engine
 
+100 async cores are allocated, allowing you to manage up to 100 concurrent requests
+
 Integrating WSGI with the tornado api
 *************************************
 
