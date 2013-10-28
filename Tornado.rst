@@ -167,7 +167,7 @@ In the tornado's case this hook is mapped to something like:
 
    io_loop.add_callback(me.switch)
    
-in this way after every yield and me.switch() function is called allowing the resume of the callable
+in this way after every yield a me.switch() function is called allowing the resume of the callable
 
 
 Binding and listening with Tornado
