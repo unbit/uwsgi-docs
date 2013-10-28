@@ -32,7 +32,7 @@ The tornado plugin is currently not built-in by default. To have both tornado an
 
 .. code-block:: sh
 
-UWSGI_EMBED_PLUGINS=tornado,greenlet pip install tornado greenlet uwsgi
+   UWSGI_EMBED_PLUGINS=tornado,greenlet pip install tornado greenlet uwsgi
 
 Running it
 **********
