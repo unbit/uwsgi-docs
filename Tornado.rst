@@ -192,7 +192,7 @@ to use different ports for each workers:
        (r"/", MainHandler),
    ])
    
-   # here appens the magic, we bind after every fork()
+   # here happens the magic, we bind after every fork()
    @postfork
    def start_the_tornado_servers():
        application.listen(8000 + uwsgi.worker_id())
