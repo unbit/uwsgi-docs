@@ -157,7 +157,7 @@ Take the following WSGI app:
 
 if you have already played with uWSGI async mode, you knows that every yield internally calls the used suspend engine (greenlet.switch() in our case).
 
-That means we will enter the tornado IOLoop engine soon after having called "application()". How we can give the control back to our callable if we are no waiting for events ?
+That means we will enter the tornado IOLoop engine soon after having called "application()". How we can give the control back to our callable if we are not waiting for events ?
 
 The uWSGI async api has been extended to support the "schedule_fix" hook. It allows you to call a hook soon after the suspend engine has been called.
 
