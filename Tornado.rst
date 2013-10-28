@@ -64,6 +64,7 @@ Thanks to greenlet we can suspend the execution of our WSGI callable until a tor
    from tornado.ioloop import IOLoop
    io_loop = IOLoop.instance()
    
+   # this is called at the end of the external HTTP request
    def handle_request(me, response):
        if response.error:
            print("Error:", response.error)
@@ -76,6 +77,7 @@ Thanks to greenlet we can suspend the execution of our WSGI callable until a tor
         me = greenlet.getcurrent()
         http_client = AsyncHTTPClient()
         http_client.fetch("http://localhost:9191/services", functools.partial(handle_request, me))
+        # suspend the execution until an IOLoop event is available
         me.parent.switch()
         sr('200 OK', [('Content-Type','text/plain')])
         return me.result
