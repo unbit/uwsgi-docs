@@ -153,10 +153,43 @@ That means we will enter the tornado IOLoop engine soon after having called "app
 
 The uWSGI async api has been extended to support the "schedule_fix" hook. It allows you to call a hook soon after the suspend engine has been called.
 
-In the tornado's case this hhok is mapped to something like:
+In the tornado's case this hook is mapped to something like:
 
 .. code-block:: py
 
    io_loop.add_callback(me.switch)
    
-in this way after every yield and me.switch() function is called alowing the resume of the callable
+in this way after every yield and me.switch() function is called allowing the resume of the callable
+
+
+Binding and listening with Tornado
+**********************************
+
+The Tornado IOLoop is executed after fork() in every worker. If you want to bind to network addresses with Tornado, remember
+to use different ports for each workers:
+
+.. code-block:: py
+
+   from uwsgidecorators import *
+   import tornado.web
+
+   # this is our Tornado-managed app
+   class MainHandler(tornado.web.RequestHandler):
+       def get(self):
+           self.write("Hello, world")
+
+   t_application = tornado.web.Application([
+       (r"/", MainHandler),
+   ])
+   
+   # here appens the magic, we bind after every fork()
+   @postfork
+   def start_the_tornado_servers():
+       application.listen(8000 + uwsgi.worker_id())
+       
+   # this is our WSGI callable managed by uWSGI
+   def application(e, sr):
+       ...
+   
+   
+   
