@@ -5,6 +5,8 @@ This quickstart will show you how to deploy simple WSGI applications and common 
 
 Python here is meant as CPython, for PyPy you need to use the specific plugin: :doc:`PyPy`, Jython support is on work.
 
+Note: you need at least uWSGI 1.4 to follow the quickstart. Anything older is no more maintained and is highly buggy !!!
+
 Installing uWSGI with python support
 ************************************
 
