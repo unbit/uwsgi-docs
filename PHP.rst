@@ -64,7 +64,7 @@ If you have simple apps (based on file extensions) you can use something like th
 
 .. code-block:: nginx
 
-    location ~ .php$ {
+    location ~ \.php$ {
         root /your_document_root;
         include uwsgi_params;
         uwsgi_modifier1 14;
@@ -75,7 +75,7 @@ You might want to check for all of URIs containing the string ``.php``:
 
 .. code-block:: nginx
 
-    location ~ .php {
+    location ~ \.php {
         root /your_document_root;
         include uwsgi_params;
         uwsgi_modifier1 14;
