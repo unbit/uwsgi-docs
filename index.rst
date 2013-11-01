@@ -25,7 +25,7 @@ Gateways (implement load balancers, proxies and routers)
 
 The :doc:`Emperor <Emperor>` (implements massive instances management and monitoring)
 
-Loop engines (implement events and concurrency, components can be run in preforking, threaded, asynchronous/evented and green thread/coroutine modes. Various technologies are supported, including uGreen, Greenlet, Stackless, :doc:`Gevent <Gevent>`, Coro::AnyEvent, Goroutines and Fibers)
+Loop engines (implement events and concurrency, components can be run in preforking, threaded, asynchronous/evented and green thread/coroutine modes. Various technologies are supported, including uGreen, Greenlet, Stackless, :doc:`Gevent <Gevent>`, Coro::AnyEvent, :doc:`Tornado <Tornado>`, Goroutines and Fibers)
 
 .. note::
 
@@ -181,6 +181,7 @@ Async and loop engines
 
    Async
    Gevent
+   Tornado
 
 
 Web Server support
