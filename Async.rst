@@ -45,6 +45,24 @@ Callbacks is the approach used by popular systems like node.js. This approach re
 like uWSGI dealing with this is extremely complex. For that reason, callback approach IS NOT SUPPORTED (even if technically
 possible)
 
+Softwares based on callbacks (like :doc:`Tornado`) can be used combining them with some form of suspend engine.
+
+I/O engines (or event systems)
+******************************
+
+uWSGI includes an highly optimized evented technology, but can use alternative approaches too.
+
+I/O engines always requires some suspend/resume engine otherwise ugly things will happens (the whole uWSGi code-base is coroutine-friendly so you can
+play with stacks pretty easily)
+
+Currently supported I/O engines are:
+
+ :doc:`Tornado`
+ 
+ :doc:`libuv` (work in progress)
+ 
+ :doc:`libev` (work in progress)
+
 Loop engines
 ************
 
