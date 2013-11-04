@@ -184,3 +184,7 @@ Officially Registered Metrics
  * router/6 (namespace for corerouters, example router.http.active_sessions)
  
  * socket/7 (namespace for sockets, example socket.0.listen_queue)
+ 
+ * mule/8 (namespace for mules, example mule.1.signals)
+ 
+ * spooler/9 (namespace for spoolers, example spooler.1.signals)
