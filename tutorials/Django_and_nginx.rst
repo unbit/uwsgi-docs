@@ -219,7 +219,7 @@ Now create a file called mysite_nginx.conf, and put this in it::
     upstream django {
         # server unix:///path/to/your/mysite/mysite.sock; # for a file socket
         server 127.0.0.1:8001; # for a web port socket (we'll use this first) 
-        }
+    }
  
     # configuration of the server
     server {
@@ -245,8 +245,8 @@ Now create a file called mysite_nginx.conf, and put this in it::
         location / {
             uwsgi_pass  django;
             include     /path/to/your/mysite/uwsgi_params; # the uwsgi_params file you installed
-            }
         }
+    }
 
 This conf file tells nginx to serve up media and static files from the
 filesystem, as well as handle requests that require Django's intervention. For a
