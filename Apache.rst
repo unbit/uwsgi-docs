@@ -53,7 +53,7 @@ mod_proxy_uwsgi
 
 
 This is the latest module and probably the best bet for the future.  It is a
-"proxy" module, so you will get all of the futures exported by mod_proxy.  It
+"proxy" module, so you will get all of the features exported by mod_proxy.  It
 is fully "apache api compliant" so it should be easy to integrate with the
 available modules.  Using it is easy; just remember to load mod_proxy and
 mod_proxy_uwsgi modules in your apache config.
