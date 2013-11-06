@@ -117,6 +117,7 @@ Available transformations (last update 20130504)
 * ``chunked``, encode the output in HTTP chunked
 * ``flush``, flush the current buffer to the client
 * ``memcachedstore``, store the response buffer in a memcached object
+* ``redisstore``, store the response buffer in a redis object
 * ``template``, apply routing translations to each chunk
 
 Working on
