@@ -116,10 +116,12 @@ Available transformations (last update 20130504)
 * ``cachestore``, exposed by the ``router_cache`` plugin (cache the response buffer in the uWSGI cache)
 * ``chunked``, encode the output in HTTP chunked
 * ``flush``, flush the current buffer to the client
+* ``memcachedstore``, store the response buffer in a memcached object
+* ``template``, apply routing translations to each chunk
 
 Working on
 **********
 
 * ``rpc``, allows applying rpc functions to a response buffer (limit 64k size)
 * ``lua``, apply a lua function to a response buffer (no limit in size)
-* ``memcachedstore``, store the response buffer in a memcached object
+
