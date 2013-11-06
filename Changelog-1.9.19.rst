@@ -12,17 +12,15 @@ by more modern/advanced ones.
 
 Currently the following plugin and features are scheduled for removal:
 
- - The Go plugin, superseeded by the gccgo one. (eventually the Go plugin will be brought back if something changes in the fork() support)
-
- - Auto-snapshotting, was never documented, it has tons of corner case bugs and it is huber-complex. The features added by the :doc:`MasterFifo` allows for
+- The Go plugin, superseeded by the gccgo one. (eventually the Go plugin will be brought back if something changes in the fork() support)
+- Auto-snapshotting, was never documented, it has tons of corner case bugs and it is huber-complex. The features added by the :doc:`MasterFifo` allows for
 better implementations of snapshotting.
 
-Waiting for decisions:
+Waiting for decision:
 
- - the erlang plugin is extremely old, was badly engineered and should be completely rewritten. If you are a user of it, please contact the staff. Very probably we will not be able
+- the erlang plugin is extremely old, was badly engineered and should be completely rewritten. If you are a user of it, please contact the staff. Very probably we will not be able
  to maintain it without sponsorship.
- 
- - the matheval support could be removed soon (unless we find some specific use that could require it), substituted by some form of simple math directly implemented in the option parser
+- the matheval support could be removed soon (unless we find some specific use that could require it), substituted by some form of simple math directly implemented in the option parser
 
 Bugfixes
 ********
