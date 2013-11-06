@@ -35,8 +35,18 @@ New features
 The Metrics subsystem
 ^^^^^^^^^^^^^^^^^^^^^
 
+This was the last piece missing before uWSGI 2.0. The Metrics subsystem allows you to store "numbers" related to monitoring, graphing and quality checks and exports them in various ways.
+
+Official docs: :doc:`Metrics`
+
 The Tornado loop engine
 ^^^^^^^^^^^^^^^^^^^^^^^
+
+While working on nodejs integration we realized that contrary to what we used to believe, Tornado (an asynchronous, callback based module for python) is usable in uWSGI.
+
+Note: The plugin is not built-in by default
+
+Official docs: :doc:`Tornado`
 
 The 'puwsgi' protocol
 ^^^^^^^^^^^^^^^^^^^^^
