@@ -28,6 +28,7 @@ Bugfixes
 - fixed the greenlet plugin reference counting
 - avoid kevent storm for stats pusher thread
 - fixed rbtimers math
+- both 'cache' and 'file' routers got a 'no_content_length' key option to avoid settign the Content-Length header
 
 New features
 ************
@@ -53,6 +54,10 @@ The 'puwsgi' protocol
 
 --vassal-set
 ^^^^^^^^^^^^
+
+
+The 'template' transformation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Availability
