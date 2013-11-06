@@ -8,7 +8,7 @@ You can tell the master to create a UNIX named pipe (fifo) you can use to issue 
 Generally you use UNIX signals to manage the master, but we are run out of signals numbers and (more important) not needing to mess with pids
 simplify the implementation of external management scripts.
 
-To create the fifo just add `--master-fifo <filename>` then start issuing commands to it:
+To create the fifo just add ``--master-fifo <filename>`` then start issuing commands to it:
 
 .. code-block:: sh
 
