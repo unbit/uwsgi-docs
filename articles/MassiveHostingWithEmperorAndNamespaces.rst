@@ -67,7 +67,7 @@ The Webserver
 
 As we do not need to worry about php and the abuse of .htaccess files, we can choose any server we want.
 
-We prefer nginx (even if we [Unbit] are slowly moving to the uWSGI http/https/spdy router as we only need a minimal proxy with dynamic routing), but you can use whatever you like.
+We prefer nginx (even if we [Unbit] are slowly moving to the uWSGI http/https/spdy router as we only need a minimal proxy with dynamic routing, but for anything more complex nginx is the way to go), but you can use whatever you like.
 
 The "control panel"
 *******************
