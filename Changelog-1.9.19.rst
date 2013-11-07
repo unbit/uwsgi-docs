@@ -19,6 +19,7 @@ Waiting for decision:
 
 - the erlang plugin is extremely old, was badly engineered and should be completely rewritten. If you are a user of it, please contact the staff. Very probably we will not be able to maintain it without sponsorship.
 - the matheval support could be removed soon (unless we find some specific use that could require it), substituted by some form of simple math directly implemented in the option parser
+- the admin plugin should be substituted with something more advanced. An api for defining dynamic options is on-work
 
 Bugfixes
 ********
