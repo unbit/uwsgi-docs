@@ -20,23 +20,23 @@ Metric types
 Before dealing with metrics you need to understand the various types represented by each metric:
 
 
-COUNTER
-^^^^^^^
+COUNTER (type 0)
+^^^^^^^^^^^^^^^^
 
 this is a generally-growing up number (like the number of requests)
 
-GAUGE
-^^^^^
+GAUGE (type 1)
+^^^^^^^^^^^^^^
 
 this is a number that can increase or decrease dinamically (like the memory used by a worker)
 
-ABSOLUTE
-^^^^^^^^
+ABSOLUTE (type 2)
+^^^^^^^^^^^^^^^^^
 
 this is an absolute number, like the memory of the whole server, or the size of the hard disk.
 
-ALIAS
-^^^^^
+ALIAS (type 3)
+^^^^^^^^^^^^^^
 
 this is a virtual metric pointing to another one (you can use it to give different names to already existent metrics)
 
@@ -75,8 +75,11 @@ the value must be updated manually from applications using the metrics api
 Custom metrics
 **************
 
+You can define additional metrics you can manage from your app
+
 The metrics directory
 *********************
+
 
 Restoring metrics (persistent metrics)
 **************************************
@@ -141,6 +144,11 @@ file
 
 type: json
 
+socket
+^^^^^^
+
+type: raw
+
 Alarms/Thresholds
 *****************
 
@@ -164,6 +172,8 @@ Note: --metric-threshold and --metric-alarm are the same option
 
 SNMP integration
 ****************
+
+The :doc:`SNMP` server exposes metrics under the
 
 Internal Routing integration
 ****************************
