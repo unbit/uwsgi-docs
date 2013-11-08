@@ -10,7 +10,13 @@ The plugin tries to resemble Apache's behavior, allowing you to run CGI scripts 
 Enabling the plugin
 -------------------
 
-The CGI plugin is by default not built in to the core. You will have to compile it as a plugin or create a new build profile that includes it.
+The CGI plugin is by default not built in to the core. You need to build a binary with cgi embedded or build the cgi plugin.
+
+To build a single binary with CGI support:
+
+.. code-block:: sh
+
+   curl http://uwsgi.it/install | bash -s cgi /tmp/uwsgi
 
 To compile it as a plugin,
 
