@@ -1,7 +1,7 @@
 uWSGI 1.9.19
 ============
 
-Changelog [work in progress]
+Changelog [20131109]
 
 This release starts the 'hardening' cycle for uWSGI 2.0 (scheduled for the end of december 2013).
 
@@ -30,6 +30,7 @@ Bugfixes
 - avoid kevent storm for stats pusher thread
 - fixed rbtimers math
 - both 'cache' and 'file' routers got a 'no_content_length' key option to avoid settign the Content-Length header
+- the PyPy plugin automatically enable threads/GIL
 
 New features
 ************
@@ -55,7 +56,7 @@ The 'puwsgi' protocol
 
 A "persistent" (keep-alive) version of the 'uwsgi' parser has been added named 'puwsgi' (persistent uwsgi).
 
-This protocol works only for request without a body and requires support from the frontend. Its use is currently for custom clients.
+This protocol works only for request without a body and requires support from the frontend. Its use is currently for custom clients/apps, there is no webserver handler supporting it.
 
 The ``--puwsgi-socket <addr>`` will bind a puwsgi socket to the specified address
 
@@ -80,3 +81,7 @@ The 'template' transformation
 
 Availability
 ************
+
+uWSGI 1.9.19 has been released on 20131109, you can download it from:
+
+http://projects.unbit.it/downloads/uwsgi-1.9.19.tar.gz
