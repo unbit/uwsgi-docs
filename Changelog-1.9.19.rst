@@ -78,6 +78,38 @@ this will add ``--set processes=8`` and ``--set enable-metrics=1`` to each vassa
 The 'template' transformation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+This is a transformation allowing you to apply all of the internal routing patterns to your responses.
+
+Take the following file (foo.html)
+
+.. code-block:: html
+
+   <html>
+     <head>
+       Running on ${SERVER_NAME}
+     </head>
+     <body>
+       Your ip address is: ${REMOTE_ADDR}<br/>
+       Served requests: ${metric[worker.0.requests]}<br/>
+       Pid: ${uwsgi[pid]}<br/>
+       A random UUID: ${uwsgi[uuid]}
+     </body>
+   </html>
+   
+we will apply the 'template' transformation to it:
+
+.. code-block:: ini
+
+   [uwsgi]
+   http-socket = :9090
+   ; inject the route transformation
+   route-run = template:
+   ; return a file (transformation will eb applied to it)
+   route-run = file:filename=foo.html,no_content_length=1
+   
+everything available in the internal routing subsystem can be used into the template transformation.
+
+Performance are stellar, so instead of old Server Side Includes, you may want to try it
 
 Availability
 ************
