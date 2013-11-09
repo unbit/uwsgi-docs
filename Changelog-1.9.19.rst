@@ -149,6 +149,24 @@ what about chunked encoding ?
    ; return the cache item (transformation will be applied to it)
    route-run = cache:key=foo.html,no_content_length=1
 
+or gzip ?
+
+.. code-block:: ini
+
+   [uwsgi]
+   http-socket = :9090
+   ; enable the metrics subsystem
+   enable-metrics = true
+   ; load foo.html in the cache
+   cache2 = name=mycache,items=10
+   load-file-in-cache = foo.html
+   ; inject the route transformation
+   route-run = template:
+   ; inject gzip
+   route-run = gzip:
+   ; return the cache item (transformation will be applied to it)
+   route-run = cache:key=foo.html,no_content_length=1
+
 Availability
 ************
 
