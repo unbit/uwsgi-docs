@@ -53,8 +53,25 @@ Official docs: :doc:`Tornado`
 The 'puwsgi' protocol
 ^^^^^^^^^^^^^^^^^^^^^
 
+A "persistent" (keep-alive) version of the 'uwsgi' parser has been added named 'puwsgi' (persistent uwsgi).
+
+This protocol works only for request without a body and requires support from the frontend. Its use is currently for custom clients.
+
+The ``--puwsgi-socket <addr>`` will bind a puwsgi socket to the specified address
+
 --vassal-set
 ^^^^^^^^^^^^
+
+You can tell the Emperor to pass specific options to every vassal using the --set facility:
+
+.. code-block:: ini
+
+   [uwsgi]
+   emperor = /etc/uwsgi/vassals
+   vassal-set = processes=8
+   vassal-set = enable-metrics=1
+   
+this will add ``--set processe=8`` and ``--set enable-metrics=1`` to each vassal
 
 
 The 'template' transformation
