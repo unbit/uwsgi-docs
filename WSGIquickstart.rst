@@ -353,7 +353,7 @@ Offloading
 :doc:`OffloadSubsystem` allows you to free your workers as soon as possible when some specific pattern matches and can be delegated
 to a pure-c thread. Examples are sending static file from the filesystem, transferring data from the network to the client and so on.
 
-Offloading is very complex, but its use is transparent to the end user. If you want to try just add --offload-threads <n> where <n> is the number of threads to spawn (one for cpu is a good value).
+Offloading is very complex, but its use is transparent to the end user. If you want to try just add ``--offload-threads <n>`` where <n> is the number of threads to spawn (one for cpu is a good value).
 
 When offload threads are enabled, all of the parts that can be optimized will be automatically detected
 
