@@ -153,7 +153,7 @@ will sum the values of all of its children:
    
 this will sum the value of worker.1.requests and worker.2.requests every second
 
-``collector=func`` is a commodity colelctor avoiding you to write a whole plugin for adding a new collector.
+``collector=func`` is a commodity collector avoiding you to write a whole plugin for adding a new collector.
 
 Let's define a C function (call the file mycollector.c or whatever you want):
 
