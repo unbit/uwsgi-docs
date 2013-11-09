@@ -348,6 +348,8 @@ You can access metrics values from your request logging format using the %(metri
 Officially Registered Metrics
 *****************************
 
+This is a work in progress, best way to know which default metrics are exposed is enabling the stats server and querying it (or adding the --metrics-dir option)
+
  * worker/3 (exports information about workers, example worker.1.requests [or 3.1.1] reports the number of requests served by worker 1)
  
  * plugin/4 (namespace for metrics automatically added by plugins, example plugins.foo.bar)
