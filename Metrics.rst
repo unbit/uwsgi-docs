@@ -23,7 +23,7 @@ Metric names and oids
 
 Each metric must have a name (containing only numbers, letters, underscores, dashes and dots) and an optional oid.
 
-The oid is required if you want to map a metrics to :doc:`SNMP`
+The oid is required if you want to map a metric to :doc:`SNMP`
 
 Metric types
 ************
