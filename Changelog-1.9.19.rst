@@ -102,6 +102,8 @@ we will apply the 'template' transformation to it:
 
    [uwsgi]
    http-socket = :9090
+   ; enable the metrics subsystem
+   enable-metrics = true
    ; inject the route transformation
    route-run = template:
    ; return a file (transformation will eb applied to it)
