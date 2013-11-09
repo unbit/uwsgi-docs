@@ -122,7 +122,7 @@ The following keys are available:
 
 ``arg1`` .. ``arg3`` string based arguments (see below)
 
-``arg1n`` .. ``arg3n`` number bused arguments (see below)
+``arg1n`` .. ``arg3n`` number based arguments (see below)
 
 ``collector`` set the collector, can be ``ptr``, ``file``, ``sum``, ``func`` or anything exposed by plugins. Not specifying a collector means the metric is manual (your app needs to update it).
 
