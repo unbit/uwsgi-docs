@@ -245,7 +245,9 @@ rrdtool
 ^^^^^^^
 
 type: raw
+
 plugin: rrdtool (builtin by default)
+
 requires: librrd.so (dynamically detected on startup, not needed when building)
 
 this will store an rrd file for each metric in the specified directory. Eacch rrd file has a single data source named 'metric'
@@ -270,6 +272,7 @@ statsd
 ^^^^^^
 
 type: raw
+
 plugin: stats_pusher_statsd
 
 push metrics to a statsd server
@@ -286,6 +289,7 @@ carbon
 ^^^^^^
 
 type: raw
+
 plugin: carbon (builtin by default)
 
 see :doc:`Carbon`
@@ -294,6 +298,7 @@ zabbix
 ^^^^^^
 
 type: raw
+
 plugin: zabbix
 
 push metrics to a zabbix server
@@ -314,7 +319,9 @@ mongodb
 ^^^^^^^
 
 type: json
+
 plugin: stats_pusher_mongodb
+
 required: libmongoclient.so
 
 push statistics (as json) the the specified mongodb database
@@ -325,6 +332,7 @@ file
 ^^^^
 
 type: json
+
 plugin: stats_pusher_file
 
 example plugin storing stats json in a file
@@ -333,6 +341,7 @@ socket
 ^^^^^^
 
 type: raw
+
 plugin: stats_pusher_socket (builtin by default)
 
 push metrics to a udp server with the following format:
