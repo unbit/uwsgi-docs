@@ -129,6 +129,7 @@ uWSGI Subsystems
    GeoIP
    Transformations
    WebSockets
+   Metrics
 
 
 
