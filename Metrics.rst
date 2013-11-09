@@ -110,7 +110,7 @@ The following keys are available:
 
 ``oid`` set the metric oid
 
-``type`` set the metric type, can be ``counter``,``gauge``,``absolute``,``alias``
+``type`` set the metric type, can be ``counter``, ``gauge``, ``absolute``, ``alias``
 
 ``initial_value`` set the metric to a specific value on startup
 
