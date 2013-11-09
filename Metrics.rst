@@ -112,6 +112,16 @@ The following keys are available:
 
 ``initial_value`` set the metric to a specific value on startup
 
+``freq`` set the collection frequency in seconds (default to 1)
+
+``children`` maps children to the metric (see below)
+
+``alias`` the metric will be a simple alias for the specified one (--metric name=foobar,alias=worker.0.requests)
+
+``arg1`` .. ``arg3`` string based arguments (see below)
+
+``arg1n`` .. ``arg3n`` number bused arguments (see below)
+
 ``collector`` set the collector, can be ``ptr``,``file``,``sum``, ``func`` or anything exposed by plugins. Not specifying a collector means the metric is manual (your app needs to update it).
 
 The ptr is currently unimplemented, while the other collector requires a bit of additional configuration:
@@ -167,8 +177,23 @@ this will call the C function my_collector every 10 seconds and will set the val
 
 The function must returns an int64_t value. The argument it takes is a uwsgi_metric pointer. You generally do not need to parse it, so casting to void will avoid headaches.
 
+
 The metrics directory
 *********************
+
+UNIX sysadmins love text files. They are generally the things they have to work on most of the time. If you want to make a UNIX sysadmin happy, just give him some text file to play with.
+
+The metrics subsystem can expose all of its metrics in the form of text files in a directory:
+
+.. code-block:: uwsgi
+
+   uwsgi --metrics-dir mymetrics ...
+   
+(the mymetric dir must exists)
+
+this will create a text file for each metric in the 'mymetrics' directory. The conent of each file is the value of the metric (updated in realtime).
+
+Each file is mapped in the process address space, so do not worry if your virtual memory increases.
 
 
 Restoring metrics (persistent metrics)
