@@ -86,7 +86,7 @@ Take the following file (foo.html)
 
    <html>
      <head>
-       Running on ${SERVER_NAME}
+       <title>Running on ${SERVER_NAME}</title>
      </head>
      <body>
        Your ip address is: ${REMOTE_ADDR}<br/>
