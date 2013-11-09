@@ -314,6 +314,12 @@ Internal Routing integration
 Request logging
 ***************
 
+You can access metrics values from your request logging format using the %(metric.xxx) placeholder:
+
+.. code-block:: ini
+
+   [uwsgi]
+   log-format = [hello] %(time) %(metric.worker.0.requests)
 
 Officially Registered Metrics
 *****************************
