@@ -295,6 +295,8 @@ with a specified rate.
    metric-threshold = key=mycounter,value=1000,reset=0
    ...
    
+Specifying an alarm is not required, using the threshold value to automatically reset a metric is perfectly valid
+   
 Note: --metric-threshold and --metric-alarm are the same option
 
 SNMP integration
