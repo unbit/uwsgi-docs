@@ -298,7 +298,15 @@ Note: --metric-threshold and --metric-alarm are the same option
 SNMP integration
 ****************
 
-The :doc:`SNMP` server exposes metrics under the
+The :doc:`SNMP` server exposes metrics starting from the 1.3.6.1.4.1.35156.17.3 OID.
+
+For example to get the value of worker.0.requests:
+
+.. code-block:: sh
+
+   snmpget -v2c -c <snmp_community> <snmp_addr>:<snmp_port> 1.3.6.1.4.1.35156.17.3.0.1
+   
+Remember: only metrics with an associated OID can be used via SNMP
 
 Internal Routing integration
 ****************************
