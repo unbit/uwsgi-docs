@@ -118,7 +118,7 @@ The following keys are available:
 
 ``children`` maps children to the metric (see below)
 
-``alias`` the metric will be a simple alias for the specified one (--metric name=foobar,alias=worker.0.requests)
+``alias`` the metric will be a simple alias for the specified one (--metric name=foobar,alias=worker.0.requests,type=alias)
 
 ``arg1`` .. ``arg3`` string based arguments (see below)
 
