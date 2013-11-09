@@ -245,36 +245,109 @@ rrdtool
 ^^^^^^^
 
 type: raw
+plugin: rrdtool (builtin by default)
+requires: librrd.so (dynamically detected on startup, not needed when building)
+
+this will store an rrd file for each metric in the specified directory. Eacch rrd file has a single data source named 'metric'
+
+Usage:
+
+.. code-block:: sh
+
+   uwsgi --rrdtool my_rrds ...
+   
+or
+
+.. code-block:: sh
+
+   uwsgi --stats-push rrdtool:my_rrds ...
+   
+by default the rrd files are updated every 300 seconds, you can tune this value with ``--rrdtool-freq``
+
+The librrd.so library is detected at runtime. If you need you can specify its absolute path with ``--rrdtool-lib``
 
 statsd
 ^^^^^^
 
 type: raw
+plugin: stats_pusher_statsd
+
+push metrics to a statsd server
+
+syntax: --stats-push statsd:address[,prefix]
+
+example:
+
+.. code-block:: sh
+
+    uwsgi --stats-push statsd:127.0.0.1:8125,myinstance ...
 
 carbon
 ^^^^^^
 
 type: raw
+plugin: carbon (builtin by default)
+
+see :doc:`Carbon`
 
 zabbix
 ^^^^^^
 
 type: raw
+plugin: zabbix
+
+push metrics to a zabbix server
+
+syntax: --stats-push zabbix:address[,prefix]
+
+example: 
+
+.. code-block:: sh
+
+   uwsgi --stats-push zabbix:127.0.0.1:10051,myinstance ...
+   
+The plugin exposes a ``--zabbix-template`` option that will generate a zabbix template (on stdout or in the specified file) containing all of the exposed metrics as trapper items.
+
+Note: on some zabbox version you need to authorize the ip addresses allowed to push items
 
 mongodb
 ^^^^^^^
 
 type: json
+plugin: stats_pusher_mongodb
+required: libmongoclient.so
+
+push statistics (as json) the the specified mongodb database
+
+syntax (keyval): --stats-push mongodb:addr=<addr>,collection=<db>,freq=<freq>
 
 file
 ^^^^
 
 type: json
+plugin: stats_pusher_file
+
+example plugin storing stats json in a file
 
 socket
 ^^^^^^
 
 type: raw
+plugin: stats_pusher_socket (builtin by default)
+
+push metrics to a udp server with the following format:
+
+<metric> <type> <value>
+
+(<type> is in the numeric form previously reported)
+
+syntax: --stats-push socket:address[,prefix]
+
+Example:
+
+.. code-block:: sh
+
+   uwsgi --stats-push socket:127.0.0.1:8125,myinstance ...
 
 Alarms/Thresholds
 *****************
