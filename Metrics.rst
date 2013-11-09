@@ -96,7 +96,7 @@ It has a double syntax: simplified and keyval
 
    uwsgi --http-socket :9090 --metric foobar
    
-will create a metric 'foobar' with type 'counter' and no oid.
+will create a metric 'foobar' with type 'counter', manual collector and no oid.
 
 For creating advanced metrics you need the keyval way:
 
