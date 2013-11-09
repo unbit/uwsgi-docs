@@ -14,6 +14,8 @@ When enabled, the metric subsystem configures a vast amount of metrics (like req
 
 To enable the metrics subsystem just add ``--enable-metrics`` to your options, or configure a stats pusher (see below).
 
+By default uWSGI creates a lot of metrics (and mores are planned) so before adding your own, be sure uWSGI does not already expose the one you need.
+
 Metric names and oids
 *********************
 
@@ -114,7 +116,56 @@ The following keys are available:
 
 The ptr is currently unimplemented, while the other collector requires a bit of additional configuration:
 
-``collector=file`` requires ``arg1`` for the filename and an optional ``arg1n`` for the so-called split value
+``collector=file`` requires ``arg1`` for the filename and an optional ``arg1n`` for the so-called split value.
+
+.. code-block:: sh
+
+   uwsgi --metric name=loadavg,type=gauge,collector=file,arg1=/proc/loadavg,arg1n=1,freq=3
+   
+this will add a 'loadavg` metric, of type gauge, updated every 3 seconds with the content of /proc/loadavg. The content is splitted (using \n, \t, spaces, \r and zero as separator) and the item 1 (the returned array is zero-based) used as value.
+
+the splitter is very powerful, so you could gather infos from more complex files, like /proc/meminfo
+
+.. code-block:: sh
+
+   uwsgi --metric name=memory,type=gauge,collector=file,arg1=/proc/meminfo,arg1n=4,freq=3
+   
+once splitted, the /proc/meminfo has the MemFree value in the 4th slot
+
+``collector=sum`` requires the list of metrics that must be summed up. Each metric has the concept of 'children'. The sum collector
+will sum the values of all of its children:
+
+.. code-block:: sh
+
+   uwsgi --metric name=reqs,collector=sum,children=worker.1.requests;worker.2.requests
+   
+this will sum the value of worker.1.requests and worker.2.requests every second
+
+``collector=func`` is a commodity colelctor avoiding you to write a whole plugin for adding a new collector.
+
+Let's define a C function (call the file mycollector.c or whatever you want):
+
+.. code-block:: c
+
+   int64_t my_collector(void *metric) {
+           return 173;
+   }
+   
+and build it as a shared library
+
+.. code-block:: sh
+
+   gcc -shared -o mycollector.so mycollector.c
+   
+now run uWSGI
+
+.. code-block:: sh
+
+   uwsgi --dlopen ./mycollector.so --metric name=mine,collector=func,arg1=my_collector,freq=10
+   
+this will call the C function my_collector every 10 seconds and will set the value of the metric 'mine' to its return value.
+
+The function must returns an int64_t value. The argument it takes is a uwsgi_metric pointer. You generally do not need to parse it, so casting to void will avoid headaches.
 
 The metrics directory
 *********************
