@@ -31,6 +31,8 @@ Bugfixes
 - fixed rbtimers math
 - both 'cache' and 'file' routers got a 'no_content_length' key option to avoid settign the Content-Length header
 - the PyPy plugin automatically enable threads/GIL
+- manage dot_segments in HTTP parser
+- improved srand usage
 
 New features
 ************
