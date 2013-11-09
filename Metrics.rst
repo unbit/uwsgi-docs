@@ -14,6 +14,8 @@ When enabled, the metric subsystem configures a vast amount of metrics (like req
 
 To enable the metrics subsystem just add ``--enable-metrics`` to your options, or configure a stats pusher (see below).
 
+The metrics subsystem is totally thread-safe
+
 By default uWSGI creates a lot of metrics (and mores are planned) so before adding your own, be sure uWSGI does not already expose the one you need.
 
 Metric names and oids
