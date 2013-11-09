@@ -311,6 +311,30 @@ Remember: only metrics with an associated OID can be used via SNMP
 Internal Routing integration
 ****************************
 
+The ''router_metrics'' plugin (builtin by default) adds a series of actions to the internal routing subsystem.
+
+``metricinc:<metric>[,value]`` increase the <metric>
+
+``metricdec:<metric>[,value]`` decrease the <metric>
+
+``metricmul:<metric>[,value]`` multiply the <metric>
+
+``metricdiv:<metric>[,value]`` divide the <metric>
+
+``metricset:<metric>,<value>`` set <metric> to <value>
+
+in addition to action a route var named "metric" is added
+
+Example:
+
+.. code-block:: ini
+
+   [uwsgi]
+   metric = mymetric
+   route = ^/foo metricinc:mymetric
+   route-run = log:the value of the metric 'mymetric' is ${metric[mymetric]}
+   log-format = %(time) - %(metric.mymetric)
+
 Request logging
 ***************
 
