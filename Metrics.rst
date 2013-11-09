@@ -134,7 +134,7 @@ The ptr is currently unimplemented, while the other collector requires a bit of 
 
    uwsgi --metric name=loadavg,type=gauge,collector=file,arg1=/proc/loadavg,arg1n=1,freq=3
    
-this will add a 'loadavg` metric, of type gauge, updated every 3 seconds with the content of /proc/loadavg. The content is splitted (using \n, \t, spaces, \r and zero as separator) and the item 1 (the returned array is zero-based) used as value.
+this will add a 'loadavg` metric, of type gauge, updated every 3 seconds with the content of /proc/loadavg. The content is splitted (using \\n, \\t, spaces, \\r and zero as separator) and the item 1 (the returned array is zero-based) used as value.
 
 the splitter is very powerful, so you could gather infos from more complex files, like /proc/meminfo
 
