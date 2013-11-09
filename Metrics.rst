@@ -14,6 +14,13 @@ When enabled, the metric subsystem configures a vast amount of metrics (like req
 
 To enable the metrics subsystem just add ``--enable-metrics`` to your options, or configure a stats pusher (see below).
 
+Metric names and oids
+*********************
+
+Each metric must have a name (containing only numbers, letters, underscores, dashes and dots) and an optional oid.
+
+The oid is required if you want to map a metrics to :doc:`SNMP`
+
 Metric types
 ************
 
