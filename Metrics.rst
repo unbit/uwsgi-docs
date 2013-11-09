@@ -82,7 +82,39 @@ the value must be updated manually from applications using the metrics api
 Custom metrics
 **************
 
-You can define additional metrics you can manage from your app
+You can define additional metrics you can manage from your app.
+
+The ``--metric`` option allows you to add more metrics.
+
+It has a double syntax: simplified and keyval
+
+.. code-block:: sh
+
+   uwsgi --http-socket :9090 --metric foobar
+   
+will create a metric 'foobar' with type 'counter' and no oid.
+
+For creating advanced metrics you need the keyval way:
+
+.. code-block:: sh
+
+   uwsgi --http-socket :9090 --metric name=foobar,type=gauge,oid=100.100.100
+   
+The following keys are available:
+
+``name`` set the metric name
+
+``oid`` set the metric oid
+
+``type`` set the metric type, can be ``counter``,``gauge``,``absolute``,``alias``
+
+``initial_value`` set the metric to a specific value on startup
+
+``collector`` set the collector, can be ``ptr``,``file``,``sum``, ``func`` or anything exposed by plugins. Not specifying a collector means the metric is manual (your app needs to update it).
+
+The ptr is currently unimplemented, while the other collector requires a bit of additional configuration:
+
+``collector=file`` requires ``arg1`` for the filename and an optional ``arg1n`` for the so-called split value
 
 The metrics directory
 *********************
