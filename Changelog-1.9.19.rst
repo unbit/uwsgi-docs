@@ -71,7 +71,7 @@ You can tell the Emperor to pass specific options to every vassal using the --se
    vassal-set = processes=8
    vassal-set = enable-metrics=1
    
-this will add ``--set processe=8`` and ``--set enable-metrics=1`` to each vassal
+this will add ``--set processes=8`` and ``--set enable-metrics=1`` to each vassal
 
 
 The 'template' transformation
