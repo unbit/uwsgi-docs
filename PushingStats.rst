@@ -1,6 +1,7 @@
 Pushing statistics (from 1.4)
 =============================
 
+IMPORTANT: the Metrics subsystem offers a better introduction to the following concepts. See :doc:`Metrics`
 
 Starting from uWSGI 1.4 you can push statistics (the same JSON blob you get with the :doc:`StatsServer`)
 via various systems (called stats pushers).
@@ -10,7 +11,7 @@ Statistics are pushed at regular intervals (default 3 seconds).
 The 'file' stats pusher
 ***********************
 
-By default the 'file' stats pusher is available.
+By default the 'file' stats pusher is available up to 1.9.18. Starting from 1.9.19 is available as a plugin (stats_pusher_file).
 
 It allows you to save json chunks to a file (open in appended mode)
 
