@@ -191,7 +191,7 @@ The metrics subsystem can expose all of its metrics in the form of text files in
    
 (the mymetric dir must exists)
 
-this will create a text file for each metric in the 'mymetrics' directory. The conent of each file is the value of the metric (updated in realtime).
+this will create a text file for each metric in the 'mymetrics' directory. The content of each file is the value of the metric (updated in realtime).
 
 Each file is mapped in the process address space, so do not worry if your virtual memory increases.
 
@@ -199,22 +199,32 @@ Each file is mapped in the process address space, so do not worry if your virtua
 Restoring metrics (persistent metrics)
 **************************************
 
+When you restart a uWSGI instance, all of its metrics are reset.
+
+This is generally the best thing to do, but if you want you can restore the previous situation, abusing the values stored in the metrics
+directory defined before.
+
+Just add the ``--metrics-dir-restore`` option to force the metric subsystem to read-back the values from the metric directory before
+starting collecting values.
+
 API
 ***
 
-metric_get
+Your language plugins should expose at least the following api functions. Currently they are implemented in Perl, CPython, PyPy and Ruby
 
-metric_set
+metric_get(name)
 
-metric_inc
+metric_set(name, value)
 
-metric_dec
+metric_inc(name[, delta])
 
-metric_mul
+metric_dec(name[, delta])
 
-metric_div
+metric_mul(name[, delta])
 
-metrics (tuple/array of metric keys, should be immutable and not-callable)
+metric_div(name[, delta])
+
+metrics (tuple/array of metric keys, should be immutable and not-callable, currently unimplemented)
 
 Stats pushers
 *************
