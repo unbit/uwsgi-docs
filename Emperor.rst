@@ -59,8 +59,19 @@ And then for each app create a symlink::
 Passing configuration parameters to all vassals
 -----------------------------------------------
 
+Starting from 1.9.19 you can pass options using the ``--vassal-set`` facility
+
+.. code-block:: ini
+
+   [uwsgi]
+   emperor = /etc/uwsgi/vassals
+   vassal-set = processes=8
+   vassal-set = enable-metrics=1
+   
+this will add ``--set processes=8`` and ``--set enable-metrics=1`` to each vassal
+
 You can force the Emperor to pass options to uWSGI instances using environment
-variables.  Every environment variable of the form ``UWSGI_VASSAL_xxx`` will be
+variables too.  Every environment variable of the form ``UWSGI_VASSAL_xxx`` will be
 rewritten in the new instance as ``UWSGI_xxx``, with the usual
 :ref:`configuration implications<ConfigEnv>`.  
 
