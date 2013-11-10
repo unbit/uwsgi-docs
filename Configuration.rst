@@ -76,6 +76,8 @@ Python via :py:data:`uwsgi.magic_table`) are defined.
 %c       the name of the directory containing the config file (version 1.3+)
 %C       same as %c but refer to the first non-template config file
          (version 1.9.18)
+%t       unix time (in seconds, gathered at instance startup) (version 1.9.20-dev+)
+%T       unix time (in microseconds, gathered at instance startup) (version 1.9.20-dev+)
 %x       the current section identifier, eg. `config.ini:section` (version 1.9-dev+)
 %X       same as %x but refer to the first non-template config file
          (version 1.9.18)
