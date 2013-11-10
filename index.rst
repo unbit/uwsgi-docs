@@ -213,7 +213,6 @@ Language support
    Perl
    Ruby
    Lua
-   Erlang
    JVM
    Mono
    CGI
