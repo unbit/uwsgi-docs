@@ -160,6 +160,57 @@ Similarly, contents of evironment variables and external text files can
 be included using the `@(file_name)` and `%(ENV_VAR)` syntax. See also
 :doc:`ParsingOrder`.
 
+Placeholders math (from uWSGI 1.9.20-dev)
+-----------------------------------------
+
+You can apply math formulas to placeholders using this special syntax:
+
+.. code-block:: ini
+
+   [uwsgi]
+   foo = 17
+   bar = 30
+   ; total will be 50
+   total = %(foo + bar + 3)
+   
+Remember to not miss spaces between operations.
+
+Operations are executed in a pipeline (not in common math style):
+
+.. code-block:: ini
+
+   [uwsgi]
+   foo = 17
+   bar = 30
+   total = %(foo + bar + 3 * 2)
+   
+'total' will be evaluated as 100:
+
+ (((foo + bar) + 3) * 2)
+ 
+Incremental and decremental shortcuts are available
+
+.. code-block:: ini
+
+   [uwsgi]
+   foo = 29
+   ; remember the space !!!
+   bar = %(foo ++)
+
+bar will be 30
+
+If you do not specify an operation between two items, 'string concatenation' is assumed:
+
+.. code-block:: ini
+
+   [uwsgi]
+   foo = 2
+   bar = 9
+   ; remember the space !!!
+   bar = %(foo bar ++)
+   
+the first two items will be evaluated as '29' (not 11 as no math operation has been specified)
+
 
 Command line arguments
 ----------------------
