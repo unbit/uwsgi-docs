@@ -82,6 +82,7 @@ Python via :py:data:`uwsgi.magic_table`) are defined.
 %X       same as %x but refer to the first non-template config file
          (version 1.9.18)
 %0..%9   a specific component of the full path of the directory containing the config file (version 1.3+)
+%[       ANSI escape "\033" (useful for printing colors)
 ======== ==
 
 Note that most of these refer to the file they appear in, even if that
