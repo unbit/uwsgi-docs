@@ -55,8 +55,11 @@ def core_options():
         s.o("scgi-nph-socket", u'add socket', "bind to the specified UNIX/TCP socket using SCGI protocol (nph mode)")
         s.o("scgi-modifier1", long, "force the specified modifier1 when using SCGI protocol")
         s.o("scgi-modifier2", long, "force the specified modifier2 when using SCGI protocol")
-        s.o("undeferred-shared-socket", u'add shared socket', "create a shared sacket for advanced jailing or ipc (undeferred mode)")
-
+        s.o("undeferred-shared-socket", u'add shared socket', "create a shared socket for advanced jailing or ipc (undeferred mode)")
+        s.o("raw-socket", u'add socket no defer', "bind to the specified UNIX/TCP socket using RAW protocol")
+        s.o("raw-modifier1", long, "force the specified modifier1 when using RAW protocol")
+        s.o("raw-modifier2", long, "force the specified modifier2 when using RAW protocol")
+        s.o("puwsgi-socket", u'add socket', "bind to the specified UNIX/TCP socket using persistent uwsgi protocol (puwsgi)")
 
     with config.section("Process Management") as s:
         s.o(("workers", "processes"), int, "Spawn the specified number of workers/processes.", short_name="p", help="""
@@ -86,7 +89,13 @@ def core_options():
         s.o("max-requests", int, "reload workers after the specified amount of managed requests (avoid memory leaks)", short_name='R', help="""
         When a worker reaches this number of requests it will get recycled (killed and restarted). You can use this option to "dumb fight" memory leaks.
         Also take a look at the ``reload-on-as`` and ``reload-on-rss`` options as they are more useful for memory leaks.
+
+        Beware: The default min-worker-lifetime 60 seconds takes priority over `max-requests`.
+        Do not use with benchmarking as you'll get stalls such as `worker respawning too fast !!! i have to sleep a bit (2 seconds)...`
+
         """)
+        s.o("min-worker-lifetime", int, "A worker cannot be destroyed/reloaded unless it has been alive for N seconds (default 60). This is an anti-fork-bomb measure", since="1.9")
+        s.o("max-worker-lifetime", int, "Reload workers after this many seconds. Disabled by default.", since="1.9")
         s.o("limit-as", int, "limit process address space (vsz) (in megabytes)", help="""
         Limits the address space usage of each uWSGI (worker) process using POSIX/UNIX ``setrlimit()``.
         For example, ``limit-as 256`` will disallow uWSGI processes to grow over 256MB of address space.
@@ -115,7 +124,8 @@ def core_options():
         s.o("emperor-max-throttle", int, "set max throttling level (in milliseconds) for badly behaving vassals (default 3 minutes)", default=180000)
         s.o("emperor-magic-exec", True, "prefix vassals config files with exec as s:// if they have the executable bit")
         s.o(("imperial-monitor-list", "imperial-monitors-list"), True, "list enabled imperial monitors")
-        s.o("vassals-inherit", [str], "add given config templates to vassals' config")
+        s.o("vassals-inherit", [str], "Add given config templates to vassals' config.\n\nThis works by passing the ``inherit`` option when starting each vassal (which differs from the ``include`` option in that ``inherit`` *will not* replace placeholders etc.).")
+        s.o("vassals-include", [str], "Add given config templates to vassals' config.\n\nThis works by passing the ``include`` option when starting each vassal (which differs from the ``inherit`` option in that ``include`` *will* replace placeholders etc.).")
         s.o("vassals-start-hook", str, "run the specified command before each vassal starts")
         s.o("vassals-stop-hook", str, "run the specified command after vassal's death")
         s.o("vassal-sos-backlog", int, "ask emperor for sos if backlog queue has more items than the value specified")
@@ -144,10 +154,12 @@ def core_options():
         s.o("connect-and-read", "str", "connect to a socket and wait for data from it")
 
     with config.section("Configuration", docs=["Configuration"]) as s:
-        s.o("set", str, "Set a custom placeholder for configuration")
+        s.o("strict", True, "Enable strict configuration parsing. If any unknown option is encountered in a configuration file, an error is shown and uWSGI quits.\n\nTo use placeholder variables when using strict mode, use the ``set-placeholder`` option.")
+        s.o("set", str, "Set a configuration option. This option was created to work around a specific problem with commandline options on Solaris and should not normally need to be used.")
+        s.o("set-placeholder", str, "Set a placeholder variable. The value of this option should be in the form ``placeholder=value``. This option can be to set placeholders when the ``strict`` option is enabled.", since="1.9.18")
         s.o("declare-option", str, "Declare a new custom uWSGI option")
-        s.o("inherit", str, u"Use the specified file as configuration template")
-        s.o("include", str, u"Include the specified file as if its configuration entries had been declared here (available post 1.3)")
+        s.o("inherit", str, u"Use the specified file as configuration template. The file type of the included file is automatically detected based on filename extension.\n\nNote that environment variables, external file includes and placeholders are *not* expanded inside the inherited configuration. Magic variables (*e.g.* ``%n``) are expanded normally.", docs=["ParsingOrder"])
+        s.o("include", str, u"Include the specified file as if its configuration entries had been declared here. The file type of the included file is automatically detected based on filename extension.", since="1.3")
         s.o(("plugins", "plugin"), [str], "load uWSGI plugins (comma-separated)")
         s.o(("plugins-dir", "plugin-dir"), [str], "add a directory to uWSGI plugin search path")
         s.o(("plugins-list", "plugin-list"), True, "list enabled plugins")
@@ -595,13 +607,14 @@ def carbon_options():
         s.o("carbon-hostname-dots", str, "set char to use as a replacement for dots in hostname (dots are not replaced by default)")
         s.o(("carbon-name-resolve", "carbon-resolve-names"), True, "allow using hostname as carbon server address (default disabled)")
         s.o("carbon-idle-avg", str, "average values source during idle period (no requests), can be 'last', 'zero', 'none' (default is last)")
+        s.o("carbon-use-metrics", True, "don't compute all statistics, use metrics subsystem data instead (warning! key names will be different)")
 
     return config
 
 
 def cgi_options():
     config = Config("CGI")
-    with config.section("Config", docs=["CGI"]) as s:
+    with config.section("CGI", docs=["CGI"]) as s:
         s.o("cgi", '[mountpoint=]script', "Add a CGI directory/script with optional mountpoint (URI prefix)")
         s.o(("cgi-map-helper", "cgi-helper"), 'extension=helper-executable', "Add a cgi helper to map an extension into an executable.")
         s.o("cgi-from-docroot", True, "Blindly enable cgi in DOCUMENT_ROOT")
@@ -628,6 +641,25 @@ def cheaper_options():
         s.o("cheaper-busyness-backlog-multiplier", long, "set cheaper multiplier used for emergency workers (default 3) (Linux only)")
         s.o("cheaper-busyness-backlog-step", int, "number of emergency workers to spawn at a time (default 1) (Linux only)")
         s.o("cheaper-busyness-backlog-nonzero", long, "spawn emergency worker(s) if backlog is > 0 for more then N seconds (default 60)")
+    return config
+
+def curl_cron_config():
+    config = Config("curl_cron")
+    
+    with config.section("curl_cron", docs = []) as s:
+        s.o(("curl-cron", "cron-curl"), u'add cron curl', "add a cron task invoking the specified url via CURL")
+        s.o(("legion-curl-cron", "legion-cron-curl", "curl-cron-legion", "cron-curl-legion"), u'add legion cron curl', "add a cron task invoking the specified url via CURL runnable only when the instance is a lord of the specified legion")
+    
+    return config
+
+def dumb_config():
+    config = Config("dumb")
+    
+    with config.section("dumb", docs = []) as s:
+        s.o("dumbloop-modifier1", int, "set the modifier1 for the code_string")
+        s.o("dumbloop-code", str, "set the script to load for the code_string")
+        s.o("dumbloop-function", str, "set the function to run for the code_string")
+    
     return config
 
 
@@ -657,12 +689,32 @@ def fastrouter_options():
         s.o("fastrouter-events", int, "set the maximum number of concurrent events the fastrouter can return in one cycle")
         s.o("fastrouter-quiet", True, "do not report failed connections to instances")
         s.o("fastrouter-cheap", True, "run the fastrouter in cheap mode (do not respond to requests unless a node is available)")
+        s.o("fastrouter-subscription-slot", u'deprecated', "*** deprecated ***")
         s.o("fastrouter-subscription-server", 'corerouter ss', "add a Subscription Server to the fastrouter to build the hostname:address map", docs=["SubscriptionServer"])
         s.o("fastrouter-timeout", int, "set the internal fastrouter timeout")
         s.o("fastrouter-post-buffering", long, "enable fastrouter post buffering")
         s.o("fastrouter-post-buffering-dir", str, "put fastrouter buffered files to the specified directory")
         s.o(("fastrouter-stats", "fastrouter-stats-server", "fastrouter-ss"), str, "run the fastrouter stats server")
         s.o("fastrouter-harakiri", int, "enable fastrouter harakiri")
+    return config
+
+def forkptyrouter_config():
+    config = Config("Forkpty Router")
+    
+    with config.section("Forkpty Router", docs = []) as s:
+        s.o(("forkptyrouter", "forkpty-router", "forkptyurouter", "forkpty-urouter"), u'undeferred corerouter', "run the forkptyrouter on the specified address")
+        s.o(("forkptyrouter-command", "forkpty-router-command", "forkptyrouter-cmd", "forkpty-router-cmd"), str, "run the specified command on every connection (default: /bin/sh)")
+        s.o("forkptyrouter-rows", u'set 16bit', "set forkptyrouter default pty window rows")
+        s.o("forkptyrouter-cols", u'set 16bit', "set forkptyrouter default pty window cols")
+        s.o(("forkptyrouter-processes", "forkptyrouter-workers"), int, "prefork the specified number of forkptyrouter processes")
+        s.o("forkptyrouter-zerg", u'corerouter zerg', "attach the forkptyrouter to a zerg server")
+        s.o("forkptyrouter-fallback", [str], "fallback to the specified node in case of error")
+        s.o("forkptyrouter-events", int, "set the maximum number of concufptyent events")
+        s.o("forkptyrouter-cheap", True, "run the forkptyrouter in cheap mode")
+        s.o("forkptyrouter-timeout", int, "set forkptyrouter timeout")
+        s.o(("forkptyrouter-stats", "forkptyrouter-stats-server", "forkptyrouter-ss"), str, "run the forkptyrouter stats server")
+        s.o("forkptyrouter-harakiri", int, "enable forkptyrouter harakiri")
+    
     return config
 
 
@@ -794,8 +846,27 @@ def perl_options():
         s.o("perl-version", True, "print perl version")
         s.o("perl-args", str, "add items (space separated) to @ARGV")
         s.o("perl-arg", [str], "add an item to @ARGV")
+        s.o("perl-exec", [str], "exec the specified perl file before fork()")
+        s.o("perl-exec-post-fork", [str], "exec the specified perl file after fork()")
+        s.o("perl-auto-reload", int, "enable perl auto-reloader with the specified frequency")
+        s.o("perl-auto-reload-ignore", [str], "ignore the specified files when auto-reload is enabled")
 
     return config
+
+def pty_config():
+    config = Config("pty")
+    
+    with config.section("pty", docs = ["Pty"]) as s:
+        s.o("pty-socket", str, "bind the pty server on the specified address")
+        s.o("pty-log", True, "send stdout/stderr to the log engine too")
+        s.o("pty-input", True, "read from original stdin in addition to pty")
+        s.o("pty-connect", str, "connect the current terminal to a pty server")
+        s.o("pty-uconnect", str, "connect the current terminal to a pty server (using uwsgi protocol)")
+        s.o("pty-no-isig", True, "disable ISIG terminal attribute in client mode")
+        s.o("pty-exec", str, "run the specified command soon after the pty thread is spawned")
+    
+    return config
+
 
 
 def ruby_options():
@@ -814,6 +885,16 @@ def ruby_options():
         s.o(("rb-lib", "ruby-lib"), [str], "add a directory to the ruby libdir search path")
         s.o("rbshell-oneshot", True, "set ruby/irb shell (one shot)")
 
+    return config
+
+
+def rados_config():
+    config = Config("RADOS")
+    
+    with config.section("RADOS", docs = ["RADOS"]) as s:
+        s.o("rados-mount", [str], "virtual mount the specified rados volume in a uri")
+        s.o("rados-timeout", int, "timeout for async operations")
+    
     return config
 
 
@@ -837,6 +918,7 @@ def rawrouter_options():
         s.o("rawrouter-quiet", True, "do not report failed connections to instances")
         s.o("rawrouter-cheap", True, "run the rawrouter in cheap mode")
         s.o("rawrouter-subscription-server", 'corerouter ss', "run the rawrouter subscription server on the spcified address")
+        s.o("rawrouter-subscription-slot", u'deprecated', "*** deprecated ***")
         s.o("rawrouter-timeout", int, "set rawrouter timeout")
         s.o(("rawrouter-stats", "rawrouter-stats-server", "rawrouter-ss"), str, "run the rawrouter stats server")
         s.o("rawrouter-harakiri", int, "enable rawrouter harakiri")
@@ -851,6 +933,7 @@ def rrdtool_options():
         s.o("rrdtool", [str], "collect request data in the specified rrd file")
         s.o("rrdtool-freq", int, "set collect frequency")
         s.o("rrdtool-max-ds", int, "set maximum number of data sources")
+        s.o("rrdtool-lib", str, "set the name of rrd library (default: librrd.so)")
 
     return config
 
@@ -864,6 +947,7 @@ def async_options():
     with config.section("Gevent", docs=["Gevent"]) as s:
         s.o("gevent", int, "a shortcut enabling gevent loop engine with the specified number of async cores and optimal parameters")
         s.o("gevent-monkey-patch", True, "call gevent.monkey.patch_all() automatically on startup")
+        s.o("gevent-wait-for-hub", True, "wait for gevent hub's death instead of the control greenlet")
 
     with config.section("Stackless", docs=["Stackless"]) as s:
         s.o("stackless", True, "use stackless as suspend engine")
@@ -878,6 +962,9 @@ def async_options():
     with config.section("CoroAE", docs=[]) as s:
         s.o("coroae", u'setup coroae', "a shortcut enabling Coro::AnyEvent loop engine with the specified number of async cores and optimal parameters")
 
+    with config.section("tornado", docs = []) as s:
+        s.o("tornado", u'setup tornado', "a shortcut enabling tornado loop engine with the specified number of async cores and optimal parameters")
+    
     return config
 
 def go_options():
@@ -1028,4 +1115,15 @@ def symcall_options():
         s.o("symcall-register-rpc", [str], "load the specified C symbol as an RPC function (syntax: name function)")
         s.o("symcall-post-fork", [str], "call the specified C symbol after each fork()")
 
+    return config
+
+
+def tuntap_config():
+    config = Config("TUN/TAP")
+    
+    with config.section("TUN/TAP", docs = []) as s:
+        s.o("tuntap-router", [str], "run the tuntap router (syntax: <device> <socket> [stats])")
+        s.o("tuntap-device", [str], "add a tuntap device to the instance (syntax: <device>[ <socket>])")
+        s.o(("tuntap-router-firewall-in", "tuntap-router-firewall-out"), u'uwsgi tuntap opt firewall', "add a firewall rule to the tuntap router (syntax: <action> <src/mask> <dst/mask>)")
+    
     return config
