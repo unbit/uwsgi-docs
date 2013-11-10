@@ -1,5 +1,5 @@
-Integrating uWSGI with Erlang
-=============================
+Integrating uWSGI with Erlang ( !!! DEPRECATED SINCE 1.9.20 !!! A new solution is on work )
+===========================================================================================
 
 The uWSGI server can act as an Erlang C-Node and exchange messages and RPC with Erlang nodes.
 
