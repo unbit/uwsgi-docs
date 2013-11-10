@@ -61,6 +61,7 @@ Table of Contents
    FAQ
    ThingsToKnow
    Configuration
+   FallbackConfig
    ConfigLogic
    ParsingOrder
    Options
@@ -73,6 +74,7 @@ Table of Contents
    Inetd
    Upstart
    SystemD
+   Circus
    Embed
    Logging
    LogFormat
@@ -83,23 +85,26 @@ Table of Contents
 Tutorials
 =========
 
-   :doc:`tutorials/CachingCookbook`
-   
-   :doc:`tutorials/Django_and_nginx`
-   
-   :doc:`tutorials/dreamhost`
-   
-   :doc:`tutorials/heroku_python`
-   
-   :doc:`tutorials/heroku_ruby`
-   
-   :doc:`tutorials/ReliableFuse`
+.. toctree::
+   :maxdepth: 1
+
+   tutorials/CachingCookbook
+   tutorials/Django_and_nginx
+   tutorials/dreamhost
+   tutorials/heroku_python
+   tutorials/heroku_ruby
+   tutorials/ReliableFuse
+   tutorials/DynamicProxying
    
 
 Articles
 ========
 
-   :doc:`articles/SerializingAccept` 
+.. toctree::
+   :maxdepth: 1
+
+   articles/SerializingAccept
+   #articles/MassiveHostingWithEmperorAndNamespaces
    
 
 uWSGI Subsystems
@@ -130,8 +135,6 @@ uWSGI Subsystems
    Transformations
    WebSockets
    Metrics
-
-
 
 Scaling with uWSGI
 ==================
@@ -183,6 +186,7 @@ Async and loop engines
    Async
    Gevent
    Tornado
+   uGreen
 
 
 Web Server support
@@ -224,11 +228,33 @@ Language support
    GlusterFS
    Rados
 
+Other plugins
+=============
+
+.. toctree::
+   :maxdepth: 1
+
+   Pty
+   SPNEGO
+   LDAP
+
+
+Broken/deprecated features
+==========================
+
+.. toctree::
+   :maxdepth: 1
+
+   Erlang
+   ManagementFlag
+   Go
+
 
 Release Notes
 =============
 
 Stable releases
+---------------
 
 .. toctree::
    :maxdepth: 1
@@ -255,6 +281,7 @@ Stable releases
    Changelog-1.9
    
 LTS releases
+------------
 
 .. toctree::
    :maxdepth: 1

@@ -1,5 +1,5 @@
 Running uWSGI on Dreamhost shared hosting
-*****************************************
+=========================================
 
 Note: the following tutorial gives suggestions on how to name files with the objective of hosting multiple applications
 on your account. You are obviously free to change naming schemes.
