@@ -217,7 +217,7 @@ Language support
    JVM
    Mono
    CGI
-   GCC-Go
+   GCCGO
    XSLT
    SSI
    V8
