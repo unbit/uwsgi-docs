@@ -124,3 +124,10 @@ As Nginx supports low-level manipulation of the uwsgi packets sent to upstream u
 Zero size strings will be ignored by the uWSGI array parser, so you can safely use them when the numbers of parameters + function_name is not even. 
 
 Modifier2 is set to 1 to inform that raw strings (HTTP responses in this case) are received. Otherwise the RPC subsystem would encapsulate the output in an uwsgi protocol packet, and nginx isn't smart enough to read those.
+
+
+HTTP PATH_INFO -> RPC bridge
+----------------------------
+
+XMl-RPC -> RPC bridge
+---------------------
