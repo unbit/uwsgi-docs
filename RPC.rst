@@ -133,5 +133,5 @@ Modifier2 is set to 1 to inform that raw strings (HTTP responses in this case) a
 HTTP PATH_INFO -> RPC bridge
 ----------------------------
 
-XMl-RPC -> RPC bridge
+XML-RPC -> RPC bridge
 ---------------------
