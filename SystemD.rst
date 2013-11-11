@@ -86,13 +86,11 @@ If you do that, be sure to set a ``--logto`` option in your Emperor configuratio
 Putting sockets in /run/
 ************************
 
-On a modern system, /run/ is mounted as a tmpfs and is the right place to put sockets and pidfiles into. You can have systemd create a uwsgi directory to put them into by adding these directives to the .service file:
+On a modern system, /run/ is mounted as a tmpfs and is the right place to put sockets and pidfiles into. You can have systemd create a uwsgi directory to put them into by creating a systemd-tmpfiles configuration file (you can save it as /etc/tmpfiles.d/emperor.uwsgi.conf):
 
 .. code-block:: ini
 
-   ExecStartPre=/bin/mkdir -p /run/uwsgi
-   ExecStartPre=/bin/chown www-data:www-data /run/uwsgi
-
+   d /run/uwsgi 0755 www-data www-data -
 
 Socket activation
 *****************
