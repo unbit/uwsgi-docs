@@ -16,7 +16,7 @@ def transmogrify_name(name):
         return [unicode(name) for name in name]    
 
 class Option:
-    def __init__(self, name, type, desc, short_name, optional, multiple, docs=(), default=None, help=None):
+    def __init__(self, name, type, desc, short_name, optional, multiple, docs=(), default=None, help=None, since=None):
         self.names = transmogrify_name(name)
         self.type = type
         self.desc = desc
@@ -27,6 +27,7 @@ class Option:
         self.cc_name = self.names[0].replace("-", " ").title().replace(" ", "")
         self.help = textwrap.dedent((help or "").strip("\r\n"))
         self.default = default
+        self.since = since
 
     def get_argument(self):
         if self.type is int or self.type is long:
@@ -58,6 +59,8 @@ class Option:
         if self.multiple:
             desc += "\n\n*This option may be declared multiple times.*"
 
+        if self.since:
+            desc += "\n\nThis option is available since version %s." % self.since
 
         return desc
 
@@ -74,7 +77,7 @@ class Section:
     def __exit__(self, et, ev, tb):
         pass
 
-    def define_option(self, name, type, desc, short_name=None, docs=(), default=None, help=None):
+    def define_option(self, name, type, desc, short_name=None, docs=(), default=None, help=None, since=None):
         if isinstance(type, _Optional):
             optional = True
             type = type.inner

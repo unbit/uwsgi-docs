@@ -215,6 +215,8 @@ def read_touched():
 		filename = filename.strip()
 		if not os.path.isfile(filename):
 			continue
+		if filename.endswith(".cc"):  # we don't parse c++ yet.
+			continue
 		try:
 			main(filename)
 		except:

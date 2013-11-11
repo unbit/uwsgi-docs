@@ -1,6 +1,15 @@
 JVM in the uWSGI server (updated to 1.9)
 ========================================
 
+.. toctree::
+   :maxdepth: 1
+
+   JWSGI
+   Ring
+
+Introduction
+************  
+
 As of uWSGI 1.9, you can have a full, thread-safe and versatile JVM embedded in
 the core.  All of the plugins can call JVM functions (written in Java, JRuby,
 Jython, Clojure, whatever new fancy language the JVM can run) via the :doc:`RPC

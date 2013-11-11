@@ -26,8 +26,6 @@ uWSGI and the various plugins it consists of is almost infinitely configurable.
 
 There's an exhaustive and exhausting list of all options below. Take a deep breath and don't panic -- the list below is long, but you don't need to know everything to start using uWSGI.
 
-.. :seealso:: :doc:`Quickstart`
-
 """
 
 

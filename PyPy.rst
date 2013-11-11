@@ -1,6 +1,15 @@
 The PyPy plugin
 ===============
 
+
+.. toctree::
+   :maxdepth: 1
+
+   PyPy_benchmarks
+
+Introduction
+^^^^^^^^^^^^
+
 Idea/Design: Maciej Fijalkowski
 
 Contributors: Alex Gaynor, Armin Rigo
