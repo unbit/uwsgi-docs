@@ -63,7 +63,6 @@ Table of Contents
    Configuration
    FallbackConfig
    ConfigLogic
-   ParsingOrder
    Options
    CustomOptions
    ParsingOrder
