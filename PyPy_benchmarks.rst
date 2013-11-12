@@ -1,6 +1,8 @@
 Benchmarks for the PyPy plugin
 ==============================
 
+Note: this benchmark is now (november 2013) very outdated, most of the numbers here have changed (in better) with newer PyPy releases
+
 This is mainly targeted at PyPy developers to spot slow paths or to fix corner-case bugs.
 
 uWSGI stresses lot of areas of PyPy (most of them rarely used in pure-Python apps), so making these benchmarks is good both for uWSGI and PyPy.
@@ -8,6 +10,8 @@ uWSGI stresses lot of areas of PyPy (most of them rarely used in pure-Python app
 * Results are rounded for ease of reading. Each test is executed 10 times on an 8-core Intel i7-3615QM CPU @ 2.30GHz.
 * The CPython version is 2.7.5, PyPy is latest tip at 2013-05-23.
 * Tests are run with logging disabled.
+* Tests are run without thunder locking
+* The client suite introduces ad-hoc errors and disconnections, so numbers are way lower that what you can get with 'ab' or 'httperf'
 
 Generally the command lines are:
 
@@ -227,7 +231,6 @@ Notes
 ^^^^^
 
 * Testing multiprocessing is useless, do not ask for it.
-* Web apps are (generally) I/O bound, so these tests have really little use for real-world scenarios. Testing I/O behaviour is stupid as 99% of the time you will be able to only test the peer/server performance and not the power of the client.
 * The uWSGI PyPy plugin still does not support all of the features of the CPython based plugin, we cannot exclude a little drop in performance while we add features.
 * These numbers might look low to you if you have already made (or read) benchmarks. This is because the test tool injects bad requests in the stream to test server robustness.
 * Again, this tests are only useful for the PyPy and uWSGI teams, do not base your choice between CPython and PyPy on them! (Your app's requirements will always be unique, and it's very possible that your app won't even run on PyPy even though it chugs along fine on CPython.)
