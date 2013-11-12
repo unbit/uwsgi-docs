@@ -36,7 +36,7 @@ step 2: building a routing table
    
    ; let's define our routing table
    
-   ; at every request (route-run is a shortcut for route .*) run the_mapper passing HTTP_HOST as argument
+   ; at every request (route-run execute the action without making check, usi it instead of --route .*) run the_mapper passing HTTP_HOST as argument
    ; and place the result in the MYNODE variable
    route-run = rpcvar:MYNODE the_mapper ${HTTP_HOST}
    ; print the MYNODE variable (just for fun)
