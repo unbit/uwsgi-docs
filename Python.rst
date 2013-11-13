@@ -79,6 +79,25 @@ Quickstart
     $ uwsgi -H myenv -s 127.0.0.1:3031 -M -w envapp
 
 
+.. _Python3:
+
+Python 3
+--------
+
+Python 3 got updated WSGI spec PEP3333_.  It requires applications to respond
+with ``bytes``-instances, not strings, back to WSGI stack.
+
+.. _pep3333: http://www.python.org/dev/peps/pep-3333/
+
+You should encode strings or use bytes literals:
+
+.. code-block:: python
+
+  def application(environ, start_response):
+    start_response('200 OK', [('Content-Type', 'text/plain')])
+    yield 'Hello '.encode('utf-8')
+    yield b'World\n'
+
 .. _PythonPaste:
 
 Paste support
