@@ -26,7 +26,7 @@ To read a chunk (in blocking way) just run
 if no timeout is specified the default one will be used, so if you do not get a chunk in time, the function will croak
 (or will raise an exception when under python).
 
-In non-blocking/async engines you may want to use
+Under non-blocking/async engines you may want to use
 
 .. code-block:: perl
 
@@ -71,4 +71,4 @@ Notes
 
 Calling chunked api functions after having consumed even a single byte of the request body is wrong (this includes post buffering)
 
-
+Chunked api function can be called independently by the presence of "Transfer-Encoding: chunked" header
