@@ -134,6 +134,7 @@ uWSGI Subsystems
    Transformations
    WebSockets
    Metrics
+   Chunked
 
 Scaling with uWSGI
 ==================
