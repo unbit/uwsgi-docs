@@ -32,7 +32,7 @@ Under non-blocking/async engines you may want to use
 
    my $msg = uwsgi::chunked_read_nb
    
-the function will soon return 'undef' (or None on python) if no chunks are available (and will croak/rais an exception on error)
+the function will soon return 'undef' (or None on python) if no chunks are available (and will croak/raise an exception on error)
 
 
 A full PSGI streaming echo example:
@@ -62,9 +62,31 @@ A full PSGI streaming echo example:
 Tuning the chunks buffer
 ************************
 
+Before start reading chunks, uWSGI allocates a fixed buffer for storing chunks.
+
+All of the messages are always stored in the same buffer. If a message bigger than the buffer is received
+an exception will be raised.
+
+By default the buffer is limited to 1MB, you can tune it with the ``--chunked-input-limit`` option (it takes bytes)
+
 
 Integration with proxies
 ************************
+
+If you plan to put uWSGI behind a proxy/router be sure it supports chunked input requests (or generally raw HTTP requests).
+
+When using the uWSGI http router just add --http-raw-body to support chunked input
+
+HAProxy works out of the box
+
+nginx >= 1.4 supports chunked input
+
+Options
+*******
+
+``--chunked-input-limit`` the limit (in bytes) of a chunk message (default 1MB)
+
+``--chunked-input-timeout`` the default timeout (in seconds) for blocking chunked_read (default to the same --socket-timeout value, 4 seconds)
 
 Notes
 *****
