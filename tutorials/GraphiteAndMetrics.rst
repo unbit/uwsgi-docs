@@ -221,7 +221,7 @@ Now we can deploy it on uWSGI
    uid = _graphite
    gid = _graphite
    
-save it as ``/etc/uwsgi/graphiti.ini`` to let the Emperor to deploy it
+save it as ``/etc/uwsgi/graphiti.ini`` to let the Emperor deploy it
 
 You can now connect to port 9191 to manage your gathered metrics.
 
