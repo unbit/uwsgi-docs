@@ -107,7 +107,7 @@ Create an upstart config file for starting :doc:`Emperor`
    
 save it as ``/etc/init/emperor.conf`` and start the Emperor:
 
-.. code-block::
+.. code-block:: sh
 
    start emperor
    
