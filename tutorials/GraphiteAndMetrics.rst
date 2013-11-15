@@ -150,6 +150,26 @@ just change ``http-socket`` to ``http`` or place it behind a full webserver like
 Spawning vassals sending metrics to Graphite
 ********************************************
 
+We are now ready to send applications metrics to the carbon/graphite server.
+
+For every vassal file in /etc/uwsgi just be sure to add the following options:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   plugins = carbon
+   enable-metrics = true
+   carbon-use-metrics = true
+   carbon-id = %n
+   carbon = 127.0.0.1:2003
+   ...
+
+The ``carbon-id`` set a meaningful prefix to each metric (%n automatically translates to the name without extension of the vassal file).
+
+The ``carbon`` option set the address of the carbon server to send metrics to (by default the carbon servr bind on port 2003, but you can change it editing
+``/etc/carbon/carbon.conf`` and restarting the carbon server)
+
 Using Graphiti (Ruby/Sinatra based) as alternative frontend
 ***********************************************************
 
