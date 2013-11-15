@@ -31,7 +31,7 @@ The Graphite project is composed by three subsystems: whisper, carbon and the we
 
 Whisper is a data storage format (similar to rrdtool)
 
-Carbon is the server gathering metrics and storing in whisper (well it does more, but this is its main purpose)
+Carbon is the server gathering metrics and storing them in whisper files (well it does more, but this is its main purpose)
 
 The web frontend visualize the charts/graphs built from the data gathered by the carbon server.
 
