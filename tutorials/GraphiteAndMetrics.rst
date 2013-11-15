@@ -199,7 +199,31 @@ then run the bundler tool (if you are not confident with the ruby world it is a 
 
 .. note:: if the eventmachine gem installation fails, add "gem 'eventmachine'" in the Gemfile as the first gem and run bundle update. This will ensure latest eventmachine version will be installed
 
+After bundle has installed all of the gems, you have to copy the graphiti example configuration:
 
+.. code-block:: sh
+
+   cp config/settings.yml.example config/settings.yml
+   
+edit it and set graphite_base_url to the url where the graphite web interface (the django one) is running.
+
+Now we can deploy it on uWSGI
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugins-dir = /usr/lib/uwsgi
+   plugins = rack
+   chdir = <path_to_graphiti>
+   rack = config.ru
+   rbrequire = bundler/setup
+   http-socket = :9191
+   
+save it as ``/etc/uwsgi/graphiti.ini`` to let the Emperor to deploy it
+
+You can now connect to port 9191 to manage your gathered merics.
+
+As always you are free to place the instance under a proxy.
 
 Notes
 *****
