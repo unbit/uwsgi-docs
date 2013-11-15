@@ -134,6 +134,8 @@ Create a file called ``test.py``::
         start_response('200 OK', [('Content-Type','text/html')])
         return "Hello World"
 
+.. note:: Take into account that Python 3 requires ``bytes()``.
+
 Run uWSGI:
 
 .. code-block:: bash
