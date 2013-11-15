@@ -62,7 +62,7 @@ Download latest stable uWSGI tarball
    
 explode it, and from the created directory run:
 
-.. code-block::
+.. code-block:: sh
 
    python uwsgiconfig.py --build core
    
@@ -70,7 +70,7 @@ this will build the uWSGI "core" binary.
 
 We now want to build the python, rack and carbon plugins:
 
-.. code-block::
+.. code-block:: sh
 
    python uwsgiconfig.py --plugin plugins/python core
    python uwsgiconfig.py --plugin plugins/rack core
