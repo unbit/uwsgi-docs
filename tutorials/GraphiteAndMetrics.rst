@@ -17,5 +17,8 @@ Spawning the Graphite web interface
 Spawning vassals sending metrics to Graphite
 ********************************************
 
+Using Graphiti (Ruby/Sinatra based) as alternative frontend
+***********************************************************
+
 Notes
 *****
