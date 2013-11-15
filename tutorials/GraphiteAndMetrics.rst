@@ -167,7 +167,7 @@ For every vassal file in /etc/uwsgi just be sure to add the following options:
 
 The ``carbon-id`` set a meaningful prefix to each metric (%n automatically translates to the name without extension of the vassal file).
 
-The ``carbon`` option set the address of the carbon server to send metrics to (by default the carbon servr bind on port 2003, but you can change it editing
+The ``carbon`` option set the address of the carbon server to send metrics to (by default the carbon server binds on port 2003, but you can change it editing
 ``/etc/carbon/carbon.conf`` and restarting the carbon server)
 
 Using Graphiti (Ruby/Sinatra based) as alternative frontend
