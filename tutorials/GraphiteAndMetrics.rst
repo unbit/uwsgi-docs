@@ -117,6 +117,36 @@ From now on, to start uWSGI instances just drop their config files into /etc/uws
 Spawning the Graphite web interface
 ***********************************
 
+Before starting the graphite web interface (that is a Django app) we need to initialize its database.
+
+Just run:
+
+.. code-block:: sh
+
+   sudo graphite-manage syncdb
+   
+this is the standard django syncdb command for manage.py. Just answer the questions to create an admin user.
+
+Now we are ready to create a uWSGI vassal:
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugins-dir = /usr/lib/uwsgi
+   plugins = python
+   uid = _graphite
+   gid = _graphite
+   wsgi-file = /usr/share/graphite-web/graphite.wsgi
+   http-socket = :8080
+   
+Save it as ``/etc/uwsgi/graphite.ini``
+   
+the _graphite user (and group) is create by the ubuntu package. Our uWSGI vassal will run under this privileges.
+
+The web interface will be available on the port 8080 of your server natively speaking HTTP. If you prefer to proxy it,
+just change ``http-socket`` to ``http`` or place it behind a full webserver like nginx (this step is not covered in this tutorial)
+
+
 Spawning vassals sending metrics to Graphite
 ********************************************
 
