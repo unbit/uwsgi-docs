@@ -230,3 +230,6 @@ Notes
 
 By default the carbon server listens on a public address. Unless you know what you are doing you should point it to a local one (like 127.0.0.1)
 
+uWSGI exports a gazillion of metrics (and more are planned), do not be afraid to use them
+
+There is no security between apps and the carbon server, any apps can wrote metrics to it. If you are hosting untrusted apps you'd better to use other approcahes (like giving a graphite instance to every user in the system)
