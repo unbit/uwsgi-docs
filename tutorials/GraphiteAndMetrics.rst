@@ -141,7 +141,7 @@ Now we are ready to create a uWSGI vassal:
    
 Save it as ``/etc/uwsgi/graphite.ini``
    
-the _graphite user (and group) is create by the ubuntu package. Our uWSGI vassal will run under this privileges.
+the _graphite user (and group) is created by the graphite ubuntu package. Our uWSGI vassal will run under this privileges.
 
 The web interface will be available on the port 8080 of your server natively speaking HTTP. If you prefer to proxy it,
 just change ``http-socket`` to ``http`` or place it behind a full webserver like nginx (this step is not covered in this tutorial)
