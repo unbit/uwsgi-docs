@@ -16,7 +16,7 @@ Installing Graphite and the others needed packages
 
 .. code-block:: sh
 
-   sudo apt-get install python-dev ruby-dev build-essential libpcre3-dev graphite-carbon graphite-web
+   sudo apt-get install python-dev ruby-dev bundler build-essential libpcre3-dev graphite-carbon graphite-web
    
 python-dev and ruby-dev are required as we want to support both WSGI and Rack apps.
 
@@ -172,6 +172,34 @@ The ``carbon`` option set the address of the carbon server to send metrics to (b
 
 Using Graphiti (Ruby/Sinatra based) as alternative frontend
 ***********************************************************
+
+Graphiti is an alternative dashboard/frontend from Graphite writte in Sinatra (a Ruby/Rack framework).
+
+Graphiti requires redis, so be sure a redis server is running in your system.
+
+Running:
+
+.. code-block:: sh
+
+   sudo apt-get install redis-server
+   
+will be enough
+
+First step is cloning the graphiti app (place it where you want/need):
+
+.. code-block:: sh
+
+   git clone https://github.com/paperlesspost/graphiti.git
+   
+then run the bundler tool (if you are not confident with the ruby world it is a tool for managing dependencies)
+
+.. code-block:: sh
+
+   bundle install
+
+.. note:: if the eventmachine gem installation fails, add "gem 'eventmachine'" in the Gemfile as the first gem and run bundle update. This will ensure latest eventmachine version will be installed
+
+
 
 Notes
 *****
