@@ -93,7 +93,7 @@ let's copy it to system directories:
 Setting up the uWSGI Emperor
 ****************************
 
-Create an upstart config file for starting :doc:`Emperor`.
+Create an upstart config file for starting :doc:`Emperor`
 
 .. code-block:: sh
 
