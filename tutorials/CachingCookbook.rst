@@ -1,7 +1,7 @@
 The uWSGI Caching Cookbook
 ==========================
 
-This is a cookbook of various caching techniques using :doc:`InternalRouting`, :doc:`Caching` and :doc:`Transformations`
+This is a cookbook of various caching techniques using :doc:`../InternalRouting`, :doc:`../Caching` and :doc:`../Transformations`
 
 The examples assume a modular uWSGI build. You can ignore the 'plugins' option, if you are using a monolithic build.
 
