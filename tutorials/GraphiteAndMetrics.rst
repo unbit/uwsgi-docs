@@ -218,10 +218,12 @@ Now we can deploy it on uWSGI
    rack = config.ru
    rbrequire = bundler/setup
    http-socket = :9191
+   uid = _graphite
+   gid = _graphite
    
 save it as ``/etc/uwsgi/graphiti.ini`` to let the Emperor to deploy it
 
-You can now connect to port 9191 to manage your gathered merics.
+You can now connect to port 9191 to manage your gathered metrics.
 
 As always you are free to place the instance under a proxy.
 
@@ -233,3 +235,5 @@ By default the carbon server listens on a public address. Unless you know what y
 uWSGI exports a gazillion of metrics (and more are planned), do not be afraid to use them
 
 There is no security between apps and the carbon server, any apps can wrote metrics to it. If you are hosting untrusted apps you'd better to use other approcahes (like giving a graphite instance to every user in the system)
+
+The same is true for redis, if you run untrusted apps a shared redis instance is absolutely not a good choice from a secuity point of view
