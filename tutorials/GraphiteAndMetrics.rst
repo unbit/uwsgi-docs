@@ -227,3 +227,6 @@ As always you are free to place the instance under a proxy.
 
 Notes
 *****
+
+By default the carbon server listens on a public address. Unless you know what you are doing you should point it to a local one (like 127.0.0.1)
+
