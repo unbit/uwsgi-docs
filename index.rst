@@ -94,6 +94,7 @@ Tutorials
    tutorials/heroku_ruby
    tutorials/ReliableFuse
    tutorials/DynamicProxying
+   tutorials/GraphiteAndMetrics
    
 
 Articles
