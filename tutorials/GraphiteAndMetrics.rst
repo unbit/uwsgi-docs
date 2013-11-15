@@ -5,7 +5,7 @@ This tutorial will guide you in installing a multi-app server, with each applica
 
 Graphite is available here: http://graphite.wikidot.com/
 
-The uWSGI Metrics subsystem is documented here: :doc:`Metrics`
+The uWSGI Metrics subsystem is documented here :doc:`Metrics`
 
 The tutorial assumes an Ubuntu Saucy (13.10) release on amd64
 
