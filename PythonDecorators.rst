@@ -287,11 +287,11 @@ uwsgidecorators API reference
 
 .. function:: thread(func)
 
-   Mark function to be executed in a separate thread.
+    Mark function to be executed in a separate thread.
 
-   .. important:: Threading must be enabled in uWSGI with the ``enable-threads`` or ``threads <n>`` option.
+    .. important:: Threading must be enabled in uWSGI with the ``enable-threads`` or ``threads <n>`` option.
 
-   .. code-block:: py
+    .. code-block:: py
 
         @thread
         def a_running_thread():
@@ -333,7 +333,7 @@ uwsgidecorators API reference
 
 .. function:: mulefunc([mulespec], func)
 
-    Offload the execution of the function to a doc:`mule<Mules>`. When the offloaded function is called, it will return immediately and execution is delegated to a mule.
+    Offload the execution of the function to a :doc:`mule<Mules>`. When the offloaded function is called, it will return immediately and execution is delegated to a mule.
 
     .. code-block:: py
 
