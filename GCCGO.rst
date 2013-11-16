@@ -22,7 +22,7 @@ Unfortunately the standard go runtime is not (currently) embeddable and does not
 
 Both are requisite for a meaningful uWSGI integration.
 
-Starting from gcc 4.8.2 its libgo has been improved a lot and building shared libraries as well as initializing the C runtime works like a charm (even if it required a bit of not very elegant hacks)
+Starting from gcc 4.8.2 its libgo has been improved a lot and building shared libraries as well as initializing the Go runtime works like a charm (even if it required a bit of not very elegant hacks)
 
 Building the plugin
 *******************
