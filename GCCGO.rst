@@ -12,7 +12,7 @@ How it works
 
 when the plugin is enabled a new go runtime is initialized after each fork()
 
-if a main Go function is available in the process address space it will be executed in the Go runtime, otherwise to control
+if a ``main`` Go function is available in the process address space it will be executed in the Go runtime, otherwise the control
 goes back to the uWSGI loop engine.
 
 Why not plain go ?
@@ -36,6 +36,42 @@ A build profile is available allowing you to build a uWSGI+gccgo binary ready to
 The first app
 *************
 
+You do not need to change the way you write webapps in Go. The net/http package can be used flawlessly:
+
+.. code-block:: go
+
+   package main
+
+   import "uwsgi"
+   import "net/http"
+   import "fmt"
+
+
+
+   func viewHandler(w http.ResponseWriter, r *http.Request) {
+        fmt.Fprintf(w, "<h1>Hello World</h1>")
+   }
+
+   func main() {
+        http.HandleFunc("/view/", viewHandler)
+        uwsgi.Run()
+   }
+
+The only difference is in calling uwsgi.Run() instead of initializing the http go server
+
+To build the code as shared library simply run:
+
+.. code-block:: sh
+
+   gcc -fPIC -shared -o myapp.so myapp.go
+   
+now let's run it under uWSGI:
+
+.. code-block:: sh
+
+   uwsgi --http-socket :9090 --http-socket-modifier1 11 --go-load ./myapp.so
+   
+gccgo plugin register itself as modifier1 11, so always remember to set it
 
 Shared libraries VS monolithic binaries
 ***************************************
