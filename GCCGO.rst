@@ -65,6 +65,12 @@ To build the code as shared library simply run:
 
    gcc -fPIC -shared -o myapp.so myapp.go
    
+If you get an error about gcc not able to resolve uwsgi symbols, just add -I<path_to_uwsgi_binary> to the command line (see below):
+
+.. code-block:: sh
+
+   gcc -fPIC -shared -I/usr/bin -o myapp.so myapp.go
+   
 now let's run it under uWSGI:
 
 .. code-block:: sh
@@ -72,6 +78,13 @@ now let's run it under uWSGI:
    uwsgi --http-socket :9090 --http-socket-modifier1 11 --go-load ./myapp.so
    
 gccgo plugin register itself as modifier1 11, so always remember to set it
+
+uwsgi.gox
+*********
+
+By default when building the gccgo profile, a uwsgi.gox file is created. This can be used when building
+go apps using the uWSGI api, to resolve symbols. Take in account that if you add the directory containing the uwsgi binary (as seen before) to
+the includes (-I path) path of gcc, the binary itself will be used for resolving symbols
 
 Shared libraries VS monolithic binaries
 ***************************************
@@ -82,7 +95,11 @@ Basically a go app does not have dependencies, so half of the common deployments
 
 The uWSGI-friendly way for hosting go apps is having a uWSGI binary loading a specific go app in the form of a library.
 
-If this is not acceptable, you can build a single binary with both uWSGI and the go app.
+If this is not acceptable, you can build a single binary with both uWSGI and the go app:
+
+.. code-block:: sh
+
+   CFLAGS=-DUWSGI_GCCGO_MONOLITHIC UWSGI_ADDITIONAL_SOURCES=myapp.go UWSGI_PROFILE=gccgo make
 
 
 Goroutines
