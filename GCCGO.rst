@@ -113,6 +113,8 @@ To start uWSGI in goroutines mode just add ``--goroutines <n>`` where <n> is the
 
 Like :doc:`Gevent` uwsgi signal handlers are executed in a dedicated goroutine.
 
+In addition to this all of the blacking calls make use of the netpoll go api (this means you can run internal routing actions, included rpc, in a goroutine)
+
 Options
 *******
 
@@ -139,3 +141,7 @@ Currently exposed api functions:
 
 Notes
 *****
+
+Do not enable multithreading, it will not work and probably will never work
+
+All of the uWSGI native features (like internal routing) work in goroutines mode, but do not expect languages (like python or perl) to work over them anytime soon.
