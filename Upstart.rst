@@ -33,6 +33,19 @@ A better approach than init files for each app would be to only start an Emperor
     start on runlevel [2345]
     stop on runlevel [06]
     
+    exec uwsgi --emperor /etc/uwsgi
+
+If you want to run the Emperor under the master process (for accessing advanced features) remember to add --die-on-term
+
+
+.. code-block:: upstart
+
+    # Emperor uWSGI script
+    
+    description "uWSGI Emperor"
+    start on runlevel [2345]
+    stop on runlevel [06]
+    
     exec uwsgi --master --die-on-term --emperor /etc/uwsgi
     
 What is --die-on-term?
