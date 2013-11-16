@@ -103,6 +103,19 @@ To start uWSGI in goroutines mode just add ``--goroutines <n>`` where <n> is the
 
 Like :doc:`Gevent` uwsgi signal handlers are executed in a dedicated goroutine.
 
+Options
+*******
+
+``go-load <path>``
+
+``gccgo-load <path>``
+
+``go-args <arg1> <arg2> <argN>``
+
+``gccgo-args <arg1> <arg2> <argN>``
+
+``goroutines <n>``
+
 uWSGI API
 *********
 
