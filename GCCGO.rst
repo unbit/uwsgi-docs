@@ -76,7 +76,7 @@ gccgo plugin register itself as modifier1 11, so always remember to set it
 Shared libraries VS monolithic binaries
 ***************************************
 
-One of the Go selling point for lot of developers is the "static all-in-one binary approach".
+One of the Go selling point for lot of developers is the "static-all-in-one" binary approach.
 
 Basically a go app does not have dependencies, so half of the common deployments problems automagically disappear.
 
@@ -84,13 +84,6 @@ The uWSGI-friendly way for hosting go apps is having a uWSGI binary loading a sp
 
 If this is not acceptable, you can build a single binary with both uWSGI and the go app.
 
-There are two different approaches to it:
-
-rebuilding from uWSGI sources every time
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-using libuwsgi.so
-^^^^^^^^^^^^^^^^^
 
 Goroutines
 **********
