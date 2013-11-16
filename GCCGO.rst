@@ -99,15 +99,15 @@ Like :doc:`Gevent` uwsgi signal handlers are executed in a dedicated goroutine.
 Options
 *******
 
-``go-load <path>``
+``--go-load <path>`` load the specified go shared library in the process address space
 
-``gccgo-load <path>``
+``--gccgo-load <path>`` alias for go-load
 
-``go-args <arg1> <arg2> <argN>``
+``--go-args <arg1> <arg2> <argN>`` set arguments passed to the virtual go command line
 
-``gccgo-args <arg1> <arg2> <argN>``
+``--gccgo-args <arg1> <arg2> <argN>`` alias for go-args
 
-``goroutines <n>``
+``--goroutines <n>`` enable goroutines loop engine with the specified number of async cores
 
 uWSGI API
 *********
@@ -116,9 +116,9 @@ Unfortunately really few pieces of the uWSGI api have been ported to the gccgo p
 
 Currently exposed api functions:
 
-``uwsgi.CacheGet(string, string) string``
+``uwsgi.CacheGet(key string, cache string) string``
 
-``uwsgi.RegisterSignal``
+``uwsgi.RegisterSignal(signum uint8, receiver string, handler func(uint8)) bool``
 
 Notes
 *****
