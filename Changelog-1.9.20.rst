@@ -34,6 +34,13 @@ New features
 64bit return values for the RPC subsystem
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Before this release every RPC response was limited to a size 64k (16bit).
+
+Now the RPC protocol automatically detect if more space is needed and can scale up to 64bit.
+
+Another advantage of this approach is that only the required amount of memory per-response is allocated instead of blindly
+creating a 64k chunk every time.
+
 The new GCCGO plugin
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -59,6 +66,11 @@ New native protocols: --https-socket and --ssl-socket
 
 PROXY (version1) protocol support
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Recently Amazon ELB added support for HAProxy PROXY (version 1) protocol support. This simple protocol allows the frontend to pass
+the real ip of the client to the backend.
+
+Adding --enable-proxy-protocol will force the --http-socket to check for a PROXY protocol request for setting the REMOTE_ADDR and REMOTE_PORT fields
 
 New metrics collectors
 ^^^^^^^^^^^^^^^^^^^^^^
