@@ -70,7 +70,7 @@ PROXY (version1) protocol support
 Recently Amazon ELB added support for HAProxy PROXY (version 1) protocol support. This simple protocol allows the frontend to pass
 the real ip of the client to the backend.
 
-Adding --enable-proxy-protocol will force the --http-socket to check for a PROXY protocol request for setting the REMOTE_ADDR and REMOTE_PORT fields
+Adding ``--enable-proxy-protocol`` will force the ``--http-socket`` to check for a PROXY protocol request for setting the REMOTE_ADDR and REMOTE_PORT fields
 
 New metrics collectors
 ^^^^^^^^^^^^^^^^^^^^^^
