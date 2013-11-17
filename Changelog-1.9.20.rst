@@ -119,3 +119,7 @@ multiplier -> multiply the sum of the specified children for the value specified
 
 Availability
 ************
+
+uWSGI 1.9.20 has been released on 20131117 and can be downloaded from
+
+http://projects.unbit.it/downloads/uwsgi-1.9.20.tar.gz
