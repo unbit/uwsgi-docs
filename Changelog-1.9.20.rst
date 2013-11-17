@@ -6,7 +6,7 @@ Changelog [20131117]
 First round of deprecations and removals for 2.0
 ************************************************
 
-- The Go plugin is now considere "broken" and has been moved away from the 'plugins' directory. The new blessed way for running Go apps in uWSGI is using the :doc:`GCCGO` plugin
+- The Go plugin is now considere "broken" and has been moved away from the 'plugins' directory. The new blessed way for running Go apps in uWSGI is using :doc:`GCCGO` plugin
 
 - The --auto-snapshot option has been removed, advanced management of instances now happens via :doc:`MasterFIFO`
 
