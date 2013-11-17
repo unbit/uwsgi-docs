@@ -38,7 +38,7 @@ New features
 
 Before this release every RPC response was limited to a size of 64k (16bit).
 
-Now the RPC protocol automatically detect if more space is needed and can scale up to 64bit.
+Now the RPC protocol automatically detects if more space is needed and can scale up to 64bit.
 
 Another advantage of this approach is that only the required amount of memory per-response is allocated instead of blindly
 creating a 64k chunk every time.
