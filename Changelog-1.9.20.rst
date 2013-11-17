@@ -91,7 +91,7 @@ New native protocols: --https-socket and --ssl-socket
 
 When built with ssl support uWSGI exposes two new native socket protocols: https and uwsgi over ssl.
 
-Both options taks the following value: <addr>,<cert>,<key>[,ciphers,ca]
+Both options takes the following value: <addr>,<cert>,<key>[,ciphers,ca]
 
 .. code-block::
 
