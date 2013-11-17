@@ -474,3 +474,10 @@ This is a work in progress, best way to know which default metrics are exposed i
  * mule/8 (namespace for mules, example mule.1.signals)
  
  * spooler/9 (namespace for spoolers, example spooler.1.signals)
+ 
+ * system/10 (namespace for system metrics, like loadavg or free memory)
+ 
+External tools
+**************
+
+Check https://github.com/unbit/unbit-bars
