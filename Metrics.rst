@@ -73,6 +73,31 @@ the value is collected from a file
 
 the value is the sum of other metrics
 
+"avg"
+^^^^^
+
+added in 1.9.20
+
+compute the math average of the children
+
+"accumulator"
+^^^^^^^^^^^^^
+
+always add the sum of children to the final value.
+
+Ex:
+
+round1: child1 = 22, child2 = 17 -> metric_value = 39
+
+round2: child1 = 26, child2 = 30 -> metric_value += 56
+
+'multiplier"
+^^^^^^^^^^^^
+
+multiply the sum of children for the specified arg1n
+
+child1 = 22, child2 = 17, arg1n = 3 -> metric_value = (22+17)*3
+
 "func"
 ^^^^^^
 
