@@ -36,7 +36,7 @@ New features
 64bit return values for the RPC subsystem
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Before this release every RPC response was limited to a size 64k (16bit).
+Before this release every RPC response was limited to a size of 64k (16bit).
 
 Now the RPC protocol automatically detect if more space is needed and can scale up to 64bit.
 
