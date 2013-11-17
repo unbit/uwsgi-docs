@@ -78,7 +78,7 @@ New magic vars
 Perl/PSGI improvements
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Chunked input api: :doc:`ChunkedInput`
+Chunked input api: :doc:`Chunked`
 
 psgix.io -> returns a Socket::IO object mapped to the connection file descriptor. You need to voluntary enable it with ``--psgi-enable-psgix-io``
 
