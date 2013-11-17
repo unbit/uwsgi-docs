@@ -10,7 +10,7 @@ First round of deprecations and removals for 2.0
 
 - The --auto-snapshot option has been removed, advanced management of instances now happens via :doc:`MasterFIFO`
 
-- The matheval support has been removed, while a generic 'matheval' plugin (for internal routing) is available (but not compiled in by default)
+- The matheval support has been removed, while a generic 'matheval' plugin (for internal routing) is available (but not compiled in by default). See below for the new way for making "math" in config files.
 
 - The 'erlang' and 'pyerl' plugins are broken and has been moved out of the 'plugins' directory. Erlang support will be completely rewritten after 2.0 release
 
