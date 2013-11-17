@@ -6,7 +6,7 @@ First round of deprecations and removals for 2.0
 
 - The Go plugin is now considere "broken" and has been moved away from the 'plugins' directory. The new blessed way for running Go apps in uWSGI is using the :doc:`GCCGO` plugin
 
-- The --auto-snapshot option has been removed, advanced management of instances now happens via :doc:`MasterFifo`
+- The --auto-snapshot option has been removed, advanced management of instances now happens via :doc:`MasterFIFO`
 
 - The matheval support has been removed, while a generic 'matheval' plugin (for internal routing) is available (but not compiled in by default)
 
@@ -44,25 +44,57 @@ creating a 64k chunk every time.
 The new GCCGO plugin
 ^^^^^^^^^^^^^^^^^^^^
 
+Check official docs: :doc:`GCCGO`
+
+The plugin is in early stage of development but its already quite solid.
+
 Simple math in configuration files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+As seen before we have removed matheval support in favor of a simplified interface:
+
+http://uwsgi-docs.readthedocs.org/en/latest/Configuration.html#placeholders-math-from-uwsgi-1-9-20-dev
+
+For example you can now automatically set the number of threads to (number_of_cpu_cores * 3):
+
+.. code-block:: ini
+
+   [uwsgi]
+   threads = %(%k * 3)
+   ...
 
 New magic vars
 ^^^^^^^^^^^^^^
 
+%t	unix time (in seconds, gathered at instance startup)
+
+%T	unix time (in microseconds, gathered at instance startup)
+
+%k	detected cpu cores
+
 Perl/PSGI improvements
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Chunked input api
+Chunked input api: :doc:`ChunkedInput`
 
-psgix.io
+psgix.io -> returns a Socket::IO object mapped to the connection file descriptor. You need to voluntary enable it with ``--psgi-enable-psgix-io``
 
-uwsgi::rpc and uwsgi::connection_fd
+uwsgi::rpc and uwsgi::connection_fd from the api
 
---plshell
+--plshell will invoke an interactive shell (based on Devel::REPL)
 
 New native protocols: --https-socket and --ssl-socket
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When built with ssl support uWSGI exposes two new native socket protocols: https and uwsgi over ssl.
+
+Both options taks the following value: <addr>,<cert>,<key>[,ciphers,ca]
+
+.. code-block::
+
+   [uwsgi]
+   https-socket = :8443,foobar.crt,foobar.key
+   ...
 
 PROXY (version1) protocol support
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -75,11 +107,11 @@ Adding ``--enable-proxy-protocol`` will force the ``--http-socket`` to check for
 New metrics collectors
 ^^^^^^^^^^^^^^^^^^^^^^
 
-avg
+avg -> compute the math average of children: --metric name=foobar,collector=avg,children=metric1;metric2
 
-accumulator
+accumulator -> always add the value of the specified children to the final value
 
-multiplier
+multiplier -> multiply the sum of the specified children for the value specified in arg1n
 
 
 Availability
