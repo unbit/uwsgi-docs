@@ -119,6 +119,7 @@ accumulator -> always add the value of the specified children to the final value
 
 multiplier -> multiply the sum of the specified children for the value specified in arg1n
 
+Check :doc:`Metrics`
 
 Availability
 ************
