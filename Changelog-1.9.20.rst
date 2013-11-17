@@ -62,7 +62,7 @@ For example you can now automatically set the number of threads to (number_of_cp
 .. code-block:: ini
 
    [uwsgi]
-   ; %k is a magiv var translated to the number of cpu cores
+   ; %k is a magic var translated to the number of cpu cores
    threads = %(%k * 3)
    ...
 
