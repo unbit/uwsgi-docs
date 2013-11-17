@@ -98,6 +98,9 @@ Both options takes the following value: <addr>,<cert>,<key>[,ciphers,ca]
    [uwsgi]
    https-socket = :8443,foobar.crt,foobar.key
    ...
+   
+   
+Currently none of the mainstream webservers support uwsgi over ssl, a patch for nginx will be sent for approval in the next few hours
 
 PROXY (version1) protocol support
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
