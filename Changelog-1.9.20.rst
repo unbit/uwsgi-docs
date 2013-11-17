@@ -1,6 +1,8 @@
 uWSGI 1.9.20
 ============
 
+Changelog [20131117]
+
 First round of deprecations and removals for 2.0
 ************************************************
 
