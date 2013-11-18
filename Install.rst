@@ -104,6 +104,6 @@ plugins/ directory in the source distribution for a full list.
    python uwsgiconfig.py --plugin plugins/http core
    ...
 
-Remember to always pass the buidl profile ('core' in this case) as the third
+Remember to always pass the build profile ('core' in this case) as the third
 argument.
    
