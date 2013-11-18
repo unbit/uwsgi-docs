@@ -72,7 +72,7 @@ Let's start with a simple "Hello World" example (this is for Python 2.x, Python 
        start_response('200 OK', [('Content-Type','text/html')])
        return ["Hello World"]
 
-(save it as foobar.py).
+(save it as ``foobar.py``).
 
 As you can see, it is composed of a single Python function. It is called "application" as this is default function
 that the uWSGI Python loader will search for (but you can obviously customize it).
@@ -212,6 +212,8 @@ Deploying Flask
 ***************
 
 Flask is popular Python web microframework.
+
+Save the following example as ``myflaskapp.py``:
 
 .. code-block:: python
 
