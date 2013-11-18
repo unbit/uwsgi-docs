@@ -136,7 +136,7 @@ setting a new configuration variable of your own devising.
   chdir = %(customers_base_dir)/%(my_funny_domain)
   limit-as = %(max_customer_address_space)
 
-Placeholders can be assigned diractly, or using the ``set-placeholder``
+Placeholders can be assigned directly, or using the ``set-placeholder``
 / ``set-ph`` option. These latter options can be useful to:
 
 * Make it more explicit that you're setting placeholders instead of
