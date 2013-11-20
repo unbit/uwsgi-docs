@@ -17,7 +17,7 @@ Requirements
 
 To enable ZeroMQ/Mongrel2 support in uWSGI you need the zeromq library (2.1+) and the uuid library.
 
-Mongrel2 can use JSON or tnetstring to pass data (such as headers and various other information) to handlers. uWSGI supports tnetstring out of the box but requires the Jansson<http://www.digip.org/jansson/>_ library to parse JSON data.
+Mongrel2 can use JSON or tnetstring to pass data (such as headers and various other information) to handlers. uWSGI supports tnetstring out of the box but requires the `Jansson <http://www.digip.org/jansson/>`_ library to parse JSON data.
 If you don't install jansson or do not want to use JSON, make sure you specify ``protocol='tnetstring'`` in the Handler in the Mongrel2 configuration, as the default is to use JSON. This would result in a rather obscure "JSON support not enabled. Skip request" message in the uWSGI log.
 
 Configuring Mongrel2
