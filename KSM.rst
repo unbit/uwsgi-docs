@@ -1,7 +1,7 @@
 Using Linux KSM in uWSGI
 ========================
 
-Kernel Samepage Merging <http://www.linux-kvm.org/page/KSM> is a feature of
+`Kernel Samepage Merging <http://www.linux-kvm.org/page/KSM>`_ is a feature of
 Linux kernels >= 2.6.32 which allows processes to share pages of memory with
 the same content.  This is accomplished by a kernel task that scans specific
 memory areas and compares periodically, and when possible, merges them.  Born
@@ -11,8 +11,8 @@ as uWSGI processes with language interpreters and standard libraries.
 If you are lucky, using KSM could exponentially reduce the memory usage of your
 uWSGI instances. Especially in massive :doc:`Emperor<Emperor>` deployments
 enabling KSM in each vassal may result in massive memory savings.
-KSM in uWSGI was the idea of Giacomo Bagnoli of Asidev s.r.l.
-http://www.asidev.com/en/company.html .Many thanks to him.
+KSM in uWSGI was the idea of Giacomo Bagnoli of `Asidev s.r.l.
+<http://www.asidev.com/en/company.html>`_.Many thanks to him.
 
 
 Enabling the KSM daemon
