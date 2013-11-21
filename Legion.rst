@@ -18,6 +18,8 @@ constant fight generates 7 kinds of events:
 
 You can trigger actions every time such an event rises.
 
+**Note**: ``openssl`` headers must be installed to build uWSGI with Legion support.
+
 IP takeover
 ^^^^^^^^^^^
 
