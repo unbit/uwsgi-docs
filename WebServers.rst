@@ -44,7 +44,7 @@ Mongrel2
 .. seealso:: :doc:`Mongrel2`
 
 
-Support for the `Mongrel2 Project<http://mongrel2.org/>` has been available since 0.9.8-dev via the :doc:`ZeroMQ` protocol plugin.
+Support for the `Mongrel2 Project <http://mongrel2.org/>`_ has been available since 0.9.8-dev via the :doc:`ZeroMQ` protocol plugin.
 
 In our tests Mongrel2 survived practically all of the loads we sent.
 
