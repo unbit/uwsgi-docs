@@ -1,4 +1,4 @@
-The Chunked input api
+The Chunked input API
 =====================
 
 An api for managing HTTP chunked input requests has been added in uWSGI 1.9.13
