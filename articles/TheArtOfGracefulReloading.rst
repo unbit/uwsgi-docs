@@ -31,8 +31,8 @@ Standard (default/boring) graceful reload (aka SIGHUP)
 Workers reloading in lazy apps mode
 ***********************************
 
-Chain relading
-**************
+Chain relading (lazy apps)
+**************************
 
 Zerg mode
 *********
