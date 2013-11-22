@@ -3,6 +3,8 @@ The Art of Graceful Reloading
 
 Author: Roberto De Ioris
 
+The following article is language-agnostic, and albeit uWSGI-specific some of its initial considerations apply to other application servers and platforms too.
+
 What is a "graceful reload" 
 ***************************
 
@@ -23,8 +25,8 @@ The main trick for avoiding it, is not closing the file descriptor mapped to the
 The result is your proxy enqueuing requests to the socket until it will be able to accept() them again.
 
 
-Standard (default/boring) graceful reload via SIGHUP
-****************************************************
+Standard (default/boring) graceful reload (aka SIGHUP)
+******************************************************
 
 Workers reloading in lazy apps mode
 ***********************************
@@ -43,3 +45,13 @@ SO_REUSEPORT (Linux >= 3.9 and BSDs)
 
 The Black Art (for rich people): master forking
 ***********************************************
+
+Subscription system
+*******************
+
+References
+**********
+
+:doc:`../MasterFIFO`
+
+:doc:`../Hooks`
