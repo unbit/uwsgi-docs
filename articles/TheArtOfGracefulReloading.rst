@@ -22,7 +22,7 @@ If you manage your reloads as "stop the instance" -> "start the instance", the t
 
 The main trick for avoiding it, is not closing the file descriptor mapped to the uWSGI daemon address, and abuse the unix fork() behaviour (read: fiel descriptors are inherited by default) to exec() the 'uwsgi' binary again.
 
-The result is your proxy enqueuing requests to the socket until it will be able to accept() them again.
+The result is your proxy enqueuing requests to the socket until it will be able to accept() them again with the user/customer only seeing a little slowdown in the first response (the time required for the app to be fully loaded again)
 
 
 Standard (default/boring) graceful reload (aka SIGHUP)
