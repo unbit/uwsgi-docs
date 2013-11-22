@@ -21,3 +21,25 @@ If you manage your reloads as "stop the instance" -> "start the instance", the t
 The main trick for avoiding it, is not closing the file descriptor mapped to the uWSGI daemon address, and abuse the unix fork() behaviour (read: fiel descriptors are inherited by default) to exec() the 'uwsgi' binary again.
 
 The result is your proxy enqueuing requests to the socket until it will be able to accept() them again.
+
+
+Standard (default/boring) graceful reload via SIGHUP
+****************************************************
+
+Workers reloading in lazy apps mode
+***********************************
+
+Chain relading
+**************
+
+Zerg mode
+*********
+
+The Zerg dance
+**************
+
+SO_REUSEPORT (Linux >= 3.9 and BSDs)
+************************************
+
+The Black Art (for rich people): master forking
+***********************************************
