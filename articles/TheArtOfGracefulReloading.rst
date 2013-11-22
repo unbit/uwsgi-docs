@@ -24,6 +24,8 @@ The main trick for avoiding it, is not closing the file descriptor mapped to the
 
 The result is your proxy enqueuing requests to the socket until it will be able to accept() them again with the user/customer only seeing a little slowdown in the first response (the time required for the app to be fully loaded again)
 
+Pre-fork()'ing VS lazy
+**********************
 
 Standard (default/boring) graceful reload (aka SIGHUP)
 ******************************************************
