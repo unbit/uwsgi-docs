@@ -36,6 +36,8 @@ Currently (September 2013) the following phases are available:
 
 ``post-app`` run after applications loading. it is fatal.
 
+``accepting`` run before the each worker starts accepting requests (available from uWSGI 1.9.21).
+
 ``as-user-atexit`` run before shutdown of the instance. it is non-fatal.
 
 ``as-emperor`` run soon after the spawn of a vassal in the Emperor process. it is non-fatal.
