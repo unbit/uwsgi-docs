@@ -369,4 +369,6 @@ References
 
 :doc:`../Zerg`
 
+:doc:`../Fastrouter`
+
 :doc:`../SubscriptionServer`
