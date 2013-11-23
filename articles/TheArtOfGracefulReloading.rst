@@ -160,8 +160,13 @@ Cons: only useful for code updates, you need a good amount of workers to get a b
 Zerg mode
 *********
 
-The Zerg dance
-**************
+requires: a zerg server or a zerg pool
+
+to trigger it: run the instance in zerg mode
+
+This is the first approach using multiple instances of teh same application to increase user experience.
+
+
 
 SO_REUSEPORT (Linux >= 3.9 and BSDs)
 ************************************
