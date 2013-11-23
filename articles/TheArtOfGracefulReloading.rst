@@ -164,8 +164,14 @@ requires: a zerg server or a zerg pool
 
 to trigger it: run the instance in zerg mode
 
-This is the first approach using multiple instances of teh same application to increase user experience.
+This is the first approach using multiple instances of the same application to increase user experience.
 
+Zerg mode works by making use of the venerable "fd passing over unix sockets" technique.
+
+Basically an external process (the zerg server/pool) binds to the various sockets required by your app. Your uWSGI instance instead of binding by itself, asks the zerg server/pool to pass it the file descriptor. This means multiple unrelated instances
+can ask for the same file descriptors and works togheter.
+
+Zerg mode born for improving auto-scalability, but soon became one of the most loved approaches for zero-downtime reloading.
 
 
 SO_REUSEPORT (Linux >= 3.9 and BSDs)
@@ -183,3 +189,5 @@ References
 :doc:`../MasterFIFO`
 
 :doc:`../Hooks`
+
+:doc:`../Zerg`
