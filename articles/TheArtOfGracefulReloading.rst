@@ -28,25 +28,25 @@ The result is your proxy enqueuing requests to the socket until it will be able 
 
 Another important step of graceful reload is avoid destroying workers/threads that are still managing requests. Obviously requests could be stuck, so you should have a timeout for running workers (in uWSGI it is called the ``worker's mercy`` and it has a default value of 60 seconds)
 
-This kind of trick is pretty easy to accomplish and basically all of the modern servers/application servers do it (more or less)
+This kind of tricks are pretty easy to accomplish and basically all of the modern servers/application servers do it (more or less)
 
 But, as always, the world is an ugly place and lot of problems arise, and the "inherited sockets" approach is often not enough
 
 Things go wrong
 ***************
 
-We have seen that holding the uWSGI sockets alive, allows the proxy webserver to enqueue requests without spitting out error
-to the clients. This is true only if your app restart fast, and sadly this could not happen.
+We have seen that holding the uWSGI sockets alive, allows the proxy webserver to enqueue requests without spitting out errors
+to the clients. This is true only if your app restart fast, and sadly this could not always happen.
 
-Framework like Ruby on Rails or Zope are really slow in starting up by default, your app could have a slow startup by itself, or your machine could
-be so loaded that every process generation (fork() ) take ages.
+Frameworks like Ruby on Rails or Zope are really slow in starting up by default, your app could have a slow startup by itself, or your machine could
+be so overloaded that every process generation (fork()) takse ages.
 
-In addition to this, your site could be so famous that even if your app restart in a couple of seconds the queue of your sockets could be filled upm forcing the proxy server
+In addition to this, your site could be so famous that even if your app restarts in a couple of seconds the queue of your sockets could be filled up forcing the proxy server
 to raise an error.
 
 Do no forget your workers/threads still running requests could block the reload for various seconds, more seconds than your proxy server could tolerate.
 
-Finally you could have made an application error in your just committed code, so uWSGI will not start, or will start sending wrong things (or errors...)
+Finally you could have made an application error in your just-committed code, so uWSGI will not start, or will start sending wrong things (or errors...)
 
 Reloads (brutal or graceful) can easily fail.
 
@@ -74,6 +74,22 @@ To raise kernel limits, you should check your os docs, some example:
 sysctl ``kern.ipc.somaxcon`` on FreeBSD
 
 ``/proc/sys/net/core/somaxconn`` on Linux
+
+.. note::
+
+   This is only one of the reasons to tune the listen queue, but do not blindly set it to huge values as a way to increase availability
+
+Proxy timeouts
+**************
+
+They are another thing you need to check if your reloads take lot of time.
+
+Generally proxies allow you to set a "connect" timeout and a "read" timeout.
+
+The first one is the maximum amount of time the proxy will wait for a successfull connection, the second one is the maximum amount of time
+the server will be able to wait for data before giving up.
+
+Generally when tuning for reloads, only the "connection" timeout matters. This timeout enters the game in the timeslice between uWSGI bind to an interface (or inherit it) and the call to accept()
 
 Waiting instead of errors is good, no errors and no waiting is even better
 **************************************************************************
