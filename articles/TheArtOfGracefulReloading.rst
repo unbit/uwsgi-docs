@@ -121,9 +121,12 @@ This is not true for lot of other languages, platform and frameworks, so before 
 Seeing it from the "graceful reloading" point of view, preforking extremely speed up things, your app is loaded only one time, and spawning additional worker
 will be really fast. Expecially for frameworks/languages doing lot of disk access for finding modules, avoiding it for each worker of your stack will increase startup times.
 
-On the contrary, the lazy-apps approach forces you to reload the whole stack whenever you make code changes instead of reloading only the workers.
+Unfortunately, the preforking approach forces you to reload the whole stack whenever you make code changes instead of reloading only the workers.
 
-In addition to this, your app could need preforking for the way it has been developed.
+In addition to this, your app could need preforking, or could completely crash under it for the way it has been developed.
+
+lazy-apps mode instead, load your application one time per worker. It will require about O(n) (where n is the number of workers) time to load it, will very probably consume more memory, but will
+run in a more consistent and clean environment.
 
 Remember: lazy-apps is different from lazy, the first one only instruct uWSGI to load the application one time per-worker, while the second is more invasive (and generally discouraged) as it changes lot of internal defaults.
 
