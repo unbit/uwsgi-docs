@@ -168,6 +168,8 @@ Currently the handlers exposed by the core are:
 
 ``print`` commodity handler, you can obtain the same calling the uwsgi_log symbol
 
+``write`` (from uWSGI 1.9.21), write a string to the specified file using write:<file> <string>
+
 .. code-block:: ini
 
    [uwsgi]
