@@ -142,8 +142,8 @@ Pros: avoid restarting the whole instance
 
 Cons: no user-experience improvements over standard graceful reload, it is only a shortcut for situation where code updates do not imply instance reconfiguration
 
-Chain relading (lazy apps)
-**************************
+Chain reloading (lazy apps)
+***************************
 
 requires: --lazy-apps
 
