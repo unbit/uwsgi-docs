@@ -7,8 +7,8 @@ The following article is language-agnostic, and albeit uWSGI-specific some of it
 
 All of the described techniques assumes a modern (>=1.4) uWSGI release with the master process enabled.
 
-What is a "graceful reload" 
-***************************
+What is a "graceful reload" ?
+*****************************
 
 During the life-cycle of your webapp you will reload it hundreds of time.
 
