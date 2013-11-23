@@ -311,11 +311,15 @@ Cons: requires kernel support, could lead to inconsistent states, you lose the h
 The Black Art (for rich and brave people): master forking
 *********************************************************
 
+to trigger it: write 'f' to the master fifo
+
 This is the most dangerous of the reloading ways, but once mastered could lead to pretty cool results.
 
 The approach is calling fork() in the master, close all of the file descriptors excluded the socket-related once, and exec() a new uWSGI instance.
 
 You will end with two specular uWSGI instances working on the same sockets set
+
+The scary thing about it is how easy (just write a single char to the master fifo) is to trigger it...
 
 With a bit of mastery you can implement the zerg dance on top of it.
 
@@ -328,9 +332,33 @@ Subscription system
 
 This is probably the best approach when you can count on multiple servers
 
+You add the ``fastrouter`` between your proxy server (nginx) and your instances.
+
+Instances will 'subscribe' to the fastrouter that will pass requests from nginx to them, load balancing and constantly monitoring all of them.
+
+Subscriptions are simple udp packets that instruct the fastrouter about which domain map to which instance/instances
+
+As you can subscribe, you can unsubscribe too, and this is where the magic happens:
+
+.. code-block:: ini
+
+   [uwsgi]
+   subscribe-to = 192.168.0.1:4040:unbit.it
+   unsubscribe-on-graceful-reload = true
+   ; all of the required options ...
+   
+adding ``unsubscribe-on-graceful-reload`` will force teh instance to send an 'unsubscribe' packet to the fastrouter, so until it will not be back no requests will be sent to it.
+
 Pros: low-cost zero-downtime, finally a KISS approach
 
 Cons: requires a subscription server (like the fastrouter) that introduces overhead (even if we are talking about microseconds)
+
+
+Do not COPY&PASTE !!!
+*********************
+
+Please, turn on your brain and try to adapt the showed config to your needs, or invent new ones.
+
 
 References
 **********
@@ -340,3 +368,5 @@ References
 :doc:`../Hooks`
 
 :doc:`../Zerg`
+
+:doc:`../SubscriptionServer`
