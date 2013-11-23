@@ -198,7 +198,7 @@ The so-called ``zerg dance`` is a trick for automating this kind of reloads. The
 
 Pros: potentially the silver bullet, allows instances with different options to cooperate for the same app
 
-Cons: requires an additional process, can be hard to master
+Cons: requires an additional process, can be hard to master, a reload requires a whole copy of the whole uWSGI stack
 
 The Zerg Dance: Pausing instances
 *********************************
@@ -306,10 +306,22 @@ Once you add ``--reuse-port`` to you instance, all of the sockets will have the 
 
 Pros: similar to zerg mode, could be even easier to manage
 
-Cons: requires kernel support, could lead to inconsistent states
+Cons: requires kernel support, could lead to inconsistent states, you lose the hability to use TCP addresses as a way to avoid incidental multiple instances running
 
 The Black Art (for rich and brave people): master forking
 *********************************************************
+
+This is the most dangerous of the reloading ways, but once mastered could lead to pretty cool results.
+
+The approach is calling fork() in the master, close all of the file descriptors excluded the socket-related once, and exec() a new uWSGI instance.
+
+You will end with two specular uWSGI instances working on the same sockets set
+
+With a bit of mastery you can implement the zerg dance on top of it.
+
+Pros: does not require kernel support nor an additional process, pretty fast
+
+Cons: inconstent states all over the place (like pidfiles, logging.., the master fifo commands could help fixing them)
 
 Subscription system
 *******************
