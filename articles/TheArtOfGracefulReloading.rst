@@ -214,7 +214,7 @@ Now, instead of shutting down the old instance, why not ``pause`` it. A paused i
 
 There are literally dozens of ways to accomplish the ``Zerg Dance``, the fact you can easily integrate scripts in your reloading procedures makes the approach extremey powerful and customizable.
 
-Here we will see the one requiring zero-scripting, it could be the less versatile, but should be a good starting point for improving things.
+Here we will see the one requiring zero-scripting, it could be the less versatile (and requires at least uWSGI 1.9.21), but should be a good starting point for improving things.
 
 The Master Fifo, is the best way for managing instances instead of relying on unix signals. Basicaly you write 'single char' commands to gover the instance.
 
@@ -273,7 +273,21 @@ When the new instance is ready we want to force the old instance to start workin
 The ``hook-accepting1-once`` phase is run one time per instance soon after the first worker is ready to accept requests
 
 The ``writefifo`` command allows writing to fifo's but without failing if the other peers is not connected (this is different from a simple 'write' command that would fail or completely block when dealing with bad fifo's)
-   
+
+Both features have been added only in uWSGI 1.9.21, on older releases you can use the ``--hook-post-app`` option instead of ``--hook-accepting1-once`` but will lose the 'once' feature, so it will work reliably only in preforking mode.
+
+Instead of ``writefifo`` you can use the shell variant ``exec:echo <string> > <fifo>``
+
+Now start running instances with the same config files over and over again. If all goes well you shoudl always end with two instances, one sleeping and one running.
+
+Finally if you want to bring back a sleeping instance just do:
+
+.. code-block:: sh
+
+   # destroy the running instance
+   echo Q > /var/run/running.fifo
+   # unpause the sleeping instance and set it as the running one
+   echo p1 > /var/run/sleeping.fifo
 
 SO_REUSEPORT (Linux >= 3.9 and BSDs)
 ************************************
