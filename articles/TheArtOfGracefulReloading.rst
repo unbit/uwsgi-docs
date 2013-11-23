@@ -203,6 +203,19 @@ Cons: requires an additional process, can be hard to master
 The Zerg Dance: Pausing instances
 *********************************
 
+We all make mistakes, sysadmins must improve their skill for fast solving mistakes, focusing in avoiding them is a waste of time. Unfortunately we are all humans.
+
+Rolling back deployments could be your life-safer.
+
+We have seen how zerg mode can allow us to have multiple instances asking on the same socket. In the previous chapter we used it to spawn the new instance working togheter with the old one.
+Now, instead of shutting down the old instance, why not ``pause`` it. A paused instance is like the standby mode of your TV. It consumes very few resources, but you can bring it back on very fast.
+
+``Zerg Dance`` is the battle-name for the procedure of continuosly swapping instances during reloads. Every reload results in a 'sleeping' instance and a running one. Following reloads destroy the old sleeping instance and transform the old running to the sleeping one and so on.
+
+There are literally dozens of ways to accomplish the ``Zerg Dance``, the fact you can easily integrate scripts in your reloading procedures makes the approach extremey powerful and customizable.
+
+Here we will see the one requiring zero-scripting, it could be the less versatile, but should be a good starting point for improving things.
+
 SO_REUSEPORT (Linux >= 3.9 and BSDs)
 ************************************
 
