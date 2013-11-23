@@ -375,6 +375,20 @@ Cons: requires a subscription server (like the fastrouter) that introduces overh
 Inconsistent states
 *******************
 
+Sadly, most of the approaches involving copies of the whole instance (like Zerg Dance, or master forking) lead to inconsistent states.
+
+Take an instance writing pidfiles, when starting a copy of it that pidfile will be overwritten.
+
+If you carefully plan your configurations you can avoid inconsistent states, but thanks to master fifo you can manage some of them
+(read: the most common ones)
+
+The 'l' command will reopen logfiles
+
+The 'P' command will update all of the instance pidfiles
+
+Fighting inconsistent states with the Emperor
+*********************************************
+
 Finally: Do not blindly COPY&PASTE !!!
 **************************************
 
