@@ -20,9 +20,9 @@ So, why "graceful" ?
 
 Take a traditional (and highly suggested) architecture: a fronted proxy/load-balancer (like nginx) forwarding requests to one or more uWSGI daemons listening on various addresses.
 
-If you manage your reloads as "stop the instance" -> "start the instance", the timeslice between the two phases is a brutal disservice to your customers.
+If you manage your reloads as "stop the instance" -> "start the instance", the timeslice between the two phases will result in a brutal disservice to your customers.
 
-The main trick for avoiding it, is not closing the file descriptor mapped to the uWSGI daemon address, and abuse the unix fork() behaviour (read: file descriptors are inherited by default) to exec() the 'uwsgi' binary again.
+The main trick for avoiding it, is not closing the file descriptors mapped to the uWSGI daemon addresses, and abuse the unix fork() behaviour (read: file descriptors are inherited by default) to exec() the 'uwsgi' binary again.
 
 The result is your proxy enqueuing requests to the socket until it will be able to accept() them again with the user/customer only seeing a little slowdown in the first response (the time required for the app to be fully loaded again)
 
@@ -35,11 +35,11 @@ But, as always, the world is an ugly place and lot of problems arise, and the "i
 Things go wrong
 ***************
 
-We have seen that holding the uWSGI sockets alive, allows the proxy webserver to enqueue requests without spitting out errors
+We have seen that holding the uWSGI sockets alive allows the proxy webserver to enqueue requests without spitting out errors
 to the clients. This is true only if your app restart fast, and sadly this could not always happen.
 
 Frameworks like Ruby on Rails or Zope are really slow in starting up by default, your app could have a slow startup by itself, or your machine could
-be so overloaded that every process generation (fork()) takse ages.
+be so overloaded that every process generation (fork()) takes ages.
 
 In addition to this, your site could be so famous that even if your app restarts in a couple of seconds the queue of your sockets could be filled up forcing the proxy server
 to raise an error.
@@ -58,12 +58,12 @@ Let's start with the dream of every webapp developer: success
 Your app is visited by thousand of clients and you obviously make money with it. Unfortunately it is a very complex app and requires
 10 seconds to warm up.
 
-During graceful reloads, you expect new clients to wait 10 seconds (worst case) to start seeing contents, unfortunately, you have
+During graceful reloads, you expect new clients to wait 10 seconds (best case) to start seeing contents, unfortunately, you have
 hundreds of concurrent requests, so the first 100 customers will wait for the server warm up, while the others will get an error from the proxy.
 
 This happens because the default listen queue of uWSGI is 100 slot. Before you ask, it is an average value choosen by the maximum value allowed by default by your kernel.
 
-Each operating system has a default limit (Linux has 128 for example), so before increasing it you need to increase your kernel limit.
+Each operating system has a default limit (Linux has 128 for example), so before increasing it you need to increase your kernel limit too.
 
 So, once your kernel is ready, you can increase the listen queue to the maximum number of users you expect to enqueue during a reload.
 
@@ -118,7 +118,7 @@ is generally the blessed way.
 
 This is not true for lot of other languages, platform and frameworks, so before starting dealing with uWSGI you should choose how to manage fork() in your stack.
 
-Seeing it from the "graceful reloading" point of view, preforking extremely speed up things, your app is loaded only one time, and spawning additional worker
+Seeing it from the "graceful reloading" point of view, preforking extremely speed up things, your app is loaded only one time, and spawning additional workers
 will be really fast. Expecially for frameworks/languages doing lot of disk access for finding modules, avoiding it for each worker of your stack will increase startup times.
 
 Unfortunately, the preforking approach forces you to reload the whole stack whenever you make code changes instead of reloading only the workers.
@@ -139,9 +139,9 @@ Standard (default/boring) graceful reload (aka SIGHUP)
 
 to trigger it: send SIGHUP to the master, write 'r' to the master fifo, use --touch-reload, call uwsgi.reload() api
 
-In preforking and --lazy-apps mode, it will wait for running workers, it will close all of the file descriptors except the one mapped to sockets and will call exec() on itself
+In preforking and --lazy-apps mode, it will wait for running workers, it will close all of the file descriptors except the ones mapped to sockets and will call exec() on itself
 
-In --lazy mode, it will wait for runnign workers and then it will restart all of them. This means you cannot change uWSGI options during this kind of reload. Remember --lazy is discouraged !!!
+In --lazy mode, it will wait for running workers and then it will restart all of them. This means you cannot change uWSGI options during this kind of reload. Remember --lazy is discouraged !!!
 
 Pros: easy to manage, no corner-case problems, no inconsistent states, basically full reset of the instance
 
@@ -170,7 +170,7 @@ to trigger it: write 'c' to the master fifo, use --touch-chain-reload
 
 This is the first approach improving user-experience
 
-When triggered it will start one worker at time, the following worker is not reloaded until the previous one is ready to accept new requests.
+When triggered it will restart one worker at time, the following worker is not reloaded until the previous one is ready to accept new requests.
 
 Pros: potentially highly reduce waiting clients, reduce the load of the machine during reloads (mo multiple processes loading the same code)
 
@@ -190,7 +190,7 @@ Zerg mode works by making use of the venerable "fd passing over unix sockets" te
 Basically an external process (the zerg server/pool) binds to the various sockets required by your app. Your uWSGI instance instead of binding by itself, asks the zerg server/pool to pass it the file descriptor. This means multiple unrelated instances
 can ask for the same file descriptors and works togheter.
 
-Zerg mode born for improving auto-scalability, but soon became one of the most loved approaches for zero-downtime reloading.
+Zerg mode was born for improving auto-scalability, but soon became one of the most loved approaches for zero-downtime reloading.
 
 Example:
 
@@ -210,7 +210,7 @@ now spawn one or more instances attached to the zerg pool
    ; this will give access to 127.0.0.1:3031 to the instance
    zerg = /var/run/pool1
 
-When you want to make code or options updates, just spawn a new instanced attached to the zerg, and shutdown the old one when the new one is ready for accepting requests
+When you want to make code or options updates, just spawn a new instance attached to the zerg, and shutdown the old one when the new one is ready for accepting requests
 
 The so-called ``zerg dance`` is a trick for automating this kind of reloads. There are various ways to accomplish it, the objective is automatically
 ``pause`` or ``destroy`` the old instance when the new one is fully ready and able to accept requests. More on this below.
@@ -226,8 +226,8 @@ We all make mistakes, sysadmins must improve their skill for fast solving mistak
 
 Rolling back deployments could be your life-safer.
 
-We have seen how zerg mode can allow us to have multiple instances asking on the same socket. In the previous chapter we used it to spawn the new instance working togheter with the old one.
-Now, instead of shutting down the old instance, why not ``pause`` it. A paused instance is like the standby mode of your TV. It consumes very few resources, but you can bring it back on very fast.
+We have seen how zerg mode can allow us to have multiple instances asking on the same socket. In the previous chapter we used it to spawn the new instance working together with the old one.
+Now, instead of shutting down the old instance, why not ``pause`` it ? A paused instance is like the standby mode of your TV. It consumes very few resources, but you can bring it back on very fast.
 
 ``Zerg Dance`` is the battle-name for the procedure of continuosly swapping instances during reloads. Every reload results in a 'sleeping' instance and a running one. Following reloads destroy the old sleeping instance and transform the old running to the sleeping one and so on.
 
@@ -235,13 +235,13 @@ There are literally dozens of ways to accomplish the ``Zerg Dance``, the fact yo
 
 Here we will see the one requiring zero-scripting, it could be the less versatile (and requires at least uWSGI 1.9.21), but should be a good starting point for improving things.
 
-The Master Fifo, is the best way for managing instances instead of relying on unix signals. Basicaly you write 'single char' commands to gover the instance.
+The Master Fifo, is the best way for managing instances instead of relying on unix signals. Basicaly you write 'single char' commands to govern the instance.
 
 The funny thing about Master Fifo's is that you can have multiple of them configured for your instance and swap from one to another very easily.
 
 An example will clarify things:
 
-we spawn an instance with 3 master fifo's: new (the default one), running  and sleeping
+we spawn an instance with 3 master fifo's: new (the default one), running and sleeping
 
 .. code-block:: ini
 
@@ -258,7 +258,7 @@ we spawn an instance with 3 master fifo's: new (the default one), running  and s
    
 by default the ``new`` one will be active (read: will be able to process commands)
 
-Now we want to spawn a new instance, that once is ready to accept requests will put the old one in sleeping mode. For doinf it we will use uWSGI advanced hooks.
+Now we want to spawn a new instance, that once is ready to accept requests will put the old one in sleeping mode. For doing it we will use uWSGI advanced hooks.
 
 Hooks allows you to 'make things' in various phases of the uWSGI life-cycle.
 
@@ -293,11 +293,11 @@ The ``hook-accepting1-once`` phase is run one time per instance soon after the f
 
 The ``writefifo`` command allows writing to fifo's but without failing if the other peers is not connected (this is different from a simple 'write' command that would fail or completely block when dealing with bad fifo's)
 
-Both features have been added only in uWSGI 1.9.21, on older releases you can use the ``--hook-post-app`` option instead of ``--hook-accepting1-once`` but will lose the 'once' feature, so it will work reliably only in preforking mode.
+Both features have been added only in uWSGI 1.9.21, on older releases you can use the ``--hook-post-app`` option instead of ``--hook-accepting1-once`` but you will lose the 'once' feature, so it will work reliably only in preforking mode.
 
 Instead of ``writefifo`` you can use the shell variant ``exec:echo <string> > <fifo>``
 
-Now start running instances with the same config files over and over again. If all goes well you shoudl always end with two instances, one sleeping and one running.
+Now start running instances with the same config files over and over again. If all goes well you should always end with two instances, one sleeping and one running.
 
 Finally if you want to bring back a sleeping instance just do:
 
@@ -334,7 +334,7 @@ to trigger it: write 'f' to the master fifo
 
 This is the most dangerous of the reloading ways, but once mastered could lead to pretty cool results.
 
-The approach is calling fork() in the master, close all of the file descriptors excluded the socket-related once, and exec() a new uWSGI instance.
+The approach is calling fork() in the master, close all of the file descriptors excluded the socket-related ones, and exec() a new uWSGI instance.
 
 You will end with two specular uWSGI instances working on the same sockets set
 
@@ -355,7 +355,7 @@ You add the ``fastrouter`` between your proxy server (nginx) and your instances.
 
 Instances will 'subscribe' to the fastrouter that will pass requests from nginx to them, load balancing and constantly monitoring all of them.
 
-Subscriptions are simple udp packets that instruct the fastrouter about which domain map to which instance/instances
+Subscriptions are simple udp packets that instruct the fastrouter about which domain maps to which instance/instances
 
 As you can subscribe, you can unsubscribe too, and this is where the magic happens:
 
@@ -366,7 +366,7 @@ As you can subscribe, you can unsubscribe too, and this is where the magic happe
    unsubscribe-on-graceful-reload = true
    ; all of the required options ...
    
-adding ``unsubscribe-on-graceful-reload`` will force teh instance to send an 'unsubscribe' packet to the fastrouter, so until it will not be back no requests will be sent to it.
+adding ``unsubscribe-on-graceful-reload`` will force the instance to send an 'unsubscribe' packet to the fastrouter, so until it will not be back no request will be sent to it.
 
 Pros: low-cost zero-downtime, finally a KISS approach
 
@@ -389,11 +389,45 @@ The 'P' command will update all of the instance pidfiles
 Fighting inconsistent states with the Emperor
 *********************************************
 
+If you manage your instances with the Emperor you can use its features to avoid (or reduce) inconsistent states.
+
+Giving each instance a different symbolic link name will allows you to map files (like pidfiles or logs) to different paths:
+
+.. code-block:: ini
+
+   [uwsgi]
+   logto = /var/log/%n.log
+   pidfile = /var/run/%n.pid
+   ; and so on ...
+   
+   
+Dealing with ultra-lazy apps (like Django)
+******************************************
+
+Some application or framework (like Django) loads the vast majority of their code only at the first request. This means
+the customer will continue experiencing slowdowns during reload even when using things like zerg mode or similar.
+
+This problem is hard to solve (impossibile ?) in the application server itself, so you should find a way to force your app the load
+itself asap. A good trick (read: works with Django) is calling the entry point function (like the WSGI callable) in the app itself:
+
+.. code-block:: python
+
+   def application(environ, sr):
+       sr('200 OK',[('Content-Type','text/plain')])
+       yield "Hello"
+       
+   application({}, lambda x,y: None)
+   
+Based on the app you may need to pass CGI vars to the environ to make a true request
+
 Finally: Do not blindly COPY&PASTE !!!
 **************************************
 
 Please, turn on your brain and try to adapt the showed config to your needs, or invent new ones.
 
+Each app and system is different from the others.
+
+Experiment before making a choice.
 
 References
 **********
