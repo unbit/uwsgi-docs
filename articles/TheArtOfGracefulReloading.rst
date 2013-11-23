@@ -173,10 +173,35 @@ can ask for the same file descriptors and works togheter.
 
 Zerg mode born for improving auto-scalability, but soon became one of the most loved approaches for zero-downtime reloading.
 
+Example:
 
-Pros: potentially the silver bullet, allows instances with different options to cooperate for teh same app
+spawn a zerg pool exposing 127.0.0.1:3031 to the unix socket /var/run/pool1
+
+.. code-block:: ini
+
+   [uwsgi]
+   master = true
+   zerg-pool = /var/run/pool1:127.0.0.1:3031
+   
+now spawn one or more instances attached to the zerg pool
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; this will give access to 127.0.0.1:3031 to the instance
+   zerg = /var/run/pool1
+
+When you want to make code or options updates, just spawn a new instanced attached to the zerg, and shutdown the old one when the new one is ready for accepting requests
+
+The so-called ``zerg dance`` is a trick for automating this kind of reloads. There are various ways to accomplish it, the objective is automatically
+``pause`` or ``destroy`` the old instance when the new one is fully ready and able to accept requests. More on this below.
+
+Pros: potentially the silver bullet, allows instances with different options to cooperate for the same app
 
 Cons: requires an additional process, can be hard to master
+
+The Zerg Dance: Pausing instances
+*********************************
 
 SO_REUSEPORT (Linux >= 3.9 and BSDs)
 ************************************
