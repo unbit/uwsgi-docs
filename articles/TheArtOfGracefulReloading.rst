@@ -174,11 +174,19 @@ can ask for the same file descriptors and works togheter.
 Zerg mode born for improving auto-scalability, but soon became one of the most loved approaches for zero-downtime reloading.
 
 
+Pros: potentially the silver bullet, allows instances with different options to cooperate for teh same app
+
+Cons: requires an additional process, can be hard to master
+
 SO_REUSEPORT (Linux >= 3.9 and BSDs)
 ************************************
 
-The Black Art (for rich people): master forking
-***********************************************
+Pros: similar to zerg mode
+
+Cons: requires kernel support, could lead to inconsistent states
+
+The Black Art (for rich and brave people): master forking
+*********************************************************
 
 Subscription system
 *******************
