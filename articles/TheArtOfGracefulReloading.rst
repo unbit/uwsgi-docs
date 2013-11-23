@@ -216,6 +216,53 @@ There are literally dozens of ways to accomplish the ``Zerg Dance``, the fact yo
 
 Here we will see the one requiring zero-scripting, it could be the less versatile, but should be a good starting point for improving things.
 
+The Master Fifo, is the best way for managing instances instead of relying on unix signals. Basicaly you write 'single char' commands to gover the instance.
+
+The funny thing about Master Fifo's is that you can have multiple of them configured for your instance and swap from one to another very easily.
+
+An example will clarify things:
+
+we spawn an instance with 3 master fifo's: new (the default one), running  and sleeping
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; fifo '0'
+   master-fifo = /var/run/new.fifo
+   ; fifo '1'
+   master-fifo = /var/run/running.fifo
+   ; fifo '2'
+   master-fifo = /var/run/sleeping.fifo
+   ; attach to zerg
+   zerg = /var/run/pool1
+   ; other options ...
+   
+by default the ``new`` one will be active (read: will be able to process commands)
+
+Now we want to spawn a new instance, that once is ready to accept requests will put the old one in sleeping mode. For doinf it we will use uWSGI advanced hooks.
+
+Hooks allows you to 'make things' in various phases of the uWSGI life-cycle.
+
+When the new instance is ready we want to force the old instance to start working on the sleeping fifo and to be put in ``pause`` mode
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; fifo '0'
+   master-fifo = /var/run/new.fifo
+   ; fifo '1'
+   master-fifo = /var/run/running.fifo
+   ; fifo '2'
+   master-fifo = /var/run/sleeping.fifo
+   ; attach to zerg
+   zerg = /var/run/pool1
+   ; hooks
+   ; force the currently running instance to became sleeping (slot 2) and place it in pause mode
+   hook-accepting1-once = write:/var/run/running.fifo 2p
+   ; force this instance to became the running one (slot 1)
+   hook-accepting1-once = write:/var/run/new.fifo 1
+   
+
 SO_REUSEPORT (Linux >= 3.9 and BSDs)
 ************************************
 
