@@ -121,7 +121,7 @@ This is not true for lot of other languages, platform and frameworks, so before 
 Seeing it from the "graceful reloading" point of view, preforking extremely speed up things, your app is loaded only one time, and spawning additional worker
 will be really fast. Expecially for frameworks/languages doing lot of disk access for finding modules, avoiding it for each worker of your stack will increase startup times.
 
-On the contrary, the preforking approach forces you to reload the whole stack whenever you make code changes instead of reloading only the workers.
+On the contrary, the lazy-apps approach forces you to reload the whole stack whenever you make code changes instead of reloading only the workers.
 
 In addition to this, your app could need preforking for the way it has been developed.
 
