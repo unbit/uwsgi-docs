@@ -38,6 +38,12 @@ Currently (September 2013) the following phases are available:
 
 ``accepting`` run before the each worker starts accepting requests (available from uWSGI 1.9.21).
 
+``accepting1`` run before the first worker starts accepting requests (available from uWSGI 1.9.21).
+
+``accepting-once`` run before the each worker starts accepting requests (available from uWSGI 1.9.21, runs one time per instance).
+
+``accepting1-once`` run before the first worker starts accepting requests (available from uWSGI 1.9.21, runs one time per instance).
+
 ``as-user-atexit`` run before shutdown of the instance. it is non-fatal.
 
 ``as-emperor`` run soon after the spawn of a vassal in the Emperor process. it is non-fatal.
@@ -169,6 +175,10 @@ Currently the handlers exposed by the core are:
 ``print`` commodity handler, you can obtain the same calling the uwsgi_log symbol
 
 ``write`` (from uWSGI 1.9.21), write a string to the specified file using write:<file> <string>
+
+``writefifo`` (from uWSGI 1.9.21), write a string to the specified fifo using writefifo:<file> <string>
+
+``unlink`` (from uWSGI 1.9.21), unlink the specified file
 
 .. code-block:: ini
 
