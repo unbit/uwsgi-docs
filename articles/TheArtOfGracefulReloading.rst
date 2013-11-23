@@ -372,9 +372,11 @@ Pros: low-cost zero-downtime, finally a KISS approach
 
 Cons: requires a subscription server (like the fastrouter) that introduces overhead (even if we are talking about microseconds)
 
+Inconsistent states
+*******************
 
-Do not COPY&PASTE !!!
-*********************
+Finally: Do not blindly COPY&PASTE !!!
+**************************************
 
 Please, turn on your brain and try to adapt the showed config to your needs, or invent new ones.
 
