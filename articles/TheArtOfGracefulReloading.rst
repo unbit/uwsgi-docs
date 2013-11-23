@@ -143,9 +143,9 @@ In preforking and --lazy-apps mode, it will wait for running workers, it will cl
 
 In --lazy mode, it will wait for running workers and then it will restart all of them. This means you cannot change uWSGI options during this kind of reload. Remember --lazy is discouraged !!!
 
-Pros: easy to manage, no corner-case problems, no inconsistent states, basically full reset of the instance
+''Pros'': easy to manage, no corner-case problems, no inconsistent states, basically full reset of the instance
 
-Cons: the ones we seen before, listen queue filling up, stuck workers, potential long waiting times.
+''Cons'': the ones we seen before, listen queue filling up, stuck workers, potential long waiting times.
 
 
 Workers reloading in lazy-apps mode
@@ -157,9 +157,9 @@ to trigger it: write 'w' to the master fifo, use --touch-workers-reload
 
 this will wait for running workers and then it will restart each of them.
 
-Pros: avoid restarting the whole instance
+''Pros'': avoid restarting the whole instance
 
-Cons: no user-experience improvements over standard graceful reload, it is only a shortcut for situation where code updates do not imply instance reconfiguration
+''Cons'': no user-experience improvements over standard graceful reload, it is only a shortcut for situation where code updates do not imply instance reconfiguration
 
 Chain reloading (lazy apps)
 ***************************
@@ -172,9 +172,9 @@ This is the first approach improving user-experience
 
 When triggered it will restart one worker at time, the following worker is not reloaded until the previous one is ready to accept new requests.
 
-Pros: potentially highly reduce waiting clients, reduce the load of the machine during reloads (mo multiple processes loading the same code)
+''Pros'': potentially highly reduce waiting clients, reduce the load of the machine during reloads (mo multiple processes loading the same code)
 
-Cons: only useful for code updates, you need a good amount of workers to get a better user-experience
+''Cons'': only useful for code updates, you need a good amount of workers to get a better user-experience
 
 Zerg mode
 *********
@@ -215,9 +215,9 @@ When you want to make code or options updates, just spawn a new instance attache
 The so-called ``zerg dance`` is a trick for automating this kind of reloads. There are various ways to accomplish it, the objective is automatically
 ``pause`` or ``destroy`` the old instance when the new one is fully ready and able to accept requests. More on this below.
 
-Pros: potentially the silver bullet, allows instances with different options to cooperate for the same app
+''Pros'': potentially the silver bullet, allows instances with different options to cooperate for the same app
 
-Cons: requires an additional process, can be hard to master, a reload requires a whole copy of the whole uWSGI stack
+''Cons'': requires an additional process, can be hard to master, a reload requires a whole copy of the whole uWSGI stack
 
 The Zerg Dance: Pausing instances
 *********************************
@@ -308,9 +308,9 @@ Finally if you want to bring back a sleeping instance just do:
    # unpause the sleeping instance and set it as the running one
    echo p1 > /var/run/sleeping.fifo
    
-Pros: truly zero-downtime isolation
+''Pros'': truly zero-downtime isolation
 
-Cons: requires high-level uWSGI and UNIX skills
+''Cons'': requires high-level uWSGI and UNIX skills
 
 SO_REUSEPORT (Linux >= 3.9 and BSDs)
 ************************************
@@ -323,9 +323,9 @@ You may see it as a kernel-level zerg mode. Basically all of the Zerg approaches
 
 Once you add ``--reuse-port`` to you instance, all of the sockets will have the SO_REUSEPORT flag set.
 
-Pros: similar to zerg mode, could be even easier to manage
+''Pros'': similar to zerg mode, could be even easier to manage
 
-Cons: requires kernel support, could lead to inconsistent states, you lose the hability to use TCP addresses as a way to avoid incidental multiple instances running
+''Cons'': requires kernel support, could lead to inconsistent states, you lose the hability to use TCP addresses as a way to avoid incidental multiple instances running
 
 The Black Art (for rich and brave people): master forking
 *********************************************************
@@ -342,9 +342,9 @@ The scary thing about it is how easy (just write a single char to the master fif
 
 With a bit of mastery you can implement the zerg dance on top of it.
 
-Pros: does not require kernel support nor an additional process, pretty fast
+''Pros'': does not require kernel support nor an additional process, pretty fast
 
-Cons: a whole copy for each reload, inconstent states all over the place (like pidfiles, logging.., the master fifo commands could help fixing them)
+''Cons'': a whole copy for each reload, inconstent states all over the place (like pidfiles, logging.., the master fifo commands could help fixing them)
 
 Subscription system
 *******************
@@ -368,9 +368,9 @@ As you can subscribe, you can unsubscribe too, and this is where the magic happe
    
 adding ``unsubscribe-on-graceful-reload`` will force the instance to send an 'unsubscribe' packet to the fastrouter, so until it will not be back no request will be sent to it.
 
-Pros: low-cost zero-downtime, finally a KISS approach
+''Pros'': low-cost zero-downtime, finally a KISS approach
 
-Cons: requires a subscription server (like the fastrouter) that introduces overhead (even if we are talking about microseconds)
+''Cons'': requires a subscription server (like the fastrouter) that introduces overhead (even if we are talking about microseconds)
 
 Inconsistent states
 *******************
