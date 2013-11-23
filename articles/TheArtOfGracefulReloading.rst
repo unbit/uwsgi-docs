@@ -256,11 +256,23 @@ When the new instance is ready we want to force the old instance to start workin
    master-fifo = /var/run/sleeping.fifo
    ; attach to zerg
    zerg = /var/run/pool1
+   
    ; hooks
+   
+   ; destroy the currently sleeping instance
+   if-exists = /var/run/sleeping.fifo
+     hook-accepting1-once = writefifo:/var/run/sleeping.fifo Q
+   endif =
    ; force the currently running instance to became sleeping (slot 2) and place it in pause mode
-   hook-accepting1-once = write:/var/run/running.fifo 2p
+   if-exists = /var/run/running.fifo
+     hook-accepting1-once = writefifo:/var/run/running.fifo 2p
+   endif =
    ; force this instance to became the running one (slot 1)
-   hook-accepting1-once = write:/var/run/new.fifo 1
+   hook-accepting1-once = writefifo:/var/run/new.fifo 1
+   
+The ``hook-accepting1-once`` phase is run one time per instance soon after the first worker is ready to accept requests
+
+The ``writefifo`` command allows writing to fifo's but without failing if the other peers is not connected (this is different from a simple 'write' command that would fail or completely block when dealing with bad fifo's)
    
 
 SO_REUSEPORT (Linux >= 3.9 and BSDs)
