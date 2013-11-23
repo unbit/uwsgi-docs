@@ -321,10 +321,16 @@ With a bit of mastery you can implement the zerg dance on top of it.
 
 Pros: does not require kernel support nor an additional process, pretty fast
 
-Cons: inconstent states all over the place (like pidfiles, logging.., the master fifo commands could help fixing them)
+Cons: a whole copy for each reload, inconstent states all over the place (like pidfiles, logging.., the master fifo commands could help fixing them)
 
 Subscription system
 *******************
+
+This is probably the best approach when you can count on multiple servers
+
+Pros: low-cost zero-downtime, finally a KISS approach
+
+Cons: requires a subscription server (like the fastrouter) that introduces overhead (even if we are talking about microseconds)
 
 References
 **********
