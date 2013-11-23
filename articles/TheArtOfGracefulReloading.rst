@@ -288,11 +288,23 @@ Finally if you want to bring back a sleeping instance just do:
    echo Q > /var/run/running.fifo
    # unpause the sleeping instance and set it as the running one
    echo p1 > /var/run/sleeping.fifo
+   
+Pros: truly zero-downtime isolation
+
+Cons: requires high-level uWSGI and UNIX skills
 
 SO_REUSEPORT (Linux >= 3.9 and BSDs)
 ************************************
 
-Pros: similar to zerg mode
+On recent Linux kernels and modern BSDs you may try the ``--reuse-port`` options.
+
+This option allows multiple unrelated instances to bind on the same network address.
+
+You may see it as a kernel-level zerg mode. Basically all of the Zerg approaches can be followed
+
+Once you add ``--reuse-port`` to you instance, all of the sockets will have the SO_REUSEPORT flag set.
+
+Pros: similar to zerg mode, could be even easier to manage
 
 Cons: requires kernel support, could lead to inconsistent states
 
