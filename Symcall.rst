@@ -84,3 +84,78 @@ with ``--dlopen`` we load a shared library in the uWSGI process address space.
 the ``--symcall`` option allows us to specify which symbol to call when modifier1 18 is in place
 
 we bind it to http socket 9090 forcing the modifier1 18
+
+
+Hooks and symcall unleashed: a TCL handler
+******************************************
+
+We want to write a request handler running the following tcl script (foo.tcl) every time:
+
+.. code-block:: tcl
+
+   # call it foo.tcl
+   proc request_handler { remote_addr path_info query_string } {
+        set upper_pathinfo [string toupper $path_info]
+        return "Hello $remote_addr $upper_pathinfo $query_string"
+   }
+   
+   
+We will define a function for initializing the tcl interpreter and parsing the script. This function will be called on startup soon after privileges drop.
+
+Finally we define the request handler invoking the tcl proc and passign args to it
+
+.. code-block:: c
+
+
+   #include <tcl.h>
+   #include "uwsgi.h"
+
+   static Tcl_Interp *tcl_interp;
+
+   void ourtcl_init() {
+        tcl_interp = Tcl_CreateInterp() ;
+        if (!tcl_interp) {
+                uwsgi_log("unable to initialize tcl interpreter\n");
+                exit(1);
+        }
+
+        if (Tcl_Init(tcl_interp) != TCL_OK) {
+                uwsgi_log("Tcl_Init error: %s\n", Tcl_GetStringResult(tcl_interp));
+                exit(1);
+        }
+
+        if (Tcl_EvalFile(tcl_interp, "foo.tcl") != TCL_OK) {
+                uwsgi_log("Tcl_EvalFile error: %s\n", Tcl_GetStringResult(tcl_interp));
+                exit(1);
+        }
+
+        uwsgi_log("tcl engine initialized");
+   }
+
+   int ourtcl_handler(struct wsgi_request *wsgi_req) {
+
+        if (uwsgi_parse_vars(wsgi_req)) return -1;
+
+        Tcl_Obj *objv[4];
+        objv[0] = Tcl_NewStringObj("request_handler", -1);
+        objv[1] = Tcl_NewStringObj(wsgi_req->remote_addr, wsgi_req->remote_addr_len);
+        objv[2] = Tcl_NewStringObj(wsgi_req->path_info, wsgi_req->path_info_len);
+        objv[3] = Tcl_NewStringObj(wsgi_req->query_string, wsgi_req->query_string_len);
+
+        if (Tcl_EvalObjv(tcl_interp, 4, objv, TCL_EVAL_GLOBAL) != TCL_OK) {
+                if (uwsgi_response_prepare_headers(wsgi_req, "500 Internal Server Error", 25)) return -1;
+                if (uwsgi_response_add_content_type(wsgi_req, "text/plain", 10)) return -1;
+                char *body = (char *) Tcl_GetStringResult(tcl_interp);
+                if (uwsgi_response_write_body_do(wsgi_req, body, strlen(body))) return -1;
+                return UWSGI_OK;
+        }
+
+        if (uwsgi_response_prepare_headers(wsgi_req, "200 OK", 6)) return -1;
+        if (uwsgi_response_add_content_type(wsgi_req, "text/plain", 10)) return -1;
+
+        char *body = (char *) Tcl_GetStringResult(tcl_interp);
+        if (uwsgi_response_write_body_do(wsgi_req, body, strlen(body))) return -1;
+        return UWSGI_OK;
+   }
+
+   
