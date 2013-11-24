@@ -103,7 +103,7 @@ To increase the listen queue you use the ``--listen <n>`` option where
 
 To raise kernel limits, you should check your OS docs. Some examples:
 
-* sysctl ``kern.ipc.somaxcon`` on FreeBSD
+* sysctl ``kern.ipc.somaxconn`` on FreeBSD
 * ``/proc/sys/net/core/somaxconn`` on Linux.
 
 .. note::
