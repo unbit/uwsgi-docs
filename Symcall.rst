@@ -21,6 +21,10 @@ Now, in the current directory, we have uwsgi.h ready to be included.
 Step 2: our first request handler:
 **********************************
 
+Our C handler will print the REMOTE_ADDR value with a couple of HTTP headers
+
+(call it mysym.c or whatever you want/need)
+
 .. code-block:: c
 
    #include "uwsgi.h"
@@ -48,3 +52,31 @@ Step 2: our first request handler:
         
         return UWSGI_OK;
    }
+
+Step 3: building our code as a shared library
+*********************************************
+
+The uwsgi.h file is an ifdef hell.
+
+Fortunately the uwsgi binary exposes all of the required CFLAGS via the --cflags option
+
+We can build our library in one shot:
+
+.. code-block:: c
+
+   gcc -fPIC -shared -o mysym.so `uwsgi --cflags` mysym.c
+
+you now have the mysym.so library ready to be load in uWSGI
+
+Final step: map the symcall plugin to the ``mysym_function`` symbol
+*******************************************************************
+
+.. code-block:: sh
+
+   uwsgi --dlopen ./mysym.so --symcall mysym_function --http-socket :9090 --http-socket-modifier1 18
+   
+with ``--dlopen`` we load a shared library in the uWSGI process address space.
+
+the ``--symcall`` option allows us to specify which symbol to call when modifier1 18 is in place
+
+we bind it to http socket 9090 forcing the modifier1 18
