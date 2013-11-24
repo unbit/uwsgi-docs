@@ -110,20 +110,25 @@ Finally we define the request handler invoking the tcl proc and passign args to 
    #include <tcl.h>
    #include "uwsgi.h"
 
+   // global interpreter
    static Tcl_Interp *tcl_interp;
 
+   // the init function
    void ourtcl_init() {
+        // create the tcl interpreter
         tcl_interp = Tcl_CreateInterp() ;
         if (!tcl_interp) {
                 uwsgi_log("unable to initialize tcl interpreter\n");
                 exit(1);
         }
 
+        // initialize the interpreter
         if (Tcl_Init(tcl_interp) != TCL_OK) {
                 uwsgi_log("Tcl_Init error: %s\n", Tcl_GetStringResult(tcl_interp));
                 exit(1);
         }
 
+        // parse foo.tcl
         if (Tcl_EvalFile(tcl_interp, "foo.tcl") != TCL_OK) {
                 uwsgi_log("Tcl_EvalFile error: %s\n", Tcl_GetStringResult(tcl_interp));
                 exit(1);
@@ -132,17 +137,25 @@ Finally we define the request handler invoking the tcl proc and passign args to 
         uwsgi_log("tcl engine initialized");
    }
 
+   // the request handler
    int ourtcl_handler(struct wsgi_request *wsgi_req) {
 
+        // get request vars
         if (uwsgi_parse_vars(wsgi_req)) return -1;
 
         Tcl_Obj *objv[4];
+        // the proc name
         objv[0] = Tcl_NewStringObj("request_handler", -1);
+        // REMOTE_ADDR
         objv[1] = Tcl_NewStringObj(wsgi_req->remote_addr, wsgi_req->remote_addr_len);
+        // PATH_INFO
         objv[2] = Tcl_NewStringObj(wsgi_req->path_info, wsgi_req->path_info_len);
+        // QUERY_STRING
         objv[3] = Tcl_NewStringObj(wsgi_req->query_string, wsgi_req->query_string_len);
 
+        // call the proc
         if (Tcl_EvalObjv(tcl_interp, 4, objv, TCL_EVAL_GLOBAL) != TCL_OK) {
+                // ERROR, report it to the browser
                 if (uwsgi_response_prepare_headers(wsgi_req, "500 Internal Server Error", 25)) return -1;
                 if (uwsgi_response_add_content_type(wsgi_req, "text/plain", 10)) return -1;
                 char *body = (char *) Tcl_GetStringResult(tcl_interp);
@@ -150,12 +163,29 @@ Finally we define the request handler invoking the tcl proc and passign args to 
                 return UWSGI_OK;
         }
 
+        // all fine
         if (uwsgi_response_prepare_headers(wsgi_req, "200 OK", 6)) return -1;
         if (uwsgi_response_add_content_type(wsgi_req, "text/plain", 10)) return -1;
 
+        // write the result
         char *body = (char *) Tcl_GetStringResult(tcl_interp);
         if (uwsgi_response_write_body_do(wsgi_req, body, strlen(body))) return -1;
         return UWSGI_OK;
    }
 
    
+You can build it with:
+
+.. code-block:: sh
+
+   gcc -fPIC -shared -o ourtcl.so `./uwsgi/uwsgi --cflags` -I/usr/include/tcl ourtcl.c -ltcl
+   
+(the only differences from the previous example are the -I and -l for adding tcl headers and lib)
+
+and finally run it with:
+
+.. code-block:: sh
+
+   uwsgi --dlopen ./ourtcl.so --hook-as-user call:ourtcl_init --http-socket :9090 --symcall ourtcl_handler --http-socket-modifier1 18
+   
+here the only new player is ``--hook-as-user call:ourtcl_init`` invoking the specified function after privileges drop
