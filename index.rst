@@ -224,6 +224,7 @@ Language support
    Mono
    CGI
    GCCGO
+   Symcall
    XSLT
    SSI
    V8
