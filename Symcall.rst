@@ -193,7 +193,7 @@ here the only new player is ``--hook-as-user call:ourtcl_init`` invoking the spe
 
 .. note::
 
-   this code is not thread safe, if you want to improve this tcl library to support multithreading, best approach will be having a tcp interrpeter
+   this code is not thread safe, if you want to improve this tcl library to support multithreading, best approach will be having a tcl interpreter
    for each pthread instead of a global one.
    
 Considerations
