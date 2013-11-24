@@ -189,3 +189,18 @@ and finally run it with:
    uwsgi --dlopen ./ourtcl.so --hook-as-user call:ourtcl_init --http-socket :9090 --symcall ourtcl_handler --http-socket-modifier1 18
    
 here the only new player is ``--hook-as-user call:ourtcl_init`` invoking the specified function after privileges drop
+
+
+.. note::
+
+   this code is not thread safe, if you want to improve this tcl library to support multithreading, best approach will be having a tcp interrpeter
+   for each pthread instead of a global one.
+   
+Considerations
+**************
+
+Since uWSGI 1.9.21, thanks to the ``--build-plugin`` option, developing uWSGI plugin became really easy.
+
+The symcall plugin is for tiny libraries/pieces of code, for bigger needs consider developing a full plugin.
+
+The tcl example we have seen before is maybe the right example of "wrong" usage ;)
