@@ -5,6 +5,10 @@ The symcall plugin (modifier 18) is a commodity plugin allowing you to write nat
 
 You tell it which symbol to load on startup and then it will run it at every request.
 
+.. note::
+
+   The "symcall" plugin is builtin by default in standard build profiles
+
 Step 1: preparing the environment
 *********************************
 
@@ -66,7 +70,7 @@ We can build our library in one shot:
 
    gcc -fPIC -shared -o mysym.so `uwsgi --cflags` mysym.c
 
-you now have the mysym.so library ready to be load in uWSGI
+you now have the mysym.so library ready to be loaded in uWSGI
 
 Final step: map the symcall plugin to the ``mysym_function`` symbol
 *******************************************************************
