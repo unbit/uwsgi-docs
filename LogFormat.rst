@@ -57,6 +57,9 @@ These are simple functions called for generating the logvar value
 * ``%(modifier1)`` -> modifier1 of the request (since 1.4.6)
 * ``%(modifier2)`` -> modifier2 of the request (since 1.4.6)
 * ``%(metric.XXX)`` -> access the XXX metric value (see :doc:`Metrics`)
+* ``%(rerr)`` -> number of read errors for the request (since 1.9.21)
+* ``%(werr)`` -> number of write errors for the request (since 1.9.21)
+* ``%(ioerr)`` -> number of write and read errors for the request (since 1.9.21)
 
 User-defined logvars
 ********************
