@@ -7,10 +7,10 @@ syntax is simple:
 .. code-block:: ini
 
    [uwsgi]
-   logformat = i am a logline reporting "%(method) %(uri) %(proto)" returning with status %(status)`` 
+   logformat = i am a logline reporting "%(method) %(uri) %(proto)" returning with status %(status)
 
-All of the %() marked variables are substituted using specific rules. Three
-kinds of logvars are defined:
+All of the variables marked with ``%()`` are substituted using specific rules.
+Three kinds of logvars are defined ("offsetof", functions, and user-defined).
 
 offsetof
 ********
@@ -26,20 +26,19 @@ These are taken blindly from the internal ``wsgi_request`` structure of the curr
 * ``%(uagent)`` -> HTTP_USER_AGENT (starting from 1.4.5)
 * ``%(referer)`` -> HTTP_REFERER (starting from 1.4.5)
 
-
 functions
 *********
 
-These are simple functions called for generating the logvar value
+These are simple functions called for generating the logvar value:
 
 * ``%(status)`` -> HTTP response status code
 * ``%(micros)`` -> response time in microseconds
-* ``%(msecs)`` -> respone time in milliseconds
+* ``%(msecs)`` -> response time in milliseconds
 * ``%(time)`` -> timestamp of the start of the request
 * ``%(ctime)`` -> ctime of the start of the request
-* ``%(epoch)`` -> the current time in unix format
+* ``%(epoch)`` -> the current time in Unix format
 * ``%(size)`` -> response body size + response headers size (since 1.4.5)
-* ``%(ltime) -> human-formatted (apache style)`` request time (since 1.4.5)
+* ``%(ltime) -> human-formatted (Apache style)`` request time (since 1.4.5)
 * ``%(hsize)`` -> response headers size (since 1.4.5)
 * ``%(rsize)`` -> response body size (since 1.4.5)
 * ``%(cl)`` -> request content body size (since 1.4.5)
@@ -64,7 +63,7 @@ These are simple functions called for generating the logvar value
 User-defined logvars
 ********************
 
-You can define logvars within your request handler. The variables live only
+You can define logvars within your request handler. These variables live only
 per-request.
 
 .. code-block:: python
@@ -77,17 +76,16 @@ per-request.
        uwsgi.set_logvar('worker_id', str(uwsgi.worker_id()))
        ...
 
-With the following log format you will be able to access code-defined logvars.
+With the following log format you will be able to access code-defined logvars:
 
 .. code-block:: sh
 
-   uwsgi --logformat "worker id = %(worker_id) for request \"%(method) %(uri) %(proto)\" test = %(foo)"
+   uwsgi --logformat 'worker id = %(worker_id) for request "%(method) %(uri) %(proto)" test = %(foo)'
 
-
-Apache style combined request logging
+Apache-style combined request logging
 *************************************
 
-To generate Apache compatible logs:
+To generate Apache-compatible logs:
 
 .. code-block:: ini
 
@@ -96,12 +94,11 @@ To generate Apache compatible logs:
    log-format = %(addr) - %(user) [%(ltime)] "%(method) %(uri) %(proto)" %(status) %(size) "%(referer)" "%(uagent)"
    ...
 
-
 Hacking logformat
 *****************
 
-To add more C-based variables, open logging.c and add them to the end of the
-file.
+To add more C-based variables, open ``core/logging.c`` and add them after
+existing ones (before ``// logvar``, though), for example:
 
 .. code-block:: c
 
@@ -141,9 +138,9 @@ For function-based vars the prototype is:
 
    ssize_t uwsgi_lf_foobar(struct wsgi_request *wsgi_req, char **buf);
 
-where ``buf`` is the destination buffer for the logvar value (this will be
-automatically freed if you set ``logchunk->free`` as in the "status" related
-C-code previously reported).
+where ``buf`` is the destination buffer for the logvar value (will be
+automatically freed if you set ``logchunk->free`` as in the previous
+``"status"``-related C code).
 
 .. code-block:: c
 
