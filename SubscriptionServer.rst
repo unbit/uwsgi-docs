@@ -49,8 +49,8 @@ Possible keys are:
   * ``weight`` - node weight for load balancing
   * ``modifier1`` - modifier1 value for our app
   * ``modifier2`` - modifier2 value for our app
-  * ``sign`` - TODO
-  * ``check`` - TODO
+  * ``sign`` - for secure subscription (see below)
+  * ``check`` - if the specified file exists stop sending subscriptions
 
 The subscription system is currently available for cluster joining (when multicast/broadcast is not available), the Fastrouter and HTTP.
 
