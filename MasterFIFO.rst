@@ -40,6 +40,7 @@ Available commands
 * 'r' send graceful reload
 * 'R' send brutal reload
 * 's' print stats in the logs
+* 'S' block/unblock subscriptions
 * 'w' gracefully reload workers
 * 'W' brutally reload workers
 
