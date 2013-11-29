@@ -140,4 +140,6 @@ uwsgi.websocket_recv()
 
 uwsgi.websocket_send(msg)
 
+uwsgi.websocket_send_binary(msg) (added in 1.9.21 to support binary messages)
+
 uwsgi.websocket_recv_nb()
