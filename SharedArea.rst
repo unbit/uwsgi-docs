@@ -34,3 +34,14 @@ The following keyval keys are available:
 * ``fd`` -- create the sharedarea from a file descriptor that will be ``mmap``\ ed
 * ``size`` -- mainly useful with the ``fd`` and ``ptr`` keys to specify the size of the map (can be used as a shortcut to avoid calculation of the ``pages`` value too)
 * ``ptr`` -- directly map the area to the specified memory pointer.
+
+The api
+*******
+
+The api is pretty big, the sharedarea will be the de-facto toy for writing highly optimized web-apps (expecially for embedded systems).
+
+Most of the documented uses make sense on systems with slow cpus or very few memory
+
+``sharedarea_read(id, pos[, len])`` read 'len' bytes from the specified sharedarea starting from offset 'pos'. If len is not specified the memory will be read til the end (starting from 'pos')
+
+``sharedarea_write(id, pos, string)`` write the specified 'string' (it is language-dependent obviously) to the specified sharedarea at offset 'pos'
