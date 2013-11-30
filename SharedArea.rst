@@ -45,3 +45,35 @@ Most of the documented uses make sense on systems with slow cpus or very few mem
 ``sharedarea_read(id, pos[, len])`` read 'len' bytes from the specified sharedarea starting from offset 'pos'. If len is not specified the memory will be read til the end (starting from 'pos')
 
 ``sharedarea_write(id, pos, string)`` write the specified 'string' (it is language-dependent obviously) to the specified sharedarea at offset 'pos'
+
+``sharedarea_read8|16|32|64(id, pos)`` read a signed integer (8, 16, 32 or 64 bit) from the specified position
+
+``sharedarea_write8|16|32|64(id, pos)`` write a signed integer (8, 16, 32 or 64 bit) to the specified position
+
+``sharedarea_inc8|16|32|64(id, pos)`` increment the signed integer (8, 16, 32 or 64 bit) at the specified position
+
+``sharedarea_dec8|16|32|64(id, pos)`` decrement the signed integer (8, 16, 32 or 64 bit) at the specified position
+
+``sharedarea_wait(id[, freq, timeout])`` wait for modifications to the specified shared area (see below)
+
+Waiting for updates
+*******************
+
+One of the most powerful features of sharedareas (compared to caching) is 'waiting for updates'. You worker/thread/async_core can be suspended
+until a sharedarea is modified
+
+Technically a milliseconds-resolution timer is triggered, constantly checking for updates (the operation is very fast as the sharedarea object has an update counter, so we only need to check that value for changes)
+
+Optional api
+************
+
+The following functions require specific features from the language, so not all of the language plugins are able to support them.
+
+``sharedarea_readfast(id, pos, object, [, len])`` read 'len' bytes from the specified sharedarea starting from offset 'pos' to the specified object. If len is not specified the memory will be read til the end (starting from 'pos').
+currently implemented only for perl.
+
+Websockets integration api
+**************************
+
+Advanced usage (from C)
+***********************
