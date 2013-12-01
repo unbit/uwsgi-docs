@@ -35,44 +35,46 @@ The following keyval keys are available:
 * ``size`` -- mainly useful with the ``fd`` and ``ptr`` keys to specify the size of the map (can be used as a shortcut to avoid calculation of the ``pages`` value too)
 * ``ptr`` -- directly map the area to the specified memory pointer.
 
-The api
+The API
 *******
 
-The api is pretty big, the sharedarea will be the de-facto toy for writing highly optimized web-apps (expecially for embedded systems).
+The API is pretty big, the sharedarea will be the de-facto toy for writing highly optimized web apps (especially for embedded systems).
 
-Most of the documented uses make sense on systems with slow cpus or very few memory
+Most of the documented uses make sense on systems with slow CPUs or very small amounts of memory.
 
-``sharedarea_read(id, pos[, len])`` read 'len' bytes from the specified sharedarea starting from offset 'pos'. If len is not specified the memory will be read til the end (starting from 'pos')
-
-``sharedarea_write(id, pos, string)`` write the specified 'string' (it is language-dependent obviously) to the specified sharedarea at offset 'pos'
-
-``sharedarea_read8|16|32|64(id, pos)`` read a signed integer (8, 16, 32 or 64 bit) from the specified position
-
-``sharedarea_write8|16|32|64(id, pos)`` write a signed integer (8, 16, 32 or 64 bit) to the specified position
-
-``sharedarea_inc8|16|32|64(id, pos)`` increment the signed integer (8, 16, 32 or 64 bit) at the specified position
-
-``sharedarea_dec8|16|32|64(id, pos)`` decrement the signed integer (8, 16, 32 or 64 bit) at the specified position
-
-``sharedarea_wait(id[, freq, timeout])`` wait for modifications to the specified shared area (see below)
+``sharedarea_read(id, pos[, len])``
+    Read ``len`` bytes from the specified sharedarea starting at offset ``pos``. If ``len`` is not specified, the memory will be read til the end (starting from ``pos``).
+``sharedarea_write(id, pos, string)``
+    Write the specified ``string`` (it is language-dependent, obviously) to the specified sharedarea at offset ``pos``.
+``sharedarea_read8|16|32|64(id, pos)``
+    Read a signed integer (8, 16, 32 or 64 bit) from the specified position.
+``sharedarea_write8|16|32|64(id, pos)``
+    Write a signed integer (8, 16, 32 or 64 bit) to the specified position.
+``sharedarea_inc8|16|32|64(id, pos)``
+    Increment the signed integer (8, 16, 32 or 64 bit) at the specified position.
+``sharedarea_dec8|16|32|64(id, pos)``
+    Decrement the signed integer (8, 16, 32 or 64 bit) at the specified position.
+``sharedarea_wait(id[, freq, timeout])``
+    Wait for modifications of the specified sharedarea (see below).
 
 Waiting for updates
 *******************
 
-One of the most powerful features of sharedareas (compared to caching) is 'waiting for updates'. You worker/thread/async_core can be suspended
-until a sharedarea is modified
+One of the most powerful features of sharedareas (compared to caching) is "waiting for updates". Your worker/thread/async_core can be suspended
+until a sharedarea is modified.
 
-Technically a milliseconds-resolution timer is triggered, constantly checking for updates (the operation is very fast as the sharedarea object has an update counter, so we only need to check that value for changes)
+Technically, a millisecond-resolution timer is triggered, constantly checking for updates (the operation is very fast, as the sharedarea object has an update counter, so we only need to check that value for changes).
 
-Optional api
+Optional API
 ************
 
 The following functions require specific features from the language, so not all of the language plugins are able to support them.
 
-``sharedarea_readfast(id, pos, object, [, len])`` read 'len' bytes from the specified sharedarea starting from offset 'pos' to the specified object. If len is not specified the memory will be read til the end (starting from 'pos').
-currently implemented only for perl.
+``sharedarea_readfast(id, pos, object, [, len])``
+    Read ``len`` bytes from the specified sharedarea starting at offset ``pos`` to the specified object. If ``len`` is not specified, the memory will be read til the end (starting from ``pos``).
+    Currently is implemented only for Perl.
 
-Websockets integration api
+Websockets integration API
 **************************
 
 Advanced usage (from C)
