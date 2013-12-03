@@ -297,13 +297,13 @@ LTS releases
 Contact
 =======
 
-============  =
-Mailing list  http://lists.unbit.it/cgi-bin/mailman/listinfo/uwsgi
-Gmane mirror  http://dir.gmane.org/gmane.comp.python.wsgi.uwsgi.general
-IRC           #uwsgi @ irc.freenode.org. The owner of the channel is `unbit`.
-Twitter       http://twitter.com/unbit
+============       =
+Mailing list       http://lists.unbit.it/cgi-bin/mailman/listinfo/uwsgi
+Gmane mirror       http://dir.gmane.org/gmane.comp.python.wsgi.uwsgi.general
+IRC                #uwsgi @ irc.freenode.org. The owner of the channel is `unbit`.
+Twitter            http://twitter.com/unbit
 Commercial support http://unbit.com/
-============  =
+============       =
 
 .
 
