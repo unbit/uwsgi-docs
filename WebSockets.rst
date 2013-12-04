@@ -129,7 +129,14 @@ The http proxy internal router supports websocket out of the box (assuming your 
 .. code-block:: ini
 
    [uwsgi]
-   route = ^/websocket uwsgi:127.0.0.1:3032
+   route = ^/websocket uwsgi:127.0.0.1:3032,0,0
+   
+or
+
+.. code-block:: ini
+
+   [uwsgi]
+   route = ^/websocket http:127.0.0.1:8080
 
 Api
 ***
