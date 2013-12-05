@@ -51,4 +51,14 @@ In addition to this the CFLAGS used when buildign the binary are stored too.
 
 With this 3 components you have all you need to safely build a uWSGI plugin tuned for your uwsgi binary.
 
+General plugins VS request plugins
+**********************************
 
+Available hooks
+***************
+
+Using C++
+*********
+
+Using Objective-C
+*****************
