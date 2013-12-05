@@ -54,6 +54,9 @@ With this 3 components you have all you need to safely build a uWSGI plugin tune
 General plugins VS request plugins
 **********************************
 
+The wsgi_request struct
+***********************
+
 Available hooks
 ***************
 
@@ -62,3 +65,11 @@ Using C++
 
 Using Objective-C
 *****************
+
+socket I/O
+**********
+
+Whenever you make I/O operations on socket you have to be sure to not-block the currently running thread/core/worker.
+
+The uwsgi api exposes the following functions to ensure safety when dealing with I/O
+
