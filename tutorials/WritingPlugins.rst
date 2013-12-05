@@ -40,4 +40,15 @@ The first plugin
 The uwsgiplugin.py file
 ***********************
 
+How the magic happens ?
+***********************
+
+As you have seen, the uwsgi binary by itself is able to build plugins without forcing the user/developer to care about build profiles, #ifdef or platform-specific configurations.
+
+This is possibile because the uwsgi binary contains the raw 'uwsgi.h' file as well as the 'uwsgiconfig.py' script.
+
+In addition to this the CFLAGS used when buildign the binary are stored too.
+
+With this 3 components you have all you need to safely build a uWSGI plugin tuned for your uwsgi binary.
+
 
