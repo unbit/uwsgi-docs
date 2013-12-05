@@ -59,8 +59,8 @@ These are simple functions called for generating the logvar value:
 * ``%(rerr)`` -> number of read errors for the request (since 1.9.21)
 * ``%(werr)`` -> number of write errors for the request (since 1.9.21)
 * ``%(ioerr)`` -> number of write and read errors for the request (since 1.9.21)
-* ``%(tmsecs)`` -> timestamp of the start of the request in milliseconds sinche the epoch (since 1.9.21)
-* ``%(tmicros)`` -> timestamp of the start of the request in microseconds sinche the epoch (since 1.9.21)
+* ``%(tmsecs)`` -> timestamp of the start of the request in milliseconds since the epoch (since 1.9.21)
+* ``%(tmicros)`` -> timestamp of the start of the request in microseconds since the epoch (since 1.9.21)
 
 User-defined logvars
 ********************
