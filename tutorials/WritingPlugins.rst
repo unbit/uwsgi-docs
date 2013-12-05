@@ -57,6 +57,12 @@ General plugins VS request plugins
 The wsgi_request struct
 ***********************
 
+Headers, body and sendfile
+**************************
+
+Offloading
+**********
+
 Available hooks
 ***************
 
