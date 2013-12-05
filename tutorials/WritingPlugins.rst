@@ -60,6 +60,9 @@ The wsgi_request struct
 Available hooks
 ***************
 
+Defining options
+****************
+
 Using C++
 *********
 
