@@ -160,9 +160,93 @@ The PSGI app will be very simple:
         }
    }
 
+The only interesting parts are:
+
+.. code-block:: pl
+
+   uwsgi::sharedarea_wait(0, 50);
+   
+this function suspend the current request until the specified sharedarea (the 'zero' one) gets an update. As this function is basically a poller, the second argument specifies the polling frequency (in milliseconds). 50 milliseconds gave us good results (feel free to try with other values).
+
+.. code-block:: pl
+
+   uwsgi::websocket_send_binary_from_sharedarea(0, 0)
+   
+this is a special function sending a websocket binary message directly from the sharedarea (yes, zero-copy). The first argument is the sharedarea id (the 'zero' one) and the second is the position
+in the sharedarea to start reading from (zero again, as we want a full frame)
 
 Step 3: HTML5
 *************
+
+The html part (well it would be better to say the 'javascript' part) is very easy:
+
+.. code-block:: html
+
+   <html>
+        <body>
+                <canvas id="mystream" width="640" height="480" style="border:solid 1px red"></canvas>
+
+                <script>
+
+
+                        var canvas = document.getElementById('mystream');
+                        var width = canvas.width;
+                        var height = canvas.height;
+                        var ctx = canvas.getContext("2d");
+                        var rgba = ctx.getImageData(0, 0, width, height);
+
+                        // fill alpha (optimization)
+                        for(y = 0; y< height; y++) {
+                                for(x = 0; x < width; x++) {
+                                        pos = (y * width * 4) + (x * 4) ;
+                                        rgba.data[pos+3] = 255;
+                                }
+                        }
+
+                        // connect to the PSGI websocket server
+                        var ws = new WebSocket('ws://' + window.location.host + '/eyetoy');
+                        ws.binaryType = 'arraybuffer';
+                        ws.onopen = function(e) {
+                                console.log('ready');
+                        };
+
+                        ws.onmessage = function(e) {
+                                var x, y;
+                                var ycbcr = new Uint8ClampedArray(e.data);
+                                // convert YUYV to RGBA
+                                for(y = 0; y< height; y++) {
+                                        for(x = 0; x < width; x++) {
+                                                pos = (y * width * 4) + (x * 4) ;
+                                                var vy, cb, cr;
+                                                if (x % 2 == 0) {
+                                                        ycbcr_pos = (y * width * 2) + (x * 2);
+                                                        vy = ycbcr[ycbcr_pos];
+                                                        cb = ycbcr[ycbcr_pos+1];
+                                                        cr = ycbcr[ycbcr_pos+3];
+                                                }
+                                                else {
+                                                        ycbcr_pos = (y * width * 2) + ((x-1) * 2);
+                                                        vy = ycbcr[ycbcr_pos+2];
+                                                        cb = ycbcr[ycbcr_pos+1];
+                                                        cr = ycbcr[ycbcr_pos+3];
+                                                }
+                                                var r = (cr + ((cr * 103) >> 8)) - 179;
+                                                var g = ((cb * 88) >> 8) - 44 + ((cr * 183) >> 8) - 91;
+                                                var b = (cb + ((cb * 198) >> 8)) - 227;
+                                                rgba.data[pos] = vy + r;
+                                                rgba.data[pos+1] = vy + g;
+                                                rgba.data[pos+2] = vy + b;
+                                        }
+                                }                
+                                // draw pixels
+                                ctx.putImageData(rgba, 0, 0);
+                        };
+                        ws.onclose = function(e) { alert('goodbye');}
+                        ws.onerror = function(e) { alert('oops');}
+                </script>
+
+        </body>
+   </html>
 
 Concurrency
 ***********
