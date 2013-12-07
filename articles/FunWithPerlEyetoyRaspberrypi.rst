@@ -95,7 +95,7 @@ you now have the capture_plugin.so file in your uwsgi directory.
 
 Plug your eyetoy to a usb port on your rpi and check if it works:
 
-.. code-block::
+.. code-block:: sh
 
    ./uwsgi --plugin capture --v4l-capture /dev/video0
    
