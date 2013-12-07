@@ -51,7 +51,7 @@ The whole system must use few memory, few cpu cycles and should support a big nu
 Technical background
 ********************
 
-The eyetoy capture frames in YUYV format (known as YUV 4:2:2). It means we need 4 bytes for 2 pixels.
+The eyetoy captures frames in YUYV format (known as YUV 4:2:2). It means we need 4 bytes for 2 pixels.
 
 By default the resolution is set to 640x480, so each frame will need 614400 bytes
 
