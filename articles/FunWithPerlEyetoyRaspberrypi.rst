@@ -3,6 +3,10 @@ Fun with Perl, Eyetoy and RaspberryPi
 
 Author: Roberto De Ioris
 
+Date: 20131207
+
+image:: https://raw.github.com/unbit/uwsgi-capture/master/rpi-examples/rpi_eyetoy.jpg
+
 Intro
 *****
 
