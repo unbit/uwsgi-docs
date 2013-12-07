@@ -87,7 +87,7 @@ the whole procedure requires 13 minutes, if all goes well you can clone the uwsg
    git clone https://github.com/unbit/uwsgi-capture
    ./uwsgi --build-plugin uwsgi-capture
    
-you know have the capture_plugin.so file in your uwsgi directory.
+you now have the capture_plugin.so file in your uwsgi directory.
 
 Plug your eyetoy to a usb port on your rpi and check if it works:
 
