@@ -23,13 +23,13 @@ To follow the article you need:
 uWSGI subsystems and plugins
 ****************************
 
-The project makes use of the following uWSGI subsystems:
+The project makes use of the following uWSGI subsystems and plugins:
 
 - :doc:`Websockets`
 
-- :doc:`SharedArea`
+- :doc:`SharedArea` (for storing frames)
 
-- :doc:`Mules`
+- :doc:`Mules` (for gathering frames)
 
 - :doc:`Symcall`
 
