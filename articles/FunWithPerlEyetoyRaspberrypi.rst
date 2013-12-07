@@ -123,7 +123,7 @@ We want a mule to run the captureloop() function:
 
    ./uwsgi --plugin capture --v4l-capture /dev/video0 --mule="captureloop()" --http-socket :9090
    
-this time we have bound uWSGI to http port 9090 with a mule mapped to the "captureloop()" function. This nule syntax is
+this time we have bound uWSGI to http port 9090 with a mule mapped to the "captureloop()" function. This mule syntax is
 exposed by the symcall plugin that take control of every mule argument ending with "()" (the quoting is required to avoid the shell making mess with parenthesis)
 
 If all goes well you should see your uWSGI server spawning a master, a mule and a worker.
