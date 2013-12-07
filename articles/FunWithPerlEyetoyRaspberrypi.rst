@@ -117,7 +117,7 @@ the uWSGI process will exit soon after them as we did not tell it what to do :)
 
 The uwsgi-capture plugin exposes 2 functions:
 
-captureinit() -> mapped as the init() hook of the plugin, it will be called automatically by uWSGI. If --v4l-capture is specified, this function will initialized the specified device and will map it to a uWSGI sharedarea.
+captureinit() -> mapped as the init() hook of the plugin, it will be called automatically by uWSGI. If --v4l-capture option is specified, this function will initialize the specified device and will map it to a uWSGI sharedarea.
 
 captureloop() -> this is the function gathering frames and writing them to the sharedarea. This function should constantly run (even if there are no clients reading frames)
 
