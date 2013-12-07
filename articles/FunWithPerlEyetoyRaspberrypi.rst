@@ -29,17 +29,17 @@ uWSGI subsystems and plugins
 
 The project makes use of the following uWSGI subsystems and plugins:
 
-- :doc:`Websockets`
+- :doc:`../Websockets`
 
-- :doc:`SharedArea` (for storing frames)
+- :doc:`../SharedArea` (for storing frames)
 
-- :doc:`Mules` (for gathering frames)
+- :doc:`../Mules` (for gathering frames)
 
-- :doc:`Symcall`
+- :doc:`../Symcall`
 
-- :doc:`PSGI`
+- :doc:`../PSGI`
 
-- :doc:`Async` (optional, we use Coro::Anyevent but you can rely on standard processes, albeit you will need way more memory)
+- :doc:`../Async` (optional, we use Coro::Anyevent but you can rely on standard processes, albeit you will need way more memory)
 
 What we want to accomplish
 **************************
@@ -309,3 +309,27 @@ With the sharedarea you remove the need to allocate (and free) memory constantly
 
 Alternative approaches
 **********************
+
+There are obviously other approaches you can follow. 
+
+You could hack uwsgi-capture to allocate a second sharedarea in which it will directly write RGBA frames.
+
+JPEG encoding is relatively fast, you can try encoding frames in the rpi and sending them as MJPEG frames (instead of using websockets):
+
+.. code-block:: pl
+
+   my $writer = $responder->( [200, ['Content-Type' => 'multipart/x-mixed-replace; boundary=uwsgi_mjpeg_frame']]);
+   $writer->write("--uwsgi_mjpeg_frame\r\n");
+   while(1) {
+       uwsgi::sharedarea_wait(0);
+       my $chunk = uwsgi::sharedarea_read(0, 0);
+       $writer->write("Content-Type: image/jpeg\r\n");
+       $writer->write("Content-Length: ".length($chunk)."\r\n\r\n");
+       $writer->write($chunk);
+       $writer->write("\r\n--uwsgi_mjpeg_frame\r\n");
+   }
+
+Other languages
+***************
+
+At the time of writing, the uWSGI PSGI plugin is the only exposing the websockets+sharedarea additional api. The other languages plugins will be updated soon.
