@@ -248,11 +248,60 @@ The html part (well it would be better to say the 'javascript' part) is very eas
         </body>
    </html>
    
-Zero-copy all over the place
-****************************
+Nothing special here, the vast majority of the code is related to YUYV->RGBA conversion. Pay attention to set the websocket communication in 'binary' mode (binaryType = 'arraybuffer' is enough) and be sure to use
+a Uint8ClampedArray (otherwise performance will be terribly bad)
+
+Ready to watch
+**************
+
+.. code-block:: sh
+
+   ./uwsgi --plugin capture --v4l-capture /dev/video0 --http-socket :9090 --psgi uwsgi-capture/rpi-examples/eyetoy.pl --mule="captureloop()"
+
+connect with your browser to tcp port 9090 of your raspberrypi and star watching
 
 Concurrency
 ***********
+
+While you watch your websocket stream, you may want to start another browser window to see a second copy of your video. Unfortunately
+you spawned uWSGI with a single worker, so only a single client can get the stream.
+
+You can add multiple workers easily:
+
+.. code-block:: sh
+
+   ./uwsgi --plugin capture --v4l-capture /dev/video0 --http-socket :9090 --psgi uwsgi-capture/rpi-examples/eyetoy.pl --mule="captureloop()" --processes 10
+
+in this way up to 10 people will be able to watch the stream
+
+But coroutines are way better (and cheaper) for such I/O bound applications:
+
+.. code-block:: sh
+
+   ./uwsgi --plugin capture --v4l-capture /dev/video0 --http-socket :9090 --psgi uwsgi-capture/rpi-examples/eyetoy.pl --mule="captureloop()" --coroae 10
+   
+now we are able to manage 10 clients but with a single process !!! The rpi memory will be grateful to you.
+
+Zero-copy all over the place
+****************************
+
+Why using the sharedarea ?
+
+The sharedarea is one of the most advanced uWSGI features. If you give a look at the uwsgi-capture plugin you will see how it easily creates a sharedarea pointing
+to a mmap()'ed region. Basically each worker, thread (but please do not use threads with perl) or coroutine will have access to that memory in a concurrently-safe way.
+
+In addition to this, thanks to the websocket-api -> sharedarea cooperation you can directly send websocket packets from a sharedarea without copying memory (except for the resulting websocket packet).
+
+This is way faster than something like:
+
+.. code-block:: pl
+
+   my $chunk = uwsgi::sharedarea_read(0, 0)
+   uwsgi::websocket_send_binary($chunk)
+   
+as we need to allocate the memory for $chunk at every iteration, copying the sharedarea content into it and finally encapsulating it in a websocket message.
+
+With the sharedarea you remove the need to allocate (and free) memory constantly and to copy it from sharedarea to the perl vm.
 
 Alternative approaches
 **********************
