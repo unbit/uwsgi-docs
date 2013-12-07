@@ -51,7 +51,7 @@ The eyetoy capture frames in YUYV format (known as YUV 4:2:2). It means we need 
 
 By default the resolution is set to 640x480, so each frame will need 614400 bytes
 
-Once we have a frame we need to decode it as RGBA to allows the HTML5 canvas to show it.
+Once we have a frame we need to decode it as RGBA to allow the HTML5 canvas to show it.
 
 The translation between YUYV and RGBA is pretty heavy for the rpi (expecially if you need to do it for every connected client) so we will do it
 in the browser using javascript (well there are other approaches we can follow, just check the end of the article for them)
