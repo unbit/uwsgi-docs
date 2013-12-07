@@ -131,6 +131,36 @@ If all goes well you should see your uWSGI server spawning a master, a mule and 
 Step 2: the PSGI app
 ********************
 
+Time to write our websockets server sending eyetoy frames (you can find sources for the example here: https://github.com/unbit/uwsgi-capture/tree/master/rpi-examples).
+
+The PSGI app will be very simple:
+
+.. code-block:: pl
+
+   use IO::File;
+   use File::Basename;
+
+   my $app = sub {
+        my $env = shift;
+
+        # websockets connection happens on /eyetoy
+        if ($env->{PATH_INFO} eq '/eyetoy') {
+                # complete the handshake
+                uwsgi::websocket_handshake($env->{HTTP_SEC_WEBSOCKET_KEY}, $env->{HTTP_ORIGIN});
+                while(1) {
+                        # wait for updates in the sharedarea
+                        uwsgi::sharedarea_wait(0, 50);
+                        # send a binary websocket message directly from the sharedarea
+                        uwsgi::websocket_send_binary_from_sharedarea(0, 0)
+                }
+        }
+        # other requests generate the html
+        else {
+                return [200, ['Content-Type' => 'text/html'], new IO::File(dirname(__FILE__).'/eyetoy.html')];
+        }
+   }
+
+
 Step 3: HTML5
 *************
 
