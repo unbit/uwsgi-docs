@@ -106,6 +106,7 @@ Articles
    articles/SerializingAccept
    #articles/MassiveHostingWithEmperorAndNamespaces
    articles/TheArtOfGracefulReloading
+   articles/FunWithPerlEyetoyRaspberrypi
    
 
 uWSGI Subsystems
