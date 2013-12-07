@@ -332,7 +332,7 @@ JPEG encoding is relatively fast, you can try encoding frames in the rpi and sen
 Other languages
 ***************
 
-At the time of writing, the uWSGI PSGI plugin is the only exposing the websockets+sharedarea additional api. The other languages plugins will be updated soon.
+At the time of writing, the uWSGI PSGI plugin is the only one exposing the websockets+sharedarea additional api. The other languages plugins will be updated soon.
 
 
 More hacking
