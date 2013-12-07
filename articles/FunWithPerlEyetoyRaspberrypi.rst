@@ -18,7 +18,7 @@ To follow the article you need:
 
 - a bit of perl knowledge (really a bit, the perl code is less than 10 lines ;)
 
-- patience (building uWSGI+psgi+coroae and the rpi requires 13 minutes)
+- patience (building uWSGI+psgi+coroae on the rpi requires 13 minutes)
 
 uWSGI subsystems and plugins
 ****************************
