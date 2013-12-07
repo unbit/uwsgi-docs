@@ -333,3 +333,11 @@ Other languages
 ***************
 
 At the time of writing, the uWSGI PSGI plugin is the only exposing the websockets+sharedarea additional api. The other languages plugins will be updated soon.
+
+
+More hacking
+************
+
+The rpi board is really funny and uWSGI is a great companion for it (expecially its lower-level api functions).
+
+As an exercise left to the reader: remember you can mmap() the address 0x0x20200000 to access the GPIO controller...ready to write a uwsgi-gpio plugin ?
