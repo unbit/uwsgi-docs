@@ -29,7 +29,7 @@ uWSGI subsystems and plugins
 
 The project makes use of the following uWSGI subsystems and plugins:
 
-- :doc:`../Websockets`
+- :doc:`../WebSockets`
 
 - :doc:`../SharedArea` (for storing frames)
 
@@ -37,7 +37,7 @@ The project makes use of the following uWSGI subsystems and plugins:
 
 - :doc:`../Symcall`
 
-- :doc:`../PSGI`
+- :doc:`../Perl`
 
 - :doc:`../Async` (optional, we use Coro::Anyevent but you can rely on standard processes, albeit you will need way more memory)
 
