@@ -115,16 +115,19 @@ You can register new "logchunk" (the function to call for each logformat symbol)
 
 .. code-block:: c
 
-   static ssize_t uwsgi_lf_status(struct wsgi_request *wsgi_req, char **buf) {
+   static ssize_t uwsgi_lf_foobar(struct wsgi_request *wsgi_req, char **buf) {
            *buf = uwsgi_num2str(wsgi_req->status);
            return strlen(*buf);
    }
 
    static void register_logchunks() {
-           uwsgi_register_logchunk("foobar", uwsgi_lf_status, 1);
+           uwsgi_register_logchunk("foobar", uwsgi_lf_foobar, 1);
    }
    
    struct uwsgi_plugin foobar_plugin = {
            .name = "foobar",
            .on_load = register_logchunks,
    };
+   
+   
+if you load the foobar plugin, you will be able to use the %(foobar) request logging variable (reporting the request status)
