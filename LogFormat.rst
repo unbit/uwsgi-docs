@@ -101,7 +101,7 @@ Hacking logformat
 
 (Updated to 1.9.21)
 
-You can register new "logchunks" (the function to call for each logformat symbol) with
+You can register new "logchunk" (the function to call for each logformat symbol) with
 
 .. code-block:: c
 
