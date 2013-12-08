@@ -99,54 +99,32 @@ To generate Apache-compatible logs:
 Hacking logformat
 *****************
 
-To add more C-based variables, open ``core/logging.c`` and add them after
-existing ones (before ``// logvar``, though), for example:
+(Updated to 1.9.21)
+
+You can register new "logchunks" (the function to call for each logformat symbol) with
 
 .. code-block:: c
 
-    if (!uwsgi_strncmp(ptr, len, "uri", 3)) {
-            logchunk->pos = offsetof(struct wsgi_request, uri);
-            logchunk->pos_len = offsetof(struct wsgi_request, uri_len);
-    }
-    else if (!uwsgi_strncmp(ptr, len, "method", 6)) {
-            logchunk->pos = offsetof(struct wsgi_request, method);
-            logchunk->pos_len = offsetof(struct wsgi_request, method_len);
-    }
-    else if (!uwsgi_strncmp(ptr, len, "user", 4)) {
-            logchunk->pos = offsetof(struct wsgi_request, remote_user);
-            logchunk->pos_len = offsetof(struct wsgi_request, remote_user_len);
-    }
-    else if (!uwsgi_strncmp(ptr, len, "addr", 4)) {
-            logchunk->pos = offsetof(struct wsgi_request, remote_addr);
-            logchunk->pos_len = offsetof(struct wsgi_request, remote_addr_len);
-    }
-    else if (!uwsgi_strncmp(ptr, len, "host", 4)) {
-            logchunk->pos = offsetof(struct wsgi_request, host);
-            logchunk->pos_len = offsetof(struct wsgi_request, host_len);
-    }
-    else if (!uwsgi_strncmp(ptr, len, "proto", 5)) {
-            logchunk->pos = offsetof(struct wsgi_request, protocol);
-            logchunk->pos_len = offsetof(struct wsgi_request, protocol_len);
-    }
-    else if (!uwsgi_strncmp(ptr, len, "status", 6)) {
-            logchunk->type = 3;
-            logchunk->func = uwsgi_lf_status;
-            logchunk->free = 1;
-    }
+   struct uwsgi_logchunk *uwsgi_register_logchunk(char *name, ssize_t (*func)(struct wsgi_request *, char **), int need_free);
 
-For function-based vars the prototype is:
+``name`` is the name of the symbol
+
+``need_free`` if 1, means the pointer set by ``func`` must be free()d;
+
+``func`` the function to call in the log handler
 
 .. code-block:: c
 
-   ssize_t uwsgi_lf_foobar(struct wsgi_request *wsgi_req, char **buf);
-
-where ``buf`` is the destination buffer for the logvar value (will be
-automatically freed if you set ``logchunk->free`` as in the previous
-``"status"``-related C code).
-
-.. code-block:: c
-
-   ssize_t uwsgi_lf_status(struct wsgi_request *wsgi_req, char **buf) {
+   static ssize_t uwsgi_lf_status(struct wsgi_request *wsgi_req, char **buf) {
            *buf = uwsgi_num2str(wsgi_req->status);
            return strlen(*buf);
    }
+
+   static void register_logchunks() {
+           uwsgi_register_logchunk("foobar", uwsgi_lf_status, 1);
+   }
+   
+   struct uwsgi_plugin foobar_plugin = {
+           .name = "foobar",
+           .on_load = register_logchunks,
+   };
