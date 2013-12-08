@@ -262,7 +262,7 @@ Ready to watch
 
    ./uwsgi --plugin capture --v4l-capture /dev/video0 --http-socket :9090 --psgi uwsgi-capture/rpi-examples/eyetoy.pl --mule="captureloop()"
 
-connect with your browser to tcp port 9090 of your raspberrypi and star watching
+connect with your browser to tcp port 9090 of your raspberrypi and start watching
 
 Concurrency
 ***********
