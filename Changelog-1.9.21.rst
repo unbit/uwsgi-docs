@@ -51,14 +51,41 @@ New features
 removed zeromq api
 ^^^^^^^^^^^^^^^^^^
 
+The zeromq api (a single function indeed) has been removed. Each plugin rquiring zeromq cam simply call zmq_init() insteadd of uwsgi_zeromq_init().
+
+The mongrel2 support has been moved to a 'mongrel2' plugin.
+
 The new sharedarea
 ^^^^^^^^^^^^^^^^^^
+
+The shared area subsystem has been rewritten (it is incompatible with the old api as it requires a new argument as it now supports multiple memory areas).
+
+Check updated docs: :doc:`SharedArea`
 
 report request data in writers and readers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+every error when readign and writing to/from the client will report current request's data.
+
+This should simplify debugging a lot.
+
+Modular logchunks management
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 tmsecs and tmicros, werr, rerr, ioerr
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+5 new request logging variables are available:
+
+tmsecs: report the current unix time in milliseconds
+
+tmicros: report the current unix time in microseconds
+
+werr: report the number of write errors for the current request
+
+rerr: report the number of read errors for the current request
+
+ioerr: the sum of werr and rerr
 
 mountpoints and mules support for symcall
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
