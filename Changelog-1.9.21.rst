@@ -7,6 +7,14 @@ From now on, all of the releases will be -rc's (no new features will be added)
 
 A document describing notes for upgrades from the (extremely obsolete) 1.2 and 1.4 versions is on work.
 
+This release includes a new simplified plugins builder subsystem directly embedded in the uWSGI binary.
+
+A page reporting all of the third plugins is available: :doc:`ThirdPartyPlugins`
+
+And now....
+
+Changelog [20131210]
+
 Bugfixes
 ********
 
@@ -24,8 +32,18 @@ Optimizations
 writev() for the first chunk
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Inernally when the first response body is sent, uWSGI check if response headers have been sent too, and eventually send them with an additional write() call.
+
+This new optimizations allows uWSGI to send both headers and the first body chunk with single writev() syscall.
+
+If the writev() returns with an incomplete write on the second vector, the system will fallback to simple write().
+
 use a single buffer for websockets outgoing packets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Before this patch every single websocket packet required to allocate a memory chunk.
+
+This patch forces the reuse of a single dynamic buffer. For games this should result in a pretty good improvement in responsiveness.
 
 New features
 ************
