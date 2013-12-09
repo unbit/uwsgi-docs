@@ -150,3 +150,7 @@ uwsgi.websocket_send(msg)
 uwsgi.websocket_send_binary(msg) (added in 1.9.21 to support binary messages)
 
 uwsgi.websocket_recv_nb()
+
+uwsgi.websocket_send_from_sharedarea(id, pos) (added in 1.9.21, allows sending directly from a :doc:`SharedArea`)
+
+uwsgi.websocket_send_binary_from_sharedarea(id, pos) (added in 1.9.21, allows sending directly from a :doc:`SharedArea`)
