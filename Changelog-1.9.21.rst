@@ -13,7 +13,7 @@ A page reporting all of the third plugins is available: :doc:`ThirdPartyPlugins`
 
 And now....
 
-Changelog [20131210]
+Changelog [20131211]
 
 Bugfixes
 ********
