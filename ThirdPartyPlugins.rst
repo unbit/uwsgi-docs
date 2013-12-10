@@ -9,6 +9,7 @@ uwsgi-capture
 *************
 
 License: MIT
+Author: unbit
 
 allows gathering video4linux frames in a sharedarea
 
@@ -18,6 +19,7 @@ uwsgi-wstcp
 ***********
 
 License: MIT
+Author: unbit
 
 maps websockets to tcp connections (useful for proxying via javascript)
 
