@@ -56,6 +56,12 @@ Most of the documented uses make sense on systems with slow CPUs or very small a
     Decrement the signed integer (8, 16, 32 or 64 bit) at the specified position.
 ``sharedarea_wait(id[, freq, timeout])``
     Wait for modifications of the specified sharedarea (see below).
+``sharedarea_rlock(id)``
+    lock a shared area for read (use only if you know what you are doing, generally the sharedarea api functions implement locking by themselves)
+``sharedarea_wlock(id)``
+    lock a shared area for write (use only if you know what you are doing, generally the sharedarea api functions implement locking by themselves)
+``sharedarea_unlock(id)``
+    unlock a shared area (use only if you know what you are doing, generally the sharedarea api functions implement locking by themselves)
 
 Waiting for updates
 *******************
