@@ -123,7 +123,9 @@ error pages
 Three new options allow the definition of custom error pages (html only):
 
 ``--error-page-403 <file>``                     add an error page (html) for managed 403 response
+
 ``--error-page-404 <file>``                     add an error page (html) for managed 404 response
+
 ``--error-page-500 <file>``                     add an error page (html) for managed 500 response
 
 Simplified plugins builder
