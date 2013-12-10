@@ -76,10 +76,10 @@ Modular logchunks management
 
 The uWSGI api has been extended to allow plugins to define their log-request vars
 
-tmsecs and tmicros, werr, rerr, ioerr
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tmsecs and tmicros, werr, rerr, ioerr, var.XXX
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-5 new request logging variables are available:
+6 new request logging variables are available:
 
 tmsecs: report the current unix time in milliseconds
 
@@ -91,13 +91,24 @@ rerr: report the number of read errors for the current request
 
 ioerr: the sum of werr and rerr
 
+var.XXX: report the context of the request var XXX (like var.PATH_INFO)
+
 mountpoints and mules support for symcall
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The symcall plugin has been improved to support mules and mountpoints.
+
+To run a C function in a mule just specify it as ``--mule=foobar()`` when the mule finds an argument ending
+with () it will consider it a function symbol.
 
 read2 and wait_milliseconds async hooks
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This two non-blocking hooks adds 
+This two non-blocking hooks adds new capabilities to the non-blocking system.
+
+The first one allows to wait on two file descriptors with the same call (currently implemented only in plain async mode)
+
+The second one is used to have a millisecond resolution sleep. (this is currently used only by the sharedarea waiting system)
 
 websockets binary messages
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
