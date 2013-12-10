@@ -99,3 +99,8 @@ This is currently supported only in the psgi/perl plugin:
 
 Advanced usage (from C)
 ***********************
+
+
+Work in progress.
+
+Check https://github.com/unbit/uwsgi-capture for an example of sharedarea managed from C
