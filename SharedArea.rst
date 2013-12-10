@@ -83,5 +83,13 @@ The following functions require specific features from the language, so not all 
 Websockets integration API
 **************************
 
+This is currently supported only in the psgi/perl plugin:
+
+``websocket_send_from_sharedarea(id, pos)``
+    send a websocket message directly from the specified sharedarea
+
+``websocket_send_binary_from_sharedarea(id, pos)``
+    send a websocket binary message directly from the specified sharedarea
+
 Advanced usage (from C)
 ***********************
