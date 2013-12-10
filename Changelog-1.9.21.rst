@@ -112,7 +112,14 @@ Sending 'S' to the master fifo, enable/disable the sending of subscription packe
 as-mule hook
 ^^^^^^^^^^^^
 
-this new custom hooks allows you to execute custom code in every mule.
+this new custom hooks allows you to execute custom code in every mule:
+
+.. code-block:: ini
+
+   [uwsgi]
+   hook-as-mule = exec:myscript.sh
+   ...
+
 
 accepting hook and improved chain reloading
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -131,6 +138,19 @@ Three new options allow the definition of custom error pages (html only):
 Simplified plugins builder
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Building uWSGI plugins is now super easy:
+
+.. code-block:: sh
+
+   uwsgi --build-plugin <directory>
+   
+this option will create a sane environment based on the current binary (no need to fight with build profiles and #ifdef) and will build the plugin.
+
+No external files (included uwsgi.h) are needed as the uWSGI binary embeds them.
 
 Availability
 ************
+
+uWSGI 1.9.21 has been released on December 11th 2013 and can be downloaded at:
+
+http://projects.unbit.it/downloads/uwsgi-1.9.21.tar.gz
