@@ -74,9 +74,11 @@ The following functions require specific features from the language, so not all 
     Read ``len`` bytes from the specified sharedarea starting at offset ``pos`` to the specified object. If ``len`` is not specified, the memory will be read til the end (starting from ``pos``).
     Currently is implemented only for Perl.
     
-``sharedarea_memoryview(id)`` returns python memoryview object you can directly manipulate (works only on CPython)
+``sharedarea_memoryview(id)``
+    returns python memoryview object you can directly manipulate (works only on CPython)
 
-``sharedarea_object(id)`` some plugin exposes an alternative way to create sharedareas from internal objects. This functions returns the original object (currently implemented only on CPython on top of bytearrays using ``--py-sharedarea <size>`` option)
+``sharedarea_object(id)``
+    some plugin exposes an alternative way to create sharedareas from internal objects. This functions returns the original object (currently implemented only on CPython on top of bytearrays using ``--py-sharedarea <size>`` option)
 
 Websockets integration API
 **************************
