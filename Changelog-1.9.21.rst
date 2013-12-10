@@ -55,6 +55,8 @@ The zeromq api (a single function indeed) has been removed. Each plugin rquiring
 
 The mongrel2 support has been moved to a 'mongrel2' plugin.
 
+To pair uWSGI with mongrel2 the same options as before can be used, just remember to load (and build) the mongrel2 plugin
+
 The new sharedarea
 ^^^^^^^^^^^^^^^^^^
 
@@ -65,12 +67,14 @@ Check updated docs: :doc:`SharedArea`
 report request data in writers and readers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-every error when readign and writing to/from the client will report current request's data.
+every error when reading and writing to/from the client will report current request's data.
 
 This should simplify debugging a lot.
 
 Modular logchunks management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The uWSGI api has been extended to allow plugins to define their log-request vars
 
 tmsecs and tmicros, werr, rerr, ioerr
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -93,14 +97,22 @@ mountpoints and mules support for symcall
 read2 and wait_milliseconds async hooks
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+This two non-blocking hooks adds 
+
 websockets binary messages
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can now send websocket binary message. Just use ``uwsgi.websocket_send_binary()`` instead of ``uwsgi.websocket_send()``
 
 the 'S' master fifo command
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Sending 'S' to the master fifo, enable/disable the sending of subscription packets
+
 as-mule hook
 ^^^^^^^^^^^^
+
+this new custom hooks allows you to execute custom code in every mule.
 
 accepting hook and improved chain reloading
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -108,5 +120,15 @@ accepting hook and improved chain reloading
 error pages
 ^^^^^^^^^^^
 
+Three new options allow the definition of custom error pages (html only):
+
+``--error-page-403 <file>``                     add an error page (html) for managed 403 response
+``--error-page-404 <file>``                     add an error page (html) for managed 404 response
+``--error-page-500 <file>``                     add an error page (html) for managed 500 response
+
 Simplified plugins builder
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Availability
+************
