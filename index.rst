@@ -80,6 +80,7 @@ Table of Contents
    LogEncoders
    Hooks
    Glossary
+   ThirdPartyPlugins
    
 Tutorials
 =========
@@ -264,6 +265,7 @@ Stable releases
 .. toctree::
    :maxdepth: 1
 
+   Changelog-1.9.21
    Changelog-1.9.20
    Changelog-1.9.19
    Changelog-1.9.18
