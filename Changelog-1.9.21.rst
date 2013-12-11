@@ -135,6 +135,12 @@ this new custom hooks allows you to execute custom code in every mule:
 accepting hook and improved chain reloading
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+--after-request-call
+^^^^^^^^^^^^^^^^^^^^
+
+this option allows you to call specific C functions (in chains) after each request. While you should use the framework/interface features for this kind of job, sometimes it is not possibile to execute
+code after the logging phase. In such a case feel free to abuse this option.
+
 error pages
 ^^^^^^^^^^^
 
