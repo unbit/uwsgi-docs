@@ -26,3 +26,14 @@ Author: unbit
 maps websockets to tcp connections (useful for proxying via javascript)
 
 Website: https://github.com/unbit/uwsgi-wstcp
+
+uwsgi-pgnotify
+**************
+
+License: MIT
+
+Author: unbit
+
+integrate postgresql notification system with uWSGI signal framework
+
+Website: https://github.com/unbit/uwsgi-pgnotify
