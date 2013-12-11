@@ -74,7 +74,9 @@ This should simplify debugging a lot.
 Modular logchunks management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The uWSGI api has been extended to allow plugins to define their log-request vars
+The uWSGI api has been extended to allow plugins to define their log-request vars.
+
+Check: :doc:`LogFormat`
 
 tmsecs and tmicros, werr, rerr, ioerr, var.XXX
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -135,6 +137,12 @@ this new custom hooks allows you to execute custom code in every mule:
 accepting hook and improved chain reloading
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+The chain reloading subsystem has been improved to take in account when a worker is really ready to accept() requests.
+
+This specific state is announced to the Emperor too.
+
+Check this article for more infos: http://uwsgi-docs.readthedocs.org/en/latest/articles/TheArtOfGracefulReloading.html
+
 --after-request-call
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -164,6 +172,14 @@ Building uWSGI plugins is now super easy:
 this option will create a sane environment based on the current binary (no need to fight with build profiles and #ifdef) and will build the plugin.
 
 No external files (included uwsgi.h) are needed as the uWSGI binary embeds them.
+
+
+TODO for 2.0
+************
+
+- implement websockets and sharedarea support in Lua
+- complete sharedarea api for CPython, Perl, Ruby and PyPy
+- implement read2 and wait_milliseconds hook in all of the available loop engines
 
 Availability
 ************
