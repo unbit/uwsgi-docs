@@ -9,7 +9,7 @@ A document describing notes for upgrades from the (extremely obsolete) 1.2 and 1
 
 This release includes a new simplified plugins builder subsystem directly embedded in the uWSGI binary.
 
-A page reporting all of the third plugins is available: :doc:`ThirdPartyPlugins`
+A page reporting third plugins is available: :doc:`ThirdPartyPlugins` (feel free to add yours)
 
 And now....
 
