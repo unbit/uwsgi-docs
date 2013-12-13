@@ -197,10 +197,13 @@ Thanks to uGreen you can use the uWSGI async api in lua apps and gain a very hig
 .. code-block:: lua
 
    uwsgi.async_connect
+   uwsgi.wait_fd_read
    uwsgi.wait_fd_write
    uwsgi.is_connected
    uwsgi.send
    uwsgi.recv
+   uwsgi.close
+   uwsgi.ready_fd
 
 Threading example
 -----------------
