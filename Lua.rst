@@ -188,6 +188,11 @@ and run uWSGI with 8 async cores...
 
 And just like that, you can manage 8 concurrent requests within a single worker!
 
+Lua coroutines do not work over C stacks (it means you cannot manage them with your C code), but thanks to :doc:`uGreen` (the uWSGI official coroutine/greenthread engine)
+you can bypass this limit.
+
+Thanks to uGreen you can use the uWSGI async api in lua apps and gain a very high level of concurrency
+
 Threading example
 -----------------
 
@@ -222,5 +227,30 @@ A note on memory
 
 As we all know, uWSGI is parsimonious with memory. Memory is a precious
 resource. Do not trust software that does not care for your memory!  The Lua
-garbage collector is automatically called after each request. An option to set
-the frequency at which the GC runs will be available soon.
+garbage collector is automatically called (by default) after each request.
+
+You can tune the frequency of the GC call with the ``--lua-gc-freq <n>`` option, where n
+is the number of requests after the GC will be called:
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugins = lua
+   socket = 127.0.0.1:3031
+   processes = 4
+   master = true
+   lua = foobar.lua
+   ; run the gc every 10 requests
+   lua-gc-freq = 10
+   
+RPC and signals
+---------------
+
+The Lua shell
+-------------
+
+Using Lua as 'configurator'
+---------------------------
+
+uWSGI api status
+----------------
