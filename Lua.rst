@@ -1,39 +1,83 @@
 Using Lua/WSAPI with uWSGI
 ==========================
 
-Compilation notes
------------------
+Updated for uWSGI 2.0
 
-Before compiling the plugin take a look at the
-:file:`plugins/lua/uwsgiplugin.py` configuration file. If you have installed
-Lua in some exotic directory you may need to adjust the ``CFLAGS`` and ``LIBS``
-values.
+Building the plugin
+-------------------
 
-For example, on a Debian/Ubuntu system you should use something like this:
+The lua plugin is part of the official uWSGI distribution (official modifier 6) and it is availale in the plugins/lua directory.
 
-.. code-block:: python
+The plugin support lua 5.1, lua 5.2 and luajit.
 
-  import os, sys
-  
-  NAME='lua'
-  CFLAGS = ['-I/usr/include/lua5.1/']
-  LDFLAGS = []
-  GCC_LIST = ['lua_plugin']
-  LIBS = ['-llua5.1']
+By default lua 5.1 is assumed
 
-The ``lua.ini`` buildconf will build uWSGI with embedded Lua support. The
-``luap.ini`` buildconf will build Lua support as a plugin.
+As always there are various ways to build and install Lua support:
+
+from sources directory:
 
 .. code-block:: sh
 
-  python uwsgiconfig.py --build lua # embedded
-  python uwsgiconfig.py --build luap # plugin
-  # if you have already build the uWSGI core with the default config file...
-  python uwsgiconfig.py --plugin plugins/lua
-  # or if you have used another config file (for example core.ini)
-  python uwsgiconfig.py --plugin plugins/lua core
+   make lua
+   
+with the installer (the resulting binary will be in /tmp/uwsgi)
 
-.. note:: It should also be possible to compile Lua against ``luajit`` -- just edit the library and header paths in the :file:`plugins/lua/uwsgiplugin.py` file.
+.. code-block:: sh
+
+   curl http://uwsgi.it/install | bash -s lua /tmp/uwsgi
+   
+or you can build it as a plugin
+
+.. code-block:: sh
+
+   python uwsgiconfig.py --plugin plugins/lua
+   
+or (if you already have a uwsgi binary)
+
+.. code-block:: sh
+
+   uwsgi --build-plugin plugins/lua
+   
+The build system (check uwsgiplugin.py in plugins/lua directory for more details) uses pkg-config to find headers and libraries.
+
+You can specify the pkg-config module to use with the UWSGICONFIG_LUAPC environment variable.
+
+As an example
+
+.. code-block:: sh
+
+   UWSGICONFIG_LUAPC=lua5.2 make lua
+   
+will build a uwsgi binary for lua 5.2
+
+as well as
+
+.. code-block:: sh
+
+   UWSGICONFIG_LUAPC=luajit make lua
+   
+will build a binary with luajit
+
+If you do not want to rely on the pkg-config tool you can manually specify the includes and library directories as well as the lib name with the following environment vars:
+
+.. code-block: sh
+
+   UWSGICONFIG_LUAINC=<directory>
+   UWSGICONFIG_LUALIBPATH=<directory>
+   UWSGICONFIG_LUALIB=<name>
+   
+Why Lua ?
+---------
+
+If you came from other object oriented languages, you may find lua for web development a strange choice.
+
+Well, you have to consider one thing when exploring Lua: it is fast, really fast and consume very few resources.
+
+The uWSGI plugin allows you to write web applications in lua, but another purpose (if not the main one) is using Lua to
+extend the uWSGI server (and your application) using the signals framework, the rpc subsystem or the simple hooks engine.
+
+If you have slow-area in your code (independently by the language used) consider rewriting them in Lua (before dealing with C)
+and use uWSGI to safely call them.
 
 Your first WSAPI application
 ----------------------------
@@ -61,17 +105,57 @@ first command line option if you are using it as a plugin)
 
 .. code-block:: sh
 
-  ./uwsgi -s :3031 -M -p 4 --lua pippo.lua -m
+  ./uwsgi --http :8080 --http-modifier1 6 --lua pippo.lua
 
-The Lua plugin's official uwsgi protocol modifier number is ``6``, so remember
-to set it in your web server configuration with the
-``uWSGIModifier1``/``uwsgi_modifier1`` directive.
+This command line starts an http router that forward requests to a single worker in which pippo.lua is loaded.
+
+As you can see the modifier 6 is enforced.
+
+Obviously you can directly attach uWSGI to your frontline webserver (like nginx) and bind it to a uwsgi socket:
+
+.. code-block:: sh
+
+  ./uwsgi --socket 127.0.0.1:3031 --lua pippo.lua
+
+(remember to set modifier1 to 6 in your webserver of choice)
+
+Concurrency
+-----------
+
+Basically Lua is available in all of the supported uWSGI concurrency models
+
+you can go multiprocess:
+
+.. code-block:: sh
+
+  ./uwsgi --socket 127.0.0.1:3031 --lua pippo.lua --processes 8 --master
+  
+  
+or multithread:
+
+.. code-block:: sh
+
+  ./uwsgi --socket 127.0.0.1:3031 --lua pippo.lua --threads 8 --master
+  
+or both
+
+.. code-block:: sh
+
+  ./uwsgi --socket 127.0.0.1:3031 --lua pippo.lua --processes 4 --threads 8 --master
+  
+you can run it in coroutine mode (see below) using :doc:`uGreen` as the suspend engine
+
+.. code-block:: sh
+
+  ./uwsgi --socket 127.0.0.1:3031 --lua pippo.lua --async 1000 --ugreen
+  
+Both threading and async modes will initialize a lua state each (you can see it as a whole independent lua VM)
 
 Abusing coroutines
 ------------------
 
-One of the most exciting feature of Lua is coroutine (cooperative
-multithreading) support. uWSGI can benefit from this using its async core. The
+One of the most exciting feature of Lua are coroutines (cooperative
+multithreading) support. uWSGI can benefit from this using its async engine. The
 Lua plugin will initialize a ``lua_State`` for every async core. We will use a
 CPU-bound version of our pippo.lua to test it:
 
@@ -100,12 +184,12 @@ and run uWSGI with 8 async cores...
 
 .. code-block:: sh
 
-  ./uwsgi -s :3031 -M -p 4 --lua pippo.lua -m --async 8
+  ./uwsgi --socket :3031 --lua pippo.lua --async 8
 
 And just like that, you can manage 8 concurrent requests within a single worker!
 
-Threading
----------
+Threading example
+-----------------
 
 The Lua plugin is "thread-safe" as uWSGI maps a lua_State to each internal
 pthread.  For example you can run the Sputnik_ wiki engine very easily.  Use
@@ -128,7 +212,7 @@ And run your threaded uWSGI server
 
 .. code-block:: sh
 
-  ./uwsgi --plugins lua --lua sputnik.ws --threads 20 -s :3031
+  ./uwsgi --plugins lua --lua sputnik.ws --threads 20 --socket :3031
 
 .. _Sputnik: http://sputnik.freewisdom.org/
 .. _LuaRocks: http://www.luarocks.org/
