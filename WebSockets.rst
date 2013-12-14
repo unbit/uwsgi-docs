@@ -30,7 +30,9 @@ Handshaking
 
 Handshaking is the first phase of a websocket connection.
 
-To send a full handshake response you can use the ``uwsgi.websocket_handshake(key[,origin])`` function. Without a correct handshake the connection will never complete.
+To send a full handshake response you can use the ``uwsgi.websocket_handshake([key,origin, proto])`` function. Without a correct handshake the connection will never complete.
+
+In 1.9 serie, the key parameter is required, while in 2.0 you can call websocket_handshake without arguments (response will be build automatically from request's data)
 
 Sending
 *******
@@ -141,7 +143,7 @@ or
 Api
 ***
 
-uwsgi.websocket_handshake(key, origin)
+uwsgi.websocket_handshake([key, origin, proto])
 
 uwsgi.websocket_recv()
 
