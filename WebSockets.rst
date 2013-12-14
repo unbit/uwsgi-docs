@@ -98,6 +98,7 @@ Languages support
 * Perl https://github.com/unbit/uwsgi/blob/master/tests/websockets_echo.pl
 * PyPy https://github.com/unbit/uwsgi/blob/master/tests/websockets_chat_async.py
 * Ruby https://github.com/unbit/uwsgi/blob/master/tests/websockets_echo.ru
+* Lua https://github.com/unbit/uwsgi/blob/master/tests/websockets_echo.lua
 
 Supported Concurrency models
 ****************************
