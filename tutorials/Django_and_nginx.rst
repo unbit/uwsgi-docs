@@ -236,11 +236,11 @@ Now create a file called mysite_nginx.conf, and put this in it::
 
         # Django media
         location /media  {
-            alias /path/to/your/mysite/mysite/media;  # your Django project's media files - amend as required
+            alias /path/to/your/mysite/media;  # your Django project's media files - amend as required
         }
    
         location /static {
-            alias /path/to/your/mysite/mysite/static; # your Django project's static files - amend as required
+            alias /path/to/your/mysite/static; # your Django project's static files - amend as required
         }
    
         # Finally, send all non-media requests to the Django server.
@@ -261,6 +261,20 @@ Symlink to this file from /etc/nginx/sites-enabled so nginx can see it:
 .. code-block:: bash
 
     sudo ln -s ~/path/to/your/mysite/mysite_nginx.conf /etc/nginx/sites-enabled/
+
+Deploying static files
+^^^^^^^^^^^^^^^^
+
+Before running nginx, you have to collect all Django static files in the static 
+folder. First of all you have to edit mysite/settings.py adding:
+
+    STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
+and then run
+
+    python manage.py collectstatic
+
+
 
 Basic nginx test
 ^^^^^^^^^^^^^^^^
