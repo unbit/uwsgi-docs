@@ -268,9 +268,13 @@ Deploying static files
 Before running nginx, you have to collect all Django static files in the static 
 folder. First of all you have to edit mysite/settings.py adding:
 
+.. code-block:: Python
+
     STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 and then run
+
+.. code-block:: bash
 
     python manage.py collectstatic
 
