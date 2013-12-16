@@ -60,6 +60,52 @@ An example of just this, using Nginx:
 
 Supposing you have a callable that sends email to a group specified in the ``ToGroup`` dictionary key, this would allow you to enqueue mass mails using Nginx only.
 
+Perl Compatibility
+-------------------
+At the moment spooler can receive messages from Perl using Net::uwsgi,
+but it is not possible to call perl functions from a spooler. 
+
+According to unbit_ it needs to be rewritten before it is compatible with other languages 
+(try using mules and signals as an alternative)
+
+.. code-block:: perl
+use Net::uwsgi;
+uwsgi_spool('localhost:3031', {'test'=>'test001','argh'=>'boh','foo'=>'bar'});
+uwsgi_spool('/path/to/socket', {'test'=>'test001','argh'=>'boh','foo'=>'bar'});
+
+.. code-block:: ini
+[uwsgi]
+socket = /var/run/uwsgi-spooler.sock
+socket = localhost:3031
+spooler = /path/for/files
+spooler-processes=1
+
+Parameters
+---------------
+spooler=directory 
+run a spooler on the specified directory
+
+spooler-external=directory
+map spoolers requests to a spooler directory managed by an external instance
+
+spooler-ordered
+try to order the execution of spooler tasks (uses scandir instead of readdir)
+
+spooler-chdir=directory
+call chdir() to specified directory before each spooler task
+
+spooler-processes=##
+set the number of processes for spoolers
+
+spooler-quiet
+do not be verbose with spooler tasks
+
+spooler-max-tasks=##
+set the maximum number of tasks to run before recycling a spooler (to help alleviate memory leaks)
+
+spooler-harakiri=##
+set harakiri timeout for spooler tasks, see [harakiri] for more information.
+
 Tips and tricks
 ---------------
 
