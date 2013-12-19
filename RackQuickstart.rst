@@ -152,6 +152,37 @@ Note that you do not need to configure uWSGI to set a specific modifier, nginx w
 Adding concurrency
 ******************
 
+With the previous example you deployed a stack being able to serve a single request at time.
+
+To increase concurrency you need to add more processes. If you hope there is a magic math formula to find the right number of processes
+to spawn, lose it. You need to experiment and monitor your app to find the right value. Take in account every single process is a complete copy of your app, so memory should be taken in account.
+
+To add more processes just use the `--processes <n>` option:
+
+.. code-block:: sh
+
+   uwsgi --socket 127.0.0.1:3031 --rack app.ru --processes 8
+   
+will spawn 8 processes.
+
+Ruby 1.9/2.0 introduced an improved threads support and uWSGI supports it via the 'rbthreads' plugin. This plugin is automatically
+build when you compile the uWSGI+ruby monolithic binary.
+
+To add more threads:
+
+.. code-block:: sh
+
+   uwsgi --socket 127.0.0.1:3031 --rack app.ru --rbthreads 4
+   
+or threads + processes
+
+.. code-block:: sh
+
+   uwsgi --socket 127.0.0.1:3031 --rack app.ru --processes --rbthreads 4
+   
+There are other (generally more advanced/complex) ways to increase concurrency (for example 'fibers'), but most of the time
+you will end with plain old multiprocesses or multithreads models. (if you are interested you can check to uWSGI rack full docs)
+
 Adding robustness: the Master process
 *************************************
 
@@ -219,7 +250,37 @@ You can even pipe configs (using the dash to force reading from stdin):
 .. code-block:: sh
 
    ruby myjsonconfig_generator.rb | uwsgi --json -
+   
+The fork() problem
+******************
 
+uWSGI is "perlish", there is nothing we can do to hide this thing. Most of its choices (starting from "There's more than one way to do it") cames from the perl world (and more generally from the UNIX sysadmins approaches).
+
+Sometimes this approach could lead to unexpected behaviours when applied to other languages/platform.
+
+One of the "problems" you can face when starting to learn uWSGI is its fork() usage.
+
+By default uWSGI loads your application in the first spawned process and then fork() itself multiple times.
+
+It means your app is loaded a single time and then copied.
+
+While this approach speedups the start of the server, some application could have problems with this technique (expecially those initializing db connections
+on startup, as the file descirptor of the connection will be inherited in the subprocesses)
+
+If you are unsure about the brutal preforking used by uWSGI, just disable it with the ``--lazy-apps`` option. It will force uWSGI to completely load
+your app one time per-worker
+
+Deploying Sinatra
+*****************
+
+Deploying RubyOnRails >= 3
+**************************
+
+Deploying older RubyOnRails
+***************************
+
+Bundler and RVM
+***************
 
 Automatically starting uWSGI on boot
 ************************************
