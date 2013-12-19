@@ -56,7 +56,7 @@ You distribution very probably contains a uWSGI package set. Those uWSGI package
 
 Once you feel confortable with the “uWSGI way” you can choose the best approach for your deployments.
 
-As an example, the tutorial makes use of the 'http' and 'rack' plugins. If you are using a modular build be sure to load the with the ``--plugins http,rack`` option
+As an example, the tutorial makes use of the 'http' and 'rack' plugins. If you are using a modular build be sure to load them with the ``--plugins http,rack`` option
 
 Your first Rack app
 *******************
