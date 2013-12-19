@@ -377,7 +377,7 @@ the first line is not required for ruby 1.9/2.x
 
 Basically those lines force uWSGI to load the bundler engine and to use the Gemfile specified in the BUNDLE_GEMFILE environment variable.
 
-When using Bundler (like moder frameworks do) your common deployment configuration will be:
+When using Bundler (like modern frameworks do) your common deployment configuration will be:
 
 .. code-block:: ini
 
