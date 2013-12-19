@@ -166,7 +166,7 @@ To add more processes just use the `--processes <n>` option:
 will spawn 8 processes.
 
 Ruby 1.9/2.0 introduced an improved threads support and uWSGI supports it via the 'rbthreads' plugin. This plugin is automatically
-build when you compile the uWSGI+ruby monolithic binary.
+build when you compile the uWSGI+ruby (>=1.9) monolithic binary.
 
 To add more threads:
 
