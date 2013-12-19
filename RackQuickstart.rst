@@ -310,7 +310,7 @@ Deploying RubyOnRails >= 3
 
 Starting from 3.0, Rails is fully rack compliant, and exposes a config.ru file you can directly load (like we did with sinatra)
 
-The only difference from sinatra is that your project has a specific layout/conventions expecting your current working directory is the one containing the project, so le'ts add a chdir option:
+The only difference from sinatra is that your project has a specific layout/convention expecting your current working directory is the one containing the project, so le'ts add a chdir option:
 
 .. code-block:: ini
 
@@ -327,7 +327,7 @@ The only difference from sinatra is that your project has a specific layout/conv
 
    uwsgi yourconf.ini
    
-in addition to chdir we have added the 'env' option that set teh RAILS_EV environment variable.
+in addition to chdir we have added the 'env' option that set the RAILS_ENV environment variable.
 
 Starting from 4.0, Rails support multiple threads (only for ruby 2.0):
 
