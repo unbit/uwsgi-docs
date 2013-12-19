@@ -251,8 +251,8 @@ You can even pipe configs (using the dash to force reading from stdin):
 
    ruby myjsonconfig_generator.rb | uwsgi --json -
    
-The fork() problem
-******************
+The fork() problem when you spawn multiple processes
+****************************************************
 
 uWSGI is "perlish", there is nothing we can do to hide this thing. Most of its choices (starting from "There's more than one way to do it") cames from the perl world (and more generally from the UNIX sysadmins approaches).
 
