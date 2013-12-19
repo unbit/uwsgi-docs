@@ -99,7 +99,7 @@ or if you are using a modular build (like the one of your distro)
    
 Whit this command line we spawned an http proxy routing each request to a process (named the 'worker') that manages it and send back the response to the http router (that sends back to the client).
 
-If you are asking yourself why spawning two processes, it is because this is the normal architecture you will use in production (a frontline webserver woth a backend application server).
+If you are asking yourself why spawning two processes, it is because this is the normal architecture you will use in production (a frontline webserver with a backend application server).
 
 If you do not want to spawn the http proxy and directly force the worker to answer http requests just change the command line to
 
