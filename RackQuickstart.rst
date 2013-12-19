@@ -273,14 +273,174 @@ your app one time per-worker
 Deploying Sinatra
 *****************
 
+Let's forget about fork(), and back to funny things. This time we deploy a Sinatra application:
+
+.. code-block:: rb
+
+   require 'sinatra'
+
+   get '/hi' do
+     "Hello World"
+   end
+
+   run Sinatra::Application
+   
+save it as config.ru and run as seen before:
+
+.. code-block:: ini
+
+   [uwsgi]
+   socket = 127.0.0.1:3031
+   rack = config.ru
+   master = true
+   processes = 4
+   lazy-apps = true
+   
+.. code-block:: sh
+
+   uwsgi yourconf.ini
+   
+well maybe you have already noted that basically nothing changed from the previous app.ru examples.
+
+That is because basically every modern Rack app exposes itself as a .ru file (generally called config.ru), so there is no need
+for multiple options for loading application (like for example in the python/WSGI world)
+
 Deploying RubyOnRails >= 3
 **************************
+
+Starting from 3.0, Rails is fully rack compliant, and exposes a config.ru file you can directly load (like we did with sinatra)
+
+The only difference from sinatra is that your project has a specific layout/conventions expecting your current working directory is the one containing the project, so le'ts add a chdir option:
+
+.. code-block:: ini
+
+   [uwsgi]
+   socket = 127.0.0.1:3031
+   rack = config.ru
+   master = true
+   processes = 4
+   lazy-apps = true
+   chdir = <path_to_your_rails_app>
+   env = RAILS_ENV=production
+   
+.. code-block:: sh
+
+   uwsgi yourconf.ini
+   
+in addition to chdir we have added the 'env' option that set teh RAILS_EV environment variable.
+
+Starting from 4.0, Rails support multiple threads (only for ruby 2.0):
+
+.. code-block:: ini
+
+   [uwsgi]
+   socket = 127.0.0.1:3031
+   rack = config.ru
+   master = true
+   processes = 4
+   rbthreads = 2
+   lazy-apps = true
+   chdir = <path_to_your_rails_app>
+   env = RAILS_ENV=production
 
 Deploying older RubyOnRails
 ***************************
 
+Older Rails versions are not dully Rack-compliant. For such a reason a specific option is available in uWSGI to load older rails app (you will need the 'thin' gem too).
+
+.. code-block:: ini
+
+   [uwsgi]
+   socket = 127.0.0.1:3031
+   master = true
+   processes = 4
+   lazy-apps = true
+   rails = <path_to_your_rails_app>
+   env = RAILS_ENV=production
+   
+the 'rails' options must be specified instead of 'rack' passing the rails app directory as the argument
+
 Bundler and RVM
 ***************
+
+Bundler is the standard-de-facto ruby tool for managing dependancies. Basically you specify the gem needed by your app in the Gemfile text file and then you launch bundler to install them.
+
+To allow uWSGI to honour bundler installations you only need to add:
+
+.. code-block::
+
+   rbrequire = rubygems
+   rbrequire = bundler/setup
+   env = BUNDLE_GEMFILE=<path_to_your_Gemfile>
+
+the first line is not required for ruby 1.9/2.x
+
+Basically those lines force uWSGI to load the bundler engine and to use the Gemfile specified in the BUNDLE_GEMFILE environment variable.
+
+When using Bundler (like moder frameworks do) your common deployment configuration will be:
+
+.. code-block:: ini
+
+   [uwsgi]
+   socket = 127.0.0.1:3031
+   rack = config.ru
+   master = true
+   processes = 4
+   lazy-apps = true
+   rbrequire = rubygems
+   rbrequire = bundler/setup
+   env = BUNDLE_GEMFILE=<path_to_your_Gemfile>
+   
+In addition to Bundler, RVM is another common tool.
+
+It allows you to have multiple (independent) ruby installations (with their gemsets) on a single system.
+
+To instruct uWSGI to use the gemset of a specific rvm version just use the `--gemset` option:
+
+.. code-block:: ini
+
+   [uwsgi]
+   socket = 127.0.0.1:3031
+   rack = config.ru
+   master = true
+   processes = 4
+   lazy-apps = true
+   rbrequire = rubygems
+   rbrequire = bundler/setup
+   env = BUNDLE_GEMFILE=<path_to_your_Gemfile>
+   gemset = ruby-2.0@foobar
+   
+just pay attention you need a uWSGI binary (or a plugin if you are using a modular build) for every ruby version (ruby version, not gemset !!!)
+
+If you are interested this is a list of commands to build a uWSGI core + 1 one plugin for every ruby version installed in rvm:
+
+.. code-block:: sh
+
+   # build the core
+   make nolang
+   # build plugin for 1.8.7
+   rvm use 1.8.7
+   ./uwsgi --build-plugin "plugins/rack rack187"
+   # build for 1.9.2
+   rvm use 1.9.2
+   ./uwsgi --build-plugin "plugins/rack rack192"
+   # and so on...
+   
+then if you want to use ruby 1.9.2 with the @oops gemset:
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugins = ruby192
+   socket = 127.0.0.1:3031
+   rack = config.ru
+   master = true
+   processes = 4
+   lazy-apps = true
+   rbrequire = rubygems
+   rbrequire = bundler/setup
+   env = BUNDLE_GEMFILE=<path_to_your_Gemfile>
+   gemset = ruby-1.9.2@oops
 
 Automatically starting uWSGI on boot
 ************************************
