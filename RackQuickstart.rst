@@ -515,7 +515,7 @@ Low memory usage is one of the selling point of the whole uWSGI project.
 
 Unfortunately being aggressive with memory by default could (read well: could) lead to some performance problem.
 
-By default the uWSGI rack plugin, calls the ruby GC after every request. If you want to reduc this rate just add the ``--rb-gc-freq <n>`` option, where n is the number of requests after the GC is called.
+By default the uWSGI rack plugin, calls the ruby GC after every request. If you want to reduce this rate just add the ``--rb-gc-freq <n>`` option, where n is the number of requests after the GC is called.
 
 If you plan to make benchmark of uWSGI (or compare it with other solutions) take in account its use of GC.
 
