@@ -6,7 +6,7 @@ The following instructions will guide you through installing and running a ruby-
 Installing uWSGI with Ruby support
 **********************************
 
-To build uWSGI you need a c compiler (gcc and clang are supported) and the python binary (it will only run the uwsgiconfig.py script that will execute the various compilation steps). As we are building a uWSGI binary with ruby support we need ruby development headers too (uby-dev package on debian-based distros)
+To build uWSGI you need a c compiler (gcc and clang are supported) and the python binary (it will only run the uwsgiconfig.py script that will execute the various compilation steps). As we are building a uWSGI binary with ruby support we need ruby development headers too (ruby-dev package on debian-based distros)
 
 You can build uWSGI manually:
 
