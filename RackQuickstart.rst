@@ -346,7 +346,7 @@ Starting from 4.0, Rails support multiple threads (only for ruby 2.0):
 Deploying older RubyOnRails
 ***************************
 
-Older Rails versions are not dully Rack-compliant. For such a reason a specific option is available in uWSGI to load older rails app (you will need the 'thin' gem too).
+Older Rails versions are not fully Rack-compliant. For such a reason a specific option is available in uWSGI to load older rails app (you will need the 'thin' gem too).
 
 .. code-block:: ini
 
