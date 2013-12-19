@@ -43,6 +43,7 @@ Quickstarts
 
    WSGIquickstart
    PSGIquickstart
+   RackQuickstart
 
 
 Table of Contents
