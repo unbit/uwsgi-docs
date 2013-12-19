@@ -367,7 +367,7 @@ Bundler is the standard-de-facto ruby tool for managing dependancies. Basically 
 
 To allow uWSGI to honour bundler installations you only need to add:
 
-.. code-block::
+.. code-block:: ini
 
    rbrequire = rubygems
    rbrequire = bundler/setup
