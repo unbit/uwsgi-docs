@@ -84,6 +84,10 @@ Python via :py:data:`uwsgi.magic_table`) are defined.
 %0..%9   a specific component of the full path of the directory containing the config file (version 1.3+)
 %[       ANSI escape "\\033" (useful for printing colors)
 %k       detected cpu cores (version 1.9.20-dev+)
+%u       uid of the user running the process
+%U       username (if available, otherwise fallback to uid) of the user running the process
+%g       gid of the user running the process
+%G       group name (if available, otherwise fallback to gid) of the user running the process
 ======== ==
 
 Note that most of these refer to the file they appear in, even if that
