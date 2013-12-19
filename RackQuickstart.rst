@@ -97,7 +97,7 @@ or if you are using a modular build (like the one of your distro)
 
    uwsgi --plugins http,rack --http :8080 --http-modifier1 7 --rack app.ru
    
-Whit this command line we spawned an http proxy routing each request to a process (named the 'worker') that process it and send back the response to the http router (that sends back to the client).
+Whit this command line we spawned an http proxy routing each request to a process (named the 'worker') that manages it and send back the response to the http router (that sends back to the client).
 
 If you are asking yourself why spawning two processes, it is because this is the normal architecture you will use in production (a frontline webserver woth a backend application server).
 
