@@ -217,7 +217,7 @@ or xml:
 
    <uwsgi>
      <socket>127.0.0.1:3031</socket>
-     <rack>myapp.pl</rack>
+     <rack>app.ru</rack>
      <processes>4</processes>
      <master/>
    </uwsgi>
