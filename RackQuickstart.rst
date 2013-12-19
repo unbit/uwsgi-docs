@@ -96,13 +96,25 @@ or if you are using a modular build (like the one of your distro)
 .. code-block:: sh
 
    uwsgi --plugins http,rack --http :8080 --http-modifier1 7 --rack app.ru
+   
+Whit this command line we spawned an http proxy routing each request to a process (named the 'worker') that process it and send back the response to the http router (that sends back to the client).
 
-What is that '--http-modifier1 5' thing ???
+If you are asking yourself why spawning two processes, it is because this is the normal architecture you will use in production (a frontline webserver woth a backend application server).
+
+If you do not want to spawn the http proxy and directly force the worker to answer http requests just change the command line to
+
+.. code-block:: sh
+
+   uwsgi --http-socket :8080 --http-socket-modifier1 7 --rack app.ru
+   
+now you have a single process managing requests (but remember that directly exposing the application server to the public is generally dangerous and less versatile)
+
+What is that '--http-modifier1 7' thing ???
 *******************************************
 
-uWSGI supports various languages and platform. When the server receives a request it has to know where to 'route' it.
+uWSGI supports various languages and platforms. When the server receives a request it has to know where to 'route' it.
 
-Each uWSGI plugin has an assigned number (the modifier), the perl/psgi one has the 5. So --http-modifier1 5 means "route to the psgi plugin"
+Each uWSGI plugin has an assigned number (the modifier), the ruby/rack one has the 7. So --http-modifier1 7 means "route to the rack plugin"
 
 Albeit uWSGI has a more "human-friendly" :doc:`internal routing system <InternalRouting>` using modifiers is the fastest way, so, if possible always use them
 
@@ -110,17 +122,17 @@ Albeit uWSGI has a more "human-friendly" :doc:`internal routing system <Internal
 Using a full webserver: nginx
 *****************************
 
-The supplied http router, is (yes, incredible) only a router. You can use it as a load balancer or a proxy, but if you need a full webserver (for efficiently serving static files or all of those task a webserver is good at), you can get rid of the uwsgi http router (remember to change --plugins http,psgi to --plugins psgi if you are using a modular build) and put your app behind nginx.
+The supplied http router, is (yes, incredible) only a router. You can use it as a load balancer or a proxy, but if you need a full webserver (for efficiently serving static files or all of those task a webserver is good at), you can get rid of the uwsgi http router (remember to change --plugins http,rack to --plugins rack if you are using a modular build) and put your app behind nginx.
 
 To communicate with nginx, uWSGI can use various protocol: http, uwsgi, fastcgi, scgi...
 
 The most efficient one is the uwsgi one. Nginx includes uwsgi protocol support out of the box.
 
-Run your psgi application on a uwsgi socket:
+Run your rack application on a uwsgi socket:
 
 .. code-block:: sh
 
-   uwsgi --socket 127.0.0.1:3031 --psgi myapp.pl
+   uwsgi --socket 127.0.0.1:3031 --rack app.ru
 
 then add a location stanza in your nginx config
 
@@ -130,7 +142,7 @@ then add a location stanza in your nginx config
    location / {
        include uwsgi_params;
        uwsgi_pass 127.0.0.1:3031;
-       uwsgi_modifier1 5;
+       uwsgi_modifier1 7;
    }
 
 Reload your nginx server, and it should start proxying requests to your uWSGI instance
@@ -151,12 +163,12 @@ To enable the master simply add --master
 
 .. code-block:: sh
 
-   uwsgi --socket 127.0.0.1:3031 --psgi myapp.pl --processes 4 --master
+   uwsgi --socket 127.0.0.1:3031 --rack app.ru --processes 4 --master
    
 Using config files
 ******************
 
-uWSGI has literally hundreds of options. Dealing with them via command line is basically silly, so try to always use config files.
+uWSGI has literally hundreds of options (but generally you will not use more than a dozens of them). Dealing with them via command line is basically silly, so try to always use config files.
 uWSGI supports various standards (xml, .ini, json, yaml...). Moving from one to another is pretty simple. The same options you can use via command line can be used
 on config files simply removing the ``--`` prefix:
 
@@ -164,7 +176,7 @@ on config files simply removing the ``--`` prefix:
 
    [uwsgi]
    socket = 127.0.0.1:3031
-   psgi = myapp.pl
+   rack = app.ru
    processes = 4
    master = true
    
@@ -174,7 +186,7 @@ or xml:
 
    <uwsgi>
      <socket>127.0.0.1:3031</socket>
-     <psgi>myapp.pl</psgi>
+     <rack>myapp.pl</rack>
      <processes>4</processes>
      <master/>
    </uwsgi>
@@ -206,7 +218,7 @@ You can even pipe configs (using the dash to force reading from stdin):
 
 .. code-block:: sh
 
-   perl myjsonconfig_generator.pl | uwsgi --json -
+   ruby myjsonconfig_generator.rb | uwsgi --json -
 
 
 Automatically starting uWSGI on boot
@@ -231,7 +243,7 @@ ALWAYS avoid running your uWSGI instances as root. You can drop privileges using
    uid = foo
    gid = bar
    chdir = path_toyour_app
-   psgi = myapp.pl
+   rack = app.ru
    master = true
    processes = 8
 
@@ -247,7 +259,7 @@ To avoid that problem you can set an ``harakiri`` timer. It is a monitor (manage
    uid = foo
    gid = bar
    chdir = path_toyour_app
-   psgi = myapp.pl
+   rack = app.ru
    master = true
    processes = 8
    harakiri = 30
@@ -265,7 +277,7 @@ Enabling the stats server is easy:
    uid = foo
    gid = bar
    chdir = path_toyour_app
-   psgi = myapp.pl
+   rack = app.ru
    master = true
    processes = 8
    harakiri = 30
