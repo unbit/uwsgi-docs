@@ -37,3 +37,14 @@ Author: unbit
 integrate postgresql notification system with uWSGI signal framework
 
 Website: https://github.com/unbit/uwsgi-pgnotify
+
+uwsgi-quota
+***********
+
+License: MIT
+
+Author: unbit
+
+allows to set and monitor filesystem quota
+
+Website: https://github.com/unbit/uwsgi-quota
