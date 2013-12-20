@@ -48,3 +48,15 @@ Author: unbit
 allows to set and monitor filesystem quota
 
 Website: https://github.com/unbit/uwsgi-quota
+
+
+uwsgi-eventfd
+*************
+
+License: MIT
+
+Author: unbit
+
+allows to monitor eventfd() objects (like events sent by the cgroup system)
+
+Website: https://github.com/unbit/uwsgi-eventfd
