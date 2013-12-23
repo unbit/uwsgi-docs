@@ -477,6 +477,15 @@ This is a work in progress, best way to know which default metrics are exposed i
  
  * system/10 (namespace for system metrics, like loadavg or free memory)
  
+OID assigment for plugins
+*************************
+
+If you want to write plugin that will expose metrics, please first add OID namespace that you are going to use to the list below and make a pull request.
+This will ensure that all plugins are using unique OID namespaces.
+Prefix all plugin metric names with plugin name to ensure no conflicts if same keys are used in multiple plugins (example plugin.myplugin.foo.bar, worker.1.plugin.myplugin.foo.bar)
+
+ * (3|4).100.1 - cheaper_busyness
+
 External tools
 **************
 
