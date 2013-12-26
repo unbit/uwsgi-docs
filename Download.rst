@@ -8,6 +8,7 @@ Release   Date        Link
 ========  ==========  ===================================================
 Unstable  \-          https://github.com/unbit/uwsgi/
 Stable    2013-12-12  http://projects.unbit.it/downloads/uwsgi-1.9.21.1.tar.gz
+Development 203-12-26 http://projects.unbit.it/downloads/uwsgi-2.0-rc1.tar.gz
 LTS       2013-08-23  http://projects.unbit.it/downloads/uwsgi-1.4.10.tar.gz
 ========  ==========  ===================================================
 
