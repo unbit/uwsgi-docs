@@ -1,34 +1,43 @@
-Changelog-2.0
-=============
+uWSGI 2.0 (work in progress - updated to -rc1)
+==============================================
 
-This is a memo for what we plan to include in uWSGI 2.0 (LTS)
+Important changes
+*****************
 
-Metric subsystem
-****************
+Dynamic options have been definitely removed as well as the broken_plugins directory
 
-think about persistent storage
-
-
-Better Erlang integration
+Bugfixes and improvements
 *************************
 
-remove dependancies with libei
+- improved log rotation
+- do not rely on unix signals to print request status during harakiri
+- added magic vars for uid and gid
+- various Lua fixes
 
-Corerouters backup nodes
-************************
+New features
+************
 
-On-demand threading mode
-************************
+--attach-daemon2
+^^^^^^^^^^^^^^^^
 
-Instead of pre-spawning threads in each worker, just spawn a single one that will generate a new one
-at each request.
+Linux setns() support
+^^^^^^^^^^^^^^^^^^^^^
 
-Emperor binary patching
-***********************
+"private" hooks
+^^^^^^^^^^^^^^^
 
-Emperor clustering
-******************
+Support for yajl library (JSON parser)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Legion subsystem will be integrated with the Emperor, allowing the cluster to distribute multiple application on multiple nodes in a balanced way.
-Broodlord mode will be updated accordingly.
+Perl spooler support
+^^^^^^^^^^^^^^^^^^^^
 
+Gateways can drop privileges
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Subscriptions-governed SNI contexts
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Availability
+************
