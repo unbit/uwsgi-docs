@@ -104,7 +104,7 @@ About the domain and port
 In this tutorial we will call your domain ``example.com``. Substitute your own
 FQDN or IP address.
 
-Throughout, we'll using port 8000 for the web server to publish on, just like
+Throughout, we'll be using port 8000 for the web server to publish on, just like
 the Django runserver does by default. You can use whatever port you want of
 course, but I have chosen this one so it doesn't conflict with anything a web
 server might be doing already.
@@ -173,7 +173,7 @@ And if it that works, run it using uWSGI::
 
 * ``module mysite.wsgi``: load the specified wsgi module
 
-Point your browser at the server; if the site appears, it means uWSGI is able
+Point your browser at the server; if the site appears, it means uWSGI is able to
 serve your Django application from your virtualenv, and this stack operates
 correctly::
 
@@ -338,7 +338,7 @@ Edit ``mysite_nginx.conf``, changing it to match::
 
 and restart nginx.
 
-Runs uWSGI again:
+Run uWSGI again:
 
 .. code-block:: bash
 
@@ -514,7 +514,7 @@ nginx
 ^^^^^
 
 General configuration of nginx is not within the scope of this tutorial though
-you'll probably want to it to listen on port 80, not 8000, for a production
+you'll probably want it to listen on port 80, not 8000, for a production
 website.
 
 You also ought to consider at having a separate server for non-Django
