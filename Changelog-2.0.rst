@@ -46,14 +46,49 @@ Prefixing your action with a '!' will suppress full logging:
 Support for yajl library (JSON parser)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Til now uWSGI only supported jansson as the json parser required for managing .js config files.
+
+You can now use the yajl library (available in centos) as alternative JSON parser (will be automatically detected)
+
 Perl spooler support
 ^^^^^^^^^^^^^^^^^^^^
+
+The perl/PSGI plugin can now be used as a spooler server:
+
+.. code-block:: pl
+
+   uwsgi::spooler(sub {
+        my $args = shift;
+        print Dumper($args);
+        return -2;
+   });
+
+
+The client part is still missing as we need to fix some internal api problem.
+
+Expect it in 2.0.1 ;)
 
 Gateways can drop privileges
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Gateways (like http router, sslrouter, rawrouter, forkptyrouter ...) can now drop privileges independently by the master.
+
+Currently only the http/https/spdy router exposes the new option (``--http-uid/--http-gid``)
+
 Subscriptions-governed SNI contexts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The subscription subsystem now supports 3 additional keys (you can set them with the --subscribe2 option):
+
+``sni_key``
+
+``sni_cert``
+
+``sni_ca``
+
+all of the takes a path to the relevant ssl files.
+
+Check: :doc:`SNI`
 
 
 Availability
