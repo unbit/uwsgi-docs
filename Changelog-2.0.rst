@@ -13,12 +13,17 @@ Bugfixes and improvements
 - do not rely on unix signals to print request status during harakiri
 - added magic vars for uid and gid
 - various Lua fixes
+- a tons of coverity-governed bugfixes made by Riccardo Magliocchetti
 
 New features
 ************
 
 --attach-daemon2
 ^^^^^^^^^^^^^^^^
+
+this is a keyval based option for configuring external daemons.
+
+Updated docs are: :doc:`ExternalDaemons`
 
 Linux setns() support
 ^^^^^^^^^^^^^^^^^^^^^
@@ -36,7 +41,7 @@ Prefixing your action with a '!' will suppress full logging:
 .. code-block:: ini
 
    [uwsgi]
-   hook-asap = !exec:my_secre_command
+   hook-asap = !exec:my_secret_command
 
 Support for yajl library (JSON parser)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
