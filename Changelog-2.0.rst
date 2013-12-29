@@ -28,7 +28,30 @@ Updated docs are: :doc:`AttachingDaemons`
 Linux setns() support
 ^^^^^^^^^^^^^^^^^^^^^
 
+One of the biggest improvements in uWSGI 1.9-2.0 has been the total support for Linux namespaces.
 
+This last patch adds support for the setns() syscall.
+
+This syscall allows a process to "attach" to a running namespace.
+
+uWSGI instances can exposes their namespaces file descriptors (basically they are the files in /proc/self/ns) via a unix socket.
+
+External instances connects to that unix socket and automatically enters the mapped namespace.
+
+to spawn an instance in "namespace server mode", you use the ``--setns-socket <addr>`` option
+
+.. code-block:: sh
+
+   uwsgi --setns-socket /var/run/ns.socket --unshare net,ipc,uts ...
+   
+   
+to attach you simply use ``--setns <addr>``
+
+
+
+.. code-block:: sh
+
+   uwsgi --setns /var/run/ns.socket ...
 
 "private" hooks
 ^^^^^^^^^^^^^^^
