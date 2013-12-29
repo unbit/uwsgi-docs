@@ -60,3 +60,48 @@ Author: unbit
 allows to monitor eventfd() objects (like events sent by the cgroup system)
 
 Website: https://github.com/unbit/uwsgi-eventfd
+
+
+uwsgi-console-broadcast
+***********************
+
+License: MIT
+
+Author: unbit
+
+exposes hooks for sending broadcast messages to users terminals
+
+Website: https://github.com/unbit/uwsgi-console-broadcast
+
+uwsgi-strophe
+*************
+
+License: MIT
+
+Author: unbit
+
+integration with the libstrophe library (xmpp)
+
+Website: https://github.com/unbit/uwsgi-strophe
+
+uwsgi-alarm-chain
+*****************
+
+License: MIT
+
+Author: unbit
+
+virtual alarm handler combining multiple alarms in a single one
+
+Website: https://github.com/unbit/uwsgi-alarm-chain
+
+uwsgi-netlink
+*************
+
+License: MIT
+
+Author: unbit
+
+integration with the linux netlink subsystem
+
+Website: https://github.com/unbit/uwsgi-netlink
