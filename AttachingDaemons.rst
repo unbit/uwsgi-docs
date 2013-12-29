@@ -1,5 +1,5 @@
-Managing external daemons/services with uWSGI (1.3.1)
-=====================================================
+Managing external daemons/services
+==================================
 
 uWSGI can easily monitor external processes, allowing you to increase
 reliability and usability of your multi-tier apps.  For example you can manage
@@ -28,6 +28,8 @@ The last category is an superset of the second one. If your process does not
 support daemonization or writing to pidfile, you can let the master do the
 management.  Very few daemons/applications require this feature, but it could
 be useful for tiny prototype applications or simply poorly designed ones.
+
+Since uWSGI 2.0 a fourth option ``--attach-daemon2`` has been added for advanced configurations (see below)
 
 Examples
 ********
@@ -132,3 +134,50 @@ Managing **celery beat**:
    socket = :3031
    legion-mcast = mylegion 225.1.1.1:9191 90 bf-cbc:mysecret
    legion-smart-attach-daemon = mylegion /tmp/celery-beat.pid celery beat --pidfile=/tmp/celery-beat.pid
+   
+   
+--attach-daemon2
+****************
+
+This option has been added in uWSGI 2.0 and allows advanced configurations. It is a keyval option, and it accepts the following keys:
+
+``command`` the command line to execute
+
+``cmd`` alias for command
+
+``exec`` alias for command
+
+``freq`` maximum attempts before considering a daemon "broken"
+
+``pidfile`` the pidfile to check (enable smart mode)
+
+``control`` if set, the daemon became a 'control' one: if it dies the whole uWSGI instance dies
+
+``daemonize`` daemonize the process (enable smart2 mode)
+
+``daemon`` alias for daemonize
+
+``touch`` semicolon separated list of files to check: whenever they are 'touched', the daemon is restarted
+
+``stopsignal`` the signal number to send to the daemon when uWSGI is stopped
+
+``stop_signal`` alias for stopsignal
+
+``reloadsignal`` the signal to send to the daemon when uWSGI is reloaded
+
+``reload_signal`` alias for reloadsignal
+
+``stdin`` if set the file descriptor zero is not remapped to /dev/null
+
+``uid`` drop privileges to the specified uid (requires master running as root)
+
+``gid`` drop privileges to the specified gid (requires master running as root)
+
+Example:
+
+.. code-block:: ini
+
+   [uwsgi]
+   attach-daemon2 = cmd=my_daemon.sh,pidfile=/tmp/my.pid,uid=33,gid=33
+   
+
