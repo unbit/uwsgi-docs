@@ -23,7 +23,7 @@ New features
 
 this is a keyval based option for configuring external daemons.
 
-Updated docs are: :doc:`ExternalDaemons`
+Updated docs are: :doc:`AttachingDaemons`
 
 Linux setns() support
 ^^^^^^^^^^^^^^^^^^^^^
