@@ -22,13 +22,13 @@ For example:
 
 .. code-block:: sh
 
-   --sni unbit.com unbit.crt,unbit.key
+   --sni "unbit.com unbit.crt,unbit.key"
 
 or for client-based SSL authentication and OpenSSL HIGH cipher levels
 
 .. code-block:: sh
 
-   --sni secure.unbit.com unbit.crt,unbit.key,HIGH,unbit.ca
+   --sni "secure.unbit.com unbit.crt,unbit.key,HIGH,unbit.ca"
 
 Adding complex SNI objects
 **************************
@@ -39,7 +39,7 @@ If you have built uWSGI with PCRE/regexp support (as you should) you can use the
 
 .. code-block:: sh
 
-   --sni-regexp *.unbit.com unbit.crt,unbit.key,HIGH,unbit.ca
+   --sni-regexp "*.unbit.com unbit.crt,unbit.key,HIGH,unbit.ca"
 
 Massive SNI hosting
 *******************
@@ -78,7 +78,22 @@ If you want to force a default cipher set to the SNI contexts, use
 
 (or whatever other value you need)
 
-Notes
-*****
+Note: Unloading SNI objects is not supported. Once they are loaded into memory they will be held onto until reload.
 
-* Unloading SNI objects is not supported. Once they are loaded into memory they will be held onto until reload.
+Subscription system and SNI
+***************************
+
+uWSGI 2.0 added support for SNI in the subscription system.
+
+The https/spdy router and the sslrouter can dinamically load certificates and keys from the paths specified in a subscription packet:
+
+.. code-block:: sh
+
+   uwsgi --subscribe2 key=mydomain.it,socket=0,sni_key=/foo/bar.key,sni_cert=/foo/bar.crt
+   
+   
+the router will create a new SSL context based on the specified files (be sure the router can reach them) and will destroy it when the last node
+disconnect.
+
+This is useful for massive hosting where customers have their certificates in the home and you want them the change/update those files without bothering you.
+
