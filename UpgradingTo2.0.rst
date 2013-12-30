@@ -1,5 +1,5 @@
-Upgrading your 1.x uWSGI instances to 2.0
-=========================================
+Upgrading your 1.x uWSGI instances to 2.0 (work in progress)
+============================================================
 
 The following notes are for users moving from 1.0, 1.2 and 1.4 to uWSGI 2.0.
 
