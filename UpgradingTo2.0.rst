@@ -111,6 +111,12 @@ http://uwsgi-docs.readthedocs.org/en/latest/Transformations.html
 Strict mode
 ***********
 
+while having the freedom of defining custom options in uWSGI config files is a handy features, sometimes typos will
+bring you lot of headaches.
+
+Adding --strict to your instance options will instruct uWSGI config parser to raise an error when not-available options have been specified.
+
+If you are in trouble and want to be sure you did not have written wrong options, add --strict and retry
 
 
 Linux namespaces and FreeBSD jails advanced support
@@ -132,6 +138,8 @@ http://uwsgi-docs.readthedocs.org/en/latest/tutorials/GraphiteAndMetrics.html
 
 CYGWIN support
 **************
+
+Yes, you can now build and run uWSGI on Windows systems :(
 
 kFreeBSD support
 ****************
