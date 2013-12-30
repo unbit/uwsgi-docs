@@ -104,13 +104,33 @@ The Metrics subsystem
 64bit reponses for RPC
 **********************
 
+CYGWIN support
+**************
+
+kFreeBSD support
+****************
+
+PyPy support
+************
+
+JVM support
+***********
+
+Mono support
+************
+
+V8 support
+**********
+
 Upgrading Notes
 ---------------
 
 * snapshotting mode is no more available, check the new graceful reloading ways for better approaches
 
-* mongrel2 support is no more built-in by default, you have to build the 'mongrel2' plugin
+* mongrel2 support is no more built-in by default, you have to build the 'mongrel2' plugin to pair uWSGI with mongrel2
 
-* ldap and sqlite support has been moved to two plugins, you need to load them for use their features
+* ldap and sqlite support has been moved to two plugins, you need to load them for using their features
 
 * dynamic options are no more, as well as the 'admin' plugin
+
+* probes have been removed, the alarm framework presents better ways to monitor services
