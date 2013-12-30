@@ -18,9 +18,9 @@ clone() vs unshare()
 --------------------
 
 To place the current process in  a new namespace you have two syscall: the venerable clone(), that will create a new process in the specified namespaces
-and the new unshare() that change namespaces of the currently running process.
+and the new unshare() that changes namespaces of the currently running process.
 
-clone() can be usded by the Emperor to directly spawn vassals in new namespaces:
+clone() can be used by the Emperor to directly spawn vassals in new namespaces:
 
 .. code-block:: ini
 
