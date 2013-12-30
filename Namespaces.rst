@@ -12,11 +12,52 @@ The 'chroot' system available on UNIX/Posix systems is a primal form of namespac
 
 Linux extends this concept to the other OS layers (PIDs, users, IPC, networking etc.), so a specific process can live in a "virtual OS" with a new group of pids, a new set of users, a completely unshared IPC system (semaphores, shared memory etc.), a dedicated network interface and its own hostname.
 
-uWSGI can "jail" its processes using Linux namespaces. Being a networked application, it will not switch networking namespaces, and to keep sysadmins reasonably sane, users are kept untouched too.
+uWSGI got full namespaces support in 1.9/2.0 development cycle.
 
-All this put together, a namespace-constrained uWSGI stack will not see other processes running in the system, will not be able to access other processes' IPC, will not be able to access the original root filesystem and will have a dedicated hostname.
+clone() vs unshare()
+--------------------
 
-A real world example: Jailing the uWSGI Control Center in Ubuntu 10.10
+To place the current process in  a new namespace you have two syscall: the venerable clone(), that will create a new process in the specified namespaces
+and the new unshare() that change namespaces of the currently running process.
+
+clone() can be usded by the Emperor to directly spawn vassals in new namespaces:
+
+.. code-block:: ini
+
+   [uwsgi]
+   emperor = /etc/uwsgi/vassals
+   emperor-use-clone = fs,net,ipc,uts,pid
+   
+will run each vassal with a dedicated filesystems, networking, sysv ipc and uts view
+
+while
+
+.. code-block:: ini
+
+   [uwsgi]
+   unshare = ipc,uts
+   ...
+   
+will run the instance in the specified namespaces.
+
+Some namespace subsystem requires additional steps (see below)
+
+Supported namespaces
+--------------------
+
+``fs`` -> CLONE_NEWNS, filesystems
+
+``ipc`` -> CLONE_NEWIPC, sysv ipc
+
+``pid`` -> CLONE_NEWPID, when used with unshare() requires an additional fork(), use one of the --refork-* options
+
+``uts`` -> CLONE_NEWUTS, hostname
+
+``net`` -> CLONE_NEWNET, new networking, UNIX sockets from different namespaces are still usable, they are a good way for inter-namespaces communications
+
+``user`` -> CLONE_NEWUSER, still complex to manage (and has differences in behaviours between kernel versions) use with caution
+
+
 ----------------------------------------------------------------------
 
 Let's start by creating a new root filesystem for our jail. You'll need ``debootstrap``. We're placing our rootfs in ``/ns/001``, and then create a 'uwsgi' user that will run the uWSGI server. We will use the chroot command to 'adduser' in the new rootfs, and we will install the Flask package, required by uwsgicc.
