@@ -25,6 +25,7 @@ Create a systemd service file (you can save it as /etc/systemd/system/emperor.uw
    [Service]
    ExecStart=/root/uwsgi/uwsgi --ini /etc/uwsgi/emperor.ini
    Restart=always
+   KillSignal=SIGQUIT
    Type=notify
    StandardError=syslog
    NotifyAccess=main
