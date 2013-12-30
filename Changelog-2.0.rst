@@ -1,5 +1,7 @@
-uWSGI 2.0 (work in progress - updated to -rc1)
-==============================================
+uWSGI 2.0
+=========
+
+Changelog [20131230]
 
 Important changes
 *****************
@@ -48,10 +50,11 @@ to spawn an instance in "namespace server mode", you use the ``--setns-socket <a
 to attach you simply use ``--setns <addr>``
 
 
-
 .. code-block:: sh
 
    uwsgi --setns /var/run/ns.socket ...
+   
+Updated docs: :doc:`Namespaces`
 
 "private" hooks
 ^^^^^^^^^^^^^^^
