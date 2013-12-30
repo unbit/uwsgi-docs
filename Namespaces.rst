@@ -58,11 +58,51 @@ Supported namespaces
 ``user`` -> CLONE_NEWUSER, still complex to manage (and has differences in behaviours between kernel versions) use with caution
 
 
-----------------------------------------------------------------------
+setns()
+-------
+
+In addition to creating new namespaces for a process you can attach to already running ones using the setns() call.
+
+Each process exposes its namespaces via the /proc/self/ns directory. The setns() syscall uses the filedescriptors obtained from the files in that directory
+to attach to namespaces.
+
+As we have already seen, unix sockets are a good way to communicate between namespaces, the uWSGI setns() features works by createing a unix socket that receives requests
+from processes wanting to join its namespace. As UNIX sockets allow file descriptors passing, the "client" only need to call setns() on them.
+
+``setns-socket <addr>`` exposes /proc/self/ns on the specified unix socket address
+
+``setns <addr>`` connect to the specified unix socket address, get the filedescriptors and use setns() on them
+
+``setns-preopen`` if enabled the /proc/self/ns files are opened on startup (before privileges drop) and cached. This is useful for avoiding running the main instance as root.
+
+``setns-socket-skip <name>`` some file in /proc/self/ns can create problems (mostly the 'user' one). You can skip them specifying the name. (you can specify this option multiple times)
+
+Why not lxc ?
+-------------
+
+Lxc is a project allowing you to build full subsystems using linux namespaces. You may ask why "reinventing the wheel" while lxc implements
+fully "virtualized" system. Apple and oranges.
+
+Lxc objective is giving users the view of a virtual server, uWSGI namespaces support is lower level, you can use it to detach
+single components (for example you may only want to unshare ipc) to increase security and isolation.
+
+Not all the scenario requires a full system-like view (and in lot of case is suboptimal, while in other is the best approach), try to
+see namespaces as a way to increase security and isolation, when you need/can isolate a component do it with clone/unshare. When you want
+to give users a full system-like access go with lxc.
+
+The old way: the --namespace option
+-----------------------------------
+
+Before 1.9/2.0 a full featured system-like namespace support was added. It works as a chroot() on steroids.
+
+It should be moved as an external plugin pretty soon, but will be always part of the main distribution, as it is used by lot of people
+for its semplicity.
+
+You basically need to set a root filesystem and an hostname to start your instance in a new namespace:
 
 Let's start by creating a new root filesystem for our jail. You'll need ``debootstrap``. We're placing our rootfs in ``/ns/001``, and then create a 'uwsgi' user that will run the uWSGI server. We will use the chroot command to 'adduser' in the new rootfs, and we will install the Flask package, required by uwsgicc.
 
-All this needs to be executed as root.
+(All this needs to be executed as root)
 
 .. code-block:: sh
 
