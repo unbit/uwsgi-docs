@@ -71,20 +71,34 @@ An article is available: http://uwsgi-docs.readthedocs.org/en/latest/articles/Th
 The new generation caching subsystem
 ************************************
 
+http://uwsgi-docs.readthedocs.org/en/latest/Caching.html
+
+http://uwsgi-docs.readthedocs.org/en/latest/tutorials/CachingCookbook.html
+
 The new sharedarea
 ******************
+
+http://uwsgi-docs.readthedocs.org/en/latest/SharedArea.html
 
 SNI
 ***
 
+http://uwsgi-docs.readthedocs.org/en/latest/SNI.html
+
 Legion
 ******
+
+http://uwsgi-docs.readthedocs.org/en/latest/Legion.html
 
 Websockets api
 **************
 
+http://uwsgi-docs.readthedocs.org/en/latest/WebSockets.html
+
 Hooks
 *****
+
+http://uwsgi-docs.readthedocs.org/en/latest/Hooks.html
 
 New plugin build system
 ***********************
@@ -92,14 +106,26 @@ New plugin build system
 Transformations
 ***************
 
+http://uwsgi-docs.readthedocs.org/en/latest/Transformations.html
+
 Strict mode
 ***********
+
+
 
 Linux namespaces and FreeBSD jails advanced support
 ***************************************************
 
+http://uwsgi-docs.readthedocs.org/en/latest/Namespaces.html
+
+http://uwsgi-docs.readthedocs.org/en/latest/FreeBSDJails.html
+
 The Metrics subsystem
 *********************
+
+http://uwsgi-docs.readthedocs.org/en/latest/Metrics.html
+
+http://uwsgi-docs.readthedocs.org/en/latest/tutorials/GraphiteAndMetrics.html
 
 64bit reponses for RPC
 **********************
