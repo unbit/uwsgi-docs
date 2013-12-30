@@ -91,7 +91,7 @@ see namespaces as a way to increase security and isolation, when you need/can is
 to give users a full system-like access go with lxc.
 
 The old way: the --namespace option
------------------------------------
+===================================
 
 Before 1.9/2.0 a full featured system-like namespace support was added. It works as a chroot() on steroids.
 
