@@ -5,6 +5,14 @@ The following notes are for users moving rrom 1.0, 1.2 and 1.4 to uWSGI 2.0.
 
 Users of the 1.9 tree can skip this document as 2.0 is a "stabilized/freezed" 1.9
 
+License change
+**************
+
+uWSGI is GPL2 + linking exception instead of plain GPL2
+
+this should address some legal issue with users compiling uWSGI as a library (libuwsgi.so) and loading non-gpl compatible plugins/libraries.
+
+
 Non-blocking by default
 ***********************
 
@@ -27,7 +35,7 @@ for better performance:
 
 ``uwsgi`` classic uwsgi parser, improved for reduced syscall usage
 
-``http`` classic http parser, improved for reduced syscall usage
+``http`` classic http parser, improved for reduced syscall usage (supports the PROXY1 protocol)
 
 ``https`` (new) support for native https
 
@@ -77,3 +85,18 @@ Hooks
 
 New plugin build system
 ***********************
+
+Transformations
+***************
+
+Strict mode
+***********
+
+Linux namespaces and FreeBSD jails advanced support
+***************************************************
+
+The Metrics subsystem
+*********************
+
+64bit reponses for RPC
+**********************
