@@ -5,6 +5,9 @@ The following notes are for users moving rrom 1.0, 1.2 and 1.4 to uWSGI 2.0.
 
 Users of the 1.9 tree can skip this document as 2.0 is a "stabilized/freezed" 1.9
 
+What's new
+----------
+
 License change
 **************
 
@@ -100,3 +103,6 @@ The Metrics subsystem
 
 64bit reponses for RPC
 **********************
+
+Upgrading
+---------
