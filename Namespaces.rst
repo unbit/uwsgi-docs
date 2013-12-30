@@ -77,6 +77,50 @@ from processes wanting to join its namespace. As UNIX sockets allow file descrip
 
 ``setns-socket-skip <name>`` some file in /proc/self/ns can create problems (mostly the 'user' one). You can skip them specifying the name. (you can specify this option multiple times)
 
+
+pivot_root
+----------
+
+This option allows you to change the rootfs of your currently running instance.
+
+It is better than chroot as it allows you to access the old filesystem tree before (manually) unmounting it.
+
+It is a bit complex to master correctly as it requires a couple of assumptions:
+
+``pivot_root <new> <old>``
+
+<new> is the directory to mount as the new rootfs and <old> is where to access the old tree.
+
+<new> must be a mounted filesystem, and <old> must be under this filesystem.
+
+A common pattern is:
+
+.. code-block:: ini
+
+   [uwsgi]
+   unshare = fs
+   hook-post-jail = mount:none /distros/precise /ns bind
+   pivot_root = /ns /ns/.old_root
+   ...
+   
+remember to create /ns and /distro/precise/.old_root
+
+When you have created the new filesysten layout you can mount /.old_root recursively:
+
+.. code-block:: ini
+
+   [uwsgi]
+   unshare = fs
+   hook-post-jail = mount:none /distros/precise /ns bind
+   pivot_root = /ns /ns/.old_root
+   ; bind mount some useful fs like /dev and /proc
+   hook-as-root = mount:proc none /proc nodev hidepid=2
+   hook-as-root = mount:none /.old_root/dev /dev bind
+   hook-as-root = mount:none /.old_root/dev/pts /dev/pts bind
+   ; umount the old tree
+   hook-as-root = umount:/.old_root rec,detach
+
+
 Why not lxc ?
 -------------
 
