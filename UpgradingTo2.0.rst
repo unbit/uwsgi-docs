@@ -103,6 +103,20 @@ http://uwsgi-docs.readthedocs.org/en/latest/Hooks.html
 New plugin build system
 ***********************
 
+It is pretty fun (and easy) to write uWSGI plugin, but (funny enough) the worst aspect was building them, as dealing with build profiles, cflags, ldflags and friends tend to lead to all sort of bugs and crashes.
+
+A simplified (and saner) build system for external plugins have been added. Now you only need to call the uwsgi binary you want to build the plugin for:
+
+.. code-block:: sh
+
+   uwsgi --build-plugin <plugin>
+   
+where <plugin> is the directory where the plugin sources (ad the uwsgiplugin.py file) are stored.
+
+A list of third party plugins is available:
+
+http://uwsgi-docs.readthedocs.org/en/latest/ThirdPartyPlugins.html
+
 Transformations
 ***************
 
