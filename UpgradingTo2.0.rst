@@ -1,7 +1,7 @@
 Upgrading your 1.x uWSGI instances to 2.0
 =========================================
 
-The following notes are for users moving gtom 1.0, 1.2 and 1.4 to uWSGI 2.0.
+The following notes are for users moving rrom 1.0, 1.2 and 1.4 to uWSGI 2.0.
 
 Users of the 1.9 tree can skip this document as 2.0 is a "stabilized/freezed" 1.9
 
