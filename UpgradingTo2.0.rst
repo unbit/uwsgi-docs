@@ -134,3 +134,5 @@ Upgrading Notes
 * dynamic options are no more, as well as the 'admin' plugin
 
 * probes have been removed, the alarm framework presents better ways to monitor services
+
+* the shared area api changed dramatically, check the new sharedarea docs
