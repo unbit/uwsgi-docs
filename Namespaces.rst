@@ -1,7 +1,7 @@
 Jailing your apps using Linux Namespaces
 ========================================
 
-If you have a recent Linux kernel (>2.6.26) you can use its support for namespaces for added security.
+If you have a recent Linux kernel (>2.6.26) you can use its support for namespaces.
 
 What are namespaces?
 --------------------
