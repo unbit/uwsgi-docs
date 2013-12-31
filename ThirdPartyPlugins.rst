@@ -105,3 +105,14 @@ Author: unbit
 integration with the linux netlink subsystem
 
 Website: https://github.com/unbit/uwsgi-netlink
+
+uwsgi-pushover
+**************
+
+License: MIT
+
+Author: unbit
+
+integration with the pushover.net services
+
+Website: https://github.com/unbit/uwsgi-pushover
