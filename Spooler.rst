@@ -233,31 +233,31 @@ The uWSGI spooler gives special names to tasks so the ordering of enqueuing is a
 
 Options
 -------
-spooler=directory 
+``spooler=directory``
 run a spooler on the specified directory
 
-spooler-external=directory
+``spooler-external=directory``
 map spoolers requests to a spooler directory managed by an external instance
 
-spooler-ordered
+``spooler-ordered``
 try to order the execution of spooler tasks (uses scandir instead of readdir)
 
-spooler-chdir=directory
+``spooler-chdir=directory``
 call chdir() to specified directory before each spooler task
 
-spooler-processes=##
+``spooler-processes=##``
 set the number of processes for spoolers
 
-spooler-quiet
+``spooler-quiet``
 do not be verbose with spooler tasks
 
-spooler-max-tasks=##
+``spooler-max-tasks=##``
 set the maximum number of tasks to run before recycling a spooler (to help alleviate memory leaks)
 
-spooler-harakiri=##
+``spooler-harakiri=##``
 set harakiri timeout for spooler tasks, see [harakiri] for more information.
 
-spooler-frequency=##
+``spooler-frequency=##``
 set the spooler frequency
 
 Tips and tricks
