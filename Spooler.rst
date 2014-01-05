@@ -3,6 +3,8 @@ The uWSGI Spooler
 
 Updated to uWSGI 2.0.1
 
+Supported on: Perl, Python, Ruby
+
 The Spooler is a queue manager built into uWSGI that works like a printing/mail system. 
 
 You can enqueue massive sending of emails, image processing, video encoding, etc. and let the spooler do the hard work in background while your users get their requests served by normal workers.
@@ -34,8 +36,85 @@ while this one will create two spoolers:
 
 having multiple spoolers allows you to prioritize tasks (and eventually parallelize them)
 
+Spool files
+-----------
+
+Spool files are serialized hash/dictionary of strings. The spooler will parse them and pass the resulting hash/dictionary to the spooler function (see below).
+
+The serialization format is the same used for the 'uwsgi' protocol, so you are limited to 64k (even if there is a trick for passing bigger values, see the 'body' magic key below). The modifier1
+for spooler packets is the 17, so a {'hello' => 'world'} hash will be encoded as:
+
+17|14|0|0 |5|0|h|e|l|l|o |5|0|w|o|r|l|d
+
+A locking system allows you to safely manually remove spool files if something goes wrong, or to move them between spoolers directory.
+
+Spool dirs over NFS are allowed, but if you do not have proper NFS locking in place, avoid mapping the same spooler NFS directory to spooler on different machines.
+
 Setting the spooler function/callable
 -------------------------------------
+
+To have a fully operation spooler you need to define a "spooler function/callable".
+
+Independently by the the number of configured spoolers, the same function will be executed. It is up to the developer
+to instruct it to recognize tasks.
+
+This function must returns an integer value:
+
+-2 (SPOOL_OK) the task has been completed, the spool file will be removed
+
+-1 (SPOOL_RETRY) something is temporarely wrong, the task will be retried at the next spooler iteration
+
+0 (SPOOL_IGNORE) ignore this task, if multiple languages are loaded in the instance all of the will fight for magaing the task. This return values allows you to skip a task in specific languages.
+
+any other value will be mapped as -1 (retry)
+
+
+Each language plugin has its way to define the spooler function:
+
+Perl:
+
+.. code-block:: pl
+
+   uwsgi::spooler(
+       sub {
+           my ($env) = @_;
+           print $env->{foobar};
+           # SPOOL_OK
+           return -2;
+       }
+   );
+   
+Python:
+
+.. code-block:: py
+
+   import uwsgi
+   
+   def my_spooler(env):
+       print env['foobar']
+       # SPOOL_OK
+       return uwsgi.SPOOL_OK
+       
+    uwsgi.spooler = my_spooler
+    
+Ruby:
+
+.. code-block:: rb
+
+   module UWSGI
+        module_function
+        def spooler(env)
+                puts env.inspect
+                return UWSGI::SPOOL_OK
+        end
+    end
+
+
+Spooler function must be defined in the master process, so if you are in lazy-apps mode, be sure to place it in a file that is parsed
+early in the server setup. (in python you can use --shared-import, in ruby --shared-require, in perl --perl-exec).
+
+Some language plugin could have support for importing code directly in the spooler. Currently only python supports it with the --spooler-import option.
+
 
 Enqueing requests to a spooler
 ------------------------------
