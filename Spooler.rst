@@ -117,11 +117,13 @@ Ruby:
 Spooler function must be defined in the master process, so if you are in lazy-apps mode, be sure to place it in a file that is parsed
 early in the server setup. (in python you can use --shared-import, in ruby --shared-require, in perl --perl-exec).
 
-Some language plugin could have support for importing code directly in the spooler. Currently only python supports it with the --spooler-import option.
+Some language plugin could have support for importing code directly in the spooler. Currently only python supports it with the ``--spooler-import`` option.
 
 
 Enqueing requests to a spooler
 ------------------------------
+
+
 
 External spoolers
 -----------------
