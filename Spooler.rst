@@ -272,7 +272,7 @@ You can re-enqueue a spooler request by returning ``uwsgi.SPOOL_RETRY`` in your 
     
 You can set the spooler poll frequency using the ``--spooler-frequency <secs>`` option (default 30 seconds).
 
-You could use the :doc:`Caching <caching framework>` or :doc:`SharedArea` to exchange memory structures between spoolers and workers.
+You could use the :doc:`Caching` or :doc:`SharedArea` to exchange memory structures between spoolers and workers.
 
 Python (uwsgidecorators.py) and Ruby (uwsgidsl.rb) exposes higher-level facilities to manage the spooler, try to use them instead of the low-level approach described here.
 
