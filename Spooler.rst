@@ -44,7 +44,11 @@ Spool files are serialized hash/dictionary of strings. The spooler will parse th
 The serialization format is the same used for the 'uwsgi' protocol, so you are limited to 64k (even if there is a trick for passing bigger values, see the 'body' magic key below). The modifier1
 for spooler packets is the 17, so a {'hello' => 'world'} hash will be encoded as:
 
+========= ============== ==============
+header    key1           value1
+========= ============== ==============
 17|14|0|0 |5|0|h|e|l|l|o |5|0|w|o|r|l|d
+========= ============== ==============
 
 A locking system allows you to safely manually remove spool files if something goes wrong, or to move them between spoolers directory.
 
