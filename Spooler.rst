@@ -68,7 +68,7 @@ This function must returns an integer value:
 
 -1 (SPOOL_RETRY) something is temporarely wrong, the task will be retried at the next spooler iteration
 
-0 (SPOOL_IGNORE) ignore this task, if multiple languages are loaded in the instance all of the will fight for magaing the task. This return values allows you to skip a task in specific languages.
+0 (SPOOL_IGNORE) ignore this task, if multiple languages are loaded in the instance all of them will fight for managing the task. This return values allows you to skip a task in specific languages.
 
 any other value will be mapped as -1 (retry)
 
@@ -97,7 +97,7 @@ Python:
        print env['foobar']
        return uwsgi.SPOOL_OK
        
-    uwsgi.spooler = my_spooler
+   uwsgi.spooler = my_spooler
     
 Ruby:
 
@@ -109,7 +109,7 @@ Ruby:
                 puts env.inspect
                 return UWSGI::SPOOL_OK
         end
-    end
+   end
 
 
 Spooler function must be defined in the master process, so if you are in lazy-apps mode, be sure to place it in a file that is parsed
@@ -118,8 +118,8 @@ early in the server setup. (in python you can use --shared-import, in ruby --sha
 Some language plugin could have support for importing code directly in the spooler. Currently only python supports it with the ``--spooler-import`` option.
 
 
-Enqueing requests to a spooler
-------------------------------
+Enqueueing requests to a spooler
+--------------------------------
 
 The 'spool' api function allows you to enqueue a hash/dictionary into the spooler:
 
@@ -197,14 +197,39 @@ We will use the perl Net::uwsgi module (exposing a handy uwsgi_spool function) i
    
 (thanks brianhorakh for the example)
 
-Post-poning tasks
------------------
-
-The 'body' magic key
---------------------
-
 Priorities
 ----------
+
+We have already seen that you can use the 'priority' key to give order in spooler parsing.
+
+While having multiple spoolers would be an extremely better approach, on system with few resources 'priorities' are a good trick
+
+They works only if you enable the ``--spooler-ordered`` option. This option allows the spooler to scan directories entry in alphabetical order.
+
+If during the scan a directory with a 'number' name is found, the scan is suspended and the content of this subdirectory will be explored for tasks.
+
+.. code-block:: sh
+
+   /spool
+   /spool/ztask
+   /spool/xtask
+   /spool/1/task1
+   /spool/1/task0
+   /spool/2/foo
+   
+with this layout the order in which files will be parsed is:
+
+.. code-block:: sh
+
+   /spool/1/task0
+   /spool/1/task1
+   /spool/2/foo
+   /spool/xtask
+   /spool/ztask
+   
+remember, priorities only works for subdirectory named as 'numbers' and you need the ``--spooler-ordered`` option.
+
+The uWSGI spooler gives special names to tasks so the ordering of enqueuing is always respected.
 
 Options
 -------
@@ -232,6 +257,9 @@ set the maximum number of tasks to run before recycling a spooler (to help allev
 spooler-harakiri=##
 set harakiri timeout for spooler tasks, see [harakiri] for more information.
 
+spooler-frequency=##
+set the spooler frequency
+
 Tips and tricks
 ---------------
 
@@ -247,3 +275,5 @@ You can set the spooler poll frequency using the ``--spooler-frequency <secs>`` 
 You could use the :doc:`Caching <caching framework>` or :doc:`SharedArea` to exchange memory structures between spoolers and workers.
 
 Python (uwsgidecorators.py) and Ruby (uwsgidsl.rb) exposes higher-level facilities to manage the spooler, try to use them instead of the low-level approach described here.
+
+When using a spooler as a target for a uWSGI signal handler you can specify which one to route signal to using its ABSOLUTE directory name.
