@@ -83,8 +83,7 @@ Perl:
        sub {
            my ($env) = @_;
            print $env->{foobar};
-           # SPOOL_OK
-           return -2;
+           return uwsgi::SPOOL_OK;
        }
    );
    
@@ -96,7 +95,6 @@ Python:
    
    def my_spooler(env):
        print env['foobar']
-       # SPOOL_OK
        return uwsgi.SPOOL_OK
        
     uwsgi.spooler = my_spooler
@@ -123,7 +121,42 @@ Some language plugin could have support for importing code directly in the spool
 Enqueing requests to a spooler
 ------------------------------
 
+The 'spool' api function allows you to enqueue a hash/dictionary into the spooler:
 
+.. code-block:: py
+
+   # python
+   import uwsgi
+   uwsgi.spool({'foo': 'bar', 'name': 'Kratos', 'surname': 'the same of Zeus'})
+   # or
+   uwsgi.spool(foo='bar', name='Kratos', surname='the same of Zeus')
+   # for python3 use bytes instead of strings !!!
+
+
+.. code-block:: pl
+
+   # perl
+   uwsgi::spool({foo => 'bar', name => 'Kratos', surname => 'the same of Zeus'})
+   
+.. code-block:: rb
+
+   # ruby
+   UWSGI.spool(foo => 'bar', name => 'Kratos', surname => 'the same of Zeus')
+   
+Some keys have special meaning:
+
+'spooler' => specify the ABSOLUTE path of the spooler that has to manage this task
+
+'at' => unix time at which the task must be executed (read: the task will not be run until the 'at' time is passed)
+
+'priority' => this will be the subdirectory in the spooler directory in which the task will be placed, you can use that trick to give a good-enough prioritization to tasks (for better approach use multiple spoolers)
+
+'body' => use this key for objects bigger than 64k, the blob will be appended to the serialzed uwsgi packet and passed back to the spooler function as the 'body' argument
+
+
+IMPORTANT:
+
+spool arguments must be strings (or bytes for python3), the api function will try to cast non-string values to strings/bytes, but do not rely on it !!!
 
 External spoolers
 -----------------
