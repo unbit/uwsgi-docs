@@ -57,7 +57,7 @@ Spool dirs over NFS are allowed, but if you do not have proper NFS locking in pl
 Setting the spooler function/callable
 -------------------------------------
 
-To have a fully operation spooler you need to define a "spooler function/callable".
+To have a fully operational spooler you need to define a "spooler function/callable".
 
 Independently by the the number of configured spoolers, the same function will be executed. It is up to the developer
 to instruct it to recognize tasks.
