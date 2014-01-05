@@ -1,87 +1,63 @@
 The uWSGI Spooler
 =================
 
+Updated to uWSGI 2.0.1
 
+The Spooler is a queue manager built into uWSGI that works like a printing/mail system. 
 
-The Spooler is a queue manager built in to uWSGI that works like a printing/mail system. For example you can enqueue massive sending of emails, image processing, video encoding, etc. and let the spooler do the hard work in background while your users get their requests served by normal workers. Using the message passing feature of the uWSGI server you can even send your spool request to a remote uWSGI server.
+You can enqueue massive sending of emails, image processing, video encoding, etc. and let the spooler do the hard work in background while your users get their requests served by normal workers.
 
-You choose a directory (or directories) as a spool. uWSGI will then repeatedly look for files in this spool directory and use them as arguments for callables. After the callable returns, the file is removed.
+A spooler works by defining a directory in which "spool files" will be written, every time the spooler find a file in its directory it will parse it and will run a specific function.
 
-To use the spooler you need to pass the ``-Q`` argument (``spooler`` option), followed by the directory you want to use as your spool scratch space.
+You can have multiple spoolers mapped to different directories and even multiple spoolers mapped to the same one.
 
-.. code-block:: sh
+The ``--spooler <directory>`` option allows you to generate a spooler process, while the ``--spooler-processes <n>`` allows you to set how many processes to spawn for every spooler.
 
-    ./uwsgi -Q myspool -s /tmp/uwsgi.sock --buffer-size 8192 --wsgi testapp --sharedarea 10
+The spooler is able to manage uWSGI signals too, so you can use it as a target for your handlers.
 
-If you think you'll be passing large messages, set a bigger buffer size using the ``buffer-size`` (``-b``) option.
-
-Setting the spooler callable
-----------------------------
-
-Add a new function to your script:
-
-.. code-block:: py
-
-    def myspooler(env):
-        print env
-        for i in range(1,100):
-                time.sleep(1)
-        return uwsgi.SPOOL_OK
-    
-    uwsgi.spooler = myspooler
-    
-Using the uwsgi.spooler attribute you will set the callable to execute for every spool/queue/message file.
-
-.. warning:: Using ``uwsgi.spooler`` is a low-level approach. Use the Python decorators or the Ruby DSL if you use those languages.
-
-To enqueue a request (a dictionary of strings!) use :func:`uwsgi.send_to_spooler`:
-
-.. code-block:: py
-
-    uwsgi.send_to_spooler({'Name':'Serena', 'System':'Linux', 'Tizio':'Caio'})
-
-
-How does the uWSGI server recognize a spooler request?
-------------------------------------------------------
-
-The queue/message/spool files are normally dictionaries that contain only strings encoded in the uwsgi protocol format. This also means that can use the uWSGI server to manage remote messaging.
-Setting the uwsgi modifier 1 to ``UWSGI_MODIFIER_SPOOL_REQUEST`` (numeric value 17) you will inform the uWSGI server that the request is a spooling request. 
-This is what ``uwsgi.send_to_spooler`` does in the background, but you can use your webserver support for uwsgi_modifiers for doing funny things like passing spooler message without using your wsgi apps resource but only the spooler.
-
-An example of just this, using Nginx:
-
-.. code-block:: nginx
-
-     location /sendmassmail {
-        uwsgi_pass 192.168.1.1:3031;
-        uwsgi_modifier1 17;
-        uwsgi_param ToGroup  customers;
-     }
-
-Supposing you have a callable that sends email to a group specified in the ``ToGroup`` dictionary key, this would allow you to enqueue mass mails using Nginx only.
-
-Perl Compatibility
--------------------
-At the moment spooler can receive messages from Perl using Net::uwsgi,
-but it is not possible to call perl functions from a spooler. 
-
-According to unbit_ it needs to be rewritten before it is compatible with other languages 
-(try using mules and signals as an alternative)
-
-.. code-block:: perl
-use Net::uwsgi;
-uwsgi_spool('localhost:3031', {'test'=>'test001','argh'=>'boh','foo'=>'bar'});
-uwsgi_spool('/path/to/socket', {'test'=>'test001','argh'=>'boh','foo'=>'bar'});
+This configuration will generate a spooler for your instance (myspool directory must exists)
 
 .. code-block:: ini
-[uwsgi]
-socket = /var/run/uwsgi-spooler.sock
-socket = localhost:3031
-spooler = /path/for/files
-spooler-processes=1
 
-Parameters
----------------
+   [uwsgi]
+   spooler = myspool
+   ...
+   
+while this one will create two spoolers:
+
+.. code-block:: ini
+
+   [uwsgi]
+   spooler = myspool
+   spooler = myspool2
+   ...
+
+having multiple spoolers allows you to prioritize tasks (and eventually parallelize them)
+
+Setting the spooler function/callable
+-------------------------------------
+
+Enqueing requests to a spooler
+------------------------------
+
+External spoolers
+-----------------
+
+Networked spoolers
+------------------
+
+
+Post-poning tasks
+-----------------
+
+The 'body' magic key
+--------------------
+
+Priorities
+----------
+
+Options
+-------
 spooler=directory 
 run a spooler on the specified directory
 
