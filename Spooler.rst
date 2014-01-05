@@ -242,39 +242,8 @@ You can re-enqueue a spooler request by returning ``uwsgi.SPOOL_RETRY`` in your 
     def call_me_again_and_again(env):
         return uwsgi.SPOOL_RETRY
     
-You can set the spooler poll frequency using :py:func:`uwsgi.set_spooler_frequency`, where N is the number of seconds to sleep before redoing a spooler scan.
+You can set the spooler poll frequency using the ``--spooler-frequency <secs>`` option (default 30 seconds).
 
-You can use this to build a cron-like system.
+You could use the :doc:`Caching <caching framework>` or :doc:`SharedArea` to exchange memory structures between spoolers and workers.
 
-.. code-block:: py
-
-    # run function every 22 secs
-    s_freq = 22
-    
-    def emu_cron(env):
-        # run your function
-        long_func("Hello World")
-        # and re-enqueue it
-        return uwsgi.SPOOL_RETRY
-    
-    uwsgi.set_spooler_frequency(s_freq)
-    uwsgi.spooler = emu_cron
-    # start the emu_cron
-    uwsgi.send_to_spooler({'Name':'Alessandro'})
-
-* You can also schedule spool a task to be specified only after a specific UNIX timestamp has passed by specifying the 'at' argument.
-  
-  .. code-block:: py
-  
-      import time, uwsgi
-      
-      # uwsgi.spool is a synonym of uwsgi.send_to_spooler
-      uwsgi.spool(foo='bar',at=time.time()+60) # Let's do something in a minute, okay?
-
-* You can attach a binary ``body`` larger than the dictionary size limit with the ``body`` parameter. (Remember that it will be loaded into memory in the spooler though.)
-
-  .. code-block:: py
-
-     uwsgi.spool({"body": my_pdf_data})
-
-* You could use the :doc:`Caching <caching framework>` as shared memory to send progress data, etc. back to your application.
+Python (uwsgidecorators.py) and Ruby (uwsgidsl.rb) exposes higher-level facilities to manage the spooler, try to use them instead of the low-level approach described here.
