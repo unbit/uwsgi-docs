@@ -161,9 +161,41 @@ spool arguments must be strings (or bytes for python3), the api function will tr
 External spoolers
 -----------------
 
+You could want to implement a centralized spooler for your server.
+
+A single instance will manage all of the tasks enqueued by multiple uWSGI servers.
+
+To accomplish this setup each uWSGI instance has to know which spooler directories are valid (consider it a form of security)
+
+To add an external spooler directory use the ``--spooler-external <directory>`` option.
+
+The spooler locking subsystem will avoid mess
+
 Networked spoolers
 ------------------
 
+You can even enqueue tasks over the network (be sure the 'spooler' plugin is loaded in your instance, but generally it is builtin by default)
+
+As we have already seen, spooler packets have modifier1 17, you can directly send those packets to a uwsgi socket of an instance with a spooler enabled.
+
+We will use the perl Net::uwsgi module (exposing a handy uwsgi_spool function) in this example (feel free to use whatever you want):
+
+.. code-block:: perl
+
+   use Net::uwsgi;
+   uwsgi_spool('localhost:3031', {'test'=>'test001','argh'=>'boh','foo'=>'bar'});
+   uwsgi_spool('/path/to/socket', {'test'=>'test001','argh'=>'boh','foo'=>'bar'});
+   
+.. code-block:: ini
+
+   [uwsgi]
+   socket = /var/run/uwsgi-spooler.sock
+   socket = localhost:3031
+   spooler = /path/for/files
+   spooler-processes=1
+   ...
+   
+(thanks brianhorakh for the example)
 
 Post-poning tasks
 -----------------
