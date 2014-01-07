@@ -105,7 +105,7 @@ A common pattern is:
    
 remember to create /ns and /distro/precise/.old_root
 
-When you have created the new filesysten layout you can mount /.old_root recursively:
+When you have created the new filesysten layout you can umount /.old_root recursively:
 
 .. code-block:: ini
 
