@@ -81,6 +81,8 @@ Python via :py:data:`uwsgi.magic_table`) are defined.
 %x       the current section identifier, eg. `config.ini:section` (version 1.9-dev+)
 %X       same as %x but refer to the first non-template config file
          (version 1.9.18)
+%i       inode number of the file (version 2.0.1)
+%I       same as %i but refer to the first non-template config file
 %0..%9   a specific component of the full path of the directory containing the config file (version 1.3+)
 %[       ANSI escape "\\033" (useful for printing colors)
 %k       detected cpu cores (version 1.9.20-dev+)
