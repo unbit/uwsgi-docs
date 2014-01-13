@@ -7,7 +7,9 @@ Although many different solutions exist for WebSockets, most of them rely on a h
 
 The uWSGI websockets implementation is compiled in by default
 
-Websocket support is sponsored by 20Tab S.r.l. http://20tab.com/
+Websocket support is sponsored by 20Tab S.r.l. http://20tab.com/ 
+
+They released a full game (a bomberman clone based on uWSGI websockets api): https://github.com/20tab/Bombertab
 
 An echo server
 **************
