@@ -178,6 +178,6 @@ Example:
 .. code-block:: ini
 
    [uwsgi]
-   attach-daemon2 = cmd=my_daemon.sh,pidfile=/tmp/my.pid,uid=33,gid=33
+   attach-daemon2 = cmd=my_daemon.sh,pidfile=/tmp/my.pid,uid=33,gid=33,stopsignal=3
    
 
