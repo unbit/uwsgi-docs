@@ -35,7 +35,7 @@ So let's export a "hello" function on ``.2``.
     
     uwsgi.register_rpc("hello", hello_world)
 
-This uses :py:meth:`uwsgi.register_rpc` to declare a function called "hello" to be exported. We'll start the server with ``--server :3031``.
+This uses :py:meth:`uwsgi.register_rpc` to declare a function called "hello" to be exported. We'll start the server with ``--socket :3031``.
 
 On the caller's side, on ``10.0.0.1``, let's declare the world's (second) simplest WSGI app.
 
