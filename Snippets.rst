@@ -8,7 +8,7 @@ X-Sendfile emulation
 --------------------
 
 Even if your frontend proxy/webserver does not support X-Sendfile (or cannot access your static resources) you can emulate
-it using offloading (your process/thread will delegate teh static file serving to offload threads
+it using offloading (your process/thread will delegate the static file serving to offload threads
 
 .. code-block:: ini
 
