@@ -44,6 +44,7 @@ Quickstarts
    WSGIquickstart
    PSGIquickstart
    RackQuickstart
+   Snippets
 
 
 Table of Contents
