@@ -90,6 +90,8 @@ Python via :py:data:`uwsgi.magic_table`) are defined.
 %U       username (if available, otherwise fallback to uid) of the user running the process (version 2.0)
 %g       gid of the user running the process (version 2.0)
 %G       group name (if available, otherwise fallback to gid) of the user running the process (version 2.0)
+%j       HEX representation of the djb33x hash of the full config path
+%J       same as %j but refer to the first non-template config file
 
 ======== ==
 
