@@ -25,6 +25,8 @@ Start with a simple Circus config (call it circus.ini):
    [watcher:dummy]
    cmd = uwsgi --http-socket fd://$(circus.sockets.foo) --wsgi-file yourapp.wsgi
    use_sockets = True
+   send_hup = True
+   stop_signal = QUIT
 
    [socket:foo]
    host = 0.0.0.0
@@ -55,6 +57,8 @@ option.
    cmd = uwsgi --master --idle 60 --http-socket fd://$(circus.sockets.foo) --wsgi-file yourapp.wsgi
    use_sockets = True
    warmup_delay = 0
+   send_hup = True
+   stop_signal = QUIT
 
    [socket:foo]
    host = 0.0.0.0
