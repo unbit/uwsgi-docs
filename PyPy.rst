@@ -225,6 +225,8 @@ Options
 * ``pypy-exec`` - execute the specified python script before ``fork()``
 * ``pypy-exec-post-fork`` - execute the specified python script after each ``fork()``
 * ``pypy-pp/pypy-python-path/pypy-pythonpath`` - add the specified item to the pythonpath
+* ``pypy-paste`` - load a paste.deploy .ini configuration
+* ``pypy-ini-paste`` - load a paste.deploy .ini configuration and use its [uwsgi] section
 
 The alternative approach
 ^^^^^^^^^^^^^^^^^^^^^^^^
