@@ -53,3 +53,24 @@ and this for /admin
    
    route-label = https
    route-if-not = equal:${HTTPS};on redirect-permanent:https://${HTTP_HOST}${REQUEST_URI}
+   
+   
+Python Auto-reloading (DEVELOPMENT-ONLY !!!)
+--------------------------------------------
+
+In production you can monitor file/directory changes for triggering reloads (touch-reload, fs-reload...).
+
+During development having a monitor for all of the loaded/used python modules can be handy. But please use it only during development.
+
+The check is done by a thread that scans the modules list with the specified frequency:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   py-autoreload = 2
+   
+will check for python modules changes every 2 seconds and eventually restart the instance.
+
+Hey, use it only in development...
+
