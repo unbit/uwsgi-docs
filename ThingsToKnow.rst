@@ -53,3 +53,5 @@ Things to know (best practices and "issues")
 * By default the stdin is remapped to /dev/null on startup. If you need a valid stdin (for debugging, piping and so on) add --honour-stdin
 
 * You can easily add non-existent options to your config files (as placeholder, custom options, or app-related configuration items). This is a really handy feature, but can lead to headaches on typos. The strict mode (--strict) will disable this feature, and only valid uWSGI options are tolerated.
+
+* Some plugin (most notably python and perl) has code auto-reloading facilities. ALbeit they are very appealing, you MUST use them only under development as they are really heavyweight. For example the python --py-autoreload option will scan your whole module tree at every check cycle.
