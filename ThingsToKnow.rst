@@ -51,3 +51,5 @@ Things to know (best practices and "issues")
 * Some Linux distributions (read: Debian Etch 4) make a mix of newer kernels with very old userspace. This kind of combination can make the uWSGI build system spit out errors (most notably on ``unshare()``, pthread locking, ``inotify``...). You can force uWSGI to configure itself for an older system prefixing the 'make' (or whatever way you use to build it) with ``CFLAGS="-DOBSOLETE_LINUX_KERNEL"``
 
 * By default the stdin is remapped to /dev/null on startup. If you need a valid stdin (for debugging, piping and so on) add --honour-stdin
+
+* You can easily add non-existent options to your config files (as placeholder, custom options, or app-related configuration items). This is a really handy feature, but can lead to headaches on typos. The strict mode (--strict) will disable this feature, and only valid uWSGI options are tolerated.
