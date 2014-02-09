@@ -173,6 +173,8 @@ This option has been added in uWSGI 2.0 and allows advanced configurations. It i
 
 ``gid`` drop privileges to the specified gid (requires master running as root)
 
+``ns_pid`` spawn the process in a new pid namespace (requires master running as root, Linux only)
+
 Example:
 
 .. code-block:: ini
