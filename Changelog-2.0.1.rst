@@ -173,3 +173,5 @@ they both maps 1:1 to the CPython variants, but contrary to it they automaticall
 
 Availability
 ************
+
+You can download uWSGI 2.0.1 from: http://projects.unbit.it/downloads/uwsgi-2.0.1.tar.gz
