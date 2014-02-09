@@ -39,6 +39,8 @@ uWSGI 2.0 is a LTS branch, so do not expect too much new features. 2.0.1 is the 
 Perl native Spooler support
 ---------------------------
 
+Perl finally got full support for the Spooler subsystem. In 2.0 we added server support, in 2.0.1 we completed client support too.
+
 --alarm-backlog
 ---------------
 
@@ -62,11 +64,26 @@ filesystem monitor api
 support for yajl 1.0
 --------------------
 
+2.0 added support yajl JSON parser (version 2). 2.0.1 added support for 1.0 too
+
 for-readline
 ------------
 
+a config-logic iterator that yield file lines:
+
+.. code-block:: ini
+
+   [uwsgi]
+   for-readline = /etc/myenvs
+     env = %(_)
+   end-for =
+
 %i and %j magic vars
 --------------------
+
+%i -> returns the inode of the currently parsed file
+
+%j -> returns hex representation of 32bit djb33x hashing of the currently parsed absolute filename
 
 --inject-before and --inject-after
 ----------------------------------
@@ -74,11 +91,31 @@ for-readline
 --http-server-name-as-http-host
 -------------------------------
 
+Some Ruby/Rack middleware make a questionable check on SERVER_NAME/HTTP_HOST matching.
+
+This flag allow the http router to map SERVER_NAME to HTTP_HOST automatically instead of instructing your uWSGI instances to do it.
+
 better Emperor's Ragnarok (shutdown procedure)
 ----------------------------------------------
 
+The 'Ragnarok' is the Emperor phase executed when you ask him to shutdown.
+
+Before 2.0.1, this procedure simply send KILL to vassals to brutally destroy them.
+
+The new Ragnarok is way more benevolent, asking vassals to gracefully shutdown.
+
+The Emperor tolerance for vassals not shutting down can be tuned with --reload-mercy (default 30 seconds)
+
 PyPy paste support
 ------------------
+
+Two new options for PyPy plugin have been added for paste support:
+
+--pypy-paste <config>
+
+--pypy-ini-paste <ini>
+
+they both maps 1:1 to the CPython variants, but contrary to it they automatically fix logging
 
 Availability
 ************
