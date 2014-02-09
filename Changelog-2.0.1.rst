@@ -51,7 +51,7 @@ Perl finally got full support for the Spooler subsystem. In 2.0 we added server 
         return uwsgi::SPOOL_OK;
    });
 
-   uwsgi::spool({'foo' => 'bar'})
+   uwsgi::spool({'foo' => 'bar', 'arg2' => 'test2'})
 
 
 --alarm-backlog
@@ -157,6 +157,44 @@ a config-logic iterator that yield file lines:
 
 --inject-before and --inject-after
 ----------------------------------
+
+This two new options should make the config templating system complete for everyone.
+
+They basically prepend and append 'blobs' to a config file.
+
+Yeah, it sound a bit nonsense.
+
+Check the following example:
+
+header.xml:
+
+.. code-block:: xml
+
+   <uwsgi>
+       <socket>:3031</socket>
+       
+footer.xml:
+
+.. code-block:: xml
+
+   <master/>
+       </uwsgi>
+       
+and body.xml:
+
+.. code-block:: xml
+
+   <processes>8</processes>
+   
+you can build a single config tree with:
+
+.. code-block:: sh
+
+   uwsgi --show-config --inject-before header.xml --inject-after footer.xml --xml body.xml
+   
+this approach, albeit raw, allows you to use magic-vars in more advanced ways (as you have control on the context of the file using them)
+
+Note: ordering is important, --inject-before and --inject-after must be specified before the relevant config option.
 
 --http-server-name-as-http-host
 -------------------------------
