@@ -94,6 +94,10 @@ the notification subsystem is really generic. Expect more subsystem to use it in
 pid namespace for daemons (Linux only)
 --------------------------------------
 
+This is a Linux-only, epxerimental feature allowing you to spawn a daemon in a new pid namespace. This feature requires the master running as root.
+
+Check: :doc:`AttachingDaemons`
+
 Resubscriptions
 ---------------
 
@@ -114,6 +118,16 @@ with this setup the fastrouter on 192.168.0.2 will have all of the records of 19
 
 filesystem monitor api
 ----------------------
+
+The real-time filesystem notification api has been standardized and it is now usable by plugins. The prototype to register a monitor is:
+
+.. code-block:: c
+
+   struct uwsgi_fsmon *uwsgi_register_fsmon(char *path, void (*func) (struct uwsgi_fsmon *), void *data) {
+   
+it will register a monitor on "path" triggering the function "func" passing "data" as argument.
+
+Remember, this is different from the "touch" api, that is poll-based and can only monitor files. (while fsmon can monitor directories too)
 
 support for yajl 1.0
 --------------------
