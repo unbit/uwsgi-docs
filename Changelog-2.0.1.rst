@@ -68,6 +68,8 @@ Raise the specified alarm when the listen queue is full
 --close-on-exec2
 ----------------
 
+Credits: Kaarle Ritvanen
+
 this flag applies CLOSE_ON_EXEC socket flag on all of the server socket. Use it if you do not want you request-generated processes to inherit the server file descriptor.
 
 Note: --close-on-exec applies the flag on all of the sockets (client and server)
