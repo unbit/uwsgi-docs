@@ -12,7 +12,7 @@ Bugfixes and improvements
 - improved heartbeat code to support various corner cases
 - improved psgi.input to support offset in read()
 - fixed (and simplified) perl stacktrace usage
-- fixed sni recured subscription
+- fixed sni secured subscription
 - CGI plugin does not require anymore that Status header is the first one (Andjelko Horvat)
 - fixed CPython mule_msg_get timeout parsing
 - allows embedding of config files via absolute paths
