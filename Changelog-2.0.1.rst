@@ -22,7 +22,7 @@ Bugfixes and improvements
 - improved dotsplit router mode to reduce DOS risk
 - sub-Emperor are now loyal by default
 - fixed non-shared ruby 1.8.7 support
-- fixed harakiri tracebacker
+- fixed harakiri CPython tracebacker
 - request vars are now correctly exposed by the stats server
 - support log-master for logfile-chown
 - improved legion reload
