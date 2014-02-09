@@ -41,22 +41,76 @@ Perl native Spooler support
 
 Perl finally got full support for the Spooler subsystem. In 2.0 we added server support, in 2.0.1 we completed client support too.
 
+.. code-block:: pl
+
+   use Data::Dumper;
+
+   uwsgi::spooler(sub {
+        my $env = shift;
+        print Dumper($env);
+        return uwsgi::SPOOL_OK;
+   });
+
+   uwsgi::spool({'foo' => 'bar'})
+
+
 --alarm-backlog
 ---------------
 
 Raise the specified alarm when the listen queue is full
 
+.. code-block:: ini
+
+   [uwsgi]
+   alarm = myalarm cmd:mail -s 'ALARM ON QUEUE' admin@example.com
+   alarm-backlog = myalarm
+
 --close-on-exec2
 ----------------
 
+this flag applies CLOSE_ON_EXEC socket flag on all of the server socket. Use it if you do not want you request-generated processes to inherit the server file descriptor.
+
+Note: --close-on-exec applies the flag on all of the sockets (client and server)
+
 simple notifications subsystem
 ------------------------------
+
+An annoying problem with subscriptions is that the client does not know if it has been correctly subscribed to the server.
+
+The notification subsystem allows you to add to the subscription packet a datagram address (udp or unix) on which the server will send back
+messages (like successful subscription)
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; enable the notification socket
+   notify-socket = /tmp/notify.socket
+   ; pass it in subscriptions
+   subscription-notify-socket = /tmp/notify.socket
+   ...
+   
+the notification subsystem is really generic. Expect more subsystem to use it in the future.
 
 pid namespace for daemons (Linux only)
 --------------------------------------
 
 Resubscriptions
 ---------------
+
+The fastrouter and the http/https/spdy router now support "resubscription".
+
+You can specify a dgram address (udp or unix) on which all of the subscriptions request will be forwarded to (obviously changing the node address to the router one)
+
+The system could be useful to build 'federated' setup:
+
+.. code-block:: ini
+
+   [uwsgi]
+   fastrouter = 192.168.0.1:3031
+   fastrouter-subscription-server = 127.0.0.1:5000
+   fastrouter-resubscribe = 192.168.0.2:5000
+   
+with this setup the fastrouter on 192.168.0.2 will have all of the records of 192.168.0.1 with the destination set to 192.168.0.1:3031.
 
 filesystem monitor api
 ----------------------
