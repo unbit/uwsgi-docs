@@ -27,6 +27,7 @@ Bugfixes and improvements
 - support log-master for logfile-chown
 - improved legion reload
 - fixed tuntap netmask
+- fixed busyness plugin without metrics subsystem
 
 New features
 ************
@@ -34,3 +35,50 @@ New features
 uWSGI 2.0 is a LTS branch, so do not expect too much new features. 2.0.1 is the first maintainance release, so you still get a bunch of them
 (mainly features not complete in 2.0)
 
+
+Perl native Spooler support
+---------------------------
+
+--alarm-backlog
+---------------
+
+Raise the specified alarm when the listen queue is full
+
+--close-on-exec2
+----------------
+
+simple notifications subsystem
+------------------------------
+
+pid namespace for daemons (Linux only)
+--------------------------------------
+
+Resubscriptions
+---------------
+
+filesystem monitor api
+----------------------
+
+support for yajl 1.0
+--------------------
+
+for-readline
+------------
+
+%i and %j magic vars
+--------------------
+
+--inject-before and --inject-after
+----------------------------------
+
+--http-server-name-as-http-host
+-------------------------------
+
+better Emperor's Ragnarok (shutdown procedure)
+----------------------------------------------
+
+PyPy paste support
+------------------
+
+Availability
+************
