@@ -16,7 +16,7 @@ Bugfixes and improvements
 - CGI plugin does not require anymore that Status header is the first one (Andjelko Horvat)
 - fixed CPython mule_msg_get timeout parsing
 - allows embedding of config files via absolute paths
-- fixed syncall rpc
+- fixed symcall rpc
 - fixed a memory leak in CPython spooler api (xiaost)
 - The --no-orphans hardening has been brought back (currently Linux-only)
 - improved dotsplit router mode to reduce DOS risk
