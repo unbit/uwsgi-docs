@@ -75,16 +75,13 @@ Way 4: --fastrouter-subscription-server
 
 This is probably one of the best way for massive auto-scaling hosting. It uses
 the :doc:`subscription server <SubscriptionServer>` to allow instances to
-announce themselves and subscribe to the fastrouter.  By default, the
-fastrouter subscription server can contain 30 key/value mappings. Increase this
-with ``fastrouter-subscription-slot`` as necessary.
+announce themselves and subscribe to the fastrouter.
 
 .. code-block:: sh
 
-    uwsgi --fastrouter 127.0.0.1:3017 --fastrouter-subscription-server 192.168.0.100:7000 --fastrouter-subscription-slot 80
-
-This will spawn a subscription server on address 192.168.0.100 port 7000 with
-80 available slots.
+    uwsgi --fastrouter 127.0.0.1:3017 --fastrouter-subscription-server 192.168.0.100:7000
+    
+This will spawn a subscription server on address 192.168.0.100 port 7000
 
 Now you can spawn your instances subscribing to the fastrouter:
 
