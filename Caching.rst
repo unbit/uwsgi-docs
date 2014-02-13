@@ -24,6 +24,17 @@ to specify its name and the maximum number of items it can contains.
 
 this will create a cache named "mycache" with a maximum of 100 items. Each item can be at most 64k.
 
+
+A sad/weird/strange/bad note about "the maximum number of items"
+****************************************************************
+
+If you start with a 100-items cache you will suddenly note that the true maximum number of items you can use is indeed 99.
+
+This is because the first item of the cache is always used as "NULL/None/undef" item internally.
+
+Remember it, when you start planning your cache configuration
+
+
 Configuring the cache (how it works)
 ************************************
 
