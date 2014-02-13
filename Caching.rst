@@ -38,7 +38,7 @@ value.
 Single block (faster) vs. bitmaps (slower)
 ******************************************
 
-.. note:: bitmap mode is considered production ready only in uWSGI 2.0.2
+.. note:: bitmap mode is considered production ready starting from uWSGI 2.0.2
 
 In the standard ("single block") configuration a key can only map to a single
 block. Thus if you have a cache block size of 64k your items can be at most
