@@ -5,15 +5,30 @@ As of 1.3, uWSGI includes an alarm system. This subsystem allows the
 developer/sysadmin to 'announce' special conditions of an app via various
 channels.  For example, you may want to get notified via Jabber/XMPP of a full
 listen queue, or a harakiri condition.  The alarm subsystem is based on
-realtime log-parsing: when a specific log line matches a regexp, a specific
-alarm will be triggered.
+two components: an event monitor and an event action.
+
+An event monitor is something waiting for a specific condition (like an event on a file descriptor or a specific log message).
+
+As soon as the condition is true an action (like sending an email) is triggered.
+
+Embedded event monitors
+***********************
+
+Event monitors can be added via plugins, the uWSGI core includes the following:
+
+``log-alarm`` trigger alarm when a specific regexp matches a logline
+
+``alarm-fd`` trigger alarm when the specififed file descriptor is ready (low-level, it is the base of most of the alarm plugins)
+
+``alarm-backlog`` trigger alarm when the socket backlog queue is full
 
 
 Defining an alarm
 *****************
 
-You can define an unlimited number of alarms. Each alarm has a unique name, and
-its channel is exported by a plugin.  Currently the following plugins are
+You can define an unlimited number of alarms. Each alarm has a unique name.
+
+Currently the following alarm actions are
 available in the main distribution:
 
 .. parsed-literal::
@@ -114,10 +129,10 @@ If you are building a plugin, be sure to prepend your log messages with the
 '[uwsgi-alarm' string. These lines will be skipped and directly passed to the
 log subsystem. A convenience API function is available: ``uwsgi_log_alarm()``.
 
-How does it work ?
-******************
+How does log-alarm work ?
+*************************
 
-Enabling an alarm automatically puts the uWSGI instance in :term:`log-master
+Enabling log-alarm automatically puts the uWSGI instance in :term:`log-master
 mode`, delegating log writes to the master.  The alarm subsystem is executed by
 the master just before passing the log line to the log plugin. Blocking alarm
 plugins should run in a thread (like the curl and xmpp one), while the simple
