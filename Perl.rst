@@ -6,7 +6,7 @@ uWSGI Perl support (PSGI)
 * http://plackperl.org/
 * https://github.com/plack/psgi-specs/blob/master/PSGI.pod
 
-The PSGI plugin is officially supported and has an officially assigned uwsgi modifier, ``5``. So as usual, when you're in the business of dispatching requests to Perl apps, set the ``modifier1`` value to 1 in your web server configuration.
+The PSGI plugin is officially supported and has an officially assigned uwsgi modifier, ``5``. So as usual, when you're in the business of dispatching requests to Perl apps, set the ``modifier1`` value to 5 in your web server configuration.
 
 Compiling the PSGI plugin
 -------------------------
