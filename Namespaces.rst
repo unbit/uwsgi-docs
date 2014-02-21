@@ -140,7 +140,7 @@ The old way: the --namespace option
 Before 1.9/2.0 a full featured system-like namespace support was added. It works as a chroot() on steroids.
 
 It should be moved as an external plugin pretty soon, but will be always part of the main distribution, as it is used by lot of people
-for its semplicity.
+for its simplicity.
 
 You basically need to set a root filesystem and an hostname to start your instance in a new namespace:
 
