@@ -23,6 +23,12 @@ To compile it as a plugin,
 .. code-block:: sh
 
    python uwsgiconfig.py --plugin plugins/cgi
+   
+or, from sources directory:
+
+.. code-block:: sh
+
+   make PROFILE=cgi
 
 Configuring CGI mode
 --------------------
@@ -147,6 +153,24 @@ Threads are a better choice. Let's configure each worker process to run 20 worke
   cgi = /var/www/foo
   cgi-allowed-ext = .php
   cgi-helper = .php=php5-cgi
+  
+  
+Starting from uWSGI 2.0.2 you can have even more cheap concurrency thanks to async mode support:
+
+
+.. code-block:: ini
+
+  [uwsgi]
+  plugins = cgi
+  async = 200
+  ugreen = true
+  socket = 127.0.0.1:3031
+  cgi = /var/www/foo
+  cgi-allowed-ext = .php
+  cgi-helper = .php=php5-cgi
+  
+this will spawn 200 coroutines, each able to manage a CGI script (with few K of memory)
+  
 
 Example 7: Mailman web interface behind Nginx
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
