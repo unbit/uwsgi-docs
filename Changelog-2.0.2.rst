@@ -39,6 +39,8 @@ in the environment (like the double parsing/compilation/execution of psgi script
 
 If the Plack module is not available, a simple do-based code is used (very similar to load_psgi)
 
+Many thanks to Ævar Arnfjörð Bjarmason of booking.com for having discovered the problem
+
 Availability
 ************
 
