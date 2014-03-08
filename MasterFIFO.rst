@@ -30,6 +30,7 @@ Available commands
 * '+' increase the number of workers when in cheaper mode (add ``--cheaper-algo manual`` for full control)
 * 'c' trigger chain reload
 * 'C' set cheap mode
+* 'E' trigger an Emperor rescan
 * 'f' re-fork the master (dangerous, but very powerful)
 * 'l' reopen log file (need --log-master and --logto/--logto2)
 * 'L' trigger log rotation (need --log-master and --logto/--logto2)
