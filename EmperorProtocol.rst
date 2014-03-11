@@ -46,7 +46,9 @@ Messages are byte sized (0-255), and each number (byte) has a meaning.
 
 == ==
 0  Sent by the Emperor to stop a vassal
-1  Sent by the Emperor to reload a vassal
+1  Sent by the Emperor to reload a vassal / sent by a vassal when it has been spawned
+2  Sent by a vassal to ask the Emperor for configuration chunk
+5  Sent by a vassal when it is ready to accept requests
 17 Sent by a vassal after the first request to announce loyalty
 22 Sent by a vassal to notify the Emperor of voluntary shutdown
 26 Heartbeat sent by the vassal. After the first received heartbeat, the Emperor will expect more of them from the vassal.
