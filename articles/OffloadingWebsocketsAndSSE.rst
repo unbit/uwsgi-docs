@@ -2,6 +2,7 @@ Offloading Websockets and Server-Sent Events AKA "Combine them with Django safel
 ==================================================================================
 
 Author: Roberto De Ioris
+
 Date: 20140315
 
 Disclaimer
