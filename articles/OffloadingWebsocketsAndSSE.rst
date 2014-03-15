@@ -101,6 +101,79 @@ A very similar concept will be used in this article: We will use a normal Django
 Our SSE app
 -----------
 
+The SSE part will be very simple, a gevent-based WSGI app will send the current time every second:
+
+.. code-block:: python
+
+   from sse import Sse
+   import time
+
+   def application(e, start_response):
+       print e
+       # create the SSE session
+       session = Sse()
+       # prepare HTTP headers
+       headers = []
+       headers.append(('Content-Type','text/event-stream'))
+       headers.append(('Cache-Control','no-cache'))
+       start_response('200 OK', headers)
+       # enter the loop
+       while True:
+           # monkey patching will prevent sleep() to block
+           time.sleep(1)
+           # add the message
+           session.add_message('message', str(time.time()))
+           # send to the client
+           yield str(session)
+           
+Let's run it on /tmp/foo UNIX socket (save the app as sseapp.py)
+
+.. code-block:: sh
+
+   uwsgi --wsgi-file sseapp.py --socket /tmp/foo --gevent 1000 --gevent-monkey-patch
+   
+(monkey patching is required for time.sleep(), feel free to use gevent primitives for sleeping if you want/prefer)
+
+The (boring) HTML/Javascript
+----------------------------
+
+.. code-block:: html
+
+   <html>
+       <head>
+       </head>
+       <body>
+         <h1>Server sent events</h1>
+         <div id="event"></div>
+         <script type="text/javascript">
+
+         var eventOutputContainer = document.getElementById("event");
+         var evtSrc = new EventSource("/subscribe");
+
+         evtSrc.onmessage = function(e) {
+             console.log(e.data);
+             eventOutputContainer.innerHTML = e.data;
+         };
+
+         </script>
+       </body>
+     </html>
+
+it is very simple, it will connect to /subscribe and will start waiting for events             
+
+The Django view
+---------------
+
+Our django view, will be very simple, it will simply generate a special response header (we will call it X-Offload-to-SSE) with the username of the logged user as its value:
+
+.. code-block:: python
+
+   def subscribe(request):
+       response = HttpResponse()
+       response['X-Offload-to-SSE'] = 'request.user'
+       return response
+
+
 Let's offload the SSE transaction
 ---------------------------------
 
