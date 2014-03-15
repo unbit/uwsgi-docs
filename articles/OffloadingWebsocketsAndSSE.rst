@@ -78,12 +78,12 @@ A cool example (showed even in the Snippets page of uWSGI docs) is implementing 
    ; if X_SENDFILE is not empty, pass its value to the "static" routing action (it will automatically use offloading if available)
    response-route-if-not = empty:${X_SENDFILE} static:${X_SENDFILE}
 
-  ; now the classic options
-  plugins = python  (compiled in by default if you installed uWSGI via pip)
-  ; bind to HTTP port 8080
-  http-socket = :8080
-  ; load a simple wsgi-app
-  wsgi-file = myapp.py
+   ; now the classic options
+   plugins = python  (compiled in by default if you installed uWSGI via pip)
+   ; bind to HTTP port 8080
+   http-socket = :8080
+   ; load a simple wsgi-app
+   wsgi-file = myapp.py
   
   
 now in our app we can X-Sendfile to send static files without blocking:
