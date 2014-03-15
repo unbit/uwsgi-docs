@@ -373,4 +373,29 @@ Common pitfalls
 
 * This is the whole point of this article: do not use the Django ORM in your gevent apps unless you know what you are doing !!! (read, you have a django database adapter that supports gevent and does not sucks compared to the standard ones...)
 
-* Forget about finding a way to disable headers generation in django. This is a "limit/feature" of its WSGI adapter, use the uWSGI facilities (if available) or do not generate headers in your gevent app.
+* Forget about finding a way to disable headers generation in django. This is a "limit/feature" of its WSGI adapter, use the uWSGI facilities (if available) or do not generate headers in your gevent app. Eventually you can modify wsgi.py in this way:
+
+.. code-block:: python
+
+   """
+   WSGI config for sseproject project.
+
+   It exposes the WSGI callable as a module-level variable named ``application``.
+
+   For more information on this file, see
+   https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
+   """
+
+   import os
+   os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sseproject.settings")
+
+   from django.core.wsgi import get_wsgi_application
+   django_application = get_wsgi_application()
+   
+   def fake_response(status, headers, exc_info=None):
+       pass
+   
+   def application(environ, start_response):
+       if environ['PATH_INFO'] == '/subscribe':
+           return django_application(environ, fake_start_response)
+       return django_application(environ, start_response)
