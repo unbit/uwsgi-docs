@@ -237,6 +237,45 @@ You can pass all of the infos you need using the same approach, you can collect 
 You can even add variables at runtime
 
 
+.. code-block:: ini
+
+   [uwsgi]
+   ; the boring part
+   http-socket = :9090
+   offload-threads = 2
+   wsgi-file = sseproject/wsgi.py
+   
+   ; collect Content-Type header and store in var CONTENT_TYPE
+   collect-header = Content-Type CONTENT_TYPE
+   
+   response-route-if = equal:${CONTENT_TYPE};text/event-stream addvar:FOO=BAR
+   response-route-if = equal:${CONTENT_TYPE};text/event-stream addvar:TEST1=TEST2
+   
+   ; if CONTENT_TYPE is 'text/event-stream', forward the request
+   response-route-if = equal:${CONTENT_TYPE};text/event-stream uwsgi:/tmp/foo,0,0
+   
+or (using goto for better readability)
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; the boring part
+   http-socket = :9090
+   offload-threads = 2
+   wsgi-file = sseproject/wsgi.py
+   
+   ; collect Content-Type header and store in var CONTENT_TYPE
+   collect-header = Content-Type CONTENT_TYPE
+   
+   response-route-if = equal:${CONTENT_TYPE};text/event-stream goto:offload
+   response-route-run = last:
+   
+   response-route-label = offload
+   response-route-run = addvar:FOO=BAR
+   response-route-run = addvar:TEST1=TEST2
+   response-route-run = uwsgi:/tmp/foo,0,0
+
+
 Simplifying things using the uwsgi api (>= uWSGI 2.0.3)
 -------------------------------------------------------
 
