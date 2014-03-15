@@ -280,8 +280,8 @@ Now we can go even further. We will not use the routing framework
    def subscribe(request):
        uwsgi.add_var("LOGGED_IN_USER", request.user)
        uwsgi.add_var("USER_IS_UGLY", "probably")
-       uwsgi.route("uwsgi", "/tmp/foo")
-       return render("")
+       uwsgi.route("uwsgi", "/tmp/foo,0,0")
+       return HttpResponse("")
        
 and a simple:
 
@@ -291,6 +291,8 @@ and a simple:
    http-socket = :9090
    offload-threads = 2
    wsgi-file = sseproject/wsgi.py
+   
+   route-response = ^/subscribe disableheaders:
 
 
 What about Websockets ?
