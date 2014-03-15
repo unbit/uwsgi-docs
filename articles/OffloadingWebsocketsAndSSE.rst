@@ -298,5 +298,25 @@ and a simple:
 What about Websockets ?
 -----------------------
 
+We have seen how to offload SSE (that are mono-directional), we can offload websockets too (that are bidirectional).
+
+The concept is the same, you only need to ensure (as before) that no headers are sent by django, (otherwise the websocket handshake will fail) and then you
+can change your gevent app:
+
+.. code-block:: python
+
+   import time
+   import uwsgi
+
+   def application(e, start_response):
+       print e
+       uwsgi.websocket_handshake()
+       # enter the loop
+       while True:
+           # monkey patching will prevent sleep() to block
+           time.sleep(1)
+           # send to the client
+           uwsgi.websocket_send(str(time.time()))
+
 Common pitfalls
 ---------------
