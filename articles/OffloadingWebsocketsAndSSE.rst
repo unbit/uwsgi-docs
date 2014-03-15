@@ -317,10 +317,20 @@ can change your gevent app:
            time.sleep(1)
            # send to the client
            uwsgi.websocket_send(str(time.time()))
+           
+Using redis or uWSGI caching framework
+--------------------------------------
+
+Request vars are handy (and funny), but they are limited (see below). If you need to pass a big amount of data between Django and the sse/websocket app, Redis
+is a great way (and works perfectly with gevent). Basically you store infos from django to redis and than you pass only the hash key (via request vars) to the sse/websocket app.
+
+The same can be accomplished with the uWSGI caching framework, but take in account redis has a lot of data primitives, while uWSGI only supports key->value items.
 
 Common pitfalls
 ---------------
 
 * The amount of variables you can add per-request is limited by the uwsgi packet buffer (default 4k). You can increase it up to 64k with the --buffer-size option
 
+* This is the whole point of this article: do not use the Django ORM in your gevent apps unless you know what you are doing !!! (read, you have a django database adapter that supports gevent and does not sucks compared to the standard ones...)
 
+* Forget about finding a way to disable headers generation in django. This is a "limit/feature" of its WSGI adapter, use the uWSGI facilities (if available) or do not generate headers in your gevent app.
