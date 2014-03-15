@@ -320,3 +320,7 @@ can change your gevent app:
 
 Common pitfalls
 ---------------
+
+* The amount of variables you can add per-request is limited by the uwsgi packet buffer (default 4k). You can increase it up to 64k with the --buffer-size option
+
+
