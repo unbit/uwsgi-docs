@@ -13,7 +13,7 @@ This article shows a pretty advanced way for combining websockets (or sse) apps 
 In my opinion the Python web-oriented world is facing a communication/marketing problem: There is a huge number of people
 running heavily blocking apps (like Django) on non-blocking technologies (like gevent) only because someone told them it is cool and will solve all of their scaling issues.
 
-This is completely WRONG, DANEGROUS and EVIL, you cannot mix blocking apps with non-blocking engines, even a single, ultra-tiny blocking part
+This is completely WRONG, DANGEROUS and EVIL, you cannot mix blocking apps with non-blocking engines, even a single, ultra-tiny blocking part
 can potentially destroy your whole stack. As i have already said dozens of time, if your app is 99.9999999% non-blocking, it is still blocking.
 
 And no, monkey patching on your Django app is not magic. Unless you are using pretty-customized database adapters, tuned for working in a non-blocking way, you are doing wrong.
