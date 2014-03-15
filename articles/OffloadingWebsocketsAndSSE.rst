@@ -65,12 +65,16 @@ A cool example (showed even in the Snippets page of uWSGI docs) is implementing 
    [uwsgi]
    ; load router_static plugin (compiled in by default in monolithic profiles)
    plugins = router_static
+   
    ; spawn 2 offload threads
    offload-threads = 2
+   
    ; files under /private can be safely served
    static-safe = /private
+   
    ; collect the X-Sendfile response header as X_SENDFILE var
    collect-header = X-Sendfile X_SENDFILE
+   
    ; if X_SENDFILE is not empty, pass its value to the "static" routing action (it will automatically use offloading if available)
    response-route-if-not = empty:${X_SENDFILE} static:${X_SENDFILE}
 
