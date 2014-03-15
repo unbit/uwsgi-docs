@@ -51,7 +51,7 @@ Would not be cool if you can tell to another thread to send the file for you, so
 Offloading is exactly this: it will give you one ore more threads for doing simple and slow task for you. Which kind of tasks ? All of those that can be managed
 in a non-blocking way, so a single thread can manage thousand of transfer for you.
 
-You can see it as the DMA engine in your computer, your CPU will program the DMA to tranfer memory from a controller to the RAM, and then will be freed to accomplish another task whie the DMA works in background.
+You can see it as the DMA engine in your computer, your CPU will program the DMA to tranfer memory from a controller to the RAM, and then will be freed to accomplish another task while the DMA works in background.
 
 To enable offloading in uWSGI you only need to add the ``--offload-threads <n>`` option, where <n> is the number of threads per-process to spawn. (generally a single thread will be more than enough, but if you want to use/abuse your multiple cpu cores feel free to increase it)
 
