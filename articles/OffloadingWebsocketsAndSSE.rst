@@ -332,7 +332,7 @@ and a simple:
    offload-threads = 2
    wsgi-file = sseproject/wsgi.py
    
-   route-response = ^/subscribe disableheaders:
+   response-route = ^/subscribe disableheaders:
 
 
 What about Websockets ?
