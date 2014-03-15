@@ -70,8 +70,8 @@ A cool example (showed even in the Snippets page of uWSGI docs) is implementing 
    ; spawn 2 offload threads
    offload-threads = 2
    
-   ; files under /private can be safely served
-   static-safe = /private
+   ; files under /etc can be safely served (DANGEROUS !!!)
+   static-safe = /etc
    
    ; collect the X-Sendfile response header as X_SENDFILE var
    collect-header = X-Sendfile X_SENDFILE
