@@ -32,6 +32,8 @@ uWSGI offloading
 
 The concept is not a new thing, or a uWSGI specific one. Projects like nodejs or twisted use it by ages.
 
+.. note:: an example of a webapp serving a static file is not very interesting, nor the best thing to show, but will be useful later, when presenting a real-world scenario with X-Sendfile
+
 Immagine this simple WSGI app:
 
 .. code-block:: python
