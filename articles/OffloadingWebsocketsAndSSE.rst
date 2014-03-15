@@ -96,7 +96,7 @@ now in our app we can X-Sendfile to send static files without blocking:
        return []
 
 
-A very similar concept will be used in this article: We will use a normal Django to setup our session, to authorize the user and whatver (that is fast) you want, then we will return a special header that will instruct uWSGI to offload the connection to another uWSGI instance (listening on a private socket) that will manage the websocket/sse transaction using gevent in a non-blocking way.
+A very similar concept will be used in this article: We will use a normal Django to setup our session, to authorize the user and whatever (that is fast) you want, then we will return a special header that will instruct uWSGI to offload the connection to another uWSGI instance (listening on a private socket) that will manage the websocket/sse transaction using gevent in a non-blocking way.
 
 Our SSE app
 -----------
