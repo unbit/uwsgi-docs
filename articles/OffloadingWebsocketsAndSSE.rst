@@ -253,7 +253,7 @@ This allows a more "elegant" approach (even if highly non-portable)
        uwsgi.add_var("USER_IS_UGLY", "probably")
        uwsgi.add_var("OFFLOAD_TO_SSE", "y")
        uwsgi.add_var("OFFLOAD_SERVER", "/tmp/foo")
-       return render("")
+       return HttpResponse()
        
 Now the config can change to a more gentle:
 
@@ -281,7 +281,7 @@ Now we can go even further. We will not use the routing framework (except for di
        uwsgi.add_var("LOGGED_IN_USER", request.user)
        uwsgi.add_var("USER_IS_UGLY", "probably")
        uwsgi.route("uwsgi", "/tmp/foo,0,0")
-       return HttpResponse("")
+       return HttpResponse()
        
 and a simple:
 
