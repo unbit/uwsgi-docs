@@ -392,7 +392,7 @@ Common pitfalls
    from django.core.wsgi import get_wsgi_application
    django_application = get_wsgi_application()
    
-   def fake_response(status, headers, exc_info=None):
+   def fake_start_response(status, headers, exc_info=None):
        pass
    
    def application(environ, start_response):
