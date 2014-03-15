@@ -8,7 +8,8 @@ Date: 20140315
 Disclaimer
 ----------
 
-This article shows a pretty advanced way for combining websockets (or sse) apps with Django in a "safe way".
+This article shows a pretty advanced way for combining websockets (or sse) apps with Django in a "safe way". It will not show you
+how cool are websockets and sse, or how to write better apps with them, it is an attempt to try to avoid bad practices with them.
 
 In my opinion the Python web-oriented world is facing a communication/marketing problem: There is a huge number of people
 running heavily blocking apps (like Django) on non-blocking technologies (like gevent) only because someone told them it is cool and will solve all of their scaling issues.
