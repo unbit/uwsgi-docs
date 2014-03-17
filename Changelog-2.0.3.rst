@@ -11,7 +11,7 @@ Bugfixes
 * on __APPLE__ use LOG_NOTICE for syslog plugin
 * fixed mongrel2 support
 * hack for avoiding libmongoclient to crash on broken cursor
-* log alarm is now a uwsgi_log)verbose() wrapper
+* log alarm is now a uwsgi_log_verbose() wrapper
 * fixed tuntap router memory corruption
 * Set ECDHE curve independently from DHE parameters (Hynek Schlawack)
 * do not wait for a whole Emperor cycle before checking for each waitpid
