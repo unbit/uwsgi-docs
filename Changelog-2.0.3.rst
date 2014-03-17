@@ -59,6 +59,8 @@ You can now set request variables direcly from your app, for better integration 
 .. code-block:: sh
 
    uwsgi --http-socket :9090 --psgi hello.pl --response-route-run "log:\${newvar}"
+   
+add_var has been implemented in the CPython and Perl plugins
 
 'disableheaders' routing action
 -------------------------------
