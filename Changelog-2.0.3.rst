@@ -65,8 +65,13 @@ add_var has been implemented in the CPython and Perl plugins
 'disableheaders' routing action
 -------------------------------
 
+This new action disables the sending of response headers, independently by the current request state
+
 Smarter Emperor on bad conditions
 ---------------------------------
+
+Now the Emperor completely destroys internal vassal-related structures when it is impossible to correctly kill a broken vassal
+(both for inconsistent Emperor state or for internal system problems)
 
 Availability
 ************
