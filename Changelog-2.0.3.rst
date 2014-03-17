@@ -70,3 +70,5 @@ Smarter Emperor on bad conditions
 
 Availability
 ************
+
+You can download uWSGI 2.0.3 from: http://projects.unbit.it/downloads/uwsgi-2.0.3.tar.gz
