@@ -23,11 +23,42 @@ New features
 Emperor SIGWINCH and SIGURG
 ---------------------------
 
+The Emperor now responds to two new signals:
+
+SIGWINCH: force an emperor rescan of vassals
+
+SIGURG: cleanup the Emperor states (for now it only clears its blacklist)
+
 Building plugins on-the-fly from git repositories
 -------------------------------------------------
 
+You can now build plugins stored on git servers:
+
+.. code-block:: sh
+
+   uwsgi --build-plugin https://github.com/unbit/uwsgi-bonjour
+   
+or
+
+.. code-block:: sh
+
+   UWSGI_EMBED_PLUGINS="bonjour=https://github.com/unbit/uwsgi-bonjour" pip install uwsgi
+
 uwsgi.add_var(key, value)
 -------------------------
+
+You can now set request variables direcly from your app, for better integration with the internal routing subsystem
+
+.. code-block:: pl
+
+   my $app = sub {
+        uwsgi::add_var("newvar","newvalue");
+        return [200, ['Content-Type' => 'text/html'], ["Hello"]];
+   }
+   
+.. code-block:: sh
+
+   uwsgi --http-socket :9090 --psgi hello.pl --response-route-run "log:\${newvar}"
 
 'disableheaders' routing action
 -------------------------------
