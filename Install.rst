@@ -25,6 +25,20 @@ And if you want to build a binary with python/wsgi support (as an example)
 
    apt-get install python-dev
 
+On a Fedora/Redhat system you can install them with:
+
+.. code-block:: sh
+
+   yum groupinstall "Development Tools"
+   yum install python
+
+For python/wsgi support:
+
+.. code-block:: sh
+
+   yum install python-devel
+
+
 If you have a variant of `make` available in your system you can simply run
 `make`.  If you do not have `make` (or want to have more control) simply run:
 
