@@ -101,7 +101,7 @@ For instance:
     logger = mylogger1 syslog
     logger = theredisone redislog:127.0.0.1:6269
     logger = theredistwo redislog:127.0.0.1:6270
-    logger = file:/tmp/foobar # This logger will log everything as it's not named
+    logger = file:/tmp/foobar # This logger will log everything else, as it's not named
     logger = internalservererror file:/tmp/errors
     # ...
     log-route = internalservererror (HTTP/1.\d 500)
