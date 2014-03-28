@@ -220,6 +220,34 @@ If you do not specify an operation between two items, 'string concatenation' is 
    
 the first two items will be evaluated as '29' (not 11 as no math operation has been specified)
 
+The '@' magic
+-------------
+
+We have already seen we can use the form @(filename) to include the content of a file
+
+.. code-block:: ini
+
+   [uwsgi]
+   foo = @(/tmp/foobar)
+   
+the truth is that '@' can read from all of the supported uwsgi schemes
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; read from a symbol
+   foo = @(sym://uwsgi_funny_function)
+   ; read from binary appended data
+   bar = @(data://0)
+   ; read from http
+   test = @(http://example.com/hello)
+   ; read from a file descriptor
+   content = @(fd://3)
+   ; read from a process stdout
+   body = @(exec://foo.pl)
+   ; call a function returning a char *
+   characters = @(call://uwsgi_func)
+
 
 Command line arguments
 ----------------------
