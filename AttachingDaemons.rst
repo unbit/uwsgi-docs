@@ -20,7 +20,7 @@ When the master dies or is reloaded these processes are destroyed. This is the
 best choice for services that must be flushed whenever the app is restarted.
 
 Pidfile governed processes can survive death or reload of the master so long as
-their pidfiles are available and the pid conteined therein matches a running
+their pidfiles are available and the pid contained therein matches a running
 pid. This is the best choice for processes requiring longer persistence, and
 for which a brutal kill could mean loss of data such as a database.
 
