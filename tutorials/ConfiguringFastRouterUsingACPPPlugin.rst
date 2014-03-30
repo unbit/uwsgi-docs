@@ -36,7 +36,7 @@ Here is the structure and contents of my ``$PLUGIN_DIR``:
 	    my_uwsgi.ini
 	    my_uwsgi_lib.ini (needed only on cygwin)
 
-*my_router_config.cc:* (the extension is .cc because uwsgiconfig.py doesn't accept .cpp)
+*my_router_config.cc:* (The extension is .cc because uwsgiconfig.py doesn't recognise the .cpp extension. In case of .cpp ext uwsgiconfig.py appends an additional .c extension and tries to compile the source as C.)
 
 .. code:: c++
 
