@@ -30,136 +30,136 @@ Here is the structure and contents of my ``$PLUGIN_DIR``:
 
 ::
 
-	$PLUGIN_DIR
-	    my_router_config.cc
-	    uwsgiplugin.py
-	    my_uwsgi.ini
-	    my_uwsgi_lib.ini (needed only on cygwin)
+    $PLUGIN_DIR
+        my_router_config.cc
+        uwsgiplugin.py
+        my_uwsgi.ini
+        my_uwsgi_lib.ini (needed only on cygwin)
 
 *my_router_config.cc:* The extension is .cc because uwsgiconfig.py doesn't recognise the .cpp extension. In case of .cpp ext (and other unhandled extensions) uwsgiconfig.py appends an additional (default) .c extension and tries to compile the source as C (but it fails as it doesn't find the my_router_config.cc.c source file).
 
 .. code:: c++
 
-	#include "uwsgi.h"
-	#include <stdlib.h>
-	#include <stdio.h>
+    #include "uwsgi.h"
+    #include <stdlib.h>
+    #include <stdio.h>
 
-	struct SOptions
-	{
-		char* config_file;
-	} options;
+    struct SOptions
+    {
+        char* config_file;
+    } options;
 
-	struct uwsgi_option options_cfg[] =
-	{
-		{(char*)"my-router-cfg-file", required_argument, 0, (char*)"config file for my fastrouter logic", uwsgi_opt_set_str, &options.config_file, 0},
-		{ 0 }
-	};
+    struct uwsgi_option options_cfg[] =
+    {
+        {(char*)"my-router-cfg-file", required_argument, 0, (char*)"config file for my fastrouter logic", uwsgi_opt_set_str, &options.config_file, 0},
+        { 0 }
+    };
 
-	void Deinit()
-	{
-		uwsgi_log("+++++ %s\n", __FUNCTION__);
-		// TODO: Put your cleanup code here.
-	}
+    void Deinit()
+    {
+        uwsgi_log("+++++ %s\n", __FUNCTION__);
+        // TODO: Put your cleanup code here.
+    }
 
-	int Init()
-	{
-		uwsgi_log("+++++ %s config_file=%s\n", __FUNCTION__, options.config_file);
-		if (!options.config_file)
-		{
-			uwsgi_log("The my-router-cfg-file commandline argument is mandatory!\n");
-			exit(1);
-		}
-		FILE* f = fopen(options.config_file, "r");
-		if (!f)
-		{
-			uwsgi_log("Error opening config file: %s\n", options.config_file);
-			exit(1);
-		}
-		// TODO: parse options
-		fclose(f);
-		// TODO: init you plugin
-		atexit(Deinit);
-		return UWSGI_OK;
-	}
+    int Init()
+    {
+        uwsgi_log("+++++ %s config_file=%s\n", __FUNCTION__, options.config_file);
+        if (!options.config_file)
+        {
+            uwsgi_log("The my-router-cfg-file commandline argument is mandatory!\n");
+            exit(1);
+        }
+        FILE* f = fopen(options.config_file, "r");
+        if (!f)
+        {
+            uwsgi_log("Error opening config file: %s\n", options.config_file);
+            exit(1);
+        }
+        // TODO: parse options
+        fclose(f);
+        // TODO: init you plugin
+        atexit(Deinit);
+        return UWSGI_OK;
+    }
 
-	char* CodeString(char *id, char *code, char *function, char *key, uint16_t keylen)
-	{
-		uwsgi_log("+++++ %s id=%s code=%s function=%s key=%.*s\n", __FUNCTION__, id, code, function, keylen, key);
-		// TODO: Return a pointer to the gateway address string.
-		// The pointer must be valid until the next call to this function.
-		static char addr[] = "127.0.0.1:8001";
-		return addr;
-	}
+    char* CodeString(char *id, char *code, char *function, char *key, uint16_t keylen)
+    {
+        uwsgi_log("+++++ %s id=%s code=%s function=%s key=%.*s\n", __FUNCTION__, id, code, function, keylen, key);
+        // TODO: Return a pointer to the gateway address string.
+        // The pointer must be valid until the next call to this function.
+        static char addr[] = "127.0.0.1:8001";
+        return addr;
+    }
 
-	int Request(struct wsgi_request *wsgi_req)
-	{
-		// This dummy function should never be called in the fastrouter...
-		uwsgi_log("+++++ %s\n", __FUNCTION__);
-		return -1;
-	}
+    int Request(struct wsgi_request *wsgi_req)
+    {
+        // This dummy function should never be called in the fastrouter...
+        uwsgi_log("+++++ %s\n", __FUNCTION__);
+        return -1;
+    }
 
-	struct SPluginConfig : public uwsgi_plugin
-	{
-		SPluginConfig()
-		{
-			memset(this, 0, sizeof(*this));
-			name = "my_router_config";
-			modifier1 = 251;
-			init = Init;
-			code_string = CodeString;
-			// Plugins with a request function pointer are "request handler plugins" while
-			// the rest of the plugins are "generic plugins". We install a dummy request
-			// handler function just to force uwsgi to put this plugin into the request
-			// handler plugin table because the --fastrouter-use-code-string commandline
-			// argument that we exploit searches among the request handler plugins.
-			// Again, this request handler function is just a dummy function that should
-			// never be called in the fastrouter...
-			request = Request;
-			// Optional, set this only if you want commandline arguments from uwsgi.
-			options = options_cfg;
-		}
-	};
+    struct SPluginConfig : public uwsgi_plugin
+    {
+        SPluginConfig()
+        {
+            memset(this, 0, sizeof(*this));
+            name = "my_router_config";
+            modifier1 = 251;
+            init = Init;
+            code_string = CodeString;
+            // Plugins with a request function pointer are "request handler plugins" while
+            // the rest of the plugins are "generic plugins". We install a dummy request
+            // handler function just to force uwsgi to put this plugin into the request
+            // handler plugin table because the --fastrouter-use-code-string commandline
+            // argument that we exploit searches among the request handler plugins.
+            // Again, this request handler function is just a dummy function that should
+            // never be called in the fastrouter...
+            request = Request;
+            // Optional, set this only if you want commandline arguments from uwsgi.
+            options = options_cfg;
+        }
+    };
 
-	// Note that the name of this exported symbol must be the name of your plugin
-	// postfixed with "_plugin" otherwise it doesn't work. If you build this
-	// as an external plugin then the name of the shared object must also be
-	// the same (with .so extension) but when you load the external plugin with
-	// uwsgi you have to specify only the name of the plugin without the "_plugin"
-	// postfix for the --plugin commandline parameter.
-	//
-	// - plugin name: "my_router_config"
-	// - name of the exported symbol that points to the plugin config: "my_router_config_plugin"
-	// - name of the shared object file in case of external plugin: "my_router_config_plugin.so"
-	// - uwsgi cmdline parameter when loading the external plugin: --plugin my_router_config
-	SPluginConfig my_router_config_plugin __attribute__((visibility("default")));
+    // Note that the name of this exported symbol must be the name of your plugin
+    // postfixed with "_plugin" otherwise it doesn't work. If you build this
+    // as an external plugin then the name of the shared object must also be
+    // the same (with .so extension) but when you load the external plugin with
+    // uwsgi you have to specify only the name of the plugin without the "_plugin"
+    // postfix for the --plugin commandline parameter.
+    //
+    // - plugin name: "my_router_config"
+    // - name of the exported symbol that points to the plugin config: "my_router_config_plugin"
+    // - name of the shared object file in case of external plugin: "my_router_config_plugin.so"
+    // - uwsgi cmdline parameter when loading the external plugin: --plugin my_router_config
+    SPluginConfig my_router_config_plugin __attribute__((visibility("default")));
 
 *uwsgiplugin.py:*
 
 .. code:: python
 
-	NAME='my_router_config'
-	
-	CFLAGS = []
-	LDFLAGS = []
-	LIBS = ['-lstdc++']
-	GCC_LIST = ['my_router_config.cc']
+    NAME='my_router_config'
+
+    CFLAGS = []
+    LDFLAGS = []
+    LIBS = ['-lstdc++']
+    GCC_LIST = ['my_router_config.cc']
 
 *my_uwsgi.ini:*
 
 ::
 
-	[uwsgi]
-	inherit = minimal
-	main_plugin = corerouter, fastrouter
+    [uwsgi]
+    inherit = minimal
+    main_plugin = corerouter, fastrouter
 
 *my_uwsgi_lib.ini:* (needed only on cygwin)
 
 ::
 
-	[uwsgi]
-	inherit = minimal
-	main_plugin = corerouter, fastrouter
-	as_shared_library = true
+    [uwsgi]
+    inherit = minimal
+    main_plugin = corerouter, fastrouter
+    as_shared_library = true
 
 The my_uwsgi_lib.ini file is needed only on cygwin and it is a copy of my_uwsgi.ini with an extra line appended: ``as_shared_library = true``. You need neither my_uwsgi.ini nor my_uwsgi_lib.ini if you are working with a pre-built new uwsgi binary that supports the --build-plugin commandline parameter but only uwsgi version ~2 and newer have it.
 
@@ -170,10 +170,10 @@ Of course you can skip this step if you are working with a new uwsgi binary. Oth
 
 .. code:: bash
 
-	~$ wget http://projects.unbit.it/downloads/uwsgi-2.0.3.tar.gz
-	~$ tar xvf uwsgi-2.0.3.tar.gz
-	~$ cd uwsgi-2.0.3
-	~/uwsgi-2.0.3$
+    ~$ wget http://projects.unbit.it/downloads/uwsgi-2.0.3.tar.gz
+    ~$ tar xvf uwsgi-2.0.3.tar.gz
+    ~$ cd uwsgi-2.0.3
+    ~/uwsgi-2.0.3$
 
 The "build system" of uwsgi is a python script called uwsgiconfig.py and when you run it your shell's current directory must be the extracted uwsgi source dir (where the uwsgiconfig.py is located). From now all commands will be executed in this source directory.
 
@@ -183,15 +183,15 @@ The uwsgiconfig.py script builds uwsgi on multiple threads. For some reason on m
 
 .. code:: bash
 
-	~/uwsgi-2.0.3$ export CPUCOUNT=1
-	~/uwsgi-2.0.3$ python uwsgiconfig.py --build $PLUGIN_DIR/my_uwsgi_lib.ini
-	~/uwsgi-2.0.3$ mv uwsgi.exe libuwsgi.a
+    ~/uwsgi-2.0.3$ export CPUCOUNT=1
+    ~/uwsgi-2.0.3$ python uwsgiconfig.py --build $PLUGIN_DIR/my_uwsgi_lib.ini
+    ~/uwsgi-2.0.3$ mv uwsgi.exe libuwsgi.a
 
 Note that these steps are needed only on cygwin. Now let's build uwsgi:
 
 .. code:: bash
 
-	~/uwsgi-2.0.3$ python uwsgiconfig.py --build $PLUGIN_DIR/my_uwsgi.ini
+    ~/uwsgi-2.0.3$ python uwsgiconfig.py --build $PLUGIN_DIR/my_uwsgi.ini
 
 The above command produces uwsgi on linux and uwsgi.exe on cygwin. We have used custom ini files to build a minimal uwsgi that serves only as a fastrouter that loads our fastrouter logic plugin. The use of this ini file results in an uwsgi that doesn't have dependencies on libs like ssl, pcre and it includes only the bare minimum set of uwsgi plugins needed for the fastrouter. From now you don't need the uwsgi sources (you can even delete them if you want). The only things we have to keep is the uwsgi binary (and libuwsgi.a on cygwin) because building an external uwsgi plugin can be done by running uwsgi with the --build-plugin parameter and the uwsgi binary has an embedded copies of the uwsgiconfig.py and uwsgi.h files needed for a plugin build.
 
@@ -200,13 +200,13 @@ Building our plugin:
 
 .. code:: bash
 
-	~/uwsgi-2.0.3$ ./uwsgi --build-plugin $PLUGIN_DIR
+    ~/uwsgi-2.0.3$ ./uwsgi --build-plugin $PLUGIN_DIR
 
 Now if you are lucky you have both the uwsgi binary and the my_router_config_plugin.so plugin in the current directory. Building the plugin by executing the uwsgi binary is very useful because this way it automatically uses the same uwsgiconfig.py and uwsgi.h files and the same CFLAGS that were used to build the uwsgi binary itself. Unfortunately older uwsgi releases don't have the --build-plugin commandline parameter and in that case you have to build the plugin with the uwsgiconfig.py script:
 
 .. code:: bash
 
-	~/uwsgi-2.0.3$ python uwsgiconfig.py --plugin $PLUGIN_DIR
+    ~/uwsgi-2.0.3$ python uwsgiconfig.py --plugin $PLUGIN_DIR
 
 If you have a newer uwsgi that supports the --build-plugin option then I recommend using that to build your plugin.
 
@@ -217,7 +217,7 @@ I assume that you more or less know about the usage/purpose of uwsgi fastrouter 
 
 .. code:: bash
 
-	~/uwsgi-2.0.3$ ./uwsgi --master --fastrouter 127.0.0.1:9000 --fastrouter-use-code-string 251:: --plugin my_router_config --my-router-cfg-file my_router_config_plugin.so
+    ~/uwsgi-2.0.3$ ./uwsgi --master --fastrouter 127.0.0.1:9000 --fastrouter-use-code-string 251:: --plugin my_router_config --my-router-cfg-file my_router_config_plugin.so
 
 The above command starts the fastrouter that listens on loopback 9000 for incoming requests and the --fastrouter-use-code-string commandline parameter instructs the fastrouter to ask plugin modifer=251 (our plugin) for the target gateway for each incoming request. I think the --plugin and --my-router-cfg-file commandline arguments speak for themselves...
 
@@ -234,11 +234,11 @@ We started the fastrouter with the "--fastrouter 127.0.0.1:9000 --fastrouter-use
 
 ::
 
-	location /test {
-		include		uwsgi_params;
-		uwsgi_pass	127.0.0.1:9000;
-		uwsgi_param UWSGI_FASTROUTER_KEY $request_uri;
-	}
+    location /test {
+        include         uwsgi_params;
+        uwsgi_pass      127.0.0.1:9000;
+        uwsgi_param     UWSGI_FASTROUTER_KEY    $request_uri;
+    }
 
 So nginx will route all requests coming to url path /test to the fastrouter by setting UWSGI_FASTROUTER_KEY (basically a "cgi variable") to a user defined string. UWSGI_FASTROUTER_KEY can be anything, you have put something into it that you can use in your plugin to decide where (which gateway) to send the request. In this case I've decided to send the $request_uri to my plugin but you can really put there anything you want. If you don't specify the UWSGI_FASTROUTER_KEY in the nginx config then the fastrouter will use something else instead of it as the fastrouter key (but I think specifiying the UWSGI_FASTROUTER_KEY is highly recommended), more on that in the `Notes section of the fastrouter docs`_.
 
@@ -248,7 +248,7 @@ With the above fastrouter + nginx config when the fastrouter receives a request 
 
 .. code:: c++
 
-	char* CodeString(char *id, char *code, char *function, char *key, uint16_t keylen);
+    char* CodeString(char *id, char *code, char *function, char *key, uint16_t keylen);
 
 When the fastrouter calls your ``CodeString()`` function the values of the function parameters are the following:
 
@@ -262,4 +262,3 @@ Victory!!!
 ==========
 
 We have reached the end of the tutorial. Now you know how to handle in C/C++ a complex routing problem where Darth Vader wears a t-shirt with your face and you have also learnt how to build a C++ plugin using the uwsgi build system.
-
