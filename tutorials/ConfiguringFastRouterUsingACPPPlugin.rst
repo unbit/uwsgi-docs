@@ -66,7 +66,7 @@ Here is the structure and contents of my ``$PLUGIN_DIR``:
         uwsgi_log("+++++ %s config_file=%s\n", __FUNCTION__, options.config_file);
         if (!options.config_file)
         {
-            uwsgi_log("The my-router-cfg-file commandline argument is mandatory!\n");
+            uwsgi_log("The --my-router-cfg-file commandline argument is mandatory!\n");
             exit(1);
         }
         FILE* f = fopen(options.config_file, "r");
@@ -217,7 +217,7 @@ I assume that you more or less know about the usage/purpose of uwsgi fastrouter 
 
 .. code:: bash
 
-    ~/uwsgi-2.0.3$ ./uwsgi --master --fastrouter 127.0.0.1:9000 --fastrouter-use-code-string 251:: --plugin my_router_config --my-router-cfg-file my_router_config_plugin.so
+    ~/uwsgi-2.0.3$ ./uwsgi --master --fastrouter 127.0.0.1:9000 --fastrouter-use-code-string 251:: --plugin my_router_config --my-router-cfg-file my_config.cfg
 
 The above command starts the fastrouter that listens on loopback 9000 for incoming requests and the --fastrouter-use-code-string commandline parameter instructs the fastrouter to ask plugin modifer=251 (our plugin) for the target gateway for each incoming request. I think the --plugin and --my-router-cfg-file commandline arguments speak for themselves...
 
