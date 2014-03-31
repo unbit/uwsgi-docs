@@ -16,6 +16,8 @@ Setup 1: using the uWSGI cache for storing SSL sessions
 
 You can configure the SSL subsystem of uWSGI to use the shared cache. The SSL sessions will time out according to the expiry value of the cache item. This way the cache sweeper thread (managed by the master) will destroy sessions in the cache.
 
+.. important:: Order of options is important. ``cache`` options must be specified BEFORE ``ssl-sessions-use-cache`` and ``https`` options.
+
 .. code-block:: ini
 
    [uwsgi]
