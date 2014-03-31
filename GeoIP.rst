@@ -15,18 +15,18 @@ The country database give access to the following variables:
 while the city one offers a lot more at the cost of increased memory usage for
 storing the database
 
-* ``${geoip[continent]}
-* ``${geoip[country_code]}
-* ``${geoip[country_code3]}
-* ``${geoip[country_name]}
-* ``${geoip[region]}
-* ``${geoip[region_name]}
-* ``${geoip[city]}
-* ``${geoip[postal_code]}
-* ``${geoip[latitude]} (``${geoip[lat]}``)
-* ``${geoip[longitude]} (``${geoip[lon]}``)
-* ``${geoip[dma]}
-* ``${geoip[area]}
+* ``${geoip[continent]}``
+* ``${geoip[country_code]}``
+* ``${geoip[country_code3]}``
+* ``${geoip[country_name]}``
+* ``${geoip[region]}``
+* ``${geoip[region_name]}``
+* ``${geoip[city]}``
+* ``${geoip[postal_code]}``
+* ``${geoip[latitude]}`` (``${geoip[lat]}``)
+* ``${geoip[longitude]}`` (``${geoip[lon]}``)
+* ``${geoip[dma]}``
+* ``${geoip[area]}``
 
 Enabling geoip lookup
 *********************
