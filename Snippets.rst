@@ -55,6 +55,18 @@ and this for /admin
    route-if-not = equal:${HTTPS};on redirect-permanent:https://${HTTP_HOST}${REQUEST_URI}
    
    
+Eventually you may want to send HSTS (HTTP Strict Transport Security) header too
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   ; load router_redirect plugin (compiled in by default in monolithic profiles)
+   plugins = router_redirect
+   route-if-not = equal:${HTTPS};on redirect-permanent:https://${HTTP_HOST}${REQUEST_URI}
+   route-if = equal:${HTTPS};on addheader:Strict-Transport-Security: max-age=31536000
+   
+   
 Python Auto-reloading (DEVELOPMENT-ONLY !!!)
 --------------------------------------------
 
