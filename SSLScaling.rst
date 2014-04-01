@@ -179,13 +179,15 @@ Using named caches
 
 Starting from uWSGI 1.9 you can have multiple caches. This is a setup with 2 nodes using a new generation cache named "ssl".
 
+``cache2`` option allows also to set custom key size, since SSL session keys are not long we can use it to optimize memory usage. In this example we use 128 byte key size limit, it should be enough for session IDs.
+
 .. code-block:: ini
 
    [uwsgi]
    ; spawn the master process (it will run the cache sweeper thread)
    master = true
    ; store up to 20k sessions
-   cache2 = name=ssl,items=20000,blocksize=4096,node=127.0.0.1:4242,udp=127.0.0.1:4141
+   cache2 = name=ssl,items=20000,keysize=128,blocksize=4096,node=127.0.0.1:4242,udp=127.0.0.1:4141
    ; force the SSL subsystem to use the uWSGI cache as session storage
    ssl-sessions-use-cache = ssl
    ; set sessions timeout (in seconds)
