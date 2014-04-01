@@ -180,6 +180,11 @@ every cache item modification.  Enable it if you want to track this value or if
 other features depend on it. This value will then be accessible via the stats
 socket.
 
+ignore_full
+^^^^^^^^^^^
+
+By default uWSGI will print warning message on every cache set operation if the cache is full. To disable this warning set this option. Available since 2.0.4
+
 Accessing the cache from your applications using the cache api
 **************************************************************
 
