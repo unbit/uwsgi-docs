@@ -256,7 +256,7 @@ def core_options():
         s.o("pidfile2", str, "create pidfile (after privileges drop)")
         s.o("chroot", str, "chroot() to the specified directory")
         s.o("uid", "username|uid", "setuid to the specified user/uid")
-        s.o("gid", "groupname|gid", "setgid to the specified grooup/gid")
+        s.o("gid", "groupname|gid", "setgid to the specified group/gid")
         s.o("no-initgroups", True, "disable additional groups set via initgroups()")
         s.o("cap", str, "set process capability")
         s.o("unshare", str, "unshare() part of the processes and put it in a new namespace")
