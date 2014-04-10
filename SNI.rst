@@ -89,7 +89,7 @@ The https/spdy router and the sslrouter can dinamically load certificates and ke
 
 .. code-block:: sh
 
-   uwsgi --subscribe2 key=mydomain.it,socket=0,sni_key=/foo/bar.key,sni_cert=/foo/bar.crt
+   uwsgi --subscribe2 key=mydomain.it,socket=0,sni_key=/foo/bar.key,sni_crt=/foo/bar.crt
    
    
 the router will create a new SSL context based on the specified files (be sure the router can reach them) and will destroy it when the last node
