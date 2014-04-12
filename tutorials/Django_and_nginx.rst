@@ -132,7 +132,8 @@ Create a file called ``test.py``::
     # test.py
     def application(env, start_response):
         start_response('200 OK', [('Content-Type','text/html')])
-        return "Hello World"
+        return [b"Hello World"] # python3
+	#return ["Hello World"] # python2
 
 .. note:: Take into account that Python 3 requires ``bytes()``.
 
