@@ -32,7 +32,7 @@ name of the requested host in a specified directory.
 
 .. code-block:: sh
 
-    uwsgi --fastrouter 127.0.0.1:3017 --fastrouter-use-base /tmp/sockets
+    uwsgi --fastrouter 127.0.0.1:3017 --fastrouter-use-base /tmp/sockets/
 
 If you receive a request for ``example.com`` the fastrouter will forward the
 request to ``/tmp/sockets/example.com``.
