@@ -138,8 +138,8 @@ setting a new configuration variable of your own devising.
   [uwsgi]
   ; These are placeholders...
   my_funny_domain = uwsgi.it
-  set-ph = max_customer_address_space = 64
-  set-placeholder = customers_base_dir = /var/www
+  set-ph = max_customer_address_space=64
+  set-placeholder = customers_base_dir=/var/www
   ; And these aren't.
   socket = /tmp/sockets/%(my_funny_domain).sock
   chdir = %(customers_base_dir)/%(my_funny_domain)
