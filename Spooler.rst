@@ -57,23 +57,24 @@ Spool dirs over NFS are allowed, but if you do not have proper NFS locking in pl
 Setting the spooler function/callable
 -------------------------------------
 
-To have a fully operational spooler you need to define a "spooler function/callable".
+Because there are dozens of different ways to enqueue spooler requests, we're going to cover receiving the requests first. 
 
-Independently by the the number of configured spoolers, the same function will be executed. It is up to the developer
-to instruct it to recognize tasks.
+To have a fully operational spooler you need to define a "spooler function/callable" to process the requests. 
+
+Independently by the the number of configured spoolers, the same function will be executed. It is up to the developer to instruct it to recognize tasks. If you don't process the requests, the directory will just fill up.
 
 This function must returns an integer value:
 
 -2 (SPOOL_OK) the task has been completed, the spool file will be removed
 
--1 (SPOOL_RETRY) something is temporarely wrong, the task will be retried at the next spooler iteration
+-1 (SPOOL_RETRY) something is temporarily wrong, the task will be retried at the next spooler iteration
 
 0 (SPOOL_IGNORE) ignore this task, if multiple languages are loaded in the instance all of them will fight for managing the task. This return values allows you to skip a task in specific languages.
 
 any other value will be mapped as -1 (retry)
 
 
-Each language plugin has its way to define the spooler function:
+Each language plugin has its own way to define the spooler function:
 
 Perl:
 
@@ -86,6 +87,9 @@ Perl:
            return uwsgi::SPOOL_OK;
        }
    );
+   # hint - uwsgi:: is available when running using perl-exec= or psgi= 
+   # no don't need to use "use" or "require" it, it's already there.
+   
    
 Python:
 
@@ -115,13 +119,19 @@ Ruby:
 Spooler function must be defined in the master process, so if you are in lazy-apps mode, be sure to place it in a file that is parsed
 early in the server setup. (in python you can use --shared-import, in ruby --shared-require, in perl --perl-exec).
 
-Some language plugin could have support for importing code directly in the spooler. Currently only python supports it with the ``--spooler-import`` option.
+Python has support for importing code directly in the spooler with the ``--spooler-python-import`` option.
 
 
 Enqueueing requests to a spooler
 --------------------------------
 
-The 'spool' api function allows you to enqueue a hash/dictionary into the spooler:
+The 'spool' api function allows you to enqueue a hash/dictionary into the spooler specified by the instance:
+
+.. code-block:: ini
+   # add this to your instance .ini file
+   spooler=/path/to/spooler
+   # that's it! now use one of the code blocks below to send requests
+   # note: you'll still need to register some sort of receiving function (specified above)
 
 .. code-block:: py
 
@@ -135,9 +145,10 @@ The 'spool' api function allows you to enqueue a hash/dictionary into the spoole
 
 .. code-block:: pl
 
-   # perl
+   # perl 
    uwsgi::spool({foo => 'bar', name => 'Kratos', surname => 'the same of Zeus'})
-   
+   # the uwsgi:: functions are available when executed within psgi or perl-exec
+
 .. code-block:: rb
 
    # ruby
@@ -161,15 +172,15 @@ spool arguments must be strings (or bytes for python3), the api function will tr
 External spoolers
 -----------------
 
-You could want to implement a centralized spooler for your server.
+You could want to implement a centralized spooler for your server across many uwsgi instance.
 
-A single instance will manage all of the tasks enqueued by multiple uWSGI servers.
+A single instance will manage all of the tasks enqueued by multiple uWSGI instance.
 
 To accomplish this setup each uWSGI instance has to know which spooler directories are valid (consider it a form of security)
 
-To add an external spooler directory use the ``--spooler-external <directory>`` option.
+To add an external spooler directory use the ``--spooler-external <directory>`` option, then add to it using the spool function.
 
-The spooler locking subsystem will avoid mess
+The spooler locking subsystem will avoid mess.
 
 Networked spoolers
 ------------------
@@ -178,21 +189,23 @@ You can even enqueue tasks over the network (be sure the 'spooler' plugin is loa
 
 As we have already seen, spooler packets have modifier1 17, you can directly send those packets to a uwsgi socket of an instance with a spooler enabled.
 
-We will use the perl Net::uwsgi module (exposing a handy uwsgi_spool function) in this example (feel free to use whatever you want):
+We will use the perl Net::uwsgi module (exposing a handy uwsgi_spool function) in this example (but feel free to use whatever you want to write the spool files):
 
 .. code-block:: perl
 
+   #!/usr/bin/perl
    use Net::uwsgi;
    uwsgi_spool('localhost:3031', {'test'=>'test001','argh'=>'boh','foo'=>'bar'});
-   uwsgi_spool('/path/to/socket', {'test'=>'test001','argh'=>'boh','foo'=>'bar'});
+   uwsgi_spool('/path/to/my.sock', {'test'=>'test001','argh'=>'boh','foo'=>'bar'});
    
 .. code-block:: ini
 
    [uwsgi]
-   socket = /var/run/uwsgi-spooler.sock
+   socket = /path/to/my.sock
    socket = localhost:3031
    spooler = /path/for/files
    spooler-processes=1
+   perl-exec = /path/for/script-which-registers-spooler-sub.pl  
    ...
    
 (thanks brianhorakh for the example)
@@ -259,6 +272,9 @@ set harakiri timeout for spooler tasks, see [harakiri] for more information.
 
 ``spooler-frequency=##``
 set the spooler frequency
+
+``spooler-python-import=???``
+import a python module directly in the spooler
 
 Tips and tricks
 ---------------
