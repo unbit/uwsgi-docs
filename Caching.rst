@@ -185,6 +185,15 @@ ignore_full
 
 By default uWSGI will print warning message on every cache set operation if the cache is full. To disable this warning set this option. Available since 2.0.4
 
+purge_lru
+^^^^^^^^^
+
+This option allows the caching framework to evict Least Recently Used (LRU)
+item when you try to add new item to cache storage that is full. The ``expires``
+argument described below will be ignored. An item is considered used when
+it's accessed, added and updated by cache_get(), cache_set() and
+cache_update(); whereas the existence check by cache_exists() is not.
+
 Accessing the cache from your applications using the cache api
 **************************************************************
 
@@ -206,8 +215,8 @@ both strings in no specific encoding, as internally the cache values and keys
 are simple binary blobs.
 
 The ``expires`` argument (default to 0 for disabled) is the number of seconds
-after the object is no more valid (and will be removed by the cache sweeper,
-see below)
+after the object is no more valid (and will be removed by the cache sweeper
+when ``purge_lru`` is not set, see below)
 
 The ``cache`` argument is the so called "magic identifier". Its syntax is
 ``cache[@node]``. 
@@ -225,9 +234,10 @@ threads/greenthreads friendly.
 The Cache sweeper thread
 ************************
 
-When at least one cache is configured and the master is enabled a thread named
-"the cache sweeper" is started.  Its main purpose is deleting expired keys from
-the cache. So, if you want auto-expiring you need to enable the master.
+When at least one cache is configured without ``purge_lru`` and the master
+is enabled a thread named "the cache sweeper" is started.  Its main purpose
+is deleting expired keys from the cache. So, if you want auto-expiring you
+need to enable the master.
 
 
 Web caching
