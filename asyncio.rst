@@ -185,3 +185,14 @@ and a more advanced example using the aiohttp module (rememebr to pip-install it
        myself.parent.switch()
        # this time we use yield, just for fun...
        yield bytes(future.result())
+
+Status
+======
+
+The plugin is considered Experimental (currently the implications of asyncio with WSGI are unclear). In the future it could be built by default
+when >= python3.4 is detected
+
+While technically possible (more or less) mapping a WSGI callable to a python3 coroutine is not expected.
+
+The plugin registers hooks for non blocking reads/writes and timers. This means you can use the uWSGI api with asyncio automagically. Check the https://github.com/unbit/uwsgi/blob/master/tests/websockets_chat_asyncio.py
+example
