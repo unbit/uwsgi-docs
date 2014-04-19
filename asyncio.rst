@@ -108,10 +108,28 @@ And we can go even further abusing the uWSGI support for WSGI generators:
 Another example: Futures and coroutines
 =======================================
 
-.. code-block:: sh
+You can spawn coroutines from your WSGI callable using the asyncio.Task facility:
 
-   CFLAGS="-I/usr/local/include/python3.4" make PYTHON=python3.4 asyncio
+.. code-block:: python
 
-Callback example
-================
+   import asyncio
+   import greenlet
+
+   @asyncio.coroutine
+   def sleeping(me):
+       yield from asyncio.sleep(2)
+       # back to callable
+       me.switch()
+
+
+   def application(environ, start_response):
+       start_response('200 OK', [('Content-Type','text/html')])
+       myself = greenlet.getcurrent()
+       # enqueue the coroutine
+       asyncio.Task(sleeping(myself))
+       # suspend to event loop
+       myself.parent.switch()
+       # back from event loop
+       return [b"Hello World"]
+
 
