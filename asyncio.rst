@@ -23,8 +23,12 @@ in the main greenlet (and eventually they can swithc back control to a specific 
 
 Coroutines are more complex, they are pretty near to a greenlet, but internally are really different. Your WSGI callable can spawn coroutines.
 
-Futures and coroutines
-======================
+The first example: Futures and coroutines
+=========================================
+
+.. code-block:: sh
+
+   CFLAGS="-I/usr/local/include/python3.4" make PYTHON=python3.4 asyncio
 
 Callback example
 ================
