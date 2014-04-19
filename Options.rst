@@ -474,6 +474,8 @@ Force the master to reload a worker if its rss memory is higher than specified m
 
 Run each worker in prethreaded mode with the specified number of threads per worker.
 
+Do not use with ``gevent``.
+
 .. _OptionThreadStacksize:
 
 ``thread-stacksize``, ``threads-stacksize``, ``thread-stack-size``, ``threads-stack-size``
