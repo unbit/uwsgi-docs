@@ -157,3 +157,31 @@ thanks to Future we can even get results back from coroutines
        myself.parent.switch()
        # back from event loop
        return [future.result()]
+       
+       
+and a more advanced example using the aiohttp module (rememebr to pip-install it)
+
+.. code-block:: python
+
+   import asyncio
+   import greenlet
+   import aiohttp
+
+   @asyncio.coroutine
+   def sleeping(me, f):
+       yield from asyncio.sleep(2)
+       response = yield from aiohttp.request('GET', 'http://python.org')
+       body = yield from response.read_and_close()
+       # body is a byterray !
+       f.set_result(body)
+       me.switch()
+
+
+   def application(environ, start_response):
+       start_response('200 OK', [('Content-Type','text/html')])
+       myself = greenlet.getcurrent()
+       future = asyncio.Future()
+       asyncio.Task(sleeping(myself, future))
+       myself.parent.switch()
+       # this time we use yield, just for fun...
+       yield bytes(future.result())
