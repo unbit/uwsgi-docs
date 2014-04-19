@@ -32,6 +32,12 @@ An 'asyncio' build profile is available in the official source tree (it will bui
 
    CFLAGS="-I/usr/local/include/python3.4" make PYTHON=python3.4 asyncio
    
+or
+
+.. code-block:: sh
+
+   CFLAGS="-I/usr/local/include/python3.4" UWSGI_PROFILE="asyncio" pip3 install uwsgi
+   
 be sure to use python3.4 as the python version (or anything higher) and to add the greenlet include directory to CFLAGS (this could be not needed if you installed greenlet support from distro packages)
 
 
