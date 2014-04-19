@@ -132,4 +132,28 @@ You can spawn coroutines from your WSGI callable using the asyncio.Task facility
        # back from event loop
        return [b"Hello World"]
 
+thanks to Future we can even get results back from coroutines
 
+.. code-block:: python
+
+   import asyncio
+   import greenlet
+
+   @asyncio.coroutine
+   def sleeping(me, f):
+       yield from asyncio.sleep(2)
+       f.set_result(b"Hello World")
+       # back to callable
+       me.switch()
+
+
+   def application(environ, start_response):
+       start_response('200 OK', [('Content-Type','text/html')])
+       myself = greenlet.getcurrent()
+       future = asyncio.Future()
+       # enqueue the coroutine with a Future
+       asyncio.Task(sleeping(myself, future))
+       # suspend to event loop
+       myself.parent.switch()
+       # back from event loop
+       return [future.result()]
