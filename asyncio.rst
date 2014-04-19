@@ -21,7 +21,7 @@ When starting playing with asyncio you may get confused between callback and cor
 The first ones are executed when a specific event raises (for example when a file descriptor is ready for read). They are basically standard functions executed
 in the main greenlet (and eventually they can swithc back control to a specific uWSGI core).
 
-Coroutines are more complex, they are pretty near to a greenlet, but internally are really different. Your WSGI callable can spawn coroutines.
+Coroutines are more complex, they are pretty near to a greenlet, but internally they work on python frames instead of c stacks. From a python programmer point of view, coroutines are very special generators. Your WSGI callable can spawn coroutines.
 
 The first example: Futures and coroutines
 =========================================
