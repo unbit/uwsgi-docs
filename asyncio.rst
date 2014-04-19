@@ -56,11 +56,13 @@ Once called, the application function will register a callable in the asyncio ev
 
 After two seconds the event loop will run the function.
 
-You can run the example with
+You can run the example with:
 
 .. code-block:: sh
 
    uwsgi --asyncio 10 --http-socket :9090 --greenlet --wsgi-file app.py
+   
+(asyncio is a shortcut enabling 10 uWSGI async cores, so you can manage up to 10 concurrent requests with a single process)
    
 But how to wait for a callback completion in the WSGI callable ? We can suspend our WSGI function using greenlets (remember our WSGI clalable is wrapped on a greenlet)
 
