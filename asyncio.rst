@@ -1,5 +1,5 @@
-The asyncio loop engine (CPython >= 3.4)
-========================================
+The asyncio loop engine (CPython >= 3.4, uWSGI >= 2.0.4)
+========================================================
 
 Status: EXPERIMENTAL, lot of implications, expecially in respect to the WSGI standard
 
