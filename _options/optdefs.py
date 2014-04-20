@@ -108,7 +108,7 @@ def core_options():
         s.o("reload-on-rss", int, "reload a worker if its physical unshared memory is higher than the specified value (in megabytes)")
         s.o("evil-reload-on-as", int, "force the master to reload a worker if its address space is higher than specified megabytes (in megabytes)")
         s.o("evil-reload-on-rss", int, "force the master to reload a worker if its rss memory is higher than specified megabytes (in megabytes)")
-        s.o("threads", int, "run each worker in prethreaded mode with the specified number of threads per worker")
+        s.o("threads", int, "Run each worker in prethreaded mode with the specified number of threads per worker.\n\nDo not use with ``gevent``.")
         s.o(("thread-stacksize", "threads-stacksize", "thread-stack-size", "threads-stack-size"), int, "set threads stacksize")
         s.o("check-interval", int, "set the interval (in seconds) of master checks", default=1, help="The master process makes a scan of subprocesses, etc. every N seconds. You can increase this time if you need to, but it's DISCOURAGED.")
 
