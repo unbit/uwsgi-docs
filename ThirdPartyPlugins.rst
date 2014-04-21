@@ -1,118 +1,97 @@
 uWSGI third party plugins
 =========================
 
-The following plugin (unless differently specified) are not commercially supported.
+The following plugins (unless otherwise specified) are not commercially supported.
 
-Feel free to add your plugin to the list sending a pull request
+Feel free to add your plugin to the list by sending a pull request to the ``uwsgi-docs`` project.
 
 uwsgi-capture
 *************
 
-License: MIT
+* License: MIT
+* Author: unbit
+* Website: https://github.com/unbit/uwsgi-capture
 
-Author: unbit
+Allows gathering video4linux frames in a sharedarea.
 
-allows gathering video4linux frames in a sharedarea
-
-Website: https://github.com/unbit/uwsgi-capture
 
 uwsgi-wstcp
 ***********
 
-License: MIT
+* License: MIT
+* Author: unbit
+* Website: https://github.com/unbit/uwsgi-wstcp
 
-Author: unbit
-
-maps websockets to tcp connections (useful for proxying via javascript)
-
-Website: https://github.com/unbit/uwsgi-wstcp
+Maps websockets to TCP connections (useful for proxying via javascript).
 
 uwsgi-pgnotify
 **************
 
-License: MIT
+* License: MIT
+* Author: unbit
+* Website: https://github.com/unbit/uwsgi-pgnotify
 
-Author: unbit
-
-integrate postgresql notification system with uWSGI signal framework
-
-Website: https://github.com/unbit/uwsgi-pgnotify
+Integrates the PostgreSQL notification system with the uWSGI signal framework.
 
 uwsgi-quota
 ***********
 
-License: MIT
+* License: MIT
+* Author: unbit
+* Website: https://github.com/unbit/uwsgi-quota
 
-Author: unbit
-
-allows to set and monitor filesystem quota
-
-Website: https://github.com/unbit/uwsgi-quota
-
+Allows to set and monitor filesystem quotas.
 
 uwsgi-eventfd
 *************
 
-License: MIT
+* License: MIT
+* Author: unbit
+* Website: https://github.com/unbit/uwsgi-eventfd
 
-Author: unbit
-
-allows to monitor eventfd() objects (like events sent by the cgroup system)
-
-Website: https://github.com/unbit/uwsgi-eventfd
-
+Allows to monitor eventfd() objects (like events sent by the cgroup system).
 
 uwsgi-console-broadcast
 ***********************
 
-License: MIT
+* License: MIT
+* Author: unbit
+* Website: https://github.com/unbit/uwsgi-console-broadcast
 
-Author: unbit
-
-exposes hooks for sending broadcast messages to users terminals
-
-Website: https://github.com/unbit/uwsgi-console-broadcast
+Exposes hooks for sending broadcast messages to user terminals.
 
 uwsgi-strophe
 *************
 
-License: MIT
+* License: MIT
+* Author: unbit
+* Website: https://github.com/unbit/uwsgi-strophe
 
-Author: unbit
-
-integration with the libstrophe library (xmpp)
-
-Website: https://github.com/unbit/uwsgi-strophe
+Integration with the libstrophe library (xmpp).
 
 uwsgi-alarm-chain
 *****************
 
-License: MIT
+* License: MIT
+* Author: unbit
+* Website: https://github.com/unbit/uwsgi-alarm-chain
 
-Author: unbit
-
-virtual alarm handler combining multiple alarms in a single one
-
-Website: https://github.com/unbit/uwsgi-alarm-chain
+Virtual alarm handler combining multiple alarms into a single one.
 
 uwsgi-netlink
 *************
 
-License: MIT
+* License: MIT
+* Author: unbit
+* Website: https://github.com/unbit/uwsgi-netlink
 
-Author: unbit
-
-integration with the linux netlink subsystem
-
-Website: https://github.com/unbit/uwsgi-netlink
+Integration with the Linux netlink subsystem.
 
 uwsgi-pushover
 **************
 
-License: MIT
+* License: MIT
+* Author: unbit
+* Website: https://github.com/unbit/uwsgi-pushover
 
-Author: unbit
-
-integration with the pushover.net services
-
-Website: https://github.com/unbit/uwsgi-pushover
+Integration with Pushover.net services.

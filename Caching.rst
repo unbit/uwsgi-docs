@@ -28,11 +28,11 @@ this will create a cache named "mycache" with a maximum of 100 items. Each item 
 A sad/weird/strange/bad note about "the maximum number of items"
 ****************************************************************
 
-If you start with a 100-items cache you will suddenly note that the true maximum number of items you can use is indeed 99.
+If you start with a 100 item cache you will suddenly note that the true maximum number of items you can use is indeed 99.
 
-This is because the first item of the cache is always used as "NULL/None/undef" item internally.
+This is because the first item of the cache is always internally used as "NULL/None/undef" item.
 
-Remember it, when you start planning your cache configuration
+Remember this when you start planning your cache configuration.
 
 
 Configuring the cache (how it works)
@@ -49,7 +49,7 @@ value.
 Single block (faster) vs. bitmaps (slower)
 ******************************************
 
-.. note:: bitmap mode is considered production ready starting from uWSGI 2.0.2
+.. warning:: Bitmap mode is considered production ready only from uWSGI 2.0.2! (That is, it was buggy before that.)
 
 In the standard ("single block") configuration a key can only map to a single
 block. Thus if you have a cache block size of 64k your items can be at most

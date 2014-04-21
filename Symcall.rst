@@ -1,18 +1,18 @@
 The Symcall plugin
 ==================
 
-The symcall plugin (modifier 18) is a commodity plugin allowing you to write native uWSGI request handlers without the need of developing a full uWSGI plugin.
+The symcall plugin (modifier 18) is a convenience plugin allowing you to write native uWSGI request handlers without the need of developing a full uWSGI plugin.
 
 You tell it which symbol to load on startup and then it will run it at every request.
 
 .. note::
 
-   The "symcall" plugin is builtin by default in standard build profiles
+   The "symcall" plugin is built-in by default in standard build profiles.
 
 Step 1: preparing the environment
 *********************************
 
-The uwsgi binary by itself allows you to develop plugins and library without the need of external development packages or headers.
+The uWSGI binary by itself allows you to develop plugins and libraries without the need of external development packages or headers.
 
 The first step is getting the ``uwsgi.h`` C/C++ header:
 
@@ -20,12 +20,12 @@ The first step is getting the ``uwsgi.h`` C/C++ header:
 
    uwsgi --dot-h > uwsgi.h
    
-Now, in the current directory, we have uwsgi.h ready to be included.
+Now, in the current directory, we have a fresh uwsgi.h ready to be included.
 
 Step 2: our first request handler:
 **********************************
 
-Our C handler will print the REMOTE_ADDR value with a couple of HTTP headers
+Our C handler will print the REMOTE_ADDR value with a couple of HTTP headers.
 
 (call it mysym.c or whatever you want/need)
 
@@ -60,9 +60,9 @@ Our C handler will print the REMOTE_ADDR value with a couple of HTTP headers
 Step 3: building our code as a shared library
 *********************************************
 
-The uwsgi.h file is an ifdef hell.
+The uwsgi.h file is an ifdef hell (so it's probably better not to look at it too closely).
 
-Fortunately the uwsgi binary exposes all of the required CFLAGS via the --cflags option
+Fortunately the uwsgi binary exposes all of the required CFLAGS via the --cflags option.
 
 We can build our library in one shot:
 
@@ -79,17 +79,17 @@ Final step: map the symcall plugin to the ``mysym_function`` symbol
 
    uwsgi --dlopen ./mysym.so --symcall mysym_function --http-socket :9090 --http-socket-modifier1 18
    
-with ``--dlopen`` we load a shared library in the uWSGI process address space.
+With ``--dlopen`` we load a shared library in the uWSGI process address space.
 
-the ``--symcall`` option allows us to specify which symbol to call when modifier1 18 is in place
+The ``--symcall`` option allows us to specify which symbol to call when modifier1 18 is in place
 
-we bind it to http socket 9090 forcing the modifier1 18
+We bind the instance to HTTP socket 9090 forcing modifier1 18.
 
 
 Hooks and symcall unleashed: a TCL handler
 ******************************************
 
-We want to write a request handler running the following tcl script (foo.tcl) every time:
+We want to write a request handler running the following TCL script (foo.tcl) every time:
 
 .. code-block:: tcl
 
@@ -100,9 +100,9 @@ We want to write a request handler running the following tcl script (foo.tcl) ev
    }
    
    
-We will define a function for initializing the tcl interpreter and parsing the script. This function will be called on startup soon after privileges drop.
+We will define a function for initializing the TCL interpreter and parsing the script. This function will be called on startup soon after privileges drop.
 
-Finally we define the request handler invoking the tcl proc and passign args to it
+Finally we define the request handler invoking the TCL proc and passign args to it
 
 .. code-block:: c
 
@@ -115,10 +115,10 @@ Finally we define the request handler invoking the tcl proc and passign args to 
 
    // the init function
    void ourtcl_init() {
-        // create the tcl interpreter
+        // create the TCL interpreter
         tcl_interp = Tcl_CreateInterp() ;
         if (!tcl_interp) {
-                uwsgi_log("unable to initialize tcl interpreter\n");
+                uwsgi_log("unable to initialize TCL interpreter\n");
                 exit(1);
         }
 
@@ -134,7 +134,7 @@ Finally we define the request handler invoking the tcl proc and passign args to 
                 exit(1);
         }
 
-        uwsgi_log("tcl engine initialized");
+        uwsgi_log("TCL engine initialized");
    }
 
    // the request handler
@@ -180,26 +180,26 @@ You can build it with:
 
    gcc -fPIC -shared -o ourtcl.so `./uwsgi/uwsgi --cflags` -I/usr/include/tcl ourtcl.c -ltcl
    
-(the only differences from the previous example are the -I and -l for adding tcl headers and lib)
+The only differences from the previous example are the -I and -l for adding the TCL headers and library.
 
-and finally run it with:
+So, let's run it with:
 
 .. code-block:: sh
 
    uwsgi --dlopen ./ourtcl.so --hook-as-user call:ourtcl_init --http-socket :9090 --symcall ourtcl_handler --http-socket-modifier1 18
    
-here the only new player is ``--hook-as-user call:ourtcl_init`` invoking the specified function after privileges drop
+Here the only new player is ``--hook-as-user call:ourtcl_init`` invoking the specified function after privileges drop.
 
 
 .. note::
 
-   this code is not thread safe, if you want to improve this tcl library to support multithreading, best approach will be having a tcl interpreter
+   This code is not thread safe! If you want to improve this tcl library to support multithreading, best approach will be having a TCL interpreter
    for each pthread instead of a global one.
    
 Considerations
 **************
 
-Since uWSGI 1.9.21, thanks to the ``--build-plugin`` option, developing uWSGI plugin became really easy.
+Since uWSGI 1.9.21, thanks to the ``--build-plugin`` option, developing uWSGI plugins has become really easy.
 
 The symcall plugin is for tiny libraries/pieces of code, for bigger needs consider developing a full plugin.
 

@@ -119,9 +119,9 @@ Obviously if someone manages to steal your private key he will be able to build 
 Using SSH keys
 **************
 
-They are generally loved by developers (well, more than classic pem files).
+SSH-formatted keys are generally loved by developers (well, more than classic PEM files).
 
-Both --subscribe-to and --subscribe2 (see below) support ssh private keys, while for the server part you have the encode the public key in pkcs8:
+Both --subscribe-to and --subscribe2 (see below) support SSH private keys, while for the server part you have the encode the public key in pkcs8:
 
 .. code-block:: sh
 
@@ -139,19 +139,12 @@ This is the keyval version of --subscribe-to. It supports more tricks and a (gen
    
 Supported fields are:
 
-``server`` the address of the subscription server
-
-``key`` the key to subscribe (generally the domain name)
-
-``addr`` the address to subscribe (the value of the item)
-
-``socket`` the socket number (zero-based), this is like 'addr' by take the uWSGI internal socket number
-
-``weight`` the load balancing value
-
-``modifier1`` and ``modifier2``
-
-``sign`` <algo>:<file> the signature for the secured system
-
-``check`` it takes a file as argument. If it exists the packet is sent, otherwise it is skipped
+* ``server`` the address of the subscription server
+* ``key`` the key to subscribe (generally the domain name)
+* ``addr`` the address to subscribe (the value of the item)
+* ``socket`` the socket number (zero-based), this is like 'addr' by take the uWSGI internal socket number
+* ``weight`` the load balancing value
+* ``modifier1`` and ``modifier2``
+* ``sign`` <algo>:<file> the signature for the secured system
+* ``check`` it takes a file as argument. If it exists the packet is sent, otherwise it is skipped
 

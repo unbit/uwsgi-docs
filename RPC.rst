@@ -9,9 +9,9 @@ That said, the uWSGI RPC subsystem shines with its performance and memory usage.
 
 Its biggest limit is in its "typeless" approach.
 
-RPC functions can take upto 254 args. Each argument has to be a string with a 16 bit max size (65535 bytes), while the return value has to be a string (this time 64bit, so no limit is in place)
+RPC functions can take up to 254 args. Each argument has to be a string with a 16 bit maximum size (65535 bytes), while the return value has to be a string (this time 64-bit, so that's not a practical limit).
 
-Warning: 64 bit response has been implemented only in uWSGI 1.9.20, older release have 16 bit response limit
+.. warning:: 64 bit response length has been implemented only in uWSGI 1.9.20, older releases have 16 bit response length limit.
 
 .. note:: RPC functions receive arguments in the form of binary strings, so every RPC exportable function must assume that each argument is a string. Every RPC function returns a binary string of 0 or more characters.
 

@@ -84,8 +84,9 @@ Quickstart
 Python 3
 --------
 
-Python 3 got updated WSGI spec PEP3333_.  It requires applications to respond
-with ``bytes``-instances, not strings, back to WSGI stack.
+The WSGI specification was updated for Python 3 as PEP3333_. 
+
+One major change is that applications are required to respond only with ``bytes`` instances, not (Unicode) strings, back to the WSGI stack.
 
 .. _pep3333: http://www.python.org/dev/peps/pep-3333/
 

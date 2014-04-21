@@ -188,10 +188,10 @@ and run uWSGI with 8 async cores...
 
 And just like that, you can manage 8 concurrent requests within a single worker!
 
-Lua coroutines do not work over C stacks (it means you cannot manage them with your C code), but thanks to :doc:`uGreen` (the uWSGI official coroutine/greenthread engine)
+Lua coroutines do not work over C stacks (meaning you cannot manage them with your C code), but thanks to :doc:`uGreen` (the uWSGI official coroutine/greenthread engine)
 you can bypass this limit.
 
-Thanks to uGreen you can use the uWSGI async api in lua apps and gain a very high level of concurrency:
+Thanks to uGreen you can use the uWSGI async API in your Lua apps and gain a very high level of concurrency.
 
 
 .. code-block:: lua

@@ -3,21 +3,21 @@ Quickstart for Python/WSGI applications
 
 This quickstart will show you how to deploy simple WSGI applications and common web frameworks.
 
-Python here is meant as CPython, for PyPy you need to use the specific plugin: :doc:`PyPy`, Jython support is on work.
+Python here is meant as CPython, for PyPy you need to use the specific plugin: :doc:`PyPy`, Jython support is under construction.
 
 .. note::
 
-    You need at least uWSGI 1.4 to follow the quickstart. Anything older is no more maintained and is highly buggy!
+    You need at least uWSGI 1.4 to follow the quickstart. Anything older is no longer maintained and is highly buggy!
 
 Installing uWSGI with Python support
 ************************************
 
 .. tip::
 
-    When you start learning uWSGI, try to build from official sources: using distro-supplied packages may bring you
-    a lot of headaches. When things are clear, you can use modular builds (like the ones available in your distro).
+    When you start learning uWSGI, try to build from official sources: using distribution-supplied packages may bring you
+    plenty of headaches. When things are clear, you can use modular builds (like the ones available in your distribution).
 
-uWSGI is a (big) C application, so you need a C compiler (like the gcc or clang) and Python development headers.
+uWSGI is a (big) C application, so you need a C compiler (like gcc or clang) and the Python development headers.
 
 On a Debian-based distro an
 
@@ -116,7 +116,7 @@ you to export uWSGI's internal statistics as JSON:
 
    uwsgi --http :9090 --wsgi-file foobar.py --master --processes 4 --threads 2 --stats 127.0.0.1:9191
 
-Make some request to your app and then telnet to the port 9191, you'll get a lot of funny information. You may want to use
+Make some request to your app and then telnet to the port 9191, you'll get lots of fun information. You may want to use
 "uwsgitop" (just ``pip install`` it), which is a top-like tool for monitoring instances.
 
 .. attention::
@@ -154,12 +154,11 @@ natively speak the uwsgi protocol.
 Automatically starting uWSGI on boot
 ************************************
 
-If you think about writing some init.d script for spawning uWSGI, just sit (and calm) down and check if your system offers you a better (more modern) approach.
+If you are thinking about firing up vi and writing an init.d script for spawning uWSGI, just sit (and calm) down and make sure your system doesn't offer a better (more modern) approach first.
 
-Each distribution has chosen its startup system (:doc:`Upstart<Upstart>`, :doc:`Systemd`, etc.) and there are tons of process managers available: Supervisor, god, Circus, etc.
+Each distribution has chosen a startup system (:doc:`Upstart<Upstart>`, :doc:`Systemd`...) and there are tons of process managers available (supervisord, god, monit, circus...).
 
-uWSGI will integrate very well with all of them (we hope), but if you plan to deploy a big number of apps check the uWSGI :doc:`Emperor<Emperor>`,
-it is the dream of every devops.
+uWSGI will integrate very well with all of them (we hope), but if you plan to deploy a big number of apps check the uWSGI :doc:`Emperor<Emperor>` - it is more or less the dream of every devops engineer.
 
 Deploying Django
 ****************
@@ -181,8 +180,8 @@ using an old (< 1.4) version of Django. In such a case you need a little bit mor
 
    uwsgi --socket 127.0.0.1:3031 --chdir /home/foobar/myproject/ --pythonpath .. --env DJANGO_SETTINGS_MODULE=myproject.settings --module "django.core.handlers.wsgi:WSGIHandler()" --processes 4 --threads 2 --stats 127.0.0.1:9191
 
-ARGH! What the hell is this?! Yes, you are right, dealing with such long command lines is basically unpractical (and foolish).
-uWSGI supports various configuration styles. In this quickstart we will use .ini files.
+Argh! What the hell is this?! Yes, you're right, you're right... dealing with such long command lines is unpractical, foolish and error-prone.
+Never fear! uWSGI supports various configuration styles. In this quickstart we will use .ini files.
 
 .. code-block:: ini
 
@@ -352,12 +351,11 @@ Offloading
 **********
 
 :doc:`OffloadSubsystem` allows you to free your workers as soon as possible when some specific pattern matches and can be delegated
-to a pure-C thread (sending static file from the filesystem, transferring data from the network to the client and so on).
+to a pure-c thread. Examples are sending static file from the file system, transferring data from the network to the client and so on.
 
-Offloading is very complex, but its use is transparent to the end user. If you want to try, just add ``--offload-threads <n>``, where ``<n>`` is the number of threads to spawn (one per CPU is a good value).
+Offloading is very complex, but its use is transparent to the end user. If you want to try just add ``--offload-threads <n>`` where <n> is the number of threads to spawn (1 per CPU is a good value to start with).
 
 When offload threads are enabled, all of the parts that can be optimized will be automatically detected.
-
 
 And now
 *******

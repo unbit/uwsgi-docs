@@ -17,10 +17,10 @@ uWSGI got full namespaces support in 1.9/2.0 development cycle.
 clone() vs unshare()
 --------------------
 
-To place the current process in  a new namespace you have two syscall: the venerable clone(), that will create a new process in the specified namespaces
-and the new unshare() that changes namespaces of the currently running process.
+To place the current process in a new namespace you have two syscalls: the venerable ``clone()``, that will create a new process in the specified namespace
+and the new kid on the block, ``unshare()``, that changes namespaces for the current running process.
 
-clone() can be used by the Emperor to directly spawn vassals in new namespaces:
+``clone()`` can be used by the Emperor to directly spawn vassals in new namespaces:
 
 .. code-block:: ini
 
@@ -28,9 +28,7 @@ clone() can be used by the Emperor to directly spawn vassals in new namespaces:
    emperor = /etc/uwsgi/vassals
    emperor-use-clone = fs,net,ipc,uts,pid
    
-will run each vassal with a dedicated filesystems, networking, sysv ipc and uts view
-
-while
+will run each vassal with a dedicated filesystem, networking, SysV IPC and UTS view.
 
 .. code-block:: ini
 
@@ -38,52 +36,42 @@ while
    unshare = ipc,uts
    ...
    
-will run the instance in the specified namespaces.
+will run the current instance in the specified namespaces.
 
-Some namespace subsystem requires additional steps (see below)
+Some namespace subsystems require additional steps for sane usage (see below).
 
 Supported namespaces
 --------------------
 
-``fs`` -> CLONE_NEWNS, filesystems
-
-``ipc`` -> CLONE_NEWIPC, sysv ipc
-
-``pid`` -> CLONE_NEWPID, when used with unshare() requires an additional fork(), use one of the --refork-* options
-
-``uts`` -> CLONE_NEWUTS, hostname
-
-``net`` -> CLONE_NEWNET, new networking, UNIX sockets from different namespaces are still usable, they are a good way for inter-namespaces communications
-
-``user`` -> CLONE_NEWUSER, still complex to manage (and has differences in behaviours between kernel versions) use with caution
-
+* ``fs`` -> CLONE_NEWNS, filesystems
+* ``ipc`` -> CLONE_NEWIPC, sysv ipc
+* ``pid`` -> CLONE_NEWPID, when used with unshare() requires an additional ``fork()``. Use one of the --refork-* options.
+* ``uts`` -> CLONE_NEWUTS, hostname
+* ``net`` -> CLONE_NEWNET, new networking, UNIX sockets from different namespaces are still usable, they are a good way for inter-namespaces communications
+* ``user`` -> CLONE_NEWUSER, still complex to manage (and has differences in behaviours between kernel versions) use with caution
 
 setns()
 -------
 
-In addition to creating new namespaces for a process you can attach to already running ones using the setns() call.
+In addition to creating new namespaces for a process you can attach to already running ones using the ``setns()`` call.
 
-Each process exposes its namespaces via the /proc/self/ns directory. The setns() syscall uses the filedescriptors obtained from the files in that directory
+Each process exposes its namespaces via the ``/proc/self/ns`` directory. The setns() syscall uses the file descriptors obtained from the files in that directory
 to attach to namespaces.
 
-As we have already seen, unix sockets are a good way to communicate between namespaces, the uWSGI setns() features works by createing a unix socket that receives requests
+As we have already seen, UNIX sockets are a good way to communicate between namespaces, the uWSGI ``setns()`` feature works by creating an UNIX socket that receives requests
 from processes wanting to join its namespace. As UNIX sockets allow file descriptors passing, the "client" only need to call setns() on them.
 
-``setns-socket <addr>`` exposes /proc/self/ns on the specified unix socket address
-
-``setns <addr>`` connect to the specified unix socket address, get the filedescriptors and use setns() on them
-
-``setns-preopen`` if enabled the /proc/self/ns files are opened on startup (before privileges drop) and cached. This is useful for avoiding running the main instance as root.
-
-``setns-socket-skip <name>`` some file in /proc/self/ns can create problems (mostly the 'user' one). You can skip them specifying the name. (you can specify this option multiple times)
-
+* ``setns-socket <addr>`` exposes /proc/self/ns on the specified unix socket address
+* ``setns <addr>`` connect to the specified unix socket address, get the filedescriptors and use setns() on them
+* ``setns-preopen`` if enabled the /proc/self/ns files are opened on startup (before privileges drop) and cached. This is useful for avoiding running the main instance as root.
+* ``setns-socket-skip <name>`` some file in /proc/self/ns can create problems (mostly the 'user' one). You can skip them specifying the name. (you can specify this option multiple times)
 
 pivot_root
 ----------
 
 This option allows you to change the rootfs of your currently running instance.
 
-It is better than chroot as it allows you to access the old filesystem tree before (manually) unmounting it.
+It is better than chroot as it allows you to access the old file system tree before (manually) unmounting it.
 
 It is a bit complex to master correctly as it requires a couple of assumptions:
 
@@ -91,7 +79,7 @@ It is a bit complex to master correctly as it requires a couple of assumptions:
 
 <new> is the directory to mount as the new rootfs and <old> is where to access the old tree.
 
-<new> must be a mounted filesystem, and <old> must be under this filesystem.
+<new> must be a mounted file system, and <old> must be under this file system.
 
 A common pattern is:
 
@@ -103,9 +91,9 @@ A common pattern is:
    pivot_root = /ns /ns/.old_root
    ...
    
-remember to create /ns and /distro/precise/.old_root
+(Remember to create ``/ns`` and ``/distro/precise/.old_root``.)
 
-When you have created the new filesysten layout you can umount /.old_root recursively:
+When you have created the new file system layout you can umount /.old_root recursively:
 
 .. code-block:: ini
 
@@ -121,18 +109,18 @@ When you have created the new filesysten layout you can umount /.old_root recurs
    hook-as-root = umount:/.old_root rec,detach
 
 
-Why not lxc ?
--------------
+Why not lxc?
+------------
 
-Lxc is a project allowing you to build full subsystems using linux namespaces. You may ask why "reinventing the wheel" while lxc implements
-fully "virtualized" system. Apple and oranges.
+LXC (LinuX Containers) is a project allowing you to build full subsystems using Linux namespaces. You may ask why "reinvent the wheel" while LXC implements
+a fully "virtualized" system. Apples and oranges...
 
-Lxc objective is giving users the view of a virtual server, uWSGI namespaces support is lower level, you can use it to detach
-single components (for example you may only want to unshare ipc) to increase security and isolation.
+LXC's objective is giving users the view of a virtual server. uWSGI namespaces support is lower level -- you can use it to detach
+single components (for example you may only want to unshare IPC) to increase security and isolation.
 
 Not all the scenario requires a full system-like view (and in lot of case is suboptimal, while in other is the best approach), try to
 see namespaces as a way to increase security and isolation, when you need/can isolate a component do it with clone/unshare. When you want
-to give users a full system-like access go with lxc.
+to give users a full system-like access go with LXC.
 
 The old way: the --namespace option
 ===================================
@@ -144,7 +132,9 @@ for its simplicity.
 
 You basically need to set a root filesystem and an hostname to start your instance in a new namespace:
 
-Let's start by creating a new root filesystem for our jail. You'll need ``debootstrap``. We're placing our rootfs in ``/ns/001``, and then create a 'uwsgi' user that will run the uWSGI server. We will use the chroot command to 'adduser' in the new rootfs, and we will install the Flask package, required by uwsgicc.
+Let's start by creating a new root filesystem for our jail. You'll need ``debootstrap`` (or an equivalent package for your distribution).
+We're placing our rootfs in ``/ns/001``, and then create a 'uwsgi' user that will run the uWSGI server.
+We will use the chroot command to 'adduser' in the new rootfs, and we will install the Flask package, required by uwsgicc.
 
 (All this needs to be executed as root)
 
@@ -159,7 +149,7 @@ Let's start by creating a new root filesystem for our jail. You'll need ``deboot
     su - uwsgi
     # as uwsgi now
     git clone https://github.com/unbit/uwsgicc.git .
-    exit # out of uwsgi
+    exit # out of su - uwsgi
     exit # out of the jail
     
 Now on your real system run
@@ -170,11 +160,12 @@ Now on your real system run
 
 If all goes well, uWSGI will set ``/ns/001`` as the new root filesystem, assign ``mybeautifulhostname`` as the hostname and hide the PIDs and IPC of the host system.
 
-The first thing you should note is the uWSGI master becoming the pid 1 (the "init" process). All processes generated by the uWSGI stack will be reparented to it if something goes wrong. If the master dies, all jailed processes die.
+The first thing you should note is the uWSGI master becoming PID 1 (the "init" process) in the new namespace.
+All processes generated by the uWSGI stack will be reparented to it if something goes wrong. If the master dies, all jailed processes die.
 
-Now point your webbrowser to your webserver and you should see the uWSGI Control Center interface.
+Now point your web browser to your web server and you should see the uWSGI Control Center interface.
 
-Pay attention to the information area. The nodename (used by cluster subsystem) matches the real hostname as it does not make sense to have multiple jail in the same cluster group. In the hostname field instead you will see the hostname you have set.
+Pay attention to the information area. The node name (used by cluster subsystem) matches the real hostname as it does not make sense to have multiple jail in the same cluster group. In the hostname field instead you will see the hostname you have set.
 
 Another important thing is that you can see all the jail processes from your real system (they will have a different set of PIDs), so if you want to take control of the jail
 you can easily do it.
@@ -186,12 +177,10 @@ you can easily do it.
 
    .. seealso:: :doc:`Cgroups`
 
-
-
 Reloading uWSGI
 ---------------
 
-When running jailed, uWSGI uses another system for reloading: it'll simply tell workers to bugger off and then exit. The parent process living outside the namespace will see this and respawn the stack in a new jail.
+When running in a jail, uWSGI uses another system for reloading: it'll simply tell workers to bugger off and then exit. The parent process living outside the namespace will see this and respawn the stack in a new jail.
 
 How secure is this sort of jailing?
 -----------------------------------

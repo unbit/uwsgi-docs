@@ -4,7 +4,7 @@ Managing external daemons/services
 uWSGI can easily monitor external processes, allowing you to increase
 reliability and usability of your multi-tier apps.  For example you can manage
 services like Memcached, Redis, Celery, Ruby delayed_job or even dedicated
-postgresql instances.
+PostgreSQL instances.
 
 Kinds of services
 *****************
@@ -29,7 +29,7 @@ support daemonization or writing to pidfile, you can let the master do the
 management.  Very few daemons/applications require this feature, but it could
 be useful for tiny prototype applications or simply poorly designed ones.
 
-Since uWSGI 2.0 a fourth option ``--attach-daemon2`` has been added for advanced configurations (see below)
+Since uWSGI 2.0 a fourth option, ``--attach-daemon2`` has been added for advanced configurations (see below).
 
 Examples
 ********
@@ -105,7 +105,7 @@ Managing **dropbear**:
    exec-as-root = chown -R www-data /etc/dropbear
    attach-daemon = /usr/sbin/dropbear -j -k -p 1022 -E -F -I 300
 
-When using the namespace option you can attach dropbear daemon to allow direct
+When using the namespace option you can attach a dropbear daemon to allow direct
 access to the system inside the specified namespace.  This requires the
 */dev/pts* filesystem to be mounted inside the namespace, and the user your
 workers will be running as have access to the */etc/dropbear* directory inside
@@ -114,7 +114,7 @@ the namespace.
 Legion support
 **************
 
-Starting with uWSGI 1.9.9 it's possible to use :doc:`Legion` subsystem for
+Starting with uWSGI 1.9.9 it's possible to use the :doc:`Legion` subsystem for
 daemon management.  Legion daemons will will be executed only on the legion
 lord node, so there will always be a single daemon instance running in each
 legion. Once the lord dies a daemon will be spawned on another node.  To add a
@@ -141,39 +141,18 @@ Managing **celery beat**:
 
 This option has been added in uWSGI 2.0 and allows advanced configurations. It is a keyval option, and it accepts the following keys:
 
-``command`` the command line to execute
-
-``cmd`` alias for command
-
-``exec`` alias for command
-
-``freq`` maximum attempts before considering a daemon "broken"
-
-``pidfile`` the pidfile to check (enable smart mode)
-
-``control`` if set, the daemon became a 'control' one: if it dies the whole uWSGI instance dies
-
-``daemonize`` daemonize the process (enable smart2 mode)
-
-``daemon`` alias for daemonize
-
-``touch`` semicolon separated list of files to check: whenever they are 'touched', the daemon is restarted
-
-``stopsignal`` the signal number to send to the daemon when uWSGI is stopped
-
-``stop_signal`` alias for stopsignal
-
-``reloadsignal`` the signal to send to the daemon when uWSGI is reloaded
-
-``reload_signal`` alias for reloadsignal
-
-``stdin`` if set the file descriptor zero is not remapped to /dev/null
-
-``uid`` drop privileges to the specified uid (requires master running as root)
-
-``gid`` drop privileges to the specified gid (requires master running as root)
-
-``ns_pid`` spawn the process in a new pid namespace (requires master running as root, Linux only)
+* ``command``/``cmd``/``exec``: the command line to execute
+* ``freq``: maximum attempts before considering a daemon "broken"
+* ``pidfile``: the pidfile to check (enable smart mode)
+* ``control``: if set, the daemon becomes a 'control' one: if it dies the whole uWSGI instance dies
+* ``daemonize``/``daemon``: daemonize the process (enable smart2 mode)
+* ``touch`` semicolon separated list of files to check: whenever they are 'touched', the daemon is restarted
+* ``stopsignal``/``stop_signal``: the signal number to send to the daemon when uWSGI is stopped
+* ``reloadsignal``/``reload_signal``: the signal to send to the daemon when uWSGI is reloaded
+* ``stdin``: if set the file descriptor zero is not remapped to /dev/null
+* ``uid``: drop privileges to the specified uid (requires master running as root)
+* ``gid``: drop privileges to the specified gid (requires master running as root)
+* ``ns_pid``: spawn the process in a new pid namespace (requires master running as root, Linux only)
 
 Example:
 
@@ -181,5 +160,4 @@ Example:
 
    [uwsgi]
    attach-daemon2 = cmd=my_daemon.sh,pidfile=/tmp/my.pid,uid=33,gid=33,stopsignal=3
-   
 
