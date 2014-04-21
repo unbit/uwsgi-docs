@@ -8,13 +8,13 @@ The 'asyncio' plugin exposes a loop engine built on top of the 'asyncio' CPython
 As uWSGI is not callback-based, you need a suspend engine (currently only the 'greenlet' one is supported) to manage the WSGI callable.
 
 Why not mapping the WSGI callable to a coroutine ?
-==================================================
+**************************************************
 
 The reason is pretty simple, this would break WSGI in every possible way. For this reason each uWSGI core is mapped to a greenlet (running the WSGI callable).
 This greenlet registers events and coroutines in the asyncio event loop.
 
 Callback VS coroutines
-======================
+**********************
 
 When starting playing with asyncio you may get confused between callback and coroutines.
 
@@ -24,7 +24,7 @@ in the main greenlet (and eventually they can switch back control to a specific 
 Coroutines are more complex, they are pretty near to a greenlet, but internally they work on python frames instead of c stacks. From a python programmer point of view, coroutines are very special generators. Your WSGI callable can spawn coroutines.
 
 Building uWSGI with asyncio support
-===================================
+***********************************
 
 An 'asyncio' build profile is available in the official source tree (it will build greenlet support too):
 
@@ -42,7 +42,7 @@ be sure to use python3.4 as the python version (or anything higher) and to add t
 
 
 The first example: a simple callback
-====================================
+************************************
 
 Let's start with a simple WSGI callable triggering a function after 2 seconds (after the callable has returned)
 
@@ -112,7 +112,7 @@ And we can go even further abusing the uWSGI support for WSGI generators:
        yield b"Two"
 
 Another example: Futures and coroutines
-=======================================
+***************************************
 
 You can spawn coroutines from your WSGI callable using the asyncio.Task facility:
 
@@ -193,7 +193,7 @@ and a more advanced example using the aiohttp module (rememebr to pip-install it
        yield bytes(future.result())
 
 Status
-======
+******
 
 The plugin is considered Experimental (currently the implications of asyncio with WSGI are unclear). In the future it could be built by default
 when >= python3.4 is detected
