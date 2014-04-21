@@ -196,6 +196,7 @@ Async and loop engines
    Gevent
    Tornado
    uGreen
+   asyncio
 
 
 Web Server support
