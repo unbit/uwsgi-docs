@@ -447,7 +447,7 @@ Automatically starting uWSGI on boot
 
 If you are thinking about writing some init.d script for spawning uWSGI, just sit (and calm) down and check if your system does not offer you a better (more modern) approach.
 
-Each distribution has choosen its startup system (:doc:`Upstart<Upstart>`, :doc:`SystemD`...) and there are tons of process managers available (supervisord, god...).
+Each distribution has choosen its startup system (:doc:`Upstart<Upstart>`, :doc:`Systemd`...) and there are tons of process managers available (supervisord, god...).
 
 uWSGI will integrate very well with all of them (we hope), but if you plan to deploy a big number of apps check the uWSGI :doc:`Emperor<Emperor>`
 it is the dream of every devops.

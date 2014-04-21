@@ -78,7 +78,7 @@ def render_rst(config, prelude):
 def write_output(output, filename):
     target_file = os.path.realpath(os.path.join(os.path.dirname(__file__), "..", filename))
     with file(target_file, "wb") as out_file:
-        out_file.write("\n".join(output).encode("UTF-8"))
+        out_file.write("\n".join(output).encode("UTF-8").lstrip())
 
 def read_configs():
     import optdefs

@@ -74,7 +74,7 @@ Table of Contents
    MasterFIFO
    Inetd
    Upstart
-   SystemD
+   Systemd
    Circus
    Embed
    Logging

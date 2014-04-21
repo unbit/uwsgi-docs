@@ -1,4 +1,4 @@
-SystemD
+Systemd
 =======
 
 uWSGI is a new-style daemon for [http://www.freedesktop.org/wiki/Software/systemd systemd].
@@ -45,7 +45,7 @@ And check its status.
 
    systemctl status emperor.uwsgi.service
 
-You will see the Emperor reporting the number of governed vassals to Systemd (and to you).
+You will see the Emperor reporting the number of governed vassals to systemd (and to you).
 
 .. code-block:: sh
 
