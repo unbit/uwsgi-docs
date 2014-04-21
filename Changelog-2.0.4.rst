@@ -1,6 +1,7 @@
 uWSGI 2.0.4
 ===========
 
+Changelog [20140422]
 
 Bugfixes
 ========
@@ -18,11 +19,17 @@ Bugfixes
 New features
 ============
 
+The experimental asyncio loop engine (CPython >= 3.4)
+*****************************************************
+
 httprouter advanced timeout management
 **************************************
 
 allow disabling cache warnings in --cache2
 ******************************************
+
+purge LRU cache feature by Yu Zhao (getcwd)
+*******************************************
 
 support embedded config on FreeBSD
 **********************************
