@@ -3,7 +3,7 @@ Benchmarks for the PyPy plugin
 
 .. note::
 
-   this benchmark is now (november 2013) very outdated, most of the numbers here have changed (in better) with newer PyPy releases
+   As of November 2013, this benchmark is very outdated. Most of the numbers here have changed for the better with newer PyPy releases.
 
 This is mainly targeted at PyPy developers to spot slow paths or to fix corner-case bugs.
 

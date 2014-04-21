@@ -233,7 +233,7 @@ Automatically starting uWSGI on boot
 
 If you are thinking about writing some init.d script for spawning uWSGI, just sit (and calm) down and check if your system does not offer you a better (more modern) approach.
 
-Each distribution has choosen its startup system (:doc:`Upstart<Upstart>`, :doc:`Systemd`...) and there are tons of process managers available (supervisord, god...).
+Each distribution has chosen a startup system (:doc:`Upstart<Upstart>`, :doc:`Systemd`...) and there are tons of process managers available (supervisord, god...).
 
 uWSGI will integrate very well with all of them (we hope), but if you plan to deploy a big number of apps check the uWSGI :doc:`Emperor<Emperor>`
 it is the dream of every devops.
@@ -303,7 +303,7 @@ to a pure-c thread. Examples are sending static file from the filesystem, transf
 
 Offloading is very complex, but its use is transparent to the end user. If you want to try just add --offload-threads <n> where <n> is the number of threads to spawn (one for cpu is a good value).
 
-When offload threads are enabled, all of the parts that can be optimized will be automatically detected
+When offload threads are enabled, all of the parts that can be optimized will be automatically detected.
 
 
 And now
@@ -311,6 +311,3 @@ And now
 
 You should already be able to go in production with such few concepts, but uWSGI is an enormous project with hundreds of features
 and configurations. If you want to be a better sysadmin, continue reading the full docs.
-
-
-

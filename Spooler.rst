@@ -39,7 +39,7 @@ having multiple spoolers allows you to prioritize tasks (and eventually parallel
 Spool files
 -----------
 
-Spool files are serialized hash/dictionary of strings. The spooler will parse them and pass the resulting hash/dictionary to the spooler function (see below).
+Spool files are serialized hashes/dictionaries of strings. The spooler will parse them and pass the resulting hash/dictionary to the spooler function (see below).
 
 The serialization format is the same used for the 'uwsgi' protocol, so you are limited to 64k (even if there is a trick for passing bigger values, see the 'body' magic key below). The modifier1
 for spooler packets is the 17, so a {'hello' => 'world'} hash will be encoded as:
@@ -50,7 +50,7 @@ header    key1           value1
 17|14|0|0 |5|0|h|e|l|l|o |5|0|w|o|r|l|d
 ========= ============== ==============
 
-A locking system allows you to safely manually remove spool files if something goes wrong, or to move them between spoolers directory.
+A locking system allows you to safely manually remove spool files if something goes wrong, or to move them between spooler directories.
 
 Spool dirs over NFS are allowed, but if you do not have proper NFS locking in place, avoid mapping the same spooler NFS directory to spooler on different machines.
 
@@ -61,18 +61,17 @@ Because there are dozens of different ways to enqueue spooler requests, we're go
 
 To have a fully operational spooler you need to define a "spooler function/callable" to process the requests. 
 
-Independently by the the number of configured spoolers, the same function will be executed. It is up to the developer to instruct it to recognize tasks. If you don't process the requests, the directory will just fill up.
+Regardless of the the number of configured spoolers, the same function will be executed.
+It is up to the developer to instruct it to recognize tasks.
+If you don't process requests, the spool directory will just fill up.
 
 This function must returns an integer value:
 
--2 (SPOOL_OK) the task has been completed, the spool file will be removed
+* -2 (SPOOL_OK) -- the task has been completed, the spool file will be removed
+* -1 (SPOOL_RETRY) -- something is temporarily wrong, the task will be retried at the next spooler iteration
+* 0 (SPOOL_IGNORE) -- ignore this task, if multiple languages are loaded in the instance all of them will fight for managing the task. This return values allows you to skip a task in specific languages.
 
--1 (SPOOL_RETRY) something is temporarily wrong, the task will be retried at the next spooler iteration
-
-0 (SPOOL_IGNORE) ignore this task, if multiple languages are loaded in the instance all of them will fight for managing the task. This return values allows you to skip a task in specific languages.
-
-any other value will be mapped as -1 (retry)
-
+Any other value will be interpreted as -1 (retry).
 
 Each language plugin has its own way to define the spooler function:
 
@@ -89,7 +88,6 @@ Perl:
    );
    # hint - uwsgi:: is available when running using perl-exec= or psgi= 
    # no don't need to use "use" or "require" it, it's already there.
-   
    
 Python:
 
@@ -116,11 +114,10 @@ Ruby:
    end
 
 
-Spooler function must be defined in the master process, so if you are in lazy-apps mode, be sure to place it in a file that is parsed
-early in the server setup. (in python you can use --shared-import, in ruby --shared-require, in perl --perl-exec).
+Spooler functions must be defined in the master process, so if you are in lazy-apps mode, be sure to place it in a file that is parsed
+early in the server setup. (in Python you can use --shared-import, in Ruby --shared-require, in Perl --perl-exec).
 
 Python has support for importing code directly in the spooler with the ``--spooler-python-import`` option.
-
 
 Enqueueing requests to a spooler
 --------------------------------
@@ -154,42 +151,38 @@ The 'spool' api function allows you to enqueue a hash/dictionary into the spoole
    # ruby
    UWSGI.spool(foo => 'bar', name => 'Kratos', surname => 'the same of Zeus')
    
-Some keys have special meaning:
+Some keys have a special meaning:
 
-'spooler' => specify the ABSOLUTE path of the spooler that has to manage this task
+* 'spooler' => specify the ABSOLUTE path of the spooler that has to manage this task
+* 'at' => unix time at which the task must be executed (read: the task will not be run until the 'at' time is passed)
+* 'priority' => this will be the subdirectory in the spooler directory in which the task will be placed, you can use that trick to give a good-enough prioritization to tasks (for better approach use multiple spoolers)
+* 'body' => use this key for objects bigger than 64k, the blob will be appended to the serialzed uwsgi packet and passed back to the spooler function as the 'body' argument
 
-'at' => unix time at which the task must be executed (read: the task will not be run until the 'at' time is passed)
+.. note::
 
-'priority' => this will be the subdirectory in the spooler directory in which the task will be placed, you can use that trick to give a good-enough prioritization to tasks (for better approach use multiple spoolers)
-
-'body' => use this key for objects bigger than 64k, the blob will be appended to the serialzed uwsgi packet and passed back to the spooler function as the 'body' argument
-
-
-IMPORTANT:
-
-spool arguments must be strings (or bytes for python3), the api function will try to cast non-string values to strings/bytes, but do not rely on it !!!
+   Spool arguments must be strings (or bytes for python3). The API functions will try to cast non-string values to strings/bytes, but do not rely on that functionality!
 
 External spoolers
 -----------------
 
-You could want to implement a centralized spooler for your server across many uwsgi instance.
+You could want to implement a centralized spooler for your server across many uWSGI instances.
 
-A single instance will manage all of the tasks enqueued by multiple uWSGI instance.
+A single instance will manage all of the tasks enqueued by multiple uWSGI instances.
 
-To accomplish this setup each uWSGI instance has to know which spooler directories are valid (consider it a form of security)
+To accomplish this setup, each uWSGI instance has to know which spooler directories are valid (consider it a form of security).
 
 To add an external spooler directory use the ``--spooler-external <directory>`` option, then add to it using the spool function.
 
-The spooler locking subsystem will avoid mess.
+The spooler locking subsystem will avoid any messes that you might think could occur.
 
 Networked spoolers
 ------------------
 
-You can even enqueue tasks over the network (be sure the 'spooler' plugin is loaded in your instance, but generally it is builtin by default)
+You can even enqueue tasks over the network (be sure the 'spooler' plugin is loaded in your instance, but generally it is built in by default).
 
-As we have already seen, spooler packets have modifier1 17, you can directly send those packets to a uwsgi socket of an instance with a spooler enabled.
+As we have already seen, spooler packets have modifier1 17, you can directly send those packets to an uWSGI socket of an instance with a spooler enabled.
 
-We will use the perl Net::uwsgi module (exposing a handy uwsgi_spool function) in this example (but feel free to use whatever you want to write the spool files):
+We will use the Perl ``Net::uwsgi`` module (exposing a handy uwsgi_spool function) in this example (but feel free to use whatever you want to write the spool files).
 
 .. code-block:: perl
 
@@ -215,7 +208,7 @@ Priorities
 
 We have already seen that you can use the 'priority' key to give order in spooler parsing.
 
-While having multiple spoolers would be an extremely better approach, on system with few resources 'priorities' are a good trick
+While having multiple spoolers would be an extremely better approach, on system with few resources 'priorities' are a good trick.
 
 They works only if you enable the ``--spooler-ordered`` option. This option allows the spooler to scan directories entry in alphabetical order.
 
@@ -230,7 +223,7 @@ If during the scan a directory with a 'number' name is found, the scan is suspen
    /spool/1/task0
    /spool/2/foo
    
-with this layout the order in which files will be parsed is:
+With this layout the order in which files will be parsed is:
 
 .. code-block:: sh
 
@@ -240,7 +233,7 @@ with this layout the order in which files will be parsed is:
    /spool/xtask
    /spool/ztask
    
-remember, priorities only works for subdirectory named as 'numbers' and you need the ``--spooler-ordered`` option.
+Remember, priorities only work for subdirectories named as 'numbers' and you need the ``--spooler-ordered`` option.
 
 The uWSGI spooler gives special names to tasks so the ordering of enqueuing is always respected.
 

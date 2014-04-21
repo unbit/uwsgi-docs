@@ -60,7 +60,7 @@ Supported languages and platforms
       - Allows integration between uWSGI and Mono, and execution of ASP.NET
         applications.
       - Stable
-    * - V8
+    * - :doc:`V8`
       - 1.9.4
-      - Allows integration between uWSGI and javascript V8.
+      - Allows integration between uWSGI and the V8 JavaScript engine.
       - Early stage of development

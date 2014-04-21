@@ -1,11 +1,11 @@
-WebSocket supports
-==================
+WebSocket support
+=================
 
 In uWSGI 1.9, a high performance websocket (RFC 6455) implementation has been added.
 
 Although many different solutions exist for WebSockets, most of them rely on a higher-level language implementation, that rarely is good enough for topics like gaming or streaming.
 
-The uWSGI websockets implementation is compiled in by default
+The uWSGI websockets implementation is compiled in by default.
 
 Websocket support is sponsored by 20Tab S.r.l. http://20tab.com/ 
 
@@ -34,7 +34,7 @@ Handshaking is the first phase of a websocket connection.
 
 To send a full handshake response you can use the ``uwsgi.websocket_handshake([key,origin, proto])`` function. Without a correct handshake the connection will never complete.
 
-In 1.9 serie, the key parameter is required, while in 2.0 you can call websocket_handshake without arguments (response will be build automatically from request's data)
+In the 1.9 series, the key parameter is required. In 2.0+ you can call websocket_handshake without arguments (the response will be built automatically from request's data).
 
 Sending
 *******
@@ -55,11 +55,7 @@ The function can receive messages from a named channel (see below) and automatic
 
 It will always return only websocket messages sent from the browser -- any other communication happens in the background.
 
-There is a non-blocking variant too:
-
-``msg = uwsgi.websocket_recv_nb()``
-
-check: https://github.com/unbit/uwsgi/blob/master/tests/websockets_chat_async.py
+There is a non-blocking variant too -- ``msg = uwsgi.websocket_recv_nb()``. See: https://github.com/unbit/uwsgi/blob/master/tests/websockets_chat_async.py
 
 PING/PONG
 *********
@@ -87,14 +83,14 @@ or
 
    uwsgi --http :8080 --http-raw-body --wsgi-file myapp.py
    
-it is a bit more rawer but supports things like chunked input
+This is slightly more "raw", but supports things like chunked input.
 
 * Haproxy works fine.
 
-* nginx >= 1.4 works fine and without additional configuration
+* nginx >= 1.4 works fine and without additional configuration.
 
-Languages support
-*****************
+Language support
+****************
 
 * Python https://github.com/unbit/uwsgi/blob/master/tests/websockets_echo.py
 * Perl https://github.com/unbit/uwsgi/blob/master/tests/websockets_echo.pl
@@ -102,7 +98,7 @@ Languages support
 * Ruby https://github.com/unbit/uwsgi/blob/master/tests/websockets_echo.ru
 * Lua https://github.com/unbit/uwsgi/blob/master/tests/websockets_echo.lua
 
-Supported Concurrency models
+Supported concurrency models
 ****************************
 
 * Multiprocess

@@ -1,14 +1,13 @@
 Snippets
 ========
 
-This is a collection of the most "funny" uses of uWSGI features
-
+This is a collection of some of the most "fun" uses of uWSGI features.
 
 X-Sendfile emulation
 --------------------
 
 Even if your frontend proxy/webserver does not support X-Sendfile (or cannot access your static resources) you can emulate
-it using offloading (your process/thread will delegate the static file serving to offload threads
+it using uWSGI's internal offloading (your process/thread will delegate the actual static file serving to offload threads).
 
 .. code-block:: ini
 
@@ -29,7 +28,7 @@ it using offloading (your process/thread will delegate the static file serving t
 Force HTTPS
 -----------
 
-this will force HTTPS for the whole site
+This will force HTTPS for the whole site.
 
 .. code-block:: ini
 
@@ -39,7 +38,7 @@ this will force HTTPS for the whole site
    plugins = router_redirect
    route-if-not = equal:${HTTPS};on redirect-permanent:https://${HTTP_HOST}${REQUEST_URI}
    
-and this for /admin
+And this only for ``/admin``
 
 .. code-block:: ini
 
@@ -54,8 +53,7 @@ and this for /admin
    route-label = https
    route-if-not = equal:${HTTPS};on redirect-permanent:https://${HTTP_HOST}${REQUEST_URI}
    
-   
-Eventually you may want to send HSTS (HTTP Strict Transport Security) header too
+Eventually you may want to send HSTS (HTTP Strict Transport Security) header too.
 
 .. code-block:: ini
 
@@ -67,8 +65,8 @@ Eventually you may want to send HSTS (HTTP Strict Transport Security) header too
    route-if = equal:${HTTPS};on addheader:Strict-Transport-Security: max-age=31536000
    
    
-Python Auto-reloading (DEVELOPMENT-ONLY !!!)
---------------------------------------------
+Python Auto-reloading (DEVELOPMENT ONLY!)
+-----------------------------------------
 
 In production you can monitor file/directory changes for triggering reloads (touch-reload, fs-reload...).
 
@@ -84,5 +82,6 @@ The check is done by a thread that scans the modules list with the specified fre
    
 will check for python modules changes every 2 seconds and eventually restart the instance.
 
-Hey, use it only in development...
+And again:
 
+.. warning:: Use this only in development.

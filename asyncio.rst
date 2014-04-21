@@ -1,32 +1,37 @@
 The asyncio loop engine (CPython >= 3.4, uWSGI >= 2.0.4)
 ========================================================
 
-Status: EXPERIMENTAL, lot of implications, expecially in respect to the WSGI standard
+.. warning::
 
-The 'asyncio' plugin exposes a loop engine built on top of the 'asyncio' CPython api (https://docs.python.org/3.4/library/asyncio.html#module-asyncio)
+  Status: EXPERIMENTAL, lot of implications, especially in respect to the WSGI standard
 
-As uWSGI is not callback-based, you need a suspend engine (currently only the 'greenlet' one is supported) to manage the WSGI callable.
+The ``asyncio`` plugin exposes a loop engine built on top of the ``asyncio`` CPython API (https://docs.python.org/3.4/library/asyncio.html#module-asyncio).
 
-Why not mapping the WSGI callable to a coroutine ?
-**************************************************
+As uWSGI is not callback based, you need a suspend engine (currently only the 'greenlet' one is supported) to manage the WSGI callable.
 
-The reason is pretty simple, this would break WSGI in every possible way. For this reason each uWSGI core is mapped to a greenlet (running the WSGI callable).
+Why not map the WSGI callable to a coroutine?
+*********************************************
+
+The reason is pretty simple: this would break WSGI in every possible way. (Let's not go into the details here.)
+
+For this reason each uWSGI core is mapped to a greenlet (running the WSGI callable).
+
 This greenlet registers events and coroutines in the asyncio event loop.
 
-Callback VS coroutines
-**********************
+Callback vs. coroutines
+***********************
 
-When starting playing with asyncio you may get confused between callback and coroutines.
+When starting to playing with asyncio you may get confused between callbacks and coroutines.
 
-The first ones are executed when a specific event raises (for example when a file descriptor is ready for read). They are basically standard functions executed
+Callbacks are executed when a specific event raises (for example when a file descriptor is ready for read). They are basically standard functions executed
 in the main greenlet (and eventually they can switch back control to a specific uWSGI core).
 
-Coroutines are more complex, they are pretty near to a greenlet, but internally they work on python frames instead of c stacks. From a python programmer point of view, coroutines are very special generators. Your WSGI callable can spawn coroutines.
+Coroutines are more complex: they are pretty close to a greenlet, but internally they work on Python frames instead of C stacks. From a Python programmer point of view, coroutines are very special generators. Your WSGI callable can spawn coroutines.
 
 Building uWSGI with asyncio support
 ***********************************
 
-An 'asyncio' build profile is available in the official source tree (it will build greenlet support too):
+An 'asyncio' build profile is available in the official source tree (it will build greenlet support too).
 
 .. code-block:: sh
 
@@ -38,13 +43,12 @@ or
 
    CFLAGS="-I/usr/local/include/python3.4" UWSGI_PROFILE="asyncio" pip3 install uwsgi
    
-be sure to use python3.4 as the python version (or anything higher) and to add the greenlet include directory to CFLAGS (this could be not needed if you installed greenlet support from distro packages)
-
+be sure to use Python 3.4+ as the Python version and to add the greenlet include directory to ``CFLAGS`` (this may not be needed if you installed greenlet support from your distribution's packages).
 
 The first example: a simple callback
 ************************************
 
-Let's start with a simple WSGI callable triggering a function after 2 seconds (after the callable has returned)
+Let's start with a simple WSGI callable triggering a function 2 seconds after the callable has returned (magic!).
 
 .. code-block:: python
 
@@ -68,9 +72,10 @@ You can run the example with:
 
    uwsgi --asyncio 10 --http-socket :9090 --greenlet --wsgi-file app.py
    
-(--asyncio is a shortcut enabling 10 uWSGI async cores, so you can manage up to 10 concurrent requests with a single process)
+``--asyncio`` is a shortcut enabling 10 uWSGI async cores, enabling you to manage up to 10 concurrent requests with a single process.
    
-But how to wait for a callback completion in the WSGI callable ? We can suspend our WSGI function using greenlets (remember our WSGI callable is wrapped on a greenlet)
+But how to wait for a callback completion in the WSGI callable?
+We can suspend our WSGI function using greenlets (remember our WSGI callable is wrapped on a greenlet):
 
 .. code-block:: python
 
@@ -114,7 +119,7 @@ And we can go even further abusing the uWSGI support for WSGI generators:
 Another example: Futures and coroutines
 ***************************************
 
-You can spawn coroutines from your WSGI callable using the asyncio.Task facility:
+You can spawn coroutines from your WSGI callable using the ``asyncio.Task`` facility:
 
 .. code-block:: python
 
@@ -127,7 +132,6 @@ You can spawn coroutines from your WSGI callable using the asyncio.Task facility
        # back to callable
        me.switch()
 
-
    def application(environ, start_response):
        start_response('200 OK', [('Content-Type','text/html')])
        myself = greenlet.getcurrent()
@@ -138,7 +142,7 @@ You can spawn coroutines from your WSGI callable using the asyncio.Task facility
        # back from event loop
        return [b"Hello World"]
 
-thanks to Future we can even get results back from coroutines
+Thanks to Futures we can even get results back from coroutines...
 
 .. code-block:: python
 
@@ -164,8 +168,7 @@ thanks to Future we can even get results back from coroutines
        # back from event loop
        return [future.result()]
        
-       
-and a more advanced example using the aiohttp module (rememebr to pip-install it)
+A more advanced example using the ``aiohttp`` module (remember to ``pip install aiohttp`` it, it's not a standard library module)
 
 .. code-block:: python
 
@@ -195,10 +198,6 @@ and a more advanced example using the aiohttp module (rememebr to pip-install it
 Status
 ******
 
-The plugin is considered Experimental (currently the implications of asyncio with WSGI are unclear). In the future it could be built by default
-when >= python3.4 is detected
-
-While technically possible (more or less) mapping a WSGI callable to a python3 coroutine is not expected.
-
-The plugin registers hooks for non blocking reads/writes and timers. This means you can use the uWSGI api with asyncio automagically. Check the https://github.com/unbit/uwsgi/blob/master/tests/websockets_chat_asyncio.py
-example
+* The plugin is considered experimental (the implications of asyncio with WSGI are currently unclear). In the future it could be built by default when Python >= 3.4 is detected.
+* While (more or less) technically possible, mapping a WSGI callable to a Python 3 coroutine is not expected in the near future.
+* The plugin registers hooks for non blocking reads/writes and timers. This means you can automagically use the uWSGI API with asyncio. Check the https://github.com/unbit/uwsgi/blob/master/tests/websockets_chat_asyncio.py example.

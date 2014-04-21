@@ -16,28 +16,24 @@ Embedded event monitors
 
 Event monitors can be added via plugins, the uWSGI core includes the following:
 
-``log-alarm`` trigger alarm when a specific regexp matches a logline
-
-``alarm-fd`` trigger alarm when the specififed file descriptor is ready (low-level, it is the base of most of the alarm plugins)
-
-``alarm-backlog`` trigger alarm when the socket backlog queue is full
-
+* ``log-alarm`` triggers an alarm when a specific regexp matches a log line
+* ``alarm-fd`` triggers an alarm when the specified file descriptor is ready (which is pretty low-level and the basis of most of the alarm plugins)
+* ``alarm-backlog`` triggers an alarm when the socket backlog queue is full
+* ``alarm-segfault`` (since 1.9.9) triggers an alarm when uWSGI segfaults.
 
 Defining an alarm
 *****************
 
 You can define an unlimited number of alarms. Each alarm has a unique name.
 
-Currently the following alarm actions are
-available in the main distribution:
+Currently the following alarm actions are available in the main distribution:
 
 .. parsed-literal::
-   'cmd' run a command passing the log line to the stdin
-   'signal' generate a uwsgi signal
-   'mule' send the log line to a mule
-   'curl' pass the log line to a curl url (http,https and smtp are supported)
-   'xmpp' send the log line via XMPP/jabber
-
+   'cmd' - run a command passing the log line to the stdin
+   'signal' -  generate an uWSGI signal
+   'mule' - send the log line to a mule
+   'curl' - pass the log line to a curl url (http,https and smtp are supported)
+   'xmpp' - send the log line via XMPP/jabber
 
 To define an alarm, use the option ``--alarm``.
 
@@ -91,9 +87,9 @@ Now in your app you only need to add
 
 .. code-block:: python
 
-   print "TERRIBLE ALARM the world exploded !!!"
+   print "TERRIBLE ALARM! The world exploded!!!"
 
-to send a jabber message to ``admin@jabber.xxx`` and ``admin2@jabber.xxx``
+to send a Jabber message to ``admin@jabber.xxx`` and ``admin2@jabber.xxx``
 without adding any significant overhead to your app (as alarms are triggered by
 one or more threads in the master process, without bothering workers).
 
@@ -110,7 +106,7 @@ Check this Rack middleware:
    
      def call(env)
        if env['REQUEST_METHOD'] == 'POST' and env['PATH_INFO'] == '/upload'
-         puts "TERRIBLE ALARM an upload has been made"
+         puts "TERRIBLE ALARM! An upload has been made!"
        end   
        @app.call(env)   
      end                
@@ -129,8 +125,8 @@ If you are building a plugin, be sure to prepend your log messages with the
 '[uwsgi-alarm' string. These lines will be skipped and directly passed to the
 log subsystem. A convenience API function is available: ``uwsgi_log_alarm()``.
 
-How does log-alarm work ?
-*************************
+How does log-alarm work?
+************************
 
 Enabling log-alarm automatically puts the uWSGI instance in :term:`log-master
 mode`, delegating log writes to the master.  The alarm subsystem is executed by
@@ -144,7 +140,7 @@ Available plugins and their syntax
 cmd
 ^^^
 
-Run a shell command, logline is passed to the stdin:
+Run a shell command, passing the log line to its stdin:
 
 .. parsed-literal::
    cmd:<command>
@@ -153,23 +149,27 @@ Run a shell command, logline is passed to the stdin:
 signal
 ^^^^^^
 
-Raise a [wiki:SignalFramework] uwsgi signal:
+Raise an uWSGI signal.
 
 .. parsed-literal::
    signal:[signum]
 
+.. seealso:: :doc:`Signals`
+
 mule
 ^^^^
 
-Send the logline to a mule waiting for [wiki:Mules messages]
+Send the log line to a mule waiting for messages.
 
 .. parsed-literal::
    mule:[mule_id]
 
+.. seealso:: :doc:`Mules`
+
 curl
 ^^^^
 
-Send logline to a curl url. This is not compiled in by default, so if you need to build it just run:
+Send the log line to a cURL-able URL. This alarm plugin is not compiled in by default, so if you need to build it just run:
 
 .. parsed-literal::
    python uwsgiconfig.py --plugin plugins/alarm_curl
@@ -177,21 +177,18 @@ Send logline to a curl url. This is not compiled in by default, so if you need t
 .. parsed-literal::
    curl:<url>[;opt1=val1;opt2=val2]
 
+``url`` is any standard cURL URL, while the options currently exposed are
 
-``url`` is a standard curl url, while the options currently exposed are
-
-.. code-block:: c
-
-   "url"
-   "mail_to"
-   "mail_from"
-   "subject"
-   "ssl"
-   "auth_user"
-   "auth_pass"
-   "method"
-   "timeout"
-   "conn_timeout"
+* "auth_pass"
+* "auth_user"
+* "conn_timeout"
+* "mail_from"
+* "mail_to"
+* "method"
+* "ssl"
+* "subject"
+* "timeout"
+* "url"
 
 So, for sending mail via SMTP AUTH:
 
@@ -201,7 +198,7 @@ So, for sending mail via SMTP AUTH:
    plugins = alarm_curl
    alarm = test curl:smtp://mail.example.com;mail_to=admin@example.com;mail_from=uwsgi@example.com;auth_user=uwsgi;auth_pass=secret;subject=alarm from uWSGI !!!
 
-Or to POST the logline to an http server protected with basic auth:
+Or to POST the log line to an HTTP server protected with basic authentication:
 
 .. code-block:: ini
 
@@ -212,12 +209,14 @@ Or to POST the logline to an http server protected with basic auth:
 xmpp
 ^^^^
 
-Probably the most funny/interesting one. You need the ``libgloox`` package to build the xmpp alarm plugin (on Debian/Ubuntu, ``apt-get install gloox-dev``).
+Probably the most interesting one of the built-in bunch. You need the ``libgloox`` package to build the XMPP alarm plugin (on Debian/Ubuntu, ``apt-get install gloox-dev``).
 
-.. parsed-literal::
+.. code-block:: shell
+
    python uwsgiconfig.py --plugin plugins/alarm_xmpp
 
-.. parsed-literal::
+.. code-block:: shell
+
    xmpp:<jid>;<password>;<recipients>
 
 You can set multiple recipients using ',' as delimiter.
@@ -228,9 +227,9 @@ You can set multiple recipients using ',' as delimiter.
    plugins = alarm_xmpp
    alarm = jabber xmpp:app@example.it;secret1;foo1@foo.it,foo2@foo.it
 
-A funnier thing still about the XMPP plugin is that you will see the Jabber account of your app going down when your app dies...
+An even more interesting thing still about the XMPP plugin is that you will see the Jabber account of your app going down when your app dies. :-)
 
-Some XMPP servers (most notably the OSX server one) requires you to bind to a resource. You can do thus by appending /resource to the JID:
+Some XMPP servers (most notably the OSX Server one) requires you to bind to a resource. You can do thus by appending ``/resource`` to the JID.
 
 .. code-block:: ini
 
@@ -241,10 +240,11 @@ Some XMPP servers (most notably the OSX server one) requires you to bind to a re
 speech
 ^^^^^^
 
-A toy plugin for OSX, used mainly for showing Objective-C integration with
-uWSGI.  It simply uses the OSX speech synthesizer to 'announce' the alarm.
+A toy plugin for OSX, used mainly for showing off Objective-C integration with uWSGI.
+It simply uses the OSX speech synthesizer to 'announce' the alarm.
 
-.. parsed-literal::
+.. code-block:: shell
+
    python uwsgiconfig.py --plugin plugins/alarm_speech
 
 .. code-block:: ini
@@ -274,4 +274,4 @@ might not fully work in all cases.
    alarm = errbit airbrake:http://errbit.domain.com/notifier_api/v2/notices;apikey=APIKEY;subject=uWSGI segfault
    alarm-segfault = errbit
 
-Note that alarm-segfault does not require airbrake plugin. A backtrace can be sent using any other alarm plugin.
+Note that alarm-segfault does not require the Airbrake plugin. A backtrace can just as well be sent using any other alarm plugin.

@@ -8,7 +8,7 @@ SharedArea -- share memory pages between uWSGI components
   
 .. warning::
 
-  This page refers to "new generation" sharedarea introduced in uWSGI 1.9.21, the older API is no more supported.
+  This page refers to "new generation" sharedarea introduced in uWSGI 1.9.21, the older API is no longer supported.
 
 The sharedarea subsystem allows you to share pages of memory between your uWSGI components (workers, spoolers, mules, etc.)
 in a very fast (and safe) way.

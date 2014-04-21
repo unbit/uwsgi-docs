@@ -108,11 +108,9 @@ You can register new "logchunk" (the function to call for each logformat symbol)
 
    struct uwsgi_logchunk *uwsgi_register_logchunk(char *name, ssize_t (*func)(struct wsgi_request *, char **), int need_free);
 
-``name`` is the name of the symbol
-
-``need_free`` if 1, means the pointer set by ``func`` must be free()d;
-
-``func`` the function to call in the log handler
+* ``name`` -- the name of the symbol
+* ``need_free`` -- if 1, means the pointer set by ``func`` must be free()d
+* ``func`` -- the function to call in the log handler
 
 .. code-block:: c
 
@@ -130,5 +128,4 @@ You can register new "logchunk" (the function to call for each logformat symbol)
            .on_load = register_logchunks,
    };
    
-   
-if you load the foobar plugin, you will be able to use the %(foobar) request logging variable (reporting the request status)
+Now if you load the foobar plugin, you will be able to use the %(foobar) request logging variable (that would report the request status).

@@ -97,5 +97,7 @@ disconnect.
 
 This is useful for massive hosting where customers have their certificates in the home and you want them the change/update those files without bothering you.
 
-We understand that directly encapsulating keys and cert in the subscription packets will be much more useful, but network transfer of keys is something
-really foolish from a security point of view. We are investigating if combining it with the secured subscription system (where each packet is encrypted) could be a solution.
+.. note::
+
+   We understand that directly encapsulating keys and cert in the subscription packets will be much more useful, but network transfer of keys is something
+   really foolish from a security point of view. We are investigating if combining it with the secured subscription system (where each packet is encrypted) could be a solution.

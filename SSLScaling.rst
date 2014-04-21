@@ -16,7 +16,7 @@ Setup 1: using the uWSGI cache for storing SSL sessions
 
 You can configure the SSL subsystem of uWSGI to use the shared cache. The SSL sessions will time out according to the expiry value of the cache item. This way the cache sweeper thread (managed by the master) will destroy sessions in the cache.
 
-.. important:: Order of options is important. ``cache`` options must be specified BEFORE ``ssl-sessions-use-cache`` and ``https`` options.
+.. important:: The order of the options is important. ``cache`` options must be specified BEFORE ``ssl-sessions-use-cache`` and ``https`` options.
 
 .. code-block:: ini
 
@@ -179,7 +179,7 @@ Using named caches
 
 Starting from uWSGI 1.9 you can have multiple caches. This is a setup with 2 nodes using a new generation cache named "ssl".
 
-``cache2`` option allows also to set custom key size, since SSL session keys are not long we can use it to optimize memory usage. In this example we use 128 byte key size limit, it should be enough for session IDs.
+The ``cache2`` option allows also to set a custom key size. Since SSL session keys are not very long, we can use it to optimize memory usage. In this example we use 128 byte key size limit, which should be enough for session IDs.
 
 .. code-block:: ini
 

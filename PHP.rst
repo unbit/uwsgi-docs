@@ -261,7 +261,7 @@ Or you can share the uWSGI :doc:`cache <Caching>`...
 Sessions over uWSGI caches (uWSGI >=2.0.4)
 ------------------------------------------
 
-You can store php sessions in uWSGI caches:
+Starting from uWSGI 2.0.4, you can store PHP sessions in uWSGI caches.
 
 .. code-block:: ini
 
@@ -275,17 +275,8 @@ You can store php sessions in uWSGI caches:
    php-set = session.save_handler=uwsgi
    ; use the 'mysessions' cache for storing sessions
    php-set = session.save_path=mysessions
-
-you can store sessions even in remote caches
-
-.. code-block:: ini
-
-   [uwsgi]
-   plugins = php
-   http-socket = :9090
-   http-socket-modifier1 = 14
-   ; set the 'uwsgi' session handler
-   php-set = session.save_handler=uwsgi
+   
+   ; or to store sessions in remote caches...
    ; use the 'foobar@192.168.173.22:3030' cache for storing sessions
    php-set = session.save_path=foobar@192.168.173.22:3030
 
