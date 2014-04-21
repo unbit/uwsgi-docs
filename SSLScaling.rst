@@ -1,7 +1,7 @@
 Scaling SSL connections (uWSGI 1.9)
 ===================================
 
-Distributing SSL servers in a cluster is an hard topic. The biggest problem is sharing SSL sessions between different nodes.
+Distributing SSL servers in a cluster is a hard topic. The biggest problem is sharing SSL sessions between different nodes.
 
 The problem is amplified in non-blocking servers due to OpenSSL's limits in the way sessions are managed.
 

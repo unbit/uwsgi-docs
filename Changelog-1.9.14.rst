@@ -38,7 +38,7 @@ You need to build the "rbthreads" plugin (it is automatic when using the 'ruby2'
 
 The gem script has been extended, automatically selecting the 'ruby2' build profile when a ruby >= 1.9 is detected (this should make the life easier for Heroku users)
 
-Rails4 is the first Ruby on Rails version supporting and blessing threads (in 3.x you need to explicitely enable support). You can use
+Rails4 is the first Ruby on Rails version supporting and blessing threads (in 3.x you need to explicitly enable support). You can use
 multiple threads in Rails4 only when in "production" mode, otherwise your app will deadlock after the first request.
 
 An example config:
@@ -103,7 +103,7 @@ the lua plugins now supports Lua 5.2
 setscheme, setdocroot
 ^^^^^^^^^^^^^^^^^^^^^
 
-This two new routing actions allow you to dinamically override DOCUMENT_ROOT and UWSGI_SCHEME
+This two new routing actions allow you to dynamically override DOCUMENT_ROOT and UWSGI_SCHEME
 
 sendfile, fastfile
 ^^^^^^^^^^^^^^^^^^
@@ -162,7 +162,7 @@ daemontools envdir support
 
 Albeit daemontools look old-fashioned, things like envdirs (http://cr.yp.to/daemontools/envdir.html) are heavily used in various context.
 
-uWSGI got two new options (--envdir <path> and --early-envdir <path>) allowing you to support this special (arcaic ?) configuration way.
+uWSGI got two new options (--envdir <path> and --early-envdir <path>) allowing you to support this special (archaic ?) configuration way.
 
 xmldir improvements
 ^^^^^^^^^^^^^^^^^^^
@@ -171,13 +171,13 @@ Author: Guido Berhoerster
 
 The xmldir plugins has been improved supporting iconv-based utf8 encoding. Various minor fixes have been committed.
 
-The examples directory containes two new files showing an xmldir+xslt usage
+The examples directory contains two new files showing an xmldir+xslt usage
 
 
 Breaking News !!!
 *****************
 
-Servlet 2.5 support development has just started. The plugin is present in the tree but it is unusable (it is an hardcoded
+Servlet 2.5 support development has just started. The plugin is present in the tree but it is unusable (it is a hardcoded
 jsp engine). We expect a beta version after the summer. Obviously we shameless consider :doc:`JWSGI` a better approach than servlet for non-Enterprise people ;)
 
 Availability
