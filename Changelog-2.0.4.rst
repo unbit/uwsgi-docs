@@ -81,6 +81,8 @@ allows you to dinamically set modifiers.
 no_headers option for static router
 ***********************************
 
+keyval based static routing action can now avoid to rewrite response headers (useful for X-Sendfile), just add no_headers=1 to your keyval options.
+
 Availability
 ------------
 
