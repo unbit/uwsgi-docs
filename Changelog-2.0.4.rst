@@ -4,7 +4,7 @@ uWSGI 2.0.4
 Changelog [20140422]
 
 Bugfixes
-========
+--------
 
 - fixed "mime" routing var (Steve Stagg)
 - allow duplicate headers in http parsers
@@ -17,7 +17,7 @@ Bugfixes
 
 
 New features
-============
+------------
 
 The experimental asyncio loop engine (CPython >= 3.4)
 *****************************************************
