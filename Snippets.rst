@@ -95,7 +95,7 @@ This example spawned from a uWSGI mainling-list thread.
 We have static files in /var/www and cgis in /var/cgi. Cgi will be accessed using the /cgi-bin
 mountpoint. So /var/cgi/foo.lua will be run on request to /cgi-bin/foo.lua
 
-..code-block:: ini
+.. code-block:: ini
 
    [uwsgi]
    workdir = /var
