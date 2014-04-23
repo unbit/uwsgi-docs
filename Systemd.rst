@@ -1,7 +1,7 @@
 Systemd
 =======
 
-uWSGI is a new-style daemon for [http://www.freedesktop.org/wiki/Software/systemd systemd].
+uWSGI is a new-style daemon for `systemd <http://www.freedesktop.org/wiki/Software/systemd>`_.
 
 It can notify status change and readyness.
 
