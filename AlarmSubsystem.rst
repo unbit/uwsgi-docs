@@ -20,6 +20,7 @@ Event monitors can be added via plugins, the uWSGI core includes the following:
 * ``alarm-fd`` triggers an alarm when the specified file descriptor is ready (which is pretty low-level and the basis of most of the alarm plugins)
 * ``alarm-backlog`` triggers an alarm when the socket backlog queue is full
 * ``alarm-segfault`` (since 1.9.9) triggers an alarm when uWSGI segfaults.
+* ``alarm-cheap`` Use main alarm thread rather than create dedicated thread for each curl-based alarm
 
 Defining an alarm
 *****************
@@ -189,6 +190,7 @@ Send the log line to a cURL-able URL. This alarm plugin is not compiled in by de
 * "subject"
 * "timeout"
 * "url"
+* "ssl_insecure"
 
 So, for sending mail via SMTP AUTH:
 
@@ -198,13 +200,29 @@ So, for sending mail via SMTP AUTH:
    plugins = alarm_curl
    alarm = test curl:smtp://mail.example.com;mail_to=admin@example.com;mail_from=uwsgi@example.com;auth_user=uwsgi;auth_pass=secret;subject=alarm from uWSGI !!!
 
-Or to POST the log line to an HTTP server protected with basic authentication:
+Or to use Gmail to send alarms:
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugins = alarm_curl
+   alarm = gmail curl:smtps://smtp.gmail.com;mail_to=admin@example.com;auth_user=uwsgi@gmail.com;auth_pass=secret;subject=alarm from uWSGI !!!
+
+Or to PUT the log line to an HTTP server protected with basic authentication:
 
 .. code-block:: ini
 
    [uwsgi]
    plugins = alarm_curl
    alarm = test2 curl:http://192.168.173.6:9191/argh;auth_user=topogigio;auth_pass=foobar
+
+Or to POST the log line to an HTTPS server with self-generated SSL certificate.
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugins = alarm_curl
+   alarm = test3 curl:https://192.168.173.6/argh;method=POST;ssl_insecure=true
 
 xmpp
 ^^^^
