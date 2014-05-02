@@ -149,7 +149,6 @@ variables (PATH_INFO, SCRIPT_NAME, REQUEST_METHOD...) using the ${VAR} syntax.
 
    [uwsgi]
    route-user-agent = .*curl.* redirect:http://uwsgi.it${REQUEST_URI}
-   route-remote-addr = ^127\.0\.0\.1$ break:403 Forbidden for ip ${REMOTE_ADDR}
 
 Accessing cookies
 *****************
@@ -304,6 +303,36 @@ returns the specified HTTP status code:
    route = ^/notfound break:404 Not Found
    route = ^/bad break:
    route = ^/error break:500
+
+Note: ``break`` doesn't support request vars because it's intended to notify
+browser about the error, not end user. That said, we can tell following code
+will send what it reads to browser (i.e. without ``${REMOTE_ADDR}`` being
+translated to the remote IP address).
+
+.. code-block:: ini
+
+   [uwsgi]
+   route-remote-addr = ^127\.0\.0\.1$ break:403 Forbidden for ip ${REMOTE_ADDR}
+
+If you really want to do wacky stuff, see ``clearheaders``.
+
+``return``/``break-with-status``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Return value: ``BREAK``
+
+``return`` uses uWSGI built-in status code and return both status code and
+message body. It's similar to ``break`` but as mentioned above ``break``
+doesn't have the error message body. ``return:403`` is equivalent to following:
+
+.. code-block:: ini
+
+   [uwsgi]
+    route-run = clearheaders:403 Forbidden
+    route-run = addheader:Content-Type: text/plain
+    route-run = addheader:Content-Length: 9
+    route-run = send:Forbidden
+    route-run = break:
 
 ``log``
 ^^^^^^^
