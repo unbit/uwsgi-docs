@@ -51,3 +51,58 @@ Configuring the Emperor for fork-server mode
 ---------------------------------------------
 
 You need only two new options: ``--emperor-use-fork-serve <addr>`` and ``--vassal-fork-base <name>``
+
+Let's start with a slow-loading (10 seconds) perl-app:
+
+.. code-block:: pl
+
+   # myapp.pl
+   print "I am the App\n";
+   sleep(10);
+   my $app = sub {
+        return [200, ['Content-Type'=>'text/html'], ["Hello World"]];
+   };
+
+let's save it as myapp.pl and load it in perlbase.ini vassal file (this is a base vassal):
+
+.. code-block:: ini
+
+   [uwsgi]
+   early-psgi = myapp.pl
+   fork-server = /var/run/fork_server.socket
+
+now create two vassals (one.ini and two.ini) that will fork() from the base one:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; one.ini
+   http-socket = :8181
+   processes = 4
+   uid = 1001
+   gid = 1001
+   
+.. code-block:: ini
+
+   [uwsgi]
+   ; one.ini
+   http-socket = :8282
+   processes = 8
+   uid = 1002
+   gid = 1002
+   
+as you can see they are pretty different, even in privileges.
+
+Now let's spawn the Emperor in fork-server mode allowing perlbase.ini as a "base" vassal:
+
+.. code-block:: ini
+
+   [uwsgi]
+   emperor = /etc/uwsgi/vassals
+   emperor-use-fork-server = /var/run/fork_server.socket
+   vassal-fork-base = perlbase.ini
+   emperor-stats = 127.0.0.1:5000
+   
+the Emperor will start running perlbase.ini as a standard vassal, while for the non-base ones it will fork() from the base (where the app is already loaded).
+
+You will note that instead waiting for 10 seconds, your new vassals will start immediately
