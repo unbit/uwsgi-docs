@@ -9,7 +9,7 @@ from an already running one (with the application core loaded).
 Currently the feature is supported only in the PSGI plugin, and requires a Linux kernel >= 3.4
 
 How it works
-============
+------------
 
 When in fork-server mode, the Emperor differentiate between two kind of vassals: base and adopted.
 
@@ -46,3 +46,8 @@ How the Emperor can wait() on an external process ? This is why a >= 3.4 kernel 
 vassals to be re-parented to the Emperor when their parent dies (infact the fork-server forks two times, so the vassal has no parent).
 
 Now the Emperor has a new child and a communication pipe. And that's all.
+
+Configuring the Emperor for fork-server mode
+---------------------------------------------
+
+You need only two new options: ``--emperor-use-fork-serve <addr>`` and ``--vassal-fork-base <name>``
