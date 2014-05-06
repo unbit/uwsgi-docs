@@ -6,7 +6,7 @@ This is a really advanced (and complex) feature developed thanks to intellisurve
 If you have dozens (hundreds ?) of applications built upon the same codebase you can setup your Emperor to fork vassals
 from an already running one (with the application core loaded).
 
-Currently the feature is supported only in the PSGI plugin.
+Currently the feature is supported only in the PSGI plugin, and requires a Linux kernel >= 3.4
 
 How it works
 ============
@@ -35,5 +35,14 @@ The Emperor passes a uwsgi-serialized-array of the commandline options of the ne
 Those 3 file descriptors are:
 
 1 -> the communication pipe with the Emperor (required)
+
 2 -> the config pipe (optional)
+
 3 -> on_demand socket (optional)
+
+At this point, the fork server fork() itself two times and continue the uWSGI startup using the supplied arguments array.
+
+How the Emperor can wait() on an external process ? This is why a >= 3.4 kernel is required, as thanks to the prctl(PR_SET_CHILD_SUBREAPER, 1) we can tell
+vassals to be re-parented to the Emperor when their parent dies (infact the fork-server forks two times, so the vassal has no parent).
+
+Now the Emperor has a new child and a communication pipe. And that's all.
