@@ -54,7 +54,7 @@ You have various ways to install uWSGI for Python:
 
   (after the build you will have a ``uwsgi`` binary in the current directory).
 
-Installing via your package distribution is not covered (would be impossibile to make everyone happy), but all of the general rules apply.
+Installing via your package distribution is not covered (would be impossible to make everyone happy), but all of the general rules apply.
 
 One thing you may want to take into account when testing this quickstart with distro-supplied packages, is that very probably your distribution
 has built uWSGI in modular way (every feature is a different plugin that must be loaded). To complete this quickstart,
