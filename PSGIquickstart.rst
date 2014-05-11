@@ -129,7 +129,7 @@ To have additional threads use --threads
 
 Or both if you feel exotic
 
-.. code-block::
+.. code-block:: sh
 
    uwsgi --socket 127.0.0.1:3031 --psgi myapp.pl --threads 8 --processes 4
    

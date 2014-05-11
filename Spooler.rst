@@ -125,6 +125,7 @@ Enqueueing requests to a spooler
 The 'spool' api function allows you to enqueue a hash/dictionary into the spooler specified by the instance:
 
 .. code-block:: ini
+
    # add this to your instance .ini file
    spooler=/path/to/spooler
    # that's it! now use one of the code blocks below to send requests

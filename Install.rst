@@ -100,7 +100,7 @@ amount of flexibility allowing them to use only the minimal amount of
 resources, just create a modular build.  A build profile named "core" is
 available.
 
-.. code-block::
+.. code-block:: sh
 
    python uwsgiconfig.py --build core
 

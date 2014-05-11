@@ -271,7 +271,7 @@ Notes regarding Busyness
 * With a higher number of workers required to handle load, worker count should stabilize somewhere near minimum busyness level, jumping a little bit around this value
 * When experimenting with this plugin it is advised to enable ``--cheaper-busyness-verbose`` to get an idea of what it is doing. An example log follows.
 
-  .. code-block::
+  .. code-block:: python
 
      # These messages are logged at startup to show current settings
      [busyness] settings: min=20%, max=60%, overload=20, multiplier=15, respawn penalty=3
