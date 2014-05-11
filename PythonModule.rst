@@ -128,6 +128,7 @@ SNMP functions
 --------------
 
 .. function:: snmp_set_community(str)
+
    :param str: The string containing the new community value.
 
    Sets the SNMP community string.
