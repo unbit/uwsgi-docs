@@ -44,7 +44,10 @@ Things to know (best practices and "issues")
 * Do not build plugins using a different config file than used to build the uWSGI binary itself -- unless you like pain or know *exactly* what you are doing.
 
 * By default uWSGI allocates a very small buffer (4096 bytes) for the headers of each request. If you start receiving "invalid request block size" in your logs, it could mean you need a bigger buffer. Increase it (up to 65535) with the ``buffer-size`` option. 
-  .. note:: If you receive '21573' as the request block size in your logs, it could mean you are using the HTTP protocol to speak with an instance speaking the uwsgi protocol. Don't do this.
+
+  .. note::
+
+     If you receive '21573' as the request block size in your logs, it could mean you are using the HTTP protocol to speak with an instance speaking the uwsgi protocol. Don't do this.
 
 * If your (Linux) server seems to have lots of idle workers, but performance is still sub-par, you may want to look at the value of the ``ip_conntrack_max`` system variable (``/proc/sys/net/ipv4/ip_conntrack_max``) and increase it to see if it helps.
 
