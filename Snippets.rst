@@ -177,21 +177,23 @@ To mount an application with a specific "key" in uWSGI, you use the --mount opti
 
 in our case we want to mount 3 python apps, each keyed with what will be the WSGI SCRIPT_NAME variable:
 
-```ini
-[uwsgi]
-plugin = python
-mount = /app1=app1.py
-mount = /app2=app2.py
-mount = /app3=app3.py
-; generally flask apps expose the 'app' callable instead of 'application'
-callable = app
+.. code-block :: ini
+   
+   [uwsgi]
+   plugin = python
+   mount = /app1=app1.py
+   mount = /app2=app2.py
+   mount = /app3=app3.py
+   ; generally flask apps expose the 'app' callable instead of 'application'
+   callable = app
 
-; tell uWSGI to rewrite PATH_INFO and SCRIPT_NAME according to mount-points
-manage-script-name = true
+   ; tell uWSGI to rewrite PATH_INFO and SCRIPT_NAME according to mount-points
+   manage-script-name = true
 
-; bind to a socket
-socket = /var/run/uwsgi.sock
-```
+   ; bind to a socket
+   socket = /var/run/uwsgi.sock
+
+
 
 now directly point your webserver.proxy to the instance socket (without doing additional configurations)
 
