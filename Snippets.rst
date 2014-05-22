@@ -203,3 +203,5 @@ Note: by default every app is loaded in a new python interpreter (that means a p
 If you want all of the app to be loaded in the same python vm, use the --single-interpreter option.
 
 Another note: you may find reference to an obscure "modifier1 30" trick. It is deprecated and extremely ugly. uWSGI is able to rewrite request variables in lot of advanced ways
+
+Final note: by default, the first loaded app is mounted as the "default one". That app will be served when no mountpoint matches.
