@@ -61,10 +61,12 @@ There are various collectors available (and more can be added via plugins).
 * ``sum`` -- the value is the sum of other metrics
 * ``avg`` -- compute the algebraic average of the children (added in 1.9.20)
 * ``accumulator`` -- always add the sum of children to the final value. See below for an example.
+
    Round 1: child1 = 22, child2 = 17 -> metric_value = 39
    Round 2: child1 = 26, child2 = 30 -> metric_value += 56
 
 * ``multiplier`` - Multiply the sum of children by the specified argument (arg1n).
+
    child1 = 22, child2 = 17, arg1n = 3 -> metric_value = (22+17)*3
 
 * ``func`` - the value is computed calling a specific function every time
@@ -98,6 +100,7 @@ The following keys are available:
 * ``type`` -- set the metric type, can be ``counter``, ``gauge``, ``absolute``, ``alias``
 * ``initial_value`` -- set the metric to a specific value on startup
 * ``freq`` -- set the collection frequency in seconds (default to 1)
+* ``reset_after_push`` -- reset the metric to zero after it's been pushed to the backend (so every ``freq`` seconds)
 * ``children`` -- maps children to the metric (see below)
 * ``alias`` -- the metric will be a simple alias for the specified one (--metric name=foobar,alias=worker.0.requests,type=alias)
 * ``arg1`` to ``arg3`` -- string based arguments (see below)
