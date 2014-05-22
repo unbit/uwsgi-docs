@@ -137,41 +137,32 @@ Multiple flask apps in different mountpoints
 
 Let's write three flask apps:
 
-```py
-#app1.py
-from flask import Flask
-app = Flask(__name__)
+.. code-block:: py
 
-@app.route("/")
-def hello():
-    return "Hello World! i am app1"
-```
+   #app1.py
+   from flask import Flask
+   app = Flask(__name__)
 
-```py
-#app2.py
-from flask import Flask
-app = Flask(__name__)
+   @app.route("/")
+   def hello():
+       return "Hello World! i am app2"
+       
 
-@app.route("/")
-def hello():
-    return "Hello World! i am app2"
-```
+.. code-block:: py
 
-```py
-#app3.py
-from flask import Flask
-app = Flask(__name__)
+   #app2.py
+   from flask import Flask
+   app = Flask(__name__)
 
-@app.route("/")
-def hello():
-    return "Hello World! i am app3"
-```
+   @app.route("/")
+   def hello():
+       return "Hello World! i am app3"
 
 each will be mounted respectively in /app1, /app2, /app3
 
 To mount an application with a specific "key" in uWSGI, you use the --mount option:
 
-```sh
+```
 --mount <mountpoint>=<app>
 ```
 
