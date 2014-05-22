@@ -202,4 +202,4 @@ now directly point your webserver.proxy to the instance socket (without doing ad
 Note: by default every app is loaded in a new python interpreter (that means a pretty-well isolated namespace for each app).
 If you want all of the app to be loaded in the same python vm, use the --single-interpreter option.
 
-Another note: you may find reference to an obscure "modifier1 30" trick. It is deprecated and extremely ugly. uWSGI is able to rewrite request variables
+Another note: you may find reference to an obscure "modifier1 30" trick. It is deprecated and extremely ugly. uWSGI is able to rewrite request variables in lot of advanced ways
