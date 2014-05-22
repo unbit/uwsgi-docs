@@ -130,3 +130,72 @@ mountpoint. So /var/cgi/foo.lua will be run on request to /cgi-bin/foo.lua
    cgi-helper = .lua=lua
    ; search for index.lua if a directory is requested
    cgi-index = index.lua
+   
+   
+Multiple flask apps in different mountpoints
+--------------------------------------------
+
+Let's write three flask apps:
+
+```py
+#app1.py
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+    return "Hello World! i am app1"
+```
+
+```py
+#app2.py
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+    return "Hello World! i am app2"
+```
+
+```py
+#app3.py
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+    return "Hello World! i am app3"
+```
+
+each will be mounted respectively in /app1, /app2, /app3
+
+To mount an application with a specific "key" in uWSGI, you use the --mount option:
+
+```sh
+--mount <mountpoint>=<app>
+```
+
+in our case we want to mount 3 python apps, each keyed with what will be the WSGI SCRIPT_NAME variable:
+
+```ini
+[uwsgi]
+plugin = python
+mount = /app1=app1.py
+mount = /app2=app2.py
+mount = /app3=app3.py
+; generally flask apps expose the 'app' callable instead of 'application'
+callable = app
+
+; tell uWSGI to rewrite PATH_INFO and SCRIPT_NAME according to mount-points
+manage-script-name = true
+
+; bind to a socket
+socket = /var/run/uwsgi.sock
+```
+
+now directly point your webserver.proxy to the instance socket (without doing additional configurations)
+
+Note: by default every app is loaded in a new python interpreter (that means a pretty-well isolated namespace for each app).
+If you want all of the app to be loaded in the same python vm, use the --single-interpreter option.
+
+Another note: you may find reference to an obscure "modifier1 30" trick. It is deprecated and extremely ugly. uWSGI is able to rewrite request variables
