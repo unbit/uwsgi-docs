@@ -145,12 +145,23 @@ Let's write three flask apps:
 
    @app.route("/")
    def hello():
-       return "Hello World! i am app2"
+       return "Hello World! i am app1"
        
 
 .. code-block:: py
 
    #app2.py
+   from flask import Flask
+   app = Flask(__name__)
+
+   @app.route("/")
+   def hello():
+       return "Hello World! i am app2"
+       
+       
+.. code-block:: py
+
+   #app3.py
    from flask import Flask
    app = Flask(__name__)
 
