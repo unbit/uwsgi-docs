@@ -195,6 +195,11 @@ Your language plugins should expose at least the following api functions. Curren
 
 * ``metric_get(name)``
 * ``metric_set(name, value)``
+* ``metric_set_max(name, value)`` -- only set the metric *name* if the give *value* is greater than the one currently stored
+* ``metric_set_min(name, value)`` -- only set the metric *name* if the give *value* is lower than the one currently stored
+
+    ``metric_set_max`` and ``metric_set_min`` can be used to avoid having to call ``metric_get`` when you need a metric to be set at a maximal or minimal value. Another simple use case is to use the ``avg`` collector to calculate an average between some *max* and *min* set metrics.
+
 * ``metric_inc(name[, delta])``
 * ``metric_dec(name[, delta])``
 * ``metric_mul(name[, delta])``
