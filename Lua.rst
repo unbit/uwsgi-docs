@@ -60,7 +60,7 @@ will build a binary with luajit
 
 If you do not want to rely on the pkg-config tool you can manually specify the includes and library directories as well as the lib name with the following environment vars:
 
-.. code-block: sh
+.. code-block:: sh
 
    UWSGICONFIG_LUAINC=<directory>
    UWSGICONFIG_LUALIBPATH=<directory>
