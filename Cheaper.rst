@@ -135,6 +135,7 @@ started/stopped more often than required since every minor spike may spawn new
 workers. With a high ``cheaper-overload`` value the worker count will change
 much less since longer cycles will eat all short spikes of load and extreme
 values.
+Default is 3, for busyness plugin it's best to use higher value (10-30).
 
 cheaper-step
 ************
