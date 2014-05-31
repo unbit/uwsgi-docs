@@ -10,7 +10,7 @@ works, you should read the various quickstarts and tutorials.
 
 uWSGI core
 ==========
-socket
+--socket
 ******
 ``argument``: required_argument
 
@@ -22,7 +22,7 @@ socket
 
 bind to the specified UNIX/TCP socket using default protocol
 
-uwsgi-socket
+--uwsgi-socket
 ************
 ``argument``: required_argument
 
@@ -34,7 +34,7 @@ uwsgi-socket
 
 bind to the specified UNIX/TCP socket using uwsgi protocol
 
-suwsgi-socket
+--suwsgi-socket
 *************
 ``argument``: required_argument
 
@@ -46,7 +46,7 @@ suwsgi-socket
 
 bind to the specified UNIX/TCP socket using uwsgi protocol over SSL
 
-ssl-socket
+--ssl-socket
 **********
 ``argument``: required_argument
 
@@ -58,7 +58,7 @@ ssl-socket
 
 bind to the specified UNIX/TCP socket using uwsgi protocol over SSL
 
-http-socket
+--http-socket
 ***********
 ``argument``: required_argument
 
@@ -68,7 +68,7 @@ http-socket
 
 bind to the specified UNIX/TCP socket using HTTP protocol
 
-http-socket-modifier1
+--http-socket-modifier1
 *********************
 ``argument``: required_argument
 
@@ -78,7 +78,7 @@ http-socket-modifier1
 
 force the specified modifier1 when using HTTP protocol
 
-http-socket-modifier2
+--http-socket-modifier2
 *********************
 ``argument``: required_argument
 
@@ -88,7 +88,7 @@ http-socket-modifier2
 
 force the specified modifier2 when using HTTP protocol
 
-https-socket
+--https-socket
 ************
 ``argument``: required_argument
 
@@ -98,7 +98,7 @@ https-socket
 
 bind to the specified UNIX/TCP socket using HTTPS protocol
 
-https-socket-modifier1
+--https-socket-modifier1
 **********************
 ``argument``: required_argument
 
@@ -108,7 +108,7 @@ https-socket-modifier1
 
 force the specified modifier1 when using HTTPS protocol
 
-https-socket-modifier2
+--https-socket-modifier2
 **********************
 ``argument``: required_argument
 
@@ -118,7 +118,7 @@ https-socket-modifier2
 
 force the specified modifier2 when using HTTPS protocol
 
-fastcgi-socket
+--fastcgi-socket
 **************
 ``argument``: required_argument
 
@@ -128,7 +128,7 @@ fastcgi-socket
 
 bind to the specified UNIX/TCP socket using FastCGI protocol
 
-fastcgi-nph-socket
+--fastcgi-nph-socket
 ******************
 ``argument``: required_argument
 
@@ -138,7 +138,7 @@ fastcgi-nph-socket
 
 bind to the specified UNIX/TCP socket using FastCGI protocol (nph mode)
 
-fastcgi-modifier1
+--fastcgi-modifier1
 *****************
 ``argument``: required_argument
 
@@ -148,7 +148,7 @@ fastcgi-modifier1
 
 force the specified modifier1 when using FastCGI protocol
 
-fastcgi-modifier2
+--fastcgi-modifier2
 *****************
 ``argument``: required_argument
 
@@ -158,7 +158,7 @@ fastcgi-modifier2
 
 force the specified modifier2 when using FastCGI protocol
 
-scgi-socket
+--scgi-socket
 ***********
 ``argument``: required_argument
 
@@ -168,7 +168,7 @@ scgi-socket
 
 bind to the specified UNIX/TCP socket using SCGI protocol
 
-scgi-nph-socket
+--scgi-nph-socket
 ***************
 ``argument``: required_argument
 
@@ -178,7 +178,7 @@ scgi-nph-socket
 
 bind to the specified UNIX/TCP socket using SCGI protocol (nph mode)
 
-scgi-modifier1
+--scgi-modifier1
 **************
 ``argument``: required_argument
 
@@ -188,7 +188,7 @@ scgi-modifier1
 
 force the specified modifier1 when using SCGI protocol
 
-scgi-modifier2
+--scgi-modifier2
 **************
 ``argument``: required_argument
 
@@ -198,7 +198,7 @@ scgi-modifier2
 
 force the specified modifier2 when using SCGI protocol
 
-raw-socket
+--raw-socket
 **********
 ``argument``: required_argument
 
@@ -208,7 +208,7 @@ raw-socket
 
 bind to the specified UNIX/TCP socket using RAW protocol
 
-raw-modifier1
+--raw-modifier1
 *************
 ``argument``: required_argument
 
@@ -218,7 +218,7 @@ raw-modifier1
 
 force the specified modifier1 when using RAW protocol
 
-raw-modifier2
+--raw-modifier2
 *************
 ``argument``: required_argument
 
@@ -228,7 +228,7 @@ raw-modifier2
 
 force the specified modifier2 when using RAW protocol
 
-puwsgi-socket
+--puwsgi-socket
 *************
 ``argument``: required_argument
 
@@ -238,7 +238,7 @@ puwsgi-socket
 
 bind to the specified UNIX/TCP socket using persistent uwsgi protocol (puwsgi)
 
-protocol
+--protocol
 ********
 ``argument``: required_argument
 
@@ -248,7 +248,7 @@ protocol
 
 force the specified protocol for default sockets
 
-socket-protocol
+--socket-protocol
 ***************
 ``argument``: required_argument
 
@@ -258,7 +258,7 @@ socket-protocol
 
 force the specified protocol for default sockets
 
-shared-socket
+--shared-socket
 *************
 ``argument``: required_argument
 
@@ -268,7 +268,7 @@ shared-socket
 
 create a shared sacket for advanced jailing or ipc
 
-undeferred-shared-socket
+--undeferred-shared-socket
 ************************
 ``argument``: required_argument
 
@@ -278,7 +278,7 @@ undeferred-shared-socket
 
 create a shared sacket for advanced jailing or ipc (undeferred mode)
 
-processes
+--processes
 *********
 ``argument``: required_argument
 
@@ -290,7 +290,7 @@ processes
 
 spawn the specified number of workers/processes
 
-workers
+--workers
 *******
 ``argument``: required_argument
 
@@ -302,7 +302,7 @@ workers
 
 spawn the specified number of workers/processes
 
-thunder-lock
+--thunder-lock
 ************
 ``argument``: no_argument
 
@@ -312,7 +312,7 @@ thunder-lock
 
 serialize accept() usage (if possible)
 
-harakiri
+--harakiri
 ********
 ``argument``: required_argument
 
@@ -324,7 +324,7 @@ harakiri
 
 set harakiri timeout
 
-harakiri-verbose
+--harakiri-verbose
 ****************
 ``argument``: no_argument
 
@@ -334,7 +334,7 @@ harakiri-verbose
 
 enable verbose mode for harakiri
 
-harakiri-no-arh
+--harakiri-no-arh
 ***************
 ``argument``: no_argument
 
@@ -344,7 +344,7 @@ harakiri-no-arh
 
 do not enable harakiri during after-request-hook
 
-no-harakiri-arh
+--no-harakiri-arh
 ***************
 ``argument``: no_argument
 
@@ -354,7 +354,7 @@ no-harakiri-arh
 
 do not enable harakiri during after-request-hook
 
-no-harakiri-after-req-hook
+--no-harakiri-after-req-hook
 **************************
 ``argument``: no_argument
 
@@ -364,7 +364,7 @@ no-harakiri-after-req-hook
 
 do not enable harakiri during after-request-hook
 
-backtrace-depth
+--backtrace-depth
 ***************
 ``argument``: required_argument
 
@@ -374,7 +374,7 @@ backtrace-depth
 
 set backtrace depth
 
-mule-harakiri
+--mule-harakiri
 *************
 ``argument``: required_argument
 
@@ -384,7 +384,7 @@ mule-harakiri
 
 set harakiri timeout for mule tasks
 
-xmlconfig
+--xmlconfig
 *********
 ``argument``: required_argument
 
@@ -398,7 +398,7 @@ xmlconfig
 
 load config from xml file
 
-xml
+--xml
 ***
 ``argument``: required_argument
 
@@ -412,7 +412,7 @@ xml
 
 load config from xml file
 
-config
+--config
 ******
 ``argument``: required_argument
 
@@ -424,7 +424,7 @@ config
 
 load configuration using the pluggable system
 
-fallback-config
+--fallback-config
 ***************
 ``argument``: required_argument
 
@@ -436,7 +436,7 @@ fallback-config
 
 re-exec uwsgi with the specified config when exit code is 1
 
-strict
+--strict
 ******
 ``argument``: no_argument
 
@@ -448,7 +448,7 @@ strict
 
 enable strict mode (placeholder cannot be used)
 
-skip-zero
+--skip-zero
 *********
 ``argument``: no_argument
 
@@ -458,7 +458,7 @@ skip-zero
 
 skip check of file descriptor 0
 
-skip-atexit
+--skip-atexit
 ***********
 ``argument``: no_argument
 
@@ -468,7 +468,7 @@ skip-atexit
 
 skip atexit hooks (ignored by the master)
 
-set
+--set
 ***
 ``argument``: required_argument
 
@@ -482,7 +482,7 @@ set
 
 set a placeholder or an option
 
-set-placeholder
+--set-placeholder
 ***************
 ``argument``: required_argument
 
@@ -494,7 +494,7 @@ set-placeholder
 
 set a placeholder
 
-set-ph
+--set-ph
 ******
 ``argument``: required_argument
 
@@ -506,7 +506,7 @@ set-ph
 
 set a placeholder
 
-get
+--get
 ***
 ``argument``: required_argument
 
@@ -518,7 +518,7 @@ get
 
 print the specified option value and exit
 
-declare-option
+--declare-option
 **************
 ``argument``: required_argument
 
@@ -530,7 +530,7 @@ declare-option
 
 declare a new uWSGI custom option
 
-declare-option2
+--declare-option2
 ***************
 ``argument``: required_argument
 
@@ -540,7 +540,7 @@ declare-option2
 
 declare a new uWSGI custom option (non-immediate)
 
-resolve
+--resolve
 *******
 ``argument``: required_argument
 
@@ -552,7 +552,7 @@ resolve
 
 place the result of a dns query in the specified placeholder, sytax: placeholder=name (immediate option)
 
-for
+--for
 ***
 ``argument``: required_argument
 
@@ -564,7 +564,7 @@ for
 
 (opt logic) for cycle
 
-for-glob
+--for-glob
 ********
 ``argument``: required_argument
 
@@ -576,7 +576,7 @@ for-glob
 
 (opt logic) for cycle (expand glob)
 
-for-times
+--for-times
 *********
 ``argument``: required_argument
 
@@ -588,7 +588,7 @@ for-times
 
 (opt logic) for cycle (expand the specified num to a list starting from 1)
 
-for-readline
+--for-readline
 ************
 ``argument``: required_argument
 
@@ -600,7 +600,7 @@ for-readline
 
 (opt logic) for cycle (expand the specified file to a list of lines)
 
-endfor
+--endfor
 ******
 ``argument``: optional_argument
 
@@ -612,7 +612,7 @@ endfor
 
 (opt logic) end for cycle
 
-end-for
+--end-for
 *******
 ``argument``: optional_argument
 
@@ -624,7 +624,7 @@ end-for
 
 (opt logic) end for cycle
 
-if-opt
+--if-opt
 ******
 ``argument``: required_argument
 
@@ -636,7 +636,7 @@ if-opt
 
 (opt logic) check for option
 
-if-not-opt
+--if-not-opt
 **********
 ``argument``: required_argument
 
@@ -648,7 +648,7 @@ if-not-opt
 
 (opt logic) check for option
 
-if-env
+--if-env
 ******
 ``argument``: required_argument
 
@@ -660,7 +660,7 @@ if-env
 
 (opt logic) check for environment variable
 
-if-not-env
+--if-not-env
 **********
 ``argument``: required_argument
 
@@ -672,7 +672,7 @@ if-not-env
 
 (opt logic) check for environment variable
 
-ifenv
+--ifenv
 *****
 ``argument``: required_argument
 
@@ -684,7 +684,7 @@ ifenv
 
 (opt logic) check for environment variable
 
-if-reload
+--if-reload
 *********
 ``argument``: no_argument
 
@@ -696,7 +696,7 @@ if-reload
 
 (opt logic) check for reload
 
-if-not-reload
+--if-not-reload
 *************
 ``argument``: no_argument
 
@@ -708,7 +708,7 @@ if-not-reload
 
 (opt logic) check for reload
 
-if-exists
+--if-exists
 *********
 ``argument``: required_argument
 
@@ -720,7 +720,7 @@ if-exists
 
 (opt logic) check for file/directory existance
 
-if-not-exists
+--if-not-exists
 *************
 ``argument``: required_argument
 
@@ -732,7 +732,7 @@ if-not-exists
 
 (opt logic) check for file/directory existance
 
-ifexists
+--ifexists
 ********
 ``argument``: required_argument
 
@@ -744,7 +744,7 @@ ifexists
 
 (opt logic) check for file/directory existance
 
-if-plugin
+--if-plugin
 *********
 ``argument``: required_argument
 
@@ -756,7 +756,7 @@ if-plugin
 
 (opt logic) check for plugin
 
-if-not-plugin
+--if-not-plugin
 *************
 ``argument``: required_argument
 
@@ -768,7 +768,7 @@ if-not-plugin
 
 (opt logic) check for plugin
 
-ifplugin
+--ifplugin
 ********
 ``argument``: required_argument
 
@@ -780,7 +780,7 @@ ifplugin
 
 (opt logic) check for plugin
 
-if-file
+--if-file
 *******
 ``argument``: required_argument
 
@@ -792,7 +792,7 @@ if-file
 
 (opt logic) check for file existance
 
-if-not-file
+--if-not-file
 ***********
 ``argument``: required_argument
 
@@ -804,7 +804,7 @@ if-not-file
 
 (opt logic) check for file existance
 
-if-dir
+--if-dir
 ******
 ``argument``: required_argument
 
@@ -816,7 +816,7 @@ if-dir
 
 (opt logic) check for directory existance
 
-if-not-dir
+--if-not-dir
 **********
 ``argument``: required_argument
 
@@ -828,7 +828,7 @@ if-not-dir
 
 (opt logic) check for directory existance
 
-ifdir
+--ifdir
 *****
 ``argument``: required_argument
 
@@ -840,7 +840,7 @@ ifdir
 
 (opt logic) check for directory existance
 
-if-directory
+--if-directory
 ************
 ``argument``: required_argument
 
@@ -852,7 +852,7 @@ if-directory
 
 (opt logic) check for directory existance
 
-endif
+--endif
 *****
 ``argument``: optional_argument
 
@@ -864,7 +864,7 @@ endif
 
 (opt logic) end if
 
-end-if
+--end-if
 ******
 ``argument``: optional_argument
 
@@ -876,7 +876,7 @@ end-if
 
 (opt logic) end if
 
-blacklist
+--blacklist
 *********
 ``argument``: required_argument
 
@@ -888,7 +888,7 @@ blacklist
 
 set options blacklist context
 
-end-blacklist
+--end-blacklist
 *************
 ``argument``: no_argument
 
@@ -900,7 +900,7 @@ end-blacklist
 
 clear options blacklist context
 
-whitelist
+--whitelist
 *********
 ``argument``: required_argument
 
@@ -912,7 +912,7 @@ whitelist
 
 set options whitelist context
 
-end-whitelist
+--end-whitelist
 *************
 ``argument``: no_argument
 
@@ -924,7 +924,7 @@ end-whitelist
 
 clear options whitelist context
 
-ignore-sigpipe
+--ignore-sigpipe
 **************
 ``argument``: no_argument
 
@@ -934,7 +934,7 @@ ignore-sigpipe
 
 do not report (annoying) SIGPIPE
 
-ignore-write-errors
+--ignore-write-errors
 *******************
 ``argument``: no_argument
 
@@ -944,7 +944,7 @@ ignore-write-errors
 
 do not report (annoying) write()/writev() errors
 
-write-errors-tolerance
+--write-errors-tolerance
 **********************
 ``argument``: required_argument
 
@@ -954,7 +954,7 @@ write-errors-tolerance
 
 set the maximum number of allowed write errors (default: no tolerance)
 
-write-errors-exception-only
+--write-errors-exception-only
 ***************************
 ``argument``: no_argument
 
@@ -964,7 +964,7 @@ write-errors-exception-only
 
 only raise an exception on write errors giving control to the app itself
 
-disable-write-exception
+--disable-write-exception
 ***********************
 ``argument``: no_argument
 
@@ -974,7 +974,7 @@ disable-write-exception
 
 disable exception generation on write()/writev()
 
-inherit
+--inherit
 *******
 ``argument``: required_argument
 
@@ -984,7 +984,7 @@ inherit
 
 use the specified file as config template
 
-include
+--include
 *******
 ``argument``: required_argument
 
@@ -996,7 +996,7 @@ include
 
 include the specified file as immediate configuration
 
-inject-before
+--inject-before
 *************
 ``argument``: required_argument
 
@@ -1008,7 +1008,7 @@ inject-before
 
 inject a text file before the config file (advanced templating)
 
-inject-after
+--inject-after
 ************
 ``argument``: required_argument
 
@@ -1020,7 +1020,7 @@ inject-after
 
 inject a text file after the config file (advanced templating)
 
-daemonize
+--daemonize
 *********
 ``argument``: required_argument
 
@@ -1032,7 +1032,7 @@ daemonize
 
 daemonize uWSGI
 
-daemonize2
+--daemonize2
 **********
 ``argument``: required_argument
 
@@ -1042,7 +1042,7 @@ daemonize2
 
 daemonize uWSGI after app loading
 
-stop
+--stop
 ****
 ``argument``: required_argument
 
@@ -1054,7 +1054,7 @@ stop
 
 stop an instance
 
-reload
+--reload
 ******
 ``argument``: required_argument
 
@@ -1066,7 +1066,7 @@ reload
 
 reload an instance
 
-pause
+--pause
 *****
 ``argument``: required_argument
 
@@ -1078,7 +1078,7 @@ pause
 
 pause an instance
 
-suspend
+--suspend
 *******
 ``argument``: required_argument
 
@@ -1090,7 +1090,7 @@ suspend
 
 suspend an instance
 
-resume
+--resume
 ******
 ``argument``: required_argument
 
@@ -1102,7 +1102,7 @@ resume
 
 resume an instance
 
-connect-and-read
+--connect-and-read
 ****************
 ``argument``: required_argument
 
@@ -1114,7 +1114,7 @@ connect-and-read
 
 connect to a socket and wait for data from it
 
-extract
+--extract
 *******
 ``argument``: required_argument
 
@@ -1126,7 +1126,7 @@ extract
 
 fetch/dump any supported address to stdout
 
-listen
+--listen
 ******
 ``argument``: required_argument
 
@@ -1138,7 +1138,7 @@ listen
 
 set the socket listen queue size
 
-max-vars
+--max-vars
 ********
 ``argument``: required_argument
 
@@ -1150,7 +1150,7 @@ max-vars
 
 set the amount of internal iovec/vars structures
 
-max-apps
+--max-apps
 ********
 ``argument``: required_argument
 
@@ -1160,7 +1160,7 @@ max-apps
 
 set the maximum number of per-worker applications
 
-buffer-size
+--buffer-size
 ***********
 ``argument``: required_argument
 
@@ -1172,7 +1172,7 @@ buffer-size
 
 set internal buffer size
 
-memory-report
+--memory-report
 *************
 ``argument``: no_argument
 
@@ -1184,7 +1184,7 @@ memory-report
 
 enable memory report
 
-profiler
+--profiler
 ********
 ``argument``: required_argument
 
@@ -1194,7 +1194,7 @@ profiler
 
 enable the specified profiler
 
-cgi-mode
+--cgi-mode
 ********
 ``argument``: no_argument
 
@@ -1206,7 +1206,7 @@ cgi-mode
 
 force CGI-mode for plugins supporting it
 
-abstract-socket
+--abstract-socket
 ***************
 ``argument``: no_argument
 
@@ -1218,7 +1218,7 @@ abstract-socket
 
 force UNIX socket in abstract mode (Linux only)
 
-chmod-socket
+--chmod-socket
 ************
 ``argument``: optional_argument
 
@@ -1230,7 +1230,7 @@ chmod-socket
 
 chmod-socket
 
-chmod
+--chmod
 *****
 ``argument``: optional_argument
 
@@ -1242,7 +1242,7 @@ chmod
 
 chmod-socket
 
-chown-socket
+--chown-socket
 ************
 ``argument``: required_argument
 
@@ -1252,7 +1252,7 @@ chown-socket
 
 chown unix sockets
 
-umask
+--umask
 *****
 ``argument``: required_argument
 
@@ -1264,7 +1264,7 @@ umask
 
 set umask
 
-freebind
+--freebind
 ********
 ``argument``: no_argument
 
@@ -1274,7 +1274,7 @@ freebind
 
 put socket in freebind mode
 
-map-socket
+--map-socket
 **********
 ``argument``: required_argument
 
@@ -1284,7 +1284,7 @@ map-socket
 
 map sockets to specific workers
 
-enable-threads
+--enable-threads
 **************
 ``argument``: no_argument
 
@@ -1296,7 +1296,7 @@ enable-threads
 
 enable threads
 
-no-threads-wait
+--no-threads-wait
 ***************
 ``argument``: no_argument
 
@@ -1306,7 +1306,7 @@ no-threads-wait
 
 do not wait for threads cancellation on quit/reload
 
-auto-procname
+--auto-procname
 *************
 ``argument``: no_argument
 
@@ -1316,7 +1316,7 @@ auto-procname
 
 automatically set processes name to something meaningful
 
-procname-prefix
+--procname-prefix
 ***************
 ``argument``: required_argument
 
@@ -1328,7 +1328,7 @@ procname-prefix
 
 add a prefix to the process names
 
-procname-prefix-spaced
+--procname-prefix-spaced
 **********************
 ``argument``: required_argument
 
@@ -1340,7 +1340,7 @@ procname-prefix-spaced
 
 add a spaced prefix to the process names
 
-procname-append
+--procname-append
 ***************
 ``argument``: required_argument
 
@@ -1352,7 +1352,7 @@ procname-append
 
 append a string to process names
 
-procname
+--procname
 ********
 ``argument``: required_argument
 
@@ -1364,7 +1364,7 @@ procname
 
 set process names
 
-procname-master
+--procname-master
 ***************
 ``argument``: required_argument
 
@@ -1376,7 +1376,7 @@ procname-master
 
 set master process name
 
-single-interpreter
+--single-interpreter
 ******************
 ``argument``: no_argument
 
@@ -1388,7 +1388,7 @@ single-interpreter
 
 do not use multiple interpreters (where available)
 
-need-app
+--need-app
 ********
 ``argument``: no_argument
 
@@ -1398,7 +1398,7 @@ need-app
 
 exit if no app can be loaded
 
-master
+--master
 ******
 ``argument``: no_argument
 
@@ -1410,7 +1410,7 @@ master
 
 enable master process
 
-honour-stdin
+--honour-stdin
 ************
 ``argument``: no_argument
 
@@ -1420,7 +1420,7 @@ honour-stdin
 
 do not remap stdin to /dev/null
 
-emperor
+--emperor
 *******
 ``argument``: required_argument
 
@@ -1430,7 +1430,7 @@ emperor
 
 run the Emperor
 
-emperor-proxy-socket
+--emperor-proxy-socket
 ********************
 ``argument``: required_argument
 
@@ -1440,7 +1440,7 @@ emperor-proxy-socket
 
 force the vassal to became an Emperor proxy
 
-emperor-wrapper
+--emperor-wrapper
 ***************
 ``argument``: required_argument
 
@@ -1450,7 +1450,7 @@ emperor-wrapper
 
 set a binary wrapper for vassals
 
-emperor-nofollow
+--emperor-nofollow
 ****************
 ``argument``: no_argument
 
@@ -1460,7 +1460,7 @@ emperor-nofollow
 
 do not follow symlinks when checking for mtime
 
-emperor-procname
+--emperor-procname
 ****************
 ``argument``: required_argument
 
@@ -1470,7 +1470,7 @@ emperor-procname
 
 set the Emperor process name
 
-emperor-freq
+--emperor-freq
 ************
 ``argument``: required_argument
 
@@ -1480,7 +1480,7 @@ emperor-freq
 
 set the Emperor scan frequency (default 3 seconds)
 
-emperor-required-heartbeat
+--emperor-required-heartbeat
 **************************
 ``argument``: required_argument
 
@@ -1490,7 +1490,7 @@ emperor-required-heartbeat
 
 set the Emperor tolerance about heartbeats
 
-emperor-curse-tolerance
+--emperor-curse-tolerance
 ***********************
 ``argument``: required_argument
 
@@ -1500,7 +1500,7 @@ emperor-curse-tolerance
 
 set the Emperor tolerance about cursed vassals
 
-emperor-pidfile
+--emperor-pidfile
 ***************
 ``argument``: required_argument
 
@@ -1510,7 +1510,7 @@ emperor-pidfile
 
 write the Emperor pid in the specified file
 
-emperor-tyrant
+--emperor-tyrant
 **************
 ``argument``: no_argument
 
@@ -1520,7 +1520,7 @@ emperor-tyrant
 
 put the Emperor in Tyrant mode
 
-emperor-tyrant-nofollow
+--emperor-tyrant-nofollow
 ***********************
 ``argument``: no_argument
 
@@ -1530,7 +1530,7 @@ emperor-tyrant-nofollow
 
 do not follow symlinks when checking for uid/gid in Tyrant mode
 
-emperor-stats
+--emperor-stats
 *************
 ``argument``: required_argument
 
@@ -1540,7 +1540,7 @@ emperor-stats
 
 run the Emperor stats server
 
-emperor-stats-server
+--emperor-stats-server
 ********************
 ``argument``: required_argument
 
@@ -1550,7 +1550,7 @@ emperor-stats-server
 
 run the Emperor stats server
 
-early-emperor
+--early-emperor
 *************
 ``argument``: no_argument
 
@@ -1560,7 +1560,7 @@ early-emperor
 
 spawn the emperor as soon as possibile
 
-emperor-broodlord
+--emperor-broodlord
 *****************
 ``argument``: required_argument
 
@@ -1570,7 +1570,7 @@ emperor-broodlord
 
 run the emperor in BroodLord mode
 
-emperor-throttle
+--emperor-throttle
 ****************
 ``argument``: required_argument
 
@@ -1580,7 +1580,7 @@ emperor-throttle
 
 set throttling level (in milliseconds) for bad behaving vassals (default 1000)
 
-emperor-max-throttle
+--emperor-max-throttle
 ********************
 ``argument``: required_argument
 
@@ -1590,7 +1590,7 @@ emperor-max-throttle
 
 set max throttling level (in milliseconds) for bad behaving vassals (default 3 minutes)
 
-emperor-magic-exec
+--emperor-magic-exec
 ******************
 ``argument``: no_argument
 
@@ -1600,7 +1600,7 @@ emperor-magic-exec
 
 prefix vassals config files with exec:// if they have the executable bit
 
-emperor-on-demand-extension
+--emperor-on-demand-extension
 ***************************
 ``argument``: required_argument
 
@@ -1610,7 +1610,7 @@ emperor-on-demand-extension
 
 search for text file (vassal name + extension) containing the on demand socket name
 
-emperor-on-demand-ext
+--emperor-on-demand-ext
 *********************
 ``argument``: required_argument
 
@@ -1620,7 +1620,7 @@ emperor-on-demand-ext
 
 search for text file (vassal name + extension) containing the on demand socket name
 
-emperor-on-demand-directory
+--emperor-on-demand-directory
 ***************************
 ``argument``: required_argument
 
@@ -1630,7 +1630,7 @@ emperor-on-demand-directory
 
 enable on demand mode binding to the unix socket in the specified directory named like the vassal + .socket
 
-emperor-on-demand-dir
+--emperor-on-demand-dir
 *********************
 ``argument``: required_argument
 
@@ -1640,7 +1640,7 @@ emperor-on-demand-dir
 
 enable on demand mode binding to the unix socket in the specified directory named like the vassal + .socket
 
-emperor-on-demand-exec
+--emperor-on-demand-exec
 **********************
 ``argument``: required_argument
 
@@ -1650,7 +1650,7 @@ emperor-on-demand-exec
 
 use the output of the specified command as on demand socket name (the vassal name is passed as the only argument)
 
-emperor-extra-extension
+--emperor-extra-extension
 ***********************
 ``argument``: required_argument
 
@@ -1660,7 +1660,7 @@ emperor-extra-extension
 
 allows the specified extension in the Emperor (vassal will be called with --config)
 
-emperor-extra-ext
+--emperor-extra-ext
 *****************
 ``argument``: required_argument
 
@@ -1670,7 +1670,7 @@ emperor-extra-ext
 
 allows the specified extension in the Emperor (vassal will be called with --config)
 
-emperor-no-blacklist
+--emperor-no-blacklist
 ********************
 ``argument``: no_argument
 
@@ -1680,7 +1680,7 @@ emperor-no-blacklist
 
 disable Emperor blacklisting subsystem
 
-emperor-use-clone
+--emperor-use-clone
 *****************
 ``argument``: required_argument
 
@@ -1690,7 +1690,7 @@ emperor-use-clone
 
 use clone() instead of fork() passing the specified unshare() flags
 
-emperor-cap
+--emperor-cap
 ***********
 ``argument``: required_argument
 
@@ -1700,7 +1700,7 @@ emperor-cap
 
 set vassals capability
 
-vassals-cap
+--vassals-cap
 ***********
 ``argument``: required_argument
 
@@ -1710,7 +1710,7 @@ vassals-cap
 
 set vassals capability
 
-vassal-cap
+--vassal-cap
 **********
 ``argument``: required_argument
 
@@ -1720,7 +1720,7 @@ vassal-cap
 
 set vassals capability
 
-imperial-monitor-list
+--imperial-monitor-list
 *********************
 ``argument``: no_argument
 
@@ -1730,7 +1730,7 @@ imperial-monitor-list
 
 list enabled imperial monitors
 
-imperial-monitors-list
+--imperial-monitors-list
 **********************
 ``argument``: no_argument
 
@@ -1740,7 +1740,7 @@ imperial-monitors-list
 
 list enabled imperial monitors
 
-vassals-inherit
+--vassals-inherit
 ***************
 ``argument``: required_argument
 
@@ -1750,7 +1750,7 @@ vassals-inherit
 
 add config templates to vassals config (uses --inherit)
 
-vassals-include
+--vassals-include
 ***************
 ``argument``: required_argument
 
@@ -1760,7 +1760,7 @@ vassals-include
 
 include config templates to vassals config (uses --include instead of --inherit)
 
-vassals-inherit-before
+--vassals-inherit-before
 **********************
 ``argument``: required_argument
 
@@ -1770,7 +1770,7 @@ vassals-inherit-before
 
 add config templates to vassals config (uses --inherit, parses before the vassal file)
 
-vassals-include-before
+--vassals-include-before
 **********************
 ``argument``: required_argument
 
@@ -1780,7 +1780,7 @@ vassals-include-before
 
 include config templates to vassals config (uses --include instead of --inherit, parses before the vassal file)
 
-vassals-start-hook
+--vassals-start-hook
 ******************
 ``argument``: required_argument
 
@@ -1790,7 +1790,7 @@ vassals-start-hook
 
 run the specified command before each vassal starts
 
-vassals-stop-hook
+--vassals-stop-hook
 *****************
 ``argument``: required_argument
 
@@ -1800,7 +1800,7 @@ vassals-stop-hook
 
 run the specified command after vassal's death
 
-vassal-sos-backlog
+--vassal-sos-backlog
 ******************
 ``argument``: required_argument
 
@@ -1810,7 +1810,7 @@ vassal-sos-backlog
 
 ask emperor for sos if backlog queue has more items than the value specified
 
-vassals-set
+--vassals-set
 ***********
 ``argument``: required_argument
 
@@ -1820,7 +1820,7 @@ vassals-set
 
 automatically set the specified option (via --set) for every vassal
 
-vassal-set
+--vassal-set
 **********
 ``argument``: required_argument
 
@@ -1830,7 +1830,7 @@ vassal-set
 
 automatically set the specified option (via --set) for every vassal
 
-heartbeat
+--heartbeat
 *********
 ``argument``: required_argument
 
@@ -1840,7 +1840,7 @@ heartbeat
 
 announce healthiness to the emperor
 
-reload-mercy
+--reload-mercy
 ************
 ``argument``: required_argument
 
@@ -1850,7 +1850,7 @@ reload-mercy
 
 set the maximum time (in seconds) we wait for workers and other processes to die during reload/shutdown
 
-worker-reload-mercy
+--worker-reload-mercy
 *******************
 ``argument``: required_argument
 
@@ -1860,7 +1860,7 @@ worker-reload-mercy
 
 set the maximum time (in seconds) a worker can take to reload/shutdown (default is 60)
 
-mule-reload-mercy
+--mule-reload-mercy
 *****************
 ``argument``: required_argument
 
@@ -1870,7 +1870,7 @@ mule-reload-mercy
 
 set the maximum time (in seconds) a mule can take to reload/shutdown (default is 60)
 
-exit-on-reload
+--exit-on-reload
 **************
 ``argument``: no_argument
 
@@ -1880,7 +1880,7 @@ exit-on-reload
 
 force exit even if a reload is requested
 
-die-on-term
+--die-on-term
 ***********
 ``argument``: no_argument
 
@@ -1890,7 +1890,7 @@ die-on-term
 
 exit instead of brutal reload on SIGTERM
 
-force-gateway
+--force-gateway
 *************
 ``argument``: no_argument
 
@@ -1900,7 +1900,7 @@ force-gateway
 
 force the spawn of the first registered gateway without a master
 
-help
+--help
 ****
 ``argument``: no_argument
 
@@ -1914,7 +1914,7 @@ help
 
 show this help
 
-usage
+--usage
 *****
 ``argument``: no_argument
 
@@ -1928,7 +1928,7 @@ usage
 
 show this help
 
-print-sym
+--print-sym
 *********
 ``argument``: required_argument
 
@@ -1940,7 +1940,7 @@ print-sym
 
 print content of the specified binary symbol
 
-print-symbol
+--print-symbol
 ************
 ``argument``: required_argument
 
@@ -1952,7 +1952,7 @@ print-symbol
 
 print content of the specified binary symbol
 
-reaper
+--reaper
 ******
 ``argument``: no_argument
 
@@ -1964,7 +1964,7 @@ reaper
 
 call waitpid(-1,...) after each request to get rid of zombies
 
-max-requests
+--max-requests
 ************
 ``argument``: required_argument
 
@@ -1976,7 +1976,7 @@ max-requests
 
 reload workers after the specified amount of managed requests
 
-min-worker-lifetime
+--min-worker-lifetime
 *******************
 ``argument``: required_argument
 
@@ -1986,7 +1986,7 @@ min-worker-lifetime
 
 number of seconds worker must run before being reloaded (default is 60)
 
-max-worker-lifetime
+--max-worker-lifetime
 *******************
 ``argument``: required_argument
 
@@ -1996,7 +1996,7 @@ max-worker-lifetime
 
 reload workers after the specified amount of seconds (default is disabled)
 
-socket-timeout
+--socket-timeout
 **************
 ``argument``: required_argument
 
@@ -2008,7 +2008,7 @@ socket-timeout
 
 set internal sockets timeout
 
-no-fd-passing
+--no-fd-passing
 *************
 ``argument``: no_argument
 
@@ -2018,7 +2018,7 @@ no-fd-passing
 
 disable file descriptor passing
 
-locks
+--locks
 *****
 ``argument``: required_argument
 
@@ -2028,7 +2028,7 @@ locks
 
 create the specified number of shared locks
 
-lock-engine
+--lock-engine
 ***********
 ``argument``: required_argument
 
@@ -2038,7 +2038,7 @@ lock-engine
 
 set the lock engine
 
-ftok
+--ftok
 ****
 ``argument``: required_argument
 
@@ -2048,7 +2048,7 @@ ftok
 
 set the ipcsem key via ftok() for avoiding duplicates
 
-persistent-ipcsem
+--persistent-ipcsem
 *****************
 ``argument``: no_argument
 
@@ -2058,7 +2058,7 @@ persistent-ipcsem
 
 do not remove ipcsem's on shutdown
 
-sharedarea
+--sharedarea
 **********
 ``argument``: required_argument
 
@@ -2070,7 +2070,7 @@ sharedarea
 
 create a raw shared memory area of specified pages (note: it supports keyval too)
 
-safe-fd
+--safe-fd
 *******
 ``argument``: required_argument
 
@@ -2080,7 +2080,7 @@ safe-fd
 
 do not close the specified file descriptor
 
-fd-safe
+--fd-safe
 *******
 ``argument``: required_argument
 
@@ -2090,7 +2090,7 @@ fd-safe
 
 do not close the specified file descriptor
 
-cache
+--cache
 *****
 ``argument``: required_argument
 
@@ -2100,7 +2100,7 @@ cache
 
 create a shared cache containing given elements
 
-cache-blocksize
+--cache-blocksize
 ***************
 ``argument``: required_argument
 
@@ -2110,7 +2110,7 @@ cache-blocksize
 
 set cache blocksize
 
-cache-store
+--cache-store
 ***********
 ``argument``: required_argument
 
@@ -2122,7 +2122,7 @@ cache-store
 
 enable persistent cache to disk
 
-cache-store-sync
+--cache-store-sync
 ****************
 ``argument``: required_argument
 
@@ -2132,7 +2132,7 @@ cache-store-sync
 
 set frequency of sync for persistent cache
 
-cache-no-expire
+--cache-no-expire
 ***************
 ``argument``: no_argument
 
@@ -2142,7 +2142,7 @@ cache-no-expire
 
 disable auto sweep of expired items
 
-cache-expire-freq
+--cache-expire-freq
 *****************
 ``argument``: required_argument
 
@@ -2152,7 +2152,7 @@ cache-expire-freq
 
 set the frequency of cache sweeper scans (default 3 seconds)
 
-cache-report-freed-items
+--cache-report-freed-items
 ************************
 ``argument``: no_argument
 
@@ -2162,7 +2162,7 @@ cache-report-freed-items
 
 constantly report the cache item freed by the sweeper (use only for debug)
 
-cache-udp-server
+--cache-udp-server
 ****************
 ``argument``: required_argument
 
@@ -2174,7 +2174,7 @@ cache-udp-server
 
 bind the cache udp server (used only for set/update/delete) to the specified socket
 
-cache-udp-node
+--cache-udp-node
 **************
 ``argument``: required_argument
 
@@ -2186,7 +2186,7 @@ cache-udp-node
 
 send cache update/deletion to the specified cache udp server
 
-cache-sync
+--cache-sync
 **********
 ``argument``: required_argument
 
@@ -2196,7 +2196,7 @@ cache-sync
 
 copy the whole content of another uWSGI cache server on server startup
 
-cache-use-last-modified
+--cache-use-last-modified
 ***********************
 ``argument``: no_argument
 
@@ -2206,7 +2206,7 @@ cache-use-last-modified
 
 update last_modified_at timestamp on every cache item modification (default is disabled)
 
-add-cache-item
+--add-cache-item
 **************
 ``argument``: required_argument
 
@@ -2216,7 +2216,7 @@ add-cache-item
 
 add an item in the cache
 
-load-file-in-cache
+--load-file-in-cache
 ******************
 ``argument``: required_argument
 
@@ -2226,7 +2226,7 @@ load-file-in-cache
 
 load a static file in the cache
 
-load-file-in-cache-gzip
+--load-file-in-cache-gzip
 ***********************
 ``argument``: required_argument
 
@@ -2236,7 +2236,7 @@ load-file-in-cache-gzip
 
 load a static file in the cache with gzip compression
 
-cache2
+--cache2
 ******
 ``argument``: required_argument
 
@@ -2246,7 +2246,7 @@ cache2
 
 create a new generation shared cache (keyval syntax)
 
-queue
+--queue
 *****
 ``argument``: required_argument
 
@@ -2256,7 +2256,7 @@ queue
 
 enable shared queue
 
-queue-blocksize
+--queue-blocksize
 ***************
 ``argument``: required_argument
 
@@ -2266,7 +2266,7 @@ queue-blocksize
 
 set queue blocksize
 
-queue-store
+--queue-store
 ***********
 ``argument``: required_argument
 
@@ -2278,7 +2278,7 @@ queue-store
 
 enable persistent queue to disk
 
-queue-store-sync
+--queue-store-sync
 ****************
 ``argument``: required_argument
 
@@ -2288,7 +2288,7 @@ queue-store-sync
 
 set frequency of sync for persistent queue
 
-spooler
+--spooler
 *******
 ``argument``: required_argument
 
@@ -2302,7 +2302,7 @@ spooler
 
 run a spooler on the specified directory
 
-spooler-external
+--spooler-external
 ****************
 ``argument``: required_argument
 
@@ -2314,7 +2314,7 @@ spooler-external
 
 map spoolers requests to a spooler directory managed by an external instance
 
-spooler-ordered
+--spooler-ordered
 ***************
 ``argument``: no_argument
 
@@ -2324,7 +2324,7 @@ spooler-ordered
 
 try to order the execution of spooler tasks
 
-spooler-chdir
+--spooler-chdir
 *************
 ``argument``: required_argument
 
@@ -2334,7 +2334,7 @@ spooler-chdir
 
 chdir() to specified directory before each spooler task
 
-spooler-processes
+--spooler-processes
 *****************
 ``argument``: required_argument
 
@@ -2346,7 +2346,7 @@ spooler-processes
 
 set the number of processes for spoolers
 
-spooler-quiet
+--spooler-quiet
 *************
 ``argument``: no_argument
 
@@ -2356,7 +2356,7 @@ spooler-quiet
 
 do not be verbose with spooler tasks
 
-spooler-max-tasks
+--spooler-max-tasks
 *****************
 ``argument``: required_argument
 
@@ -2366,7 +2366,7 @@ spooler-max-tasks
 
 set the maximum number of tasks to run before recycling a spooler
 
-spooler-harakiri
+--spooler-harakiri
 ****************
 ``argument``: required_argument
 
@@ -2376,7 +2376,7 @@ spooler-harakiri
 
 set harakiri timeout for spooler tasks
 
-spooler-frequency
+--spooler-frequency
 *****************
 ``argument``: required_argument
 
@@ -2386,7 +2386,7 @@ spooler-frequency
 
 set spooler frequency
 
-spooler-freq
+--spooler-freq
 ************
 ``argument``: required_argument
 
@@ -2396,7 +2396,7 @@ spooler-freq
 
 set spooler frequency
 
-mule
+--mule
 ****
 ``argument``: optional_argument
 
@@ -2408,7 +2408,7 @@ mule
 
 add a mule
 
-mules
+--mules
 *****
 ``argument``: required_argument
 
@@ -2420,7 +2420,7 @@ mules
 
 add the specified number of mules
 
-farm
+--farm
 ****
 ``argument``: required_argument
 
@@ -2432,7 +2432,7 @@ farm
 
 add a mule farm
 
-mule-msg-size
+--mule-msg-size
 *************
 ``argument``: optional_argument
 
@@ -2444,7 +2444,7 @@ mule-msg-size
 
 set mule message buffer size
 
-signal
+--signal
 ******
 ``argument``: required_argument
 
@@ -2456,7 +2456,7 @@ signal
 
 send a uwsgi signal to a server
 
-signal-bufsize
+--signal-bufsize
 **************
 ``argument``: required_argument
 
@@ -2466,7 +2466,7 @@ signal-bufsize
 
 set buffer size for signal queue
 
-signals-bufsize
+--signals-bufsize
 ***************
 ``argument``: required_argument
 
@@ -2476,7 +2476,7 @@ signals-bufsize
 
 set buffer size for signal queue
 
-signal-timer
+--signal-timer
 ************
 ``argument``: required_argument
 
@@ -2488,7 +2488,7 @@ signal-timer
 
 add a timer (syntax: <signal> <seconds>)
 
-timer
+--timer
 *****
 ``argument``: required_argument
 
@@ -2500,7 +2500,7 @@ timer
 
 add a timer (syntax: <signal> <seconds>)
 
-signal-rbtimer
+--signal-rbtimer
 **************
 ``argument``: required_argument
 
@@ -2512,7 +2512,7 @@ signal-rbtimer
 
 add a redblack timer (syntax: <signal> <seconds>)
 
-rbtimer
+--rbtimer
 *******
 ``argument``: required_argument
 
@@ -2524,7 +2524,7 @@ rbtimer
 
 add a redblack timer (syntax: <signal> <seconds>)
 
-rpc-max
+--rpc-max
 *******
 ``argument``: required_argument
 
@@ -2534,7 +2534,7 @@ rpc-max
 
 maximum number of rpc slots (default: 64)
 
-disable-logging
+--disable-logging
 ***************
 ``argument``: no_argument
 
@@ -2546,7 +2546,7 @@ disable-logging
 
 disable request logging
 
-flock
+--flock
 *****
 ``argument``: required_argument
 
@@ -2558,7 +2558,7 @@ flock
 
 lock the specified file before starting, exit if locked
 
-flock-wait
+--flock-wait
 **********
 ``argument``: required_argument
 
@@ -2570,7 +2570,7 @@ flock-wait
 
 lock the specified file before starting, wait if locked
 
-flock2
+--flock2
 ******
 ``argument``: required_argument
 
@@ -2582,7 +2582,7 @@ flock2
 
 lock the specified file after logging/daemon setup, exit if locked
 
-flock-wait2
+--flock-wait2
 ***********
 ``argument``: required_argument
 
@@ -2594,7 +2594,7 @@ flock-wait2
 
 lock the specified file after logging/daemon setup, wait if locked
 
-pidfile
+--pidfile
 *******
 ``argument``: required_argument
 
@@ -2604,7 +2604,7 @@ pidfile
 
 create pidfile (before privileges drop)
 
-pidfile2
+--pidfile2
 ********
 ``argument``: required_argument
 
@@ -2614,7 +2614,7 @@ pidfile2
 
 create pidfile (after privileges drop)
 
-chroot
+--chroot
 ******
 ``argument``: required_argument
 
@@ -2624,7 +2624,7 @@ chroot
 
 chroot() to the specified directory
 
-pivot-root
+--pivot-root
 **********
 ``argument``: required_argument
 
@@ -2634,7 +2634,7 @@ pivot-root
 
 pivot_root() to the specified directories (new_root and put_old must be separated with a space)
 
-pivot_root
+--pivot_root
 **********
 ``argument``: required_argument
 
@@ -2644,7 +2644,7 @@ pivot_root
 
 pivot_root() to the specified directories (new_root and put_old must be separated with a space)
 
-uid
+--uid
 ***
 ``argument``: required_argument
 
@@ -2654,7 +2654,7 @@ uid
 
 setuid to the specified user/uid
 
-gid
+--gid
 ***
 ``argument``: required_argument
 
@@ -2664,7 +2664,7 @@ gid
 
 setgid to the specified group/gid
 
-add-gid
+--add-gid
 *******
 ``argument``: required_argument
 
@@ -2674,7 +2674,7 @@ add-gid
 
 add the specified group id to the process credentials
 
-immediate-uid
+--immediate-uid
 *************
 ``argument``: required_argument
 
@@ -2686,7 +2686,7 @@ immediate-uid
 
 setuid to the specified user/uid IMMEDIATELY
 
-immediate-gid
+--immediate-gid
 *************
 ``argument``: required_argument
 
@@ -2698,7 +2698,7 @@ immediate-gid
 
 setgid to the specified group/gid IMMEDIATELY
 
-no-initgroups
+--no-initgroups
 *************
 ``argument``: no_argument
 
@@ -2708,7 +2708,7 @@ no-initgroups
 
 disable additional groups set via initgroups()
 
-cap
+--cap
 ***
 ``argument``: required_argument
 
@@ -2718,7 +2718,7 @@ cap
 
 set process capability
 
-unshare
+--unshare
 *******
 ``argument``: required_argument
 
@@ -2728,7 +2728,7 @@ unshare
 
 unshare() part of the processes and put it in a new namespace
 
-unshare2
+--unshare2
 ********
 ``argument``: required_argument
 
@@ -2738,7 +2738,7 @@ unshare2
 
 unshare() part of the processes and put it in a new namespace after rootfs change
 
-setns-socket
+--setns-socket
 ************
 ``argument``: required_argument
 
@@ -2750,7 +2750,7 @@ setns-socket
 
 expose a unix socket returning namespace fds from /proc/self/ns
 
-setns-socket-skip
+--setns-socket-skip
 *****************
 ``argument``: required_argument
 
@@ -2760,7 +2760,7 @@ setns-socket-skip
 
 skip the specified entry when sending setns file descriptors
 
-setns-skip
+--setns-skip
 **********
 ``argument``: required_argument
 
@@ -2770,7 +2770,7 @@ setns-skip
 
 skip the specified entry when sending setns file descriptors
 
-setns
+--setns
 *****
 ``argument``: required_argument
 
@@ -2780,7 +2780,7 @@ setns
 
 join a namespace created by an external uWSGI instance
 
-setns-preopen
+--setns-preopen
 *************
 ``argument``: no_argument
 
@@ -2790,7 +2790,7 @@ setns-preopen
 
 open /proc/self/ns as soon as possible and cache fds
 
-jailed
+--jailed
 ******
 ``argument``: no_argument
 
@@ -2800,7 +2800,7 @@ jailed
 
 mark the instance as jailed (force the execution of post_jail hooks)
 
-jail
+--jail
 ****
 ``argument``: required_argument
 
@@ -2810,7 +2810,7 @@ jail
 
 put the instance in a FreeBSD jail
 
-jail-ip4
+--jail-ip4
 ********
 ``argument``: required_argument
 
@@ -2820,7 +2820,7 @@ jail-ip4
 
 add an ipv4 address to the FreeBSD jail
 
-jail-ip6
+--jail-ip6
 ********
 ``argument``: required_argument
 
@@ -2830,7 +2830,7 @@ jail-ip6
 
 add an ipv6 address to the FreeBSD jail
 
-jidfile
+--jidfile
 *******
 ``argument``: required_argument
 
@@ -2840,7 +2840,7 @@ jidfile
 
 save the jid of a FreeBSD jail in the specified file
 
-jid-file
+--jid-file
 ********
 ``argument``: required_argument
 
@@ -2850,7 +2850,7 @@ jid-file
 
 save the jid of a FreeBSD jail in the specified file
 
-jail2
+--jail2
 *****
 ``argument``: required_argument
 
@@ -2860,7 +2860,7 @@ jail2
 
 add an option to the FreeBSD jail
 
-libjail
+--libjail
 *******
 ``argument``: required_argument
 
@@ -2870,7 +2870,7 @@ libjail
 
 add an option to the FreeBSD jail
 
-jail-attach
+--jail-attach
 ***********
 ``argument``: required_argument
 
@@ -2880,7 +2880,7 @@ jail-attach
 
 attach to the FreeBSD jail
 
-refork
+--refork
 ******
 ``argument``: no_argument
 
@@ -2890,7 +2890,7 @@ refork
 
 fork() again after privileges drop. Useful for jailing systems
 
-re-fork
+--re-fork
 *******
 ``argument``: no_argument
 
@@ -2900,7 +2900,7 @@ re-fork
 
 fork() again after privileges drop. Useful for jailing systems
 
-refork-as-root
+--refork-as-root
 **************
 ``argument``: no_argument
 
@@ -2910,7 +2910,7 @@ refork-as-root
 
 fork() again before privileges drop. Useful for jailing systems
 
-re-fork-as-root
+--re-fork-as-root
 ***************
 ``argument``: no_argument
 
@@ -2920,7 +2920,7 @@ re-fork-as-root
 
 fork() again before privileges drop. Useful for jailing systems
 
-refork-post-jail
+--refork-post-jail
 ****************
 ``argument``: no_argument
 
@@ -2930,7 +2930,7 @@ refork-post-jail
 
 fork() again after jailing. Useful for jailing systems
 
-re-fork-post-jail
+--re-fork-post-jail
 *****************
 ``argument``: no_argument
 
@@ -2940,7 +2940,7 @@ re-fork-post-jail
 
 fork() again after jailing. Useful for jailing systems
 
-hook-asap
+--hook-asap
 *********
 ``argument``: required_argument
 
@@ -2950,7 +2950,7 @@ hook-asap
 
 run the specified hook as soon as possible
 
-hook-pre-jail
+--hook-pre-jail
 *************
 ``argument``: required_argument
 
@@ -2960,7 +2960,7 @@ hook-pre-jail
 
 run the specified hook before jailing
 
-hook-post-jail
+--hook-post-jail
 **************
 ``argument``: required_argument
 
@@ -2970,7 +2970,7 @@ hook-post-jail
 
 run the specified hook after jailing
 
-hook-in-jail
+--hook-in-jail
 ************
 ``argument``: required_argument
 
@@ -2980,7 +2980,7 @@ hook-in-jail
 
 run the specified hook in jail after initialization
 
-hook-as-root
+--hook-as-root
 ************
 ``argument``: required_argument
 
@@ -2990,7 +2990,7 @@ hook-as-root
 
 run the specified hook before privileges drop
 
-hook-as-user
+--hook-as-user
 ************
 ``argument``: required_argument
 
@@ -3000,7 +3000,7 @@ hook-as-user
 
 run the specified hook after privileges drop
 
-hook-as-user-atexit
+--hook-as-user-atexit
 *******************
 ``argument``: required_argument
 
@@ -3010,7 +3010,7 @@ hook-as-user-atexit
 
 run the specified hook before app exit and reload
 
-hook-pre-app
+--hook-pre-app
 ************
 ``argument``: required_argument
 
@@ -3020,7 +3020,7 @@ hook-pre-app
 
 run the specified hook before app loading
 
-hook-post-app
+--hook-post-app
 *************
 ``argument``: required_argument
 
@@ -3030,7 +3030,7 @@ hook-post-app
 
 run the specified hook after app loading
 
-hook-accepting
+--hook-accepting
 **************
 ``argument``: required_argument
 
@@ -3040,7 +3040,7 @@ hook-accepting
 
 run the specified hook after each worker enter the accepting phase
 
-hook-accepting1
+--hook-accepting1
 ***************
 ``argument``: required_argument
 
@@ -3050,7 +3050,7 @@ hook-accepting1
 
 run the specified hook after the first worker enters the accepting phase
 
-hook-accepting-once
+--hook-accepting-once
 *******************
 ``argument``: required_argument
 
@@ -3060,7 +3060,7 @@ hook-accepting-once
 
 run the specified hook after each worker enter the accepting phase (once per-instance)
 
-hook-accepting1-once
+--hook-accepting1-once
 ********************
 ``argument``: required_argument
 
@@ -3070,7 +3070,7 @@ hook-accepting1-once
 
 run the specified hook after the first worker enters the accepting phase (once per instance)
 
-hook-master-start
+--hook-master-start
 *****************
 ``argument``: required_argument
 
@@ -3080,7 +3080,7 @@ hook-master-start
 
 run the specified hook when the Master starts
 
-hook-touch
+--hook-touch
 **********
 ``argument``: required_argument
 
@@ -3090,7 +3090,7 @@ hook-touch
 
 run the specified hook when the specified file is touched (syntax: <file> <action>)
 
-hook-emperor-start
+--hook-emperor-start
 ******************
 ``argument``: required_argument
 
@@ -3100,7 +3100,7 @@ hook-emperor-start
 
 run the specified hook when the Emperor starts
 
-hook-emperor-stop
+--hook-emperor-stop
 *****************
 ``argument``: required_argument
 
@@ -3110,7 +3110,7 @@ hook-emperor-stop
 
 run the specified hook when the Emperor send a stop message
 
-hook-emperor-reload
+--hook-emperor-reload
 *******************
 ``argument``: required_argument
 
@@ -3120,7 +3120,7 @@ hook-emperor-reload
 
 run the specified hook when the Emperor send a reload message
 
-hook-emperor-lost
+--hook-emperor-lost
 *****************
 ``argument``: required_argument
 
@@ -3130,7 +3130,7 @@ hook-emperor-lost
 
 run the specified hook when the Emperor connection is lost
 
-hook-as-vassal
+--hook-as-vassal
 **************
 ``argument``: required_argument
 
@@ -3140,7 +3140,7 @@ hook-as-vassal
 
 run the specified hook before exec()ing the vassal
 
-hook-as-emperor
+--hook-as-emperor
 ***************
 ``argument``: required_argument
 
@@ -3150,7 +3150,7 @@ hook-as-emperor
 
 run the specified hook in the emperor after the vassal has been started
 
-hook-as-mule
+--hook-as-mule
 ************
 ``argument``: required_argument
 
@@ -3160,7 +3160,7 @@ hook-as-mule
 
 run the specified hook in each mule
 
-hook-as-gateway
+--hook-as-gateway
 ***************
 ``argument``: required_argument
 
@@ -3170,7 +3170,7 @@ hook-as-gateway
 
 run the specified hook in each gateway
 
-after-request-hook
+--after-request-hook
 ******************
 ``argument``: required_argument
 
@@ -3180,7 +3180,7 @@ after-request-hook
 
 run the specified function/symbol after each request
 
-after-request-call
+--after-request-call
 ******************
 ``argument``: required_argument
 
@@ -3190,7 +3190,7 @@ after-request-call
 
 run the specified function/symbol after each request
 
-exec-asap
+--exec-asap
 *********
 ``argument``: required_argument
 
@@ -3200,7 +3200,7 @@ exec-asap
 
 run the specified command as soon as possible
 
-exec-pre-jail
+--exec-pre-jail
 *************
 ``argument``: required_argument
 
@@ -3210,7 +3210,7 @@ exec-pre-jail
 
 run the specified command before jailing
 
-exec-post-jail
+--exec-post-jail
 **************
 ``argument``: required_argument
 
@@ -3220,7 +3220,7 @@ exec-post-jail
 
 run the specified command after jailing
 
-exec-in-jail
+--exec-in-jail
 ************
 ``argument``: required_argument
 
@@ -3230,7 +3230,7 @@ exec-in-jail
 
 run the specified command in jail after initialization
 
-exec-as-root
+--exec-as-root
 ************
 ``argument``: required_argument
 
@@ -3240,7 +3240,7 @@ exec-as-root
 
 run the specified command before privileges drop
 
-exec-as-user
+--exec-as-user
 ************
 ``argument``: required_argument
 
@@ -3250,7 +3250,7 @@ exec-as-user
 
 run the specified command after privileges drop
 
-exec-as-user-atexit
+--exec-as-user-atexit
 *******************
 ``argument``: required_argument
 
@@ -3260,7 +3260,7 @@ exec-as-user-atexit
 
 run the specified command before app exit and reload
 
-exec-pre-app
+--exec-pre-app
 ************
 ``argument``: required_argument
 
@@ -3270,7 +3270,7 @@ exec-pre-app
 
 run the specified command before app loading
 
-exec-post-app
+--exec-post-app
 *************
 ``argument``: required_argument
 
@@ -3280,7 +3280,7 @@ exec-post-app
 
 run the specified command after app loading
 
-exec-as-vassal
+--exec-as-vassal
 **************
 ``argument``: required_argument
 
@@ -3290,7 +3290,7 @@ exec-as-vassal
 
 run the specified command before exec()ing the vassal
 
-exec-as-emperor
+--exec-as-emperor
 ***************
 ``argument``: required_argument
 
@@ -3300,7 +3300,7 @@ exec-as-emperor
 
 run the specified command in the emperor after the vassal has been started
 
-mount-asap
+--mount-asap
 **********
 ``argument``: required_argument
 
@@ -3310,7 +3310,7 @@ mount-asap
 
 mount filesystem as soon as possible
 
-mount-pre-jail
+--mount-pre-jail
 **************
 ``argument``: required_argument
 
@@ -3320,7 +3320,7 @@ mount-pre-jail
 
 mount filesystem before jailing
 
-mount-post-jail
+--mount-post-jail
 ***************
 ``argument``: required_argument
 
@@ -3330,7 +3330,7 @@ mount-post-jail
 
 mount filesystem after jailing
 
-mount-in-jail
+--mount-in-jail
 *************
 ``argument``: required_argument
 
@@ -3340,7 +3340,7 @@ mount-in-jail
 
 mount filesystem in jail after initialization
 
-mount-as-root
+--mount-as-root
 *************
 ``argument``: required_argument
 
@@ -3350,7 +3350,7 @@ mount-as-root
 
 mount filesystem before privileges drop
 
-mount-as-vassal
+--mount-as-vassal
 ***************
 ``argument``: required_argument
 
@@ -3360,7 +3360,7 @@ mount-as-vassal
 
 mount filesystem before exec()ing the vassal
 
-mount-as-emperor
+--mount-as-emperor
 ****************
 ``argument``: required_argument
 
@@ -3370,7 +3370,7 @@ mount-as-emperor
 
 mount filesystem in the emperor after the vassal has been started
 
-umount-asap
+--umount-asap
 ***********
 ``argument``: required_argument
 
@@ -3380,7 +3380,7 @@ umount-asap
 
 unmount filesystem as soon as possible
 
-umount-pre-jail
+--umount-pre-jail
 ***************
 ``argument``: required_argument
 
@@ -3390,7 +3390,7 @@ umount-pre-jail
 
 unmount filesystem before jailing
 
-umount-post-jail
+--umount-post-jail
 ****************
 ``argument``: required_argument
 
@@ -3400,7 +3400,7 @@ umount-post-jail
 
 unmount filesystem after jailing
 
-umount-in-jail
+--umount-in-jail
 **************
 ``argument``: required_argument
 
@@ -3410,7 +3410,7 @@ umount-in-jail
 
 unmount filesystem in jail after initialization
 
-umount-as-root
+--umount-as-root
 **************
 ``argument``: required_argument
 
@@ -3420,7 +3420,7 @@ umount-as-root
 
 unmount filesystem before privileges drop
 
-umount-as-vassal
+--umount-as-vassal
 ****************
 ``argument``: required_argument
 
@@ -3430,7 +3430,7 @@ umount-as-vassal
 
 unmount filesystem before exec()ing the vassal
 
-umount-as-emperor
+--umount-as-emperor
 *****************
 ``argument``: required_argument
 
@@ -3440,7 +3440,7 @@ umount-as-emperor
 
 unmount filesystem in the emperor after the vassal has been started
 
-wait-for-interface
+--wait-for-interface
 ******************
 ``argument``: required_argument
 
@@ -3450,7 +3450,7 @@ wait-for-interface
 
 wait for the specified network interface to come up before running root hooks
 
-wait-for-interface-timeout
+--wait-for-interface-timeout
 **************************
 ``argument``: required_argument
 
@@ -3460,7 +3460,7 @@ wait-for-interface-timeout
 
 set the timeout for wait-for-interface
 
-wait-interface
+--wait-interface
 **************
 ``argument``: required_argument
 
@@ -3470,7 +3470,7 @@ wait-interface
 
 wait for the specified network interface to come up before running root hooks
 
-wait-interface-timeout
+--wait-interface-timeout
 **********************
 ``argument``: required_argument
 
@@ -3480,7 +3480,7 @@ wait-interface-timeout
 
 set the timeout for wait-for-interface
 
-wait-for-iface
+--wait-for-iface
 **************
 ``argument``: required_argument
 
@@ -3490,7 +3490,7 @@ wait-for-iface
 
 wait for the specified network interface to come up before running root hooks
 
-wait-for-iface-timeout
+--wait-for-iface-timeout
 **********************
 ``argument``: required_argument
 
@@ -3500,7 +3500,7 @@ wait-for-iface-timeout
 
 set the timeout for wait-for-interface
 
-wait-iface
+--wait-iface
 **********
 ``argument``: required_argument
 
@@ -3510,7 +3510,7 @@ wait-iface
 
 wait for the specified network interface to come up before running root hooks
 
-wait-iface-timeout
+--wait-iface-timeout
 ******************
 ``argument``: required_argument
 
@@ -3520,7 +3520,7 @@ wait-iface-timeout
 
 set the timeout for wait-for-interface
 
-call-asap
+--call-asap
 *********
 ``argument``: required_argument
 
@@ -3530,7 +3530,7 @@ call-asap
 
 call the specified function as soon as possible
 
-call-pre-jail
+--call-pre-jail
 *************
 ``argument``: required_argument
 
@@ -3540,7 +3540,7 @@ call-pre-jail
 
 call the specified function before jailing
 
-call-post-jail
+--call-post-jail
 **************
 ``argument``: required_argument
 
@@ -3550,7 +3550,7 @@ call-post-jail
 
 call the specified function after jailing
 
-call-in-jail
+--call-in-jail
 ************
 ``argument``: required_argument
 
@@ -3560,7 +3560,7 @@ call-in-jail
 
 call the specified function in jail after initialization
 
-call-as-root
+--call-as-root
 ************
 ``argument``: required_argument
 
@@ -3570,7 +3570,7 @@ call-as-root
 
 call the specified function before privileges drop
 
-call-as-user
+--call-as-user
 ************
 ``argument``: required_argument
 
@@ -3580,7 +3580,7 @@ call-as-user
 
 call the specified function after privileges drop
 
-call-as-user-atexit
+--call-as-user-atexit
 *******************
 ``argument``: required_argument
 
@@ -3590,7 +3590,7 @@ call-as-user-atexit
 
 call the specified function before app exit and reload
 
-call-pre-app
+--call-pre-app
 ************
 ``argument``: required_argument
 
@@ -3600,7 +3600,7 @@ call-pre-app
 
 call the specified function before app loading
 
-call-post-app
+--call-post-app
 *************
 ``argument``: required_argument
 
@@ -3610,7 +3610,7 @@ call-post-app
 
 call the specified function after app loading
 
-call-as-vassal
+--call-as-vassal
 **************
 ``argument``: required_argument
 
@@ -3620,7 +3620,7 @@ call-as-vassal
 
 call the specified function() before exec()ing the vassal
 
-call-as-vassal1
+--call-as-vassal1
 ***************
 ``argument``: required_argument
 
@@ -3630,7 +3630,7 @@ call-as-vassal1
 
 call the specified function before exec()ing the vassal
 
-call-as-vassal3
+--call-as-vassal3
 ***************
 ``argument``: required_argument
 
@@ -3640,7 +3640,7 @@ call-as-vassal3
 
 call the specified function(char *, uid_t, gid_t) before exec()ing the vassal
 
-call-as-emperor
+--call-as-emperor
 ***************
 ``argument``: required_argument
 
@@ -3650,7 +3650,7 @@ call-as-emperor
 
 call the specified function() in the emperor after the vassal has been started
 
-call-as-emperor1
+--call-as-emperor1
 ****************
 ``argument``: required_argument
 
@@ -3660,7 +3660,7 @@ call-as-emperor1
 
 call the specified function in the emperor after the vassal has been started
 
-call-as-emperor2
+--call-as-emperor2
 ****************
 ``argument``: required_argument
 
@@ -3670,7 +3670,7 @@ call-as-emperor2
 
 call the specified function(char *, pid_t) in the emperor after the vassal has been started
 
-call-as-emperor4
+--call-as-emperor4
 ****************
 ``argument``: required_argument
 
@@ -3680,7 +3680,7 @@ call-as-emperor4
 
 call the specified function(char *, pid_t, uid_t, gid_t) in the emperor after the vassal has been started
 
-ini
+--ini
 ***
 ``argument``: required_argument
 
@@ -3692,7 +3692,7 @@ ini
 
 load config from ini file
 
-yaml
+--yaml
 ****
 ``argument``: required_argument
 
@@ -3706,7 +3706,7 @@ yaml
 
 load config from yaml file
 
-yml
+--yml
 ***
 ``argument``: required_argument
 
@@ -3720,7 +3720,7 @@ yml
 
 load config from yaml file
 
-json
+--json
 ****
 ``argument``: required_argument
 
@@ -3734,7 +3734,7 @@ json
 
 load config from json file
 
-js
+--js
 **
 ``argument``: required_argument
 
@@ -3748,7 +3748,7 @@ js
 
 load config from json file
 
-weight
+--weight
 ******
 ``argument``: required_argument
 
@@ -3758,7 +3758,7 @@ weight
 
 weight of the instance (used by clustering/lb/subscriptions)
 
-auto-weight
+--auto-weight
 ***********
 ``argument``: required_argument
 
@@ -3768,7 +3768,7 @@ auto-weight
 
 set weight of the instance (used by clustering/lb/subscriptions) automatically
 
-no-server
+--no-server
 *********
 ``argument``: no_argument
 
@@ -3778,7 +3778,7 @@ no-server
 
 force no-server mode
 
-command-mode
+--command-mode
 ************
 ``argument``: no_argument
 
@@ -3790,7 +3790,7 @@ command-mode
 
 force command mode
 
-no-defer-accept
+--no-defer-accept
 ***************
 ``argument``: no_argument
 
@@ -3800,7 +3800,7 @@ no-defer-accept
 
 disable deferred-accept on sockets
 
-tcp-nodelay
+--tcp-nodelay
 ***********
 ``argument``: no_argument
 
@@ -3810,7 +3810,7 @@ tcp-nodelay
 
 enable TCP NODELAY on each request
 
-so-keepalive
+--so-keepalive
 ************
 ``argument``: no_argument
 
@@ -3820,7 +3820,7 @@ so-keepalive
 
 enable TCP KEEPALIVEs
 
-so-send-timeout
+--so-send-timeout
 ***************
 ``argument``: no_argument
 
@@ -3830,7 +3830,7 @@ so-send-timeout
 
 set SO_SNDTIMEO
 
-socket-send-timeout
+--socket-send-timeout
 *******************
 ``argument``: no_argument
 
@@ -3840,7 +3840,7 @@ socket-send-timeout
 
 set SO_SNDTIMEO
 
-so-write-timeout
+--so-write-timeout
 ****************
 ``argument``: no_argument
 
@@ -3850,7 +3850,7 @@ so-write-timeout
 
 set SO_SNDTIMEO
 
-socket-write-timeout
+--socket-write-timeout
 ********************
 ``argument``: no_argument
 
@@ -3860,7 +3860,7 @@ socket-write-timeout
 
 set SO_SNDTIMEO
 
-socket-sndbuf
+--socket-sndbuf
 *************
 ``argument``: required_argument
 
@@ -3870,7 +3870,7 @@ socket-sndbuf
 
 set SO_SNDBUF
 
-socket-rcvbuf
+--socket-rcvbuf
 *************
 ``argument``: required_argument
 
@@ -3880,7 +3880,7 @@ socket-rcvbuf
 
 set SO_RCVBUF
 
-limit-as
+--limit-as
 ********
 ``argument``: required_argument
 
@@ -3890,7 +3890,7 @@ limit-as
 
 limit processes address space/vsz
 
-limit-nproc
+--limit-nproc
 ***********
 ``argument``: required_argument
 
@@ -3900,7 +3900,7 @@ limit-nproc
 
 limit the number of spawnable processes
 
-reload-on-as
+--reload-on-as
 ************
 ``argument``: required_argument
 
@@ -3912,7 +3912,7 @@ reload-on-as
 
 reload if address space is higher than specified megabytes
 
-reload-on-rss
+--reload-on-rss
 *************
 ``argument``: required_argument
 
@@ -3924,7 +3924,7 @@ reload-on-rss
 
 reload if rss memory is higher than specified megabytes
 
-evil-reload-on-as
+--evil-reload-on-as
 *****************
 ``argument``: required_argument
 
@@ -3936,7 +3936,7 @@ evil-reload-on-as
 
 force the master to reload a worker if its address space is higher than specified megabytes
 
-evil-reload-on-rss
+--evil-reload-on-rss
 ******************
 ``argument``: required_argument
 
@@ -3948,7 +3948,7 @@ evil-reload-on-rss
 
 force the master to reload a worker if its rss memory is higher than specified megabytes
 
-reload-on-fd
+--reload-on-fd
 ************
 ``argument``: required_argument
 
@@ -3960,7 +3960,7 @@ reload-on-fd
 
 reload if the specified file descriptor is ready
 
-brutal-reload-on-fd
+--brutal-reload-on-fd
 *******************
 ``argument``: required_argument
 
@@ -3972,7 +3972,7 @@ brutal-reload-on-fd
 
 brutal reload if the specified file descriptor is ready
 
-ksm
+--ksm
 ***
 ``argument``: optional_argument
 
@@ -3982,7 +3982,7 @@ ksm
 
 enable Linux KSM
 
-pcre-jit
+--pcre-jit
 ********
 ``argument``: no_argument
 
@@ -3994,7 +3994,7 @@ pcre-jit
 
 enable pcre jit (if available)
 
-never-swap
+--never-swap
 **********
 ``argument``: no_argument
 
@@ -4004,7 +4004,7 @@ never-swap
 
 lock all memory pages avoiding swapping
 
-touch-reload
+--touch-reload
 ************
 ``argument``: required_argument
 
@@ -4016,7 +4016,7 @@ touch-reload
 
 reload uWSGI if the specified file is modified/touched
 
-touch-workers-reload
+--touch-workers-reload
 ********************
 ``argument``: required_argument
 
@@ -4028,7 +4028,7 @@ touch-workers-reload
 
 trigger reload of (only) workers if the specified file is modified/touched
 
-touch-chain-reload
+--touch-chain-reload
 ******************
 ``argument``: required_argument
 
@@ -4040,7 +4040,7 @@ touch-chain-reload
 
 trigger chain reload if the specified file is modified/touched
 
-touch-logrotate
+--touch-logrotate
 ***************
 ``argument``: required_argument
 
@@ -4052,7 +4052,7 @@ touch-logrotate
 
 trigger logrotation if the specified file is modified/touched
 
-touch-logreopen
+--touch-logreopen
 ***************
 ``argument``: required_argument
 
@@ -4064,7 +4064,7 @@ touch-logreopen
 
 trigger log reopen if the specified file is modified/touched
 
-touch-exec
+--touch-exec
 **********
 ``argument``: required_argument
 
@@ -4076,7 +4076,7 @@ touch-exec
 
 run command when the specified file is modified/touched (syntax: file command)
 
-touch-signal
+--touch-signal
 ************
 ``argument``: required_argument
 
@@ -4088,7 +4088,7 @@ touch-signal
 
 signal when the specified file is modified/touched (syntax: file signal)
 
-fs-reload
+--fs-reload
 *********
 ``argument``: required_argument
 
@@ -4100,7 +4100,7 @@ fs-reload
 
 graceful reload when the specified filesystem object is modified
 
-fs-brutal-reload
+--fs-brutal-reload
 ****************
 ``argument``: required_argument
 
@@ -4112,7 +4112,7 @@ fs-brutal-reload
 
 brutal reload when the specified filesystem object is modified
 
-fs-signal
+--fs-signal
 *********
 ``argument``: required_argument
 
@@ -4124,7 +4124,7 @@ fs-signal
 
 raise a uwsgi signal when the specified filesystem object is modified (syntax: file signal)
 
-check-mountpoint
+--check-mountpoint
 ****************
 ``argument``: required_argument
 
@@ -4136,7 +4136,7 @@ check-mountpoint
 
 destroy the instance if a filesystem is no more reachable (useful for reliable Fuse management)
 
-mountpoint-check
+--mountpoint-check
 ****************
 ``argument``: required_argument
 
@@ -4148,7 +4148,7 @@ mountpoint-check
 
 destroy the instance if a filesystem is no more reachable (useful for reliable Fuse management)
 
-check-mount
+--check-mount
 ***********
 ``argument``: required_argument
 
@@ -4160,7 +4160,7 @@ check-mount
 
 destroy the instance if a filesystem is no more reachable (useful for reliable Fuse management)
 
-mount-check
+--mount-check
 ***********
 ``argument``: required_argument
 
@@ -4172,7 +4172,7 @@ mount-check
 
 destroy the instance if a filesystem is no more reachable (useful for reliable Fuse management)
 
-propagate-touch
+--propagate-touch
 ***************
 ``argument``: no_argument
 
@@ -4182,7 +4182,7 @@ propagate-touch
 
 over-engineering option for system with flaky signal management
 
-limit-post
+--limit-post
 **********
 ``argument``: required_argument
 
@@ -4192,7 +4192,7 @@ limit-post
 
 limit request body
 
-no-orphans
+--no-orphans
 **********
 ``argument``: no_argument
 
@@ -4202,7 +4202,7 @@ no-orphans
 
 automatically kill workers if master dies (can be dangerous for availability)
 
-prio
+--prio
 ****
 ``argument``: required_argument
 
@@ -4212,7 +4212,7 @@ prio
 
 set processes/threads priority
 
-cpu-affinity
+--cpu-affinity
 ************
 ``argument``: required_argument
 
@@ -4222,7 +4222,7 @@ cpu-affinity
 
 set cpu affinity
 
-post-buffering
+--post-buffering
 **************
 ``argument``: required_argument
 
@@ -4232,7 +4232,7 @@ post-buffering
 
 enable post buffering
 
-post-buffering-bufsize
+--post-buffering-bufsize
 **********************
 ``argument``: required_argument
 
@@ -4242,7 +4242,7 @@ post-buffering-bufsize
 
 set buffer size for read() in post buffering mode
 
-body-read-warning
+--body-read-warning
 *****************
 ``argument``: required_argument
 
@@ -4252,7 +4252,7 @@ body-read-warning
 
 set the amount of allowed memory allocation (in megabytes) for request body before starting printing a warning
 
-upload-progress
+--upload-progress
 ***************
 ``argument``: required_argument
 
@@ -4262,7 +4262,7 @@ upload-progress
 
 enable creation of .json files in the specified directory during a file upload
 
-no-default-app
+--no-default-app
 **************
 ``argument``: no_argument
 
@@ -4272,7 +4272,7 @@ no-default-app
 
 do not fallback to default app
 
-manage-script-name
+--manage-script-name
 ******************
 ``argument``: no_argument
 
@@ -4282,7 +4282,7 @@ manage-script-name
 
 automatically rewrite SCRIPT_NAME and PATH_INFO
 
-ignore-script-name
+--ignore-script-name
 ******************
 ``argument``: no_argument
 
@@ -4292,7 +4292,7 @@ ignore-script-name
 
 ignore SCRIPT_NAME
 
-catch-exceptions
+--catch-exceptions
 ****************
 ``argument``: no_argument
 
@@ -4302,7 +4302,7 @@ catch-exceptions
 
 report exception as http output (discouraged, use only for testing)
 
-reload-on-exception
+--reload-on-exception
 *******************
 ``argument``: no_argument
 
@@ -4312,7 +4312,7 @@ reload-on-exception
 
 reload a worker when an exception is raised
 
-reload-on-exception-type
+--reload-on-exception-type
 ************************
 ``argument``: required_argument
 
@@ -4322,7 +4322,7 @@ reload-on-exception-type
 
 reload a worker when a specific exception type is raised
 
-reload-on-exception-value
+--reload-on-exception-value
 *************************
 ``argument``: required_argument
 
@@ -4332,7 +4332,7 @@ reload-on-exception-value
 
 reload a worker when a specific exception value is raised
 
-reload-on-exception-repr
+--reload-on-exception-repr
 ************************
 ``argument``: required_argument
 
@@ -4342,7 +4342,7 @@ reload-on-exception-repr
 
 reload a worker when a specific exception type+value (language-specific) is raised
 
-exception-handler
+--exception-handler
 *****************
 ``argument``: required_argument
 
@@ -4354,7 +4354,7 @@ exception-handler
 
 add an exception handler
 
-enable-metrics
+--enable-metrics
 **************
 ``argument``: no_argument
 
@@ -4366,7 +4366,7 @@ enable-metrics
 
 enable metrics subsystem
 
-metric
+--metric
 ******
 ``argument``: required_argument
 
@@ -4378,7 +4378,7 @@ metric
 
 add a custom metric
 
-metric-threshold
+--metric-threshold
 ****************
 ``argument``: required_argument
 
@@ -4390,7 +4390,7 @@ metric-threshold
 
 add a metric threshold/alarm
 
-metric-alarm
+--metric-alarm
 ************
 ``argument``: required_argument
 
@@ -4402,7 +4402,7 @@ metric-alarm
 
 add a metric threshold/alarm
 
-alarm-metric
+--alarm-metric
 ************
 ``argument``: required_argument
 
@@ -4414,7 +4414,7 @@ alarm-metric
 
 add a metric threshold/alarm
 
-metrics-dir
+--metrics-dir
 ***********
 ``argument``: required_argument
 
@@ -4426,7 +4426,7 @@ metrics-dir
 
 export metrics as text files to the specified directory
 
-metrics-dir-restore
+--metrics-dir-restore
 *******************
 ``argument``: no_argument
 
@@ -4438,7 +4438,7 @@ metrics-dir-restore
 
 restore last value taken from the metrics dir
 
-metric-dir
+--metric-dir
 **********
 ``argument``: required_argument
 
@@ -4450,7 +4450,7 @@ metric-dir
 
 export metrics as text files to the specified directory
 
-metric-dir-restore
+--metric-dir-restore
 ******************
 ``argument``: no_argument
 
@@ -4462,7 +4462,7 @@ metric-dir-restore
 
 restore last value taken from the metrics dir
 
-metrics-no-cores
+--metrics-no-cores
 ****************
 ``argument``: no_argument
 
@@ -4474,7 +4474,7 @@ metrics-no-cores
 
 disable generation of cores-related metrics
 
-udp
+--udp
 ***
 ``argument``: required_argument
 
@@ -4486,7 +4486,7 @@ udp
 
 run the udp server on the specified address
 
-stats
+--stats
 *****
 ``argument``: required_argument
 
@@ -4498,7 +4498,7 @@ stats
 
 enable the stats server on the specified address
 
-stats-server
+--stats-server
 ************
 ``argument``: required_argument
 
@@ -4510,7 +4510,7 @@ stats-server
 
 enable the stats server on the specified address
 
-stats-http
+--stats-http
 **********
 ``argument``: no_argument
 
@@ -4522,7 +4522,7 @@ stats-http
 
 prefix stats server json output with http headers
 
-stats-minified
+--stats-minified
 **************
 ``argument``: no_argument
 
@@ -4534,7 +4534,7 @@ stats-minified
 
 minify statistics json output
 
-stats-min
+--stats-min
 *********
 ``argument``: no_argument
 
@@ -4546,7 +4546,7 @@ stats-min
 
 minify statistics json output
 
-stats-push
+--stats-push
 **********
 ``argument``: required_argument
 
@@ -4558,7 +4558,7 @@ stats-push
 
 push the stats json to the specified destination
 
-stats-pusher-default-freq
+--stats-pusher-default-freq
 *************************
 ``argument``: required_argument
 
@@ -4570,7 +4570,7 @@ stats-pusher-default-freq
 
 set the default frequency of stats pushers
 
-stats-pushers-default-freq
+--stats-pushers-default-freq
 **************************
 ``argument``: required_argument
 
@@ -4582,7 +4582,7 @@ stats-pushers-default-freq
 
 set the default frequency of stats pushers
 
-stats-no-cores
+--stats-no-cores
 **************
 ``argument``: no_argument
 
@@ -4594,7 +4594,7 @@ stats-no-cores
 
 disable generation of cores-related stats
 
-stats-no-metrics
+--stats-no-metrics
 ****************
 ``argument``: no_argument
 
@@ -4606,7 +4606,7 @@ stats-no-metrics
 
 do not include metrics in stats output
 
-multicast
+--multicast
 *********
 ``argument``: required_argument
 
@@ -4618,7 +4618,7 @@ multicast
 
 subscribe to specified multicast group
 
-multicast-ttl
+--multicast-ttl
 *************
 ``argument``: required_argument
 
@@ -4628,7 +4628,7 @@ multicast-ttl
 
 set multicast ttl
 
-multicast-loop
+--multicast-loop
 **************
 ``argument``: required_argument
 
@@ -4638,7 +4638,7 @@ multicast-loop
 
 set multicast loop (default 1)
 
-master-fifo
+--master-fifo
 ***********
 ``argument``: required_argument
 
@@ -4650,7 +4650,7 @@ master-fifo
 
 enable the master fifo
 
-notify-socket
+--notify-socket
 *************
 ``argument``: required_argument
 
@@ -4662,7 +4662,7 @@ notify-socket
 
 enable the notification socket
 
-subscription-notify-socket
+--subscription-notify-socket
 **************************
 ``argument``: required_argument
 
@@ -4674,7 +4674,7 @@ subscription-notify-socket
 
 set the notification socket for subscriptions
 
-legion
+--legion
 ******
 ``argument``: required_argument
 
@@ -4686,7 +4686,7 @@ legion
 
 became a member of a legion
 
-legion-mcast
+--legion-mcast
 ************
 ``argument``: required_argument
 
@@ -4698,7 +4698,7 @@ legion-mcast
 
 became a member of a legion (shortcut for multicast)
 
-legion-node
+--legion-node
 ***********
 ``argument``: required_argument
 
@@ -4710,7 +4710,7 @@ legion-node
 
 add a node to a legion
 
-legion-freq
+--legion-freq
 ***********
 ``argument``: required_argument
 
@@ -4722,7 +4722,7 @@ legion-freq
 
 set the frequency of legion packets
 
-legion-tolerance
+--legion-tolerance
 ****************
 ``argument``: required_argument
 
@@ -4734,7 +4734,7 @@ legion-tolerance
 
 set the tolerance of legion subsystem
 
-legion-death-on-lord-error
+--legion-death-on-lord-error
 **************************
 ``argument``: required_argument
 
@@ -4746,7 +4746,7 @@ legion-death-on-lord-error
 
 declare itself as a dead node for the specified amount of seconds if one of the lord hooks fails
 
-legion-skew-tolerance
+--legion-skew-tolerance
 *********************
 ``argument``: required_argument
 
@@ -4758,7 +4758,7 @@ legion-skew-tolerance
 
 set the clock skew tolerance of legion subsystem (default 30 seconds)
 
-legion-lord
+--legion-lord
 ***********
 ``argument``: required_argument
 
@@ -4770,7 +4770,7 @@ legion-lord
 
 action to call on Lord election
 
-legion-unlord
+--legion-unlord
 *************
 ``argument``: required_argument
 
@@ -4782,7 +4782,7 @@ legion-unlord
 
 action to call on Lord dismiss
 
-legion-setup
+--legion-setup
 ************
 ``argument``: required_argument
 
@@ -4794,7 +4794,7 @@ legion-setup
 
 action to call on legion setup
 
-legion-death
+--legion-death
 ************
 ``argument``: required_argument
 
@@ -4806,7 +4806,7 @@ legion-death
 
 action to call on legion death (shutdown of the instance)
 
-legion-join
+--legion-join
 ***********
 ``argument``: required_argument
 
@@ -4818,7 +4818,7 @@ legion-join
 
 action to call on legion join (first time quorum is reached)
 
-legion-node-joined
+--legion-node-joined
 ******************
 ``argument``: required_argument
 
@@ -4830,7 +4830,7 @@ legion-node-joined
 
 action to call on new node joining legion
 
-legion-node-left
+--legion-node-left
 ****************
 ``argument``: required_argument
 
@@ -4842,7 +4842,7 @@ legion-node-left
 
 action to call node leaving legion
 
-legion-quorum
+--legion-quorum
 *************
 ``argument``: required_argument
 
@@ -4854,7 +4854,7 @@ legion-quorum
 
 set the quorum of a legion
 
-legion-scroll
+--legion-scroll
 *************
 ``argument``: required_argument
 
@@ -4866,7 +4866,7 @@ legion-scroll
 
 set the scroll of a legion
 
-legion-scroll-max-size
+--legion-scroll-max-size
 **********************
 ``argument``: required_argument
 
@@ -4876,7 +4876,7 @@ legion-scroll-max-size
 
 set max size of legion scroll buffer
 
-legion-scroll-list-max-size
+--legion-scroll-list-max-size
 ***************************
 ``argument``: required_argument
 
@@ -4886,7 +4886,7 @@ legion-scroll-list-max-size
 
 set max size of legion scroll list buffer
 
-subscriptions-sign-check
+--subscriptions-sign-check
 ************************
 ``argument``: required_argument
 
@@ -4898,7 +4898,7 @@ subscriptions-sign-check
 
 set digest algorithm and certificate directory for secured subscription system
 
-subscriptions-sign-check-tolerance
+--subscriptions-sign-check-tolerance
 **********************************
 ``argument``: required_argument
 
@@ -4910,7 +4910,7 @@ subscriptions-sign-check-tolerance
 
 set the maximum tolerance (in seconds) of clock skew for secured subscription system
 
-subscriptions-sign-skip-uid
+--subscriptions-sign-skip-uid
 ***************************
 ``argument``: required_argument
 
@@ -4922,7 +4922,7 @@ subscriptions-sign-skip-uid
 
 skip signature check for the specified uid when using unix sockets credentials
 
-subscriptions-credentials-check
+--subscriptions-credentials-check
 *******************************
 ``argument``: required_argument
 
@@ -4934,7 +4934,7 @@ subscriptions-credentials-check
 
 add a directory to search for subscriptions key credentials
 
-subscriptions-use-credentials
+--subscriptions-use-credentials
 *****************************
 ``argument``: no_argument
 
@@ -4944,7 +4944,7 @@ subscriptions-use-credentials
 
 enable management of SCM_CREDENTIALS in subscriptions UNIX sockets
 
-subscription-algo
+--subscription-algo
 *****************
 ``argument``: required_argument
 
@@ -4954,7 +4954,7 @@ subscription-algo
 
 set load balancing algorithm for the subscription system
 
-subscription-dotsplit
+--subscription-dotsplit
 *********************
 ``argument``: no_argument
 
@@ -4964,7 +4964,7 @@ subscription-dotsplit
 
 try to fallback to the next part (dot based) in subscription key
 
-subscribe-to
+--subscribe-to
 ************
 ``argument``: required_argument
 
@@ -4976,7 +4976,7 @@ subscribe-to
 
 subscribe to the specified subscription server
 
-st
+--st
 **
 ``argument``: required_argument
 
@@ -4988,7 +4988,7 @@ st
 
 subscribe to the specified subscription server
 
-subscribe
+--subscribe
 *********
 ``argument``: required_argument
 
@@ -5000,7 +5000,7 @@ subscribe
 
 subscribe to the specified subscription server
 
-subscribe2
+--subscribe2
 **********
 ``argument``: required_argument
 
@@ -5012,7 +5012,7 @@ subscribe2
 
 subscribe to the specified subscription server using advanced keyval syntax
 
-subscribe-freq
+--subscribe-freq
 **************
 ``argument``: required_argument
 
@@ -5022,7 +5022,7 @@ subscribe-freq
 
 send subscription announce at the specified interval
 
-subscription-tolerance
+--subscription-tolerance
 **********************
 ``argument``: required_argument
 
@@ -5032,7 +5032,7 @@ subscription-tolerance
 
 set tolerance for subscription servers
 
-unsubscribe-on-graceful-reload
+--unsubscribe-on-graceful-reload
 ******************************
 ``argument``: no_argument
 
@@ -5042,7 +5042,7 @@ unsubscribe-on-graceful-reload
 
 force unsubscribe request even during graceful reload
 
-start-unsubscribed
+--start-unsubscribed
 ******************
 ``argument``: no_argument
 
@@ -5052,7 +5052,7 @@ start-unsubscribed
 
 configure subscriptions but do not send them (useful with master fifo)
 
-snmp
+--snmp
 ****
 ``argument``: optional_argument
 
@@ -5062,7 +5062,7 @@ snmp
 
 enable the embedded snmp server
 
-snmp-community
+--snmp-community
 **************
 ``argument``: required_argument
 
@@ -5072,7 +5072,7 @@ snmp-community
 
 set the snmp community string
 
-ssl-verbose
+--ssl-verbose
 ***********
 ``argument``: no_argument
 
@@ -5082,7 +5082,7 @@ ssl-verbose
 
 be verbose about SSL errors
 
-ssl-sessions-use-cache
+--ssl-sessions-use-cache
 **********************
 ``argument``: optional_argument
 
@@ -5094,7 +5094,7 @@ ssl-sessions-use-cache
 
 use uWSGI cache for ssl sessions storage
 
-ssl-session-use-cache
+--ssl-session-use-cache
 *********************
 ``argument``: optional_argument
 
@@ -5106,7 +5106,7 @@ ssl-session-use-cache
 
 use uWSGI cache for ssl sessions storage
 
-ssl-sessions-timeout
+--ssl-sessions-timeout
 ********************
 ``argument``: required_argument
 
@@ -5116,7 +5116,7 @@ ssl-sessions-timeout
 
 set SSL sessions timeout (default: 300 seconds)
 
-ssl-session-timeout
+--ssl-session-timeout
 *******************
 ``argument``: required_argument
 
@@ -5126,7 +5126,7 @@ ssl-session-timeout
 
 set SSL sessions timeout (default: 300 seconds)
 
-sni
+--sni
 ***
 ``argument``: required_argument
 
@@ -5136,7 +5136,7 @@ sni
 
 add an SNI-governed SSL context
 
-sni-dir
+--sni-dir
 *******
 ``argument``: required_argument
 
@@ -5146,7 +5146,7 @@ sni-dir
 
 check for cert/key/client_ca file in the specified directory and create a sni/ssl context on demand
 
-sni-dir-ciphers
+--sni-dir-ciphers
 ***************
 ``argument``: required_argument
 
@@ -5156,7 +5156,7 @@ sni-dir-ciphers
 
 set ssl ciphers for sni-dir option
 
-sni-regexp
+--sni-regexp
 **********
 ``argument``: required_argument
 
@@ -5166,7 +5166,7 @@ sni-regexp
 
 add an SNI-governed SSL context (the key is a regexp)
 
-ssl-tmp-dir
+--ssl-tmp-dir
 ***********
 ``argument``: required_argument
 
@@ -5176,7 +5176,7 @@ ssl-tmp-dir
 
 store ssl-related temp files in the specified directory
 
-check-interval
+--check-interval
 **************
 ``argument``: required_argument
 
@@ -5188,7 +5188,7 @@ check-interval
 
 set the interval (in seconds) of master checks
 
-forkbomb-delay
+--forkbomb-delay
 **************
 ``argument``: required_argument
 
@@ -5200,7 +5200,7 @@ forkbomb-delay
 
 sleep for the specified number of seconds when a forkbomb is detected
 
-binary-path
+--binary-path
 ***********
 ``argument``: required_argument
 
@@ -5210,7 +5210,7 @@ binary-path
 
 force binary path
 
-privileged-binary-patch
+--privileged-binary-patch
 ***********************
 ``argument``: required_argument
 
@@ -5220,7 +5220,7 @@ privileged-binary-patch
 
 patch the uwsgi binary with a new command (before privileges drop)
 
-unprivileged-binary-patch
+--unprivileged-binary-patch
 *************************
 ``argument``: required_argument
 
@@ -5230,7 +5230,7 @@ unprivileged-binary-patch
 
 patch the uwsgi binary with a new command (after privileges drop)
 
-privileged-binary-patch-arg
+--privileged-binary-patch-arg
 ***************************
 ``argument``: required_argument
 
@@ -5240,7 +5240,7 @@ privileged-binary-patch-arg
 
 patch the uwsgi binary with a new command and arguments (before privileges drop)
 
-unprivileged-binary-patch-arg
+--unprivileged-binary-patch-arg
 *****************************
 ``argument``: required_argument
 
@@ -5250,7 +5250,7 @@ unprivileged-binary-patch-arg
 
 patch the uwsgi binary with a new command and arguments (after privileges drop)
 
-async
+--async
 *****
 ``argument``: required_argument
 
@@ -5260,7 +5260,7 @@ async
 
 enable async mode with specified cores
 
-max-fd
+--max-fd
 ******
 ``argument``: required_argument
 
@@ -5270,7 +5270,7 @@ max-fd
 
 set maximum number of file descriptors (requires root privileges)
 
-logto
+--logto
 *****
 ``argument``: required_argument
 
@@ -5280,7 +5280,7 @@ logto
 
 set logfile/udp address
 
-logto2
+--logto2
 ******
 ``argument``: required_argument
 
@@ -5290,7 +5290,7 @@ logto2
 
 log to specified file or udp address after privileges drop
 
-log-format
+--log-format
 **********
 ``argument``: required_argument
 
@@ -5300,7 +5300,7 @@ log-format
 
 set advanced format for request logging
 
-logformat
+--logformat
 *********
 ``argument``: required_argument
 
@@ -5310,7 +5310,7 @@ logformat
 
 set advanced format for request logging
 
-logformat-strftime
+--logformat-strftime
 ******************
 ``argument``: no_argument
 
@@ -5320,7 +5320,7 @@ logformat-strftime
 
 apply strftime to logformat output
 
-log-format-strftime
+--log-format-strftime
 *******************
 ``argument``: no_argument
 
@@ -5330,7 +5330,7 @@ log-format-strftime
 
 apply strftime to logformat output
 
-logfile-chown
+--logfile-chown
 *************
 ``argument``: no_argument
 
@@ -5340,7 +5340,7 @@ logfile-chown
 
 chown logfiles
 
-logfile-chmod
+--logfile-chmod
 *************
 ``argument``: required_argument
 
@@ -5350,7 +5350,7 @@ logfile-chmod
 
 chmod logfiles
 
-log-syslog
+--log-syslog
 **********
 ``argument``: optional_argument
 
@@ -5362,7 +5362,7 @@ log-syslog
 
 log to syslog
 
-log-socket
+--log-socket
 **********
 ``argument``: required_argument
 
@@ -5374,7 +5374,7 @@ log-socket
 
 send logs to the specified socket
 
-req-logger
+--req-logger
 **********
 ``argument``: required_argument
 
@@ -5386,7 +5386,7 @@ req-logger
 
 set/append a request logger
 
-logger-req
+--logger-req
 **********
 ``argument``: required_argument
 
@@ -5398,7 +5398,7 @@ logger-req
 
 set/append a request logger
 
-logger
+--logger
 ******
 ``argument``: required_argument
 
@@ -5410,7 +5410,7 @@ logger
 
 set/append a logger
 
-logger-list
+--logger-list
 ***********
 ``argument``: no_argument
 
@@ -5420,7 +5420,7 @@ logger-list
 
 list enabled loggers
 
-loggers-list
+--loggers-list
 ************
 ``argument``: no_argument
 
@@ -5430,7 +5430,7 @@ loggers-list
 
 list enabled loggers
 
-threaded-logger
+--threaded-logger
 ***************
 ``argument``: no_argument
 
@@ -5442,7 +5442,7 @@ threaded-logger
 
 offload log writing to a thread
 
-log-encoder
+--log-encoder
 ***********
 ``argument``: required_argument
 
@@ -5454,7 +5454,7 @@ log-encoder
 
 add an item in the log encoder chain
 
-log-req-encoder
+--log-req-encoder
 ***************
 ``argument``: required_argument
 
@@ -5466,7 +5466,7 @@ log-req-encoder
 
 add an item in the log req encoder chain
 
-log-drain
+--log-drain
 *********
 ``argument``: required_argument
 
@@ -5478,7 +5478,7 @@ log-drain
 
 drain (do not show) log lines matching the specified regexp
 
-log-filter
+--log-filter
 **********
 ``argument``: required_argument
 
@@ -5490,7 +5490,7 @@ log-filter
 
 show only log lines matching the specified regexp
 
-log-route
+--log-route
 *********
 ``argument``: required_argument
 
@@ -5502,7 +5502,7 @@ log-route
 
 log to the specified named logger if regexp applied on logline matches
 
-log-req-route
+--log-req-route
 *************
 ``argument``: required_argument
 
@@ -5514,7 +5514,7 @@ log-req-route
 
 log requests to the specified named logger if regexp applied on logline matches
 
-use-abort
+--use-abort
 *********
 ``argument``: no_argument
 
@@ -5524,7 +5524,7 @@ use-abort
 
 call abort() on segfault/fpe, could be useful for generating a core dump
 
-alarm
+--alarm
 *****
 ``argument``: required_argument
 
@@ -5536,7 +5536,7 @@ alarm
 
 create a new alarm, syntax: <alarm> <plugin:args>
 
-alarm-cheap
+--alarm-cheap
 ***********
 ``argument``: required_argument
 
@@ -5546,7 +5546,7 @@ alarm-cheap
 
 use main alarm thread rather than create dedicated threads for curl-based alarms
 
-alarm-freq
+--alarm-freq
 **********
 ``argument``: required_argument
 
@@ -5556,7 +5556,7 @@ alarm-freq
 
 tune the anti-loop alam system (default 3 seconds)
 
-alarm-fd
+--alarm-fd
 ********
 ``argument``: required_argument
 
@@ -5568,7 +5568,7 @@ alarm-fd
 
 raise the specified alarm when an fd is read for read (by default it reads 1 byte, set 8 for eventfd)
 
-alarm-segfault
+--alarm-segfault
 **************
 ``argument``: required_argument
 
@@ -5580,7 +5580,7 @@ alarm-segfault
 
 raise the specified alarm when the segmentation fault handler is executed
 
-segfault-alarm
+--segfault-alarm
 **************
 ``argument``: required_argument
 
@@ -5592,7 +5592,7 @@ segfault-alarm
 
 raise the specified alarm when the segmentation fault handler is executed
 
-alarm-backlog
+--alarm-backlog
 *************
 ``argument``: required_argument
 
@@ -5604,7 +5604,7 @@ alarm-backlog
 
 raise the specified alarm when the socket backlog queue is full
 
-backlog-alarm
+--backlog-alarm
 *************
 ``argument``: required_argument
 
@@ -5616,7 +5616,7 @@ backlog-alarm
 
 raise the specified alarm when the socket backlog queue is full
 
-lq-alarm
+--lq-alarm
 ********
 ``argument``: required_argument
 
@@ -5628,7 +5628,7 @@ lq-alarm
 
 raise the specified alarm when the socket backlog queue is full
 
-alarm-lq
+--alarm-lq
 ********
 ``argument``: required_argument
 
@@ -5640,7 +5640,7 @@ alarm-lq
 
 raise the specified alarm when the socket backlog queue is full
 
-alarm-listen-queue
+--alarm-listen-queue
 ******************
 ``argument``: required_argument
 
@@ -5652,7 +5652,7 @@ alarm-listen-queue
 
 raise the specified alarm when the socket backlog queue is full
 
-listen-queue-alarm
+--listen-queue-alarm
 ******************
 ``argument``: required_argument
 
@@ -5664,7 +5664,7 @@ listen-queue-alarm
 
 raise the specified alarm when the socket backlog queue is full
 
-log-alarm
+--log-alarm
 *********
 ``argument``: required_argument
 
@@ -5676,7 +5676,7 @@ log-alarm
 
 raise the specified alarm when a log line matches the specified regexp, syntax: <alarm>[,alarm...] <regexp>
 
-alarm-log
+--alarm-log
 *********
 ``argument``: required_argument
 
@@ -5688,7 +5688,7 @@ alarm-log
 
 raise the specified alarm when a log line matches the specified regexp, syntax: <alarm>[,alarm...] <regexp>
 
-not-log-alarm
+--not-log-alarm
 *************
 ``argument``: required_argument
 
@@ -5700,7 +5700,7 @@ not-log-alarm
 
 skip the specified alarm when a log line matches the specified regexp, syntax: <alarm>[,alarm...] <regexp>
 
-not-alarm-log
+--not-alarm-log
 *************
 ``argument``: required_argument
 
@@ -5712,7 +5712,7 @@ not-alarm-log
 
 skip the specified alarm when a log line matches the specified regexp, syntax: <alarm>[,alarm...] <regexp>
 
-alarm-list
+--alarm-list
 **********
 ``argument``: no_argument
 
@@ -5722,7 +5722,7 @@ alarm-list
 
 list enabled alarms
 
-alarms-list
+--alarms-list
 ***********
 ``argument``: no_argument
 
@@ -5732,7 +5732,7 @@ alarms-list
 
 list enabled alarms
 
-alarm-msg-size
+--alarm-msg-size
 **************
 ``argument``: required_argument
 
@@ -5742,7 +5742,7 @@ alarm-msg-size
 
 set the max size of an alarm message (default 8192)
 
-log-master
+--log-master
 **********
 ``argument``: no_argument
 
@@ -5754,7 +5754,7 @@ log-master
 
 delegate logging to master process
 
-log-master-bufsize
+--log-master-bufsize
 ******************
 ``argument``: required_argument
 
@@ -5764,7 +5764,7 @@ log-master-bufsize
 
 set the buffer size for the master logger. bigger log messages will be truncated
 
-log-master-stream
+--log-master-stream
 *****************
 ``argument``: no_argument
 
@@ -5774,7 +5774,7 @@ log-master-stream
 
 create the master logpipe as SOCK_STREAM
 
-log-master-req-stream
+--log-master-req-stream
 *********************
 ``argument``: no_argument
 
@@ -5784,7 +5784,7 @@ log-master-req-stream
 
 create the master requests logpipe as SOCK_STREAM
 
-log-reopen
+--log-reopen
 **********
 ``argument``: no_argument
 
@@ -5794,7 +5794,7 @@ log-reopen
 
 reopen log after reload
 
-log-truncate
+--log-truncate
 ************
 ``argument``: no_argument
 
@@ -5804,7 +5804,7 @@ log-truncate
 
 truncate log on startup
 
-log-maxsize
+--log-maxsize
 ***********
 ``argument``: required_argument
 
@@ -5816,7 +5816,7 @@ log-maxsize
 
 set maximum logfile size
 
-log-backupname
+--log-backupname
 **************
 ``argument``: required_argument
 
@@ -5826,7 +5826,7 @@ log-backupname
 
 set logfile name after rotation
 
-logdate
+--logdate
 *******
 ``argument``: optional_argument
 
@@ -5836,7 +5836,7 @@ logdate
 
 prefix logs with date or a strftime string
 
-log-date
+--log-date
 ********
 ``argument``: optional_argument
 
@@ -5846,7 +5846,7 @@ log-date
 
 prefix logs with date or a strftime string
 
-log-prefix
+--log-prefix
 **********
 ``argument``: optional_argument
 
@@ -5856,7 +5856,7 @@ log-prefix
 
 prefix logs with a string
 
-log-zero
+--log-zero
 ********
 ``argument``: no_argument
 
@@ -5866,7 +5866,7 @@ log-zero
 
 log responses without body
 
-log-slow
+--log-slow
 ********
 ``argument``: required_argument
 
@@ -5876,7 +5876,7 @@ log-slow
 
 log requests slower than the specified number of milliseconds
 
-log-4xx
+--log-4xx
 *******
 ``argument``: no_argument
 
@@ -5886,7 +5886,7 @@ log-4xx
 
 log requests with a 4xx response
 
-log-5xx
+--log-5xx
 *******
 ``argument``: no_argument
 
@@ -5896,7 +5896,7 @@ log-5xx
 
 log requests with a 5xx response
 
-log-big
+--log-big
 *******
 ``argument``: required_argument
 
@@ -5906,7 +5906,7 @@ log-big
 
 log requestes bigger than the specified size
 
-log-sendfile
+--log-sendfile
 ************
 ``argument``: required_argument
 
@@ -5916,7 +5916,7 @@ log-sendfile
 
 log sendfile requests
 
-log-ioerror
+--log-ioerror
 ***********
 ``argument``: required_argument
 
@@ -5926,7 +5926,7 @@ log-ioerror
 
 log requests with io errors
 
-log-micros
+--log-micros
 **********
 ``argument``: no_argument
 
@@ -5936,7 +5936,7 @@ log-micros
 
 report response time in microseconds instead of milliseconds
 
-log-x-forwarded-for
+--log-x-forwarded-for
 *******************
 ``argument``: no_argument
 
@@ -5946,7 +5946,7 @@ log-x-forwarded-for
 
 use the ip from X-Forwarded-For header instead of REMOTE_ADDR
 
-master-as-root
+--master-as-root
 **************
 ``argument``: no_argument
 
@@ -5956,7 +5956,7 @@ master-as-root
 
 leave master process running as root
 
-drop-after-init
+--drop-after-init
 ***************
 ``argument``: no_argument
 
@@ -5966,7 +5966,7 @@ drop-after-init
 
 run privileges drop after plugin initialization
 
-drop-after-apps
+--drop-after-apps
 ***************
 ``argument``: no_argument
 
@@ -5976,7 +5976,7 @@ drop-after-apps
 
 run privileges drop after apps loading
 
-force-cwd
+--force-cwd
 *********
 ``argument``: required_argument
 
@@ -5986,7 +5986,7 @@ force-cwd
 
 force the initial working directory to the specified value
 
-binsh
+--binsh
 *****
 ``argument``: required_argument
 
@@ -5996,7 +5996,7 @@ binsh
 
 override /bin/sh (used by exec hooks, it always fallback to /bin/sh)
 
-chdir
+--chdir
 *****
 ``argument``: required_argument
 
@@ -6006,7 +6006,7 @@ chdir
 
 chdir to specified directory before apps loading
 
-chdir2
+--chdir2
 ******
 ``argument``: required_argument
 
@@ -6016,7 +6016,7 @@ chdir2
 
 chdir to specified directory after apps loading
 
-lazy
+--lazy
 ****
 ``argument``: no_argument
 
@@ -6026,7 +6026,7 @@ lazy
 
 set lazy mode (load apps in workers instead of master)
 
-lazy-apps
+--lazy-apps
 *********
 ``argument``: no_argument
 
@@ -6036,7 +6036,7 @@ lazy-apps
 
 load apps in each worker instead of the master
 
-cheap
+--cheap
 *****
 ``argument``: no_argument
 
@@ -6048,7 +6048,7 @@ cheap
 
 set cheap mode (spawn workers only after the first request)
 
-cheaper
+--cheaper
 *******
 ``argument``: required_argument
 
@@ -6060,7 +6060,7 @@ cheaper
 
 set cheaper mode (adaptive process spawning)
 
-cheaper-initial
+--cheaper-initial
 ***************
 ``argument``: required_argument
 
@@ -6072,7 +6072,7 @@ cheaper-initial
 
 set the initial number of processes to spawn in cheaper mode
 
-cheaper-algo
+--cheaper-algo
 ************
 ``argument``: required_argument
 
@@ -6084,7 +6084,7 @@ cheaper-algo
 
 choose to algorithm used for adaptive process spawning
 
-cheaper-step
+--cheaper-step
 ************
 ``argument``: required_argument
 
@@ -6096,7 +6096,7 @@ cheaper-step
 
 number of additional processes to spawn at each overload
 
-cheaper-overload
+--cheaper-overload
 ****************
 ``argument``: required_argument
 
@@ -6108,7 +6108,7 @@ cheaper-overload
 
 increase workers after specified overload
 
-cheaper-algo-list
+--cheaper-algo-list
 *****************
 ``argument``: no_argument
 
@@ -6118,7 +6118,7 @@ cheaper-algo-list
 
 list enabled cheapers algorithms
 
-cheaper-algos-list
+--cheaper-algos-list
 ******************
 ``argument``: no_argument
 
@@ -6128,7 +6128,7 @@ cheaper-algos-list
 
 list enabled cheapers algorithms
 
-cheaper-list
+--cheaper-list
 ************
 ``argument``: no_argument
 
@@ -6138,7 +6138,7 @@ cheaper-list
 
 list enabled cheapers algorithms
 
-cheaper-rss-limit-soft
+--cheaper-rss-limit-soft
 **********************
 ``argument``: required_argument
 
@@ -6150,7 +6150,7 @@ cheaper-rss-limit-soft
 
 don't spawn new workers if total resident memory usage of all workers is higher than this limit
 
-cheaper-rss-limit-hard
+--cheaper-rss-limit-hard
 **********************
 ``argument``: required_argument
 
@@ -6162,7 +6162,7 @@ cheaper-rss-limit-hard
 
 if total workers resident memory usage is higher try to stop workers
 
-idle
+--idle
 ****
 ``argument``: required_argument
 
@@ -6174,7 +6174,7 @@ idle
 
 set idle mode (put uWSGI in cheap mode after inactivity)
 
-die-on-idle
+--die-on-idle
 ***********
 ``argument``: no_argument
 
@@ -6184,7 +6184,7 @@ die-on-idle
 
 shutdown uWSGI when idle
 
-mount
+--mount
 *****
 ``argument``: required_argument
 
@@ -6194,7 +6194,7 @@ mount
 
 load application under mountpoint
 
-worker-mount
+--worker-mount
 ************
 ``argument``: required_argument
 
@@ -6204,7 +6204,7 @@ worker-mount
 
 load application under mountpoint in the specified worker or after workers spawn
 
-threads
+--threads
 *******
 ``argument``: required_argument
 
@@ -6216,7 +6216,7 @@ threads
 
 run each worker in prethreaded mode with the specified number of threads
 
-thread-stacksize
+--thread-stacksize
 ****************
 ``argument``: required_argument
 
@@ -6228,7 +6228,7 @@ thread-stacksize
 
 set threads stacksize
 
-threads-stacksize
+--threads-stacksize
 *****************
 ``argument``: required_argument
 
@@ -6240,7 +6240,7 @@ threads-stacksize
 
 set threads stacksize
 
-thread-stack-size
+--thread-stack-size
 *****************
 ``argument``: required_argument
 
@@ -6252,7 +6252,7 @@ thread-stack-size
 
 set threads stacksize
 
-threads-stack-size
+--threads-stack-size
 ******************
 ``argument``: required_argument
 
@@ -6264,7 +6264,7 @@ threads-stack-size
 
 set threads stacksize
 
-vhost
+--vhost
 *****
 ``argument``: no_argument
 
@@ -6274,7 +6274,7 @@ vhost
 
 enable virtualhosting mode (based on SERVER_NAME variable)
 
-vhost-host
+--vhost-host
 **********
 ``argument``: no_argument
 
@@ -6286,7 +6286,7 @@ vhost-host
 
 enable virtualhosting mode (based on HTTP_HOST variable)
 
-route
+--route
 *****
 ``argument``: required_argument
 
@@ -6296,7 +6296,7 @@ route
 
 add a route
 
-route-host
+--route-host
 **********
 ``argument``: required_argument
 
@@ -6306,7 +6306,7 @@ route-host
 
 add a route based on Host header
 
-route-uri
+--route-uri
 *********
 ``argument``: required_argument
 
@@ -6316,7 +6316,7 @@ route-uri
 
 add a route based on REQUEST_URI
 
-route-qs
+--route-qs
 ********
 ``argument``: required_argument
 
@@ -6326,7 +6326,7 @@ route-qs
 
 add a route based on QUERY_STRING
 
-route-remote-addr
+--route-remote-addr
 *****************
 ``argument``: required_argument
 
@@ -6336,7 +6336,7 @@ route-remote-addr
 
 add a route based on REMOTE_ADDR
 
-route-user-agent
+--route-user-agent
 ****************
 ``argument``: required_argument
 
@@ -6346,7 +6346,7 @@ route-user-agent
 
 add a route based on HTTP_USER_AGENT
 
-route-remote-user
+--route-remote-user
 *****************
 ``argument``: required_argument
 
@@ -6356,7 +6356,7 @@ route-remote-user
 
 add a route based on REMOTE_USER
 
-route-referer
+--route-referer
 *************
 ``argument``: required_argument
 
@@ -6366,7 +6366,7 @@ route-referer
 
 add a route based on HTTP_REFERER
 
-route-label
+--route-label
 ***********
 ``argument``: required_argument
 
@@ -6376,7 +6376,7 @@ route-label
 
 add a routing label (for use with goto)
 
-route-if
+--route-if
 ********
 ``argument``: required_argument
 
@@ -6386,7 +6386,7 @@ route-if
 
 add a route based on condition
 
-route-if-not
+--route-if-not
 ************
 ``argument``: required_argument
 
@@ -6396,7 +6396,7 @@ route-if-not
 
 add a route based on condition (negate version)
 
-route-run
+--route-run
 *********
 ``argument``: required_argument
 
@@ -6406,7 +6406,7 @@ route-run
 
 always run the specified route action
 
-final-route
+--final-route
 ***********
 ``argument``: required_argument
 
@@ -6416,7 +6416,7 @@ final-route
 
 add a final route
 
-final-route-status
+--final-route-status
 ******************
 ``argument``: required_argument
 
@@ -6426,7 +6426,7 @@ final-route-status
 
 add a final route for the specified status
 
-final-route-host
+--final-route-host
 ****************
 ``argument``: required_argument
 
@@ -6436,7 +6436,7 @@ final-route-host
 
 add a final route based on Host header
 
-final-route-uri
+--final-route-uri
 ***************
 ``argument``: required_argument
 
@@ -6446,7 +6446,7 @@ final-route-uri
 
 add a final route based on REQUEST_URI
 
-final-route-qs
+--final-route-qs
 **************
 ``argument``: required_argument
 
@@ -6456,7 +6456,7 @@ final-route-qs
 
 add a final route based on QUERY_STRING
 
-final-route-remote-addr
+--final-route-remote-addr
 ***********************
 ``argument``: required_argument
 
@@ -6466,7 +6466,7 @@ final-route-remote-addr
 
 add a final route based on REMOTE_ADDR
 
-final-route-user-agent
+--final-route-user-agent
 **********************
 ``argument``: required_argument
 
@@ -6476,7 +6476,7 @@ final-route-user-agent
 
 add a final route based on HTTP_USER_AGENT
 
-final-route-remote-user
+--final-route-remote-user
 ***********************
 ``argument``: required_argument
 
@@ -6486,7 +6486,7 @@ final-route-remote-user
 
 add a final route based on REMOTE_USER
 
-final-route-referer
+--final-route-referer
 *******************
 ``argument``: required_argument
 
@@ -6496,7 +6496,7 @@ final-route-referer
 
 add a final route based on HTTP_REFERER
 
-final-route-label
+--final-route-label
 *****************
 ``argument``: required_argument
 
@@ -6506,7 +6506,7 @@ final-route-label
 
 add a final routing label (for use with goto)
 
-final-route-if
+--final-route-if
 **************
 ``argument``: required_argument
 
@@ -6516,7 +6516,7 @@ final-route-if
 
 add a final route based on condition
 
-final-route-if-not
+--final-route-if-not
 ******************
 ``argument``: required_argument
 
@@ -6526,7 +6526,7 @@ final-route-if-not
 
 add a final route based on condition (negate version)
 
-final-route-run
+--final-route-run
 ***************
 ``argument``: required_argument
 
@@ -6536,7 +6536,7 @@ final-route-run
 
 always run the specified final route action
 
-error-route
+--error-route
 ***********
 ``argument``: required_argument
 
@@ -6546,7 +6546,7 @@ error-route
 
 add an error route
 
-error-route-status
+--error-route-status
 ******************
 ``argument``: required_argument
 
@@ -6556,7 +6556,7 @@ error-route-status
 
 add an error route for the specified status
 
-error-route-host
+--error-route-host
 ****************
 ``argument``: required_argument
 
@@ -6566,7 +6566,7 @@ error-route-host
 
 add an error route based on Host header
 
-error-route-uri
+--error-route-uri
 ***************
 ``argument``: required_argument
 
@@ -6576,7 +6576,7 @@ error-route-uri
 
 add an error route based on REQUEST_URI
 
-error-route-qs
+--error-route-qs
 **************
 ``argument``: required_argument
 
@@ -6586,7 +6586,7 @@ error-route-qs
 
 add an error route based on QUERY_STRING
 
-error-route-remote-addr
+--error-route-remote-addr
 ***********************
 ``argument``: required_argument
 
@@ -6596,7 +6596,7 @@ error-route-remote-addr
 
 add an error route based on REMOTE_ADDR
 
-error-route-user-agent
+--error-route-user-agent
 **********************
 ``argument``: required_argument
 
@@ -6606,7 +6606,7 @@ error-route-user-agent
 
 add an error route based on HTTP_USER_AGENT
 
-error-route-remote-user
+--error-route-remote-user
 ***********************
 ``argument``: required_argument
 
@@ -6616,7 +6616,7 @@ error-route-remote-user
 
 add an error route based on REMOTE_USER
 
-error-route-referer
+--error-route-referer
 *******************
 ``argument``: required_argument
 
@@ -6626,7 +6626,7 @@ error-route-referer
 
 add an error route based on HTTP_REFERER
 
-error-route-label
+--error-route-label
 *****************
 ``argument``: required_argument
 
@@ -6636,7 +6636,7 @@ error-route-label
 
 add an error routing label (for use with goto)
 
-error-route-if
+--error-route-if
 **************
 ``argument``: required_argument
 
@@ -6646,7 +6646,7 @@ error-route-if
 
 add an error route based on condition
 
-error-route-if-not
+--error-route-if-not
 ******************
 ``argument``: required_argument
 
@@ -6656,7 +6656,7 @@ error-route-if-not
 
 add an error route based on condition (negate version)
 
-error-route-run
+--error-route-run
 ***************
 ``argument``: required_argument
 
@@ -6666,7 +6666,7 @@ error-route-run
 
 always run the specified error route action
 
-response-route
+--response-route
 **************
 ``argument``: required_argument
 
@@ -6676,7 +6676,7 @@ response-route
 
 add a response route
 
-response-route-status
+--response-route-status
 *********************
 ``argument``: required_argument
 
@@ -6686,7 +6686,7 @@ response-route-status
 
 add a response route for the specified status
 
-response-route-host
+--response-route-host
 *******************
 ``argument``: required_argument
 
@@ -6696,7 +6696,7 @@ response-route-host
 
 add a response route based on Host header
 
-response-route-uri
+--response-route-uri
 ******************
 ``argument``: required_argument
 
@@ -6706,7 +6706,7 @@ response-route-uri
 
 add a response route based on REQUEST_URI
 
-response-route-qs
+--response-route-qs
 *****************
 ``argument``: required_argument
 
@@ -6716,7 +6716,7 @@ response-route-qs
 
 add a response route based on QUERY_STRING
 
-response-route-remote-addr
+--response-route-remote-addr
 **************************
 ``argument``: required_argument
 
@@ -6726,7 +6726,7 @@ response-route-remote-addr
 
 add a response route based on REMOTE_ADDR
 
-response-route-user-agent
+--response-route-user-agent
 *************************
 ``argument``: required_argument
 
@@ -6736,7 +6736,7 @@ response-route-user-agent
 
 add a response route based on HTTP_USER_AGENT
 
-response-route-remote-user
+--response-route-remote-user
 **************************
 ``argument``: required_argument
 
@@ -6746,7 +6746,7 @@ response-route-remote-user
 
 add a response route based on REMOTE_USER
 
-response-route-referer
+--response-route-referer
 **********************
 ``argument``: required_argument
 
@@ -6756,7 +6756,7 @@ response-route-referer
 
 add a response route based on HTTP_REFERER
 
-response-route-label
+--response-route-label
 ********************
 ``argument``: required_argument
 
@@ -6766,7 +6766,7 @@ response-route-label
 
 add a response routing label (for use with goto)
 
-response-route-if
+--response-route-if
 *****************
 ``argument``: required_argument
 
@@ -6776,7 +6776,7 @@ response-route-if
 
 add a response route based on condition
 
-response-route-if-not
+--response-route-if-not
 *********************
 ``argument``: required_argument
 
@@ -6786,7 +6786,7 @@ response-route-if-not
 
 add a response route based on condition (negate version)
 
-response-route-run
+--response-route-run
 ******************
 ``argument``: required_argument
 
@@ -6796,7 +6796,7 @@ response-route-run
 
 always run the specified response route action
 
-router-list
+--router-list
 ***********
 ``argument``: no_argument
 
@@ -6806,7 +6806,7 @@ router-list
 
 list enabled routers
 
-routers-list
+--routers-list
 ************
 ``argument``: no_argument
 
@@ -6816,7 +6816,7 @@ routers-list
 
 list enabled routers
 
-error-page-403
+--error-page-403
 **************
 ``argument``: required_argument
 
@@ -6826,7 +6826,7 @@ error-page-403
 
 add an error page (html) for managed 403 response
 
-error-page-404
+--error-page-404
 **************
 ``argument``: required_argument
 
@@ -6836,7 +6836,7 @@ error-page-404
 
 add an error page (html) for managed 404 response
 
-error-page-500
+--error-page-500
 **************
 ``argument``: required_argument
 
@@ -6846,7 +6846,7 @@ error-page-500
 
 add an error page (html) for managed 500 response
 
-websockets-ping-freq
+--websockets-ping-freq
 ********************
 ``argument``: required_argument
 
@@ -6856,7 +6856,7 @@ websockets-ping-freq
 
 set the frequency (in seconds) of websockets automatic ping packets
 
-websocket-ping-freq
+--websocket-ping-freq
 *******************
 ``argument``: required_argument
 
@@ -6866,7 +6866,7 @@ websocket-ping-freq
 
 set the frequency (in seconds) of websockets automatic ping packets
 
-websockets-pong-tolerance
+--websockets-pong-tolerance
 *************************
 ``argument``: required_argument
 
@@ -6876,7 +6876,7 @@ websockets-pong-tolerance
 
 set the tolerance (in seconds) of websockets ping/pong subsystem
 
-websocket-pong-tolerance
+--websocket-pong-tolerance
 ************************
 ``argument``: required_argument
 
@@ -6886,7 +6886,7 @@ websocket-pong-tolerance
 
 set the tolerance (in seconds) of websockets ping/pong subsystem
 
-websockets-max-size
+--websockets-max-size
 *******************
 ``argument``: required_argument
 
@@ -6896,7 +6896,7 @@ websockets-max-size
 
 set the max allowed size of websocket messages (in Kbytes, default 1024)
 
-websocket-max-size
+--websocket-max-size
 ******************
 ``argument``: required_argument
 
@@ -6906,7 +6906,7 @@ websocket-max-size
 
 set the max allowed size of websocket messages (in Kbytes, default 1024)
 
-chunked-input-limit
+--chunked-input-limit
 *******************
 ``argument``: required_argument
 
@@ -6916,7 +6916,7 @@ chunked-input-limit
 
 set the max size of a chunked input part (default 1MB, in bytes)
 
-chunked-input-timeout
+--chunked-input-timeout
 *********************
 ``argument``: required_argument
 
@@ -6926,7 +6926,7 @@ chunked-input-timeout
 
 set default timeout for chunked input
 
-clock
+--clock
 *****
 ``argument``: required_argument
 
@@ -6936,7 +6936,7 @@ clock
 
 set a clock source
 
-clock-list
+--clock-list
 **********
 ``argument``: no_argument
 
@@ -6946,7 +6946,7 @@ clock-list
 
 list enabled clocks
 
-clocks-list
+--clocks-list
 ***********
 ``argument``: no_argument
 
@@ -6956,7 +6956,7 @@ clocks-list
 
 list enabled clocks
 
-add-header
+--add-header
 **********
 ``argument``: required_argument
 
@@ -6966,7 +6966,7 @@ add-header
 
 automatically add HTTP headers to response
 
-rem-header
+--rem-header
 **********
 ``argument``: required_argument
 
@@ -6976,7 +6976,7 @@ rem-header
 
 automatically remove specified HTTP header from the response
 
-del-header
+--del-header
 **********
 ``argument``: required_argument
 
@@ -6986,7 +6986,7 @@ del-header
 
 automatically remove specified HTTP header from the response
 
-collect-header
+--collect-header
 **************
 ``argument``: required_argument
 
@@ -6996,7 +6996,7 @@ collect-header
 
 store the specified response header in a request var (syntax: header var)
 
-response-header-collect
+--response-header-collect
 ***********************
 ``argument``: required_argument
 
@@ -7006,7 +7006,7 @@ response-header-collect
 
 store the specified response header in a request var (syntax: header var)
 
-check-static
+--check-static
 ************
 ``argument``: required_argument
 
@@ -7018,7 +7018,7 @@ check-static
 
 check for static files in the specified directory
 
-check-static-docroot
+--check-static-docroot
 ********************
 ``argument``: no_argument
 
@@ -7030,7 +7030,7 @@ check-static-docroot
 
 check for static files in the requested DOCUMENT_ROOT
 
-static-check
+--static-check
 ************
 ``argument``: required_argument
 
@@ -7042,7 +7042,7 @@ static-check
 
 check for static files in the specified directory
 
-static-map
+--static-map
 **********
 ``argument``: required_argument
 
@@ -7054,7 +7054,7 @@ static-map
 
 map mountpoint to static directory (or file)
 
-static-map2
+--static-map2
 ***********
 ``argument``: required_argument
 
@@ -7066,7 +7066,7 @@ static-map2
 
 like static-map but completely appending the requested resource to the docroot
 
-static-skip-ext
+--static-skip-ext
 ***************
 ``argument``: required_argument
 
@@ -7078,7 +7078,7 @@ static-skip-ext
 
 skip specified extension from staticfile checks
 
-static-index
+--static-index
 ************
 ``argument``: required_argument
 
@@ -7090,7 +7090,7 @@ static-index
 
 search for specified file if a directory is requested
 
-static-safe
+--static-safe
 ***********
 ``argument``: required_argument
 
@@ -7102,7 +7102,7 @@ static-safe
 
 skip security checks if the file is under the specified path
 
-static-cache-paths
+--static-cache-paths
 ******************
 ``argument``: required_argument
 
@@ -7114,7 +7114,7 @@ static-cache-paths
 
 put resolved paths in the uWSGI cache for the specified amount of seconds
 
-static-cache-paths-name
+--static-cache-paths-name
 ***********************
 ``argument``: required_argument
 
@@ -7126,7 +7126,7 @@ static-cache-paths-name
 
 use the specified cache for static paths
 
-mimefile
+--mimefile
 ********
 ``argument``: required_argument
 
@@ -7138,7 +7138,7 @@ mimefile
 
 set mime types file path (default /etc/apache2/mime.types)
 
-mime-file
+--mime-file
 *********
 ``argument``: required_argument
 
@@ -7150,7 +7150,7 @@ mime-file
 
 set mime types file path (default /etc/apache2/mime.types)
 
-mimefile
+--mimefile
 ********
 ``argument``: required_argument
 
@@ -7162,7 +7162,7 @@ mimefile
 
 set mime types file path (default /etc/mime.types)
 
-mime-file
+--mime-file
 *********
 ``argument``: required_argument
 
@@ -7174,7 +7174,7 @@ mime-file
 
 set mime types file path (default /etc/mime.types)
 
-static-expires-type
+--static-expires-type
 *******************
 ``argument``: required_argument
 
@@ -7186,7 +7186,7 @@ static-expires-type
 
 set the Expires header based on content type
 
-static-expires-type-mtime
+--static-expires-type-mtime
 *************************
 ``argument``: required_argument
 
@@ -7198,7 +7198,7 @@ static-expires-type-mtime
 
 set the Expires header based on content type and file mtime
 
-static-expires
+--static-expires
 **************
 ``argument``: required_argument
 
@@ -7210,7 +7210,7 @@ static-expires
 
 set the Expires header based on filename regexp
 
-static-expires-mtime
+--static-expires-mtime
 ********************
 ``argument``: required_argument
 
@@ -7222,7 +7222,7 @@ static-expires-mtime
 
 set the Expires header based on filename regexp and file mtime
 
-static-expires-uri
+--static-expires-uri
 ******************
 ``argument``: required_argument
 
@@ -7234,7 +7234,7 @@ static-expires-uri
 
 set the Expires header based on REQUEST_URI regexp
 
-static-expires-uri-mtime
+--static-expires-uri-mtime
 ************************
 ``argument``: required_argument
 
@@ -7246,7 +7246,7 @@ static-expires-uri-mtime
 
 set the Expires header based on REQUEST_URI regexp and file mtime
 
-static-expires-path-info
+--static-expires-path-info
 ************************
 ``argument``: required_argument
 
@@ -7258,7 +7258,7 @@ static-expires-path-info
 
 set the Expires header based on PATH_INFO regexp
 
-static-expires-path-info-mtime
+--static-expires-path-info-mtime
 ******************************
 ``argument``: required_argument
 
@@ -7270,7 +7270,7 @@ static-expires-path-info-mtime
 
 set the Expires header based on PATH_INFO regexp and file mtime
 
-static-gzip
+--static-gzip
 ***********
 ``argument``: required_argument
 
@@ -7282,7 +7282,7 @@ static-gzip
 
 if the supplied regexp matches the static file translation it will search for a gzip version
 
-static-gzip-all
+--static-gzip-all
 ***************
 ``argument``: no_argument
 
@@ -7294,7 +7294,7 @@ static-gzip-all
 
 check for a gzip version of all requested static files
 
-static-gzip-dir
+--static-gzip-dir
 ***************
 ``argument``: required_argument
 
@@ -7306,7 +7306,7 @@ static-gzip-dir
 
 check for a gzip version of all requested static files in the specified dir/prefix
 
-static-gzip-prefix
+--static-gzip-prefix
 ******************
 ``argument``: required_argument
 
@@ -7318,7 +7318,7 @@ static-gzip-prefix
 
 check for a gzip version of all requested static files in the specified dir/prefix
 
-static-gzip-ext
+--static-gzip-ext
 ***************
 ``argument``: required_argument
 
@@ -7330,7 +7330,7 @@ static-gzip-ext
 
 check for a gzip version of all requested static files with the specified ext/suffix
 
-static-gzip-suffix
+--static-gzip-suffix
 ******************
 ``argument``: required_argument
 
@@ -7342,7 +7342,7 @@ static-gzip-suffix
 
 check for a gzip version of all requested static files with the specified ext/suffix
 
-honour-range
+--honour-range
 ************
 ``argument``: no_argument
 
@@ -7352,7 +7352,7 @@ honour-range
 
 enable support for the HTTP Range header
 
-offload-threads
+--offload-threads
 ***************
 ``argument``: required_argument
 
@@ -7362,7 +7362,7 @@ offload-threads
 
 set the number of offload threads to spawn (per-worker, default 0)
 
-offload-thread
+--offload-thread
 **************
 ``argument``: required_argument
 
@@ -7372,7 +7372,7 @@ offload-thread
 
 set the number of offload threads to spawn (per-worker, default 0)
 
-file-serve-mode
+--file-serve-mode
 ***************
 ``argument``: required_argument
 
@@ -7384,7 +7384,7 @@ file-serve-mode
 
 set static file serving mode
 
-fileserve-mode
+--fileserve-mode
 **************
 ``argument``: required_argument
 
@@ -7396,7 +7396,7 @@ fileserve-mode
 
 set static file serving mode
 
-disable-sendfile
+--disable-sendfile
 ****************
 ``argument``: no_argument
 
@@ -7406,7 +7406,7 @@ disable-sendfile
 
 disable sendfile() and rely on boring read()/write()
 
-check-cache
+--check-cache
 ***********
 ``argument``: optional_argument
 
@@ -7416,7 +7416,7 @@ check-cache
 
 check for response data in the specified cache (empty for default cache)
 
-close-on-exec
+--close-on-exec
 *************
 ``argument``: no_argument
 
@@ -7426,7 +7426,7 @@ close-on-exec
 
 set close-on-exec on connection sockets (could be required for spawning processes in requests)
 
-close-on-exec2
+--close-on-exec2
 **************
 ``argument``: no_argument
 
@@ -7436,7 +7436,7 @@ close-on-exec2
 
 set close-on-exec on server sockets (could be required for spawning processes in requests)
 
-mode
+--mode
 ****
 ``argument``: required_argument
 
@@ -7446,7 +7446,7 @@ mode
 
 set uWSGI custom mode
 
-env
+--env
 ***
 ``argument``: required_argument
 
@@ -7456,7 +7456,7 @@ env
 
 set environment variable
 
-envdir
+--envdir
 ******
 ``argument``: required_argument
 
@@ -7466,7 +7466,7 @@ envdir
 
 load a daemontools compatible envdir
 
-early-envdir
+--early-envdir
 ************
 ``argument``: required_argument
 
@@ -7478,7 +7478,7 @@ early-envdir
 
 load a daemontools compatible envdir ASAP
 
-unenv
+--unenv
 *****
 ``argument``: required_argument
 
@@ -7488,7 +7488,7 @@ unenv
 
 unset environment variable
 
-vacuum
+--vacuum
 ******
 ``argument``: no_argument
 
@@ -7498,7 +7498,7 @@ vacuum
 
 try to remove all of the generated file/sockets
 
-file-write
+--file-write
 **********
 ``argument``: required_argument
 
@@ -7508,7 +7508,7 @@ file-write
 
 write the specified content to the specified file (syntax: file=value) before privileges drop
 
-cgroup
+--cgroup
 ******
 ``argument``: required_argument
 
@@ -7518,7 +7518,7 @@ cgroup
 
 put the processes in the specified cgroup
 
-cgroup-opt
+--cgroup-opt
 **********
 ``argument``: required_argument
 
@@ -7528,7 +7528,7 @@ cgroup-opt
 
 set value in specified cgroup option
 
-cgroup-dir-mode
+--cgroup-dir-mode
 ***************
 ``argument``: required_argument
 
@@ -7538,7 +7538,7 @@ cgroup-dir-mode
 
 set permission for cgroup directory (default is 700)
 
-namespace
+--namespace
 *********
 ``argument``: required_argument
 
@@ -7548,7 +7548,7 @@ namespace
 
 run in a new namespace under the specified rootfs
 
-namespace-keep-mount
+--namespace-keep-mount
 ********************
 ``argument``: required_argument
 
@@ -7558,7 +7558,7 @@ namespace-keep-mount
 
 keep the specified mountpoint in your namespace
 
-ns
+--ns
 **
 ``argument``: required_argument
 
@@ -7568,7 +7568,7 @@ ns
 
 run in a new namespace under the specified rootfs
 
-namespace-net
+--namespace-net
 *************
 ``argument``: required_argument
 
@@ -7578,7 +7578,7 @@ namespace-net
 
 add network namespace
 
-ns-net
+--ns-net
 ******
 ``argument``: required_argument
 
@@ -7588,7 +7588,7 @@ ns-net
 
 add network namespace
 
-enable-proxy-protocol
+--enable-proxy-protocol
 *********************
 ``argument``: no_argument
 
@@ -7598,7 +7598,7 @@ enable-proxy-protocol
 
 enable PROXY1 protocol support (only for http parsers)
 
-reuse-port
+--reuse-port
 **********
 ``argument``: no_argument
 
@@ -7608,7 +7608,7 @@ reuse-port
 
 enable REUSE_PORT flag on socket (BSD only)
 
-tcp-fast-open
+--tcp-fast-open
 *************
 ``argument``: required_argument
 
@@ -7618,7 +7618,7 @@ tcp-fast-open
 
 enable TCP_FASTOPEN flag on TCP sockets with the specified qlen value
 
-tcp-fastopen
+--tcp-fastopen
 ************
 ``argument``: required_argument
 
@@ -7628,7 +7628,7 @@ tcp-fastopen
 
 enable TCP_FASTOPEN flag on TCP sockets with the specified qlen value
 
-tcp-fast-open-client
+--tcp-fast-open-client
 ********************
 ``argument``: no_argument
 
@@ -7638,7 +7638,7 @@ tcp-fast-open-client
 
 use sendto(..., MSG_FASTOPEN, ...) instead of connect() if supported
 
-tcp-fastopen-client
+--tcp-fastopen-client
 *******************
 ``argument``: no_argument
 
@@ -7648,7 +7648,7 @@ tcp-fastopen-client
 
 use sendto(..., MSG_FASTOPEN, ...) instead of connect() if supported
 
-zerg
+--zerg
 ****
 ``argument``: required_argument
 
@@ -7658,7 +7658,7 @@ zerg
 
 attach to a zerg server
 
-zerg-fallback
+--zerg-fallback
 *************
 ``argument``: no_argument
 
@@ -7668,7 +7668,7 @@ zerg-fallback
 
 fallback to normal sockets if the zerg server is not available
 
-zerg-server
+--zerg-server
 ***********
 ``argument``: required_argument
 
@@ -7680,7 +7680,7 @@ zerg-server
 
 enable the zerg server on the specified UNIX socket
 
-cron
+--cron
 ****
 ``argument``: required_argument
 
@@ -7692,7 +7692,7 @@ cron
 
 add a cron task
 
-cron2
+--cron2
 *****
 ``argument``: required_argument
 
@@ -7704,7 +7704,7 @@ cron2
 
 add a cron task (key=val syntax)
 
-unique-cron
+--unique-cron
 ***********
 ``argument``: required_argument
 
@@ -7716,7 +7716,7 @@ unique-cron
 
 add a unique cron task
 
-cron-harakiri
+--cron-harakiri
 *************
 ``argument``: required_argument
 
@@ -7726,7 +7726,7 @@ cron-harakiri
 
 set the maximum time (in seconds) we wait for cron command to complete
 
-legion-cron
+--legion-cron
 ***********
 ``argument``: required_argument
 
@@ -7738,7 +7738,7 @@ legion-cron
 
 add a cron task runnable only when the instance is a lord of the specified legion
 
-cron-legion
+--cron-legion
 ***********
 ``argument``: required_argument
 
@@ -7750,7 +7750,7 @@ cron-legion
 
 add a cron task runnable only when the instance is a lord of the specified legion
 
-unique-legion-cron
+--unique-legion-cron
 ******************
 ``argument``: required_argument
 
@@ -7762,7 +7762,7 @@ unique-legion-cron
 
 add a unique cron task runnable only when the instance is a lord of the specified legion
 
-unique-cron-legion
+--unique-cron-legion
 ******************
 ``argument``: required_argument
 
@@ -7774,7 +7774,7 @@ unique-cron-legion
 
 add a unique cron task runnable only when the instance is a lord of the specified legion
 
-loop
+--loop
 ****
 ``argument``: required_argument
 
@@ -7784,7 +7784,7 @@ loop
 
 select the uWSGI loop engine
 
-loop-list
+--loop-list
 *********
 ``argument``: no_argument
 
@@ -7794,7 +7794,7 @@ loop-list
 
 list enabled loop engines
 
-loops-list
+--loops-list
 **********
 ``argument``: no_argument
 
@@ -7804,7 +7804,7 @@ loops-list
 
 list enabled loop engines
 
-worker-exec
+--worker-exec
 ***********
 ``argument``: required_argument
 
@@ -7814,7 +7814,7 @@ worker-exec
 
 run the specified command as worker
 
-worker-exec2
+--worker-exec2
 ************
 ``argument``: required_argument
 
@@ -7824,7 +7824,7 @@ worker-exec2
 
 run the specified command as worker (after post_fork hook)
 
-attach-daemon
+--attach-daemon
 *************
 ``argument``: required_argument
 
@@ -7836,7 +7836,7 @@ attach-daemon
 
 attach a command/daemon to the master process (the command has to not go in background)
 
-attach-control-daemon
+--attach-control-daemon
 *********************
 ``argument``: required_argument
 
@@ -7848,7 +7848,7 @@ attach-control-daemon
 
 attach a command/daemon to the master process (the command has to not go in background), when the daemon dies, the master dies too
 
-smart-attach-daemon
+--smart-attach-daemon
 *******************
 ``argument``: required_argument
 
@@ -7860,7 +7860,7 @@ smart-attach-daemon
 
 attach a command/daemon to the master process managed by a pidfile (the command has to daemonize)
 
-smart-attach-daemon2
+--smart-attach-daemon2
 ********************
 ``argument``: required_argument
 
@@ -7872,7 +7872,7 @@ smart-attach-daemon2
 
 attach a command/daemon to the master process managed by a pidfile (the command has to NOT daemonize)
 
-legion-attach-daemon
+--legion-attach-daemon
 ********************
 ``argument``: required_argument
 
@@ -7884,7 +7884,7 @@ legion-attach-daemon
 
 same as --attach-daemon but daemon runs only on legion lord node
 
-legion-smart-attach-daemon
+--legion-smart-attach-daemon
 **************************
 ``argument``: required_argument
 
@@ -7896,7 +7896,7 @@ legion-smart-attach-daemon
 
 same as --smart-attach-daemon but daemon runs only on legion lord node
 
-legion-smart-attach-daemon2
+--legion-smart-attach-daemon2
 ***************************
 ``argument``: required_argument
 
@@ -7908,7 +7908,7 @@ legion-smart-attach-daemon2
 
 same as --smart-attach-daemon2 but daemon runs only on legion lord node
 
-daemons-honour-stdin
+--daemons-honour-stdin
 ********************
 ``argument``: no_argument
 
@@ -7920,7 +7920,7 @@ daemons-honour-stdin
 
 do not change the stdin of external daemons to /dev/null
 
-attach-daemon2
+--attach-daemon2
 **************
 ``argument``: required_argument
 
@@ -7932,7 +7932,7 @@ attach-daemon2
 
 attach-daemon keyval variant (supports smart modes too)
 
-plugins
+--plugins
 *******
 ``argument``: required_argument
 
@@ -7944,7 +7944,7 @@ plugins
 
 load uWSGI plugins
 
-plugin
+--plugin
 ******
 ``argument``: required_argument
 
@@ -7956,7 +7956,7 @@ plugin
 
 load uWSGI plugins
 
-need-plugins
+--need-plugins
 ************
 ``argument``: required_argument
 
@@ -7968,7 +7968,7 @@ need-plugins
 
 load uWSGI plugins (exit on error)
 
-need-plugin
+--need-plugin
 ***********
 ``argument``: required_argument
 
@@ -7980,7 +7980,7 @@ need-plugin
 
 load uWSGI plugins (exit on error)
 
-plugins-dir
+--plugins-dir
 ***********
 ``argument``: required_argument
 
@@ -7992,7 +7992,7 @@ plugins-dir
 
 add a directory to uWSGI plugin search path
 
-plugin-dir
+--plugin-dir
 **********
 ``argument``: required_argument
 
@@ -8004,7 +8004,7 @@ plugin-dir
 
 add a directory to uWSGI plugin search path
 
-plugins-list
+--plugins-list
 ************
 ``argument``: no_argument
 
@@ -8014,7 +8014,7 @@ plugins-list
 
 list enabled plugins
 
-plugin-list
+--plugin-list
 ***********
 ``argument``: no_argument
 
@@ -8024,7 +8024,7 @@ plugin-list
 
 list enabled plugins
 
-autoload
+--autoload
 ********
 ``argument``: no_argument
 
@@ -8036,7 +8036,7 @@ autoload
 
 try to automatically load plugins when unknown options are found
 
-dlopen
+--dlopen
 ******
 ``argument``: required_argument
 
@@ -8048,7 +8048,7 @@ dlopen
 
 blindly load a shared library
 
-allowed-modifiers
+--allowed-modifiers
 *****************
 ``argument``: required_argument
 
@@ -8058,7 +8058,7 @@ allowed-modifiers
 
 comma separated list of allowed modifiers
 
-remap-modifier
+--remap-modifier
 **************
 ``argument``: required_argument
 
@@ -8068,7 +8068,7 @@ remap-modifier
 
 remap request modifier from one id to another
 
-dump-options
+--dump-options
 ************
 ``argument``: no_argument
 
@@ -8078,7 +8078,7 @@ dump-options
 
 dump the full list of available options
 
-show-config
+--show-config
 ***********
 ``argument``: no_argument
 
@@ -8088,7 +8088,7 @@ show-config
 
 show the current config reformatted as ini
 
-binary-append-data
+--binary-append-data
 ******************
 ``argument``: required_argument
 
@@ -8100,7 +8100,7 @@ binary-append-data
 
 return the content of a resource to stdout for appending to a uwsgi binary (for data:// usage)
 
-print
+--print
 *****
 ``argument``: required_argument
 
@@ -8110,7 +8110,7 @@ print
 
 simple print
 
-iprint
+--iprint
 ******
 ``argument``: required_argument
 
@@ -8122,7 +8122,7 @@ iprint
 
 simple print (immediate version)
 
-exit
+--exit
 ****
 ``argument``: optional_argument
 
@@ -8134,7 +8134,7 @@ exit
 
 force exit() of the instance
 
-cflags
+--cflags
 ******
 ``argument``: no_argument
 
@@ -8146,7 +8146,7 @@ cflags
 
 report uWSGI CFLAGS (useful for building external plugins)
 
-dot-h
+--dot-h
 *****
 ``argument``: no_argument
 
@@ -8158,7 +8158,7 @@ dot-h
 
 dump the uwsgi.h used for building the core  (useful for building external plugins)
 
-config-py
+--config-py
 *********
 ``argument``: no_argument
 
@@ -8170,7 +8170,7 @@ config-py
 
 dump the uwsgiconfig.py used for building the core  (useful for building external plugins)
 
-build-plugin
+--build-plugin
 ************
 ``argument``: required_argument
 
@@ -8182,7 +8182,7 @@ build-plugin
 
 build a uWSGI plugin for the current binary
 
-version
+--version
 *******
 ``argument``: no_argument
 
@@ -8207,7 +8207,7 @@ plugin: alarm_xmpp
 
 plugin: asyncio
 ===============
-asyncio
+--asyncio
 *******
 ``argument``: required_argument
 
@@ -8225,7 +8225,7 @@ plugin: cache
 
 plugin: carbon
 ==============
-carbon
+--carbon
 ******
 ``argument``: required_argument
 
@@ -8237,7 +8237,7 @@ carbon
 
 push statistics to the specified carbon server
 
-carbon-timeout
+--carbon-timeout
 **************
 ``argument``: required_argument
 
@@ -8247,7 +8247,7 @@ carbon-timeout
 
 set carbon connection timeout in seconds (default 3)
 
-carbon-freq
+--carbon-freq
 ***********
 ``argument``: required_argument
 
@@ -8257,7 +8257,7 @@ carbon-freq
 
 set carbon push frequency in seconds (default 60)
 
-carbon-id
+--carbon-id
 *********
 ``argument``: required_argument
 
@@ -8267,7 +8267,7 @@ carbon-id
 
 set carbon id
 
-carbon-no-workers
+--carbon-no-workers
 *****************
 ``argument``: no_argument
 
@@ -8277,7 +8277,7 @@ carbon-no-workers
 
 disable generation of single worker metrics
 
-carbon-max-retry
+--carbon-max-retry
 ****************
 ``argument``: required_argument
 
@@ -8287,7 +8287,7 @@ carbon-max-retry
 
 set maximum number of retries in case of connection errors (default 1)
 
-carbon-retry-delay
+--carbon-retry-delay
 ******************
 ``argument``: required_argument
 
@@ -8297,7 +8297,7 @@ carbon-retry-delay
 
 set connection retry delay in seconds (default 7)
 
-carbon-root
+--carbon-root
 ***********
 ``argument``: required_argument
 
@@ -8307,7 +8307,7 @@ carbon-root
 
 set carbon metrics root node (default 'uwsgi')
 
-carbon-hostname-dots
+--carbon-hostname-dots
 ********************
 ``argument``: required_argument
 
@@ -8317,7 +8317,7 @@ carbon-hostname-dots
 
 set char to use as a replacement for dots in hostname (dots are not replaced by default)
 
-carbon-name-resolve
+--carbon-name-resolve
 *******************
 ``argument``: no_argument
 
@@ -8327,7 +8327,7 @@ carbon-name-resolve
 
 allow using hostname as carbon server address (default disabled)
 
-carbon-resolve-names
+--carbon-resolve-names
 ********************
 ``argument``: no_argument
 
@@ -8337,7 +8337,7 @@ carbon-resolve-names
 
 allow using hostname as carbon server address (default disabled)
 
-carbon-idle-avg
+--carbon-idle-avg
 ***************
 ``argument``: required_argument
 
@@ -8347,7 +8347,7 @@ carbon-idle-avg
 
 average values source during idle period (no requests), can be "last", "zero", "none" (default is last)
 
-carbon-use-metrics
+--carbon-use-metrics
 ******************
 ``argument``: no_argument
 
@@ -8360,7 +8360,7 @@ don't compute all statistics, use metrics subsystem data instead (warning! key n
 
 plugin: cgi
 ===========
-cgi
+--cgi
 ***
 ``argument``: required_argument
 
@@ -8370,7 +8370,7 @@ cgi
 
 add a cgi mountpoint/directory/script
 
-cgi-map-helper
+--cgi-map-helper
 **************
 ``argument``: required_argument
 
@@ -8380,7 +8380,7 @@ cgi-map-helper
 
 add a cgi map-helper
 
-cgi-helper
+--cgi-helper
 **********
 ``argument``: required_argument
 
@@ -8390,7 +8390,7 @@ cgi-helper
 
 add a cgi map-helper
 
-cgi-from-docroot
+--cgi-from-docroot
 ****************
 ``argument``: no_argument
 
@@ -8400,7 +8400,7 @@ cgi-from-docroot
 
 blindly enable cgi in DOCUMENT_ROOT
 
-cgi-buffer-size
+--cgi-buffer-size
 ***************
 ``argument``: required_argument
 
@@ -8410,7 +8410,7 @@ cgi-buffer-size
 
 set cgi buffer size
 
-cgi-timeout
+--cgi-timeout
 ***********
 ``argument``: required_argument
 
@@ -8420,7 +8420,7 @@ cgi-timeout
 
 set cgi script timeout
 
-cgi-index
+--cgi-index
 *********
 ``argument``: required_argument
 
@@ -8430,7 +8430,7 @@ cgi-index
 
 add a cgi index file
 
-cgi-allowed-ext
+--cgi-allowed-ext
 ***************
 ``argument``: required_argument
 
@@ -8440,7 +8440,7 @@ cgi-allowed-ext
 
 cgi allowed extension
 
-cgi-unset
+--cgi-unset
 *********
 ``argument``: required_argument
 
@@ -8450,7 +8450,7 @@ cgi-unset
 
 unset specified environment variables
 
-cgi-loadlib
+--cgi-loadlib
 ***********
 ``argument``: required_argument
 
@@ -8460,7 +8460,7 @@ cgi-loadlib
 
 load a cgi shared library/optimizer
 
-cgi-optimize
+--cgi-optimize
 ************
 ``argument``: no_argument
 
@@ -8470,7 +8470,7 @@ cgi-optimize
 
 enable cgi realpath() optimizer
 
-cgi-optimized
+--cgi-optimized
 *************
 ``argument``: no_argument
 
@@ -8480,7 +8480,7 @@ cgi-optimized
 
 enable cgi realpath() optimizer
 
-cgi-path-info
+--cgi-path-info
 *************
 ``argument``: no_argument
 
@@ -8490,7 +8490,7 @@ cgi-path-info
 
 disable PATH_INFO management in cgi scripts
 
-cgi-do-not-kill-on-error
+--cgi-do-not-kill-on-error
 ************************
 ``argument``: no_argument
 
@@ -8500,7 +8500,7 @@ cgi-do-not-kill-on-error
 
 do not send SIGKILL to cgi script on errors
 
-cgi-async-max-attempts
+--cgi-async-max-attempts
 **********************
 ``argument``: no_argument
 
@@ -8528,7 +8528,7 @@ plugin: corerouter
 
 plugin: coroae
 ==============
-coroae
+--coroae
 ******
 ``argument``: required_argument
 
@@ -8544,7 +8544,7 @@ plugin: cplusplus
 
 plugin: curl_cron
 =================
-curl-cron
+--curl-cron
 *********
 ``argument``: required_argument
 
@@ -8556,7 +8556,7 @@ curl-cron
 
 add a cron task invoking the specified url via CURL
 
-cron-curl
+--cron-curl
 *********
 ``argument``: required_argument
 
@@ -8568,7 +8568,7 @@ cron-curl
 
 add a cron task invoking the specified url via CURL
 
-legion-curl-cron
+--legion-curl-cron
 ****************
 ``argument``: required_argument
 
@@ -8580,7 +8580,7 @@ legion-curl-cron
 
 add a cron task invoking the specified url via CURL runnable only when the instance is a lord of the specified legion
 
-legion-cron-curl
+--legion-cron-curl
 ****************
 ``argument``: required_argument
 
@@ -8592,7 +8592,7 @@ legion-cron-curl
 
 add a cron task invoking the specified url via CURL runnable only when the instance is a lord of the specified legion
 
-curl-cron-legion
+--curl-cron-legion
 ****************
 ``argument``: required_argument
 
@@ -8604,7 +8604,7 @@ curl-cron-legion
 
 add a cron task invoking the specified url via CURL runnable only when the instance is a lord of the specified legion
 
-cron-curl-legion
+--cron-curl-legion
 ****************
 ``argument``: required_argument
 
@@ -8619,7 +8619,7 @@ add a cron task invoking the specified url via CURL runnable only when the insta
 
 plugin: dumbloop
 ================
-dumbloop-modifier1
+--dumbloop-modifier1
 ******************
 ``argument``: required_argument
 
@@ -8629,7 +8629,7 @@ dumbloop-modifier1
 
 set the modifier1 for the code_string
 
-dumbloop-code
+--dumbloop-code
 *************
 ``argument``: required_argument
 
@@ -8639,7 +8639,7 @@ dumbloop-code
 
 set the script to load for the code_string
 
-dumbloop-function
+--dumbloop-function
 *****************
 ``argument``: required_argument
 
@@ -8676,7 +8676,7 @@ plugin: exception_log
 
 plugin: fastrouter
 ==================
-fastrouter
+--fastrouter
 **********
 ``argument``: required_argument
 
@@ -8686,7 +8686,7 @@ fastrouter
 
 run the fastrouter on the specified port
 
-fastrouter-processes
+--fastrouter-processes
 ********************
 ``argument``: required_argument
 
@@ -8696,7 +8696,7 @@ fastrouter-processes
 
 prefork the specified number of fastrouter processes
 
-fastrouter-workers
+--fastrouter-workers
 ******************
 ``argument``: required_argument
 
@@ -8706,7 +8706,7 @@ fastrouter-workers
 
 prefork the specified number of fastrouter processes
 
-fastrouter-zerg
+--fastrouter-zerg
 ***************
 ``argument``: required_argument
 
@@ -8716,7 +8716,7 @@ fastrouter-zerg
 
 attach the fastrouter to a zerg server
 
-fastrouter-use-cache
+--fastrouter-use-cache
 ********************
 ``argument``: optional_argument
 
@@ -8726,7 +8726,7 @@ fastrouter-use-cache
 
 use uWSGI cache as hostname->server mapper for the fastrouter
 
-fastrouter-use-pattern
+--fastrouter-use-pattern
 **********************
 ``argument``: required_argument
 
@@ -8736,7 +8736,7 @@ fastrouter-use-pattern
 
 use a pattern for fastrouter hostname->server mapping
 
-fastrouter-use-base
+--fastrouter-use-base
 *******************
 ``argument``: required_argument
 
@@ -8746,7 +8746,7 @@ fastrouter-use-base
 
 use a base dir for fastrouter hostname->server mapping
 
-fastrouter-fallback
+--fastrouter-fallback
 *******************
 ``argument``: required_argument
 
@@ -8756,7 +8756,7 @@ fastrouter-fallback
 
 fallback to the specified node in case of error
 
-fastrouter-use-code-string
+--fastrouter-use-code-string
 **************************
 ``argument``: required_argument
 
@@ -8766,7 +8766,7 @@ fastrouter-use-code-string
 
 use code string as hostname->server mapper for the fastrouter
 
-fastrouter-use-socket
+--fastrouter-use-socket
 *********************
 ``argument``: optional_argument
 
@@ -8776,7 +8776,7 @@ fastrouter-use-socket
 
 forward request to the specified uwsgi socket
 
-fastrouter-to
+--fastrouter-to
 *************
 ``argument``: required_argument
 
@@ -8786,7 +8786,7 @@ fastrouter-to
 
 forward requests to the specified uwsgi server (you can specify it multiple times for load balancing)
 
-fastrouter-gracetime
+--fastrouter-gracetime
 ********************
 ``argument``: required_argument
 
@@ -8796,7 +8796,7 @@ fastrouter-gracetime
 
 retry connections to dead static nodes after the specified amount of seconds
 
-fastrouter-events
+--fastrouter-events
 *****************
 ``argument``: required_argument
 
@@ -8806,7 +8806,7 @@ fastrouter-events
 
 set the maximum number of concurrent events
 
-fastrouter-quiet
+--fastrouter-quiet
 ****************
 ``argument``: required_argument
 
@@ -8816,7 +8816,7 @@ fastrouter-quiet
 
 do not report failed connections to instances
 
-fastrouter-cheap
+--fastrouter-cheap
 ****************
 ``argument``: no_argument
 
@@ -8826,7 +8826,7 @@ fastrouter-cheap
 
 run the fastrouter in cheap mode
 
-fastrouter-subscription-server
+--fastrouter-subscription-server
 ******************************
 ``argument``: required_argument
 
@@ -8836,7 +8836,7 @@ fastrouter-subscription-server
 
 run the fastrouter subscription server on the specified address
 
-fastrouter-subscription-slot
+--fastrouter-subscription-slot
 ****************************
 ``argument``: required_argument
 
@@ -8846,7 +8846,7 @@ fastrouter-subscription-slot
 
 *** deprecated ***
 
-fastrouter-timeout
+--fastrouter-timeout
 ******************
 ``argument``: required_argument
 
@@ -8856,7 +8856,7 @@ fastrouter-timeout
 
 set fastrouter timeout
 
-fastrouter-post-buffering
+--fastrouter-post-buffering
 *************************
 ``argument``: required_argument
 
@@ -8866,7 +8866,7 @@ fastrouter-post-buffering
 
 enable fastrouter post buffering
 
-fastrouter-post-buffering-dir
+--fastrouter-post-buffering-dir
 *****************************
 ``argument``: required_argument
 
@@ -8876,7 +8876,7 @@ fastrouter-post-buffering-dir
 
 put fastrouter buffered files to the specified directory
 
-fastrouter-stats
+--fastrouter-stats
 ****************
 ``argument``: required_argument
 
@@ -8886,7 +8886,7 @@ fastrouter-stats
 
 run the fastrouter stats server
 
-fastrouter-stats-server
+--fastrouter-stats-server
 ***********************
 ``argument``: required_argument
 
@@ -8896,7 +8896,7 @@ fastrouter-stats-server
 
 run the fastrouter stats server
 
-fastrouter-ss
+--fastrouter-ss
 *************
 ``argument``: required_argument
 
@@ -8906,7 +8906,7 @@ fastrouter-ss
 
 run the fastrouter stats server
 
-fastrouter-harakiri
+--fastrouter-harakiri
 *******************
 ``argument``: required_argument
 
@@ -8916,7 +8916,7 @@ fastrouter-harakiri
 
 enable fastrouter harakiri
 
-fastrouter-uid
+--fastrouter-uid
 **************
 ``argument``: required_argument
 
@@ -8926,7 +8926,7 @@ fastrouter-uid
 
 drop fastrouter privileges to the specified uid
 
-fastrouter-gid
+--fastrouter-gid
 **************
 ``argument``: required_argument
 
@@ -8936,7 +8936,7 @@ fastrouter-gid
 
 drop fastrouter privileges to the specified gid
 
-fastrouter-resubscribe
+--fastrouter-resubscribe
 **********************
 ``argument``: required_argument
 
@@ -8946,7 +8946,7 @@ fastrouter-resubscribe
 
 forward subscriptions to the specified subscription server
 
-fastrouter-resubscribe-bind
+--fastrouter-resubscribe-bind
 ***************************
 ``argument``: required_argument
 
@@ -8956,7 +8956,7 @@ fastrouter-resubscribe-bind
 
 bind to the specified address when re-subscribing
 
-fastrouter-buffer-size
+--fastrouter-buffer-size
 **********************
 ``argument``: required_argument
 
@@ -8969,7 +8969,7 @@ set internal buffer size (default: page size)
 
 plugin: fiber
 =============
-fiber
+--fiber
 *****
 ``argument``: no_argument
 
@@ -8982,7 +8982,7 @@ enable ruby fiber as suspend engine
 
 plugin: forkptyrouter
 =====================
-forkptyrouter
+--forkptyrouter
 *************
 ``argument``: required_argument
 
@@ -8992,7 +8992,7 @@ forkptyrouter
 
 run the forkptyrouter on the specified address
 
-forkpty-router
+--forkpty-router
 **************
 ``argument``: required_argument
 
@@ -9002,7 +9002,7 @@ forkpty-router
 
 run the forkptyrouter on the specified address
 
-forkptyurouter
+--forkptyurouter
 **************
 ``argument``: required_argument
 
@@ -9012,7 +9012,7 @@ forkptyurouter
 
 run the forkptyrouter on the specified address
 
-forkpty-urouter
+--forkpty-urouter
 ***************
 ``argument``: required_argument
 
@@ -9022,7 +9022,7 @@ forkpty-urouter
 
 run the forkptyrouter on the specified address
 
-forkptyrouter-command
+--forkptyrouter-command
 *********************
 ``argument``: required_argument
 
@@ -9032,7 +9032,7 @@ forkptyrouter-command
 
 run the specified command on every connection (default: /bin/sh)
 
-forkpty-router-command
+--forkpty-router-command
 **********************
 ``argument``: required_argument
 
@@ -9042,7 +9042,7 @@ forkpty-router-command
 
 run the specified command on every connection (default: /bin/sh)
 
-forkptyrouter-cmd
+--forkptyrouter-cmd
 *****************
 ``argument``: required_argument
 
@@ -9052,7 +9052,7 @@ forkptyrouter-cmd
 
 run the specified command on every connection (default: /bin/sh)
 
-forkpty-router-cmd
+--forkpty-router-cmd
 ******************
 ``argument``: required_argument
 
@@ -9062,7 +9062,7 @@ forkpty-router-cmd
 
 run the specified command on every connection (default: /bin/sh)
 
-forkptyrouter-rows
+--forkptyrouter-rows
 ******************
 ``argument``: required_argument
 
@@ -9072,7 +9072,7 @@ forkptyrouter-rows
 
 set forkptyrouter default pty window rows
 
-forkptyrouter-cols
+--forkptyrouter-cols
 ******************
 ``argument``: required_argument
 
@@ -9082,7 +9082,7 @@ forkptyrouter-cols
 
 set forkptyrouter default pty window cols
 
-forkptyrouter-processes
+--forkptyrouter-processes
 ***********************
 ``argument``: required_argument
 
@@ -9092,7 +9092,7 @@ forkptyrouter-processes
 
 prefork the specified number of forkptyrouter processes
 
-forkptyrouter-workers
+--forkptyrouter-workers
 *********************
 ``argument``: required_argument
 
@@ -9102,7 +9102,7 @@ forkptyrouter-workers
 
 prefork the specified number of forkptyrouter processes
 
-forkptyrouter-zerg
+--forkptyrouter-zerg
 ******************
 ``argument``: required_argument
 
@@ -9112,7 +9112,7 @@ forkptyrouter-zerg
 
 attach the forkptyrouter to a zerg server
 
-forkptyrouter-fallback
+--forkptyrouter-fallback
 **********************
 ``argument``: required_argument
 
@@ -9122,7 +9122,7 @@ forkptyrouter-fallback
 
 fallback to the specified node in case of error
 
-forkptyrouter-events
+--forkptyrouter-events
 ********************
 ``argument``: required_argument
 
@@ -9132,7 +9132,7 @@ forkptyrouter-events
 
 set the maximum number of concufptyent events
 
-forkptyrouter-cheap
+--forkptyrouter-cheap
 *******************
 ``argument``: no_argument
 
@@ -9142,7 +9142,7 @@ forkptyrouter-cheap
 
 run the forkptyrouter in cheap mode
 
-forkptyrouter-timeout
+--forkptyrouter-timeout
 *********************
 ``argument``: required_argument
 
@@ -9152,7 +9152,7 @@ forkptyrouter-timeout
 
 set forkptyrouter timeout
 
-forkptyrouter-stats
+--forkptyrouter-stats
 *******************
 ``argument``: required_argument
 
@@ -9162,7 +9162,7 @@ forkptyrouter-stats
 
 run the forkptyrouter stats server
 
-forkptyrouter-stats-server
+--forkptyrouter-stats-server
 **************************
 ``argument``: required_argument
 
@@ -9172,7 +9172,7 @@ forkptyrouter-stats-server
 
 run the forkptyrouter stats server
 
-forkptyrouter-ss
+--forkptyrouter-ss
 ****************
 ``argument``: required_argument
 
@@ -9182,7 +9182,7 @@ forkptyrouter-ss
 
 run the forkptyrouter stats server
 
-forkptyrouter-harakiri
+--forkptyrouter-harakiri
 **********************
 ``argument``: required_argument
 
@@ -9195,7 +9195,7 @@ enable forkptyrouter harakiri
 
 plugin: gccgo
 =============
-go-load
+--go-load
 *******
 ``argument``: required_argument
 
@@ -9205,7 +9205,7 @@ go-load
 
 load a go shared library in the process address space, eventually patching main.main and __go_init_main
 
-gccgo-load
+--gccgo-load
 **********
 ``argument``: required_argument
 
@@ -9215,7 +9215,7 @@ gccgo-load
 
 load a go shared library in the process address space, eventually patching main.main and __go_init_main
 
-go-args
+--go-args
 *******
 ``argument``: required_argument
 
@@ -9225,7 +9225,7 @@ go-args
 
 set go commandline arguments
 
-gccgo-args
+--gccgo-args
 **********
 ``argument``: required_argument
 
@@ -9235,7 +9235,7 @@ gccgo-args
 
 set go commandline arguments
 
-goroutines
+--goroutines
 **********
 ``argument``: required_argument
 
@@ -9250,7 +9250,7 @@ a shortcut setting optimal options for goroutine-based apps, takes the number of
 
 plugin: geoip
 =============
-geoip-country
+--geoip-country
 *************
 ``argument``: required_argument
 
@@ -9260,7 +9260,7 @@ geoip-country
 
 load the specified geoip country database
 
-geoip-city
+--geoip-city
 **********
 ``argument``: required_argument
 
@@ -9270,7 +9270,7 @@ geoip-city
 
 load the specified geoip city database
 
-geoip-use-disk
+--geoip-use-disk
 **************
 ``argument``: no_argument
 
@@ -9283,7 +9283,7 @@ do not cache geoip databases in memory
 
 plugin: gevent
 ==============
-gevent
+--gevent
 ******
 ``argument``: required_argument
 
@@ -9295,7 +9295,7 @@ gevent
 
 a shortcut enabling gevent loop engine with the specified number of async cores and optimal parameters
 
-gevent-monkey-patch
+--gevent-monkey-patch
 *******************
 ``argument``: no_argument
 
@@ -9305,7 +9305,7 @@ gevent-monkey-patch
 
 call gevent.monkey.patch_all() automatically on startup
 
-gevent-wait-for-hub
+--gevent-wait-for-hub
 *******************
 ``argument``: no_argument
 
@@ -9318,7 +9318,7 @@ wait for gevent hub's death instead of the control greenlet
 
 plugin: glusterfs
 =================
-glusterfs-mount
+--glusterfs-mount
 ***************
 ``argument``: required_argument
 
@@ -9330,7 +9330,7 @@ glusterfs-mount
 
 virtual mount the specified glusterfs volume in a uri
 
-glusterfs-timeout
+--glusterfs-timeout
 *****************
 ``argument``: required_argument
 
@@ -9346,7 +9346,7 @@ plugin: graylog2
 
 plugin: greenlet
 ================
-greenlet
+--greenlet
 ********
 ``argument``: no_argument
 
@@ -9359,7 +9359,7 @@ enable greenlet as suspend engine
 
 plugin: gridfs
 ==============
-gridfs-mount
+--gridfs-mount
 ************
 ``argument``: required_argument
 
@@ -9371,7 +9371,7 @@ gridfs-mount
 
 mount a gridfs db on the specified mountpoint
 
-gridfs-debug
+--gridfs-debug
 ************
 ``argument``: no_argument
 
@@ -9386,7 +9386,7 @@ report gridfs mountpoint and itemname for each request (debug)
 
 plugin: http
 ============
-http
+--http
 ****
 ``argument``: required_argument
 
@@ -9396,7 +9396,7 @@ http
 
 add an http router/server on the specified address
 
-httprouter
+--httprouter
 **********
 ``argument``: required_argument
 
@@ -9406,7 +9406,7 @@ httprouter
 
 add an http router/server on the specified address
 
-https
+--https
 *****
 ``argument``: required_argument
 
@@ -9416,7 +9416,7 @@ https
 
 add an https router/server on the specified address with specified certificate and key
 
-https2
+--https2
 ******
 ``argument``: required_argument
 
@@ -9426,7 +9426,7 @@ https2
 
 add an https/spdy router/server using keyval options
 
-https-export-cert
+--https-export-cert
 *****************
 ``argument``: no_argument
 
@@ -9436,7 +9436,7 @@ https-export-cert
 
 export uwsgi variable HTTPS_CC containing the raw client certificate
 
-https-session-context
+--https-session-context
 *********************
 ``argument``: required_argument
 
@@ -9446,7 +9446,7 @@ https-session-context
 
 set the session id context to the specified value
 
-http-to-https
+--http-to-https
 *************
 ``argument``: required_argument
 
@@ -9456,7 +9456,7 @@ http-to-https
 
 add an http router/server on the specified address and redirect all of the requests to https
 
-http-processes
+--http-processes
 **************
 ``argument``: required_argument
 
@@ -9466,7 +9466,7 @@ http-processes
 
 set the number of http processes to spawn
 
-http-workers
+--http-workers
 ************
 ``argument``: required_argument
 
@@ -9476,7 +9476,7 @@ http-workers
 
 set the number of http processes to spawn
 
-http-var
+--http-var
 ********
 ``argument``: required_argument
 
@@ -9486,7 +9486,7 @@ http-var
 
 add a key=value item to the generated uwsgi packet
 
-http-to
+--http-to
 *******
 ``argument``: required_argument
 
@@ -9496,7 +9496,7 @@ http-to
 
 forward requests to the specified node (you can specify it multiple time for lb)
 
-http-zerg
+--http-zerg
 *********
 ``argument``: required_argument
 
@@ -9506,7 +9506,7 @@ http-zerg
 
 attach the http router to a zerg server
 
-http-fallback
+--http-fallback
 *************
 ``argument``: required_argument
 
@@ -9516,7 +9516,7 @@ http-fallback
 
 fallback to the specified node in case of error
 
-http-modifier1
+--http-modifier1
 **************
 ``argument``: required_argument
 
@@ -9526,7 +9526,7 @@ http-modifier1
 
 set uwsgi protocol modifier1
 
-http-modifier2
+--http-modifier2
 **************
 ``argument``: required_argument
 
@@ -9536,7 +9536,7 @@ http-modifier2
 
 set uwsgi protocol modifier2
 
-http-use-cache
+--http-use-cache
 **************
 ``argument``: optional_argument
 
@@ -9546,7 +9546,7 @@ http-use-cache
 
 use uWSGI cache as key->value virtualhost mapper
 
-http-use-pattern
+--http-use-pattern
 ****************
 ``argument``: required_argument
 
@@ -9556,7 +9556,7 @@ http-use-pattern
 
 use the specified pattern for mapping requests to unix sockets
 
-http-use-base
+--http-use-base
 *************
 ``argument``: required_argument
 
@@ -9566,7 +9566,7 @@ http-use-base
 
 use the specified base for mapping requests to unix sockets
 
-http-events
+--http-events
 ***********
 ``argument``: required_argument
 
@@ -9576,7 +9576,7 @@ http-events
 
 set the number of concurrent http async events
 
-http-subscription-server
+--http-subscription-server
 ************************
 ``argument``: required_argument
 
@@ -9586,7 +9586,7 @@ http-subscription-server
 
 enable the subscription server
 
-http-timeout
+--http-timeout
 ************
 ``argument``: required_argument
 
@@ -9596,7 +9596,7 @@ http-timeout
 
 set internal http socket timeout
 
-http-manage-expect
+--http-manage-expect
 ******************
 ``argument``: optional_argument
 
@@ -9606,7 +9606,7 @@ http-manage-expect
 
 manage the Expect HTTP request header (optionally checking for Content-Length)
 
-http-keepalive
+--http-keepalive
 **************
 ``argument``: optional_argument
 
@@ -9616,7 +9616,7 @@ http-keepalive
 
 HTTP 1.1 keepalive support (non-pipelined) requests
 
-http-auto-chunked
+--http-auto-chunked
 *****************
 ``argument``: no_argument
 
@@ -9626,7 +9626,7 @@ http-auto-chunked
 
 automatically transform output to chunked encoding during HTTP 1.1 keepalive (if needed)
 
-http-auto-gzip
+--http-auto-gzip
 **************
 ``argument``: no_argument
 
@@ -9636,7 +9636,7 @@ http-auto-gzip
 
 automatically gzip content if uWSGI-Encoding header is set to gzip, but content size (Content-Length/Transfer-Encoding) and Content-Encoding are not specified
 
-http-raw-body
+--http-raw-body
 *************
 ``argument``: no_argument
 
@@ -9646,7 +9646,7 @@ http-raw-body
 
 blindly send HTTP body to backends (required for WebSockets and Icecast support in backends)
 
-http-websockets
+--http-websockets
 ***************
 ``argument``: no_argument
 
@@ -9656,7 +9656,7 @@ http-websockets
 
 automatically detect websockets connections and put the session in raw mode
 
-http-use-code-string
+--http-use-code-string
 ********************
 ``argument``: required_argument
 
@@ -9666,7 +9666,7 @@ http-use-code-string
 
 use code string as hostname->server mapper for the http router
 
-http-use-socket
+--http-use-socket
 ***************
 ``argument``: optional_argument
 
@@ -9676,7 +9676,7 @@ http-use-socket
 
 forward request to the specified uwsgi socket
 
-http-gracetime
+--http-gracetime
 **************
 ``argument``: required_argument
 
@@ -9686,7 +9686,7 @@ http-gracetime
 
 retry connections to dead static nodes after the specified amount of seconds
 
-http-quiet
+--http-quiet
 **********
 ``argument``: required_argument
 
@@ -9696,7 +9696,7 @@ http-quiet
 
 do not report failed connections to instances
 
-http-cheap
+--http-cheap
 **********
 ``argument``: no_argument
 
@@ -9706,7 +9706,7 @@ http-cheap
 
 run the http router in cheap mode
 
-http-stats
+--http-stats
 **********
 ``argument``: required_argument
 
@@ -9716,7 +9716,7 @@ http-stats
 
 run the http router stats server
 
-http-stats-server
+--http-stats-server
 *****************
 ``argument``: required_argument
 
@@ -9726,7 +9726,7 @@ http-stats-server
 
 run the http router stats server
 
-http-ss
+--http-ss
 *******
 ``argument``: required_argument
 
@@ -9736,7 +9736,7 @@ http-ss
 
 run the http router stats server
 
-http-harakiri
+--http-harakiri
 *************
 ``argument``: required_argument
 
@@ -9746,7 +9746,7 @@ http-harakiri
 
 enable http router harakiri
 
-http-stud-prefix
+--http-stud-prefix
 ****************
 ``argument``: required_argument
 
@@ -9756,7 +9756,7 @@ http-stud-prefix
 
 expect a stud prefix (1byte family + 4/16 bytes address) on connections from the specified address
 
-http-uid
+--http-uid
 ********
 ``argument``: required_argument
 
@@ -9766,7 +9766,7 @@ http-uid
 
 drop http router privileges to the specified uid
 
-http-gid
+--http-gid
 ********
 ``argument``: required_argument
 
@@ -9776,7 +9776,7 @@ http-gid
 
 drop http router privileges to the specified gid
 
-http-resubscribe
+--http-resubscribe
 ****************
 ``argument``: required_argument
 
@@ -9786,7 +9786,7 @@ http-resubscribe
 
 forward subscriptions to the specified subscription server
 
-http-buffer-size
+--http-buffer-size
 ****************
 ``argument``: required_argument
 
@@ -9796,7 +9796,7 @@ http-buffer-size
 
 set internal buffer size (default: page size)
 
-http-server-name-as-http-host
+--http-server-name-as-http-host
 *****************************
 ``argument``: required_argument
 
@@ -9806,7 +9806,7 @@ http-server-name-as-http-host
 
 force SERVER_NAME to HTTP_HOST
 
-http-headers-timeout
+--http-headers-timeout
 ********************
 ``argument``: required_argument
 
@@ -9816,7 +9816,7 @@ http-headers-timeout
 
 set internal http socket timeout for headers
 
-http-connect-timeout
+--http-connect-timeout
 ********************
 ``argument``: required_argument
 
@@ -9826,7 +9826,7 @@ http-connect-timeout
 
 set internal http socket timeout for backend connections
 
-http-manage-source
+--http-manage-source
 ******************
 ``argument``: optional_argument
 
@@ -9836,7 +9836,7 @@ http-manage-source
 
 manage the SOURCE HTTP method placing the session in raw mode
 
-http-enable-proxy-protocol
+--http-enable-proxy-protocol
 **************************
 ``argument``: optional_argument
 
@@ -9846,7 +9846,7 @@ http-enable-proxy-protocol
 
 manage PROXY protocol requests
 
-0x1f
+--0x1f
 ****
 ``argument``: 0x8b
 
@@ -9859,7 +9859,7 @@ manage PROXY protocol requests
 
 plugin: jvm
 ===========
-jvm-main-class
+--jvm-main-class
 **************
 ``argument``: required_argument
 
@@ -9869,7 +9869,7 @@ jvm-main-class
 
 load the specified class and call its main() function
 
-jvm-opt
+--jvm-opt
 *******
 ``argument``: required_argument
 
@@ -9879,7 +9879,7 @@ jvm-opt
 
 add the specified jvm option
 
-jvm-class
+--jvm-class
 *********
 ``argument``: required_argument
 
@@ -9889,7 +9889,7 @@ jvm-class
 
 load the specified class
 
-jvm-classpath
+--jvm-classpath
 *************
 ``argument``: required_argument
 
@@ -9902,7 +9902,7 @@ add the specified directory to the classpath
 
 plugin: jwsgi
 =============
-jwsgi
+--jwsgi
 *****
 ``argument``: required_argument
 
@@ -9915,7 +9915,7 @@ load the specified JWSGI application (syntax class:method)
 
 plugin: ldap
 ============
-ldap
+--ldap
 ****
 ``argument``: required_argument
 
@@ -9927,7 +9927,7 @@ ldap
 
 load configuration from ldap server
 
-ldap-schema
+--ldap-schema
 ***********
 ``argument``: no_argument
 
@@ -9939,7 +9939,7 @@ ldap-schema
 
 dump uWSGI ldap schema
 
-ldap-schema-ldif
+--ldap-schema-ldif
 ****************
 ``argument``: no_argument
 
@@ -9975,7 +9975,7 @@ plugin: logsocket
 
 plugin: logzmq
 ==============
-log-zeromq
+--log-zeromq
 **********
 ``argument``: required_argument
 
@@ -9990,7 +9990,7 @@ send logs to a zeromq server
 
 plugin: lua
 ===========
-lua
+--lua
 ***
 ``argument``: required_argument
 
@@ -10000,7 +10000,7 @@ lua
 
 load lua wsapi app
 
-lua-load
+--lua-load
 ********
 ``argument``: required_argument
 
@@ -10010,7 +10010,7 @@ lua-load
 
 load a lua file
 
-lua-shell
+--lua-shell
 *********
 ``argument``: no_argument
 
@@ -10020,7 +10020,7 @@ lua-shell
 
 run the lua interactive shell (debug.debug())
 
-luashell
+--luashell
 ********
 ``argument``: no_argument
 
@@ -10030,7 +10030,7 @@ luashell
 
 run the lua interactive shell (debug.debug())
 
-lua-gc-freq
+--lua-gc-freq
 ***********
 ``argument``: no_argument
 
@@ -10052,7 +10052,7 @@ plugin: mongodblog
 
 plugin: mongrel2
 ================
-zeromq
+--zeromq
 ******
 ``argument``: required_argument
 
@@ -10062,7 +10062,7 @@ zeromq
 
 create a mongrel2/zeromq pub/sub pair
 
-zmq
+--zmq
 ***
 ``argument``: required_argument
 
@@ -10072,7 +10072,7 @@ zmq
 
 create a mongrel2/zeromq pub/sub pair
 
-zeromq-socket
+--zeromq-socket
 *************
 ``argument``: required_argument
 
@@ -10082,7 +10082,7 @@ zeromq-socket
 
 create a mongrel2/zeromq pub/sub pair
 
-zmq-socket
+--zmq-socket
 **********
 ``argument``: required_argument
 
@@ -10092,7 +10092,7 @@ zmq-socket
 
 create a mongrel2/zeromq pub/sub pair
 
-mongrel2
+--mongrel2
 ********
 ``argument``: required_argument
 
@@ -10105,7 +10105,7 @@ create a mongrel2/zeromq pub/sub pair
 
 plugin: mono
 ============
-mono-app
+--mono-app
 ********
 ``argument``: required_argument
 
@@ -10115,7 +10115,7 @@ mono-app
 
 load a Mono asp.net app from the specified directory
 
-mono-gc-freq
+--mono-gc-freq
 ************
 ``argument``: required_argument
 
@@ -10125,7 +10125,7 @@ mono-gc-freq
 
 run the Mono GC every <n> requests (default: run after every request)
 
-mono-key
+--mono-key
 ********
 ``argument``: required_argument
 
@@ -10135,7 +10135,7 @@ mono-key
 
 select the ApplicationHost based on the specified CGI var
 
-mono-version
+--mono-version
 ************
 ``argument``: required_argument
 
@@ -10145,7 +10145,7 @@ mono-version
 
 set the Mono jit version
 
-mono-config
+--mono-config
 ***********
 ``argument``: required_argument
 
@@ -10155,7 +10155,7 @@ mono-config
 
 set the Mono config file
 
-mono-assembly
+--mono-assembly
 *************
 ``argument``: required_argument
 
@@ -10165,7 +10165,7 @@ mono-assembly
 
 load the specified main assembly (default: uwsgi.dll)
 
-mono-exec
+--mono-exec
 *********
 ``argument``: required_argument
 
@@ -10175,7 +10175,7 @@ mono-exec
 
 exec the specified assembly just before app loading
 
-mono-index
+--mono-index
 **********
 ``argument``: required_argument
 
@@ -10191,7 +10191,7 @@ plugin: msgpack
 
 plugin: nagios
 ==============
-nagios
+--nagios
 ******
 ``argument``: no_argument
 
@@ -10206,7 +10206,7 @@ nagios check
 
 plugin: notfound
 ================
-notfound-log
+--notfound-log
 ************
 ``argument``: no_argument
 
@@ -10222,7 +10222,7 @@ plugin: objc_gc
 
 plugin: pam
 ===========
-pam
+--pam
 ***
 ``argument``: required_argument
 
@@ -10232,7 +10232,7 @@ pam
 
 set the pam service name to use
 
-pam-user
+--pam-user
 ********
 ``argument``: required_argument
 
@@ -10245,7 +10245,7 @@ set a fake user for pam
 
 plugin: php
 ===========
-php-ini
+--php-ini
 *******
 ``argument``: required_argument
 
@@ -10255,7 +10255,7 @@ php-ini
 
 set php.ini path
 
-php-config
+--php-config
 **********
 ``argument``: required_argument
 
@@ -10265,7 +10265,7 @@ php-config
 
 set php.ini path
 
-php-ini-append
+--php-ini-append
 **************
 ``argument``: required_argument
 
@@ -10275,7 +10275,7 @@ php-ini-append
 
 set php.ini path (append mode)
 
-php-config-append
+--php-config-append
 *****************
 ``argument``: required_argument
 
@@ -10285,7 +10285,7 @@ php-config-append
 
 set php.ini path (append mode)
 
-php-set
+--php-set
 *******
 ``argument``: required_argument
 
@@ -10295,7 +10295,7 @@ php-set
 
 set a php config directive
 
-php-index
+--php-index
 *********
 ``argument``: required_argument
 
@@ -10305,7 +10305,7 @@ php-index
 
 list the php index files
 
-php-docroot
+--php-docroot
 ***********
 ``argument``: required_argument
 
@@ -10315,7 +10315,7 @@ php-docroot
 
 force php DOCUMENT_ROOT
 
-php-allowed-docroot
+--php-allowed-docroot
 *******************
 ``argument``: required_argument
 
@@ -10325,7 +10325,7 @@ php-allowed-docroot
 
 list the allowed document roots
 
-php-allowed-ext
+--php-allowed-ext
 ***************
 ``argument``: required_argument
 
@@ -10335,7 +10335,7 @@ php-allowed-ext
 
 list the allowed php file extensions
 
-php-allowed-script
+--php-allowed-script
 ******************
 ``argument``: required_argument
 
@@ -10345,7 +10345,7 @@ php-allowed-script
 
 list the allowed php scripts (require absolute path)
 
-php-server-software
+--php-server-software
 *******************
 ``argument``: required_argument
 
@@ -10355,7 +10355,7 @@ php-server-software
 
 force php SERVER_SOFTWARE
 
-php-app
+--php-app
 *******
 ``argument``: required_argument
 
@@ -10365,7 +10365,7 @@ php-app
 
 force the php file to run at each request
 
-php-app-qs
+--php-app-qs
 **********
 ``argument``: required_argument
 
@@ -10375,7 +10375,7 @@ php-app-qs
 
 when in app mode force QUERY_STRING to the specified value + REQUEST_URI
 
-php-fallback
+--php-fallback
 ************
 ``argument``: required_argument
 
@@ -10385,7 +10385,7 @@ php-fallback
 
 run the specified php script when the request one does not exist
 
-php-app-bypass
+--php-app-bypass
 **************
 ``argument``: required_argument
 
@@ -10395,7 +10395,7 @@ php-app-bypass
 
 if the regexp matches the uri the --php-app is bypassed
 
-php-var
+--php-var
 *******
 ``argument``: required_argument
 
@@ -10405,7 +10405,7 @@ php-var
 
 add/overwrite a CGI variable at each request
 
-php-dump-config
+--php-dump-config
 ***************
 ``argument``: no_argument
 
@@ -10415,7 +10415,7 @@ php-dump-config
 
 dump php config (if modified via --php-set or append options)
 
-php-exec-before
+--php-exec-before
 ***************
 ``argument``: required_argument
 
@@ -10425,7 +10425,7 @@ php-exec-before
 
 run specified php code before the requested script
 
-php-exec-begin
+--php-exec-begin
 **************
 ``argument``: required_argument
 
@@ -10435,7 +10435,7 @@ php-exec-begin
 
 run specified php code before the requested script
 
-php-exec-after
+--php-exec-after
 **************
 ``argument``: required_argument
 
@@ -10445,7 +10445,7 @@ php-exec-after
 
 run specified php code after the requested script
 
-php-exec-end
+--php-exec-end
 ************
 ``argument``: required_argument
 
@@ -10458,7 +10458,7 @@ run specified php code after the requested script
 
 plugin: ping
 ============
-ping
+--ping
 ****
 ``argument``: required_argument
 
@@ -10470,7 +10470,7 @@ ping
 
 ping specified uwsgi host
 
-ping-timeout
+--ping-timeout
 ************
 ``argument``: required_argument
 
@@ -10483,7 +10483,7 @@ set ping timeout
 
 plugin: psgi
 ============
-psgi
+--psgi
 ****
 ``argument``: required_argument
 
@@ -10493,7 +10493,7 @@ psgi
 
 load a psgi app
 
-psgi-enable-psgix-io
+--psgi-enable-psgix-io
 ********************
 ``argument``: no_argument
 
@@ -10503,7 +10503,7 @@ psgi-enable-psgix-io
 
 enable psgix.io support
 
-perl-no-die-catch
+--perl-no-die-catch
 *****************
 ``argument``: no_argument
 
@@ -10513,7 +10513,7 @@ perl-no-die-catch
 
 do not catch $SIG{__DIE__}
 
-perl-local-lib
+--perl-local-lib
 **************
 ``argument``: required_argument
 
@@ -10523,7 +10523,7 @@ perl-local-lib
 
 set perl locallib path
 
-perl-version
+--perl-version
 ************
 ``argument``: no_argument
 
@@ -10535,7 +10535,7 @@ perl-version
 
 print perl version
 
-perl-args
+--perl-args
 *********
 ``argument``: required_argument
 
@@ -10545,7 +10545,7 @@ perl-args
 
 add items (space separated) to @ARGV
 
-perl-arg
+--perl-arg
 ********
 ``argument``: required_argument
 
@@ -10555,7 +10555,7 @@ perl-arg
 
 add an item to @ARGV
 
-perl-exec
+--perl-exec
 *********
 ``argument``: required_argument
 
@@ -10565,7 +10565,7 @@ perl-exec
 
 exec the specified perl file before fork()
 
-perl-exec-post-fork
+--perl-exec-post-fork
 *******************
 ``argument``: required_argument
 
@@ -10575,7 +10575,7 @@ perl-exec-post-fork
 
 exec the specified perl file after fork()
 
-perl-auto-reload
+--perl-auto-reload
 ****************
 ``argument``: required_argument
 
@@ -10587,7 +10587,7 @@ perl-auto-reload
 
 enable perl auto-reloader with the specified frequency
 
-perl-auto-reload-ignore
+--perl-auto-reload-ignore
 ***********************
 ``argument``: required_argument
 
@@ -10599,7 +10599,7 @@ perl-auto-reload-ignore
 
 ignore the specified files when auto-reload is enabled
 
-plshell
+--plshell
 *******
 ``argument``: optional_argument
 
@@ -10609,7 +10609,7 @@ plshell
 
 run a perl interactive shell
 
-plshell-oneshot
+--plshell-oneshot
 ***************
 ``argument``: no_argument
 
@@ -10619,7 +10619,7 @@ plshell-oneshot
 
 run a perl interactive shell (one shot)
 
-perl-no-plack
+--perl-no-plack
 *************
 ``argument``: no_argument
 
@@ -10632,7 +10632,7 @@ force the use of do instead of Plack::Util::load_psgi
 
 plugin: pty
 ===========
-pty-socket
+--pty-socket
 **********
 ``argument``: required_argument
 
@@ -10642,7 +10642,7 @@ pty-socket
 
 bind the pty server on the specified address
 
-pty-log
+--pty-log
 *******
 ``argument``: no_argument
 
@@ -10652,7 +10652,7 @@ pty-log
 
 send stdout/stderr to the log engine too
 
-pty-input
+--pty-input
 *********
 ``argument``: no_argument
 
@@ -10662,7 +10662,7 @@ pty-input
 
 read from original stdin in addition to pty
 
-pty-connect
+--pty-connect
 ***********
 ``argument``: required_argument
 
@@ -10674,7 +10674,7 @@ pty-connect
 
 connect the current terminal to a pty server
 
-pty-uconnect
+--pty-uconnect
 ************
 ``argument``: required_argument
 
@@ -10686,7 +10686,7 @@ pty-uconnect
 
 connect the current terminal to a pty server (using uwsgi protocol)
 
-pty-no-isig
+--pty-no-isig
 ***********
 ``argument``: no_argument
 
@@ -10696,7 +10696,7 @@ pty-no-isig
 
 disable ISIG terminal attribute in client mode
 
-pty-exec
+--pty-exec
 ********
 ``argument``: required_argument
 
@@ -10709,7 +10709,7 @@ run the specified command soon after the pty thread is spawned
 
 plugin: pypy
 ============
-pypy-lib
+--pypy-lib
 ********
 ``argument``: required_argument
 
@@ -10719,7 +10719,7 @@ pypy-lib
 
 set the path/name of the pypy library
 
-pypy-setup
+--pypy-setup
 **********
 ``argument``: required_argument
 
@@ -10729,7 +10729,7 @@ pypy-setup
 
 set the path of the python setup script
 
-pypy-home
+--pypy-home
 *********
 ``argument``: required_argument
 
@@ -10739,7 +10739,7 @@ pypy-home
 
 set the home of pypy library
 
-pypy-wsgi
+--pypy-wsgi
 *********
 ``argument``: required_argument
 
@@ -10749,7 +10749,7 @@ pypy-wsgi
 
 load a WSGI module
 
-pypy-wsgi-file
+--pypy-wsgi-file
 **************
 ``argument``: required_argument
 
@@ -10759,7 +10759,7 @@ pypy-wsgi-file
 
 load a WSGI/mod_wsgi file
 
-pypy-ini-paste
+--pypy-ini-paste
 **************
 ``argument``: required_argument
 
@@ -10771,7 +10771,7 @@ pypy-ini-paste
 
 load a paste.deploy config file containing uwsgi section
 
-pypy-paste
+--pypy-paste
 **********
 ``argument``: required_argument
 
@@ -10781,7 +10781,7 @@ pypy-paste
 
 load a paste.deploy config file
 
-pypy-eval
+--pypy-eval
 *********
 ``argument``: required_argument
 
@@ -10791,7 +10791,7 @@ pypy-eval
 
 evaluate pypy code before fork()
 
-pypy-eval-post-fork
+--pypy-eval-post-fork
 *******************
 ``argument``: required_argument
 
@@ -10801,7 +10801,7 @@ pypy-eval-post-fork
 
 evaluate pypy code soon after fork()
 
-pypy-exec
+--pypy-exec
 *********
 ``argument``: required_argument
 
@@ -10811,7 +10811,7 @@ pypy-exec
 
 execute pypy code from file before fork()
 
-pypy-exec-post-fork
+--pypy-exec-post-fork
 *******************
 ``argument``: required_argument
 
@@ -10821,7 +10821,7 @@ pypy-exec-post-fork
 
 execute pypy code from file soon after fork()
 
-pypy-pp
+--pypy-pp
 *******
 ``argument``: required_argument
 
@@ -10831,7 +10831,7 @@ pypy-pp
 
 add an item to the pythonpath
 
-pypy-python-path
+--pypy-python-path
 ****************
 ``argument``: required_argument
 
@@ -10841,7 +10841,7 @@ pypy-python-path
 
 add an item to the pythonpath
 
-pypy-pythonpath
+--pypy-pythonpath
 ***************
 ``argument``: required_argument
 
@@ -10854,7 +10854,7 @@ add an item to the pythonpath
 
 plugin: python
 ==============
-wsgi-file
+--wsgi-file
 *********
 ``argument``: required_argument
 
@@ -10864,7 +10864,7 @@ wsgi-file
 
 load .wsgi file
 
-file
+--file
 ****
 ``argument``: required_argument
 
@@ -10874,7 +10874,7 @@ file
 
 load .wsgi file
 
-eval
+--eval
 ****
 ``argument``: required_argument
 
@@ -10884,7 +10884,7 @@ eval
 
 eval python code
 
-module
+--module
 ******
 ``argument``: required_argument
 
@@ -10896,7 +10896,7 @@ module
 
 load a WSGI module
 
-wsgi
+--wsgi
 ****
 ``argument``: required_argument
 
@@ -10908,7 +10908,7 @@ wsgi
 
 load a WSGI module
 
-callable
+--callable
 ********
 ``argument``: required_argument
 
@@ -10918,7 +10918,7 @@ callable
 
 set default WSGI callable name
 
-test
+--test
 ****
 ``argument``: required_argument
 
@@ -10930,7 +10930,7 @@ test
 
 test a mdule import
 
-home
+--home
 ****
 ``argument``: required_argument
 
@@ -10942,7 +10942,7 @@ home
 
 set PYTHONHOME/virtualenv
 
-virtualenv
+--virtualenv
 **********
 ``argument``: required_argument
 
@@ -10954,7 +10954,7 @@ virtualenv
 
 set PYTHONHOME/virtualenv
 
-venv
+--venv
 ****
 ``argument``: required_argument
 
@@ -10966,7 +10966,7 @@ venv
 
 set PYTHONHOME/virtualenv
 
-pyhome
+--pyhome
 ******
 ``argument``: required_argument
 
@@ -10978,7 +10978,7 @@ pyhome
 
 set PYTHONHOME/virtualenv
 
-py-programname
+--py-programname
 **************
 ``argument``: required_argument
 
@@ -10988,7 +10988,7 @@ py-programname
 
 set python program name
 
-py-program-name
+--py-program-name
 ***************
 ``argument``: required_argument
 
@@ -10998,7 +10998,7 @@ py-program-name
 
 set python program name
 
-pythonpath
+--pythonpath
 **********
 ``argument``: required_argument
 
@@ -11008,7 +11008,7 @@ pythonpath
 
 add directory (or glob) to pythonpath
 
-python-path
+--python-path
 ***********
 ``argument``: required_argument
 
@@ -11018,7 +11018,7 @@ python-path
 
 add directory (or glob) to pythonpath
 
-pp
+--pp
 **
 ``argument``: required_argument
 
@@ -11028,7 +11028,7 @@ pp
 
 add directory (or glob) to pythonpath
 
-pymodule-alias
+--pymodule-alias
 **************
 ``argument``: required_argument
 
@@ -11038,7 +11038,7 @@ pymodule-alias
 
 add a python alias module
 
-post-pymodule-alias
+--post-pymodule-alias
 *******************
 ``argument``: required_argument
 
@@ -11048,7 +11048,7 @@ post-pymodule-alias
 
 add a python module alias after uwsgi module initialization
 
-import
+--import
 ******
 ``argument``: required_argument
 
@@ -11058,7 +11058,7 @@ import
 
 import a python module
 
-pyimport
+--pyimport
 ********
 ``argument``: required_argument
 
@@ -11068,7 +11068,7 @@ pyimport
 
 import a python module
 
-py-import
+--py-import
 *********
 ``argument``: required_argument
 
@@ -11078,7 +11078,7 @@ py-import
 
 import a python module
 
-python-import
+--python-import
 *************
 ``argument``: required_argument
 
@@ -11088,7 +11088,7 @@ python-import
 
 import a python module
 
-shared-import
+--shared-import
 *************
 ``argument``: required_argument
 
@@ -11098,7 +11098,7 @@ shared-import
 
 import a python module in all of the processes
 
-shared-pyimport
+--shared-pyimport
 ***************
 ``argument``: required_argument
 
@@ -11108,7 +11108,7 @@ shared-pyimport
 
 import a python module in all of the processes
 
-shared-py-import
+--shared-py-import
 ****************
 ``argument``: required_argument
 
@@ -11118,7 +11118,7 @@ shared-py-import
 
 import a python module in all of the processes
 
-shared-python-import
+--shared-python-import
 ********************
 ``argument``: required_argument
 
@@ -11128,7 +11128,7 @@ shared-python-import
 
 import a python module in all of the processes
 
-pyargv
+--pyargv
 ******
 ``argument``: required_argument
 
@@ -11138,7 +11138,7 @@ pyargv
 
 manually set sys.argv
 
-optimize
+--optimize
 ********
 ``argument``: required_argument
 
@@ -11150,7 +11150,7 @@ optimize
 
 set python optimization level
 
-pecan
+--pecan
 *****
 ``argument``: required_argument
 
@@ -11160,7 +11160,7 @@ pecan
 
 load a pecan config file
 
-paste
+--paste
 *****
 ``argument``: required_argument
 
@@ -11170,7 +11170,7 @@ paste
 
 load a paste.deploy config file
 
-paste-logger
+--paste-logger
 ************
 ``argument``: no_argument
 
@@ -11180,7 +11180,7 @@ paste-logger
 
 enable paste fileConfig logger
 
-web3
+--web3
 ****
 ``argument``: required_argument
 
@@ -11190,7 +11190,7 @@ web3
 
 load a web3 app
 
-pump
+--pump
 ****
 ``argument``: required_argument
 
@@ -11200,7 +11200,7 @@ pump
 
 load a pump app
 
-wsgi-lite
+--wsgi-lite
 *********
 ``argument``: required_argument
 
@@ -11210,7 +11210,7 @@ wsgi-lite
 
 load a wsgi-lite app
 
-ini-paste
+--ini-paste
 *********
 ``argument``: required_argument
 
@@ -11222,7 +11222,7 @@ ini-paste
 
 load a paste.deploy config file containing uwsgi section
 
-ini-paste-logged
+--ini-paste-logged
 ****************
 ``argument``: required_argument
 
@@ -11234,7 +11234,7 @@ ini-paste-logged
 
 load a paste.deploy config file containing uwsgi section (load loggers too)
 
-reload-os-env
+--reload-os-env
 *************
 ``argument``: no_argument
 
@@ -11244,7 +11244,7 @@ reload-os-env
 
 force reload of os.environ at each request
 
-no-site
+--no-site
 *******
 ``argument``: no_argument
 
@@ -11254,7 +11254,7 @@ no-site
 
 do not import site module
 
-pyshell
+--pyshell
 *******
 ``argument``: optional_argument
 
@@ -11264,7 +11264,7 @@ pyshell
 
 run an interactive python shell in the uWSGI environment
 
-pyshell-oneshot
+--pyshell-oneshot
 ***************
 ``argument``: optional_argument
 
@@ -11274,7 +11274,7 @@ pyshell-oneshot
 
 run an interactive python shell in the uWSGI environment (one-shot variant)
 
-python
+--python
 ******
 ``argument``: required_argument
 
@@ -11284,7 +11284,7 @@ python
 
 run a python script in the uWSGI environment
 
-py
+--py
 **
 ``argument``: required_argument
 
@@ -11294,7 +11294,7 @@ py
 
 run a python script in the uWSGI environment
 
-pyrun
+--pyrun
 *****
 ``argument``: required_argument
 
@@ -11304,7 +11304,7 @@ pyrun
 
 run a python script in the uWSGI environment
 
-py-tracebacker
+--py-tracebacker
 **************
 ``argument``: required_argument
 
@@ -11316,7 +11316,7 @@ py-tracebacker
 
 enable the uWSGI python tracebacker
 
-py-auto-reload
+--py-auto-reload
 **************
 ``argument``: required_argument
 
@@ -11328,7 +11328,7 @@ py-auto-reload
 
 monitor python modules mtime to trigger reload (use only in development)
 
-py-autoreload
+--py-autoreload
 *************
 ``argument``: required_argument
 
@@ -11340,7 +11340,7 @@ py-autoreload
 
 monitor python modules mtime to trigger reload (use only in development)
 
-python-auto-reload
+--python-auto-reload
 ******************
 ``argument``: required_argument
 
@@ -11352,7 +11352,7 @@ python-auto-reload
 
 monitor python modules mtime to trigger reload (use only in development)
 
-python-autoreload
+--python-autoreload
 *****************
 ``argument``: required_argument
 
@@ -11364,7 +11364,7 @@ python-autoreload
 
 monitor python modules mtime to trigger reload (use only in development)
 
-py-auto-reload-ignore
+--py-auto-reload-ignore
 *********************
 ``argument``: required_argument
 
@@ -11376,7 +11376,7 @@ py-auto-reload-ignore
 
 ignore the specified module during auto-reload scan (can be specified multiple times)
 
-wsgi-env-behaviour
+--wsgi-env-behaviour
 ******************
 ``argument``: required_argument
 
@@ -11386,7 +11386,7 @@ wsgi-env-behaviour
 
 set the strategy for allocating/deallocating the WSGI env
 
-wsgi-env-behavior
+--wsgi-env-behavior
 *****************
 ``argument``: required_argument
 
@@ -11396,7 +11396,7 @@ wsgi-env-behavior
 
 set the strategy for allocating/deallocating the WSGI env
 
-start_response-nodelay
+--start_response-nodelay
 **********************
 ``argument``: no_argument
 
@@ -11406,7 +11406,7 @@ start_response-nodelay
 
 send WSGI http headers as soon as possible (PEP violation)
 
-wsgi-strict
+--wsgi-strict
 ***********
 ``argument``: no_argument
 
@@ -11416,7 +11416,7 @@ wsgi-strict
 
 try to be fully PEP compliant disabling optimizations
 
-wsgi-accept-buffer
+--wsgi-accept-buffer
 ******************
 ``argument``: no_argument
 
@@ -11426,7 +11426,7 @@ wsgi-accept-buffer
 
 accept CPython buffer-compliant objects as WSGI response in addition to string/bytes
 
-wsgi-accept-buffers
+--wsgi-accept-buffers
 *******************
 ``argument``: no_argument
 
@@ -11436,7 +11436,7 @@ wsgi-accept-buffers
 
 accept CPython buffer-compliant objects as WSGI response in addition to string/bytes
 
-python-version
+--python-version
 **************
 ``argument``: no_argument
 
@@ -11448,7 +11448,7 @@ python-version
 
 report python version
 
-python-raw
+--python-raw
 **********
 ``argument``: required_argument
 
@@ -11458,7 +11458,7 @@ python-raw
 
 load a python file for managing raw requests
 
-py-sharedarea
+--py-sharedarea
 *************
 ``argument``: required_argument
 
@@ -11468,7 +11468,7 @@ py-sharedarea
 
 create a sharedarea from a python bytearray object of the specified size
 
-py-call-osafterfork
+--py-call-osafterfork
 *******************
 ``argument``: no_argument
 
@@ -11484,7 +11484,7 @@ plugin: pyuwsgi
 
 plugin: rack
 ============
-rails
+--rails
 *****
 ``argument``: required_argument
 
@@ -11496,7 +11496,7 @@ rails
 
 load a rails <= 2.x app
 
-rack
+--rack
 ****
 ``argument``: required_argument
 
@@ -11508,7 +11508,7 @@ rack
 
 load a rack app
 
-ruby-gc-freq
+--ruby-gc-freq
 ************
 ``argument``: required_argument
 
@@ -11518,7 +11518,7 @@ ruby-gc-freq
 
 set ruby GC frequency
 
-rb-gc-freq
+--rb-gc-freq
 **********
 ``argument``: required_argument
 
@@ -11528,7 +11528,7 @@ rb-gc-freq
 
 set ruby GC frequency
 
-rb-lib
+--rb-lib
 ******
 ``argument``: required_argument
 
@@ -11538,7 +11538,7 @@ rb-lib
 
 add a directory to the ruby libdir search path
 
-ruby-lib
+--ruby-lib
 ********
 ``argument``: required_argument
 
@@ -11548,7 +11548,7 @@ ruby-lib
 
 add a directory to the ruby libdir search path
 
-rb-require
+--rb-require
 **********
 ``argument``: required_argument
 
@@ -11558,7 +11558,7 @@ rb-require
 
 import/require a ruby module/script
 
-ruby-require
+--ruby-require
 ************
 ``argument``: required_argument
 
@@ -11568,7 +11568,7 @@ ruby-require
 
 import/require a ruby module/script
 
-rbrequire
+--rbrequire
 *********
 ``argument``: required_argument
 
@@ -11578,7 +11578,7 @@ rbrequire
 
 import/require a ruby module/script
 
-rubyrequire
+--rubyrequire
 ***********
 ``argument``: required_argument
 
@@ -11588,7 +11588,7 @@ rubyrequire
 
 import/require a ruby module/script
 
-require
+--require
 *******
 ``argument``: required_argument
 
@@ -11598,7 +11598,7 @@ require
 
 import/require a ruby module/script
 
-shared-rb-require
+--shared-rb-require
 *****************
 ``argument``: required_argument
 
@@ -11608,7 +11608,7 @@ shared-rb-require
 
 import/require a ruby module/script (shared)
 
-shared-ruby-require
+--shared-ruby-require
 *******************
 ``argument``: required_argument
 
@@ -11618,7 +11618,7 @@ shared-ruby-require
 
 import/require a ruby module/script (shared)
 
-shared-rbrequire
+--shared-rbrequire
 ****************
 ``argument``: required_argument
 
@@ -11628,7 +11628,7 @@ shared-rbrequire
 
 import/require a ruby module/script (shared)
 
-shared-rubyrequire
+--shared-rubyrequire
 ******************
 ``argument``: required_argument
 
@@ -11638,7 +11638,7 @@ shared-rubyrequire
 
 import/require a ruby module/script (shared)
 
-shared-require
+--shared-require
 **************
 ``argument``: required_argument
 
@@ -11648,7 +11648,7 @@ shared-require
 
 import/require a ruby module/script (shared)
 
-gemset
+--gemset
 ******
 ``argument``: required_argument
 
@@ -11658,7 +11658,7 @@ gemset
 
 load the specified gemset (rvm)
 
-rvm
+--rvm
 ***
 ``argument``: required_argument
 
@@ -11668,7 +11668,7 @@ rvm
 
 load the specified gemset (rvm)
 
-rvm-path
+--rvm-path
 ********
 ``argument``: required_argument
 
@@ -11678,7 +11678,7 @@ rvm-path
 
 search for rvm in the specified directory
 
-rbshell
+--rbshell
 *******
 ``argument``: optional_argument
 
@@ -11688,7 +11688,7 @@ rbshell
 
 run  a ruby/irb shell
 
-rbshell-oneshot
+--rbshell-oneshot
 ***************
 ``argument``: no_argument
 
@@ -11701,7 +11701,7 @@ set ruby/irb shell (one shot)
 
 plugin: rados
 =============
-rados-mount
+--rados-mount
 ***********
 ``argument``: required_argument
 
@@ -11713,7 +11713,7 @@ rados-mount
 
 virtual mount the specified rados volume in a uri
 
-rados-timeout
+--rados-timeout
 *************
 ``argument``: required_argument
 
@@ -11726,7 +11726,7 @@ timeout for async operations
 
 plugin: rawrouter
 =================
-rawrouter
+--rawrouter
 *********
 ``argument``: required_argument
 
@@ -11736,7 +11736,7 @@ rawrouter
 
 run the rawrouter on the specified port
 
-rawrouter-processes
+--rawrouter-processes
 *******************
 ``argument``: required_argument
 
@@ -11746,7 +11746,7 @@ rawrouter-processes
 
 prefork the specified number of rawrouter processes
 
-rawrouter-workers
+--rawrouter-workers
 *****************
 ``argument``: required_argument
 
@@ -11756,7 +11756,7 @@ rawrouter-workers
 
 prefork the specified number of rawrouter processes
 
-rawrouter-zerg
+--rawrouter-zerg
 **************
 ``argument``: required_argument
 
@@ -11766,7 +11766,7 @@ rawrouter-zerg
 
 attach the rawrouter to a zerg server
 
-rawrouter-use-cache
+--rawrouter-use-cache
 *******************
 ``argument``: optional_argument
 
@@ -11776,7 +11776,7 @@ rawrouter-use-cache
 
 use uWSGI cache as hostname->server mapper for the rawrouter
 
-rawrouter-use-pattern
+--rawrouter-use-pattern
 *********************
 ``argument``: required_argument
 
@@ -11786,7 +11786,7 @@ rawrouter-use-pattern
 
 use a pattern for rawrouter hostname->server mapping
 
-rawrouter-use-base
+--rawrouter-use-base
 ******************
 ``argument``: required_argument
 
@@ -11796,7 +11796,7 @@ rawrouter-use-base
 
 use a base dir for rawrouter hostname->server mapping
 
-rawrouter-fallback
+--rawrouter-fallback
 ******************
 ``argument``: required_argument
 
@@ -11806,7 +11806,7 @@ rawrouter-fallback
 
 fallback to the specified node in case of error
 
-rawrouter-use-code-string
+--rawrouter-use-code-string
 *************************
 ``argument``: required_argument
 
@@ -11816,7 +11816,7 @@ rawrouter-use-code-string
 
 use code string as hostname->server mapper for the rawrouter
 
-rawrouter-use-socket
+--rawrouter-use-socket
 ********************
 ``argument``: optional_argument
 
@@ -11826,7 +11826,7 @@ rawrouter-use-socket
 
 forward request to the specified uwsgi socket
 
-rawrouter-to
+--rawrouter-to
 ************
 ``argument``: required_argument
 
@@ -11836,7 +11836,7 @@ rawrouter-to
 
 forward requests to the specified uwsgi server (you can specify it multiple times for load balancing)
 
-rawrouter-gracetime
+--rawrouter-gracetime
 *******************
 ``argument``: required_argument
 
@@ -11846,7 +11846,7 @@ rawrouter-gracetime
 
 retry connections to dead static nodes after the specified amount of seconds
 
-rawrouter-events
+--rawrouter-events
 ****************
 ``argument``: required_argument
 
@@ -11856,7 +11856,7 @@ rawrouter-events
 
 set the maximum number of concurrent events
 
-rawrouter-max-retries
+--rawrouter-max-retries
 *********************
 ``argument``: required_argument
 
@@ -11866,7 +11866,7 @@ rawrouter-max-retries
 
 set the maximum number of retries/fallbacks to other nodes
 
-rawrouter-quiet
+--rawrouter-quiet
 ***************
 ``argument``: required_argument
 
@@ -11876,7 +11876,7 @@ rawrouter-quiet
 
 do not report failed connections to instances
 
-rawrouter-cheap
+--rawrouter-cheap
 ***************
 ``argument``: no_argument
 
@@ -11886,7 +11886,7 @@ rawrouter-cheap
 
 run the rawrouter in cheap mode
 
-rawrouter-subscription-server
+--rawrouter-subscription-server
 *****************************
 ``argument``: required_argument
 
@@ -11896,7 +11896,7 @@ rawrouter-subscription-server
 
 run the rawrouter subscription server on the spcified address
 
-rawrouter-subscription-slot
+--rawrouter-subscription-slot
 ***************************
 ``argument``: required_argument
 
@@ -11906,7 +11906,7 @@ rawrouter-subscription-slot
 
 *** deprecated ***
 
-rawrouter-timeout
+--rawrouter-timeout
 *****************
 ``argument``: required_argument
 
@@ -11916,7 +11916,7 @@ rawrouter-timeout
 
 set rawrouter timeout
 
-rawrouter-stats
+--rawrouter-stats
 ***************
 ``argument``: required_argument
 
@@ -11926,7 +11926,7 @@ rawrouter-stats
 
 run the rawrouter stats server
 
-rawrouter-stats-server
+--rawrouter-stats-server
 **********************
 ``argument``: required_argument
 
@@ -11936,7 +11936,7 @@ rawrouter-stats-server
 
 run the rawrouter stats server
 
-rawrouter-ss
+--rawrouter-ss
 ************
 ``argument``: required_argument
 
@@ -11946,7 +11946,7 @@ rawrouter-ss
 
 run the rawrouter stats server
 
-rawrouter-harakiri
+--rawrouter-harakiri
 ******************
 ``argument``: required_argument
 
@@ -11956,7 +11956,7 @@ rawrouter-harakiri
 
 enable rawrouter harakiri
 
-rawrouter-xclient
+--rawrouter-xclient
 *****************
 ``argument``: no_argument
 
@@ -11966,7 +11966,7 @@ rawrouter-xclient
 
 use the xclient protocol to pass the client addres
 
-rawrouter-buffer-size
+--rawrouter-buffer-size
 *********************
 ``argument``: required_argument
 
@@ -11979,7 +11979,7 @@ set internal buffer size (default: page size)
 
 plugin: rbthreads
 =================
-rbthreads
+--rbthreads
 *********
 ``argument``: no_argument
 
@@ -11989,7 +11989,7 @@ rbthreads
 
 enable ruby native threads
 
-rb-threads
+--rb-threads
 **********
 ``argument``: no_argument
 
@@ -11999,7 +11999,7 @@ rb-threads
 
 enable ruby native threads
 
-rbthread
+--rbthread
 ********
 ``argument``: no_argument
 
@@ -12009,7 +12009,7 @@ rbthread
 
 enable ruby native threads
 
-rb-thread
+--rb-thread
 *********
 ``argument``: no_argument
 
@@ -12025,7 +12025,7 @@ plugin: redislog
 
 plugin: ring
 ============
-ring-load
+--ring-load
 *********
 ``argument``: required_argument
 
@@ -12035,7 +12035,7 @@ ring-load
 
 load the specified clojure script
 
-clojure-load
+--clojure-load
 ************
 ``argument``: required_argument
 
@@ -12045,7 +12045,7 @@ clojure-load
 
 load the specified clojure script
 
-ring-app
+--ring-app
 ********
 ``argument``: required_argument
 
@@ -12109,7 +12109,7 @@ plugin: rpc
 
 plugin: rrdtool
 ===============
-rrdtool
+--rrdtool
 *******
 ``argument``: required_argument
 
@@ -12121,7 +12121,7 @@ rrdtool
 
 store rrd files in the specified directory
 
-rrdtool-freq
+--rrdtool-freq
 ************
 ``argument``: required_argument
 
@@ -12131,7 +12131,7 @@ rrdtool-freq
 
 set collect frequency
 
-rrdtool-lib
+--rrdtool-lib
 ***********
 ``argument``: required_argument
 
@@ -12144,7 +12144,7 @@ set the name of rrd library (default: librrd.so)
 
 plugin: rsyslog
 ===============
-rsyslog-packet-size
+--rsyslog-packet-size
 *******************
 ``argument``: required_argument
 
@@ -12154,7 +12154,7 @@ rsyslog-packet-size
 
 set maximum packet size for syslog messages (default 1024) WARNING! using packets > 1024 breaks RFC 3164 (#4.1)
 
-rsyslog-split-messages
+--rsyslog-split-messages
 **********************
 ``argument``: no_argument
 
@@ -12179,7 +12179,7 @@ plugin: spooler
 
 plugin: sqlite3
 ===============
-sqlite3
+--sqlite3
 *******
 ``argument``: required_argument
 
@@ -12191,7 +12191,7 @@ sqlite3
 
 load config from sqlite3 db
 
-sqlite
+--sqlite
 ******
 ``argument``: required_argument
 
@@ -12209,7 +12209,7 @@ plugin: ssi
 
 plugin: sslrouter
 =================
-sslrouter
+--sslrouter
 *********
 ``argument``: required_argument
 
@@ -12219,7 +12219,7 @@ sslrouter
 
 run the sslrouter on the specified port
 
-sslrouter2
+--sslrouter2
 **********
 ``argument``: required_argument
 
@@ -12229,7 +12229,7 @@ sslrouter2
 
 run the sslrouter on the specified port (key-value based)
 
-sslrouter-session-context
+--sslrouter-session-context
 *************************
 ``argument``: required_argument
 
@@ -12239,7 +12239,7 @@ sslrouter-session-context
 
 set the session id context to the specified value
 
-sslrouter-processes
+--sslrouter-processes
 *******************
 ``argument``: required_argument
 
@@ -12249,7 +12249,7 @@ sslrouter-processes
 
 prefork the specified number of sslrouter processes
 
-sslrouter-workers
+--sslrouter-workers
 *****************
 ``argument``: required_argument
 
@@ -12259,7 +12259,7 @@ sslrouter-workers
 
 prefork the specified number of sslrouter processes
 
-sslrouter-zerg
+--sslrouter-zerg
 **************
 ``argument``: required_argument
 
@@ -12269,7 +12269,7 @@ sslrouter-zerg
 
 attach the sslrouter to a zerg server
 
-sslrouter-use-cache
+--sslrouter-use-cache
 *******************
 ``argument``: optional_argument
 
@@ -12279,7 +12279,7 @@ sslrouter-use-cache
 
 use uWSGI cache as hostname->server mapper for the sslrouter
 
-sslrouter-use-pattern
+--sslrouter-use-pattern
 *********************
 ``argument``: required_argument
 
@@ -12289,7 +12289,7 @@ sslrouter-use-pattern
 
 use a pattern for sslrouter hostname->server mapping
 
-sslrouter-use-base
+--sslrouter-use-base
 ******************
 ``argument``: required_argument
 
@@ -12299,7 +12299,7 @@ sslrouter-use-base
 
 use a base dir for sslrouter hostname->server mapping
 
-sslrouter-fallback
+--sslrouter-fallback
 ******************
 ``argument``: required_argument
 
@@ -12309,7 +12309,7 @@ sslrouter-fallback
 
 fallback to the specified node in case of error
 
-sslrouter-use-code-string
+--sslrouter-use-code-string
 *************************
 ``argument``: required_argument
 
@@ -12319,7 +12319,7 @@ sslrouter-use-code-string
 
 use code string as hostname->server mapper for the sslrouter
 
-sslrouter-use-socket
+--sslrouter-use-socket
 ********************
 ``argument``: optional_argument
 
@@ -12329,7 +12329,7 @@ sslrouter-use-socket
 
 forward request to the specified uwsgi socket
 
-sslrouter-to
+--sslrouter-to
 ************
 ``argument``: required_argument
 
@@ -12339,7 +12339,7 @@ sslrouter-to
 
 forward requests to the specified uwsgi server (you can specify it multiple times for load balancing)
 
-sslrouter-gracetime
+--sslrouter-gracetime
 *******************
 ``argument``: required_argument
 
@@ -12349,7 +12349,7 @@ sslrouter-gracetime
 
 retry connections to dead static nodes after the specified amount of seconds
 
-sslrouter-events
+--sslrouter-events
 ****************
 ``argument``: required_argument
 
@@ -12359,7 +12359,7 @@ sslrouter-events
 
 set the maximum number of concurrent events
 
-sslrouter-max-retries
+--sslrouter-max-retries
 *********************
 ``argument``: required_argument
 
@@ -12369,7 +12369,7 @@ sslrouter-max-retries
 
 set the maximum number of retries/fallbacks to other nodes
 
-sslrouter-quiet
+--sslrouter-quiet
 ***************
 ``argument``: required_argument
 
@@ -12379,7 +12379,7 @@ sslrouter-quiet
 
 do not report failed connections to instances
 
-sslrouter-cheap
+--sslrouter-cheap
 ***************
 ``argument``: no_argument
 
@@ -12389,7 +12389,7 @@ sslrouter-cheap
 
 run the sslrouter in cheap mode
 
-sslrouter-subscription-server
+--sslrouter-subscription-server
 *****************************
 ``argument``: required_argument
 
@@ -12399,7 +12399,7 @@ sslrouter-subscription-server
 
 run the sslrouter subscription server on the spcified address
 
-sslrouter-timeout
+--sslrouter-timeout
 *****************
 ``argument``: required_argument
 
@@ -12409,7 +12409,7 @@ sslrouter-timeout
 
 set sslrouter timeout
 
-sslrouter-stats
+--sslrouter-stats
 ***************
 ``argument``: required_argument
 
@@ -12419,7 +12419,7 @@ sslrouter-stats
 
 run the sslrouter stats server
 
-sslrouter-stats-server
+--sslrouter-stats-server
 **********************
 ``argument``: required_argument
 
@@ -12429,7 +12429,7 @@ sslrouter-stats-server
 
 run the sslrouter stats server
 
-sslrouter-ss
+--sslrouter-ss
 ************
 ``argument``: required_argument
 
@@ -12439,7 +12439,7 @@ sslrouter-ss
 
 run the sslrouter stats server
 
-sslrouter-harakiri
+--sslrouter-harakiri
 ******************
 ``argument``: required_argument
 
@@ -12449,7 +12449,7 @@ sslrouter-harakiri
 
 enable sslrouter harakiri
 
-sslrouter-sni
+--sslrouter-sni
 *************
 ``argument``: no_argument
 
@@ -12459,7 +12459,7 @@ sslrouter-sni
 
 use SNI to route requests
 
-sslrouter-buffer-size
+--sslrouter-buffer-size
 *********************
 ``argument``: required_argument
 
@@ -12472,7 +12472,7 @@ set internal buffer size (default: page size)
 
 plugin: stackless
 =================
-stackless
+--stackless
 *********
 ``argument``: no_argument
 
@@ -12497,7 +12497,7 @@ plugin: stats_pusher_statsd
 
 plugin: symcall
 ===============
-symcall
+--symcall
 *******
 ``argument``: required_argument
 
@@ -12507,7 +12507,7 @@ symcall
 
 load the specified C symbol as the symcall request handler (supports <mountpoint=func> too)
 
-symcall-use-next
+--symcall-use-next
 ****************
 ``argument``: no_argument
 
@@ -12517,7 +12517,7 @@ symcall-use-next
 
 use RTLD_NEXT when searching for symbols
 
-symcall-register-rpc
+--symcall-register-rpc
 ********************
 ``argument``: required_argument
 
@@ -12527,7 +12527,7 @@ symcall-register-rpc
 
 load the specified C symbol as an RPC function (syntax: name function)
 
-symcall-post-fork
+--symcall-post-fork
 *****************
 ``argument``: required_argument
 
@@ -12546,7 +12546,7 @@ plugin: systemd_logger
 
 plugin: tornado
 ===============
-tornado
+--tornado
 *******
 ``argument``: required_argument
 
@@ -12579,7 +12579,7 @@ plugin: transformation_toupper
 
 plugin: tuntap
 ==============
-tuntap-router
+--tuntap-router
 *************
 ``argument``: required_argument
 
@@ -12589,7 +12589,7 @@ tuntap-router
 
 run the tuntap router (syntax: <device> <socket> [stats] [gateway])
 
-tuntap-device
+--tuntap-device
 *************
 ``argument``: required_argument
 
@@ -12599,7 +12599,7 @@ tuntap-device
 
 add a tuntap device to the instance (syntax: <device>[ <socket>])
 
-tuntap-use-credentials
+--tuntap-use-credentials
 **********************
 ``argument``: optional_argument
 
@@ -12609,7 +12609,7 @@ tuntap-use-credentials
 
 enable check of SCM_CREDENTIALS for tuntap client/server
 
-tuntap-router-firewall-in
+--tuntap-router-firewall-in
 *************************
 ``argument``: required_argument
 
@@ -12619,7 +12619,7 @@ tuntap-router-firewall-in
 
 add a firewall rule to the tuntap router (syntax: <action> <src/mask> <dst/mask>)
 
-tuntap-router-firewall-out
+--tuntap-router-firewall-out
 **************************
 ``argument``: required_argument
 
@@ -12629,7 +12629,7 @@ tuntap-router-firewall-out
 
 add a firewall rule to the tuntap router (syntax: <action> <src/mask> <dst/mask>)
 
-tuntap-router-route
+--tuntap-router-route
 *******************
 ``argument``: required_argument
 
@@ -12639,7 +12639,7 @@ tuntap-router-route
 
 add a routing rule to the tuntap router (syntax: <src/mask> <dst/mask> <gateway>)
 
-tuntap-router-stats
+--tuntap-router-stats
 *******************
 ``argument``: required_argument
 
@@ -12649,7 +12649,7 @@ tuntap-router-stats
 
 run the tuntap router stats server
 
-tuntap-device-rule
+--tuntap-device-rule
 ******************
 ``argument``: required_argument
 
@@ -12662,7 +12662,7 @@ add a tuntap device rule (syntax: <direction> <src/mask> <dst/mask> <action> [ta
 
 plugin: ugreen
 ==============
-ugreen
+--ugreen
 ******
 ``argument``: no_argument
 
@@ -12672,7 +12672,7 @@ ugreen
 
 enable ugreen coroutine subsystem
 
-ugreen-stacksize
+--ugreen-stacksize
 ****************
 ``argument``: required_argument
 
@@ -12685,7 +12685,7 @@ set ugreen stack size in pages
 
 plugin: v8
 ==========
-v8-load
+--v8-load
 *******
 ``argument``: required_argument
 
@@ -12695,7 +12695,7 @@ v8-load
 
 load a javascript file
 
-v8-preemptive
+--v8-preemptive
 *************
 ``argument``: required_argument
 
@@ -12705,7 +12705,7 @@ v8-preemptive
 
 put v8 in preemptive move (single isolate) with the specified frequency
 
-v8-gc-freq
+--v8-gc-freq
 **********
 ``argument``: required_argument
 
@@ -12715,7 +12715,7 @@ v8-gc-freq
 
 set the v8 garbage collection frequency
 
-v8-module-path
+--v8-module-path
 **************
 ``argument``: required_argument
 
@@ -12725,7 +12725,7 @@ v8-module-path
 
 set the v8 modules search path
 
-v8-jsgi
+--v8-jsgi
 *******
 ``argument``: required_argument
 
@@ -12738,7 +12738,7 @@ load the specified JSGI 3.0 application
 
 plugin: webdav
 ==============
-webdav-mount
+--webdav-mount
 ************
 ``argument``: required_argument
 
@@ -12750,7 +12750,7 @@ webdav-mount
 
 map a filesystem directory as a webdav store
 
-webdav-css
+--webdav-css
 **********
 ``argument``: required_argument
 
@@ -12762,7 +12762,7 @@ webdav-css
 
 add a css url for automatic webdav directory listing
 
-webdav-javascript
+--webdav-javascript
 *****************
 ``argument``: required_argument
 
@@ -12774,7 +12774,7 @@ webdav-javascript
 
 add a javascript url for automatic webdav directory listing
 
-webdav-js
+--webdav-js
 *********
 ``argument``: required_argument
 
@@ -12786,7 +12786,7 @@ webdav-js
 
 add a javascript url for automatic webdav directory listing
 
-webdav-class-directory
+--webdav-class-directory
 **********************
 ``argument``: required_argument
 
@@ -12798,7 +12798,7 @@ webdav-class-directory
 
 set the css directory class for automatic webdav directory listing
 
-webdav-div
+--webdav-div
 **********
 ``argument``: required_argument
 
@@ -12810,7 +12810,7 @@ webdav-div
 
 set the div id for automatic webdav directory listing
 
-webdav-lock-cache
+--webdav-lock-cache
 *****************
 ``argument``: required_argument
 
@@ -12822,7 +12822,7 @@ webdav-lock-cache
 
 set the cache to use for webdav locking
 
-webdav-principal-base
+--webdav-principal-base
 *********************
 ``argument``: required_argument
 
@@ -12834,7 +12834,7 @@ webdav-principal-base
 
 enable WebDAV Current Principal Extension using the specified base
 
-webdav-add-option
+--webdav-add-option
 *****************
 ``argument``: required_argument
 
@@ -12846,7 +12846,7 @@ webdav-add-option
 
 add a WebDAV standard to the OPTIONS response
 
-webdav-add-prop
+--webdav-add-prop
 ***************
 ``argument``: required_argument
 
@@ -12858,7 +12858,7 @@ webdav-add-prop
 
 add a WebDAV property to all resources
 
-webdav-add-collection-prop
+--webdav-add-collection-prop
 **************************
 ``argument``: required_argument
 
@@ -12870,7 +12870,7 @@ webdav-add-collection-prop
 
 add a WebDAV property to all collections
 
-webdav-add-object-prop
+--webdav-add-object-prop
 **********************
 ``argument``: required_argument
 
@@ -12882,7 +12882,7 @@ webdav-add-object-prop
 
 add a WebDAV property to all objects
 
-webdav-add-prop-href
+--webdav-add-prop-href
 ********************
 ``argument``: required_argument
 
@@ -12894,7 +12894,7 @@ webdav-add-prop-href
 
 add a WebDAV property to all resources (href value)
 
-webdav-add-collection-prop-href
+--webdav-add-collection-prop-href
 *******************************
 ``argument``: required_argument
 
@@ -12906,7 +12906,7 @@ webdav-add-collection-prop-href
 
 add a WebDAV property to all collections (href value)
 
-webdav-add-object-prop-href
+--webdav-add-object-prop-href
 ***************************
 ``argument``: required_argument
 
@@ -12918,7 +12918,7 @@ webdav-add-object-prop-href
 
 add a WebDAV property to all objects (href value)
 
-webdav-add-prop-comp
+--webdav-add-prop-comp
 ********************
 ``argument``: required_argument
 
@@ -12930,7 +12930,7 @@ webdav-add-prop-comp
 
 add a WebDAV property to all resources (xml value)
 
-webdav-add-collection-prop-comp
+--webdav-add-collection-prop-comp
 *******************************
 ``argument``: required_argument
 
@@ -12942,7 +12942,7 @@ webdav-add-collection-prop-comp
 
 add a WebDAV property to all collections (xml value)
 
-webdav-add-object-prop-comp
+--webdav-add-object-prop-comp
 ***************************
 ``argument``: required_argument
 
@@ -12954,7 +12954,7 @@ webdav-add-object-prop-comp
 
 add a WebDAV property to all objects (xml value)
 
-webdav-add-rtype-prop
+--webdav-add-rtype-prop
 *********************
 ``argument``: required_argument
 
@@ -12966,7 +12966,7 @@ webdav-add-rtype-prop
 
 add a WebDAV resourcetype property to all resources
 
-webdav-add-rtype-collection-prop
+--webdav-add-rtype-collection-prop
 ********************************
 ``argument``: required_argument
 
@@ -12978,7 +12978,7 @@ webdav-add-rtype-collection-prop
 
 add a WebDAV resourcetype property to all collections
 
-webdav-add-rtype-object-prop
+--webdav-add-rtype-object-prop
 ****************************
 ``argument``: required_argument
 
@@ -12990,7 +12990,7 @@ webdav-add-rtype-object-prop
 
 add a WebDAV resourcetype property to all objects
 
-webdav-skip-prop
+--webdav-skip-prop
 ****************
 ``argument``: required_argument
 
@@ -13008,7 +13008,7 @@ plugin: xattr
 
 plugin: xslt
 ============
-xslt-docroot
+--xslt-docroot
 ************
 ``argument``: required_argument
 
@@ -13018,7 +13018,7 @@ xslt-docroot
 
 add a document_root for xslt processing
 
-xslt-ext
+--xslt-ext
 ********
 ``argument``: required_argument
 
@@ -13028,7 +13028,7 @@ xslt-ext
 
 search for xslt stylesheets with the specified extension
 
-xslt-var
+--xslt-var
 ********
 ``argument``: required_argument
 
@@ -13038,7 +13038,7 @@ xslt-var
 
 get the xslt stylesheet path from the specified request var
 
-xslt-stylesheet
+--xslt-stylesheet
 ***************
 ``argument``: required_argument
 
@@ -13048,7 +13048,7 @@ xslt-stylesheet
 
 if no xslt stylesheet file can be found, use the specified one
 
-xslt-content-type
+--xslt-content-type
 *****************
 ``argument``: required_argument
 
@@ -13061,7 +13061,7 @@ set the content-type for the xslt rsult (default: text/html)
 
 plugin: zabbix
 ==============
-zabbix-template
+--zabbix-template
 ***************
 ``argument``: optional_argument
 
@@ -13076,7 +13076,7 @@ print (or store to a file) the zabbix template for the current metrics setup
 
 plugin: zergpool
 ================
-zergpool
+--zergpool
 ********
 ``argument``: required_argument
 
@@ -13086,7 +13086,7 @@ zergpool
 
 start a zergpool on specified address for specified address
 
-zerg-pool
+--zerg-pool
 *********
 ``argument``: required_argument
 

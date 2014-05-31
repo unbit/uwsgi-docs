@@ -56,7 +56,7 @@ sub generate_doc {
 			my ($option, $type, $shortcut, $help, $func, $arg, $flags) = parse($_);
 			next unless $option;
 			next if $option eq 'NULL';
-			print $option."\n";
+			print '--'.$option."\n";
 			print '*' x length($option);
 			print "\n";
 			print '``argument``: '.$type."\n\n";
