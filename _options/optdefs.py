@@ -29,7 +29,7 @@ def core_options():
         s.o("map-socket", [str], "map sockets to specific workers", help="""
         As you can bind a uWSGI instance to multiple sockets, you can use this option to map specific workers to specific sockets to implement a sort of in-process Quality of Service scheme.
 
-        .. code-block: ini
+        .. code-block:: ini
 
            [uwsgi]
            socket = /tmp/uwsgi0.sock
