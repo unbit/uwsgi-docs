@@ -55,6 +55,7 @@ sub generate_doc {
 		if ($_ =~ /{.*\,.*\,.*\,.*\,.*\,.*\,.*}/) {
 			my ($option, $type, $shortcut, $help, $func, $arg, $flags) = parse($_);
 			next unless $option;
+			next if $option eq 'NULL';
 			print $option."\n";
 			print '*' x length($option);
 			print "\n";
@@ -136,5 +137,6 @@ sub trim {
 	my ($s) = @_;
 	$s =~ s/^\s+//;
 	$s =~ s/\s+$//;
+	$s =~ s/\(char \*\)//g;
 	return $s;
 }

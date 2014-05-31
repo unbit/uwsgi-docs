@@ -3628,7 +3628,7 @@ call-as-vassal1
 
 
 
-call the specified function(char *) before exec()ing the vassal
+call the specified function before exec()ing the vassal
 
 call-as-vassal3
 ***************
@@ -3658,7 +3658,7 @@ call-as-emperor1
 
 
 
-call the specified function(char *) in the emperor after the vassal has been started
+call the specified function in the emperor after the vassal has been started
 
 call-as-emperor2
 ****************
@@ -9359,8 +9359,8 @@ enable greenlet as suspend engine
 
 plugin: gridfs
 ==============
-(char *)gridfs-mount
-********************
+gridfs-mount
+************
 ``argument``: required_argument
 
 ``parser``: uwsgi_opt_add_string_list
@@ -9369,10 +9369,10 @@ plugin: gridfs
 
 
 
-(char *)mount a gridfs db on the specified mountpoint
+mount a gridfs db on the specified mountpoint
 
-(char *)gridfs-debug
-********************
+gridfs-debug
+************
 ``argument``: no_argument
 
 ``parser``: uwsgi_opt_true
@@ -9381,7 +9381,7 @@ plugin: gridfs
 
 
 
-(char *)report gridfs mountpoint and itemname for each request (debug)
+report gridfs mountpoint and itemname for each request (debug)
 
 
 plugin: http
@@ -9987,16 +9987,6 @@ log-zeromq
 
 send logs to a zeromq server
 
-NULL
-****
-``argument``: 0
-
-``parser``: NULL
-
-
-
-NULL
-
 
 plugin: lua
 ===========
@@ -10225,16 +10215,6 @@ notfound-log
 
 
 log requests to the notfound plugin
-
-NULL
-****
-``argument``: 0
-
-``parser``: NULL
-
-
-
-NULL
 
 
 plugin: objc_gc
@@ -12679,16 +12659,6 @@ tuntap-device-rule
 
 add a tuntap device rule (syntax: <direction> <src/mask> <dst/mask> <action> [target])
 
-NULL
-****
-``argument``: 0
-
-``parser``: NULL
-
-
-
-NULL
-
 
 plugin: ugreen
 ==============
@@ -12715,55 +12685,55 @@ set ugreen stack size in pages
 
 plugin: v8
 ==========
-(char *)v8-load
-***************
+v8-load
+*******
 ``argument``: required_argument
 
 ``parser``: uwsgi_opt_add_string_list
 
 
 
-(char *)load a javascript file
+load a javascript file
 
-(char *)v8-preemptive
-*********************
+v8-preemptive
+*************
 ``argument``: required_argument
 
 ``parser``: uwsgi_opt_set_int
 
 
 
-(char *)put v8 in preemptive move (single isolate) with the specified frequency
+put v8 in preemptive move (single isolate) with the specified frequency
 
-(char *)v8-gc-freq
-******************
+v8-gc-freq
+**********
 ``argument``: required_argument
 
 ``parser``: uwsgi_opt_set_64bit
 
 
 
-(char *)set the v8 garbage collection frequency
+set the v8 garbage collection frequency
 
-(char *)v8-module-path
-**********************
+v8-module-path
+**************
 ``argument``: required_argument
 
 ``parser``: uwsgi_opt_add_string_list
 
 
 
-(char *)set the v8 modules search path
+set the v8 modules search path
 
-(char *)v8-jsgi
-***************
+v8-jsgi
+*******
 ``argument``: required_argument
 
 ``parser``: uwsgi_opt_set_str
 
 
 
-(char *)load the specified JSGI 3.0 application
+load the specified JSGI 3.0 application
 
 
 plugin: webdav
@@ -13087,16 +13057,6 @@ xslt-content-type
 
 
 set the content-type for the xslt rsult (default: text/html)
-
-NULL
-****
-``argument``: 0
-
-``parser``: NULL
-
-
-
-NULL
 
 
 plugin: zabbix
