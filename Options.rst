@@ -14,7 +14,7 @@ uWSGI core
 ******
 ``argument``: required_argument
 
-``shortcut``: s
+``shortcut``: -s
 
 ``parser``: uwsgi_opt_add_socket
 
@@ -26,7 +26,7 @@ bind to the specified UNIX/TCP socket using default protocol
 ************
 ``argument``: required_argument
 
-``shortcut``: s
+``shortcut``: -s
 
 ``parser``: uwsgi_opt_add_socket
 
@@ -38,7 +38,7 @@ bind to the specified UNIX/TCP socket using uwsgi protocol
 *************
 ``argument``: required_argument
 
-``shortcut``: s
+``shortcut``: -s
 
 ``parser``: uwsgi_opt_add_ssl_socket
 
@@ -50,7 +50,7 @@ bind to the specified UNIX/TCP socket using uwsgi protocol over SSL
 **********
 ``argument``: required_argument
 
-``shortcut``: s
+``shortcut``: -s
 
 ``parser``: uwsgi_opt_add_ssl_socket
 
@@ -282,7 +282,7 @@ create a shared sacket for advanced jailing or ipc (undeferred mode)
 *********
 ``argument``: required_argument
 
-``shortcut``: p
+``shortcut``: -p
 
 ``parser``: uwsgi_opt_set_int
 
@@ -294,7 +294,7 @@ spawn the specified number of workers/processes
 *******
 ``argument``: required_argument
 
-``shortcut``: p
+``shortcut``: -p
 
 ``parser``: uwsgi_opt_set_int
 
@@ -316,7 +316,7 @@ serialize accept() usage (if possible)
 ********
 ``argument``: required_argument
 
-``shortcut``: t
+``shortcut``: -t
 
 ``parser``: uwsgi_opt_set_int
 
@@ -388,7 +388,7 @@ set harakiri timeout for mule tasks
 *********
 ``argument``: required_argument
 
-``shortcut``: x
+``shortcut``: -x
 
 ``parser``: uwsgi_opt_load_xml
 
@@ -402,7 +402,7 @@ load config from xml file
 ***
 ``argument``: required_argument
 
-``shortcut``: x
+``shortcut``: -x
 
 ``parser``: uwsgi_opt_load_xml
 
@@ -472,7 +472,7 @@ skip atexit hooks (ignored by the master)
 ***
 ``argument``: required_argument
 
-``shortcut``: S
+``shortcut``: -S
 
 ``parser``: uwsgi_opt_set_placeholder
 
@@ -1024,7 +1024,7 @@ inject a text file after the config file (advanced templating)
 *********
 ``argument``: required_argument
 
-``shortcut``: d
+``shortcut``: -d
 
 ``parser``: uwsgi_opt_set_str
 
@@ -1130,7 +1130,7 @@ fetch/dump any supported address to stdout
 ******
 ``argument``: required_argument
 
-``shortcut``: l
+``shortcut``: -l
 
 ``parser``: uwsgi_opt_set_int
 
@@ -1142,7 +1142,7 @@ set the socket listen queue size
 ********
 ``argument``: required_argument
 
-``shortcut``: v
+``shortcut``: -v
 
 ``parser``: uwsgi_opt_max_vars
 
@@ -1164,7 +1164,7 @@ set the maximum number of per-worker applications
 ***********
 ``argument``: required_argument
 
-``shortcut``: b
+``shortcut``: -b
 
 ``parser``: uwsgi_opt_set_16bit
 
@@ -1176,7 +1176,7 @@ set internal buffer size
 *************
 ``argument``: no_argument
 
-``shortcut``: m
+``shortcut``: -m
 
 ``parser``: uwsgi_opt_true
 
@@ -1198,7 +1198,7 @@ enable the specified profiler
 ********
 ``argument``: no_argument
 
-``shortcut``: c
+``shortcut``: -c
 
 ``parser``: uwsgi_opt_true
 
@@ -1210,7 +1210,7 @@ force CGI-mode for plugins supporting it
 ***************
 ``argument``: no_argument
 
-``shortcut``: a
+``shortcut``: -a
 
 ``parser``: uwsgi_opt_true
 
@@ -1222,7 +1222,7 @@ force UNIX socket in abstract mode (Linux only)
 ************
 ``argument``: optional_argument
 
-``shortcut``: C
+``shortcut``: -C
 
 ``parser``: uwsgi_opt_chmod_socket
 
@@ -1234,7 +1234,7 @@ chmod-socket
 *****
 ``argument``: optional_argument
 
-``shortcut``: C
+``shortcut``: -C
 
 ``parser``: uwsgi_opt_chmod_socket
 
@@ -1288,7 +1288,7 @@ map sockets to specific workers
 **************
 ``argument``: no_argument
 
-``shortcut``: T
+``shortcut``: -T
 
 ``parser``: uwsgi_opt_true
 
@@ -1380,7 +1380,7 @@ set master process name
 ******************
 ``argument``: no_argument
 
-``shortcut``: i
+``shortcut``: -i
 
 ``parser``: uwsgi_opt_true
 
@@ -1402,7 +1402,7 @@ exit if no app can be loaded
 ******
 ``argument``: no_argument
 
-``shortcut``: M
+``shortcut``: -M
 
 ``parser``: uwsgi_opt_true
 
@@ -1904,7 +1904,7 @@ force the spawn of the first registered gateway without a master
 ****
 ``argument``: no_argument
 
-``shortcut``: h
+``shortcut``: -h
 
 ``parser``: uwsgi_help
 
@@ -1918,7 +1918,7 @@ show this help
 *****
 ``argument``: no_argument
 
-``shortcut``: h
+``shortcut``: -h
 
 ``parser``: uwsgi_help
 
@@ -1956,7 +1956,7 @@ print content of the specified binary symbol
 ******
 ``argument``: no_argument
 
-``shortcut``: r
+``shortcut``: -r
 
 ``parser``: uwsgi_opt_true
 
@@ -1968,7 +1968,7 @@ call waitpid(-1,...) after each request to get rid of zombies
 ************
 ``argument``: required_argument
 
-``shortcut``: R
+``shortcut``: -R
 
 ``parser``: uwsgi_opt_set_64bit
 
@@ -2000,7 +2000,7 @@ reload workers after the specified amount of seconds (default is disabled)
 **************
 ``argument``: required_argument
 
-``shortcut``: z
+``shortcut``: -z
 
 ``parser``: uwsgi_opt_set_int
 
@@ -2062,7 +2062,7 @@ do not remove ipcsem's on shutdown
 **********
 ``argument``: required_argument
 
-``shortcut``: A
+``shortcut``: -A
 
 ``parser``: uwsgi_opt_add_string_list
 
@@ -2292,7 +2292,7 @@ set frequency of sync for persistent queue
 *******
 ``argument``: required_argument
 
-``shortcut``: Q
+``shortcut``: -Q
 
 ``parser``: uwsgi_opt_add_spooler
 
@@ -2538,7 +2538,7 @@ maximum number of rpc slots (default: 64)
 ***************
 ``argument``: no_argument
 
-``shortcut``: L
+``shortcut``: -L
 
 ``parser``: uwsgi_opt_false
 
@@ -3696,7 +3696,7 @@ load config from ini file
 ****
 ``argument``: required_argument
 
-``shortcut``: y
+``shortcut``: -y
 
 ``parser``: uwsgi_opt_load_yml
 
@@ -3710,7 +3710,7 @@ load config from yaml file
 ***
 ``argument``: required_argument
 
-``shortcut``: y
+``shortcut``: -y
 
 ``parser``: uwsgi_opt_load_yml
 
@@ -3724,7 +3724,7 @@ load config from yaml file
 ****
 ``argument``: required_argument
 
-``shortcut``: j
+``shortcut``: -j
 
 ``parser``: uwsgi_opt_load_json
 
@@ -3738,7 +3738,7 @@ load config from json file
 **
 ``argument``: required_argument
 
-``shortcut``: j
+``shortcut``: -j
 
 ``parser``: uwsgi_opt_load_json
 
@@ -9850,7 +9850,7 @@ manage PROXY protocol requests
 ****
 ``argument``: 0x8b
 
-``shortcut``: Z_DEFLATED
+``shortcut``: -Z_DEFLATED
 
 
 
@@ -10888,7 +10888,7 @@ eval python code
 ******
 ``argument``: required_argument
 
-``shortcut``: w
+``shortcut``: -w
 
 ``parser``: uwsgi_opt_set_str
 
@@ -10900,7 +10900,7 @@ load a WSGI module
 ****
 ``argument``: required_argument
 
-``shortcut``: w
+``shortcut``: -w
 
 ``parser``: uwsgi_opt_set_str
 
@@ -10922,7 +10922,7 @@ set default WSGI callable name
 ****
 ``argument``: required_argument
 
-``shortcut``: J
+``shortcut``: -J
 
 ``parser``: uwsgi_opt_set_str
 
@@ -10934,7 +10934,7 @@ test a mdule import
 ****
 ``argument``: required_argument
 
-``shortcut``: H
+``shortcut``: -H
 
 ``parser``: uwsgi_opt_set_str
 
@@ -10946,7 +10946,7 @@ set PYTHONHOME/virtualenv
 **********
 ``argument``: required_argument
 
-``shortcut``: H
+``shortcut``: -H
 
 ``parser``: uwsgi_opt_set_str
 
@@ -10958,7 +10958,7 @@ set PYTHONHOME/virtualenv
 ****
 ``argument``: required_argument
 
-``shortcut``: H
+``shortcut``: -H
 
 ``parser``: uwsgi_opt_set_str
 
@@ -10970,7 +10970,7 @@ set PYTHONHOME/virtualenv
 ******
 ``argument``: required_argument
 
-``shortcut``: H
+``shortcut``: -H
 
 ``parser``: uwsgi_opt_set_str
 
@@ -11142,7 +11142,7 @@ manually set sys.argv
 ********
 ``argument``: required_argument
 
-``shortcut``: O
+``shortcut``: -O
 
 ``parser``: uwsgi_opt_set_int
 
