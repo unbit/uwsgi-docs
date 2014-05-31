@@ -61,7 +61,7 @@ sub generate_doc {
 			print "\n";
 			print '``argument``: '.$type."\n\n";
 			if ($shortcut) {
-				print '``shortcut``: '.$shortcut."\n\n";
+				print '``shortcut``: -'.$shortcut."\n\n";
 			}
 			if ($func) {
 				print '``parser``: '.$func."\n\n";
