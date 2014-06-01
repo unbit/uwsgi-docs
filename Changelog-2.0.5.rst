@@ -57,11 +57,19 @@ Icecast2 protocol helpers
 --metrics-no-cores, --stats-no-cores, --stats-no-metrics
 ********************************************************
 
+When you have hundreds (or thousands) of async cores, exposing metrics of them could be really slow.
+
+Three new options have been added allowing you to disable the generation of core-related metrics and (eventually) their usage in the stats server.
+
 sharedarea improvements
 ***********************
 
+
+
 UWSGI_GO_CHEAP_CODE
 *******************
+
+This exit code (15) can be raised by a worker to tell the master to not respawn it
 
 PROXY1 support for the http router (Credits: bgglenn)
 *****************************************************
@@ -70,6 +78,8 @@ The option ``--http-enable-proxy-protocol`` allows the HTTP router to understand
 
 reset_after_push for metrics (Credits: Babacar Tall)
 ****************************************************
+
+This metric attribute ensure that the matric value is reset to 0 (or its hardcoded initial_value) evry time the metric is pushed to some external system (like carbon, or statsd)
 
 setremoteaddr
 *************
