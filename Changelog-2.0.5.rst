@@ -1,7 +1,7 @@
 uWSGI 2.0.5
 ===========
 
-Changelog [20140501]
+Changelog [20140601]
 
 Bugfixes
 --------
@@ -30,15 +30,26 @@ Bugfixes
 New features
 ------------
 
-graceful reload of mule processes
-*********************************
+graceful reload of mule processes (Credits: Paul Egan)
+******************************************************
 
+SIGHUP is now sent to mules instead of directly killing them. You are free to trap/catch the signal
+in the code. If a mule does not die in the allowed "mercy time" (--mule-reload-mercy, default 60 seconds), SIGKILL will be sent.
 
-return routing action
-*********************
+return routing action (Credits: Yu Zhao)
+****************************************
+
+The new action will allow users to write simplified "break" clause.
+
+For example, "return:403" is equivalent to "break:403 Forbidden",
+with response body "Forbidden".
+
+The response body is quite useful for telling end users what goes wrong.
 
 --emperor-no-blacklist
 **********************
+
+this new option, completely disables the blacklisting Emperor subsystem
 
 Icecast2 protocol helpers
 *************************
