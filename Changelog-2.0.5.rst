@@ -130,3 +130,7 @@ a placeholder to the dns resolution of a string:
 
 Availability
 -------------
+
+uWSGI 2.0.5 has been released on [20140601] and can be downloaded from:
+
+http://projects.unbit.it/downloads/uwsgi-2.0.5.tar.gz
