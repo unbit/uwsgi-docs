@@ -31,25 +31,39 @@ New features
 ------------
 
 graceful reload of mule processes
+*********************************
 
 
 return routing action
+*********************
 
 --emperor-no-blacklist
+**********************
 
 Icecast2 protocol helpers
+*************************
 
 --metrics-no-cores, --stats-no-cores, --stats-no-metrics
+********************************************************
 
 sharedarea improvements
+***********************
 
 UWSGI_GO_CHEAP_CODE
+*******************
 
 PROXY1 support for the http router (Credits: bgglenn)
+*****************************************************
 
 
 reset_after_push for metrics (Credits: Babacar Tall)
+****************************************************
 
 setremoteaddr
+*************
 
 the resolve option
+******************
+
+Availability
+-------------
