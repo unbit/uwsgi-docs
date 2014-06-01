@@ -54,6 +54,14 @@ this new option, completely disables the blacklisting Emperor subsystem
 Icecast2 protocol helpers
 *************************
 
+One of the upcoming unbit.com projects is a uWSGI based audio/video streaming server.
+
+The plugin (should be released during europython 2014) already supports the Icecast2 protocol.
+
+A bunch of patches have been added to the http router to support the icecast2 protocol.
+
+For example the ``--http-manage-source`` option allows the HTTP router to honour SOURCE method requests, automatically placing them in raw mode.
+
 --metrics-no-cores, --stats-no-cores, --stats-no-metrics
 ********************************************************
 
@@ -64,7 +72,22 @@ Three new options have been added allowing you to disable the generation of core
 sharedarea improvements
 ***********************
 
+The sharedarea api continues to improve. Latest patches include support for mmapping device directly from the command line.
 
+A funny way for testing it, is mapping the raspberrypi BCM2835 memory, the following example allows you to read the rpi system timer
+
+.. code-block:: sh
+
+   uwsgi --sharedarea file=/dev/mem,offset=0x20003000,size=4096 ...
+   
+now you can read the 64bit value from the first (zero-based) sharedarea:
+
+.. code-block:: python
+
+   # read 64bit from 0x20003004
+   timer = uwsgi.sharedarea_read64(0, 0x04)
+   
+obviously, pay attention when accessing rpi memory, an error could crash the whole system !!!
 
 UWSGI_GO_CHEAP_CODE
 *******************
