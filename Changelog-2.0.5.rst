@@ -66,6 +66,7 @@ UWSGI_GO_CHEAP_CODE
 PROXY1 support for the http router (Credits: bgglenn)
 *****************************************************
 
+The option ``--http-enable-proxy-protocol`` allows the HTTP router to understand PROXY1 protocol requests (like the ones made by haproxy or amazon elb)
 
 reset_after_push for metrics (Credits: Babacar Tall)
 ****************************************************
@@ -73,8 +74,26 @@ reset_after_push for metrics (Credits: Babacar Tall)
 setremoteaddr
 *************
 
+This routing action allows you to completely override the REMOTE_ADDR detected by protocol handlers:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; treat all requests as local
+   route-run = setremoteaddr:127.0.0.1
+
 the resolve option
 ******************
+
+There are uWSGI options (or plugins) that do not automatically resolves dns name to ip addresses. This option allows you to map
+a placeholder to the dns resolution of a string:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; place the dns resolution of 'example.com' in the 'myserver' placeholder
+   resolve = myserver=example.com
+   subscribe2 = server=%(myserver),key=foobar
 
 Availability
 -------------
