@@ -100,7 +100,7 @@ The following keys are available:
 * ``type`` -- set the metric type, can be ``counter``, ``gauge``, ``absolute``, ``alias``
 * ``initial_value`` -- set the metric to a specific value on startup
 * ``freq`` -- set the collection frequency in seconds (default to 1)
-* ``reset_after_push`` -- reset the metric to zero after it's been pushed to the backend (so every ``freq`` seconds)
+* ``reset_after_push`` -- reset the metric to zero (or the configured ``initial_value``) after it's been pushed to the backend (so every ``freq`` seconds)
 * ``children`` -- maps children to the metric (see below)
 * ``alias`` -- the metric will be a simple alias for the specified one (--metric name=foobar,alias=worker.0.requests,type=alias)
 * ``arg1`` to ``arg3`` -- string based arguments (see below)
