@@ -153,6 +153,7 @@ This option has been added in uWSGI 2.0 and allows advanced configurations. It i
 * ``uid``: drop privileges to the specified uid (requires master running as root)
 * ``gid``: drop privileges to the specified gid (requires master running as root)
 * ``ns_pid``: spawn the process in a new pid namespace (requires master running as root, Linux only)
+* ``chdir``: chdir() to the specified directory before running the command (added in uWSGI 2.0.6)
 
 Example:
 
