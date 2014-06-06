@@ -23,12 +23,11 @@ implementing the plugin logic. So yes, most of the plugin is implemented in Pyth
 writing uWSGI plugins directly in Python in addition to C, C++ and Objective-C.
 
 As of August 2013 all of the required patches to PyPy have been merged, so you can get an official source tarball release.
-Unfortunately you still need to build/translate libpypy-c by yourself, or download one of the following files (they require libssl 1.0):
+Unfortunately you still need to build/translate libpypy-c by yourself, or download the following file (built for ubuntu trusty 64bit):
 
-* Linux x86 32-bit: http://projects.unbit.it/downloads/pypy/libpypy-c-x86_32_20130524.so
-* Linux x86 32-bit (with debug symbols): http://projects.unbit.it/downloads/pypy/libpypy-c-x86_32_20130524-dbg.so
-* Linux x86 64-bit: http://projects.unbit.it/downloads/pypy/libpypy-c-x86_64_20130524.so
-* Linux x86 64-bit (with debug symbols): http://projects.unbit.it/downloads/pypy/libpypy-c-x86_64_20130524-dbg.so
+
+* Linux x86 64-bit: http://projects.unbit.it/downloads/pypy/libpypy-c-x86_64.so
+
 
 In addition to the library you need to obviously download an official binary tarball too.
 
