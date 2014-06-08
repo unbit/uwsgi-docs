@@ -12,6 +12,14 @@ It is the same output you can get via the ``--help`` option.
 This page is probably the worst way to understand uWSGI for newbies. If you are still learning how the project
 works, you should read the various quickstarts and tutorials.
 
+Each option has the following attributes:
+
+* argument: it is the struct option (used by getopt()/getopt_long()) has_arg element. Can be 'required', 'no_argument' or 'optional_argument'
+* shortcut: some option can be specified with the short form (a dash followed by a single letter)
+* parser: this is how uWSGI parses the parameter. There are dozens of way, the most common are 'uwsgi_opt_set_str' when it takes a simple string, 'uwsgi_opt_set_int' when it takes a 32bit number, 'uwsgi_opt_add_string_list' when the parameter can be specified multiple times to build a list.
+* help: the help message, the same you get from ``uwsgi --help``
+* reference: a link to a documentation page that gives better understanding and context of an option
+
 EOF
 
 
