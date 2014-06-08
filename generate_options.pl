@@ -20,6 +20,8 @@ Each option has the following attributes:
 * help: the help message, the same you get from ``uwsgi --help``
 * reference: a link to a documentation page that gives better understanding and context of an option
 
+You can add more detailed infos to this page, editing https://github.com/unbit/uwsgi-docs/blob/master/optdefs.pl (please, double check it before sending a pull request)
+
 EOF
 
 

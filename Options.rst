@@ -16,6 +16,8 @@ Each option has the following attributes:
 * help: the help message, the same you get from ``uwsgi --help``
 * reference: a link to a documentation page that gives better understanding and context of an option
 
+You can add more detailed infos to this page, editing https://github.com/unbit/uwsgi-docs/blob/master/optdefs.pl (please, double check it before sending a pull request)
+
 uWSGI core
 ==========
 socket
@@ -1282,6 +1284,8 @@ freebind
 
 
 
+set the IP_FREEBIND flag to every socket created by uWSGI. This kind of socket can bind to non-existent ip addresses. Its main purpose is for high availability (this is Linux only)
+
 map-socket
 **********
 ``argument``: required_argument
@@ -1440,7 +1444,7 @@ emperor
 
 
 
-The Emperor is a special uWSGI instance aimed at governing other uWSGI instances (named: vassals). By default it is configured to monitor a directory containing valid uWSGI config files, whenever a fiel is created a new instance is spawned, when the file is touched the instance is reloaded, when the file is removed the instance is destroyed. It can be extended to support more paradigms
+The Emperor is a special uWSGI instance aimed at governing other uWSGI instances (named: vassals). By default it is configured to monitor a directory containing valid uWSGI config files, whenever a file is created a new instance is spawned, when the file is touched the instance is reloaded, when the file is removed the instance is destroyed. It can be extended to support more paradigms
 
 emperor-proxy-socket
 ********************
@@ -2079,6 +2083,8 @@ sharedarea
 ``parser``: uwsgi_opt_add_string_list
 
 ``help``: create a raw shared memory area of specified pages (note: it supports keyval too)
+
+``reference``: :doc:`SharedArea`
 
 
 

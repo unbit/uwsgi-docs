@@ -3,4 +3,6 @@ $OPTIONS = {
 	'thunder-lock' => {'ref' => 'articles/SerializingAccept'},
 	'declare-option' => {'ref' => 'CustomOptions'},
 	'fastrouter' => {'ref' => 'Fastrouter'},
+	'freebind' => {'doc' => "set the IP_FREEBIND flag to every socket created by uWSGI. This kind of socket can bind to non-existent ip addresses. Its main purpose is for high availability (this is Linux only)"},
+	'sharedarea' => {'ref' => 'SharedArea' },
 };
