@@ -280,3 +280,17 @@ Starting from uWSGI 2.0.4, you can store PHP sessions in uWSGI caches.
    ; use the 'foobar@192.168.173.22:3030' cache for storing sessions
    php-set = session.save_path=foobar@192.168.173.22:3030
 
+Zend Opcode Cache (uWSGI >= 2.0.6)
+----------------------------------
+
+For some mysterious reason, the opcode cacher is disabled in the embed sapi.
+
+You can bypass the problem, telling the php engine that is running under the apache sapi (using the ``php-sapi-name`` option):
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugins = php
+   php-sapi-name = apache
+   http-socket = :9090
+   http-socket-modifier1 = 14
