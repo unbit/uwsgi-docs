@@ -1,3 +1,4 @@
+require 'optdefs.pl';
 chdir $ARGV[0];
 
 print <<'EOF';
@@ -70,8 +71,16 @@ sub generate_doc {
 			if ($flags) {
 				print '``flags``: '.$flags."\n\n";
 			}
+			print '``help``: '.$help."\n\n";
+			if ($OPTIONS->{$option}->{ref}) {
+				print '``reference``: :doc:\''.$OPTIONS->{$option}->{ref}."'\n\n";
+			}
 			print "\n\n";
-			print $help."\n\n";
+
+			if ($OPTIONS->{$option}->{doc}) {
+				print $OPTIONS->{$option}->{doc}."\n\n";
+			}
+			
 		}
 	}
 	close(FILE);

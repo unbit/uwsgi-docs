@@ -18,9 +18,9 @@ socket
 
 ``parser``: uwsgi_opt_add_socket
 
+``help``: bind to the specified UNIX/TCP socket using default protocol
 
 
-bind to the specified UNIX/TCP socket using default protocol
 
 uwsgi-socket
 ************
@@ -30,33 +30,29 @@ uwsgi-socket
 
 ``parser``: uwsgi_opt_add_socket
 
+``help``: bind to the specified UNIX/TCP socket using uwsgi protocol
 
 
-bind to the specified UNIX/TCP socket using uwsgi protocol
 
 suwsgi-socket
 *************
 ``argument``: required_argument
 
-``shortcut``: -s
-
 ``parser``: uwsgi_opt_add_ssl_socket
 
+``help``: bind to the specified UNIX/TCP socket using uwsgi protocol over SSL
 
 
-bind to the specified UNIX/TCP socket using uwsgi protocol over SSL
 
 ssl-socket
 **********
 ``argument``: required_argument
 
-``shortcut``: -s
-
 ``parser``: uwsgi_opt_add_ssl_socket
 
+``help``: bind to the specified UNIX/TCP socket using uwsgi protocol over SSL
 
 
-bind to the specified UNIX/TCP socket using uwsgi protocol over SSL
 
 http-socket
 ***********
@@ -64,9 +60,9 @@ http-socket
 
 ``parser``: uwsgi_opt_add_socket
 
+``help``: bind to the specified UNIX/TCP socket using HTTP protocol
 
 
-bind to the specified UNIX/TCP socket using HTTP protocol
 
 http-socket-modifier1
 *********************
@@ -74,9 +70,9 @@ http-socket-modifier1
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: force the specified modifier1 when using HTTP protocol
 
 
-force the specified modifier1 when using HTTP protocol
 
 http-socket-modifier2
 *********************
@@ -84,9 +80,9 @@ http-socket-modifier2
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: force the specified modifier2 when using HTTP protocol
 
 
-force the specified modifier2 when using HTTP protocol
 
 https-socket
 ************
@@ -94,9 +90,9 @@ https-socket
 
 ``parser``: uwsgi_opt_add_ssl_socket
 
+``help``: bind to the specified UNIX/TCP socket using HTTPS protocol
 
 
-bind to the specified UNIX/TCP socket using HTTPS protocol
 
 https-socket-modifier1
 **********************
@@ -104,9 +100,9 @@ https-socket-modifier1
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: force the specified modifier1 when using HTTPS protocol
 
 
-force the specified modifier1 when using HTTPS protocol
 
 https-socket-modifier2
 **********************
@@ -114,9 +110,9 @@ https-socket-modifier2
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: force the specified modifier2 when using HTTPS protocol
 
 
-force the specified modifier2 when using HTTPS protocol
 
 fastcgi-socket
 **************
@@ -124,9 +120,9 @@ fastcgi-socket
 
 ``parser``: uwsgi_opt_add_socket
 
+``help``: bind to the specified UNIX/TCP socket using FastCGI protocol
 
 
-bind to the specified UNIX/TCP socket using FastCGI protocol
 
 fastcgi-nph-socket
 ******************
@@ -134,9 +130,9 @@ fastcgi-nph-socket
 
 ``parser``: uwsgi_opt_add_socket
 
+``help``: bind to the specified UNIX/TCP socket using FastCGI protocol (nph mode)
 
 
-bind to the specified UNIX/TCP socket using FastCGI protocol (nph mode)
 
 fastcgi-modifier1
 *****************
@@ -144,9 +140,9 @@ fastcgi-modifier1
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: force the specified modifier1 when using FastCGI protocol
 
 
-force the specified modifier1 when using FastCGI protocol
 
 fastcgi-modifier2
 *****************
@@ -154,9 +150,9 @@ fastcgi-modifier2
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: force the specified modifier2 when using FastCGI protocol
 
 
-force the specified modifier2 when using FastCGI protocol
 
 scgi-socket
 ***********
@@ -164,9 +160,9 @@ scgi-socket
 
 ``parser``: uwsgi_opt_add_socket
 
+``help``: bind to the specified UNIX/TCP socket using SCGI protocol
 
 
-bind to the specified UNIX/TCP socket using SCGI protocol
 
 scgi-nph-socket
 ***************
@@ -174,9 +170,9 @@ scgi-nph-socket
 
 ``parser``: uwsgi_opt_add_socket
 
+``help``: bind to the specified UNIX/TCP socket using SCGI protocol (nph mode)
 
 
-bind to the specified UNIX/TCP socket using SCGI protocol (nph mode)
 
 scgi-modifier1
 **************
@@ -184,9 +180,9 @@ scgi-modifier1
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: force the specified modifier1 when using SCGI protocol
 
 
-force the specified modifier1 when using SCGI protocol
 
 scgi-modifier2
 **************
@@ -194,9 +190,9 @@ scgi-modifier2
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: force the specified modifier2 when using SCGI protocol
 
 
-force the specified modifier2 when using SCGI protocol
 
 raw-socket
 **********
@@ -204,9 +200,9 @@ raw-socket
 
 ``parser``: uwsgi_opt_add_socket_no_defer
 
+``help``: bind to the specified UNIX/TCP socket using RAW protocol
 
 
-bind to the specified UNIX/TCP socket using RAW protocol
 
 raw-modifier1
 *************
@@ -214,9 +210,9 @@ raw-modifier1
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: force the specified modifier1 when using RAW protocol
 
 
-force the specified modifier1 when using RAW protocol
 
 raw-modifier2
 *************
@@ -224,9 +220,9 @@ raw-modifier2
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: force the specified modifier2 when using RAW protocol
 
 
-force the specified modifier2 when using RAW protocol
 
 puwsgi-socket
 *************
@@ -234,9 +230,9 @@ puwsgi-socket
 
 ``parser``: uwsgi_opt_add_socket
 
+``help``: bind to the specified UNIX/TCP socket using persistent uwsgi protocol (puwsgi)
 
 
-bind to the specified UNIX/TCP socket using persistent uwsgi protocol (puwsgi)
 
 protocol
 ********
@@ -244,9 +240,9 @@ protocol
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: force the specified protocol for default sockets
 
 
-force the specified protocol for default sockets
 
 socket-protocol
 ***************
@@ -254,9 +250,9 @@ socket-protocol
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: force the specified protocol for default sockets
 
 
-force the specified protocol for default sockets
 
 shared-socket
 *************
@@ -264,9 +260,9 @@ shared-socket
 
 ``parser``: uwsgi_opt_add_shared_socket
 
+``help``: create a shared sacket for advanced jailing or ipc
 
 
-create a shared sacket for advanced jailing or ipc
 
 undeferred-shared-socket
 ************************
@@ -274,9 +270,9 @@ undeferred-shared-socket
 
 ``parser``: uwsgi_opt_add_shared_socket
 
+``help``: create a shared sacket for advanced jailing or ipc (undeferred mode)
 
 
-create a shared sacket for advanced jailing or ipc (undeferred mode)
 
 processes
 *********
@@ -286,9 +282,9 @@ processes
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: spawn the specified number of workers/processes
 
 
-spawn the specified number of workers/processes
 
 workers
 *******
@@ -298,9 +294,9 @@ workers
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: spawn the specified number of workers/processes
 
 
-spawn the specified number of workers/processes
 
 thunder-lock
 ************
@@ -308,9 +304,11 @@ thunder-lock
 
 ``parser``: uwsgi_opt_true
 
+``help``: serialize accept() usage (if possible)
+
+``reference``: :doc:'articles/SerializingAccept'
 
 
-serialize accept() usage (if possible)
 
 harakiri
 ********
@@ -320,9 +318,9 @@ harakiri
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set harakiri timeout
 
 
-set harakiri timeout
 
 harakiri-verbose
 ****************
@@ -330,9 +328,9 @@ harakiri-verbose
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable verbose mode for harakiri
 
 
-enable verbose mode for harakiri
 
 harakiri-no-arh
 ***************
@@ -340,9 +338,9 @@ harakiri-no-arh
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not enable harakiri during after-request-hook
 
 
-do not enable harakiri during after-request-hook
 
 no-harakiri-arh
 ***************
@@ -350,9 +348,9 @@ no-harakiri-arh
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not enable harakiri during after-request-hook
 
 
-do not enable harakiri during after-request-hook
 
 no-harakiri-after-req-hook
 **************************
@@ -360,9 +358,9 @@ no-harakiri-after-req-hook
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not enable harakiri during after-request-hook
 
 
-do not enable harakiri during after-request-hook
 
 backtrace-depth
 ***************
@@ -370,9 +368,9 @@ backtrace-depth
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set backtrace depth
 
 
-set backtrace depth
 
 mule-harakiri
 *************
@@ -380,9 +378,9 @@ mule-harakiri
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set harakiri timeout for mule tasks
 
 
-set harakiri timeout for mule tasks
 
 xmlconfig
 *********
@@ -394,9 +392,9 @@ xmlconfig
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: load config from xml file
 
 
-load config from xml file
 
 xml
 ***
@@ -408,9 +406,9 @@ xml
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: load config from xml file
 
 
-load config from xml file
 
 config
 ******
@@ -420,9 +418,9 @@ config
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: load configuration using the pluggable system
 
 
-load configuration using the pluggable system
 
 fallback-config
 ***************
@@ -432,9 +430,9 @@ fallback-config
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: re-exec uwsgi with the specified config when exit code is 1
 
 
-re-exec uwsgi with the specified config when exit code is 1
 
 strict
 ******
@@ -444,9 +442,9 @@ strict
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: enable strict mode (placeholder cannot be used)
 
 
-enable strict mode (placeholder cannot be used)
 
 skip-zero
 *********
@@ -454,9 +452,9 @@ skip-zero
 
 ``parser``: uwsgi_opt_true
 
+``help``: skip check of file descriptor 0
 
 
-skip check of file descriptor 0
 
 skip-atexit
 ***********
@@ -464,9 +462,9 @@ skip-atexit
 
 ``parser``: uwsgi_opt_true
 
+``help``: skip atexit hooks (ignored by the master)
 
 
-skip atexit hooks (ignored by the master)
 
 set
 ***
@@ -478,9 +476,9 @@ set
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: set a placeholder or an option
 
 
-set a placeholder or an option
 
 set-placeholder
 ***************
@@ -490,9 +488,9 @@ set-placeholder
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: set a placeholder
 
 
-set a placeholder
 
 set-ph
 ******
@@ -502,9 +500,9 @@ set-ph
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: set a placeholder
 
 
-set a placeholder
 
 get
 ***
@@ -514,9 +512,9 @@ get
 
 ``flags``: UWSGI_OPT_NO_INITIAL
 
+``help``: print the specified option value and exit
 
 
-print the specified option value and exit
 
 declare-option
 **************
@@ -526,9 +524,11 @@ declare-option
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: declare a new uWSGI custom option
+
+``reference``: :doc:'CustomOptions'
 
 
-declare a new uWSGI custom option
 
 declare-option2
 ***************
@@ -536,9 +536,9 @@ declare-option2
 
 ``parser``: uwsgi_opt_add_custom_option
 
+``help``: declare a new uWSGI custom option (non-immediate)
 
 
-declare a new uWSGI custom option (non-immediate)
 
 resolve
 *******
@@ -548,9 +548,9 @@ resolve
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: place the result of a dns query in the specified placeholder, sytax: placeholder=name (immediate option)
 
 
-place the result of a dns query in the specified placeholder, sytax: placeholder=name (immediate option)
 
 for
 ***
@@ -560,9 +560,9 @@ for
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) for cycle
 
 
-(opt logic) for cycle
 
 for-glob
 ********
@@ -572,9 +572,9 @@ for-glob
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) for cycle (expand glob)
 
 
-(opt logic) for cycle (expand glob)
 
 for-times
 *********
@@ -584,9 +584,9 @@ for-times
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) for cycle (expand the specified num to a list starting from 1)
 
 
-(opt logic) for cycle (expand the specified num to a list starting from 1)
 
 for-readline
 ************
@@ -596,9 +596,9 @@ for-readline
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) for cycle (expand the specified file to a list of lines)
 
 
-(opt logic) for cycle (expand the specified file to a list of lines)
 
 endfor
 ******
@@ -608,9 +608,9 @@ endfor
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) end for cycle
 
 
-(opt logic) end for cycle
 
 end-for
 *******
@@ -620,9 +620,9 @@ end-for
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) end for cycle
 
 
-(opt logic) end for cycle
 
 if-opt
 ******
@@ -632,9 +632,9 @@ if-opt
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) check for option
 
 
-(opt logic) check for option
 
 if-not-opt
 **********
@@ -644,9 +644,9 @@ if-not-opt
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) check for option
 
 
-(opt logic) check for option
 
 if-env
 ******
@@ -656,9 +656,9 @@ if-env
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) check for environment variable
 
 
-(opt logic) check for environment variable
 
 if-not-env
 **********
@@ -668,9 +668,9 @@ if-not-env
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) check for environment variable
 
 
-(opt logic) check for environment variable
 
 ifenv
 *****
@@ -680,9 +680,9 @@ ifenv
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) check for environment variable
 
 
-(opt logic) check for environment variable
 
 if-reload
 *********
@@ -692,9 +692,9 @@ if-reload
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) check for reload
 
 
-(opt logic) check for reload
 
 if-not-reload
 *************
@@ -704,9 +704,9 @@ if-not-reload
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) check for reload
 
 
-(opt logic) check for reload
 
 if-exists
 *********
@@ -716,9 +716,9 @@ if-exists
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) check for file/directory existance
 
 
-(opt logic) check for file/directory existance
 
 if-not-exists
 *************
@@ -728,9 +728,9 @@ if-not-exists
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) check for file/directory existance
 
 
-(opt logic) check for file/directory existance
 
 ifexists
 ********
@@ -740,9 +740,9 @@ ifexists
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) check for file/directory existance
 
 
-(opt logic) check for file/directory existance
 
 if-plugin
 *********
@@ -752,9 +752,9 @@ if-plugin
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) check for plugin
 
 
-(opt logic) check for plugin
 
 if-not-plugin
 *************
@@ -764,9 +764,9 @@ if-not-plugin
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) check for plugin
 
 
-(opt logic) check for plugin
 
 ifplugin
 ********
@@ -776,9 +776,9 @@ ifplugin
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) check for plugin
 
 
-(opt logic) check for plugin
 
 if-file
 *******
@@ -788,9 +788,9 @@ if-file
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) check for file existance
 
 
-(opt logic) check for file existance
 
 if-not-file
 ***********
@@ -800,9 +800,9 @@ if-not-file
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) check for file existance
 
 
-(opt logic) check for file existance
 
 if-dir
 ******
@@ -812,9 +812,9 @@ if-dir
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) check for directory existance
 
 
-(opt logic) check for directory existance
 
 if-not-dir
 **********
@@ -824,9 +824,9 @@ if-not-dir
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) check for directory existance
 
 
-(opt logic) check for directory existance
 
 ifdir
 *****
@@ -836,9 +836,9 @@ ifdir
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) check for directory existance
 
 
-(opt logic) check for directory existance
 
 if-directory
 ************
@@ -848,9 +848,9 @@ if-directory
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) check for directory existance
 
 
-(opt logic) check for directory existance
 
 endif
 *****
@@ -860,9 +860,9 @@ endif
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) end if
 
 
-(opt logic) end if
 
 end-if
 ******
@@ -872,9 +872,9 @@ end-if
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: (opt logic) end if
 
 
-(opt logic) end if
 
 blacklist
 *********
@@ -884,9 +884,9 @@ blacklist
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: set options blacklist context
 
 
-set options blacklist context
 
 end-blacklist
 *************
@@ -896,9 +896,9 @@ end-blacklist
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: clear options blacklist context
 
 
-clear options blacklist context
 
 whitelist
 *********
@@ -908,9 +908,9 @@ whitelist
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: set options whitelist context
 
 
-set options whitelist context
 
 end-whitelist
 *************
@@ -920,9 +920,9 @@ end-whitelist
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: clear options whitelist context
 
 
-clear options whitelist context
 
 ignore-sigpipe
 **************
@@ -930,9 +930,9 @@ ignore-sigpipe
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not report (annoying) SIGPIPE
 
 
-do not report (annoying) SIGPIPE
 
 ignore-write-errors
 *******************
@@ -940,9 +940,9 @@ ignore-write-errors
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not report (annoying) write()/writev() errors
 
 
-do not report (annoying) write()/writev() errors
 
 write-errors-tolerance
 **********************
@@ -950,9 +950,9 @@ write-errors-tolerance
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: set the maximum number of allowed write errors (default: no tolerance)
 
 
-set the maximum number of allowed write errors (default: no tolerance)
 
 write-errors-exception-only
 ***************************
@@ -960,9 +960,9 @@ write-errors-exception-only
 
 ``parser``: uwsgi_opt_true
 
+``help``: only raise an exception on write errors giving control to the app itself
 
 
-only raise an exception on write errors giving control to the app itself
 
 disable-write-exception
 ***********************
@@ -970,9 +970,9 @@ disable-write-exception
 
 ``parser``: uwsgi_opt_true
 
+``help``: disable exception generation on write()/writev()
 
 
-disable exception generation on write()/writev()
 
 inherit
 *******
@@ -980,9 +980,9 @@ inherit
 
 ``parser``: uwsgi_opt_load
 
+``help``: use the specified file as config template
 
 
-use the specified file as config template
 
 include
 *******
@@ -992,9 +992,9 @@ include
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: include the specified file as immediate configuration
 
 
-include the specified file as immediate configuration
 
 inject-before
 *************
@@ -1004,9 +1004,9 @@ inject-before
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: inject a text file before the config file (advanced templating)
 
 
-inject a text file before the config file (advanced templating)
 
 inject-after
 ************
@@ -1016,9 +1016,9 @@ inject-after
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: inject a text file after the config file (advanced templating)
 
 
-inject a text file after the config file (advanced templating)
 
 daemonize
 *********
@@ -1028,9 +1028,9 @@ daemonize
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: daemonize uWSGI
 
 
-daemonize uWSGI
 
 daemonize2
 **********
@@ -1038,9 +1038,9 @@ daemonize2
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: daemonize uWSGI after app loading
 
 
-daemonize uWSGI after app loading
 
 stop
 ****
@@ -1050,9 +1050,9 @@ stop
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: stop an instance
 
 
-stop an instance
 
 reload
 ******
@@ -1062,9 +1062,9 @@ reload
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: reload an instance
 
 
-reload an instance
 
 pause
 *****
@@ -1074,9 +1074,9 @@ pause
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: pause an instance
 
 
-pause an instance
 
 suspend
 *******
@@ -1086,9 +1086,9 @@ suspend
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: suspend an instance
 
 
-suspend an instance
 
 resume
 ******
@@ -1098,9 +1098,9 @@ resume
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: resume an instance
 
 
-resume an instance
 
 connect-and-read
 ****************
@@ -1110,9 +1110,9 @@ connect-and-read
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: connect to a socket and wait for data from it
 
 
-connect to a socket and wait for data from it
 
 extract
 *******
@@ -1122,9 +1122,9 @@ extract
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: fetch/dump any supported address to stdout
 
 
-fetch/dump any supported address to stdout
 
 listen
 ******
@@ -1134,9 +1134,9 @@ listen
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the socket listen queue size
 
 
-set the socket listen queue size
 
 max-vars
 ********
@@ -1146,9 +1146,9 @@ max-vars
 
 ``parser``: uwsgi_opt_max_vars
 
+``help``: set the amount of internal iovec/vars structures
 
 
-set the amount of internal iovec/vars structures
 
 max-apps
 ********
@@ -1156,9 +1156,9 @@ max-apps
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the maximum number of per-worker applications
 
 
-set the maximum number of per-worker applications
 
 buffer-size
 ***********
@@ -1168,9 +1168,9 @@ buffer-size
 
 ``parser``: uwsgi_opt_set_16bit
 
+``help``: set internal buffer size
 
 
-set internal buffer size
 
 memory-report
 *************
@@ -1180,9 +1180,9 @@ memory-report
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable memory report
 
 
-enable memory report
 
 profiler
 ********
@@ -1190,9 +1190,9 @@ profiler
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: enable the specified profiler
 
 
-enable the specified profiler
 
 cgi-mode
 ********
@@ -1202,9 +1202,9 @@ cgi-mode
 
 ``parser``: uwsgi_opt_true
 
+``help``: force CGI-mode for plugins supporting it
 
 
-force CGI-mode for plugins supporting it
 
 abstract-socket
 ***************
@@ -1214,9 +1214,9 @@ abstract-socket
 
 ``parser``: uwsgi_opt_true
 
+``help``: force UNIX socket in abstract mode (Linux only)
 
 
-force UNIX socket in abstract mode (Linux only)
 
 chmod-socket
 ************
@@ -1226,9 +1226,9 @@ chmod-socket
 
 ``parser``: uwsgi_opt_chmod_socket
 
+``help``: chmod-socket
 
 
-chmod-socket
 
 chmod
 *****
@@ -1238,9 +1238,9 @@ chmod
 
 ``parser``: uwsgi_opt_chmod_socket
 
+``help``: chmod-socket
 
 
-chmod-socket
 
 chown-socket
 ************
@@ -1248,9 +1248,9 @@ chown-socket
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: chown unix sockets
 
 
-chown unix sockets
 
 umask
 *****
@@ -1260,9 +1260,9 @@ umask
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: set umask
 
 
-set umask
 
 freebind
 ********
@@ -1270,9 +1270,9 @@ freebind
 
 ``parser``: uwsgi_opt_true
 
+``help``: put socket in freebind mode
 
 
-put socket in freebind mode
 
 map-socket
 **********
@@ -1280,9 +1280,9 @@ map-socket
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: map sockets to specific workers
 
 
-map sockets to specific workers
 
 enable-threads
 **************
@@ -1292,9 +1292,9 @@ enable-threads
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable threads
 
 
-enable threads
 
 no-threads-wait
 ***************
@@ -1302,9 +1302,9 @@ no-threads-wait
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not wait for threads cancellation on quit/reload
 
 
-do not wait for threads cancellation on quit/reload
 
 auto-procname
 *************
@@ -1312,9 +1312,9 @@ auto-procname
 
 ``parser``: uwsgi_opt_true
 
+``help``: automatically set processes name to something meaningful
 
 
-automatically set processes name to something meaningful
 
 procname-prefix
 ***************
@@ -1324,9 +1324,9 @@ procname-prefix
 
 ``flags``: UWSGI_OPT_PROCNAME
 
+``help``: add a prefix to the process names
 
 
-add a prefix to the process names
 
 procname-prefix-spaced
 **********************
@@ -1336,9 +1336,9 @@ procname-prefix-spaced
 
 ``flags``: UWSGI_OPT_PROCNAME
 
+``help``: add a spaced prefix to the process names
 
 
-add a spaced prefix to the process names
 
 procname-append
 ***************
@@ -1348,9 +1348,9 @@ procname-append
 
 ``flags``: UWSGI_OPT_PROCNAME
 
+``help``: append a string to process names
 
 
-append a string to process names
 
 procname
 ********
@@ -1360,9 +1360,9 @@ procname
 
 ``flags``: UWSGI_OPT_PROCNAME
 
+``help``: set process names
 
 
-set process names
 
 procname-master
 ***************
@@ -1372,9 +1372,9 @@ procname-master
 
 ``flags``: UWSGI_OPT_PROCNAME
 
+``help``: set master process name
 
 
-set master process name
 
 single-interpreter
 ******************
@@ -1384,9 +1384,9 @@ single-interpreter
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not use multiple interpreters (where available)
 
 
-do not use multiple interpreters (where available)
 
 need-app
 ********
@@ -1394,9 +1394,9 @@ need-app
 
 ``parser``: uwsgi_opt_true
 
+``help``: exit if no app can be loaded
 
 
-exit if no app can be loaded
 
 master
 ******
@@ -1406,9 +1406,9 @@ master
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable master process
 
 
-enable master process
 
 honour-stdin
 ************
@@ -1416,9 +1416,9 @@ honour-stdin
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not remap stdin to /dev/null
 
 
-do not remap stdin to /dev/null
 
 emperor
 *******
@@ -1426,9 +1426,13 @@ emperor
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the Emperor
+
+``reference``: :doc:'Emperor'
 
 
-run the Emperor
+
+The Emperor is a special uWSGI instance aimed at governing other uWSGI instances (named: vassals). By default it is configured to monitor a directory containing valid uWSGI config files, whenever a fiel is created a new instance is spawned, when the file is touched the instance is reloaded, when the file is removed the instance is destroyed. It can be extended to support more paradigms
 
 emperor-proxy-socket
 ********************
@@ -1436,9 +1440,9 @@ emperor-proxy-socket
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: force the vassal to became an Emperor proxy
 
 
-force the vassal to became an Emperor proxy
 
 emperor-wrapper
 ***************
@@ -1446,9 +1450,9 @@ emperor-wrapper
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set a binary wrapper for vassals
 
 
-set a binary wrapper for vassals
 
 emperor-nofollow
 ****************
@@ -1456,9 +1460,9 @@ emperor-nofollow
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not follow symlinks when checking for mtime
 
 
-do not follow symlinks when checking for mtime
 
 emperor-procname
 ****************
@@ -1466,9 +1470,9 @@ emperor-procname
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set the Emperor process name
 
 
-set the Emperor process name
 
 emperor-freq
 ************
@@ -1476,9 +1480,9 @@ emperor-freq
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the Emperor scan frequency (default 3 seconds)
 
 
-set the Emperor scan frequency (default 3 seconds)
 
 emperor-required-heartbeat
 **************************
@@ -1486,9 +1490,9 @@ emperor-required-heartbeat
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the Emperor tolerance about heartbeats
 
 
-set the Emperor tolerance about heartbeats
 
 emperor-curse-tolerance
 ***********************
@@ -1496,9 +1500,9 @@ emperor-curse-tolerance
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the Emperor tolerance about cursed vassals
 
 
-set the Emperor tolerance about cursed vassals
 
 emperor-pidfile
 ***************
@@ -1506,9 +1510,9 @@ emperor-pidfile
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: write the Emperor pid in the specified file
 
 
-write the Emperor pid in the specified file
 
 emperor-tyrant
 **************
@@ -1516,9 +1520,9 @@ emperor-tyrant
 
 ``parser``: uwsgi_opt_true
 
+``help``: put the Emperor in Tyrant mode
 
 
-put the Emperor in Tyrant mode
 
 emperor-tyrant-nofollow
 ***********************
@@ -1526,9 +1530,9 @@ emperor-tyrant-nofollow
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not follow symlinks when checking for uid/gid in Tyrant mode
 
 
-do not follow symlinks when checking for uid/gid in Tyrant mode
 
 emperor-stats
 *************
@@ -1536,9 +1540,9 @@ emperor-stats
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the Emperor stats server
 
 
-run the Emperor stats server
 
 emperor-stats-server
 ********************
@@ -1546,9 +1550,9 @@ emperor-stats-server
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the Emperor stats server
 
 
-run the Emperor stats server
 
 early-emperor
 *************
@@ -1556,9 +1560,9 @@ early-emperor
 
 ``parser``: uwsgi_opt_true
 
+``help``: spawn the emperor as soon as possibile
 
 
-spawn the emperor as soon as possibile
 
 emperor-broodlord
 *****************
@@ -1566,9 +1570,9 @@ emperor-broodlord
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: run the emperor in BroodLord mode
 
 
-run the emperor in BroodLord mode
 
 emperor-throttle
 ****************
@@ -1576,9 +1580,9 @@ emperor-throttle
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set throttling level (in milliseconds) for bad behaving vassals (default 1000)
 
 
-set throttling level (in milliseconds) for bad behaving vassals (default 1000)
 
 emperor-max-throttle
 ********************
@@ -1586,9 +1590,9 @@ emperor-max-throttle
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set max throttling level (in milliseconds) for bad behaving vassals (default 3 minutes)
 
 
-set max throttling level (in milliseconds) for bad behaving vassals (default 3 minutes)
 
 emperor-magic-exec
 ******************
@@ -1596,9 +1600,9 @@ emperor-magic-exec
 
 ``parser``: uwsgi_opt_true
 
+``help``: prefix vassals config files with exec:// if they have the executable bit
 
 
-prefix vassals config files with exec:// if they have the executable bit
 
 emperor-on-demand-extension
 ***************************
@@ -1606,9 +1610,9 @@ emperor-on-demand-extension
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: search for text file (vassal name + extension) containing the on demand socket name
 
 
-search for text file (vassal name + extension) containing the on demand socket name
 
 emperor-on-demand-ext
 *********************
@@ -1616,9 +1620,9 @@ emperor-on-demand-ext
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: search for text file (vassal name + extension) containing the on demand socket name
 
 
-search for text file (vassal name + extension) containing the on demand socket name
 
 emperor-on-demand-directory
 ***************************
@@ -1626,9 +1630,9 @@ emperor-on-demand-directory
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: enable on demand mode binding to the unix socket in the specified directory named like the vassal + .socket
 
 
-enable on demand mode binding to the unix socket in the specified directory named like the vassal + .socket
 
 emperor-on-demand-dir
 *********************
@@ -1636,9 +1640,9 @@ emperor-on-demand-dir
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: enable on demand mode binding to the unix socket in the specified directory named like the vassal + .socket
 
 
-enable on demand mode binding to the unix socket in the specified directory named like the vassal + .socket
 
 emperor-on-demand-exec
 **********************
@@ -1646,9 +1650,9 @@ emperor-on-demand-exec
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: use the output of the specified command as on demand socket name (the vassal name is passed as the only argument)
 
 
-use the output of the specified command as on demand socket name (the vassal name is passed as the only argument)
 
 emperor-extra-extension
 ***********************
@@ -1656,9 +1660,9 @@ emperor-extra-extension
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: allows the specified extension in the Emperor (vassal will be called with --config)
 
 
-allows the specified extension in the Emperor (vassal will be called with --config)
 
 emperor-extra-ext
 *****************
@@ -1666,9 +1670,9 @@ emperor-extra-ext
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: allows the specified extension in the Emperor (vassal will be called with --config)
 
 
-allows the specified extension in the Emperor (vassal will be called with --config)
 
 emperor-no-blacklist
 ********************
@@ -1676,9 +1680,9 @@ emperor-no-blacklist
 
 ``parser``: uwsgi_opt_true
 
+``help``: disable Emperor blacklisting subsystem
 
 
-disable Emperor blacklisting subsystem
 
 emperor-use-clone
 *****************
@@ -1686,39 +1690,9 @@ emperor-use-clone
 
 ``parser``: uwsgi_opt_set_unshare
 
+``help``: use clone() instead of fork() passing the specified unshare() flags
 
 
-use clone() instead of fork() passing the specified unshare() flags
-
-emperor-use-fork-server
-***********************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_set_str
-
-
-
-connect to the specified fork server instead of using plain fork() for new vassals
-
-vassal-fork-base
-****************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_add_string_list
-
-
-
-use plain fork() for the specified vassal (instead of a fork-server)
-
-emperor-subreaper
-*****************
-``argument``: no_argument
-
-``parser``: uwsgi_opt_true
-
-
-
-force the Emperor to be a sub-reaper (if supported)
 
 emperor-cap
 ***********
@@ -1726,9 +1700,9 @@ emperor-cap
 
 ``parser``: uwsgi_opt_set_emperor_cap
 
+``help``: set vassals capability
 
 
-set vassals capability
 
 vassals-cap
 ***********
@@ -1736,9 +1710,9 @@ vassals-cap
 
 ``parser``: uwsgi_opt_set_emperor_cap
 
+``help``: set vassals capability
 
 
-set vassals capability
 
 vassal-cap
 **********
@@ -1746,49 +1720,9 @@ vassal-cap
 
 ``parser``: uwsgi_opt_set_emperor_cap
 
+``help``: set vassals capability
 
 
-set vassals capability
-
-emperor-collect-attribute
-*************************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_add_string_list
-
-
-
-collect the specified vassal attribute from imperial monitors
-
-emperor-collect-attr
-********************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_add_string_list
-
-
-
-collect the specified vassal attribute from imperial monitors
-
-emperor-fork-server-attr
-************************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_set_str
-
-
-
-set teh vassal's attribute to get when checking for fork-server
-
-emperor-wrapper-attr
-********************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_set_str
-
-
-
-set teh vassal's attribute to get when checking for fork-wrapper
 
 imperial-monitor-list
 *********************
@@ -1796,9 +1730,9 @@ imperial-monitor-list
 
 ``parser``: uwsgi_opt_true
 
+``help``: list enabled imperial monitors
 
 
-list enabled imperial monitors
 
 imperial-monitors-list
 **********************
@@ -1806,9 +1740,9 @@ imperial-monitors-list
 
 ``parser``: uwsgi_opt_true
 
+``help``: list enabled imperial monitors
 
 
-list enabled imperial monitors
 
 vassals-inherit
 ***************
@@ -1816,9 +1750,9 @@ vassals-inherit
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add config templates to vassals config (uses --inherit)
 
 
-add config templates to vassals config (uses --inherit)
 
 vassals-include
 ***************
@@ -1826,9 +1760,9 @@ vassals-include
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: include config templates to vassals config (uses --include instead of --inherit)
 
 
-include config templates to vassals config (uses --include instead of --inherit)
 
 vassals-inherit-before
 **********************
@@ -1836,9 +1770,9 @@ vassals-inherit-before
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add config templates to vassals config (uses --inherit, parses before the vassal file)
 
 
-add config templates to vassals config (uses --inherit, parses before the vassal file)
 
 vassals-include-before
 **********************
@@ -1846,9 +1780,9 @@ vassals-include-before
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: include config templates to vassals config (uses --include instead of --inherit, parses before the vassal file)
 
 
-include config templates to vassals config (uses --include instead of --inherit, parses before the vassal file)
 
 vassals-start-hook
 ******************
@@ -1856,9 +1790,9 @@ vassals-start-hook
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the specified command before each vassal starts
 
 
-run the specified command before each vassal starts
 
 vassals-stop-hook
 *****************
@@ -1866,9 +1800,9 @@ vassals-stop-hook
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the specified command after vassal's death
 
 
-run the specified command after vassal's death
 
 vassal-sos-backlog
 ******************
@@ -1876,9 +1810,9 @@ vassal-sos-backlog
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: ask emperor for sos if backlog queue has more items than the value specified
 
 
-ask emperor for sos if backlog queue has more items than the value specified
 
 vassals-set
 ***********
@@ -1886,9 +1820,9 @@ vassals-set
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: automatically set the specified option (via --set) for every vassal
 
 
-automatically set the specified option (via --set) for every vassal
 
 vassal-set
 **********
@@ -1896,9 +1830,9 @@ vassal-set
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: automatically set the specified option (via --set) for every vassal
 
 
-automatically set the specified option (via --set) for every vassal
 
 heartbeat
 *********
@@ -1906,9 +1840,9 @@ heartbeat
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: announce healthiness to the emperor
 
 
-announce healthiness to the emperor
 
 reload-mercy
 ************
@@ -1916,9 +1850,9 @@ reload-mercy
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the maximum time (in seconds) we wait for workers and other processes to die during reload/shutdown
 
 
-set the maximum time (in seconds) we wait for workers and other processes to die during reload/shutdown
 
 worker-reload-mercy
 *******************
@@ -1926,9 +1860,9 @@ worker-reload-mercy
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the maximum time (in seconds) a worker can take to reload/shutdown (default is 60)
 
 
-set the maximum time (in seconds) a worker can take to reload/shutdown (default is 60)
 
 mule-reload-mercy
 *****************
@@ -1936,9 +1870,9 @@ mule-reload-mercy
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the maximum time (in seconds) a mule can take to reload/shutdown (default is 60)
 
 
-set the maximum time (in seconds) a mule can take to reload/shutdown (default is 60)
 
 exit-on-reload
 **************
@@ -1946,9 +1880,9 @@ exit-on-reload
 
 ``parser``: uwsgi_opt_true
 
+``help``: force exit even if a reload is requested
 
 
-force exit even if a reload is requested
 
 die-on-term
 ***********
@@ -1956,9 +1890,9 @@ die-on-term
 
 ``parser``: uwsgi_opt_true
 
+``help``: exit instead of brutal reload on SIGTERM
 
 
-exit instead of brutal reload on SIGTERM
 
 force-gateway
 *************
@@ -1966,9 +1900,9 @@ force-gateway
 
 ``parser``: uwsgi_opt_true
 
+``help``: force the spawn of the first registered gateway without a master
 
 
-force the spawn of the first registered gateway without a master
 
 help
 ****
@@ -1980,9 +1914,9 @@ help
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: show this help
 
 
-show this help
 
 usage
 *****
@@ -1994,9 +1928,9 @@ usage
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: show this help
 
 
-show this help
 
 print-sym
 *********
@@ -2006,9 +1940,9 @@ print-sym
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: print content of the specified binary symbol
 
 
-print content of the specified binary symbol
 
 print-symbol
 ************
@@ -2018,9 +1952,9 @@ print-symbol
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: print content of the specified binary symbol
 
 
-print content of the specified binary symbol
 
 reaper
 ******
@@ -2030,9 +1964,9 @@ reaper
 
 ``parser``: uwsgi_opt_true
 
+``help``: call waitpid(-1,...) after each request to get rid of zombies
 
 
-call waitpid(-1,...) after each request to get rid of zombies
 
 max-requests
 ************
@@ -2042,9 +1976,9 @@ max-requests
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: reload workers after the specified amount of managed requests
 
 
-reload workers after the specified amount of managed requests
 
 min-worker-lifetime
 *******************
@@ -2052,9 +1986,9 @@ min-worker-lifetime
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: number of seconds worker must run before being reloaded (default is 60)
 
 
-number of seconds worker must run before being reloaded (default is 60)
 
 max-worker-lifetime
 *******************
@@ -2062,9 +1996,9 @@ max-worker-lifetime
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: reload workers after the specified amount of seconds (default is disabled)
 
 
-reload workers after the specified amount of seconds (default is disabled)
 
 socket-timeout
 **************
@@ -2074,9 +2008,9 @@ socket-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set internal sockets timeout
 
 
-set internal sockets timeout
 
 no-fd-passing
 *************
@@ -2084,9 +2018,9 @@ no-fd-passing
 
 ``parser``: uwsgi_opt_true
 
+``help``: disable file descriptor passing
 
 
-disable file descriptor passing
 
 locks
 *****
@@ -2094,9 +2028,9 @@ locks
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: create the specified number of shared locks
 
 
-create the specified number of shared locks
 
 lock-engine
 ***********
@@ -2104,9 +2038,9 @@ lock-engine
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set the lock engine
 
 
-set the lock engine
 
 ftok
 ****
@@ -2114,9 +2048,9 @@ ftok
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set the ipcsem key via ftok() for avoiding duplicates
 
 
-set the ipcsem key via ftok() for avoiding duplicates
 
 persistent-ipcsem
 *****************
@@ -2124,9 +2058,9 @@ persistent-ipcsem
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not remove ipcsem's on shutdown
 
 
-do not remove ipcsem's on shutdown
 
 sharedarea
 **********
@@ -2136,9 +2070,9 @@ sharedarea
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: create a raw shared memory area of specified pages (note: it supports keyval too)
 
 
-create a raw shared memory area of specified pages (note: it supports keyval too)
 
 safe-fd
 *******
@@ -2146,9 +2080,9 @@ safe-fd
 
 ``parser``: uwsgi_opt_safe_fd
 
+``help``: do not close the specified file descriptor
 
 
-do not close the specified file descriptor
 
 fd-safe
 *******
@@ -2156,9 +2090,9 @@ fd-safe
 
 ``parser``: uwsgi_opt_safe_fd
 
+``help``: do not close the specified file descriptor
 
 
-do not close the specified file descriptor
 
 cache
 *****
@@ -2166,9 +2100,9 @@ cache
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: create a shared cache containing given elements
 
 
-create a shared cache containing given elements
 
 cache-blocksize
 ***************
@@ -2176,9 +2110,9 @@ cache-blocksize
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: set cache blocksize
 
 
-set cache blocksize
 
 cache-store
 ***********
@@ -2188,9 +2122,9 @@ cache-store
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: enable persistent cache to disk
 
 
-enable persistent cache to disk
 
 cache-store-sync
 ****************
@@ -2198,9 +2132,9 @@ cache-store-sync
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set frequency of sync for persistent cache
 
 
-set frequency of sync for persistent cache
 
 cache-no-expire
 ***************
@@ -2208,9 +2142,9 @@ cache-no-expire
 
 ``parser``: uwsgi_opt_true
 
+``help``: disable auto sweep of expired items
 
 
-disable auto sweep of expired items
 
 cache-expire-freq
 *****************
@@ -2218,9 +2152,9 @@ cache-expire-freq
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the frequency of cache sweeper scans (default 3 seconds)
 
 
-set the frequency of cache sweeper scans (default 3 seconds)
 
 cache-report-freed-items
 ************************
@@ -2228,9 +2162,9 @@ cache-report-freed-items
 
 ``parser``: uwsgi_opt_true
 
+``help``: constantly report the cache item freed by the sweeper (use only for debug)
 
 
-constantly report the cache item freed by the sweeper (use only for debug)
 
 cache-udp-server
 ****************
@@ -2240,9 +2174,9 @@ cache-udp-server
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: bind the cache udp server (used only for set/update/delete) to the specified socket
 
 
-bind the cache udp server (used only for set/update/delete) to the specified socket
 
 cache-udp-node
 **************
@@ -2252,9 +2186,9 @@ cache-udp-node
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: send cache update/deletion to the specified cache udp server
 
 
-send cache update/deletion to the specified cache udp server
 
 cache-sync
 **********
@@ -2262,9 +2196,9 @@ cache-sync
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: copy the whole content of another uWSGI cache server on server startup
 
 
-copy the whole content of another uWSGI cache server on server startup
 
 cache-use-last-modified
 ***********************
@@ -2272,9 +2206,9 @@ cache-use-last-modified
 
 ``parser``: uwsgi_opt_true
 
+``help``: update last_modified_at timestamp on every cache item modification (default is disabled)
 
 
-update last_modified_at timestamp on every cache item modification (default is disabled)
 
 add-cache-item
 **************
@@ -2282,9 +2216,9 @@ add-cache-item
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add an item in the cache
 
 
-add an item in the cache
 
 load-file-in-cache
 ******************
@@ -2292,9 +2226,9 @@ load-file-in-cache
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: load a static file in the cache
 
 
-load a static file in the cache
 
 load-file-in-cache-gzip
 ***********************
@@ -2302,9 +2236,9 @@ load-file-in-cache-gzip
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: load a static file in the cache with gzip compression
 
 
-load a static file in the cache with gzip compression
 
 cache2
 ******
@@ -2312,9 +2246,9 @@ cache2
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: create a new generation shared cache (keyval syntax)
 
 
-create a new generation shared cache (keyval syntax)
 
 queue
 *****
@@ -2322,9 +2256,9 @@ queue
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: enable shared queue
 
 
-enable shared queue
 
 queue-blocksize
 ***************
@@ -2332,9 +2266,9 @@ queue-blocksize
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set queue blocksize
 
 
-set queue blocksize
 
 queue-store
 ***********
@@ -2344,9 +2278,9 @@ queue-store
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: enable persistent queue to disk
 
 
-enable persistent queue to disk
 
 queue-store-sync
 ****************
@@ -2354,9 +2288,9 @@ queue-store-sync
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set frequency of sync for persistent queue
 
 
-set frequency of sync for persistent queue
 
 spooler
 *******
@@ -2368,9 +2302,9 @@ spooler
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: run a spooler on the specified directory
 
 
-run a spooler on the specified directory
 
 spooler-external
 ****************
@@ -2380,9 +2314,9 @@ spooler-external
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: map spoolers requests to a spooler directory managed by an external instance
 
 
-map spoolers requests to a spooler directory managed by an external instance
 
 spooler-ordered
 ***************
@@ -2390,9 +2324,9 @@ spooler-ordered
 
 ``parser``: uwsgi_opt_true
 
+``help``: try to order the execution of spooler tasks
 
 
-try to order the execution of spooler tasks
 
 spooler-chdir
 *************
@@ -2400,9 +2334,9 @@ spooler-chdir
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: chdir() to specified directory before each spooler task
 
 
-chdir() to specified directory before each spooler task
 
 spooler-processes
 *****************
@@ -2412,9 +2346,9 @@ spooler-processes
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: set the number of processes for spoolers
 
 
-set the number of processes for spoolers
 
 spooler-quiet
 *************
@@ -2422,9 +2356,9 @@ spooler-quiet
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not be verbose with spooler tasks
 
 
-do not be verbose with spooler tasks
 
 spooler-max-tasks
 *****************
@@ -2432,9 +2366,9 @@ spooler-max-tasks
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the maximum number of tasks to run before recycling a spooler
 
 
-set the maximum number of tasks to run before recycling a spooler
 
 spooler-harakiri
 ****************
@@ -2442,9 +2376,9 @@ spooler-harakiri
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set harakiri timeout for spooler tasks
 
 
-set harakiri timeout for spooler tasks
 
 spooler-frequency
 *****************
@@ -2452,9 +2386,9 @@ spooler-frequency
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set spooler frequency
 
 
-set spooler frequency
 
 spooler-freq
 ************
@@ -2462,9 +2396,9 @@ spooler-freq
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set spooler frequency
 
 
-set spooler frequency
 
 mule
 ****
@@ -2474,9 +2408,9 @@ mule
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a mule
 
 
-add a mule
 
 mules
 *****
@@ -2486,9 +2420,9 @@ mules
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add the specified number of mules
 
 
-add the specified number of mules
 
 farm
 ****
@@ -2498,9 +2432,9 @@ farm
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a mule farm
 
 
-add a mule farm
 
 mule-msg-size
 *************
@@ -2510,9 +2444,9 @@ mule-msg-size
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: set mule message buffer size
 
 
-set mule message buffer size
 
 signal
 ******
@@ -2522,9 +2456,9 @@ signal
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: send a uwsgi signal to a server
 
 
-send a uwsgi signal to a server
 
 signal-bufsize
 **************
@@ -2532,9 +2466,9 @@ signal-bufsize
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set buffer size for signal queue
 
 
-set buffer size for signal queue
 
 signals-bufsize
 ***************
@@ -2542,9 +2476,9 @@ signals-bufsize
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set buffer size for signal queue
 
 
-set buffer size for signal queue
 
 signal-timer
 ************
@@ -2554,9 +2488,9 @@ signal-timer
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a timer (syntax: <signal> <seconds>)
 
 
-add a timer (syntax: <signal> <seconds>)
 
 timer
 *****
@@ -2566,9 +2500,9 @@ timer
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a timer (syntax: <signal> <seconds>)
 
 
-add a timer (syntax: <signal> <seconds>)
 
 signal-rbtimer
 **************
@@ -2578,9 +2512,9 @@ signal-rbtimer
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a redblack timer (syntax: <signal> <seconds>)
 
 
-add a redblack timer (syntax: <signal> <seconds>)
 
 rbtimer
 *******
@@ -2590,9 +2524,9 @@ rbtimer
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a redblack timer (syntax: <signal> <seconds>)
 
 
-add a redblack timer (syntax: <signal> <seconds>)
 
 rpc-max
 *******
@@ -2600,9 +2534,9 @@ rpc-max
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: maximum number of rpc slots (default: 64)
 
 
-maximum number of rpc slots (default: 64)
 
 disable-logging
 ***************
@@ -2612,9 +2546,9 @@ disable-logging
 
 ``parser``: uwsgi_opt_false
 
+``help``: disable request logging
 
 
-disable request logging
 
 flock
 *****
@@ -2624,9 +2558,9 @@ flock
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: lock the specified file before starting, exit if locked
 
 
-lock the specified file before starting, exit if locked
 
 flock-wait
 **********
@@ -2636,9 +2570,9 @@ flock-wait
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: lock the specified file before starting, wait if locked
 
 
-lock the specified file before starting, wait if locked
 
 flock2
 ******
@@ -2648,9 +2582,9 @@ flock2
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: lock the specified file after logging/daemon setup, exit if locked
 
 
-lock the specified file after logging/daemon setup, exit if locked
 
 flock-wait2
 ***********
@@ -2660,9 +2594,9 @@ flock-wait2
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: lock the specified file after logging/daemon setup, wait if locked
 
 
-lock the specified file after logging/daemon setup, wait if locked
 
 pidfile
 *******
@@ -2670,9 +2604,9 @@ pidfile
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: create pidfile (before privileges drop)
 
 
-create pidfile (before privileges drop)
 
 pidfile2
 ********
@@ -2680,9 +2614,9 @@ pidfile2
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: create pidfile (after privileges drop)
 
 
-create pidfile (after privileges drop)
 
 chroot
 ******
@@ -2690,9 +2624,9 @@ chroot
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: chroot() to the specified directory
 
 
-chroot() to the specified directory
 
 pivot-root
 **********
@@ -2700,9 +2634,9 @@ pivot-root
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: pivot_root() to the specified directories (new_root and put_old must be separated with a space)
 
 
-pivot_root() to the specified directories (new_root and put_old must be separated with a space)
 
 pivot_root
 **********
@@ -2710,9 +2644,9 @@ pivot_root
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: pivot_root() to the specified directories (new_root and put_old must be separated with a space)
 
 
-pivot_root() to the specified directories (new_root and put_old must be separated with a space)
 
 uid
 ***
@@ -2720,9 +2654,9 @@ uid
 
 ``parser``: uwsgi_opt_set_uid
 
+``help``: setuid to the specified user/uid
 
 
-setuid to the specified user/uid
 
 gid
 ***
@@ -2730,9 +2664,9 @@ gid
 
 ``parser``: uwsgi_opt_set_gid
 
+``help``: setgid to the specified group/gid
 
 
-setgid to the specified group/gid
 
 add-gid
 *******
@@ -2740,9 +2674,9 @@ add-gid
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add the specified group id to the process credentials
 
 
-add the specified group id to the process credentials
 
 immediate-uid
 *************
@@ -2752,9 +2686,9 @@ immediate-uid
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: setuid to the specified user/uid IMMEDIATELY
 
 
-setuid to the specified user/uid IMMEDIATELY
 
 immediate-gid
 *************
@@ -2764,9 +2698,9 @@ immediate-gid
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: setgid to the specified group/gid IMMEDIATELY
 
 
-setgid to the specified group/gid IMMEDIATELY
 
 no-initgroups
 *************
@@ -2774,9 +2708,9 @@ no-initgroups
 
 ``parser``: uwsgi_opt_true
 
+``help``: disable additional groups set via initgroups()
 
 
-disable additional groups set via initgroups()
 
 cap
 ***
@@ -2784,9 +2718,9 @@ cap
 
 ``parser``: uwsgi_opt_set_cap
 
+``help``: set process capability
 
 
-set process capability
 
 unshare
 *******
@@ -2794,9 +2728,9 @@ unshare
 
 ``parser``: uwsgi_opt_set_unshare
 
+``help``: unshare() part of the processes and put it in a new namespace
 
 
-unshare() part of the processes and put it in a new namespace
 
 unshare2
 ********
@@ -2804,9 +2738,9 @@ unshare2
 
 ``parser``: uwsgi_opt_set_unshare
 
+``help``: unshare() part of the processes and put it in a new namespace after rootfs change
 
 
-unshare() part of the processes and put it in a new namespace after rootfs change
 
 setns-socket
 ************
@@ -2816,9 +2750,9 @@ setns-socket
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: expose a unix socket returning namespace fds from /proc/self/ns
 
 
-expose a unix socket returning namespace fds from /proc/self/ns
 
 setns-socket-skip
 *****************
@@ -2826,9 +2760,9 @@ setns-socket-skip
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: skip the specified entry when sending setns file descriptors
 
 
-skip the specified entry when sending setns file descriptors
 
 setns-skip
 **********
@@ -2836,9 +2770,9 @@ setns-skip
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: skip the specified entry when sending setns file descriptors
 
 
-skip the specified entry when sending setns file descriptors
 
 setns
 *****
@@ -2846,9 +2780,9 @@ setns
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: join a namespace created by an external uWSGI instance
 
 
-join a namespace created by an external uWSGI instance
 
 setns-preopen
 *************
@@ -2856,29 +2790,9 @@ setns-preopen
 
 ``parser``: uwsgi_opt_true
 
+``help``: open /proc/self/ns as soon as possible and cache fds
 
 
-open /proc/self/ns as soon as possible and cache fds
-
-fork-socket
-***********
-``argument``: required_argument
-
-``parser``: uwsgi_opt_set_str
-
-
-
-suspend the execution after early initialization and fork() at every unix socket connection
-
-fork-server
-***********
-``argument``: required_argument
-
-``parser``: uwsgi_opt_set_str
-
-
-
-suspend the execution after early initialization and fork() at every unix socket connection
 
 jailed
 ******
@@ -2886,9 +2800,9 @@ jailed
 
 ``parser``: uwsgi_opt_true
 
+``help``: mark the instance as jailed (force the execution of post_jail hooks)
 
 
-mark the instance as jailed (force the execution of post_jail hooks)
 
 jail
 ****
@@ -2896,9 +2810,9 @@ jail
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: put the instance in a FreeBSD jail
 
 
-put the instance in a FreeBSD jail
 
 jail-ip4
 ********
@@ -2906,9 +2820,9 @@ jail-ip4
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add an ipv4 address to the FreeBSD jail
 
 
-add an ipv4 address to the FreeBSD jail
 
 jail-ip6
 ********
@@ -2916,9 +2830,9 @@ jail-ip6
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add an ipv6 address to the FreeBSD jail
 
 
-add an ipv6 address to the FreeBSD jail
 
 jidfile
 *******
@@ -2926,9 +2840,9 @@ jidfile
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: save the jid of a FreeBSD jail in the specified file
 
 
-save the jid of a FreeBSD jail in the specified file
 
 jid-file
 ********
@@ -2936,9 +2850,9 @@ jid-file
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: save the jid of a FreeBSD jail in the specified file
 
 
-save the jid of a FreeBSD jail in the specified file
 
 jail2
 *****
@@ -2946,9 +2860,9 @@ jail2
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add an option to the FreeBSD jail
 
 
-add an option to the FreeBSD jail
 
 libjail
 *******
@@ -2956,9 +2870,9 @@ libjail
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add an option to the FreeBSD jail
 
 
-add an option to the FreeBSD jail
 
 jail-attach
 ***********
@@ -2966,9 +2880,9 @@ jail-attach
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: attach to the FreeBSD jail
 
 
-attach to the FreeBSD jail
 
 refork
 ******
@@ -2976,9 +2890,9 @@ refork
 
 ``parser``: uwsgi_opt_true
 
+``help``: fork() again after privileges drop. Useful for jailing systems
 
 
-fork() again after privileges drop. Useful for jailing systems
 
 re-fork
 *******
@@ -2986,9 +2900,9 @@ re-fork
 
 ``parser``: uwsgi_opt_true
 
+``help``: fork() again after privileges drop. Useful for jailing systems
 
 
-fork() again after privileges drop. Useful for jailing systems
 
 refork-as-root
 **************
@@ -2996,9 +2910,9 @@ refork-as-root
 
 ``parser``: uwsgi_opt_true
 
+``help``: fork() again before privileges drop. Useful for jailing systems
 
 
-fork() again before privileges drop. Useful for jailing systems
 
 re-fork-as-root
 ***************
@@ -3006,9 +2920,9 @@ re-fork-as-root
 
 ``parser``: uwsgi_opt_true
 
+``help``: fork() again before privileges drop. Useful for jailing systems
 
 
-fork() again before privileges drop. Useful for jailing systems
 
 refork-post-jail
 ****************
@@ -3016,9 +2930,9 @@ refork-post-jail
 
 ``parser``: uwsgi_opt_true
 
+``help``: fork() again after jailing. Useful for jailing systems
 
 
-fork() again after jailing. Useful for jailing systems
 
 re-fork-post-jail
 *****************
@@ -3026,9 +2940,9 @@ re-fork-post-jail
 
 ``parser``: uwsgi_opt_true
 
+``help``: fork() again after jailing. Useful for jailing systems
 
 
-fork() again after jailing. Useful for jailing systems
 
 hook-asap
 *********
@@ -3036,9 +2950,9 @@ hook-asap
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook as soon as possible
 
 
-run the specified hook as soon as possible
 
 hook-pre-jail
 *************
@@ -3046,9 +2960,9 @@ hook-pre-jail
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook before jailing
 
 
-run the specified hook before jailing
 
 hook-post-jail
 **************
@@ -3056,9 +2970,9 @@ hook-post-jail
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook after jailing
 
 
-run the specified hook after jailing
 
 hook-in-jail
 ************
@@ -3066,9 +2980,9 @@ hook-in-jail
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook in jail after initialization
 
 
-run the specified hook in jail after initialization
 
 hook-as-root
 ************
@@ -3076,9 +2990,9 @@ hook-as-root
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook before privileges drop
 
 
-run the specified hook before privileges drop
 
 hook-as-user
 ************
@@ -3086,9 +3000,9 @@ hook-as-user
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook after privileges drop
 
 
-run the specified hook after privileges drop
 
 hook-as-user-atexit
 *******************
@@ -3096,9 +3010,9 @@ hook-as-user-atexit
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook before app exit and reload
 
 
-run the specified hook before app exit and reload
 
 hook-pre-app
 ************
@@ -3106,9 +3020,9 @@ hook-pre-app
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook before app loading
 
 
-run the specified hook before app loading
 
 hook-post-app
 *************
@@ -3116,9 +3030,9 @@ hook-post-app
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook after app loading
 
 
-run the specified hook after app loading
 
 hook-accepting
 **************
@@ -3126,9 +3040,9 @@ hook-accepting
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook after each worker enter the accepting phase
 
 
-run the specified hook after each worker enter the accepting phase
 
 hook-accepting1
 ***************
@@ -3136,9 +3050,9 @@ hook-accepting1
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook after the first worker enters the accepting phase
 
 
-run the specified hook after the first worker enters the accepting phase
 
 hook-accepting-once
 *******************
@@ -3146,9 +3060,9 @@ hook-accepting-once
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook after each worker enter the accepting phase (once per-instance)
 
 
-run the specified hook after each worker enter the accepting phase (once per-instance)
 
 hook-accepting1-once
 ********************
@@ -3156,9 +3070,9 @@ hook-accepting1-once
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook after the first worker enters the accepting phase (once per instance)
 
 
-run the specified hook after the first worker enters the accepting phase (once per instance)
 
 hook-master-start
 *****************
@@ -3166,9 +3080,9 @@ hook-master-start
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook when the Master starts
 
 
-run the specified hook when the Master starts
 
 hook-touch
 **********
@@ -3176,9 +3090,9 @@ hook-touch
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook when the specified file is touched (syntax: <file> <action>)
 
 
-run the specified hook when the specified file is touched (syntax: <file> <action>)
 
 hook-emperor-start
 ******************
@@ -3186,9 +3100,9 @@ hook-emperor-start
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook when the Emperor starts
 
 
-run the specified hook when the Emperor starts
 
 hook-emperor-stop
 *****************
@@ -3196,9 +3110,9 @@ hook-emperor-stop
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook when the Emperor send a stop message
 
 
-run the specified hook when the Emperor send a stop message
 
 hook-emperor-reload
 *******************
@@ -3206,9 +3120,9 @@ hook-emperor-reload
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook when the Emperor send a reload message
 
 
-run the specified hook when the Emperor send a reload message
 
 hook-emperor-lost
 *****************
@@ -3216,9 +3130,9 @@ hook-emperor-lost
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook when the Emperor connection is lost
 
 
-run the specified hook when the Emperor connection is lost
 
 hook-as-vassal
 **************
@@ -3226,9 +3140,9 @@ hook-as-vassal
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook before exec()ing the vassal
 
 
-run the specified hook before exec()ing the vassal
 
 hook-as-emperor
 ***************
@@ -3236,19 +3150,9 @@ hook-as-emperor
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook in the emperor after the vassal has been started
 
 
-run the specified hook in the emperor after the vassal has been started
-
-hook-as-on-demand-vassal
-************************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_add_string_list
-
-
-
-run the specified hook whenever a vassal enters on-demand mode
 
 hook-as-mule
 ************
@@ -3256,9 +3160,9 @@ hook-as-mule
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook in each mule
 
 
-run the specified hook in each mule
 
 hook-as-gateway
 ***************
@@ -3266,9 +3170,9 @@ hook-as-gateway
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified hook in each gateway
 
 
-run the specified hook in each gateway
 
 after-request-hook
 ******************
@@ -3276,9 +3180,9 @@ after-request-hook
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified function/symbol after each request
 
 
-run the specified function/symbol after each request
 
 after-request-call
 ******************
@@ -3286,9 +3190,9 @@ after-request-call
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified function/symbol after each request
 
 
-run the specified function/symbol after each request
 
 exec-asap
 *********
@@ -3296,9 +3200,9 @@ exec-asap
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified command as soon as possible
 
 
-run the specified command as soon as possible
 
 exec-pre-jail
 *************
@@ -3306,9 +3210,9 @@ exec-pre-jail
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified command before jailing
 
 
-run the specified command before jailing
 
 exec-post-jail
 **************
@@ -3316,9 +3220,9 @@ exec-post-jail
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified command after jailing
 
 
-run the specified command after jailing
 
 exec-in-jail
 ************
@@ -3326,9 +3230,9 @@ exec-in-jail
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified command in jail after initialization
 
 
-run the specified command in jail after initialization
 
 exec-as-root
 ************
@@ -3336,9 +3240,9 @@ exec-as-root
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified command before privileges drop
 
 
-run the specified command before privileges drop
 
 exec-as-user
 ************
@@ -3346,9 +3250,9 @@ exec-as-user
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified command after privileges drop
 
 
-run the specified command after privileges drop
 
 exec-as-user-atexit
 *******************
@@ -3356,9 +3260,9 @@ exec-as-user-atexit
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified command before app exit and reload
 
 
-run the specified command before app exit and reload
 
 exec-pre-app
 ************
@@ -3366,9 +3270,9 @@ exec-pre-app
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified command before app loading
 
 
-run the specified command before app loading
 
 exec-post-app
 *************
@@ -3376,9 +3280,9 @@ exec-post-app
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified command after app loading
 
 
-run the specified command after app loading
 
 exec-as-vassal
 **************
@@ -3386,9 +3290,9 @@ exec-as-vassal
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified command before exec()ing the vassal
 
 
-run the specified command before exec()ing the vassal
 
 exec-as-emperor
 ***************
@@ -3396,9 +3300,9 @@ exec-as-emperor
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the specified command in the emperor after the vassal has been started
 
 
-run the specified command in the emperor after the vassal has been started
 
 mount-asap
 **********
@@ -3406,9 +3310,9 @@ mount-asap
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: mount filesystem as soon as possible
 
 
-mount filesystem as soon as possible
 
 mount-pre-jail
 **************
@@ -3416,9 +3320,9 @@ mount-pre-jail
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: mount filesystem before jailing
 
 
-mount filesystem before jailing
 
 mount-post-jail
 ***************
@@ -3426,9 +3330,9 @@ mount-post-jail
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: mount filesystem after jailing
 
 
-mount filesystem after jailing
 
 mount-in-jail
 *************
@@ -3436,9 +3340,9 @@ mount-in-jail
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: mount filesystem in jail after initialization
 
 
-mount filesystem in jail after initialization
 
 mount-as-root
 *************
@@ -3446,9 +3350,9 @@ mount-as-root
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: mount filesystem before privileges drop
 
 
-mount filesystem before privileges drop
 
 mount-as-vassal
 ***************
@@ -3456,9 +3360,9 @@ mount-as-vassal
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: mount filesystem before exec()ing the vassal
 
 
-mount filesystem before exec()ing the vassal
 
 mount-as-emperor
 ****************
@@ -3466,9 +3370,9 @@ mount-as-emperor
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: mount filesystem in the emperor after the vassal has been started
 
 
-mount filesystem in the emperor after the vassal has been started
 
 umount-asap
 ***********
@@ -3476,9 +3380,9 @@ umount-asap
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: unmount filesystem as soon as possible
 
 
-unmount filesystem as soon as possible
 
 umount-pre-jail
 ***************
@@ -3486,9 +3390,9 @@ umount-pre-jail
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: unmount filesystem before jailing
 
 
-unmount filesystem before jailing
 
 umount-post-jail
 ****************
@@ -3496,9 +3400,9 @@ umount-post-jail
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: unmount filesystem after jailing
 
 
-unmount filesystem after jailing
 
 umount-in-jail
 **************
@@ -3506,9 +3410,9 @@ umount-in-jail
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: unmount filesystem in jail after initialization
 
 
-unmount filesystem in jail after initialization
 
 umount-as-root
 **************
@@ -3516,9 +3420,9 @@ umount-as-root
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: unmount filesystem before privileges drop
 
 
-unmount filesystem before privileges drop
 
 umount-as-vassal
 ****************
@@ -3526,9 +3430,9 @@ umount-as-vassal
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: unmount filesystem before exec()ing the vassal
 
 
-unmount filesystem before exec()ing the vassal
 
 umount-as-emperor
 *****************
@@ -3536,9 +3440,9 @@ umount-as-emperor
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: unmount filesystem in the emperor after the vassal has been started
 
 
-unmount filesystem in the emperor after the vassal has been started
 
 wait-for-interface
 ******************
@@ -3546,9 +3450,9 @@ wait-for-interface
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: wait for the specified network interface to come up before running root hooks
 
 
-wait for the specified network interface to come up before running root hooks
 
 wait-for-interface-timeout
 **************************
@@ -3556,9 +3460,9 @@ wait-for-interface-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the timeout for wait-for-interface
 
 
-set the timeout for wait-for-interface
 
 wait-interface
 **************
@@ -3566,9 +3470,9 @@ wait-interface
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: wait for the specified network interface to come up before running root hooks
 
 
-wait for the specified network interface to come up before running root hooks
 
 wait-interface-timeout
 **********************
@@ -3576,9 +3480,9 @@ wait-interface-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the timeout for wait-for-interface
 
 
-set the timeout for wait-for-interface
 
 wait-for-iface
 **************
@@ -3586,9 +3490,9 @@ wait-for-iface
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: wait for the specified network interface to come up before running root hooks
 
 
-wait for the specified network interface to come up before running root hooks
 
 wait-for-iface-timeout
 **********************
@@ -3596,9 +3500,9 @@ wait-for-iface-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the timeout for wait-for-interface
 
 
-set the timeout for wait-for-interface
 
 wait-iface
 **********
@@ -3606,9 +3510,9 @@ wait-iface
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: wait for the specified network interface to come up before running root hooks
 
 
-wait for the specified network interface to come up before running root hooks
 
 wait-iface-timeout
 ******************
@@ -3616,9 +3520,9 @@ wait-iface-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the timeout for wait-for-interface
 
 
-set the timeout for wait-for-interface
 
 call-asap
 *********
@@ -3626,9 +3530,9 @@ call-asap
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: call the specified function as soon as possible
 
 
-call the specified function as soon as possible
 
 call-pre-jail
 *************
@@ -3636,9 +3540,9 @@ call-pre-jail
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: call the specified function before jailing
 
 
-call the specified function before jailing
 
 call-post-jail
 **************
@@ -3646,9 +3550,9 @@ call-post-jail
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: call the specified function after jailing
 
 
-call the specified function after jailing
 
 call-in-jail
 ************
@@ -3656,9 +3560,9 @@ call-in-jail
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: call the specified function in jail after initialization
 
 
-call the specified function in jail after initialization
 
 call-as-root
 ************
@@ -3666,9 +3570,9 @@ call-as-root
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: call the specified function before privileges drop
 
 
-call the specified function before privileges drop
 
 call-as-user
 ************
@@ -3676,9 +3580,9 @@ call-as-user
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: call the specified function after privileges drop
 
 
-call the specified function after privileges drop
 
 call-as-user-atexit
 *******************
@@ -3686,9 +3590,9 @@ call-as-user-atexit
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: call the specified function before app exit and reload
 
 
-call the specified function before app exit and reload
 
 call-pre-app
 ************
@@ -3696,9 +3600,9 @@ call-pre-app
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: call the specified function before app loading
 
 
-call the specified function before app loading
 
 call-post-app
 *************
@@ -3706,9 +3610,9 @@ call-post-app
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: call the specified function after app loading
 
 
-call the specified function after app loading
 
 call-as-vassal
 **************
@@ -3716,9 +3620,9 @@ call-as-vassal
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: call the specified function() before exec()ing the vassal
 
 
-call the specified function() before exec()ing the vassal
 
 call-as-vassal1
 ***************
@@ -3726,9 +3630,9 @@ call-as-vassal1
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: call the specified function before exec()ing the vassal
 
 
-call the specified function before exec()ing the vassal
 
 call-as-vassal3
 ***************
@@ -3736,9 +3640,9 @@ call-as-vassal3
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: call the specified function(char *, uid_t, gid_t) before exec()ing the vassal
 
 
-call the specified function(char *, uid_t, gid_t) before exec()ing the vassal
 
 call-as-emperor
 ***************
@@ -3746,9 +3650,9 @@ call-as-emperor
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: call the specified function() in the emperor after the vassal has been started
 
 
-call the specified function() in the emperor after the vassal has been started
 
 call-as-emperor1
 ****************
@@ -3756,9 +3660,9 @@ call-as-emperor1
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: call the specified function in the emperor after the vassal has been started
 
 
-call the specified function in the emperor after the vassal has been started
 
 call-as-emperor2
 ****************
@@ -3766,9 +3670,9 @@ call-as-emperor2
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: call the specified function(char *, pid_t) in the emperor after the vassal has been started
 
 
-call the specified function(char *, pid_t) in the emperor after the vassal has been started
 
 call-as-emperor4
 ****************
@@ -3776,9 +3680,9 @@ call-as-emperor4
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: call the specified function(char *, pid_t, uid_t, gid_t) in the emperor after the vassal has been started
 
 
-call the specified function(char *, pid_t, uid_t, gid_t) in the emperor after the vassal has been started
 
 ini
 ***
@@ -3788,9 +3692,9 @@ ini
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: load config from ini file
 
 
-load config from ini file
 
 yaml
 ****
@@ -3802,9 +3706,9 @@ yaml
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: load config from yaml file
 
 
-load config from yaml file
 
 yml
 ***
@@ -3816,9 +3720,9 @@ yml
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: load config from yaml file
 
 
-load config from yaml file
 
 json
 ****
@@ -3830,9 +3734,9 @@ json
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: load config from json file
 
 
-load config from json file
 
 js
 **
@@ -3844,9 +3748,9 @@ js
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: load config from json file
 
 
-load config from json file
 
 weight
 ******
@@ -3854,9 +3758,9 @@ weight
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: weight of the instance (used by clustering/lb/subscriptions)
 
 
-weight of the instance (used by clustering/lb/subscriptions)
 
 auto-weight
 ***********
@@ -3864,9 +3768,9 @@ auto-weight
 
 ``parser``: uwsgi_opt_true
 
+``help``: set weight of the instance (used by clustering/lb/subscriptions) automatically
 
 
-set weight of the instance (used by clustering/lb/subscriptions) automatically
 
 no-server
 *********
@@ -3874,9 +3778,9 @@ no-server
 
 ``parser``: uwsgi_opt_true
 
+``help``: force no-server mode
 
 
-force no-server mode
 
 command-mode
 ************
@@ -3886,9 +3790,9 @@ command-mode
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: force command mode
 
 
-force command mode
 
 no-defer-accept
 ***************
@@ -3896,9 +3800,9 @@ no-defer-accept
 
 ``parser``: uwsgi_opt_true
 
+``help``: disable deferred-accept on sockets
 
 
-disable deferred-accept on sockets
 
 tcp-nodelay
 ***********
@@ -3906,9 +3810,9 @@ tcp-nodelay
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable TCP NODELAY on each request
 
 
-enable TCP NODELAY on each request
 
 so-keepalive
 ************
@@ -3916,9 +3820,9 @@ so-keepalive
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable TCP KEEPALIVEs
 
 
-enable TCP KEEPALIVEs
 
 so-send-timeout
 ***************
@@ -3926,9 +3830,9 @@ so-send-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set SO_SNDTIMEO
 
 
-set SO_SNDTIMEO
 
 socket-send-timeout
 *******************
@@ -3936,9 +3840,9 @@ socket-send-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set SO_SNDTIMEO
 
 
-set SO_SNDTIMEO
 
 so-write-timeout
 ****************
@@ -3946,9 +3850,9 @@ so-write-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set SO_SNDTIMEO
 
 
-set SO_SNDTIMEO
 
 socket-write-timeout
 ********************
@@ -3956,9 +3860,9 @@ socket-write-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set SO_SNDTIMEO
 
 
-set SO_SNDTIMEO
 
 socket-sndbuf
 *************
@@ -3966,9 +3870,9 @@ socket-sndbuf
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: set SO_SNDBUF
 
 
-set SO_SNDBUF
 
 socket-rcvbuf
 *************
@@ -3976,9 +3880,9 @@ socket-rcvbuf
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: set SO_RCVBUF
 
 
-set SO_RCVBUF
 
 limit-as
 ********
@@ -3986,9 +3890,9 @@ limit-as
 
 ``parser``: uwsgi_opt_set_megabytes
 
+``help``: limit processes address space/vsz
 
 
-limit processes address space/vsz
 
 limit-nproc
 ***********
@@ -3996,9 +3900,9 @@ limit-nproc
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: limit the number of spawnable processes
 
 
-limit the number of spawnable processes
 
 reload-on-as
 ************
@@ -4008,9 +3912,9 @@ reload-on-as
 
 ``flags``: UWSGI_OPT_MEMORY
 
+``help``: reload if address space is higher than specified megabytes
 
 
-reload if address space is higher than specified megabytes
 
 reload-on-rss
 *************
@@ -4020,9 +3924,9 @@ reload-on-rss
 
 ``flags``: UWSGI_OPT_MEMORY
 
+``help``: reload if rss memory is higher than specified megabytes
 
 
-reload if rss memory is higher than specified megabytes
 
 evil-reload-on-as
 *****************
@@ -4032,9 +3936,9 @@ evil-reload-on-as
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_MEMORY
 
+``help``: force the master to reload a worker if its address space is higher than specified megabytes
 
 
-force the master to reload a worker if its address space is higher than specified megabytes
 
 evil-reload-on-rss
 ******************
@@ -4044,9 +3948,9 @@ evil-reload-on-rss
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_MEMORY
 
+``help``: force the master to reload a worker if its rss memory is higher than specified megabytes
 
 
-force the master to reload a worker if its rss memory is higher than specified megabytes
 
 reload-on-fd
 ************
@@ -4056,9 +3960,9 @@ reload-on-fd
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: reload if the specified file descriptor is ready
 
 
-reload if the specified file descriptor is ready
 
 brutal-reload-on-fd
 *******************
@@ -4068,9 +3972,9 @@ brutal-reload-on-fd
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: brutal reload if the specified file descriptor is ready
 
 
-brutal reload if the specified file descriptor is ready
 
 ksm
 ***
@@ -4078,9 +3982,9 @@ ksm
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: enable Linux KSM
 
 
-enable Linux KSM
 
 pcre-jit
 ********
@@ -4090,9 +3994,9 @@ pcre-jit
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: enable pcre jit (if available)
 
 
-enable pcre jit (if available)
 
 never-swap
 **********
@@ -4100,9 +4004,9 @@ never-swap
 
 ``parser``: uwsgi_opt_true
 
+``help``: lock all memory pages avoiding swapping
 
 
-lock all memory pages avoiding swapping
 
 touch-reload
 ************
@@ -4112,9 +4016,9 @@ touch-reload
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: reload uWSGI if the specified file is modified/touched
 
 
-reload uWSGI if the specified file is modified/touched
 
 touch-workers-reload
 ********************
@@ -4124,9 +4028,9 @@ touch-workers-reload
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: trigger reload of (only) workers if the specified file is modified/touched
 
 
-trigger reload of (only) workers if the specified file is modified/touched
 
 touch-chain-reload
 ******************
@@ -4136,9 +4040,9 @@ touch-chain-reload
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: trigger chain reload if the specified file is modified/touched
 
 
-trigger chain reload if the specified file is modified/touched
 
 touch-logrotate
 ***************
@@ -4148,9 +4052,9 @@ touch-logrotate
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_LOG_MASTER
 
+``help``: trigger logrotation if the specified file is modified/touched
 
 
-trigger logrotation if the specified file is modified/touched
 
 touch-logreopen
 ***************
@@ -4160,9 +4064,9 @@ touch-logreopen
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_LOG_MASTER
 
+``help``: trigger log reopen if the specified file is modified/touched
 
 
-trigger log reopen if the specified file is modified/touched
 
 touch-exec
 **********
@@ -4172,9 +4076,9 @@ touch-exec
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: run command when the specified file is modified/touched (syntax: file command)
 
 
-run command when the specified file is modified/touched (syntax: file command)
 
 touch-signal
 ************
@@ -4184,9 +4088,9 @@ touch-signal
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: signal when the specified file is modified/touched (syntax: file signal)
 
 
-signal when the specified file is modified/touched (syntax: file signal)
 
 fs-reload
 *********
@@ -4196,9 +4100,9 @@ fs-reload
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: graceful reload when the specified filesystem object is modified
 
 
-graceful reload when the specified filesystem object is modified
 
 fs-brutal-reload
 ****************
@@ -4208,9 +4112,9 @@ fs-brutal-reload
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: brutal reload when the specified filesystem object is modified
 
 
-brutal reload when the specified filesystem object is modified
 
 fs-signal
 *********
@@ -4220,9 +4124,9 @@ fs-signal
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: raise a uwsgi signal when the specified filesystem object is modified (syntax: file signal)
 
 
-raise a uwsgi signal when the specified filesystem object is modified (syntax: file signal)
 
 check-mountpoint
 ****************
@@ -4232,9 +4136,9 @@ check-mountpoint
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: destroy the instance if a filesystem is no more reachable (useful for reliable Fuse management)
 
 
-destroy the instance if a filesystem is no more reachable (useful for reliable Fuse management)
 
 mountpoint-check
 ****************
@@ -4244,9 +4148,9 @@ mountpoint-check
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: destroy the instance if a filesystem is no more reachable (useful for reliable Fuse management)
 
 
-destroy the instance if a filesystem is no more reachable (useful for reliable Fuse management)
 
 check-mount
 ***********
@@ -4256,9 +4160,9 @@ check-mount
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: destroy the instance if a filesystem is no more reachable (useful for reliable Fuse management)
 
 
-destroy the instance if a filesystem is no more reachable (useful for reliable Fuse management)
 
 mount-check
 ***********
@@ -4268,9 +4172,9 @@ mount-check
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: destroy the instance if a filesystem is no more reachable (useful for reliable Fuse management)
 
 
-destroy the instance if a filesystem is no more reachable (useful for reliable Fuse management)
 
 propagate-touch
 ***************
@@ -4278,9 +4182,9 @@ propagate-touch
 
 ``parser``: uwsgi_opt_true
 
+``help``: over-engineering option for system with flaky signal management
 
 
-over-engineering option for system with flaky signal management
 
 limit-post
 **********
@@ -4288,9 +4192,9 @@ limit-post
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: limit request body
 
 
-limit request body
 
 no-orphans
 **********
@@ -4298,9 +4202,9 @@ no-orphans
 
 ``parser``: uwsgi_opt_true
 
+``help``: automatically kill workers if master dies (can be dangerous for availability)
 
 
-automatically kill workers if master dies (can be dangerous for availability)
 
 prio
 ****
@@ -4308,9 +4212,9 @@ prio
 
 ``parser``: uwsgi_opt_set_rawint
 
+``help``: set processes/threads priority
 
 
-set processes/threads priority
 
 cpu-affinity
 ************
@@ -4318,9 +4222,9 @@ cpu-affinity
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set cpu affinity
 
 
-set cpu affinity
 
 post-buffering
 **************
@@ -4328,9 +4232,9 @@ post-buffering
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: enable post buffering
 
 
-enable post buffering
 
 post-buffering-bufsize
 **********************
@@ -4338,9 +4242,9 @@ post-buffering-bufsize
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: set buffer size for read() in post buffering mode
 
 
-set buffer size for read() in post buffering mode
 
 body-read-warning
 *****************
@@ -4348,9 +4252,9 @@ body-read-warning
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: set the amount of allowed memory allocation (in megabytes) for request body before starting printing a warning
 
 
-set the amount of allowed memory allocation (in megabytes) for request body before starting printing a warning
 
 upload-progress
 ***************
@@ -4358,9 +4262,9 @@ upload-progress
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: enable creation of .json files in the specified directory during a file upload
 
 
-enable creation of .json files in the specified directory during a file upload
 
 no-default-app
 **************
@@ -4368,9 +4272,9 @@ no-default-app
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not fallback to default app
 
 
-do not fallback to default app
 
 manage-script-name
 ******************
@@ -4378,9 +4282,9 @@ manage-script-name
 
 ``parser``: uwsgi_opt_true
 
+``help``: automatically rewrite SCRIPT_NAME and PATH_INFO
 
 
-automatically rewrite SCRIPT_NAME and PATH_INFO
 
 ignore-script-name
 ******************
@@ -4388,9 +4292,9 @@ ignore-script-name
 
 ``parser``: uwsgi_opt_true
 
+``help``: ignore SCRIPT_NAME
 
 
-ignore SCRIPT_NAME
 
 catch-exceptions
 ****************
@@ -4398,9 +4302,9 @@ catch-exceptions
 
 ``parser``: uwsgi_opt_true
 
+``help``: report exception as http output (discouraged, use only for testing)
 
 
-report exception as http output (discouraged, use only for testing)
 
 reload-on-exception
 *******************
@@ -4408,9 +4312,9 @@ reload-on-exception
 
 ``parser``: uwsgi_opt_true
 
+``help``: reload a worker when an exception is raised
 
 
-reload a worker when an exception is raised
 
 reload-on-exception-type
 ************************
@@ -4418,9 +4322,9 @@ reload-on-exception-type
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: reload a worker when a specific exception type is raised
 
 
-reload a worker when a specific exception type is raised
 
 reload-on-exception-value
 *************************
@@ -4428,9 +4332,9 @@ reload-on-exception-value
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: reload a worker when a specific exception value is raised
 
 
-reload a worker when a specific exception value is raised
 
 reload-on-exception-repr
 ************************
@@ -4438,9 +4342,9 @@ reload-on-exception-repr
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: reload a worker when a specific exception type+value (language-specific) is raised
 
 
-reload a worker when a specific exception type+value (language-specific) is raised
 
 exception-handler
 *****************
@@ -4450,9 +4354,9 @@ exception-handler
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add an exception handler
 
 
-add an exception handler
 
 enable-metrics
 **************
@@ -4462,9 +4366,9 @@ enable-metrics
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: enable metrics subsystem
 
 
-enable metrics subsystem
 
 metric
 ******
@@ -4474,9 +4378,9 @@ metric
 
 ``flags``: UWSGI_OPT_METRICS|UWSGI_OPT_MASTER
 
+``help``: add a custom metric
 
 
-add a custom metric
 
 metric-threshold
 ****************
@@ -4486,9 +4390,9 @@ metric-threshold
 
 ``flags``: UWSGI_OPT_METRICS|UWSGI_OPT_MASTER
 
+``help``: add a metric threshold/alarm
 
 
-add a metric threshold/alarm
 
 metric-alarm
 ************
@@ -4498,9 +4402,9 @@ metric-alarm
 
 ``flags``: UWSGI_OPT_METRICS|UWSGI_OPT_MASTER
 
+``help``: add a metric threshold/alarm
 
 
-add a metric threshold/alarm
 
 alarm-metric
 ************
@@ -4510,9 +4414,9 @@ alarm-metric
 
 ``flags``: UWSGI_OPT_METRICS|UWSGI_OPT_MASTER
 
+``help``: add a metric threshold/alarm
 
 
-add a metric threshold/alarm
 
 metrics-dir
 ***********
@@ -4522,9 +4426,9 @@ metrics-dir
 
 ``flags``: UWSGI_OPT_METRICS|UWSGI_OPT_MASTER
 
+``help``: export metrics as text files to the specified directory
 
 
-export metrics as text files to the specified directory
 
 metrics-dir-restore
 *******************
@@ -4534,9 +4438,9 @@ metrics-dir-restore
 
 ``flags``: UWSGI_OPT_METRICS|UWSGI_OPT_MASTER
 
+``help``: restore last value taken from the metrics dir
 
 
-restore last value taken from the metrics dir
 
 metric-dir
 **********
@@ -4546,9 +4450,9 @@ metric-dir
 
 ``flags``: UWSGI_OPT_METRICS|UWSGI_OPT_MASTER
 
+``help``: export metrics as text files to the specified directory
 
 
-export metrics as text files to the specified directory
 
 metric-dir-restore
 ******************
@@ -4558,9 +4462,9 @@ metric-dir-restore
 
 ``flags``: UWSGI_OPT_METRICS|UWSGI_OPT_MASTER
 
+``help``: restore last value taken from the metrics dir
 
 
-restore last value taken from the metrics dir
 
 metrics-no-cores
 ****************
@@ -4570,9 +4474,9 @@ metrics-no-cores
 
 ``flags``: UWSGI_OPT_METRICS|UWSGI_OPT_MASTER
 
+``help``: disable generation of cores-related metrics
 
 
-disable generation of cores-related metrics
 
 udp
 ***
@@ -4582,9 +4486,9 @@ udp
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: run the udp server on the specified address
 
 
-run the udp server on the specified address
 
 stats
 *****
@@ -4594,9 +4498,9 @@ stats
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: enable the stats server on the specified address
 
 
-enable the stats server on the specified address
 
 stats-server
 ************
@@ -4606,9 +4510,9 @@ stats-server
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: enable the stats server on the specified address
 
 
-enable the stats server on the specified address
 
 stats-http
 **********
@@ -4618,9 +4522,9 @@ stats-http
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: prefix stats server json output with http headers
 
 
-prefix stats server json output with http headers
 
 stats-minified
 **************
@@ -4630,9 +4534,9 @@ stats-minified
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: minify statistics json output
 
 
-minify statistics json output
 
 stats-min
 *********
@@ -4642,9 +4546,9 @@ stats-min
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: minify statistics json output
 
 
-minify statistics json output
 
 stats-push
 **********
@@ -4654,9 +4558,9 @@ stats-push
 
 ``flags``: UWSGI_OPT_MASTER|UWSGI_OPT_METRICS
 
+``help``: push the stats json to the specified destination
 
 
-push the stats json to the specified destination
 
 stats-pusher-default-freq
 *************************
@@ -4666,9 +4570,9 @@ stats-pusher-default-freq
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: set the default frequency of stats pushers
 
 
-set the default frequency of stats pushers
 
 stats-pushers-default-freq
 **************************
@@ -4678,9 +4582,9 @@ stats-pushers-default-freq
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: set the default frequency of stats pushers
 
 
-set the default frequency of stats pushers
 
 stats-no-cores
 **************
@@ -4690,9 +4594,9 @@ stats-no-cores
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: disable generation of cores-related stats
 
 
-disable generation of cores-related stats
 
 stats-no-metrics
 ****************
@@ -4702,9 +4606,9 @@ stats-no-metrics
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: do not include metrics in stats output
 
 
-do not include metrics in stats output
 
 multicast
 *********
@@ -4714,9 +4618,9 @@ multicast
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: subscribe to specified multicast group
 
 
-subscribe to specified multicast group
 
 multicast-ttl
 *************
@@ -4724,9 +4628,9 @@ multicast-ttl
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set multicast ttl
 
 
-set multicast ttl
 
 multicast-loop
 **************
@@ -4734,9 +4638,9 @@ multicast-loop
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set multicast loop (default 1)
 
 
-set multicast loop (default 1)
 
 master-fifo
 ***********
@@ -4746,9 +4650,9 @@ master-fifo
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: enable the master fifo
 
 
-enable the master fifo
 
 notify-socket
 *************
@@ -4758,9 +4662,9 @@ notify-socket
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: enable the notification socket
 
 
-enable the notification socket
 
 subscription-notify-socket
 **************************
@@ -4770,9 +4674,9 @@ subscription-notify-socket
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: set the notification socket for subscriptions
 
 
-set the notification socket for subscriptions
 
 legion
 ******
@@ -4782,9 +4686,9 @@ legion
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: became a member of a legion
 
 
-became a member of a legion
 
 legion-mcast
 ************
@@ -4794,9 +4698,9 @@ legion-mcast
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: became a member of a legion (shortcut for multicast)
 
 
-became a member of a legion (shortcut for multicast)
 
 legion-node
 ***********
@@ -4806,9 +4710,9 @@ legion-node
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a node to a legion
 
 
-add a node to a legion
 
 legion-freq
 ***********
@@ -4818,9 +4722,9 @@ legion-freq
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: set the frequency of legion packets
 
 
-set the frequency of legion packets
 
 legion-tolerance
 ****************
@@ -4830,9 +4734,9 @@ legion-tolerance
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: set the tolerance of legion subsystem
 
 
-set the tolerance of legion subsystem
 
 legion-death-on-lord-error
 **************************
@@ -4842,9 +4746,9 @@ legion-death-on-lord-error
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: declare itself as a dead node for the specified amount of seconds if one of the lord hooks fails
 
 
-declare itself as a dead node for the specified amount of seconds if one of the lord hooks fails
 
 legion-skew-tolerance
 *********************
@@ -4854,9 +4758,9 @@ legion-skew-tolerance
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: set the clock skew tolerance of legion subsystem (default 30 seconds)
 
 
-set the clock skew tolerance of legion subsystem (default 30 seconds)
 
 legion-lord
 ***********
@@ -4866,9 +4770,9 @@ legion-lord
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: action to call on Lord election
 
 
-action to call on Lord election
 
 legion-unlord
 *************
@@ -4878,9 +4782,9 @@ legion-unlord
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: action to call on Lord dismiss
 
 
-action to call on Lord dismiss
 
 legion-setup
 ************
@@ -4890,9 +4794,9 @@ legion-setup
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: action to call on legion setup
 
 
-action to call on legion setup
 
 legion-death
 ************
@@ -4902,9 +4806,9 @@ legion-death
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: action to call on legion death (shutdown of the instance)
 
 
-action to call on legion death (shutdown of the instance)
 
 legion-join
 ***********
@@ -4914,9 +4818,9 @@ legion-join
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: action to call on legion join (first time quorum is reached)
 
 
-action to call on legion join (first time quorum is reached)
 
 legion-node-joined
 ******************
@@ -4926,9 +4830,9 @@ legion-node-joined
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: action to call on new node joining legion
 
 
-action to call on new node joining legion
 
 legion-node-left
 ****************
@@ -4938,9 +4842,9 @@ legion-node-left
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: action to call node leaving legion
 
 
-action to call node leaving legion
 
 legion-quorum
 *************
@@ -4950,9 +4854,9 @@ legion-quorum
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: set the quorum of a legion
 
 
-set the quorum of a legion
 
 legion-scroll
 *************
@@ -4962,9 +4866,9 @@ legion-scroll
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: set the scroll of a legion
 
 
-set the scroll of a legion
 
 legion-scroll-max-size
 **********************
@@ -4972,9 +4876,9 @@ legion-scroll-max-size
 
 ``parser``: uwsgi_opt_set_16bit
 
+``help``: set max size of legion scroll buffer
 
 
-set max size of legion scroll buffer
 
 legion-scroll-list-max-size
 ***************************
@@ -4982,9 +4886,9 @@ legion-scroll-list-max-size
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: set max size of legion scroll list buffer
 
 
-set max size of legion scroll list buffer
 
 subscriptions-sign-check
 ************************
@@ -4994,9 +4898,9 @@ subscriptions-sign-check
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: set digest algorithm and certificate directory for secured subscription system
 
 
-set digest algorithm and certificate directory for secured subscription system
 
 subscriptions-sign-check-tolerance
 **********************************
@@ -5006,9 +4910,9 @@ subscriptions-sign-check-tolerance
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: set the maximum tolerance (in seconds) of clock skew for secured subscription system
 
 
-set the maximum tolerance (in seconds) of clock skew for secured subscription system
 
 subscriptions-sign-skip-uid
 ***************************
@@ -5018,9 +4922,9 @@ subscriptions-sign-skip-uid
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: skip signature check for the specified uid when using unix sockets credentials
 
 
-skip signature check for the specified uid when using unix sockets credentials
 
 subscriptions-credentials-check
 *******************************
@@ -5030,9 +4934,9 @@ subscriptions-credentials-check
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a directory to search for subscriptions key credentials
 
 
-add a directory to search for subscriptions key credentials
 
 subscriptions-use-credentials
 *****************************
@@ -5040,9 +4944,9 @@ subscriptions-use-credentials
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable management of SCM_CREDENTIALS in subscriptions UNIX sockets
 
 
-enable management of SCM_CREDENTIALS in subscriptions UNIX sockets
 
 subscription-algo
 *****************
@@ -5050,9 +4954,9 @@ subscription-algo
 
 ``parser``: uwsgi_opt_ssa
 
+``help``: set load balancing algorithm for the subscription system
 
 
-set load balancing algorithm for the subscription system
 
 subscription-dotsplit
 *********************
@@ -5060,9 +4964,9 @@ subscription-dotsplit
 
 ``parser``: uwsgi_opt_true
 
+``help``: try to fallback to the next part (dot based) in subscription key
 
 
-try to fallback to the next part (dot based) in subscription key
 
 subscribe-to
 ************
@@ -5072,9 +4976,9 @@ subscribe-to
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: subscribe to the specified subscription server
 
 
-subscribe to the specified subscription server
 
 st
 **
@@ -5084,9 +4988,9 @@ st
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: subscribe to the specified subscription server
 
 
-subscribe to the specified subscription server
 
 subscribe
 *********
@@ -5096,9 +5000,9 @@ subscribe
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: subscribe to the specified subscription server
 
 
-subscribe to the specified subscription server
 
 subscribe2
 **********
@@ -5108,9 +5012,9 @@ subscribe2
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: subscribe to the specified subscription server using advanced keyval syntax
 
 
-subscribe to the specified subscription server using advanced keyval syntax
 
 subscribe-freq
 **************
@@ -5118,9 +5022,9 @@ subscribe-freq
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: send subscription announce at the specified interval
 
 
-send subscription announce at the specified interval
 
 subscription-tolerance
 **********************
@@ -5128,9 +5032,9 @@ subscription-tolerance
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set tolerance for subscription servers
 
 
-set tolerance for subscription servers
 
 unsubscribe-on-graceful-reload
 ******************************
@@ -5138,9 +5042,9 @@ unsubscribe-on-graceful-reload
 
 ``parser``: uwsgi_opt_true
 
+``help``: force unsubscribe request even during graceful reload
 
 
-force unsubscribe request even during graceful reload
 
 start-unsubscribed
 ******************
@@ -5148,9 +5052,9 @@ start-unsubscribed
 
 ``parser``: uwsgi_opt_true
 
+``help``: configure subscriptions but do not send them (useful with master fifo)
 
 
-configure subscriptions but do not send them (useful with master fifo)
 
 snmp
 ****
@@ -5158,9 +5062,9 @@ snmp
 
 ``parser``: uwsgi_opt_snmp
 
+``help``: enable the embedded snmp server
 
 
-enable the embedded snmp server
 
 snmp-community
 **************
@@ -5168,9 +5072,9 @@ snmp-community
 
 ``parser``: uwsgi_opt_snmp_community
 
+``help``: set the snmp community string
 
 
-set the snmp community string
 
 ssl-verbose
 ***********
@@ -5178,9 +5082,9 @@ ssl-verbose
 
 ``parser``: uwsgi_opt_true
 
+``help``: be verbose about SSL errors
 
 
-be verbose about SSL errors
 
 ssl-sessions-use-cache
 **********************
@@ -5190,9 +5094,9 @@ ssl-sessions-use-cache
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: use uWSGI cache for ssl sessions storage
 
 
-use uWSGI cache for ssl sessions storage
 
 ssl-session-use-cache
 *********************
@@ -5202,9 +5106,9 @@ ssl-session-use-cache
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: use uWSGI cache for ssl sessions storage
 
 
-use uWSGI cache for ssl sessions storage
 
 ssl-sessions-timeout
 ********************
@@ -5212,9 +5116,9 @@ ssl-sessions-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set SSL sessions timeout (default: 300 seconds)
 
 
-set SSL sessions timeout (default: 300 seconds)
 
 ssl-session-timeout
 *******************
@@ -5222,9 +5126,9 @@ ssl-session-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set SSL sessions timeout (default: 300 seconds)
 
 
-set SSL sessions timeout (default: 300 seconds)
 
 sni
 ***
@@ -5232,9 +5136,9 @@ sni
 
 ``parser``: uwsgi_opt_sni
 
+``help``: add an SNI-governed SSL context
 
 
-add an SNI-governed SSL context
 
 sni-dir
 *******
@@ -5242,9 +5146,9 @@ sni-dir
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: check for cert/key/client_ca file in the specified directory and create a sni/ssl context on demand
 
 
-check for cert/key/client_ca file in the specified directory and create a sni/ssl context on demand
 
 sni-dir-ciphers
 ***************
@@ -5252,9 +5156,9 @@ sni-dir-ciphers
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set ssl ciphers for sni-dir option
 
 
-set ssl ciphers for sni-dir option
 
 sni-regexp
 **********
@@ -5262,9 +5166,9 @@ sni-regexp
 
 ``parser``: uwsgi_opt_sni
 
+``help``: add an SNI-governed SSL context (the key is a regexp)
 
 
-add an SNI-governed SSL context (the key is a regexp)
 
 ssl-tmp-dir
 ***********
@@ -5272,9 +5176,9 @@ ssl-tmp-dir
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: store ssl-related temp files in the specified directory
 
 
-store ssl-related temp files in the specified directory
 
 check-interval
 **************
@@ -5284,9 +5188,9 @@ check-interval
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: set the interval (in seconds) of master checks
 
 
-set the interval (in seconds) of master checks
 
 forkbomb-delay
 **************
@@ -5296,9 +5200,9 @@ forkbomb-delay
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: sleep for the specified number of seconds when a forkbomb is detected
 
 
-sleep for the specified number of seconds when a forkbomb is detected
 
 binary-path
 ***********
@@ -5306,9 +5210,9 @@ binary-path
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: force binary path
 
 
-force binary path
 
 privileged-binary-patch
 ***********************
@@ -5316,9 +5220,9 @@ privileged-binary-patch
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: patch the uwsgi binary with a new command (before privileges drop)
 
 
-patch the uwsgi binary with a new command (before privileges drop)
 
 unprivileged-binary-patch
 *************************
@@ -5326,9 +5230,9 @@ unprivileged-binary-patch
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: patch the uwsgi binary with a new command (after privileges drop)
 
 
-patch the uwsgi binary with a new command (after privileges drop)
 
 privileged-binary-patch-arg
 ***************************
@@ -5336,9 +5240,9 @@ privileged-binary-patch-arg
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: patch the uwsgi binary with a new command and arguments (before privileges drop)
 
 
-patch the uwsgi binary with a new command and arguments (before privileges drop)
 
 unprivileged-binary-patch-arg
 *****************************
@@ -5346,9 +5250,9 @@ unprivileged-binary-patch-arg
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: patch the uwsgi binary with a new command and arguments (after privileges drop)
 
 
-patch the uwsgi binary with a new command and arguments (after privileges drop)
 
 async
 *****
@@ -5356,9 +5260,9 @@ async
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: enable async mode with specified cores
 
 
-enable async mode with specified cores
 
 max-fd
 ******
@@ -5366,9 +5270,9 @@ max-fd
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set maximum number of file descriptors (requires root privileges)
 
 
-set maximum number of file descriptors (requires root privileges)
 
 logto
 *****
@@ -5376,9 +5280,9 @@ logto
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set logfile/udp address
 
 
-set logfile/udp address
 
 logto2
 ******
@@ -5386,9 +5290,9 @@ logto2
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: log to specified file or udp address after privileges drop
 
 
-log to specified file or udp address after privileges drop
 
 log-format
 **********
@@ -5396,9 +5300,9 @@ log-format
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set advanced format for request logging
 
 
-set advanced format for request logging
 
 logformat
 *********
@@ -5406,9 +5310,9 @@ logformat
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set advanced format for request logging
 
 
-set advanced format for request logging
 
 logformat-strftime
 ******************
@@ -5416,9 +5320,9 @@ logformat-strftime
 
 ``parser``: uwsgi_opt_true
 
+``help``: apply strftime to logformat output
 
 
-apply strftime to logformat output
 
 log-format-strftime
 *******************
@@ -5426,9 +5330,9 @@ log-format-strftime
 
 ``parser``: uwsgi_opt_true
 
+``help``: apply strftime to logformat output
 
 
-apply strftime to logformat output
 
 logfile-chown
 *************
@@ -5436,9 +5340,9 @@ logfile-chown
 
 ``parser``: uwsgi_opt_true
 
+``help``: chown logfiles
 
 
-chown logfiles
 
 logfile-chmod
 *************
@@ -5446,9 +5350,9 @@ logfile-chmod
 
 ``parser``: uwsgi_opt_logfile_chmod
 
+``help``: chmod logfiles
 
 
-chmod logfiles
 
 log-syslog
 **********
@@ -5458,9 +5362,9 @@ log-syslog
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_LOG_MASTER
 
+``help``: log to syslog
 
 
-log to syslog
 
 log-socket
 **********
@@ -5470,9 +5374,9 @@ log-socket
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_LOG_MASTER
 
+``help``: send logs to the specified socket
 
 
-send logs to the specified socket
 
 req-logger
 **********
@@ -5482,9 +5386,9 @@ req-logger
 
 ``flags``: UWSGI_OPT_REQ_LOG_MASTER
 
+``help``: set/append a request logger
 
 
-set/append a request logger
 
 logger-req
 **********
@@ -5494,9 +5398,9 @@ logger-req
 
 ``flags``: UWSGI_OPT_REQ_LOG_MASTER
 
+``help``: set/append a request logger
 
 
-set/append a request logger
 
 logger
 ******
@@ -5506,9 +5410,9 @@ logger
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_LOG_MASTER
 
+``help``: set/append a logger
 
 
-set/append a logger
 
 logger-list
 ***********
@@ -5516,9 +5420,9 @@ logger-list
 
 ``parser``: uwsgi_opt_true
 
+``help``: list enabled loggers
 
 
-list enabled loggers
 
 loggers-list
 ************
@@ -5526,9 +5430,9 @@ loggers-list
 
 ``parser``: uwsgi_opt_true
 
+``help``: list enabled loggers
 
 
-list enabled loggers
 
 threaded-logger
 ***************
@@ -5538,9 +5442,9 @@ threaded-logger
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_LOG_MASTER
 
+``help``: offload log writing to a thread
 
 
-offload log writing to a thread
 
 log-encoder
 ***********
@@ -5550,9 +5454,9 @@ log-encoder
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_LOG_MASTER
 
+``help``: add an item in the log encoder chain
 
 
-add an item in the log encoder chain
 
 log-req-encoder
 ***************
@@ -5562,9 +5466,9 @@ log-req-encoder
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_LOG_MASTER
 
+``help``: add an item in the log req encoder chain
 
 
-add an item in the log req encoder chain
 
 log-drain
 *********
@@ -5574,9 +5478,9 @@ log-drain
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_LOG_MASTER
 
+``help``: drain (do not show) log lines matching the specified regexp
 
 
-drain (do not show) log lines matching the specified regexp
 
 log-filter
 **********
@@ -5586,9 +5490,9 @@ log-filter
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_LOG_MASTER
 
+``help``: show only log lines matching the specified regexp
 
 
-show only log lines matching the specified regexp
 
 log-route
 *********
@@ -5598,9 +5502,9 @@ log-route
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_LOG_MASTER
 
+``help``: log to the specified named logger if regexp applied on logline matches
 
 
-log to the specified named logger if regexp applied on logline matches
 
 log-req-route
 *************
@@ -5610,9 +5514,9 @@ log-req-route
 
 ``flags``: UWSGI_OPT_REQ_LOG_MASTER
 
+``help``: log requests to the specified named logger if regexp applied on logline matches
 
 
-log requests to the specified named logger if regexp applied on logline matches
 
 use-abort
 *********
@@ -5620,9 +5524,9 @@ use-abort
 
 ``parser``: uwsgi_opt_true
 
+``help``: call abort() on segfault/fpe, could be useful for generating a core dump
 
 
-call abort() on segfault/fpe, could be useful for generating a core dump
 
 alarm
 *****
@@ -5632,9 +5536,9 @@ alarm
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: create a new alarm, syntax: <alarm> <plugin:args>
 
 
-create a new alarm, syntax: <alarm> <plugin:args>
 
 alarm-cheap
 ***********
@@ -5642,9 +5546,9 @@ alarm-cheap
 
 ``parser``: uwsgi_opt_true
 
+``help``: use main alarm thread rather than create dedicated threads for curl-based alarms
 
 
-use main alarm thread rather than create dedicated threads for curl-based alarms
 
 alarm-freq
 **********
@@ -5652,9 +5556,9 @@ alarm-freq
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: tune the anti-loop alam system (default 3 seconds)
 
 
-tune the anti-loop alam system (default 3 seconds)
 
 alarm-fd
 ********
@@ -5664,9 +5568,9 @@ alarm-fd
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: raise the specified alarm when an fd is read for read (by default it reads 1 byte, set 8 for eventfd)
 
 
-raise the specified alarm when an fd is read for read (by default it reads 1 byte, set 8 for eventfd)
 
 alarm-segfault
 **************
@@ -5676,9 +5580,9 @@ alarm-segfault
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: raise the specified alarm when the segmentation fault handler is executed
 
 
-raise the specified alarm when the segmentation fault handler is executed
 
 segfault-alarm
 **************
@@ -5688,9 +5592,9 @@ segfault-alarm
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: raise the specified alarm when the segmentation fault handler is executed
 
 
-raise the specified alarm when the segmentation fault handler is executed
 
 alarm-backlog
 *************
@@ -5700,9 +5604,9 @@ alarm-backlog
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: raise the specified alarm when the socket backlog queue is full
 
 
-raise the specified alarm when the socket backlog queue is full
 
 backlog-alarm
 *************
@@ -5712,9 +5616,9 @@ backlog-alarm
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: raise the specified alarm when the socket backlog queue is full
 
 
-raise the specified alarm when the socket backlog queue is full
 
 lq-alarm
 ********
@@ -5724,9 +5628,9 @@ lq-alarm
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: raise the specified alarm when the socket backlog queue is full
 
 
-raise the specified alarm when the socket backlog queue is full
 
 alarm-lq
 ********
@@ -5736,9 +5640,9 @@ alarm-lq
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: raise the specified alarm when the socket backlog queue is full
 
 
-raise the specified alarm when the socket backlog queue is full
 
 alarm-listen-queue
 ******************
@@ -5748,9 +5652,9 @@ alarm-listen-queue
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: raise the specified alarm when the socket backlog queue is full
 
 
-raise the specified alarm when the socket backlog queue is full
 
 listen-queue-alarm
 ******************
@@ -5760,9 +5664,9 @@ listen-queue-alarm
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: raise the specified alarm when the socket backlog queue is full
 
 
-raise the specified alarm when the socket backlog queue is full
 
 log-alarm
 *********
@@ -5772,9 +5676,9 @@ log-alarm
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_LOG_MASTER
 
+``help``: raise the specified alarm when a log line matches the specified regexp, syntax: <alarm>[,alarm...] <regexp>
 
 
-raise the specified alarm when a log line matches the specified regexp, syntax: <alarm>[,alarm...] <regexp>
 
 alarm-log
 *********
@@ -5784,9 +5688,9 @@ alarm-log
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_LOG_MASTER
 
+``help``: raise the specified alarm when a log line matches the specified regexp, syntax: <alarm>[,alarm...] <regexp>
 
 
-raise the specified alarm when a log line matches the specified regexp, syntax: <alarm>[,alarm...] <regexp>
 
 not-log-alarm
 *************
@@ -5796,9 +5700,9 @@ not-log-alarm
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_LOG_MASTER
 
+``help``: skip the specified alarm when a log line matches the specified regexp, syntax: <alarm>[,alarm...] <regexp>
 
 
-skip the specified alarm when a log line matches the specified regexp, syntax: <alarm>[,alarm...] <regexp>
 
 not-alarm-log
 *************
@@ -5808,9 +5712,9 @@ not-alarm-log
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_LOG_MASTER
 
+``help``: skip the specified alarm when a log line matches the specified regexp, syntax: <alarm>[,alarm...] <regexp>
 
 
-skip the specified alarm when a log line matches the specified regexp, syntax: <alarm>[,alarm...] <regexp>
 
 alarm-list
 **********
@@ -5818,9 +5722,9 @@ alarm-list
 
 ``parser``: uwsgi_opt_true
 
+``help``: list enabled alarms
 
 
-list enabled alarms
 
 alarms-list
 ***********
@@ -5828,9 +5732,9 @@ alarms-list
 
 ``parser``: uwsgi_opt_true
 
+``help``: list enabled alarms
 
 
-list enabled alarms
 
 alarm-msg-size
 **************
@@ -5838,9 +5742,9 @@ alarm-msg-size
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: set the max size of an alarm message (default 8192)
 
 
-set the max size of an alarm message (default 8192)
 
 log-master
 **********
@@ -5850,9 +5754,9 @@ log-master
 
 ``flags``: UWSGI_OPT_MASTER|UWSGI_OPT_LOG_MASTER
 
+``help``: delegate logging to master process
 
 
-delegate logging to master process
 
 log-master-bufsize
 ******************
@@ -5860,9 +5764,9 @@ log-master-bufsize
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: set the buffer size for the master logger. bigger log messages will be truncated
 
 
-set the buffer size for the master logger. bigger log messages will be truncated
 
 log-master-stream
 *****************
@@ -5870,9 +5774,9 @@ log-master-stream
 
 ``parser``: uwsgi_opt_true
 
+``help``: create the master logpipe as SOCK_STREAM
 
 
-create the master logpipe as SOCK_STREAM
 
 log-master-req-stream
 *********************
@@ -5880,9 +5784,9 @@ log-master-req-stream
 
 ``parser``: uwsgi_opt_true
 
+``help``: create the master requests logpipe as SOCK_STREAM
 
 
-create the master requests logpipe as SOCK_STREAM
 
 log-reopen
 **********
@@ -5890,9 +5794,9 @@ log-reopen
 
 ``parser``: uwsgi_opt_true
 
+``help``: reopen log after reload
 
 
-reopen log after reload
 
 log-truncate
 ************
@@ -5900,9 +5804,9 @@ log-truncate
 
 ``parser``: uwsgi_opt_true
 
+``help``: truncate log on startup
 
 
-truncate log on startup
 
 log-maxsize
 ***********
@@ -5912,9 +5816,9 @@ log-maxsize
 
 ``flags``: UWSGI_OPT_MASTER|UWSGI_OPT_LOG_MASTER
 
+``help``: set maximum logfile size
 
 
-set maximum logfile size
 
 log-backupname
 **************
@@ -5922,9 +5826,9 @@ log-backupname
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set logfile name after rotation
 
 
-set logfile name after rotation
 
 logdate
 *******
@@ -5932,9 +5836,9 @@ logdate
 
 ``parser``: uwsgi_opt_log_date
 
+``help``: prefix logs with date or a strftime string
 
 
-prefix logs with date or a strftime string
 
 log-date
 ********
@@ -5942,9 +5846,9 @@ log-date
 
 ``parser``: uwsgi_opt_log_date
 
+``help``: prefix logs with date or a strftime string
 
 
-prefix logs with date or a strftime string
 
 log-prefix
 **********
@@ -5952,9 +5856,9 @@ log-prefix
 
 ``parser``: uwsgi_opt_log_date
 
+``help``: prefix logs with a string
 
 
-prefix logs with a string
 
 log-zero
 ********
@@ -5962,9 +5866,9 @@ log-zero
 
 ``parser``: uwsgi_opt_true
 
+``help``: log responses without body
 
 
-log responses without body
 
 log-slow
 ********
@@ -5972,9 +5876,9 @@ log-slow
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: log requests slower than the specified number of milliseconds
 
 
-log requests slower than the specified number of milliseconds
 
 log-4xx
 *******
@@ -5982,9 +5886,9 @@ log-4xx
 
 ``parser``: uwsgi_opt_true
 
+``help``: log requests with a 4xx response
 
 
-log requests with a 4xx response
 
 log-5xx
 *******
@@ -5992,9 +5896,9 @@ log-5xx
 
 ``parser``: uwsgi_opt_true
 
+``help``: log requests with a 5xx response
 
 
-log requests with a 5xx response
 
 log-big
 *******
@@ -6002,9 +5906,9 @@ log-big
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: log requestes bigger than the specified size
 
 
-log requestes bigger than the specified size
 
 log-sendfile
 ************
@@ -6012,9 +5916,9 @@ log-sendfile
 
 ``parser``: uwsgi_opt_true
 
+``help``: log sendfile requests
 
 
-log sendfile requests
 
 log-ioerror
 ***********
@@ -6022,9 +5926,9 @@ log-ioerror
 
 ``parser``: uwsgi_opt_true
 
+``help``: log requests with io errors
 
 
-log requests with io errors
 
 log-micros
 **********
@@ -6032,9 +5936,9 @@ log-micros
 
 ``parser``: uwsgi_opt_true
 
+``help``: report response time in microseconds instead of milliseconds
 
 
-report response time in microseconds instead of milliseconds
 
 log-x-forwarded-for
 *******************
@@ -6042,9 +5946,9 @@ log-x-forwarded-for
 
 ``parser``: uwsgi_opt_true
 
+``help``: use the ip from X-Forwarded-For header instead of REMOTE_ADDR
 
 
-use the ip from X-Forwarded-For header instead of REMOTE_ADDR
 
 master-as-root
 **************
@@ -6052,9 +5956,9 @@ master-as-root
 
 ``parser``: uwsgi_opt_true
 
+``help``: leave master process running as root
 
 
-leave master process running as root
 
 drop-after-init
 ***************
@@ -6062,9 +5966,9 @@ drop-after-init
 
 ``parser``: uwsgi_opt_true
 
+``help``: run privileges drop after plugin initialization
 
 
-run privileges drop after plugin initialization
 
 drop-after-apps
 ***************
@@ -6072,9 +5976,9 @@ drop-after-apps
 
 ``parser``: uwsgi_opt_true
 
+``help``: run privileges drop after apps loading
 
 
-run privileges drop after apps loading
 
 force-cwd
 *********
@@ -6082,9 +5986,9 @@ force-cwd
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: force the initial working directory to the specified value
 
 
-force the initial working directory to the specified value
 
 binsh
 *****
@@ -6092,9 +5996,9 @@ binsh
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: override /bin/sh (used by exec hooks, it always fallback to /bin/sh)
 
 
-override /bin/sh (used by exec hooks, it always fallback to /bin/sh)
 
 chdir
 *****
@@ -6102,9 +6006,9 @@ chdir
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: chdir to specified directory before apps loading
 
 
-chdir to specified directory before apps loading
 
 chdir2
 ******
@@ -6112,9 +6016,9 @@ chdir2
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: chdir to specified directory after apps loading
 
 
-chdir to specified directory after apps loading
 
 lazy
 ****
@@ -6122,9 +6026,9 @@ lazy
 
 ``parser``: uwsgi_opt_true
 
+``help``: set lazy mode (load apps in workers instead of master)
 
 
-set lazy mode (load apps in workers instead of master)
 
 lazy-apps
 *********
@@ -6132,9 +6036,9 @@ lazy-apps
 
 ``parser``: uwsgi_opt_true
 
+``help``: load apps in each worker instead of the master
 
 
-load apps in each worker instead of the master
 
 cheap
 *****
@@ -6144,9 +6048,9 @@ cheap
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: set cheap mode (spawn workers only after the first request)
 
 
-set cheap mode (spawn workers only after the first request)
 
 cheaper
 *******
@@ -6156,9 +6060,9 @@ cheaper
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_CHEAPER
 
+``help``: set cheaper mode (adaptive process spawning)
 
 
-set cheaper mode (adaptive process spawning)
 
 cheaper-initial
 ***************
@@ -6168,9 +6072,9 @@ cheaper-initial
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_CHEAPER
 
+``help``: set the initial number of processes to spawn in cheaper mode
 
 
-set the initial number of processes to spawn in cheaper mode
 
 cheaper-algo
 ************
@@ -6180,9 +6084,9 @@ cheaper-algo
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: choose to algorithm used for adaptive process spawning
 
 
-choose to algorithm used for adaptive process spawning
 
 cheaper-step
 ************
@@ -6192,9 +6096,9 @@ cheaper-step
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_CHEAPER
 
+``help``: number of additional processes to spawn at each overload
 
 
-number of additional processes to spawn at each overload
 
 cheaper-overload
 ****************
@@ -6204,9 +6108,9 @@ cheaper-overload
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_CHEAPER
 
+``help``: increase workers after specified overload
 
 
-increase workers after specified overload
 
 cheaper-algo-list
 *****************
@@ -6214,9 +6118,9 @@ cheaper-algo-list
 
 ``parser``: uwsgi_opt_true
 
+``help``: list enabled cheapers algorithms
 
 
-list enabled cheapers algorithms
 
 cheaper-algos-list
 ******************
@@ -6224,9 +6128,9 @@ cheaper-algos-list
 
 ``parser``: uwsgi_opt_true
 
+``help``: list enabled cheapers algorithms
 
 
-list enabled cheapers algorithms
 
 cheaper-list
 ************
@@ -6234,9 +6138,9 @@ cheaper-list
 
 ``parser``: uwsgi_opt_true
 
+``help``: list enabled cheapers algorithms
 
 
-list enabled cheapers algorithms
 
 cheaper-rss-limit-soft
 **********************
@@ -6246,9 +6150,9 @@ cheaper-rss-limit-soft
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_CHEAPER
 
+``help``: don't spawn new workers if total resident memory usage of all workers is higher than this limit
 
 
-don't spawn new workers if total resident memory usage of all workers is higher than this limit
 
 cheaper-rss-limit-hard
 **********************
@@ -6258,9 +6162,9 @@ cheaper-rss-limit-hard
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_CHEAPER
 
+``help``: if total workers resident memory usage is higher try to stop workers
 
 
-if total workers resident memory usage is higher try to stop workers
 
 idle
 ****
@@ -6270,9 +6174,9 @@ idle
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: set idle mode (put uWSGI in cheap mode after inactivity)
 
 
-set idle mode (put uWSGI in cheap mode after inactivity)
 
 die-on-idle
 ***********
@@ -6280,9 +6184,9 @@ die-on-idle
 
 ``parser``: uwsgi_opt_true
 
+``help``: shutdown uWSGI when idle
 
 
-shutdown uWSGI when idle
 
 mount
 *****
@@ -6290,9 +6194,9 @@ mount
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: load application under mountpoint
 
 
-load application under mountpoint
 
 worker-mount
 ************
@@ -6300,9 +6204,9 @@ worker-mount
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: load application under mountpoint in the specified worker or after workers spawn
 
 
-load application under mountpoint in the specified worker or after workers spawn
 
 threads
 *******
@@ -6312,9 +6216,9 @@ threads
 
 ``flags``: UWSGI_OPT_THREADS
 
+``help``: run each worker in prethreaded mode with the specified number of threads
 
 
-run each worker in prethreaded mode with the specified number of threads
 
 thread-stacksize
 ****************
@@ -6324,9 +6228,9 @@ thread-stacksize
 
 ``flags``: UWSGI_OPT_THREADS
 
+``help``: set threads stacksize
 
 
-set threads stacksize
 
 threads-stacksize
 *****************
@@ -6336,9 +6240,9 @@ threads-stacksize
 
 ``flags``: UWSGI_OPT_THREADS
 
+``help``: set threads stacksize
 
 
-set threads stacksize
 
 thread-stack-size
 *****************
@@ -6348,9 +6252,9 @@ thread-stack-size
 
 ``flags``: UWSGI_OPT_THREADS
 
+``help``: set threads stacksize
 
 
-set threads stacksize
 
 threads-stack-size
 ******************
@@ -6360,9 +6264,9 @@ threads-stack-size
 
 ``flags``: UWSGI_OPT_THREADS
 
+``help``: set threads stacksize
 
 
-set threads stacksize
 
 vhost
 *****
@@ -6370,9 +6274,9 @@ vhost
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable virtualhosting mode (based on SERVER_NAME variable)
 
 
-enable virtualhosting mode (based on SERVER_NAME variable)
 
 vhost-host
 **********
@@ -6382,9 +6286,9 @@ vhost-host
 
 ``flags``: UWSGI_OPT_VHOST
 
+``help``: enable virtualhosting mode (based on HTTP_HOST variable)
 
 
-enable virtualhosting mode (based on HTTP_HOST variable)
 
 route
 *****
@@ -6392,9 +6296,9 @@ route
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a route
 
 
-add a route
 
 route-host
 **********
@@ -6402,9 +6306,9 @@ route-host
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a route based on Host header
 
 
-add a route based on Host header
 
 route-uri
 *********
@@ -6412,9 +6316,9 @@ route-uri
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a route based on REQUEST_URI
 
 
-add a route based on REQUEST_URI
 
 route-qs
 ********
@@ -6422,9 +6326,9 @@ route-qs
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a route based on QUERY_STRING
 
 
-add a route based on QUERY_STRING
 
 route-remote-addr
 *****************
@@ -6432,9 +6336,9 @@ route-remote-addr
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a route based on REMOTE_ADDR
 
 
-add a route based on REMOTE_ADDR
 
 route-user-agent
 ****************
@@ -6442,9 +6346,9 @@ route-user-agent
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a route based on HTTP_USER_AGENT
 
 
-add a route based on HTTP_USER_AGENT
 
 route-remote-user
 *****************
@@ -6452,9 +6356,9 @@ route-remote-user
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a route based on REMOTE_USER
 
 
-add a route based on REMOTE_USER
 
 route-referer
 *************
@@ -6462,9 +6366,9 @@ route-referer
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a route based on HTTP_REFERER
 
 
-add a route based on HTTP_REFERER
 
 route-label
 ***********
@@ -6472,9 +6376,9 @@ route-label
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a routing label (for use with goto)
 
 
-add a routing label (for use with goto)
 
 route-if
 ********
@@ -6482,9 +6386,9 @@ route-if
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a route based on condition
 
 
-add a route based on condition
 
 route-if-not
 ************
@@ -6492,9 +6396,9 @@ route-if-not
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a route based on condition (negate version)
 
 
-add a route based on condition (negate version)
 
 route-run
 *********
@@ -6502,9 +6406,9 @@ route-run
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: always run the specified route action
 
 
-always run the specified route action
 
 final-route
 ***********
@@ -6512,9 +6416,9 @@ final-route
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a final route
 
 
-add a final route
 
 final-route-status
 ******************
@@ -6522,9 +6426,9 @@ final-route-status
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a final route for the specified status
 
 
-add a final route for the specified status
 
 final-route-host
 ****************
@@ -6532,9 +6436,9 @@ final-route-host
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a final route based on Host header
 
 
-add a final route based on Host header
 
 final-route-uri
 ***************
@@ -6542,9 +6446,9 @@ final-route-uri
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a final route based on REQUEST_URI
 
 
-add a final route based on REQUEST_URI
 
 final-route-qs
 **************
@@ -6552,9 +6456,9 @@ final-route-qs
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a final route based on QUERY_STRING
 
 
-add a final route based on QUERY_STRING
 
 final-route-remote-addr
 ***********************
@@ -6562,9 +6466,9 @@ final-route-remote-addr
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a final route based on REMOTE_ADDR
 
 
-add a final route based on REMOTE_ADDR
 
 final-route-user-agent
 **********************
@@ -6572,9 +6476,9 @@ final-route-user-agent
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a final route based on HTTP_USER_AGENT
 
 
-add a final route based on HTTP_USER_AGENT
 
 final-route-remote-user
 ***********************
@@ -6582,9 +6486,9 @@ final-route-remote-user
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a final route based on REMOTE_USER
 
 
-add a final route based on REMOTE_USER
 
 final-route-referer
 *******************
@@ -6592,9 +6496,9 @@ final-route-referer
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a final route based on HTTP_REFERER
 
 
-add a final route based on HTTP_REFERER
 
 final-route-label
 *****************
@@ -6602,9 +6506,9 @@ final-route-label
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a final routing label (for use with goto)
 
 
-add a final routing label (for use with goto)
 
 final-route-if
 **************
@@ -6612,9 +6516,9 @@ final-route-if
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a final route based on condition
 
 
-add a final route based on condition
 
 final-route-if-not
 ******************
@@ -6622,9 +6526,9 @@ final-route-if-not
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a final route based on condition (negate version)
 
 
-add a final route based on condition (negate version)
 
 final-route-run
 ***************
@@ -6632,9 +6536,9 @@ final-route-run
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: always run the specified final route action
 
 
-always run the specified final route action
 
 error-route
 ***********
@@ -6642,9 +6546,9 @@ error-route
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add an error route
 
 
-add an error route
 
 error-route-status
 ******************
@@ -6652,9 +6556,9 @@ error-route-status
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add an error route for the specified status
 
 
-add an error route for the specified status
 
 error-route-host
 ****************
@@ -6662,9 +6566,9 @@ error-route-host
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add an error route based on Host header
 
 
-add an error route based on Host header
 
 error-route-uri
 ***************
@@ -6672,9 +6576,9 @@ error-route-uri
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add an error route based on REQUEST_URI
 
 
-add an error route based on REQUEST_URI
 
 error-route-qs
 **************
@@ -6682,9 +6586,9 @@ error-route-qs
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add an error route based on QUERY_STRING
 
 
-add an error route based on QUERY_STRING
 
 error-route-remote-addr
 ***********************
@@ -6692,9 +6596,9 @@ error-route-remote-addr
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add an error route based on REMOTE_ADDR
 
 
-add an error route based on REMOTE_ADDR
 
 error-route-user-agent
 **********************
@@ -6702,9 +6606,9 @@ error-route-user-agent
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add an error route based on HTTP_USER_AGENT
 
 
-add an error route based on HTTP_USER_AGENT
 
 error-route-remote-user
 ***********************
@@ -6712,9 +6616,9 @@ error-route-remote-user
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add an error route based on REMOTE_USER
 
 
-add an error route based on REMOTE_USER
 
 error-route-referer
 *******************
@@ -6722,9 +6626,9 @@ error-route-referer
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add an error route based on HTTP_REFERER
 
 
-add an error route based on HTTP_REFERER
 
 error-route-label
 *****************
@@ -6732,9 +6636,9 @@ error-route-label
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add an error routing label (for use with goto)
 
 
-add an error routing label (for use with goto)
 
 error-route-if
 **************
@@ -6742,9 +6646,9 @@ error-route-if
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add an error route based on condition
 
 
-add an error route based on condition
 
 error-route-if-not
 ******************
@@ -6752,9 +6656,9 @@ error-route-if-not
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add an error route based on condition (negate version)
 
 
-add an error route based on condition (negate version)
 
 error-route-run
 ***************
@@ -6762,9 +6666,9 @@ error-route-run
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: always run the specified error route action
 
 
-always run the specified error route action
 
 response-route
 **************
@@ -6772,9 +6676,9 @@ response-route
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a response route
 
 
-add a response route
 
 response-route-status
 *********************
@@ -6782,9 +6686,9 @@ response-route-status
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a response route for the specified status
 
 
-add a response route for the specified status
 
 response-route-host
 *******************
@@ -6792,9 +6696,9 @@ response-route-host
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a response route based on Host header
 
 
-add a response route based on Host header
 
 response-route-uri
 ******************
@@ -6802,9 +6706,9 @@ response-route-uri
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a response route based on REQUEST_URI
 
 
-add a response route based on REQUEST_URI
 
 response-route-qs
 *****************
@@ -6812,9 +6716,9 @@ response-route-qs
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a response route based on QUERY_STRING
 
 
-add a response route based on QUERY_STRING
 
 response-route-remote-addr
 **************************
@@ -6822,9 +6726,9 @@ response-route-remote-addr
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a response route based on REMOTE_ADDR
 
 
-add a response route based on REMOTE_ADDR
 
 response-route-user-agent
 *************************
@@ -6832,9 +6736,9 @@ response-route-user-agent
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a response route based on HTTP_USER_AGENT
 
 
-add a response route based on HTTP_USER_AGENT
 
 response-route-remote-user
 **************************
@@ -6842,9 +6746,9 @@ response-route-remote-user
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a response route based on REMOTE_USER
 
 
-add a response route based on REMOTE_USER
 
 response-route-referer
 **********************
@@ -6852,9 +6756,9 @@ response-route-referer
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a response route based on HTTP_REFERER
 
 
-add a response route based on HTTP_REFERER
 
 response-route-label
 ********************
@@ -6862,9 +6766,9 @@ response-route-label
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a response routing label (for use with goto)
 
 
-add a response routing label (for use with goto)
 
 response-route-if
 *****************
@@ -6872,9 +6776,9 @@ response-route-if
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a response route based on condition
 
 
-add a response route based on condition
 
 response-route-if-not
 *********************
@@ -6882,9 +6786,9 @@ response-route-if-not
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: add a response route based on condition (negate version)
 
 
-add a response route based on condition (negate version)
 
 response-route-run
 ******************
@@ -6892,9 +6796,9 @@ response-route-run
 
 ``parser``: uwsgi_opt_add_route
 
+``help``: always run the specified response route action
 
 
-always run the specified response route action
 
 router-list
 ***********
@@ -6902,9 +6806,9 @@ router-list
 
 ``parser``: uwsgi_opt_true
 
+``help``: list enabled routers
 
 
-list enabled routers
 
 routers-list
 ************
@@ -6912,9 +6816,9 @@ routers-list
 
 ``parser``: uwsgi_opt_true
 
+``help``: list enabled routers
 
 
-list enabled routers
 
 error-page-403
 **************
@@ -6922,9 +6826,9 @@ error-page-403
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add an error page (html) for managed 403 response
 
 
-add an error page (html) for managed 403 response
 
 error-page-404
 **************
@@ -6932,9 +6836,9 @@ error-page-404
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add an error page (html) for managed 404 response
 
 
-add an error page (html) for managed 404 response
 
 error-page-500
 **************
@@ -6942,9 +6846,9 @@ error-page-500
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add an error page (html) for managed 500 response
 
 
-add an error page (html) for managed 500 response
 
 websockets-ping-freq
 ********************
@@ -6952,9 +6856,9 @@ websockets-ping-freq
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the frequency (in seconds) of websockets automatic ping packets
 
 
-set the frequency (in seconds) of websockets automatic ping packets
 
 websocket-ping-freq
 *******************
@@ -6962,9 +6866,9 @@ websocket-ping-freq
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the frequency (in seconds) of websockets automatic ping packets
 
 
-set the frequency (in seconds) of websockets automatic ping packets
 
 websockets-pong-tolerance
 *************************
@@ -6972,9 +6876,9 @@ websockets-pong-tolerance
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the tolerance (in seconds) of websockets ping/pong subsystem
 
 
-set the tolerance (in seconds) of websockets ping/pong subsystem
 
 websocket-pong-tolerance
 ************************
@@ -6982,9 +6886,9 @@ websocket-pong-tolerance
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the tolerance (in seconds) of websockets ping/pong subsystem
 
 
-set the tolerance (in seconds) of websockets ping/pong subsystem
 
 websockets-max-size
 *******************
@@ -6992,9 +6896,9 @@ websockets-max-size
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: set the max allowed size of websocket messages (in Kbytes, default 1024)
 
 
-set the max allowed size of websocket messages (in Kbytes, default 1024)
 
 websocket-max-size
 ******************
@@ -7002,9 +6906,9 @@ websocket-max-size
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: set the max allowed size of websocket messages (in Kbytes, default 1024)
 
 
-set the max allowed size of websocket messages (in Kbytes, default 1024)
 
 chunked-input-limit
 *******************
@@ -7012,9 +6916,9 @@ chunked-input-limit
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: set the max size of a chunked input part (default 1MB, in bytes)
 
 
-set the max size of a chunked input part (default 1MB, in bytes)
 
 chunked-input-timeout
 *********************
@@ -7022,9 +6926,9 @@ chunked-input-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set default timeout for chunked input
 
 
-set default timeout for chunked input
 
 clock
 *****
@@ -7032,9 +6936,9 @@ clock
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set a clock source
 
 
-set a clock source
 
 clock-list
 **********
@@ -7042,9 +6946,9 @@ clock-list
 
 ``parser``: uwsgi_opt_true
 
+``help``: list enabled clocks
 
 
-list enabled clocks
 
 clocks-list
 ***********
@@ -7052,9 +6956,9 @@ clocks-list
 
 ``parser``: uwsgi_opt_true
 
+``help``: list enabled clocks
 
 
-list enabled clocks
 
 add-header
 **********
@@ -7062,9 +6966,9 @@ add-header
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: automatically add HTTP headers to response
 
 
-automatically add HTTP headers to response
 
 rem-header
 **********
@@ -7072,9 +6976,9 @@ rem-header
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: automatically remove specified HTTP header from the response
 
 
-automatically remove specified HTTP header from the response
 
 del-header
 **********
@@ -7082,9 +6986,9 @@ del-header
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: automatically remove specified HTTP header from the response
 
 
-automatically remove specified HTTP header from the response
 
 collect-header
 **************
@@ -7092,9 +6996,9 @@ collect-header
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: store the specified response header in a request var (syntax: header var)
 
 
-store the specified response header in a request var (syntax: header var)
 
 response-header-collect
 ***********************
@@ -7102,9 +7006,9 @@ response-header-collect
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: store the specified response header in a request var (syntax: header var)
 
 
-store the specified response header in a request var (syntax: header var)
 
 check-static
 ************
@@ -7114,9 +7018,9 @@ check-static
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: check for static files in the specified directory
 
 
-check for static files in the specified directory
 
 check-static-docroot
 ********************
@@ -7126,9 +7030,9 @@ check-static-docroot
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: check for static files in the requested DOCUMENT_ROOT
 
 
-check for static files in the requested DOCUMENT_ROOT
 
 static-check
 ************
@@ -7138,9 +7042,9 @@ static-check
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: check for static files in the specified directory
 
 
-check for static files in the specified directory
 
 static-map
 **********
@@ -7150,9 +7054,9 @@ static-map
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: map mountpoint to static directory (or file)
 
 
-map mountpoint to static directory (or file)
 
 static-map2
 ***********
@@ -7162,9 +7066,9 @@ static-map2
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: like static-map but completely appending the requested resource to the docroot
 
 
-like static-map but completely appending the requested resource to the docroot
 
 static-skip-ext
 ***************
@@ -7174,9 +7078,9 @@ static-skip-ext
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: skip specified extension from staticfile checks
 
 
-skip specified extension from staticfile checks
 
 static-index
 ************
@@ -7186,9 +7090,9 @@ static-index
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: search for specified file if a directory is requested
 
 
-search for specified file if a directory is requested
 
 static-safe
 ***********
@@ -7198,9 +7102,9 @@ static-safe
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: skip security checks if the file is under the specified path
 
 
-skip security checks if the file is under the specified path
 
 static-cache-paths
 ******************
@@ -7210,9 +7114,9 @@ static-cache-paths
 
 ``flags``: UWSGI_OPT_MIME|UWSGI_OPT_MASTER
 
+``help``: put resolved paths in the uWSGI cache for the specified amount of seconds
 
 
-put resolved paths in the uWSGI cache for the specified amount of seconds
 
 static-cache-paths-name
 ***********************
@@ -7222,9 +7126,9 @@ static-cache-paths-name
 
 ``flags``: UWSGI_OPT_MIME|UWSGI_OPT_MASTER
 
+``help``: use the specified cache for static paths
 
 
-use the specified cache for static paths
 
 mimefile
 ********
@@ -7234,9 +7138,9 @@ mimefile
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: set mime types file path (default /etc/apache2/mime.types)
 
 
-set mime types file path (default /etc/apache2/mime.types)
 
 mime-file
 *********
@@ -7246,9 +7150,9 @@ mime-file
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: set mime types file path (default /etc/apache2/mime.types)
 
 
-set mime types file path (default /etc/apache2/mime.types)
 
 mimefile
 ********
@@ -7258,9 +7162,9 @@ mimefile
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: set mime types file path (default /etc/mime.types)
 
 
-set mime types file path (default /etc/mime.types)
 
 mime-file
 *********
@@ -7270,9 +7174,9 @@ mime-file
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: set mime types file path (default /etc/mime.types)
 
 
-set mime types file path (default /etc/mime.types)
 
 static-expires-type
 *******************
@@ -7282,9 +7186,9 @@ static-expires-type
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: set the Expires header based on content type
 
 
-set the Expires header based on content type
 
 static-expires-type-mtime
 *************************
@@ -7294,9 +7198,9 @@ static-expires-type-mtime
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: set the Expires header based on content type and file mtime
 
 
-set the Expires header based on content type and file mtime
 
 static-expires
 **************
@@ -7306,9 +7210,9 @@ static-expires
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: set the Expires header based on filename regexp
 
 
-set the Expires header based on filename regexp
 
 static-expires-mtime
 ********************
@@ -7318,9 +7222,9 @@ static-expires-mtime
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: set the Expires header based on filename regexp and file mtime
 
 
-set the Expires header based on filename regexp and file mtime
 
 static-expires-uri
 ******************
@@ -7330,9 +7234,9 @@ static-expires-uri
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: set the Expires header based on REQUEST_URI regexp
 
 
-set the Expires header based on REQUEST_URI regexp
 
 static-expires-uri-mtime
 ************************
@@ -7342,9 +7246,9 @@ static-expires-uri-mtime
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: set the Expires header based on REQUEST_URI regexp and file mtime
 
 
-set the Expires header based on REQUEST_URI regexp and file mtime
 
 static-expires-path-info
 ************************
@@ -7354,9 +7258,9 @@ static-expires-path-info
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: set the Expires header based on PATH_INFO regexp
 
 
-set the Expires header based on PATH_INFO regexp
 
 static-expires-path-info-mtime
 ******************************
@@ -7366,9 +7270,9 @@ static-expires-path-info-mtime
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: set the Expires header based on PATH_INFO regexp and file mtime
 
 
-set the Expires header based on PATH_INFO regexp and file mtime
 
 static-gzip
 ***********
@@ -7378,9 +7282,9 @@ static-gzip
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: if the supplied regexp matches the static file translation it will search for a gzip version
 
 
-if the supplied regexp matches the static file translation it will search for a gzip version
 
 static-gzip-all
 ***************
@@ -7390,9 +7294,9 @@ static-gzip-all
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: check for a gzip version of all requested static files
 
 
-check for a gzip version of all requested static files
 
 static-gzip-dir
 ***************
@@ -7402,9 +7306,9 @@ static-gzip-dir
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: check for a gzip version of all requested static files in the specified dir/prefix
 
 
-check for a gzip version of all requested static files in the specified dir/prefix
 
 static-gzip-prefix
 ******************
@@ -7414,9 +7318,9 @@ static-gzip-prefix
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: check for a gzip version of all requested static files in the specified dir/prefix
 
 
-check for a gzip version of all requested static files in the specified dir/prefix
 
 static-gzip-ext
 ***************
@@ -7426,9 +7330,9 @@ static-gzip-ext
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: check for a gzip version of all requested static files with the specified ext/suffix
 
 
-check for a gzip version of all requested static files with the specified ext/suffix
 
 static-gzip-suffix
 ******************
@@ -7438,9 +7342,9 @@ static-gzip-suffix
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: check for a gzip version of all requested static files with the specified ext/suffix
 
 
-check for a gzip version of all requested static files with the specified ext/suffix
 
 honour-range
 ************
@@ -7448,9 +7352,9 @@ honour-range
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable support for the HTTP Range header
 
 
-enable support for the HTTP Range header
 
 offload-threads
 ***************
@@ -7458,9 +7362,9 @@ offload-threads
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the number of offload threads to spawn (per-worker, default 0)
 
 
-set the number of offload threads to spawn (per-worker, default 0)
 
 offload-thread
 **************
@@ -7468,9 +7372,9 @@ offload-thread
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the number of offload threads to spawn (per-worker, default 0)
 
 
-set the number of offload threads to spawn (per-worker, default 0)
 
 file-serve-mode
 ***************
@@ -7480,9 +7384,9 @@ file-serve-mode
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: set static file serving mode
 
 
-set static file serving mode
 
 fileserve-mode
 **************
@@ -7492,9 +7396,9 @@ fileserve-mode
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: set static file serving mode
 
 
-set static file serving mode
 
 disable-sendfile
 ****************
@@ -7502,9 +7406,9 @@ disable-sendfile
 
 ``parser``: uwsgi_opt_true
 
+``help``: disable sendfile() and rely on boring read()/write()
 
 
-disable sendfile() and rely on boring read()/write()
 
 check-cache
 ***********
@@ -7512,9 +7416,9 @@ check-cache
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: check for response data in the specified cache (empty for default cache)
 
 
-check for response data in the specified cache (empty for default cache)
 
 close-on-exec
 *************
@@ -7522,9 +7426,9 @@ close-on-exec
 
 ``parser``: uwsgi_opt_true
 
+``help``: set close-on-exec on connection sockets (could be required for spawning processes in requests)
 
 
-set close-on-exec on connection sockets (could be required for spawning processes in requests)
 
 close-on-exec2
 **************
@@ -7532,9 +7436,9 @@ close-on-exec2
 
 ``parser``: uwsgi_opt_true
 
+``help``: set close-on-exec on server sockets (could be required for spawning processes in requests)
 
 
-set close-on-exec on server sockets (could be required for spawning processes in requests)
 
 mode
 ****
@@ -7542,9 +7446,9 @@ mode
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set uWSGI custom mode
 
 
-set uWSGI custom mode
 
 env
 ***
@@ -7552,21 +7456,9 @@ env
 
 ``parser``: uwsgi_opt_set_env
 
+``help``: set environment variable
 
 
-set environment variable
-
-ienv
-****
-``argument``: required_argument
-
-``parser``: uwsgi_opt_set_env
-
-``flags``: UWSGI_OPT_IMMEDIATE
-
-
-
-set environment variable (IMMEDIATE version)
 
 envdir
 ******
@@ -7574,9 +7466,9 @@ envdir
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: load a daemontools compatible envdir
 
 
-load a daemontools compatible envdir
 
 early-envdir
 ************
@@ -7586,9 +7478,9 @@ early-envdir
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: load a daemontools compatible envdir ASAP
 
 
-load a daemontools compatible envdir ASAP
 
 unenv
 *****
@@ -7596,9 +7488,9 @@ unenv
 
 ``parser``: uwsgi_opt_unset_env
 
+``help``: unset environment variable
 
 
-unset environment variable
 
 vacuum
 ******
@@ -7606,9 +7498,9 @@ vacuum
 
 ``parser``: uwsgi_opt_true
 
+``help``: try to remove all of the generated file/sockets
 
 
-try to remove all of the generated file/sockets
 
 file-write
 **********
@@ -7616,9 +7508,9 @@ file-write
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: write the specified content to the specified file (syntax: file=value) before privileges drop
 
 
-write the specified content to the specified file (syntax: file=value) before privileges drop
 
 cgroup
 ******
@@ -7626,9 +7518,9 @@ cgroup
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: put the processes in the specified cgroup
 
 
-put the processes in the specified cgroup
 
 cgroup-opt
 **********
@@ -7636,9 +7528,9 @@ cgroup-opt
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: set value in specified cgroup option
 
 
-set value in specified cgroup option
 
 cgroup-dir-mode
 ***************
@@ -7646,9 +7538,9 @@ cgroup-dir-mode
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set permission for cgroup directory (default is 700)
 
 
-set permission for cgroup directory (default is 700)
 
 namespace
 *********
@@ -7656,9 +7548,9 @@ namespace
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run in a new namespace under the specified rootfs
 
 
-run in a new namespace under the specified rootfs
 
 namespace-keep-mount
 ********************
@@ -7666,9 +7558,9 @@ namespace-keep-mount
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: keep the specified mountpoint in your namespace
 
 
-keep the specified mountpoint in your namespace
 
 ns
 **
@@ -7676,9 +7568,9 @@ ns
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run in a new namespace under the specified rootfs
 
 
-run in a new namespace under the specified rootfs
 
 namespace-net
 *************
@@ -7686,9 +7578,9 @@ namespace-net
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: add network namespace
 
 
-add network namespace
 
 ns-net
 ******
@@ -7696,9 +7588,9 @@ ns-net
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: add network namespace
 
 
-add network namespace
 
 enable-proxy-protocol
 *********************
@@ -7706,9 +7598,9 @@ enable-proxy-protocol
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable PROXY1 protocol support (only for http parsers)
 
 
-enable PROXY1 protocol support (only for http parsers)
 
 reuse-port
 **********
@@ -7716,9 +7608,9 @@ reuse-port
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable REUSE_PORT flag on socket (BSD only)
 
 
-enable REUSE_PORT flag on socket (BSD only)
 
 tcp-fast-open
 *************
@@ -7726,9 +7618,9 @@ tcp-fast-open
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: enable TCP_FASTOPEN flag on TCP sockets with the specified qlen value
 
 
-enable TCP_FASTOPEN flag on TCP sockets with the specified qlen value
 
 tcp-fastopen
 ************
@@ -7736,9 +7628,9 @@ tcp-fastopen
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: enable TCP_FASTOPEN flag on TCP sockets with the specified qlen value
 
 
-enable TCP_FASTOPEN flag on TCP sockets with the specified qlen value
 
 tcp-fast-open-client
 ********************
@@ -7746,9 +7638,9 @@ tcp-fast-open-client
 
 ``parser``: uwsgi_opt_true
 
+``help``: use sendto(..., MSG_FASTOPEN, ...) instead of connect() if supported
 
 
-use sendto(..., MSG_FASTOPEN, ...) instead of connect() if supported
 
 tcp-fastopen-client
 *******************
@@ -7756,9 +7648,9 @@ tcp-fastopen-client
 
 ``parser``: uwsgi_opt_true
 
+``help``: use sendto(..., MSG_FASTOPEN, ...) instead of connect() if supported
 
 
-use sendto(..., MSG_FASTOPEN, ...) instead of connect() if supported
 
 zerg
 ****
@@ -7766,9 +7658,9 @@ zerg
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: attach to a zerg server
 
 
-attach to a zerg server
 
 zerg-fallback
 *************
@@ -7776,9 +7668,9 @@ zerg-fallback
 
 ``parser``: uwsgi_opt_true
 
+``help``: fallback to normal sockets if the zerg server is not available
 
 
-fallback to normal sockets if the zerg server is not available
 
 zerg-server
 ***********
@@ -7788,9 +7680,9 @@ zerg-server
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: enable the zerg server on the specified UNIX socket
 
 
-enable the zerg server on the specified UNIX socket
 
 cron
 ****
@@ -7800,9 +7692,9 @@ cron
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a cron task
 
 
-add a cron task
 
 cron2
 *****
@@ -7812,9 +7704,9 @@ cron2
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a cron task (key=val syntax)
 
 
-add a cron task (key=val syntax)
 
 unique-cron
 ***********
@@ -7824,9 +7716,9 @@ unique-cron
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a unique cron task
 
 
-add a unique cron task
 
 cron-harakiri
 *************
@@ -7834,9 +7726,9 @@ cron-harakiri
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the maximum time (in seconds) we wait for cron command to complete
 
 
-set the maximum time (in seconds) we wait for cron command to complete
 
 legion-cron
 ***********
@@ -7846,9 +7738,9 @@ legion-cron
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a cron task runnable only when the instance is a lord of the specified legion
 
 
-add a cron task runnable only when the instance is a lord of the specified legion
 
 cron-legion
 ***********
@@ -7858,9 +7750,9 @@ cron-legion
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a cron task runnable only when the instance is a lord of the specified legion
 
 
-add a cron task runnable only when the instance is a lord of the specified legion
 
 unique-legion-cron
 ******************
@@ -7870,9 +7762,9 @@ unique-legion-cron
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a unique cron task runnable only when the instance is a lord of the specified legion
 
 
-add a unique cron task runnable only when the instance is a lord of the specified legion
 
 unique-cron-legion
 ******************
@@ -7882,9 +7774,9 @@ unique-cron-legion
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a unique cron task runnable only when the instance is a lord of the specified legion
 
 
-add a unique cron task runnable only when the instance is a lord of the specified legion
 
 loop
 ****
@@ -7892,9 +7784,9 @@ loop
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: select the uWSGI loop engine
 
 
-select the uWSGI loop engine
 
 loop-list
 *********
@@ -7902,9 +7794,9 @@ loop-list
 
 ``parser``: uwsgi_opt_true
 
+``help``: list enabled loop engines
 
 
-list enabled loop engines
 
 loops-list
 **********
@@ -7912,9 +7804,9 @@ loops-list
 
 ``parser``: uwsgi_opt_true
 
+``help``: list enabled loop engines
 
 
-list enabled loop engines
 
 worker-exec
 ***********
@@ -7922,9 +7814,9 @@ worker-exec
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the specified command as worker
 
 
-run the specified command as worker
 
 worker-exec2
 ************
@@ -7932,9 +7824,9 @@ worker-exec2
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the specified command as worker (after post_fork hook)
 
 
-run the specified command as worker (after post_fork hook)
 
 attach-daemon
 *************
@@ -7944,9 +7836,9 @@ attach-daemon
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: attach a command/daemon to the master process (the command has to not go in background)
 
 
-attach a command/daemon to the master process (the command has to not go in background)
 
 attach-control-daemon
 *********************
@@ -7956,9 +7848,9 @@ attach-control-daemon
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: attach a command/daemon to the master process (the command has to not go in background), when the daemon dies, the master dies too
 
 
-attach a command/daemon to the master process (the command has to not go in background), when the daemon dies, the master dies too
 
 smart-attach-daemon
 *******************
@@ -7968,9 +7860,9 @@ smart-attach-daemon
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: attach a command/daemon to the master process managed by a pidfile (the command has to daemonize)
 
 
-attach a command/daemon to the master process managed by a pidfile (the command has to daemonize)
 
 smart-attach-daemon2
 ********************
@@ -7980,9 +7872,9 @@ smart-attach-daemon2
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: attach a command/daemon to the master process managed by a pidfile (the command has to NOT daemonize)
 
 
-attach a command/daemon to the master process managed by a pidfile (the command has to NOT daemonize)
 
 legion-attach-daemon
 ********************
@@ -7992,9 +7884,9 @@ legion-attach-daemon
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: same as --attach-daemon but daemon runs only on legion lord node
 
 
-same as --attach-daemon but daemon runs only on legion lord node
 
 legion-smart-attach-daemon
 **************************
@@ -8004,9 +7896,9 @@ legion-smart-attach-daemon
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: same as --smart-attach-daemon but daemon runs only on legion lord node
 
 
-same as --smart-attach-daemon but daemon runs only on legion lord node
 
 legion-smart-attach-daemon2
 ***************************
@@ -8016,9 +7908,9 @@ legion-smart-attach-daemon2
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: same as --smart-attach-daemon2 but daemon runs only on legion lord node
 
 
-same as --smart-attach-daemon2 but daemon runs only on legion lord node
 
 daemons-honour-stdin
 ********************
@@ -8028,9 +7920,9 @@ daemons-honour-stdin
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: do not change the stdin of external daemons to /dev/null
 
 
-do not change the stdin of external daemons to /dev/null
 
 attach-daemon2
 **************
@@ -8040,9 +7932,9 @@ attach-daemon2
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: attach-daemon keyval variant (supports smart modes too)
 
 
-attach-daemon keyval variant (supports smart modes too)
 
 plugins
 *******
@@ -8052,9 +7944,9 @@ plugins
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: load uWSGI plugins
 
 
-load uWSGI plugins
 
 plugin
 ******
@@ -8064,9 +7956,9 @@ plugin
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: load uWSGI plugins
 
 
-load uWSGI plugins
 
 need-plugins
 ************
@@ -8076,9 +7968,9 @@ need-plugins
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: load uWSGI plugins (exit on error)
 
 
-load uWSGI plugins (exit on error)
 
 need-plugin
 ***********
@@ -8088,9 +7980,9 @@ need-plugin
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: load uWSGI plugins (exit on error)
 
 
-load uWSGI plugins (exit on error)
 
 plugins-dir
 ***********
@@ -8100,9 +7992,9 @@ plugins-dir
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: add a directory to uWSGI plugin search path
 
 
-add a directory to uWSGI plugin search path
 
 plugin-dir
 **********
@@ -8112,9 +8004,9 @@ plugin-dir
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: add a directory to uWSGI plugin search path
 
 
-add a directory to uWSGI plugin search path
 
 plugins-list
 ************
@@ -8122,9 +8014,9 @@ plugins-list
 
 ``parser``: uwsgi_opt_true
 
+``help``: list enabled plugins
 
 
-list enabled plugins
 
 plugin-list
 ***********
@@ -8132,9 +8024,9 @@ plugin-list
 
 ``parser``: uwsgi_opt_true
 
+``help``: list enabled plugins
 
 
-list enabled plugins
 
 autoload
 ********
@@ -8144,9 +8036,9 @@ autoload
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: try to automatically load plugins when unknown options are found
 
 
-try to automatically load plugins when unknown options are found
 
 dlopen
 ******
@@ -8156,9 +8048,9 @@ dlopen
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: blindly load a shared library
 
 
-blindly load a shared library
 
 allowed-modifiers
 *****************
@@ -8166,9 +8058,9 @@ allowed-modifiers
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: comma separated list of allowed modifiers
 
 
-comma separated list of allowed modifiers
 
 remap-modifier
 **************
@@ -8176,9 +8068,9 @@ remap-modifier
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: remap request modifier from one id to another
 
 
-remap request modifier from one id to another
 
 dump-options
 ************
@@ -8186,9 +8078,9 @@ dump-options
 
 ``parser``: uwsgi_opt_true
 
+``help``: dump the full list of available options
 
 
-dump the full list of available options
 
 show-config
 ***********
@@ -8196,9 +8088,9 @@ show-config
 
 ``parser``: uwsgi_opt_true
 
+``help``: show the current config reformatted as ini
 
 
-show the current config reformatted as ini
 
 binary-append-data
 ******************
@@ -8208,9 +8100,9 @@ binary-append-data
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: return the content of a resource to stdout for appending to a uwsgi binary (for data:// usage)
 
 
-return the content of a resource to stdout for appending to a uwsgi binary (for data:// usage)
 
 print
 *****
@@ -8218,9 +8110,9 @@ print
 
 ``parser``: uwsgi_opt_print
 
+``help``: simple print
 
 
-simple print
 
 iprint
 ******
@@ -8230,9 +8122,9 @@ iprint
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: simple print (immediate version)
 
 
-simple print (immediate version)
 
 exit
 ****
@@ -8242,9 +8134,9 @@ exit
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: force exit() of the instance
 
 
-force exit() of the instance
 
 cflags
 ******
@@ -8254,9 +8146,9 @@ cflags
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: report uWSGI CFLAGS (useful for building external plugins)
 
 
-report uWSGI CFLAGS (useful for building external plugins)
 
 dot-h
 *****
@@ -8266,9 +8158,9 @@ dot-h
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: dump the uwsgi.h used for building the core  (useful for building external plugins)
 
 
-dump the uwsgi.h used for building the core  (useful for building external plugins)
 
 config-py
 *********
@@ -8278,9 +8170,9 @@ config-py
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: dump the uwsgiconfig.py used for building the core  (useful for building external plugins)
 
 
-dump the uwsgiconfig.py used for building the core  (useful for building external plugins)
 
 build-plugin
 ************
@@ -8290,9 +8182,9 @@ build-plugin
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: build a uWSGI plugin for the current binary
 
 
-build a uWSGI plugin for the current binary
 
 version
 *******
@@ -8300,9 +8192,9 @@ version
 
 ``parser``: uwsgi_opt_print
 
+``help``: print uWSGI version
 
 
-print uWSGI version
 
 
 plugin: router_access
@@ -8318,9 +8210,9 @@ ldap
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: load configuration from ldap server
 
 
-load configuration from ldap server
 
 ldap-schema
 ***********
@@ -8330,9 +8222,9 @@ ldap-schema
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: dump uWSGI ldap schema
 
 
-dump uWSGI ldap schema
 
 ldap-schema-ldif
 ****************
@@ -8342,9 +8234,9 @@ ldap-schema-ldif
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: dump uWSGI ldap schema in ldif format
 
 
-dump uWSGI ldap schema in ldif format
 
 
 plugin: graylog2
@@ -8363,9 +8255,9 @@ carbon
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: push statistics to the specified carbon server
 
 
-push statistics to the specified carbon server
 
 carbon-timeout
 **************
@@ -8373,9 +8265,9 @@ carbon-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set carbon connection timeout in seconds (default 3)
 
 
-set carbon connection timeout in seconds (default 3)
 
 carbon-freq
 ***********
@@ -8383,9 +8275,9 @@ carbon-freq
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set carbon push frequency in seconds (default 60)
 
 
-set carbon push frequency in seconds (default 60)
 
 carbon-id
 *********
@@ -8393,9 +8285,9 @@ carbon-id
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set carbon id
 
 
-set carbon id
 
 carbon-no-workers
 *****************
@@ -8403,9 +8295,9 @@ carbon-no-workers
 
 ``parser``: uwsgi_opt_true
 
+``help``: disable generation of single worker metrics
 
 
-disable generation of single worker metrics
 
 carbon-max-retry
 ****************
@@ -8413,9 +8305,9 @@ carbon-max-retry
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set maximum number of retries in case of connection errors (default 1)
 
 
-set maximum number of retries in case of connection errors (default 1)
 
 carbon-retry-delay
 ******************
@@ -8423,9 +8315,9 @@ carbon-retry-delay
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set connection retry delay in seconds (default 7)
 
 
-set connection retry delay in seconds (default 7)
 
 carbon-root
 ***********
@@ -8433,9 +8325,9 @@ carbon-root
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set carbon metrics root node (default 'uwsgi')
 
 
-set carbon metrics root node (default 'uwsgi')
 
 carbon-hostname-dots
 ********************
@@ -8443,9 +8335,9 @@ carbon-hostname-dots
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set char to use as a replacement for dots in hostname (dots are not replaced by default)
 
 
-set char to use as a replacement for dots in hostname (dots are not replaced by default)
 
 carbon-name-resolve
 *******************
@@ -8453,9 +8345,9 @@ carbon-name-resolve
 
 ``parser``: uwsgi_opt_true
 
+``help``: allow using hostname as carbon server address (default disabled)
 
 
-allow using hostname as carbon server address (default disabled)
 
 carbon-resolve-names
 ********************
@@ -8463,9 +8355,9 @@ carbon-resolve-names
 
 ``parser``: uwsgi_opt_true
 
+``help``: allow using hostname as carbon server address (default disabled)
 
 
-allow using hostname as carbon server address (default disabled)
 
 carbon-idle-avg
 ***************
@@ -8473,9 +8365,9 @@ carbon-idle-avg
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: average values source during idle period (no requests), can be "last", "zero", "none" (default is last)
 
 
-average values source during idle period (no requests), can be "last", "zero", "none" (default is last)
 
 carbon-use-metrics
 ******************
@@ -8483,9 +8375,9 @@ carbon-use-metrics
 
 ``parser``: uwsgi_opt_true
 
+``help``: don't compute all statistics, use metrics subsystem data instead (warning! key names will be different)
 
 
-don't compute all statistics, use metrics subsystem data instead (warning! key names will be different)
 
 
 plugin: mono
@@ -8496,9 +8388,9 @@ mono-app
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: load a Mono asp.net app from the specified directory
 
 
-load a Mono asp.net app from the specified directory
 
 mono-gc-freq
 ************
@@ -8506,9 +8398,9 @@ mono-gc-freq
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: run the Mono GC every <n> requests (default: run after every request)
 
 
-run the Mono GC every <n> requests (default: run after every request)
 
 mono-key
 ********
@@ -8516,9 +8408,9 @@ mono-key
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: select the ApplicationHost based on the specified CGI var
 
 
-select the ApplicationHost based on the specified CGI var
 
 mono-version
 ************
@@ -8526,9 +8418,9 @@ mono-version
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set the Mono jit version
 
 
-set the Mono jit version
 
 mono-config
 ***********
@@ -8536,9 +8428,9 @@ mono-config
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set the Mono config file
 
 
-set the Mono config file
 
 mono-assembly
 *************
@@ -8546,9 +8438,9 @@ mono-assembly
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load the specified main assembly (default: uwsgi.dll)
 
 
-load the specified main assembly (default: uwsgi.dll)
 
 mono-exec
 *********
@@ -8556,9 +8448,9 @@ mono-exec
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: exec the specified assembly just before app loading
 
 
-exec the specified assembly just before app loading
 
 mono-index
 **********
@@ -8566,9 +8458,9 @@ mono-index
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add an asp.net index file
 
 
-add an asp.net index file
 
 
 plugin: router_xmldir
@@ -8588,9 +8480,9 @@ rbthreads
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable ruby native threads
 
 
-enable ruby native threads
 
 rb-threads
 **********
@@ -8598,9 +8490,9 @@ rb-threads
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable ruby native threads
 
 
-enable ruby native threads
 
 rbthread
 ********
@@ -8608,9 +8500,9 @@ rbthread
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable ruby native threads
 
 
-enable ruby native threads
 
 rb-thread
 *********
@@ -8618,9 +8510,9 @@ rb-thread
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable ruby native threads
 
 
-enable ruby native threads
 
 
 plugin: rack
@@ -8633,9 +8525,9 @@ rails
 
 ``flags``: UWSGI_OPT_POST_BUFFERING
 
+``help``: load a rails <= 2.x app
 
 
-load a rails <= 2.x app
 
 rack
 ****
@@ -8645,9 +8537,9 @@ rack
 
 ``flags``: UWSGI_OPT_POST_BUFFERING
 
+``help``: load a rack app
 
 
-load a rack app
 
 ruby-gc-freq
 ************
@@ -8655,9 +8547,9 @@ ruby-gc-freq
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set ruby GC frequency
 
 
-set ruby GC frequency
 
 rb-gc-freq
 **********
@@ -8665,9 +8557,9 @@ rb-gc-freq
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set ruby GC frequency
 
 
-set ruby GC frequency
 
 rb-lib
 ******
@@ -8675,9 +8567,9 @@ rb-lib
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add a directory to the ruby libdir search path
 
 
-add a directory to the ruby libdir search path
 
 ruby-lib
 ********
@@ -8685,9 +8577,9 @@ ruby-lib
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add a directory to the ruby libdir search path
 
 
-add a directory to the ruby libdir search path
 
 rb-require
 **********
@@ -8695,9 +8587,9 @@ rb-require
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: import/require a ruby module/script
 
 
-import/require a ruby module/script
 
 ruby-require
 ************
@@ -8705,9 +8597,9 @@ ruby-require
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: import/require a ruby module/script
 
 
-import/require a ruby module/script
 
 rbrequire
 *********
@@ -8715,9 +8607,9 @@ rbrequire
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: import/require a ruby module/script
 
 
-import/require a ruby module/script
 
 rubyrequire
 ***********
@@ -8725,9 +8617,9 @@ rubyrequire
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: import/require a ruby module/script
 
 
-import/require a ruby module/script
 
 require
 *******
@@ -8735,9 +8627,9 @@ require
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: import/require a ruby module/script
 
 
-import/require a ruby module/script
 
 shared-rb-require
 *****************
@@ -8745,9 +8637,9 @@ shared-rb-require
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: import/require a ruby module/script (shared)
 
 
-import/require a ruby module/script (shared)
 
 shared-ruby-require
 *******************
@@ -8755,9 +8647,9 @@ shared-ruby-require
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: import/require a ruby module/script (shared)
 
 
-import/require a ruby module/script (shared)
 
 shared-rbrequire
 ****************
@@ -8765,9 +8657,9 @@ shared-rbrequire
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: import/require a ruby module/script (shared)
 
 
-import/require a ruby module/script (shared)
 
 shared-rubyrequire
 ******************
@@ -8775,9 +8667,9 @@ shared-rubyrequire
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: import/require a ruby module/script (shared)
 
 
-import/require a ruby module/script (shared)
 
 shared-require
 **************
@@ -8785,9 +8677,9 @@ shared-require
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: import/require a ruby module/script (shared)
 
 
-import/require a ruby module/script (shared)
 
 gemset
 ******
@@ -8795,9 +8687,9 @@ gemset
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load the specified gemset (rvm)
 
 
-load the specified gemset (rvm)
 
 rvm
 ***
@@ -8805,9 +8697,9 @@ rvm
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load the specified gemset (rvm)
 
 
-load the specified gemset (rvm)
 
 rvm-path
 ********
@@ -8815,9 +8707,9 @@ rvm-path
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: search for rvm in the specified directory
 
 
-search for rvm in the specified directory
 
 rbshell
 *******
@@ -8825,9 +8717,9 @@ rbshell
 
 ``parser``: uwsgi_opt_rbshell
 
+``help``: run  a ruby/irb shell
 
 
-run  a ruby/irb shell
 
 rbshell-oneshot
 ***************
@@ -8835,9 +8727,9 @@ rbshell-oneshot
 
 ``parser``: uwsgi_opt_rbshell
 
+``help``: set ruby/irb shell (one shot)
 
 
-set ruby/irb shell (one shot)
 
 
 plugin: redislog
@@ -8859,9 +8751,9 @@ rados-mount
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: virtual mount the specified rados volume in a uri
 
 
-virtual mount the specified rados volume in a uri
 
 rados-timeout
 *************
@@ -8869,9 +8761,9 @@ rados-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: timeout for async operations
 
 
-timeout for async operations
 
 
 plugin: transformation_template
@@ -8888,9 +8780,9 @@ v8-load
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: load a javascript file
 
 
-load a javascript file
 
 v8-preemptive
 *************
@@ -8898,9 +8790,9 @@ v8-preemptive
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: put v8 in preemptive move (single isolate) with the specified frequency
 
 
-put v8 in preemptive move (single isolate) with the specified frequency
 
 v8-gc-freq
 **********
@@ -8908,9 +8800,9 @@ v8-gc-freq
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: set the v8 garbage collection frequency
 
 
-set the v8 garbage collection frequency
 
 v8-module-path
 **************
@@ -8918,9 +8810,9 @@ v8-module-path
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: set the v8 modules search path
 
 
-set the v8 modules search path
 
 v8-jsgi
 *******
@@ -8928,9 +8820,9 @@ v8-jsgi
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load the specified JSGI 3.0 application
 
 
-load the specified JSGI 3.0 application
 
 
 plugin: psgi
@@ -8941,9 +8833,9 @@ psgi
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load a psgi app
 
 
-load a psgi app
 
 psgi-enable-psgix-io
 ********************
@@ -8951,9 +8843,9 @@ psgi-enable-psgix-io
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable psgix.io support
 
 
-enable psgix.io support
 
 perl-no-die-catch
 *****************
@@ -8961,9 +8853,9 @@ perl-no-die-catch
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not catch $SIG{__DIE__}
 
 
-do not catch $SIG{__DIE__}
 
 perl-local-lib
 **************
@@ -8971,9 +8863,9 @@ perl-local-lib
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set perl locallib path
 
 
-set perl locallib path
 
 perl-version
 ************
@@ -8983,9 +8875,9 @@ perl-version
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: print perl version
 
 
-print perl version
 
 perl-args
 *********
@@ -8993,9 +8885,9 @@ perl-args
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: add items (space separated) to @ARGV
 
 
-add items (space separated) to @ARGV
 
 perl-arg
 ********
@@ -9003,9 +8895,9 @@ perl-arg
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add an item to @ARGV
 
 
-add an item to @ARGV
 
 perl-exec
 *********
@@ -9013,9 +8905,9 @@ perl-exec
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: exec the specified perl file before fork()
 
 
-exec the specified perl file before fork()
 
 perl-exec-post-fork
 *******************
@@ -9023,9 +8915,9 @@ perl-exec-post-fork
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: exec the specified perl file after fork()
 
 
-exec the specified perl file after fork()
 
 perl-auto-reload
 ****************
@@ -9035,9 +8927,9 @@ perl-auto-reload
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: enable perl auto-reloader with the specified frequency
 
 
-enable perl auto-reloader with the specified frequency
 
 perl-auto-reload-ignore
 ***********************
@@ -9047,9 +8939,9 @@ perl-auto-reload-ignore
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: ignore the specified files when auto-reload is enabled
 
 
-ignore the specified files when auto-reload is enabled
 
 plshell
 *******
@@ -9057,9 +8949,9 @@ plshell
 
 ``parser``: uwsgi_opt_plshell
 
+``help``: run a perl interactive shell
 
 
-run a perl interactive shell
 
 plshell-oneshot
 ***************
@@ -9067,9 +8959,9 @@ plshell-oneshot
 
 ``parser``: uwsgi_opt_plshell
 
+``help``: run a perl interactive shell (one shot)
 
 
-run a perl interactive shell (one shot)
 
 perl-no-plack
 *************
@@ -9077,45 +8969,9 @@ perl-no-plack
 
 ``parser``: uwsgi_opt_true
 
+``help``: force the use of do instead of Plack::Util::load_psgi
 
 
-force the use of do instead of Plack::Util::load_psgi
-
-early-perl
-**********
-``argument``: required_argument
-
-``parser``: uwsgi_opt_early_perl
-
-``flags``: UWSGI_OPT_IMMEDIATE
-
-
-
-initialize an early perl interpreter shared by all loaders
-
-early-psgi
-**********
-``argument``: required_argument
-
-``parser``: uwsgi_opt_early_psgi
-
-``flags``: UWSGI_OPT_IMMEDIATE
-
-
-
-load a psgi app soon after uWSGI initialization
-
-early-perl-exec
-***************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_early_exec
-
-``flags``: UWSGI_OPT_IMMEDIATE
-
-
-
-load a perl script soon after uWSGI initialization
 
 
 plugin: transformation_chunked
@@ -9129,9 +8985,9 @@ lua
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load lua wsapi app
 
 
-load lua wsapi app
 
 lua-load
 ********
@@ -9139,9 +8995,9 @@ lua-load
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: load a lua file
 
 
-load a lua file
 
 lua-shell
 *********
@@ -9149,9 +9005,9 @@ lua-shell
 
 ``parser``: uwsgi_opt_luashell
 
+``help``: run the lua interactive shell (debug.debug())
 
 
-run the lua interactive shell (debug.debug())
 
 luashell
 ********
@@ -9159,9 +9015,9 @@ luashell
 
 ``parser``: uwsgi_opt_luashell
 
+``help``: run the lua interactive shell (debug.debug())
 
 
-run the lua interactive shell (debug.debug())
 
 lua-gc-freq
 ***********
@@ -9169,9 +9025,9 @@ lua-gc-freq
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the lua gc frequency (default: 0, runs after every request)
 
 
-set the lua gc frequency (default: 0, runs after every request)
 
 
 plugin: pyuwsgi
@@ -9185,9 +9041,9 @@ php-ini
 
 ``parser``: uwsgi_opt_php_ini
 
+``help``: set php.ini path
 
 
-set php.ini path
 
 php-config
 **********
@@ -9195,9 +9051,9 @@ php-config
 
 ``parser``: uwsgi_opt_php_ini
 
+``help``: set php.ini path
 
 
-set php.ini path
 
 php-ini-append
 **************
@@ -9205,9 +9061,9 @@ php-ini-append
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: set php.ini path (append mode)
 
 
-set php.ini path (append mode)
 
 php-config-append
 *****************
@@ -9215,9 +9071,9 @@ php-config-append
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: set php.ini path (append mode)
 
 
-set php.ini path (append mode)
 
 php-set
 *******
@@ -9225,9 +9081,9 @@ php-set
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: set a php config directive
 
 
-set a php config directive
 
 php-index
 *********
@@ -9235,9 +9091,9 @@ php-index
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: list the php index files
 
 
-list the php index files
 
 php-docroot
 ***********
@@ -9245,9 +9101,9 @@ php-docroot
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: force php DOCUMENT_ROOT
 
 
-force php DOCUMENT_ROOT
 
 php-allowed-docroot
 *******************
@@ -9255,9 +9111,9 @@ php-allowed-docroot
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: list the allowed document roots
 
 
-list the allowed document roots
 
 php-allowed-ext
 ***************
@@ -9265,9 +9121,9 @@ php-allowed-ext
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: list the allowed php file extensions
 
 
-list the allowed php file extensions
 
 php-allowed-script
 ******************
@@ -9275,9 +9131,9 @@ php-allowed-script
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: list the allowed php scripts (require absolute path)
 
 
-list the allowed php scripts (require absolute path)
 
 php-server-software
 *******************
@@ -9285,9 +9141,9 @@ php-server-software
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: force php SERVER_SOFTWARE
 
 
-force php SERVER_SOFTWARE
 
 php-app
 *******
@@ -9295,9 +9151,9 @@ php-app
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: force the php file to run at each request
 
 
-force the php file to run at each request
 
 php-app-qs
 **********
@@ -9305,9 +9161,9 @@ php-app-qs
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: when in app mode force QUERY_STRING to the specified value + REQUEST_URI
 
 
-when in app mode force QUERY_STRING to the specified value + REQUEST_URI
 
 php-fallback
 ************
@@ -9315,9 +9171,9 @@ php-fallback
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the specified php script when the request one does not exist
 
 
-run the specified php script when the request one does not exist
 
 php-app-bypass
 **************
@@ -9325,9 +9181,9 @@ php-app-bypass
 
 ``parser``: uwsgi_opt_add_regexp_list
 
+``help``: if the regexp matches the uri the --php-app is bypassed
 
 
-if the regexp matches the uri the --php-app is bypassed
 
 php-var
 *******
@@ -9335,9 +9191,9 @@ php-var
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add/overwrite a CGI variable at each request
 
 
-add/overwrite a CGI variable at each request
 
 php-dump-config
 ***************
@@ -9345,9 +9201,9 @@ php-dump-config
 
 ``parser``: uwsgi_opt_true
 
+``help``: dump php config (if modified via --php-set or append options)
 
 
-dump php config (if modified via --php-set or append options)
 
 php-exec-before
 ***************
@@ -9355,9 +9211,9 @@ php-exec-before
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run specified php code before the requested script
 
 
-run specified php code before the requested script
 
 php-exec-begin
 **************
@@ -9365,9 +9221,9 @@ php-exec-begin
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run specified php code before the requested script
 
 
-run specified php code before the requested script
 
 php-exec-after
 **************
@@ -9375,9 +9231,9 @@ php-exec-after
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run specified php code after the requested script
 
 
-run specified php code after the requested script
 
 php-exec-end
 ************
@@ -9385,9 +9241,9 @@ php-exec-end
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run specified php code after the requested script
 
 
-run specified php code after the requested script
 
 php-sapi-name
 *************
@@ -9395,9 +9251,9 @@ php-sapi-name
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: hack the sapi name (required for enabling zend opcode cache)
 
 
-hack the sapi name (required for enabling zend opcode cache)
 
 
 plugin: router_expires
@@ -9411,9 +9267,9 @@ symcall
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: load the specified C symbol as the symcall request handler (supports <mountpoint=func> too)
 
 
-load the specified C symbol as the symcall request handler (supports <mountpoint=func> too)
 
 symcall-use-next
 ****************
@@ -9421,9 +9277,9 @@ symcall-use-next
 
 ``parser``: uwsgi_opt_true
 
+``help``: use RTLD_NEXT when searching for symbols
 
 
-use RTLD_NEXT when searching for symbols
 
 symcall-register-rpc
 ********************
@@ -9431,9 +9287,9 @@ symcall-register-rpc
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: load the specified C symbol as an RPC function (syntax: name function)
 
 
-load the specified C symbol as an RPC function (syntax: name function)
 
 symcall-post-fork
 *****************
@@ -9441,9 +9297,9 @@ symcall-post-fork
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: call the specified C symbol after each fork()
 
 
-call the specified C symbol after each fork()
 
 
 plugin: xslt
@@ -9454,9 +9310,9 @@ xslt-docroot
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add a document_root for xslt processing
 
 
-add a document_root for xslt processing
 
 xslt-ext
 ********
@@ -9464,9 +9320,9 @@ xslt-ext
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: search for xslt stylesheets with the specified extension
 
 
-search for xslt stylesheets with the specified extension
 
 xslt-var
 ********
@@ -9474,9 +9330,9 @@ xslt-var
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: get the xslt stylesheet path from the specified request var
 
 
-get the xslt stylesheet path from the specified request var
 
 xslt-stylesheet
 ***************
@@ -9484,9 +9340,9 @@ xslt-stylesheet
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: if no xslt stylesheet file can be found, use the specified one
 
 
-if no xslt stylesheet file can be found, use the specified one
 
 xslt-content-type
 *****************
@@ -9494,9 +9350,9 @@ xslt-content-type
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set the content-type for the xslt rsult (default: text/html)
 
 
-set the content-type for the xslt rsult (default: text/html)
 
 
 plugin: logsocket
@@ -9519,9 +9375,9 @@ notfound-log
 
 ``parser``: uwsgi_opt_true
 
+``help``: log requests to the notfound plugin
 
 
-log requests to the notfound plugin
 
 
 plugin: logzmq
@@ -9534,9 +9390,9 @@ log-zeromq
 
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_LOG_MASTER
 
+``help``: send logs to a zeromq server
 
 
-send logs to a zeromq server
 
 
 plugin: fastrouter
@@ -9547,9 +9403,9 @@ fastrouter
 
 ``parser``: uwsgi_opt_corerouter
 
+``help``: run the fastrouter on the specified port
 
 
-run the fastrouter on the specified port
 
 fastrouter-processes
 ********************
@@ -9557,9 +9413,9 @@ fastrouter-processes
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: prefork the specified number of fastrouter processes
 
 
-prefork the specified number of fastrouter processes
 
 fastrouter-workers
 ******************
@@ -9567,9 +9423,9 @@ fastrouter-workers
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: prefork the specified number of fastrouter processes
 
 
-prefork the specified number of fastrouter processes
 
 fastrouter-zerg
 ***************
@@ -9577,9 +9433,9 @@ fastrouter-zerg
 
 ``parser``: uwsgi_opt_corerouter_zerg
 
+``help``: attach the fastrouter to a zerg server
 
 
-attach the fastrouter to a zerg server
 
 fastrouter-use-cache
 ********************
@@ -9587,9 +9443,9 @@ fastrouter-use-cache
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: use uWSGI cache as hostname->server mapper for the fastrouter
 
 
-use uWSGI cache as hostname->server mapper for the fastrouter
 
 fastrouter-use-pattern
 **********************
@@ -9597,9 +9453,9 @@ fastrouter-use-pattern
 
 ``parser``: uwsgi_opt_corerouter_use_pattern
 
+``help``: use a pattern for fastrouter hostname->server mapping
 
 
-use a pattern for fastrouter hostname->server mapping
 
 fastrouter-use-base
 *******************
@@ -9607,9 +9463,9 @@ fastrouter-use-base
 
 ``parser``: uwsgi_opt_corerouter_use_base
 
+``help``: use a base dir for fastrouter hostname->server mapping
 
 
-use a base dir for fastrouter hostname->server mapping
 
 fastrouter-fallback
 *******************
@@ -9617,9 +9473,9 @@ fastrouter-fallback
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: fallback to the specified node in case of error
 
 
-fallback to the specified node in case of error
 
 fastrouter-use-code-string
 **************************
@@ -9627,9 +9483,9 @@ fastrouter-use-code-string
 
 ``parser``: uwsgi_opt_corerouter_cs
 
+``help``: use code string as hostname->server mapper for the fastrouter
 
 
-use code string as hostname->server mapper for the fastrouter
 
 fastrouter-use-socket
 *********************
@@ -9637,9 +9493,9 @@ fastrouter-use-socket
 
 ``parser``: uwsgi_opt_corerouter_use_socket
 
+``help``: forward request to the specified uwsgi socket
 
 
-forward request to the specified uwsgi socket
 
 fastrouter-to
 *************
@@ -9647,9 +9503,9 @@ fastrouter-to
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: forward requests to the specified uwsgi server (you can specify it multiple times for load balancing)
 
 
-forward requests to the specified uwsgi server (you can specify it multiple times for load balancing)
 
 fastrouter-gracetime
 ********************
@@ -9657,9 +9513,9 @@ fastrouter-gracetime
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: retry connections to dead static nodes after the specified amount of seconds
 
 
-retry connections to dead static nodes after the specified amount of seconds
 
 fastrouter-events
 *****************
@@ -9667,9 +9523,9 @@ fastrouter-events
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the maximum number of concurrent events
 
 
-set the maximum number of concurrent events
 
 fastrouter-quiet
 ****************
@@ -9677,9 +9533,9 @@ fastrouter-quiet
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not report failed connections to instances
 
 
-do not report failed connections to instances
 
 fastrouter-cheap
 ****************
@@ -9687,9 +9543,9 @@ fastrouter-cheap
 
 ``parser``: uwsgi_opt_true
 
+``help``: run the fastrouter in cheap mode
 
 
-run the fastrouter in cheap mode
 
 fastrouter-subscription-server
 ******************************
@@ -9697,9 +9553,9 @@ fastrouter-subscription-server
 
 ``parser``: uwsgi_opt_corerouter_ss
 
+``help``: run the fastrouter subscription server on the specified address
 
 
-run the fastrouter subscription server on the specified address
 
 fastrouter-subscription-slot
 ****************************
@@ -9707,9 +9563,9 @@ fastrouter-subscription-slot
 
 ``parser``: uwsgi_opt_deprecated
 
+``help``: *** deprecated ***
 
 
-*** deprecated ***
 
 fastrouter-timeout
 ******************
@@ -9717,9 +9573,9 @@ fastrouter-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set fastrouter timeout
 
 
-set fastrouter timeout
 
 fastrouter-post-buffering
 *************************
@@ -9727,9 +9583,9 @@ fastrouter-post-buffering
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: enable fastrouter post buffering
 
 
-enable fastrouter post buffering
 
 fastrouter-post-buffering-dir
 *****************************
@@ -9737,9 +9593,9 @@ fastrouter-post-buffering-dir
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: put fastrouter buffered files to the specified directory
 
 
-put fastrouter buffered files to the specified directory
 
 fastrouter-stats
 ****************
@@ -9747,9 +9603,9 @@ fastrouter-stats
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the fastrouter stats server
 
 
-run the fastrouter stats server
 
 fastrouter-stats-server
 ***********************
@@ -9757,9 +9613,9 @@ fastrouter-stats-server
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the fastrouter stats server
 
 
-run the fastrouter stats server
 
 fastrouter-ss
 *************
@@ -9767,9 +9623,9 @@ fastrouter-ss
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the fastrouter stats server
 
 
-run the fastrouter stats server
 
 fastrouter-harakiri
 *******************
@@ -9777,9 +9633,9 @@ fastrouter-harakiri
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: enable fastrouter harakiri
 
 
-enable fastrouter harakiri
 
 fastrouter-uid
 **************
@@ -9787,9 +9643,9 @@ fastrouter-uid
 
 ``parser``: uwsgi_opt_uid
 
+``help``: drop fastrouter privileges to the specified uid
 
 
-drop fastrouter privileges to the specified uid
 
 fastrouter-gid
 **************
@@ -9797,9 +9653,9 @@ fastrouter-gid
 
 ``parser``: uwsgi_opt_gid
 
+``help``: drop fastrouter privileges to the specified gid
 
 
-drop fastrouter privileges to the specified gid
 
 fastrouter-resubscribe
 **********************
@@ -9807,9 +9663,9 @@ fastrouter-resubscribe
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: forward subscriptions to the specified subscription server
 
 
-forward subscriptions to the specified subscription server
 
 fastrouter-resubscribe-bind
 ***************************
@@ -9817,9 +9673,9 @@ fastrouter-resubscribe-bind
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: bind to the specified address when re-subscribing
 
 
-bind to the specified address when re-subscribing
 
 fastrouter-buffer-size
 **********************
@@ -9827,9 +9683,9 @@ fastrouter-buffer-size
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: set internal buffer size (default: page size)
 
 
-set internal buffer size (default: page size)
 
 
 plugin: pypy
@@ -9840,9 +9696,9 @@ pypy-lib
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set the path/name of the pypy library
 
 
-set the path/name of the pypy library
 
 pypy-setup
 **********
@@ -9850,9 +9706,9 @@ pypy-setup
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set the path of the python setup script
 
 
-set the path of the python setup script
 
 pypy-home
 *********
@@ -9860,9 +9716,9 @@ pypy-home
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set the home of pypy library
 
 
-set the home of pypy library
 
 pypy-wsgi
 *********
@@ -9870,9 +9726,9 @@ pypy-wsgi
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load a WSGI module
 
 
-load a WSGI module
 
 pypy-wsgi-file
 **************
@@ -9880,9 +9736,9 @@ pypy-wsgi-file
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load a WSGI/mod_wsgi file
 
 
-load a WSGI/mod_wsgi file
 
 pypy-ini-paste
 **************
@@ -9892,9 +9748,9 @@ pypy-ini-paste
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: load a paste.deploy config file containing uwsgi section
 
 
-load a paste.deploy config file containing uwsgi section
 
 pypy-paste
 **********
@@ -9902,9 +9758,9 @@ pypy-paste
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load a paste.deploy config file
 
 
-load a paste.deploy config file
 
 pypy-eval
 *********
@@ -9912,9 +9768,9 @@ pypy-eval
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: evaluate pypy code before fork()
 
 
-evaluate pypy code before fork()
 
 pypy-eval-post-fork
 *******************
@@ -9922,9 +9778,9 @@ pypy-eval-post-fork
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: evaluate pypy code soon after fork()
 
 
-evaluate pypy code soon after fork()
 
 pypy-exec
 *********
@@ -9932,9 +9788,9 @@ pypy-exec
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: execute pypy code from file before fork()
 
 
-execute pypy code from file before fork()
 
 pypy-exec-post-fork
 *******************
@@ -9942,9 +9798,9 @@ pypy-exec-post-fork
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: execute pypy code from file soon after fork()
 
 
-execute pypy code from file soon after fork()
 
 pypy-pp
 *******
@@ -9952,9 +9808,9 @@ pypy-pp
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add an item to the pythonpath
 
 
-add an item to the pythonpath
 
 pypy-python-path
 ****************
@@ -9962,9 +9818,9 @@ pypy-python-path
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add an item to the pythonpath
 
 
-add an item to the pythonpath
 
 pypy-pythonpath
 ***************
@@ -9972,9 +9828,9 @@ pypy-pythonpath
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add an item to the pythonpath
 
 
-add an item to the pythonpath
 
 
 plugin: stats_pusher_socket
@@ -10000,9 +9856,9 @@ pty-socket
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: bind the pty server on the specified address
 
 
-bind the pty server on the specified address
 
 pty-log
 *******
@@ -10010,9 +9866,9 @@ pty-log
 
 ``parser``: uwsgi_opt_true
 
+``help``: send stdout/stderr to the log engine too
 
 
-send stdout/stderr to the log engine too
 
 pty-input
 *********
@@ -10020,9 +9876,9 @@ pty-input
 
 ``parser``: uwsgi_opt_true
 
+``help``: read from original stdin in addition to pty
 
 
-read from original stdin in addition to pty
 
 pty-connect
 ***********
@@ -10032,9 +9888,9 @@ pty-connect
 
 ``flags``: UWSGI_OPT_NO_INITIAL
 
+``help``: connect the current terminal to a pty server
 
 
-connect the current terminal to a pty server
 
 pty-uconnect
 ************
@@ -10044,9 +9900,9 @@ pty-uconnect
 
 ``flags``: UWSGI_OPT_NO_INITIAL
 
+``help``: connect the current terminal to a pty server (using uwsgi protocol)
 
 
-connect the current terminal to a pty server (using uwsgi protocol)
 
 pty-no-isig
 ***********
@@ -10054,9 +9910,9 @@ pty-no-isig
 
 ``parser``: uwsgi_opt_true
 
+``help``: disable ISIG terminal attribute in client mode
 
 
-disable ISIG terminal attribute in client mode
 
 pty-exec
 ********
@@ -10064,9 +9920,9 @@ pty-exec
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the specified command soon after the pty thread is spawned
 
 
-run the specified command soon after the pty thread is spawned
 
 
 plugin: gridfs
@@ -10079,9 +9935,9 @@ gridfs-mount
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: mount a gridfs db on the specified mountpoint
 
 
-mount a gridfs db on the specified mountpoint
 
 gridfs-debug
 ************
@@ -10091,9 +9947,9 @@ gridfs-debug
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: report gridfs mountpoint and itemname for each request (debug)
 
 
-report gridfs mountpoint and itemname for each request (debug)
 
 
 plugin: pam
@@ -10104,9 +9960,9 @@ pam
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set the pam service name to use
 
 
-set the pam service name to use
 
 pam-user
 ********
@@ -10114,9 +9970,9 @@ pam-user
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set a fake user for pam
 
 
-set a fake user for pam
 
 
 plugin: stackless
@@ -10127,9 +9983,9 @@ stackless
 
 ``parser``: uwsgi_opt_true
 
+``help``: use stackless as suspend engine
 
 
-use stackless as suspend engine
 
 
 plugin: rawrouter
@@ -10140,9 +9996,9 @@ rawrouter
 
 ``parser``: uwsgi_opt_undeferred_corerouter
 
+``help``: run the rawrouter on the specified port
 
 
-run the rawrouter on the specified port
 
 rawrouter-processes
 *******************
@@ -10150,9 +10006,9 @@ rawrouter-processes
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: prefork the specified number of rawrouter processes
 
 
-prefork the specified number of rawrouter processes
 
 rawrouter-workers
 *****************
@@ -10160,9 +10016,9 @@ rawrouter-workers
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: prefork the specified number of rawrouter processes
 
 
-prefork the specified number of rawrouter processes
 
 rawrouter-zerg
 **************
@@ -10170,9 +10026,9 @@ rawrouter-zerg
 
 ``parser``: uwsgi_opt_corerouter_zerg
 
+``help``: attach the rawrouter to a zerg server
 
 
-attach the rawrouter to a zerg server
 
 rawrouter-use-cache
 *******************
@@ -10180,9 +10036,9 @@ rawrouter-use-cache
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: use uWSGI cache as hostname->server mapper for the rawrouter
 
 
-use uWSGI cache as hostname->server mapper for the rawrouter
 
 rawrouter-use-pattern
 *********************
@@ -10190,9 +10046,9 @@ rawrouter-use-pattern
 
 ``parser``: uwsgi_opt_corerouter_use_pattern
 
+``help``: use a pattern for rawrouter hostname->server mapping
 
 
-use a pattern for rawrouter hostname->server mapping
 
 rawrouter-use-base
 ******************
@@ -10200,9 +10056,9 @@ rawrouter-use-base
 
 ``parser``: uwsgi_opt_corerouter_use_base
 
+``help``: use a base dir for rawrouter hostname->server mapping
 
 
-use a base dir for rawrouter hostname->server mapping
 
 rawrouter-fallback
 ******************
@@ -10210,9 +10066,9 @@ rawrouter-fallback
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: fallback to the specified node in case of error
 
 
-fallback to the specified node in case of error
 
 rawrouter-use-code-string
 *************************
@@ -10220,9 +10076,9 @@ rawrouter-use-code-string
 
 ``parser``: uwsgi_opt_corerouter_cs
 
+``help``: use code string as hostname->server mapper for the rawrouter
 
 
-use code string as hostname->server mapper for the rawrouter
 
 rawrouter-use-socket
 ********************
@@ -10230,9 +10086,9 @@ rawrouter-use-socket
 
 ``parser``: uwsgi_opt_corerouter_use_socket
 
+``help``: forward request to the specified uwsgi socket
 
 
-forward request to the specified uwsgi socket
 
 rawrouter-to
 ************
@@ -10240,9 +10096,9 @@ rawrouter-to
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: forward requests to the specified uwsgi server (you can specify it multiple times for load balancing)
 
 
-forward requests to the specified uwsgi server (you can specify it multiple times for load balancing)
 
 rawrouter-gracetime
 *******************
@@ -10250,9 +10106,9 @@ rawrouter-gracetime
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: retry connections to dead static nodes after the specified amount of seconds
 
 
-retry connections to dead static nodes after the specified amount of seconds
 
 rawrouter-events
 ****************
@@ -10260,9 +10116,9 @@ rawrouter-events
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the maximum number of concurrent events
 
 
-set the maximum number of concurrent events
 
 rawrouter-max-retries
 *********************
@@ -10270,9 +10126,9 @@ rawrouter-max-retries
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the maximum number of retries/fallbacks to other nodes
 
 
-set the maximum number of retries/fallbacks to other nodes
 
 rawrouter-quiet
 ***************
@@ -10280,9 +10136,9 @@ rawrouter-quiet
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not report failed connections to instances
 
 
-do not report failed connections to instances
 
 rawrouter-cheap
 ***************
@@ -10290,9 +10146,9 @@ rawrouter-cheap
 
 ``parser``: uwsgi_opt_true
 
+``help``: run the rawrouter in cheap mode
 
 
-run the rawrouter in cheap mode
 
 rawrouter-subscription-server
 *****************************
@@ -10300,9 +10156,9 @@ rawrouter-subscription-server
 
 ``parser``: uwsgi_opt_corerouter_ss
 
+``help``: run the rawrouter subscription server on the spcified address
 
 
-run the rawrouter subscription server on the spcified address
 
 rawrouter-subscription-slot
 ***************************
@@ -10310,9 +10166,9 @@ rawrouter-subscription-slot
 
 ``parser``: uwsgi_opt_deprecated
 
+``help``: *** deprecated ***
 
 
-*** deprecated ***
 
 rawrouter-timeout
 *****************
@@ -10320,9 +10176,9 @@ rawrouter-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set rawrouter timeout
 
 
-set rawrouter timeout
 
 rawrouter-stats
 ***************
@@ -10330,9 +10186,9 @@ rawrouter-stats
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the rawrouter stats server
 
 
-run the rawrouter stats server
 
 rawrouter-stats-server
 **********************
@@ -10340,9 +10196,9 @@ rawrouter-stats-server
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the rawrouter stats server
 
 
-run the rawrouter stats server
 
 rawrouter-ss
 ************
@@ -10350,9 +10206,9 @@ rawrouter-ss
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the rawrouter stats server
 
 
-run the rawrouter stats server
 
 rawrouter-harakiri
 ******************
@@ -10360,9 +10216,9 @@ rawrouter-harakiri
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: enable rawrouter harakiri
 
 
-enable rawrouter harakiri
 
 rawrouter-xclient
 *****************
@@ -10370,9 +10226,9 @@ rawrouter-xclient
 
 ``parser``: uwsgi_opt_true
 
+``help``: use the xclient protocol to pass the client addres
 
 
-use the xclient protocol to pass the client addres
 
 rawrouter-buffer-size
 *********************
@@ -10380,9 +10236,9 @@ rawrouter-buffer-size
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: set internal buffer size (default: page size)
 
 
-set internal buffer size (default: page size)
 
 
 plugin: mongodblog
@@ -10405,9 +10261,9 @@ tuntap-router
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: run the tuntap router (syntax: <device> <socket> [stats] [gateway])
 
 
-run the tuntap router (syntax: <device> <socket> [stats] [gateway])
 
 tuntap-device
 *************
@@ -10415,9 +10271,9 @@ tuntap-device
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add a tuntap device to the instance (syntax: <device>[ <socket>])
 
 
-add a tuntap device to the instance (syntax: <device>[ <socket>])
 
 tuntap-use-credentials
 **********************
@@ -10425,9 +10281,9 @@ tuntap-use-credentials
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: enable check of SCM_CREDENTIALS for tuntap client/server
 
 
-enable check of SCM_CREDENTIALS for tuntap client/server
 
 tuntap-router-firewall-in
 *************************
@@ -10435,9 +10291,9 @@ tuntap-router-firewall-in
 
 ``parser``: uwsgi_tuntap_opt_firewall
 
+``help``: add a firewall rule to the tuntap router (syntax: <action> <src/mask> <dst/mask>)
 
 
-add a firewall rule to the tuntap router (syntax: <action> <src/mask> <dst/mask>)
 
 tuntap-router-firewall-out
 **************************
@@ -10445,9 +10301,9 @@ tuntap-router-firewall-out
 
 ``parser``: uwsgi_tuntap_opt_firewall
 
+``help``: add a firewall rule to the tuntap router (syntax: <action> <src/mask> <dst/mask>)
 
 
-add a firewall rule to the tuntap router (syntax: <action> <src/mask> <dst/mask>)
 
 tuntap-router-route
 *******************
@@ -10455,9 +10311,9 @@ tuntap-router-route
 
 ``parser``: uwsgi_tuntap_opt_route
 
+``help``: add a routing rule to the tuntap router (syntax: <src/mask> <dst/mask> <gateway>)
 
 
-add a routing rule to the tuntap router (syntax: <src/mask> <dst/mask> <gateway>)
 
 tuntap-router-stats
 *******************
@@ -10465,9 +10321,9 @@ tuntap-router-stats
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the tuntap router stats server
 
 
-run the tuntap router stats server
 
 tuntap-device-rule
 ******************
@@ -10475,9 +10331,9 @@ tuntap-device-rule
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add a tuntap device rule (syntax: <direction> <src/mask> <dst/mask> <action> [target])
 
 
-add a tuntap device rule (syntax: <direction> <src/mask> <dst/mask> <action> [target])
 
 
 plugin: jvm
@@ -10488,9 +10344,9 @@ jvm-main-class
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: load the specified class and call its main() function
 
 
-load the specified class and call its main() function
 
 jvm-opt
 *******
@@ -10498,9 +10354,9 @@ jvm-opt
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add the specified jvm option
 
 
-add the specified jvm option
 
 jvm-class
 *********
@@ -10508,9 +10364,9 @@ jvm-class
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: load the specified class
 
 
-load the specified class
 
 jvm-classpath
 *************
@@ -10518,9 +10374,9 @@ jvm-classpath
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add the specified directory to the classpath
 
 
-add the specified directory to the classpath
 
 
 plugin: router_metrics
@@ -10537,9 +10393,9 @@ dumbloop-modifier1
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the modifier1 for the code_string
 
 
-set the modifier1 for the code_string
 
 dumbloop-code
 *************
@@ -10547,9 +10403,9 @@ dumbloop-code
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set the script to load for the code_string
 
 
-set the script to load for the code_string
 
 dumbloop-function
 *****************
@@ -10557,9 +10413,9 @@ dumbloop-function
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set the function to run for the code_string
 
 
-set the function to run for the code_string
 
 
 plugin: logcrypto
@@ -10573,9 +10429,9 @@ http
 
 ``parser``: uwsgi_opt_corerouter
 
+``help``: add an http router/server on the specified address
 
 
-add an http router/server on the specified address
 
 httprouter
 **********
@@ -10583,9 +10439,9 @@ httprouter
 
 ``parser``: uwsgi_opt_corerouter
 
+``help``: add an http router/server on the specified address
 
 
-add an http router/server on the specified address
 
 https
 *****
@@ -10593,9 +10449,9 @@ https
 
 ``parser``: uwsgi_opt_https
 
+``help``: add an https router/server on the specified address with specified certificate and key
 
 
-add an https router/server on the specified address with specified certificate and key
 
 https2
 ******
@@ -10603,9 +10459,9 @@ https2
 
 ``parser``: uwsgi_opt_https2
 
+``help``: add an https/spdy router/server using keyval options
 
 
-add an https/spdy router/server using keyval options
 
 https-export-cert
 *****************
@@ -10613,9 +10469,9 @@ https-export-cert
 
 ``parser``: uwsgi_opt_true
 
+``help``: export uwsgi variable HTTPS_CC containing the raw client certificate
 
 
-export uwsgi variable HTTPS_CC containing the raw client certificate
 
 https-session-context
 *********************
@@ -10623,9 +10479,9 @@ https-session-context
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set the session id context to the specified value
 
 
-set the session id context to the specified value
 
 http-to-https
 *************
@@ -10633,9 +10489,9 @@ http-to-https
 
 ``parser``: uwsgi_opt_http_to_https
 
+``help``: add an http router/server on the specified address and redirect all of the requests to https
 
 
-add an http router/server on the specified address and redirect all of the requests to https
 
 http-processes
 **************
@@ -10643,9 +10499,9 @@ http-processes
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the number of http processes to spawn
 
 
-set the number of http processes to spawn
 
 http-workers
 ************
@@ -10653,9 +10509,9 @@ http-workers
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the number of http processes to spawn
 
 
-set the number of http processes to spawn
 
 http-var
 ********
@@ -10663,9 +10519,9 @@ http-var
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add a key=value item to the generated uwsgi packet
 
 
-add a key=value item to the generated uwsgi packet
 
 http-to
 *******
@@ -10673,9 +10529,9 @@ http-to
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: forward requests to the specified node (you can specify it multiple time for lb)
 
 
-forward requests to the specified node (you can specify it multiple time for lb)
 
 http-zerg
 *********
@@ -10683,9 +10539,9 @@ http-zerg
 
 ``parser``: uwsgi_opt_corerouter_zerg
 
+``help``: attach the http router to a zerg server
 
 
-attach the http router to a zerg server
 
 http-fallback
 *************
@@ -10693,9 +10549,9 @@ http-fallback
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: fallback to the specified node in case of error
 
 
-fallback to the specified node in case of error
 
 http-modifier1
 **************
@@ -10703,9 +10559,9 @@ http-modifier1
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set uwsgi protocol modifier1
 
 
-set uwsgi protocol modifier1
 
 http-modifier2
 **************
@@ -10713,9 +10569,9 @@ http-modifier2
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set uwsgi protocol modifier2
 
 
-set uwsgi protocol modifier2
 
 http-use-cache
 **************
@@ -10723,9 +10579,9 @@ http-use-cache
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: use uWSGI cache as key->value virtualhost mapper
 
 
-use uWSGI cache as key->value virtualhost mapper
 
 http-use-pattern
 ****************
@@ -10733,9 +10589,9 @@ http-use-pattern
 
 ``parser``: uwsgi_opt_corerouter_use_pattern
 
+``help``: use the specified pattern for mapping requests to unix sockets
 
 
-use the specified pattern for mapping requests to unix sockets
 
 http-use-base
 *************
@@ -10743,9 +10599,9 @@ http-use-base
 
 ``parser``: uwsgi_opt_corerouter_use_base
 
+``help``: use the specified base for mapping requests to unix sockets
 
 
-use the specified base for mapping requests to unix sockets
 
 http-events
 ***********
@@ -10753,9 +10609,9 @@ http-events
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the number of concurrent http async events
 
 
-set the number of concurrent http async events
 
 http-subscription-server
 ************************
@@ -10763,9 +10619,9 @@ http-subscription-server
 
 ``parser``: uwsgi_opt_corerouter_ss
 
+``help``: enable the subscription server
 
 
-enable the subscription server
 
 http-timeout
 ************
@@ -10773,9 +10629,9 @@ http-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set internal http socket timeout
 
 
-set internal http socket timeout
 
 http-manage-expect
 ******************
@@ -10783,9 +10639,9 @@ http-manage-expect
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: manage the Expect HTTP request header (optionally checking for Content-Length)
 
 
-manage the Expect HTTP request header (optionally checking for Content-Length)
 
 http-keepalive
 **************
@@ -10793,9 +10649,9 @@ http-keepalive
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: HTTP 1.1 keepalive support (non-pipelined) requests
 
 
-HTTP 1.1 keepalive support (non-pipelined) requests
 
 http-auto-chunked
 *****************
@@ -10803,9 +10659,9 @@ http-auto-chunked
 
 ``parser``: uwsgi_opt_true
 
+``help``: automatically transform output to chunked encoding during HTTP 1.1 keepalive (if needed)
 
 
-automatically transform output to chunked encoding during HTTP 1.1 keepalive (if needed)
 
 http-auto-gzip
 **************
@@ -10813,9 +10669,9 @@ http-auto-gzip
 
 ``parser``: uwsgi_opt_true
 
+``help``: automatically gzip content if uWSGI-Encoding header is set to gzip, but content size (Content-Length/Transfer-Encoding) and Content-Encoding are not specified
 
 
-automatically gzip content if uWSGI-Encoding header is set to gzip, but content size (Content-Length/Transfer-Encoding) and Content-Encoding are not specified
 
 http-raw-body
 *************
@@ -10823,9 +10679,9 @@ http-raw-body
 
 ``parser``: uwsgi_opt_true
 
+``help``: blindly send HTTP body to backends (required for WebSockets and Icecast support in backends)
 
 
-blindly send HTTP body to backends (required for WebSockets and Icecast support in backends)
 
 http-websockets
 ***************
@@ -10833,9 +10689,9 @@ http-websockets
 
 ``parser``: uwsgi_opt_true
 
+``help``: automatically detect websockets connections and put the session in raw mode
 
 
-automatically detect websockets connections and put the session in raw mode
 
 http-use-code-string
 ********************
@@ -10843,9 +10699,9 @@ http-use-code-string
 
 ``parser``: uwsgi_opt_corerouter_cs
 
+``help``: use code string as hostname->server mapper for the http router
 
 
-use code string as hostname->server mapper for the http router
 
 http-use-socket
 ***************
@@ -10853,9 +10709,9 @@ http-use-socket
 
 ``parser``: uwsgi_opt_corerouter_use_socket
 
+``help``: forward request to the specified uwsgi socket
 
 
-forward request to the specified uwsgi socket
 
 http-gracetime
 **************
@@ -10863,9 +10719,9 @@ http-gracetime
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: retry connections to dead static nodes after the specified amount of seconds
 
 
-retry connections to dead static nodes after the specified amount of seconds
 
 http-quiet
 **********
@@ -10873,9 +10729,9 @@ http-quiet
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not report failed connections to instances
 
 
-do not report failed connections to instances
 
 http-cheap
 **********
@@ -10883,9 +10739,9 @@ http-cheap
 
 ``parser``: uwsgi_opt_true
 
+``help``: run the http router in cheap mode
 
 
-run the http router in cheap mode
 
 http-stats
 **********
@@ -10893,9 +10749,9 @@ http-stats
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the http router stats server
 
 
-run the http router stats server
 
 http-stats-server
 *****************
@@ -10903,9 +10759,9 @@ http-stats-server
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the http router stats server
 
 
-run the http router stats server
 
 http-ss
 *******
@@ -10913,9 +10769,9 @@ http-ss
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the http router stats server
 
 
-run the http router stats server
 
 http-harakiri
 *************
@@ -10923,9 +10779,9 @@ http-harakiri
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: enable http router harakiri
 
 
-enable http router harakiri
 
 http-stud-prefix
 ****************
@@ -10933,9 +10789,9 @@ http-stud-prefix
 
 ``parser``: uwsgi_opt_add_addr_list
 
+``help``: expect a stud prefix (1byte family + 4/16 bytes address) on connections from the specified address
 
 
-expect a stud prefix (1byte family + 4/16 bytes address) on connections from the specified address
 
 http-uid
 ********
@@ -10943,9 +10799,9 @@ http-uid
 
 ``parser``: uwsgi_opt_uid
 
+``help``: drop http router privileges to the specified uid
 
 
-drop http router privileges to the specified uid
 
 http-gid
 ********
@@ -10953,9 +10809,9 @@ http-gid
 
 ``parser``: uwsgi_opt_gid
 
+``help``: drop http router privileges to the specified gid
 
 
-drop http router privileges to the specified gid
 
 http-resubscribe
 ****************
@@ -10963,9 +10819,9 @@ http-resubscribe
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: forward subscriptions to the specified subscription server
 
 
-forward subscriptions to the specified subscription server
 
 http-buffer-size
 ****************
@@ -10973,9 +10829,9 @@ http-buffer-size
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: set internal buffer size (default: page size)
 
 
-set internal buffer size (default: page size)
 
 http-server-name-as-http-host
 *****************************
@@ -10983,9 +10839,9 @@ http-server-name-as-http-host
 
 ``parser``: uwsgi_opt_true
 
+``help``: force SERVER_NAME to HTTP_HOST
 
 
-force SERVER_NAME to HTTP_HOST
 
 http-headers-timeout
 ********************
@@ -10993,9 +10849,9 @@ http-headers-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set internal http socket timeout for headers
 
 
-set internal http socket timeout for headers
 
 http-connect-timeout
 ********************
@@ -11003,9 +10859,9 @@ http-connect-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set internal http socket timeout for backend connections
 
 
-set internal http socket timeout for backend connections
 
 http-manage-source
 ******************
@@ -11013,9 +10869,9 @@ http-manage-source
 
 ``parser``: uwsgi_opt_true
 
+``help``: manage the SOURCE HTTP method placing the session in raw mode
 
 
-manage the SOURCE HTTP method placing the session in raw mode
 
 http-enable-proxy-protocol
 **************************
@@ -11023,19 +10879,9 @@ http-enable-proxy-protocol
 
 ``parser``: uwsgi_opt_true
 
+``help``: manage PROXY protocol requests
 
 
-manage PROXY protocol requests
-
-http-backend-http
-*****************
-``argument``: no_argument
-
-``parser``: uwsgi_opt_true
-
-
-
-use plain http protocol instead of uwsgi for backend nodes
 
 0x1f
 ****
@@ -11043,9 +10889,9 @@ use plain http protocol instead of uwsgi for backend nodes
 
 ``shortcut``: -Z_DEFLATED
 
+``help``: 0
 
 
-0
 
 
 plugin: ring
@@ -11056,9 +10902,9 @@ ring-load
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: load the specified clojure script
 
 
-load the specified clojure script
 
 clojure-load
 ************
@@ -11066,9 +10912,9 @@ clojure-load
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: load the specified clojure script
 
 
-load the specified clojure script
 
 ring-app
 ********
@@ -11076,9 +10922,9 @@ ring-app
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: map the specified ring application (syntax namespace:function)
 
 
-map the specified ring application (syntax namespace:function)
 
 
 plugin: spooler
@@ -11092,9 +10938,9 @@ fiber
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable ruby fiber as suspend engine
 
 
-enable ruby fiber as suspend engine
 
 
 plugin: stats_pusher_mongodb
@@ -11120,9 +10966,9 @@ cgi
 
 ``parser``: uwsgi_opt_add_cgi
 
+``help``: add a cgi mountpoint/directory/script
 
 
-add a cgi mountpoint/directory/script
 
 cgi-map-helper
 **************
@@ -11130,9 +10976,9 @@ cgi-map-helper
 
 ``parser``: uwsgi_opt_add_cgi_maphelper
 
+``help``: add a cgi map-helper
 
 
-add a cgi map-helper
 
 cgi-helper
 **********
@@ -11140,9 +10986,9 @@ cgi-helper
 
 ``parser``: uwsgi_opt_add_cgi_maphelper
 
+``help``: add a cgi map-helper
 
 
-add a cgi map-helper
 
 cgi-from-docroot
 ****************
@@ -11150,9 +10996,9 @@ cgi-from-docroot
 
 ``parser``: uwsgi_opt_true
 
+``help``: blindly enable cgi in DOCUMENT_ROOT
 
 
-blindly enable cgi in DOCUMENT_ROOT
 
 cgi-buffer-size
 ***************
@@ -11160,9 +11006,9 @@ cgi-buffer-size
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: set cgi buffer size
 
 
-set cgi buffer size
 
 cgi-timeout
 ***********
@@ -11170,9 +11016,9 @@ cgi-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set cgi script timeout
 
 
-set cgi script timeout
 
 cgi-index
 *********
@@ -11180,9 +11026,9 @@ cgi-index
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add a cgi index file
 
 
-add a cgi index file
 
 cgi-allowed-ext
 ***************
@@ -11190,9 +11036,9 @@ cgi-allowed-ext
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: cgi allowed extension
 
 
-cgi allowed extension
 
 cgi-unset
 *********
@@ -11200,9 +11046,9 @@ cgi-unset
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: unset specified environment variables
 
 
-unset specified environment variables
 
 cgi-loadlib
 ***********
@@ -11210,9 +11056,9 @@ cgi-loadlib
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: load a cgi shared library/optimizer
 
 
-load a cgi shared library/optimizer
 
 cgi-optimize
 ************
@@ -11220,9 +11066,9 @@ cgi-optimize
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable cgi realpath() optimizer
 
 
-enable cgi realpath() optimizer
 
 cgi-optimized
 *************
@@ -11230,9 +11076,9 @@ cgi-optimized
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable cgi realpath() optimizer
 
 
-enable cgi realpath() optimizer
 
 cgi-path-info
 *************
@@ -11240,9 +11086,9 @@ cgi-path-info
 
 ``parser``: uwsgi_opt_true
 
+``help``: disable PATH_INFO management in cgi scripts
 
 
-disable PATH_INFO management in cgi scripts
 
 cgi-do-not-kill-on-error
 ************************
@@ -11250,9 +11096,9 @@ cgi-do-not-kill-on-error
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not send SIGKILL to cgi script on errors
 
 
-do not send SIGKILL to cgi script on errors
 
 cgi-async-max-attempts
 **********************
@@ -11260,9 +11106,9 @@ cgi-async-max-attempts
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: max waitpid() attempts in cgi async mode (default 10)
 
 
-max waitpid() attempts in cgi async mode (default 10)
 
 
 plugin: rrdtool
@@ -11275,9 +11121,9 @@ rrdtool
 
 ``flags``: UWSGI_OPT_MASTER|UWSGI_OPT_METRICS
 
+``help``: store rrd files in the specified directory
 
 
-store rrd files in the specified directory
 
 rrdtool-freq
 ************
@@ -11285,9 +11131,9 @@ rrdtool-freq
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set collect frequency
 
 
-set collect frequency
 
 rrdtool-lib
 ***********
@@ -11295,9 +11141,9 @@ rrdtool-lib
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set the name of rrd library (default: librrd.so)
 
 
-set the name of rrd library (default: librrd.so)
 
 
 plugin: transformation_gzip
@@ -11311,9 +11157,9 @@ geoip-country
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load the specified geoip country database
 
 
-load the specified geoip country database
 
 geoip-city
 **********
@@ -11321,9 +11167,9 @@ geoip-city
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load the specified geoip city database
 
 
-load the specified geoip city database
 
 geoip-use-disk
 **************
@@ -11331,9 +11177,9 @@ geoip-use-disk
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not cache geoip databases in memory
 
 
-do not cache geoip databases in memory
 
 
 plugin: systemd_logger
@@ -11358,9 +11204,9 @@ webdav-mount
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: map a filesystem directory as a webdav store
 
 
-map a filesystem directory as a webdav store
 
 webdav-css
 **********
@@ -11370,9 +11216,9 @@ webdav-css
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: add a css url for automatic webdav directory listing
 
 
-add a css url for automatic webdav directory listing
 
 webdav-javascript
 *****************
@@ -11382,9 +11228,9 @@ webdav-javascript
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: add a javascript url for automatic webdav directory listing
 
 
-add a javascript url for automatic webdav directory listing
 
 webdav-js
 *********
@@ -11394,9 +11240,9 @@ webdav-js
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: add a javascript url for automatic webdav directory listing
 
 
-add a javascript url for automatic webdav directory listing
 
 webdav-class-directory
 **********************
@@ -11406,9 +11252,9 @@ webdav-class-directory
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: set the css directory class for automatic webdav directory listing
 
 
-set the css directory class for automatic webdav directory listing
 
 webdav-div
 **********
@@ -11418,9 +11264,9 @@ webdav-div
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: set the div id for automatic webdav directory listing
 
 
-set the div id for automatic webdav directory listing
 
 webdav-lock-cache
 *****************
@@ -11430,9 +11276,9 @@ webdav-lock-cache
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: set the cache to use for webdav locking
 
 
-set the cache to use for webdav locking
 
 webdav-principal-base
 *********************
@@ -11442,9 +11288,9 @@ webdav-principal-base
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: enable WebDAV Current Principal Extension using the specified base
 
 
-enable WebDAV Current Principal Extension using the specified base
 
 webdav-add-option
 *****************
@@ -11454,9 +11300,9 @@ webdav-add-option
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: add a WebDAV standard to the OPTIONS response
 
 
-add a WebDAV standard to the OPTIONS response
 
 webdav-add-prop
 ***************
@@ -11466,9 +11312,9 @@ webdav-add-prop
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: add a WebDAV property to all resources
 
 
-add a WebDAV property to all resources
 
 webdav-add-collection-prop
 **************************
@@ -11478,9 +11324,9 @@ webdav-add-collection-prop
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: add a WebDAV property to all collections
 
 
-add a WebDAV property to all collections
 
 webdav-add-object-prop
 **********************
@@ -11490,9 +11336,9 @@ webdav-add-object-prop
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: add a WebDAV property to all objects
 
 
-add a WebDAV property to all objects
 
 webdav-add-prop-href
 ********************
@@ -11502,9 +11348,9 @@ webdav-add-prop-href
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: add a WebDAV property to all resources (href value)
 
 
-add a WebDAV property to all resources (href value)
 
 webdav-add-collection-prop-href
 *******************************
@@ -11514,9 +11360,9 @@ webdav-add-collection-prop-href
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: add a WebDAV property to all collections (href value)
 
 
-add a WebDAV property to all collections (href value)
 
 webdav-add-object-prop-href
 ***************************
@@ -11526,9 +11372,9 @@ webdav-add-object-prop-href
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: add a WebDAV property to all objects (href value)
 
 
-add a WebDAV property to all objects (href value)
 
 webdav-add-prop-comp
 ********************
@@ -11538,9 +11384,9 @@ webdav-add-prop-comp
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: add a WebDAV property to all resources (xml value)
 
 
-add a WebDAV property to all resources (xml value)
 
 webdav-add-collection-prop-comp
 *******************************
@@ -11550,9 +11396,9 @@ webdav-add-collection-prop-comp
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: add a WebDAV property to all collections (xml value)
 
 
-add a WebDAV property to all collections (xml value)
 
 webdav-add-object-prop-comp
 ***************************
@@ -11562,9 +11408,9 @@ webdav-add-object-prop-comp
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: add a WebDAV property to all objects (xml value)
 
 
-add a WebDAV property to all objects (xml value)
 
 webdav-add-rtype-prop
 *********************
@@ -11574,9 +11420,9 @@ webdav-add-rtype-prop
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: add a WebDAV resourcetype property to all resources
 
 
-add a WebDAV resourcetype property to all resources
 
 webdav-add-rtype-collection-prop
 ********************************
@@ -11586,9 +11432,9 @@ webdav-add-rtype-collection-prop
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: add a WebDAV resourcetype property to all collections
 
 
-add a WebDAV resourcetype property to all collections
 
 webdav-add-rtype-object-prop
 ****************************
@@ -11598,9 +11444,9 @@ webdav-add-rtype-object-prop
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: add a WebDAV resourcetype property to all objects
 
 
-add a WebDAV resourcetype property to all objects
 
 webdav-skip-prop
 ****************
@@ -11610,9 +11456,9 @@ webdav-skip-prop
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: do not add the specified prop if available in resource xattr
 
 
-do not add the specified prop if available in resource xattr
 
 
 plugin: router_cache
@@ -11629,9 +11475,9 @@ zeromq
 
 ``parser``: uwsgi_opt_add_lazy_socket
 
+``help``: create a mongrel2/zeromq pub/sub pair
 
 
-create a mongrel2/zeromq pub/sub pair
 
 zmq
 ***
@@ -11639,9 +11485,9 @@ zmq
 
 ``parser``: uwsgi_opt_add_lazy_socket
 
+``help``: create a mongrel2/zeromq pub/sub pair
 
 
-create a mongrel2/zeromq pub/sub pair
 
 zeromq-socket
 *************
@@ -11649,9 +11495,9 @@ zeromq-socket
 
 ``parser``: uwsgi_opt_add_lazy_socket
 
+``help``: create a mongrel2/zeromq pub/sub pair
 
 
-create a mongrel2/zeromq pub/sub pair
 
 zmq-socket
 **********
@@ -11659,9 +11505,9 @@ zmq-socket
 
 ``parser``: uwsgi_opt_add_lazy_socket
 
+``help``: create a mongrel2/zeromq pub/sub pair
 
 
-create a mongrel2/zeromq pub/sub pair
 
 mongrel2
 ********
@@ -11669,9 +11515,9 @@ mongrel2
 
 ``parser``: uwsgi_opt_add_lazy_socket
 
+``help``: create a mongrel2/zeromq pub/sub pair
 
 
-create a mongrel2/zeromq pub/sub pair
 
 
 plugin: router_uwsgi
@@ -11687,9 +11533,9 @@ ping
 
 ``flags``: UWSGI_OPT_NO_INITIAL | UWSGI_OPT_NO_SERVER
 
+``help``: ping specified uwsgi host
 
 
-ping specified uwsgi host
 
 ping-timeout
 ************
@@ -11697,9 +11543,9 @@ ping-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set ping timeout
 
 
-set ping timeout
 
 
 plugin: stats_pusher_statsd
@@ -11718,9 +11564,9 @@ tornado
 
 ``flags``: UWSGI_OPT_THREADS
 
+``help``: a shortcut enabling tornado loop engine with the specified number of async cores and optimal parameters
 
 
-a shortcut enabling tornado loop engine with the specified number of async cores and optimal parameters
 
 
 plugin: zergpool
@@ -11731,9 +11577,9 @@ zergpool
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: start a zergpool on specified address for specified address
 
 
-start a zergpool on specified address for specified address
 
 zerg-pool
 *********
@@ -11741,9 +11587,9 @@ zerg-pool
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: start a zergpool on specified address for specified address
 
 
-start a zergpool on specified address for specified address
 
 
 plugin: emperor_amqp
@@ -11762,9 +11608,9 @@ curl-cron
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a cron task invoking the specified url via CURL
 
 
-add a cron task invoking the specified url via CURL
 
 cron-curl
 *********
@@ -11774,9 +11620,9 @@ cron-curl
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a cron task invoking the specified url via CURL
 
 
-add a cron task invoking the specified url via CURL
 
 legion-curl-cron
 ****************
@@ -11786,9 +11632,9 @@ legion-curl-cron
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a cron task invoking the specified url via CURL runnable only when the instance is a lord of the specified legion
 
 
-add a cron task invoking the specified url via CURL runnable only when the instance is a lord of the specified legion
 
 legion-cron-curl
 ****************
@@ -11798,9 +11644,9 @@ legion-cron-curl
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a cron task invoking the specified url via CURL runnable only when the instance is a lord of the specified legion
 
 
-add a cron task invoking the specified url via CURL runnable only when the instance is a lord of the specified legion
 
 curl-cron-legion
 ****************
@@ -11810,9 +11656,9 @@ curl-cron-legion
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a cron task invoking the specified url via CURL runnable only when the instance is a lord of the specified legion
 
 
-add a cron task invoking the specified url via CURL runnable only when the instance is a lord of the specified legion
 
 cron-curl-legion
 ****************
@@ -11822,9 +11668,9 @@ cron-curl-legion
 
 ``flags``: UWSGI_OPT_MASTER
 
+``help``: add a cron task invoking the specified url via CURL runnable only when the instance is a lord of the specified legion
 
 
-add a cron task invoking the specified url via CURL runnable only when the instance is a lord of the specified legion
 
 
 plugin: nagios
@@ -11837,9 +11683,9 @@ nagios
 
 ``flags``: UWSGI_OPT_NO_INITIAL
 
+``help``: nagios check
 
 
-nagios check
 
 
 plugin: exception_log
@@ -11853,9 +11699,9 @@ go-load
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: load a go shared library in the process address space, eventually patching main.main and __go_init_main
 
 
-load a go shared library in the process address space, eventually patching main.main and __go_init_main
 
 gccgo-load
 **********
@@ -11863,9 +11709,9 @@ gccgo-load
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: load a go shared library in the process address space, eventually patching main.main and __go_init_main
 
 
-load a go shared library in the process address space, eventually patching main.main and __go_init_main
 
 go-args
 *******
@@ -11873,9 +11719,9 @@ go-args
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set go commandline arguments
 
 
-set go commandline arguments
 
 gccgo-args
 **********
@@ -11883,9 +11729,9 @@ gccgo-args
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set go commandline arguments
 
 
-set go commandline arguments
 
 goroutines
 **********
@@ -11895,9 +11741,9 @@ goroutines
 
 ``flags``: UWSGI_OPT_THREADS
 
+``help``: a shortcut setting optimal options for goroutine-based apps, takes the number of max goroutines to spawn as argument
 
 
-a shortcut setting optimal options for goroutine-based apps, takes the number of max goroutines to spawn as argument
 
 
 plugin: syslog
@@ -11919,9 +11765,9 @@ zabbix-template
 
 ``flags``: UWSGI_OPT_METRICS
 
+``help``: print (or store to a file) the zabbix template for the current metrics setup
 
 
-print (or store to a file) the zabbix template for the current metrics setup
 
 
 plugin: router_rewrite
@@ -11938,9 +11784,9 @@ ugreen
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable ugreen coroutine subsystem
 
 
-enable ugreen coroutine subsystem
 
 ugreen-stacksize
 ****************
@@ -11948,9 +11794,9 @@ ugreen-stacksize
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set ugreen stack size in pages
 
 
-set ugreen stack size in pages
 
 
 plugin: forkptyrouter
@@ -11961,9 +11807,9 @@ forkptyrouter
 
 ``parser``: uwsgi_opt_undeferred_corerouter
 
+``help``: run the forkptyrouter on the specified address
 
 
-run the forkptyrouter on the specified address
 
 forkpty-router
 **************
@@ -11971,9 +11817,9 @@ forkpty-router
 
 ``parser``: uwsgi_opt_undeferred_corerouter
 
+``help``: run the forkptyrouter on the specified address
 
 
-run the forkptyrouter on the specified address
 
 forkptyurouter
 **************
@@ -11981,9 +11827,9 @@ forkptyurouter
 
 ``parser``: uwsgi_opt_forkpty_urouter
 
+``help``: run the forkptyrouter on the specified address
 
 
-run the forkptyrouter on the specified address
 
 forkpty-urouter
 ***************
@@ -11991,9 +11837,9 @@ forkpty-urouter
 
 ``parser``: uwsgi_opt_forkpty_urouter
 
+``help``: run the forkptyrouter on the specified address
 
 
-run the forkptyrouter on the specified address
 
 forkptyrouter-command
 *********************
@@ -12001,9 +11847,9 @@ forkptyrouter-command
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the specified command on every connection (default: /bin/sh)
 
 
-run the specified command on every connection (default: /bin/sh)
 
 forkpty-router-command
 **********************
@@ -12011,9 +11857,9 @@ forkpty-router-command
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the specified command on every connection (default: /bin/sh)
 
 
-run the specified command on every connection (default: /bin/sh)
 
 forkptyrouter-cmd
 *****************
@@ -12021,9 +11867,9 @@ forkptyrouter-cmd
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the specified command on every connection (default: /bin/sh)
 
 
-run the specified command on every connection (default: /bin/sh)
 
 forkpty-router-cmd
 ******************
@@ -12031,9 +11877,9 @@ forkpty-router-cmd
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the specified command on every connection (default: /bin/sh)
 
 
-run the specified command on every connection (default: /bin/sh)
 
 forkptyrouter-rows
 ******************
@@ -12041,9 +11887,9 @@ forkptyrouter-rows
 
 ``parser``: uwsgi_opt_set_16bit
 
+``help``: set forkptyrouter default pty window rows
 
 
-set forkptyrouter default pty window rows
 
 forkptyrouter-cols
 ******************
@@ -12051,9 +11897,9 @@ forkptyrouter-cols
 
 ``parser``: uwsgi_opt_set_16bit
 
+``help``: set forkptyrouter default pty window cols
 
 
-set forkptyrouter default pty window cols
 
 forkptyrouter-processes
 ***********************
@@ -12061,9 +11907,9 @@ forkptyrouter-processes
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: prefork the specified number of forkptyrouter processes
 
 
-prefork the specified number of forkptyrouter processes
 
 forkptyrouter-workers
 *********************
@@ -12071,9 +11917,9 @@ forkptyrouter-workers
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: prefork the specified number of forkptyrouter processes
 
 
-prefork the specified number of forkptyrouter processes
 
 forkptyrouter-zerg
 ******************
@@ -12081,9 +11927,9 @@ forkptyrouter-zerg
 
 ``parser``: uwsgi_opt_corerouter_zerg
 
+``help``: attach the forkptyrouter to a zerg server
 
 
-attach the forkptyrouter to a zerg server
 
 forkptyrouter-fallback
 **********************
@@ -12091,9 +11937,9 @@ forkptyrouter-fallback
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: fallback to the specified node in case of error
 
 
-fallback to the specified node in case of error
 
 forkptyrouter-events
 ********************
@@ -12101,9 +11947,9 @@ forkptyrouter-events
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the maximum number of concufptyent events
 
 
-set the maximum number of concufptyent events
 
 forkptyrouter-cheap
 *******************
@@ -12111,9 +11957,9 @@ forkptyrouter-cheap
 
 ``parser``: uwsgi_opt_true
 
+``help``: run the forkptyrouter in cheap mode
 
 
-run the forkptyrouter in cheap mode
 
 forkptyrouter-timeout
 *********************
@@ -12121,9 +11967,9 @@ forkptyrouter-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set forkptyrouter timeout
 
 
-set forkptyrouter timeout
 
 forkptyrouter-stats
 *******************
@@ -12131,9 +11977,9 @@ forkptyrouter-stats
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the forkptyrouter stats server
 
 
-run the forkptyrouter stats server
 
 forkptyrouter-stats-server
 **************************
@@ -12141,9 +11987,9 @@ forkptyrouter-stats-server
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the forkptyrouter stats server
 
 
-run the forkptyrouter stats server
 
 forkptyrouter-ss
 ****************
@@ -12151,9 +11997,9 @@ forkptyrouter-ss
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the forkptyrouter stats server
 
 
-run the forkptyrouter stats server
 
 forkptyrouter-harakiri
 **********************
@@ -12161,9 +12007,9 @@ forkptyrouter-harakiri
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: enable forkptyrouter harakiri
 
 
-enable forkptyrouter harakiri
 
 
 plugin: rsyslog
@@ -12174,9 +12020,9 @@ rsyslog-packet-size
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set maximum packet size for syslog messages (default 1024) WARNING! using packets > 1024 breaks RFC 3164 (#4.1)
 
 
-set maximum packet size for syslog messages (default 1024) WARNING! using packets > 1024 breaks RFC 3164 (#4.1)
 
 rsyslog-split-messages
 **********************
@@ -12184,9 +12030,9 @@ rsyslog-split-messages
 
 ``parser``: uwsgi_opt_true
 
+``help``: split big messages into multiple chunks if they are bigger than allowed packet size (default is false)
 
 
-split big messages into multiple chunks if they are bigger than allowed packet size (default is false)
 
 
 plugin: echo
@@ -12208,9 +12054,9 @@ sqlite3
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: load config from sqlite3 db
 
 
-load config from sqlite3 db
 
 sqlite
 ******
@@ -12220,9 +12066,9 @@ sqlite
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: load config from sqlite3 db
 
 
-load config from sqlite3 db
 
 
 plugin: sslrouter
@@ -12233,9 +12079,9 @@ sslrouter
 
 ``parser``: uwsgi_opt_sslrouter
 
+``help``: run the sslrouter on the specified port
 
 
-run the sslrouter on the specified port
 
 sslrouter2
 **********
@@ -12243,9 +12089,9 @@ sslrouter2
 
 ``parser``: uwsgi_opt_sslrouter2
 
+``help``: run the sslrouter on the specified port (key-value based)
 
 
-run the sslrouter on the specified port (key-value based)
 
 sslrouter-session-context
 *************************
@@ -12253,9 +12099,9 @@ sslrouter-session-context
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set the session id context to the specified value
 
 
-set the session id context to the specified value
 
 sslrouter-processes
 *******************
@@ -12263,9 +12109,9 @@ sslrouter-processes
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: prefork the specified number of sslrouter processes
 
 
-prefork the specified number of sslrouter processes
 
 sslrouter-workers
 *****************
@@ -12273,9 +12119,9 @@ sslrouter-workers
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: prefork the specified number of sslrouter processes
 
 
-prefork the specified number of sslrouter processes
 
 sslrouter-zerg
 **************
@@ -12283,9 +12129,9 @@ sslrouter-zerg
 
 ``parser``: uwsgi_opt_corerouter_zerg
 
+``help``: attach the sslrouter to a zerg server
 
 
-attach the sslrouter to a zerg server
 
 sslrouter-use-cache
 *******************
@@ -12293,9 +12139,9 @@ sslrouter-use-cache
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: use uWSGI cache as hostname->server mapper for the sslrouter
 
 
-use uWSGI cache as hostname->server mapper for the sslrouter
 
 sslrouter-use-pattern
 *********************
@@ -12303,9 +12149,9 @@ sslrouter-use-pattern
 
 ``parser``: uwsgi_opt_corerouter_use_pattern
 
+``help``: use a pattern for sslrouter hostname->server mapping
 
 
-use a pattern for sslrouter hostname->server mapping
 
 sslrouter-use-base
 ******************
@@ -12313,9 +12159,9 @@ sslrouter-use-base
 
 ``parser``: uwsgi_opt_corerouter_use_base
 
+``help``: use a base dir for sslrouter hostname->server mapping
 
 
-use a base dir for sslrouter hostname->server mapping
 
 sslrouter-fallback
 ******************
@@ -12323,9 +12169,9 @@ sslrouter-fallback
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: fallback to the specified node in case of error
 
 
-fallback to the specified node in case of error
 
 sslrouter-use-code-string
 *************************
@@ -12333,9 +12179,9 @@ sslrouter-use-code-string
 
 ``parser``: uwsgi_opt_corerouter_cs
 
+``help``: use code string as hostname->server mapper for the sslrouter
 
 
-use code string as hostname->server mapper for the sslrouter
 
 sslrouter-use-socket
 ********************
@@ -12343,9 +12189,9 @@ sslrouter-use-socket
 
 ``parser``: uwsgi_opt_corerouter_use_socket
 
+``help``: forward request to the specified uwsgi socket
 
 
-forward request to the specified uwsgi socket
 
 sslrouter-to
 ************
@@ -12353,9 +12199,9 @@ sslrouter-to
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: forward requests to the specified uwsgi server (you can specify it multiple times for load balancing)
 
 
-forward requests to the specified uwsgi server (you can specify it multiple times for load balancing)
 
 sslrouter-gracetime
 *******************
@@ -12363,9 +12209,9 @@ sslrouter-gracetime
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: retry connections to dead static nodes after the specified amount of seconds
 
 
-retry connections to dead static nodes after the specified amount of seconds
 
 sslrouter-events
 ****************
@@ -12373,9 +12219,9 @@ sslrouter-events
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the maximum number of concurrent events
 
 
-set the maximum number of concurrent events
 
 sslrouter-max-retries
 *********************
@@ -12383,9 +12229,9 @@ sslrouter-max-retries
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set the maximum number of retries/fallbacks to other nodes
 
 
-set the maximum number of retries/fallbacks to other nodes
 
 sslrouter-quiet
 ***************
@@ -12393,9 +12239,9 @@ sslrouter-quiet
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not report failed connections to instances
 
 
-do not report failed connections to instances
 
 sslrouter-cheap
 ***************
@@ -12403,9 +12249,9 @@ sslrouter-cheap
 
 ``parser``: uwsgi_opt_true
 
+``help``: run the sslrouter in cheap mode
 
 
-run the sslrouter in cheap mode
 
 sslrouter-subscription-server
 *****************************
@@ -12413,9 +12259,9 @@ sslrouter-subscription-server
 
 ``parser``: uwsgi_opt_corerouter_ss
 
+``help``: run the sslrouter subscription server on the spcified address
 
 
-run the sslrouter subscription server on the spcified address
 
 sslrouter-timeout
 *****************
@@ -12423,9 +12269,9 @@ sslrouter-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set sslrouter timeout
 
 
-set sslrouter timeout
 
 sslrouter-stats
 ***************
@@ -12433,9 +12279,9 @@ sslrouter-stats
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the sslrouter stats server
 
 
-run the sslrouter stats server
 
 sslrouter-stats-server
 **********************
@@ -12443,9 +12289,9 @@ sslrouter-stats-server
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the sslrouter stats server
 
 
-run the sslrouter stats server
 
 sslrouter-ss
 ************
@@ -12453,9 +12299,9 @@ sslrouter-ss
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: run the sslrouter stats server
 
 
-run the sslrouter stats server
 
 sslrouter-harakiri
 ******************
@@ -12463,9 +12309,9 @@ sslrouter-harakiri
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: enable sslrouter harakiri
 
 
-enable sslrouter harakiri
 
 sslrouter-sni
 *************
@@ -12473,9 +12319,9 @@ sslrouter-sni
 
 ``parser``: uwsgi_opt_true
 
+``help``: use SNI to route requests
 
 
-use SNI to route requests
 
 sslrouter-buffer-size
 *********************
@@ -12483,9 +12329,9 @@ sslrouter-buffer-size
 
 ``parser``: uwsgi_opt_set_64bit
 
+``help``: set internal buffer size (default: page size)
 
 
-set internal buffer size (default: page size)
 
 
 plugin: asyncio
@@ -12498,9 +12344,9 @@ asyncio
 
 ``flags``: UWSGI_OPT_THREADS
 
+``help``: a shortcut enabling asyncio loop engine with the specified number of async cores and optimal parameters
 
 
-a shortcut enabling asyncio loop engine with the specified number of async cores and optimal parameters
 
 
 plugin: ssi
@@ -12529,9 +12375,9 @@ jwsgi
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load the specified JWSGI application (syntax class:method)
 
 
-load the specified JWSGI application (syntax class:method)
 
 
 plugin: gevent
@@ -12544,9 +12390,9 @@ gevent
 
 ``flags``: UWSGI_OPT_THREADS
 
+``help``: a shortcut enabling gevent loop engine with the specified number of async cores and optimal parameters
 
 
-a shortcut enabling gevent loop engine with the specified number of async cores and optimal parameters
 
 gevent-monkey-patch
 *******************
@@ -12554,9 +12400,9 @@ gevent-monkey-patch
 
 ``parser``: uwsgi_opt_true
 
+``help``: call gevent.monkey.patch_all() automatically on startup
 
 
-call gevent.monkey.patch_all() automatically on startup
 
 gevent-wait-for-hub
 *******************
@@ -12564,9 +12410,9 @@ gevent-wait-for-hub
 
 ``parser``: uwsgi_opt_true
 
+``help``: wait for gevent hub's death instead of the control greenlet
 
 
-wait for gevent hub's death instead of the control greenlet
 
 
 plugin: python
@@ -12577,9 +12423,9 @@ wsgi-file
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load .wsgi file
 
 
-load .wsgi file
 
 file
 ****
@@ -12587,9 +12433,9 @@ file
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load .wsgi file
 
 
-load .wsgi file
 
 eval
 ****
@@ -12597,9 +12443,9 @@ eval
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: eval python code
 
 
-eval python code
 
 module
 ******
@@ -12609,9 +12455,9 @@ module
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load a WSGI module
 
 
-load a WSGI module
 
 wsgi
 ****
@@ -12621,9 +12467,9 @@ wsgi
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load a WSGI module
 
 
-load a WSGI module
 
 callable
 ********
@@ -12631,9 +12477,9 @@ callable
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set default WSGI callable name
 
 
-set default WSGI callable name
 
 test
 ****
@@ -12643,9 +12489,9 @@ test
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: test a mdule import
 
 
-test a mdule import
 
 home
 ****
@@ -12655,9 +12501,9 @@ home
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set PYTHONHOME/virtualenv
 
 
-set PYTHONHOME/virtualenv
 
 virtualenv
 **********
@@ -12667,9 +12513,9 @@ virtualenv
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set PYTHONHOME/virtualenv
 
 
-set PYTHONHOME/virtualenv
 
 venv
 ****
@@ -12679,9 +12525,9 @@ venv
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set PYTHONHOME/virtualenv
 
 
-set PYTHONHOME/virtualenv
 
 pyhome
 ******
@@ -12691,9 +12537,9 @@ pyhome
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set PYTHONHOME/virtualenv
 
 
-set PYTHONHOME/virtualenv
 
 py-programname
 **************
@@ -12701,9 +12547,9 @@ py-programname
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set python program name
 
 
-set python program name
 
 py-program-name
 ***************
@@ -12711,9 +12557,9 @@ py-program-name
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set python program name
 
 
-set python program name
 
 pythonpath
 **********
@@ -12721,9 +12567,9 @@ pythonpath
 
 ``parser``: uwsgi_opt_pythonpath
 
+``help``: add directory (or glob) to pythonpath
 
 
-add directory (or glob) to pythonpath
 
 python-path
 ***********
@@ -12731,9 +12577,9 @@ python-path
 
 ``parser``: uwsgi_opt_pythonpath
 
+``help``: add directory (or glob) to pythonpath
 
 
-add directory (or glob) to pythonpath
 
 pp
 **
@@ -12741,9 +12587,9 @@ pp
 
 ``parser``: uwsgi_opt_pythonpath
 
+``help``: add directory (or glob) to pythonpath
 
 
-add directory (or glob) to pythonpath
 
 pymodule-alias
 **************
@@ -12751,9 +12597,9 @@ pymodule-alias
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add a python alias module
 
 
-add a python alias module
 
 post-pymodule-alias
 *******************
@@ -12761,9 +12607,9 @@ post-pymodule-alias
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: add a python module alias after uwsgi module initialization
 
 
-add a python module alias after uwsgi module initialization
 
 import
 ******
@@ -12771,9 +12617,9 @@ import
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: import a python module
 
 
-import a python module
 
 pyimport
 ********
@@ -12781,9 +12627,9 @@ pyimport
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: import a python module
 
 
-import a python module
 
 py-import
 *********
@@ -12791,9 +12637,9 @@ py-import
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: import a python module
 
 
-import a python module
 
 python-import
 *************
@@ -12801,9 +12647,9 @@ python-import
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: import a python module
 
 
-import a python module
 
 shared-import
 *************
@@ -12811,9 +12657,9 @@ shared-import
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: import a python module in all of the processes
 
 
-import a python module in all of the processes
 
 shared-pyimport
 ***************
@@ -12821,9 +12667,9 @@ shared-pyimport
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: import a python module in all of the processes
 
 
-import a python module in all of the processes
 
 shared-py-import
 ****************
@@ -12831,9 +12677,9 @@ shared-py-import
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: import a python module in all of the processes
 
 
-import a python module in all of the processes
 
 shared-python-import
 ********************
@@ -12841,9 +12687,9 @@ shared-python-import
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: import a python module in all of the processes
 
 
-import a python module in all of the processes
 
 pyargv
 ******
@@ -12851,9 +12697,9 @@ pyargv
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: manually set sys.argv
 
 
-manually set sys.argv
 
 optimize
 ********
@@ -12863,9 +12709,9 @@ optimize
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: set python optimization level
 
 
-set python optimization level
 
 pecan
 *****
@@ -12873,9 +12719,9 @@ pecan
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load a pecan config file
 
 
-load a pecan config file
 
 paste
 *****
@@ -12883,9 +12729,9 @@ paste
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load a paste.deploy config file
 
 
-load a paste.deploy config file
 
 paste-logger
 ************
@@ -12893,9 +12739,9 @@ paste-logger
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable paste fileConfig logger
 
 
-enable paste fileConfig logger
 
 web3
 ****
@@ -12903,9 +12749,9 @@ web3
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load a web3 app
 
 
-load a web3 app
 
 pump
 ****
@@ -12913,9 +12759,9 @@ pump
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load a pump app
 
 
-load a pump app
 
 wsgi-lite
 *********
@@ -12923,9 +12769,9 @@ wsgi-lite
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load a wsgi-lite app
 
 
-load a wsgi-lite app
 
 ini-paste
 *********
@@ -12935,9 +12781,9 @@ ini-paste
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: load a paste.deploy config file containing uwsgi section
 
 
-load a paste.deploy config file containing uwsgi section
 
 ini-paste-logged
 ****************
@@ -12947,9 +12793,9 @@ ini-paste-logged
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: load a paste.deploy config file containing uwsgi section (load loggers too)
 
 
-load a paste.deploy config file containing uwsgi section (load loggers too)
 
 reload-os-env
 *************
@@ -12957,9 +12803,9 @@ reload-os-env
 
 ``parser``: uwsgi_opt_true
 
+``help``: force reload of os.environ at each request
 
 
-force reload of os.environ at each request
 
 no-site
 *******
@@ -12967,9 +12813,9 @@ no-site
 
 ``parser``: uwsgi_opt_true
 
+``help``: do not import site module
 
 
-do not import site module
 
 pyshell
 *******
@@ -12977,9 +12823,9 @@ pyshell
 
 ``parser``: uwsgi_opt_pyshell
 
+``help``: run an interactive python shell in the uWSGI environment
 
 
-run an interactive python shell in the uWSGI environment
 
 pyshell-oneshot
 ***************
@@ -12987,9 +12833,9 @@ pyshell-oneshot
 
 ``parser``: uwsgi_opt_pyshell
 
+``help``: run an interactive python shell in the uWSGI environment (one-shot variant)
 
 
-run an interactive python shell in the uWSGI environment (one-shot variant)
 
 python
 ******
@@ -12997,9 +12843,9 @@ python
 
 ``parser``: uwsgi_opt_pyrun
 
+``help``: run a python script in the uWSGI environment
 
 
-run a python script in the uWSGI environment
 
 py
 **
@@ -13007,9 +12853,9 @@ py
 
 ``parser``: uwsgi_opt_pyrun
 
+``help``: run a python script in the uWSGI environment
 
 
-run a python script in the uWSGI environment
 
 pyrun
 *****
@@ -13017,9 +12863,9 @@ pyrun
 
 ``parser``: uwsgi_opt_pyrun
 
+``help``: run a python script in the uWSGI environment
 
 
-run a python script in the uWSGI environment
 
 py-tracebacker
 **************
@@ -13029,9 +12875,9 @@ py-tracebacker
 
 ``flags``: UWSGI_OPT_THREADS|UWSGI_OPT_MASTER
 
+``help``: enable the uWSGI python tracebacker
 
 
-enable the uWSGI python tracebacker
 
 py-auto-reload
 **************
@@ -13041,9 +12887,9 @@ py-auto-reload
 
 ``flags``: UWSGI_OPT_THREADS|UWSGI_OPT_MASTER
 
+``help``: monitor python modules mtime to trigger reload (use only in development)
 
 
-monitor python modules mtime to trigger reload (use only in development)
 
 py-autoreload
 *************
@@ -13053,9 +12899,9 @@ py-autoreload
 
 ``flags``: UWSGI_OPT_THREADS|UWSGI_OPT_MASTER
 
+``help``: monitor python modules mtime to trigger reload (use only in development)
 
 
-monitor python modules mtime to trigger reload (use only in development)
 
 python-auto-reload
 ******************
@@ -13065,9 +12911,9 @@ python-auto-reload
 
 ``flags``: UWSGI_OPT_THREADS|UWSGI_OPT_MASTER
 
+``help``: monitor python modules mtime to trigger reload (use only in development)
 
 
-monitor python modules mtime to trigger reload (use only in development)
 
 python-autoreload
 *****************
@@ -13077,9 +12923,9 @@ python-autoreload
 
 ``flags``: UWSGI_OPT_THREADS|UWSGI_OPT_MASTER
 
+``help``: monitor python modules mtime to trigger reload (use only in development)
 
 
-monitor python modules mtime to trigger reload (use only in development)
 
 py-auto-reload-ignore
 *********************
@@ -13089,9 +12935,9 @@ py-auto-reload-ignore
 
 ``flags``: UWSGI_OPT_THREADS|UWSGI_OPT_MASTER
 
+``help``: ignore the specified module during auto-reload scan (can be specified multiple times)
 
 
-ignore the specified module during auto-reload scan (can be specified multiple times)
 
 wsgi-env-behaviour
 ******************
@@ -13099,9 +12945,9 @@ wsgi-env-behaviour
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set the strategy for allocating/deallocating the WSGI env
 
 
-set the strategy for allocating/deallocating the WSGI env
 
 wsgi-env-behavior
 *****************
@@ -13109,9 +12955,9 @@ wsgi-env-behavior
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: set the strategy for allocating/deallocating the WSGI env
 
 
-set the strategy for allocating/deallocating the WSGI env
 
 start_response-nodelay
 **********************
@@ -13119,9 +12965,9 @@ start_response-nodelay
 
 ``parser``: uwsgi_opt_true
 
+``help``: send WSGI http headers as soon as possible (PEP violation)
 
 
-send WSGI http headers as soon as possible (PEP violation)
 
 wsgi-strict
 ***********
@@ -13129,9 +12975,9 @@ wsgi-strict
 
 ``parser``: uwsgi_opt_true
 
+``help``: try to be fully PEP compliant disabling optimizations
 
 
-try to be fully PEP compliant disabling optimizations
 
 wsgi-accept-buffer
 ******************
@@ -13139,9 +12985,9 @@ wsgi-accept-buffer
 
 ``parser``: uwsgi_opt_true
 
+``help``: accept CPython buffer-compliant objects as WSGI response in addition to string/bytes
 
 
-accept CPython buffer-compliant objects as WSGI response in addition to string/bytes
 
 wsgi-accept-buffers
 *******************
@@ -13149,9 +12995,9 @@ wsgi-accept-buffers
 
 ``parser``: uwsgi_opt_true
 
+``help``: accept CPython buffer-compliant objects as WSGI response in addition to string/bytes
 
 
-accept CPython buffer-compliant objects as WSGI response in addition to string/bytes
 
 python-version
 **************
@@ -13161,9 +13007,9 @@ python-version
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
+``help``: report python version
 
 
-report python version
 
 python-raw
 **********
@@ -13171,9 +13017,9 @@ python-raw
 
 ``parser``: uwsgi_opt_set_str
 
+``help``: load a python file for managing raw requests
 
 
-load a python file for managing raw requests
 
 py-sharedarea
 *************
@@ -13181,9 +13027,9 @@ py-sharedarea
 
 ``parser``: uwsgi_opt_add_string_list
 
+``help``: create a sharedarea from a python bytearray object of the specified size
 
 
-create a sharedarea from a python bytearray object of the specified size
 
 py-call-osafterfork
 *******************
@@ -13191,9 +13037,9 @@ py-call-osafterfork
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable child processes running cpython to trap OS signals
 
 
-enable child processes running cpython to trap OS signals
 
 
 plugin: cache
@@ -13209,9 +13055,9 @@ glusterfs-mount
 
 ``flags``: UWSGI_OPT_MIME
 
+``help``: virtual mount the specified glusterfs volume in a uri
 
 
-virtual mount the specified glusterfs volume in a uri
 
 glusterfs-timeout
 *****************
@@ -13219,9 +13065,9 @@ glusterfs-timeout
 
 ``parser``: uwsgi_opt_set_int
 
+``help``: timeout for glusterfs async mode
 
 
-timeout for glusterfs async mode
 
 
 plugin: greenlet
@@ -13232,9 +13078,9 @@ greenlet
 
 ``parser``: uwsgi_opt_true
 
+``help``: enable greenlet as suspend engine
 
 
-enable greenlet as suspend engine
 
 
 plugin: airbrake
@@ -13260,7 +13106,7 @@ coroae
 
 ``parser``: uwsgi_opt_setup_coroae
 
+``help``: a shortcut enabling Coro::AnyEvent loop engine with the specified number of async cores and optimal parameters
 
 
-a shortcut enabling Coro::AnyEvent loop engine with the specified number of async cores and optimal parameters
 
