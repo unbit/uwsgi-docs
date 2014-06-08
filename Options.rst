@@ -314,7 +314,7 @@ thunder-lock
 
 ``help``: serialize accept() usage (if possible)
 
-``reference``: :doc:'articles/SerializingAccept'
+``reference``: :doc:`articles/SerializingAccept`
 
 
 
@@ -534,7 +534,7 @@ declare-option
 
 ``help``: declare a new uWSGI custom option
 
-``reference``: :doc:'CustomOptions'
+``reference``: :doc:`CustomOptions`
 
 
 
@@ -1436,7 +1436,7 @@ emperor
 
 ``help``: run the Emperor
 
-``reference``: :doc:'Emperor'
+``reference``: :doc:`Emperor`
 
 
 
@@ -9413,7 +9413,7 @@ fastrouter
 
 ``help``: run the fastrouter on the specified port
 
-``reference``: :doc:'Fastrouter'
+``reference``: :doc:`Fastrouter`
 
 
 

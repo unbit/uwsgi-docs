@@ -81,7 +81,7 @@ sub generate_doc {
 			}
 			print '``help``: '.$help."\n\n";
 			if ($OPTIONS->{$option}->{ref}) {
-				print '``reference``: :doc:\''.$OPTIONS->{$option}->{ref}."'\n\n";
+				print '``reference``: :doc:`'.$OPTIONS->{$option}->{ref}."`\n\n";
 			}
 			print "\n\n";
 
