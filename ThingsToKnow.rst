@@ -1,5 +1,5 @@
-Things to know (best practices and "issues")
-============================================
+Things to know (best practices and "issues") READ IT !!!
+========================================================
 
 * The ``http`` and ``http-socket`` options are entirely different beasts.
   .. seealso:: :doc:`HTTP`
