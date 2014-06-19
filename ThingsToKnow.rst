@@ -2,6 +2,8 @@ Things to know (best practices and "issues") READ IT !!!
 ========================================================
 
 * The ``http`` and ``http-socket`` options are entirely different beasts.
+  The first one spawn an additional proxy forwarding requests to a series of workers, while the second one set workers to natively speak the http protocol.
+  TL/DR: if you plan to expse uWSGI directly to the public, use --http, if you want to proxy it behind a webserver speaking http with backends, use --http-socket.
   .. seealso:: :doc:`HTTP`
   
   
