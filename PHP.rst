@@ -340,7 +340,8 @@ then the 2 vassals
    ; drop privileges
    uid = one
    gid = one
-   
+
+
    
 .. code-block:: ini
 
