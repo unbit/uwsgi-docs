@@ -28,8 +28,8 @@ For distros that do not supply a libphp package (all Debian-based distros, for i
     ./configure --prefix=/usr/local --with-mysql --with-mysqli --with-pdo-mysql --with-gd --enable-mbstring --enable-embed
     # That's a good starting point
 
-Ubuntu 10.04
-^^^^^^^^^^^^
+Ubuntu 10.04 (newer versions include official libphp-embed sapi)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: sh
 
@@ -359,7 +359,8 @@ then the 2 vassals
    uid = two
    gid = two
    
-   
+ 
+ 
  the two vassals are completely unrelated (albeit they fork from the same parent), so you can drop privileges, have different processes policies and so on
  
  Now spawn the Emperor:
