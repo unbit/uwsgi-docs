@@ -360,11 +360,10 @@ then the 2 vassals
    uid = two
    gid = two
    
+
+the two vassals are completely unrelated (albeit they fork from the same parent), so you can drop privileges, have different processes policies and so on
  
- 
- the two vassals are completely unrelated (albeit they fork from the same parent), so you can drop privileges, have different processes policies and so on
- 
- Now spawn the Emperor:
+Now spawn the Emperor:
  
  .. code-block:: sh
  
