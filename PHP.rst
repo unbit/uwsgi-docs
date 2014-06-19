@@ -294,3 +294,80 @@ You can bypass the problem, telling the php engine that is running under the apa
    php-sapi-name = apache
    http-socket = :9090
    http-socket-modifier1 = 14
+
+ForkServer (uWSGI >= 2.1)
+-------------------------
+
+:doc:`ForkServer` is one of the main features of the 2.1 branch. It allows you to inherit your vassals from specific parents instead of the Emperor.
+
+The php plugin has been extended to support a fork-server so you can have a pool of php base instances from which vassals can fork(). Yes, this means you can share the opcode cache and do other tricks.
+
+Thanks to the 2.1 vassal's attributes we can choose from wich parent a vassal will call fork().
+
+Note: you need a Linux kernel >= 3.4 (the feature requires PR_SET_CHILD_SUBREAPER) for "solid" use, otherwise your Emperor will not be able to correctly wait() on chidren (and this will slow-down your vassal's respawns, and could lead to various form of race conditions)
+
+
+In the following example we will spawn 3 vassals, one (called base.ini) will initialize a php engine, while the others two will fork() from it
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; base.ini
+   
+   ; force the sapi name to 'apache', this will enable the opcode cache
+   early-php-sapi-name = apache
+   ; load a php engine as soon as possible
+   early-php = true
+   
+   ; ... and wait for fork() requests on /run/php_fork.socket
+   fork-server = /run/php_fork.socket
+   
+then the 2 vassals
+
+.. code-block:: ini
+
+   [emperor]
+   ; tell the emperor the address of the fork server
+   fork-server = /run/php_fork.socket
+
+   [uwsgi]
+   ; bind to port :4001
+   socket = 127.0.0.1:4001
+   ; force all requests to be mapped to php
+   socket-modifier1 = 14
+   ; enforce a DOCUMENT_ROOT
+   php-docroot = /var/www/one
+   ; drop privileges
+   uid = one
+   gid = one
+   
+   
+.. code-block:: ini
+
+   [emperor]
+   ; tell the emperor the address of the fork server
+   fork-server = /run/php_fork.socket
+
+   [uwsgi]
+   ; bind to port :4002
+   socket = 127.0.0.1:4002
+   ; force all requests to be mapped to php
+   socket-modifier1 = 14
+   ; enforce a DOCUMENT_ROOT
+   php-docroot = /var/www/two
+   ; drop privileges
+   uid = two
+   gid = two
+   
+   
+ the two vassals are completely unrelated (albeit they fork from the same parent), so you can drop privileges, have different processes policies and so on
+ 
+ Now spawn the Emperor:
+ 
+ .. code-block:: sh
+ 
+    uwsgi --emperor phpvassals/ --emperor-collect-attr fork-server --emperor-fork-server-attr fork-server
+    
+the ``--emperor-collect-attr`` forces the Emperor to search for the 'fork-server' attribute in the [emperor] section of the vassal file, while ``--emperor-fork-server-attr`` tell it to use this parameter as teh address of the fork server.
+
+Obviously if a vassal does not expose such attribute, it will normally fork() from the Emperor
