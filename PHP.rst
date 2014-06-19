@@ -369,6 +369,6 @@ Now spawn the Emperor:
  
     uwsgi --emperor phpvassals/ --emperor-collect-attr fork-server --emperor-fork-server-attr fork-server
     
-the ``--emperor-collect-attr`` forces the Emperor to search for the 'fork-server' attribute in the [emperor] section of the vassal file, while ``--emperor-fork-server-attr`` tell it to use this parameter as teh address of the fork server.
+the ``--emperor-collect-attr`` forces the Emperor to search for the 'fork-server' attribute in the [emperor] section of the vassal file, while ``--emperor-fork-server-attr`` tell it to use this parameter as the address of the fork server.
 
 Obviously if a vassal does not expose such attribute, it will normally fork() from the Emperor
