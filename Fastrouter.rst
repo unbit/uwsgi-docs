@@ -11,7 +11,7 @@ Getting started
 ---------------
 
 First of all you have to run the fastrouter, binding it to a specific address.
-Multiple addresses are supportd as well.
+Multiple addresses are supported as well.
 
 .. code-block:: sh
 
