@@ -61,3 +61,10 @@ And finally run the Emperor
 
    uwsgi --emperor /etc/forkvassals --emperor-collect-attr myfork-base --emperor-fork-server-attr myfork-base
    
+the `--emperor-collect-attr` option tells the Emperor to search for a 'myfork-base' attribute in the [emperor] section, while `--emperor-fork-server-attr`
+instruct it to use the parameter as the fork-server to connect to.
+
+TODO
+====
+
+The --emperor-collect-attr could be implicited by emperor-fork-server-attr
