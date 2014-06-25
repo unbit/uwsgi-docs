@@ -5,4 +5,7 @@ $OPTIONS = {
 	'fastrouter' => {'ref' => 'Fastrouter'},
 	'freebind' => {'doc' => "set the IP_FREEBIND flag to every socket created by uWSGI. This kind of socket can bind to non-existent ip addresses. Its main purpose is for high availability (this is Linux only)"},
 	'sharedarea' => {'ref' => 'SharedArea' },
+	'metrics-no-cores' => {'ref' => 'Metrics', 'doc' => "Do not expose metrics of async cores."},
+	'stats-no-cores' => {'ref' => 'Metrics', 'doc' => "Do not expose the information about cores in the stats server."},
+	'stats-no-metrics' => {'ref' => 'Metrics', 'doc' => "Do not expose the metrics at all in the stats server."},
 };
