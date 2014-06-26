@@ -4490,7 +4490,11 @@ metrics-no-cores
 
 ``help``: disable generation of cores-related metrics
 
+``reference``: :doc:`Metrics`
 
+
+
+Do not expose metrics of async cores.
 
 udp
 ***
@@ -4610,7 +4614,11 @@ stats-no-cores
 
 ``help``: disable generation of cores-related stats
 
+``reference``: :doc:`Metrics`
 
+
+
+Do not expose the information about cores in the stats server.
 
 stats-no-metrics
 ****************
@@ -4622,7 +4630,11 @@ stats-no-metrics
 
 ``help``: do not include metrics in stats output
 
+``reference``: :doc:`Metrics`
 
+
+
+Do not expose the metrics at all in the stats server.
 
 multicast
 *********
