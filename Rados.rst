@@ -112,6 +112,26 @@ Multiple mountpoints
 You can issue several 'rados-mount' entries, each one will define a new mountpoint.  This way you can expose different
 RADOS pools at different URLs.
 
+HTTP methods
+^^^^^^^^^^^^
+
+The following methods are supported:
+
+GET -> retrieve a resource
+
+HEAD -> like GET but without body
+
+OPTIONS -> (requires uWSGI 2.1) returns the list of allowed HTTP methods and WebDAV support
+
+PUT -> requires allow_put in mountpoint options, store a resource in ceph: curl -T /etc/services http://localhost:8080/services
+
+MKCOL -> requires allow_mkcol in mountpoint options, creates a new pool: curl -X MKCOL http://localhost:8080/anewpool (the pool 'anewpool' will be created)
+
+DELETE -> requires allow_delete in mountpoint options, removes an object
+
+PROPFIND -> (requires uWSGI 2.1 and allow_propfind mountpoint option). Implements WebDAV PROPFIND method
+
+
 Features
 ^^^^^^^^
 
