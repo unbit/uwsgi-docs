@@ -193,3 +193,35 @@ Caching is highly suggested to improve performance and reduce the load on the Ce
 to test caching behaviour, tools like uwsgicachetop (https://pypi.python.org/pypi/uwsgicachetop) could be great.
 
 More infos about caching are here: http://uwsgi-docs.readthedocs.org/en/latest/tutorials/CachingCookbook.html
+
+Enabling MKCOL, PUT or DELETE could be a high security risk. Combine them with the internal routing framework for adding authentication/authorization policies
+
+.. code-block:: ini
+
+   [uwsgi]
+   master = true
+   ; bind on http port 9090 (better to use a uwsgi socket behind a proxy like nginx)
+   http-socket = :9090
+   ; set the default modifier1 to the rados one
+   http-socket-modifier1 = 28
+   ; mount our rados 'htmlpages' pool
+   rados-mount = mountpoint=/,pool=htmlpages,allow_put=1,allow_mkcol=1
+   
+   ; spawn multiple processes and threads
+   processes = 4
+   threads = 8
+   
+   ; permit PUT only to authenticated 'foo' user
+   route-if = equal:${REQUEST_METHOD};PUT basicauth:my secret area,foo:bar
+   
+   ; allow MKCOL only from 127.0.0.1
+   route-if = equal:${REQUEST_METHOD};MKCOL goto:check_localhost
+   ; end of the chain
+   route-run = last:
+   
+   route-label = check_localhost
+   ; if REMOTE_ADDR = 127.0.0.1 -> continue to rados plugin
+   route-remote-addr = ^127\.0\.0\.1$ continue:
+   ; otherwise break with 403
+   route-run = break:403 Forbidden
+   
