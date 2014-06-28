@@ -1,11 +1,11 @@
 The RADOS plugin
 ====================
 
-Available from uWSGI 1.9.16
+Available from uWSGI 1.9.16, stable from uWSGI 2.0.6
 
 official modifier1: 28
 
-Author: Javier Guerra
+Authors: Javier Guerra, Marcin Deranek, Roberto De Ioris
 
 The 'rados' plugin allows you to serve objects stored in a Ceph cluster directly using the librados API.
 
@@ -34,7 +34,7 @@ For example, if you have a 'list.html' file and images 'first.jpeg', 'second.jpe
    rados -p data put imgs/second.jpeg imgs/second.jpeg
    rados -p data ls -
 
-note that RADOS doesn't have a concept of directories, but the object names can contain a slash.
+note that RADOS doesn't have a concept of directories, but the object names can contain slashes.
 
 
 Step2: uWSGI
@@ -44,10 +44,32 @@ A build profile, named 'rados' is already available, so you can simply do:
 
 .. code-block:: sh
 
+   make PROFILE=rados
+
+.. code-block:: sh
+
    python uwsgiconfig.py --build rados
+   
+or use the installer
 
+.. code-block:: sh
 
-You can now start your HTTP to serve RADOS objects:
+   # this will create a binary called /tmp/radosuwsgi that you will use instead of 'uwsgi'
+   curl http://uwsgi.it/install | bash -s rados /tmp/radosuwsgi
+
+Obviously you can build rados support as plugin
+
+.. code-block:: sh
+
+   uwsgi --build-plugin plugins/rados/
+
+or the old style:
+
+.. code-block:: sh
+
+   python uwsgiconfig.py --plugin plugins/rados/
+
+You can now start an HTTP server to serve RADOS objects:
 
 .. code-block:: ini
 
@@ -61,11 +83,16 @@ You can now start your HTTP to serve RADOS objects:
    ; spawn 30 threads
    threads = 30
 
-the 'rados-mount' parameter takes three subparameters:
+the 'rados-mount' parameter takes various subparameters:
 
  - mountpoint: required, the URL prefix on which the RADOS objects will appear.
  - pool: required, the RADOS pool to serve.
  - config: optional, the path to the ceph config file.
+ - timeout: optional, set operations timeout
+ - allow_put: allow to call the PUT http method to store new objects
+ - allow_delete: allow to call the DELETE http method to remove objects
+ - allow_mkcol: allow to call MKCOL http method to create new pools
+ - allow_propfind: (requires uWSGI 2.1) enable support for the WebDAV PROPFIND method
 
 in this example, your content will be served at http://localhost:9090/rad/list.html, http://localhost:9090/rad/imgs/first.jpeg
 and http://localhost:9090/rad/imgs/second.jpeg.
@@ -85,12 +112,34 @@ Multiple mountpoints
 You can issue several 'rados-mount' entries, each one will define a new mountpoint.  This way you can expose different
 RADOS pools at different URLs.
 
+Features
+^^^^^^^^
+
+multiprocessing is supported
+
+async support is fully functional, the ugreen suspend engine is the only supported one:
+
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; bind on port 9090
+   http-socket = :9090
+   ; set the default modifier1 to the rados one
+   http-socket-modifier1 = 28
+   ; mount our rados pool
+   rados-mount = mountpoint=/rad/,pool=data,config=/etc/ceph/ceph.conf
+   ; spawn 1000 async cores
+   async = 1000
+   ; required !!!
+   ugreen = true
 
 Notes:
 ^^^^^^
 
 The plugin automatically enables the mime type engine.
 
-There is no directory index support
+There is no directory index support (it makes no sense in rados/ceph context)
 
-Async support is on work
+You should drop privileges in your uWSGI instances, so be sure you give the right permissions to the ceph keyring
+
