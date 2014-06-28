@@ -304,6 +304,13 @@ We use the previous recipe simply adding different expires to the items
 
 images and stylesheets are cached for 1 hour, while html response are cached for 1 minute
 
+Monitoring Caches
+*****************
+
+The stats server exposes caches informations.
+
+There is an ncurses-based tool (https://pypi.python.org/pypi/uwsgicachetop) using that infos
+
 
 Storing GZIP variant of an object
 *********************************
