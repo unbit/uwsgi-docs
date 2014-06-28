@@ -190,4 +190,6 @@ Caching is highly suggested to improve performance and reduce the load on the Ce
    processes = 4
    threads = 8
 
-to test caching behaviour, tools like uwsgicachetop (https://pypi.python.org/pypi/uwsgicachetop) could be great
+to test caching behaviour, tools like uwsgicachetop (https://pypi.python.org/pypi/uwsgicachetop) could be great.
+
+More infos about caching are here: http://uwsgi-docs.readthedocs.org/en/latest/tutorials/CachingCookbook.html
