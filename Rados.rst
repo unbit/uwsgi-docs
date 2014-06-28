@@ -189,3 +189,5 @@ Caching is highly suggested to improve performance and reduce the load on the Ce
    ; spawn multiple processes and threads
    processes = 4
    threads = 8
+
+to test caching behaviour, tools like uwsgicachetop (https://pypi.python.org/pypi/uwsgicachetop) could be great
