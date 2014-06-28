@@ -179,7 +179,7 @@ Caching is highly suggested to improve performance and reduce the load on the Ce
    
    ; master is always a good idea
    master = true
-   ; bind on port 9090
+   ; bind on http port 9090 (better to use a uwsgi socket behind a proxy like nginx)
    http-socket = :9090
    ; set the default modifier1 to the rados one
    http-socket-modifier1 = 28
