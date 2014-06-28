@@ -131,7 +131,6 @@ DELETE -> requires allow_delete in mountpoint options, removes an object
 
 PROPFIND -> (requires uWSGI 2.1 and allow_propfind mountpoint option). Implements WebDAV PROPFIND method
 
-
 Features
 ^^^^^^^^
 
@@ -163,3 +162,30 @@ There is no directory index support (it makes no sense in rados/ceph context)
 
 You should drop privileges in your uWSGI instances, so be sure you give the right permissions to the ceph keyring
 
+Caching is highly suggested to improve performance and reduce the load on the Ceph cluster. This is a good example:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; create a bitmap cache with max 1000 items storable in 10000 4k blocks
+   cache2 = name=radoscache,items=1000,blocks=10000,blocksize=4096,bitmap=1
+   
+   ; check every object ending with .html in the 'radoscache' cache
+   route = \.html$ cache:key=${PATH_INFO},name=radoscache,content_type=text/html
+   ; if not found, store it at the end of the request for 3600 seconds (this will automatically enable Expires header)
+   route = \.html$ cachestore:key=${PATH_INFO},name=radoscache,expires=3600
+   
+   ; general options
+   
+   ; master is always a good idea
+   master = true
+   ; bind on port 9090
+   http-socket = :9090
+   ; set the default modifier1 to the rados one
+   http-socket-modifier1 = 28
+   ; mount our rados 'htmlpages' pool
+   rados-mount = mountpoint=/,pool=htmlpages
+   
+   ; spawn multiple processes and threads
+   processes = 4
+   threads = 8
