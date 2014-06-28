@@ -247,3 +247,8 @@ In its first incarnation the uWSGI caching framework was meant only for caching
 of web pages. The old system has been rebuilt. It is now named
 :doc:`WebCaching`. Enabling the old-style ``--cache`` option will create a
 cache named "default".
+
+Monitoring caches
+*****************
+
+The stats server exposes caches informations. There is an ncurses-based tool (https://pypi.python.org/pypi/uwsgicachetop) using that infos for real-time monitoring.
