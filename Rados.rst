@@ -45,6 +45,8 @@ A build profile, named 'rados' is already available, so you can simply do:
 .. code-block:: sh
 
    make PROFILE=rados
+   
+or
 
 .. code-block:: sh
 
