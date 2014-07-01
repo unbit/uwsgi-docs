@@ -74,14 +74,23 @@ This scheme allows you to generate blob from functions exposed by your uWSGI ins
 --fastrouter-fallback-on-no-key
 *******************************
 
+The corerouters fallback procedure requires a valid key (domain name) has been requested. This option forces the various routers
+to trigger the fallback procedure even if a key has not been found.
+
 php 5.5 opcode caching via --php-sapi-name
 ******************************************
+
+For mysterious reasons the opcode caching of php5.5 is not enabled in the embed sapi. This option (set it to 'apache' if you want) allows you to fake the opcode caching engine forcing it to enable itself.
 
 Improved chain-reloading
 ************************
 
+Thanks to Marko Tiikkaja the chain reloading procedure correctly works in cheaper modes and it is more verbose.
+
 added 'chdir' keyval to --attach-daemon2
 ****************************************
+
+You can now set where attached daemons need to chdir()
 
 Availability
 ^^^^^^^^^^^^
