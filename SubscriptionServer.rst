@@ -151,3 +151,28 @@ When you subscribe to a server, you can ask it to "acknowledge" the acceptance o
 
 Just add ``--subscription-notify-socket <addr>`` pointing to a datagram (unix or udp) address, on which your instance will bind and the subscription server will send ack to.
 
+Mountpoints (uWSGI 2.1)
+-----------------------
+
+Generally you subscribe your apps to specific domains.
+
+Thanks to the mountpoints support introduced in uWSGI 2.1, you can now subscribe each node to specific directory (only one level after the domain name is allowed):
+
+```sh
+uwsgi --socket 127.0.0.1:0 --subscribe2 server=127.0.0.1:4040,key=mydomain.it/foo
+```
+
+```sh
+uwsgi --socket 127.0.0.1:0 --subscribe2 server=127.0.0.1:4040,key=mydomain.it/bar
+```
+
+```sh
+uwsgi --socket 127.0.0.1:0 --subscribe2 server=127.0.0.1:4040,key=mydomain.it/foo
+```
+
+```sh
+uwsgi --socket 127.0.0.1:0 --subscribe2 server=127.0.0.1:4040,key=mydomain.it
+```
+
+the first and the third instance will answer to all of the requests for /foo, the second will answer for /bar and the last one will manage all of the others
+
