@@ -158,21 +158,36 @@ Generally you subscribe your apps to specific domains.
 
 Thanks to the mountpoints support introduced in uWSGI 2.1, you can now subscribe each node to specific directory (only one level after the domain name is allowed):
 
-```sh
-uwsgi --socket 127.0.0.1:0 --subscribe2 server=127.0.0.1:4040,key=mydomain.it/foo
-```
+First of all you need to tell the subscription server to accept (and manage) mountpoint requests:
 
-```sh
-uwsgi --socket 127.0.0.1:0 --subscribe2 server=127.0.0.1:4040,key=mydomain.it/bar
-```
+.. code-block:: sh
 
-```sh
-uwsgi --socket 127.0.0.1:0 --subscribe2 server=127.0.0.1:4040,key=mydomain.it/foo
-```
+   uwsgi --master --http :8080 --http-subscription-server 127.0.0.1:4040 --subscription-mountpoints
+   
+   
+then you can start subscribing to mountpoints
 
-```sh
-uwsgi --socket 127.0.0.1:0 --subscribe2 server=127.0.0.1:4040,key=mydomain.it
-```
+   
+.. code-block:: sh
+
+   uwsgi --socket 127.0.0.1:0 --subscribe2 server=127.0.0.1:4040,key=mydomain.it/foo
+
+
+.. code-block:: sh
+
+   uwsgi --socket 127.0.0.1:0 --subscribe2 server=127.0.0.1:4040,key=mydomain.it/bar
+
+
+.. code-block:: sh
+
+   uwsgi --socket 127.0.0.1:0 --subscribe2 server=127.0.0.1:4040,key=mydomain.it/foo
+
+
+.. code-block:: sh
+
+   uwsgi --socket 127.0.0.1:0 --subscribe2 server=127.0.0.1:4040,key=mydomain.it
+
 
 the first and the third instance will answer to all of the requests for /foo, the second will answer for /bar and the last one will manage all of the others
 
+For the secured subscription system, you only need to use the domain key (you do not need to generate a certificate for each mountpoint)
