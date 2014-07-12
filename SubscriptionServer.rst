@@ -16,13 +16,13 @@ This will run an uWSGI fastrouter on port 1717 and create an empty dictionary wh
 
 To populate this dictionary you can contact 192.168.0.100:2626, the address of the subscription server.
 
-For every key multiple addresses can exist, enabling round robin load balancing.
+For every key multiple addresses can exist, enabling load balancing (various algorithms are available).
 
 A node can announce its presence to a Subscription Server using the ``subscribe-to`` or ``subscribe2`` options.
 
 .. code-block:: sh
 
-    uwsgi -s 192.168.0.10:3031 -w myapp -M --subscribe-to 192.168.0.100:2626:uwsgi.it
+    uwsgi --socket 192.168.0.10:3031 --wsgi myapp -M --subscribe-to 192.168.0.100:2626:uwsgi.it
 
 The FastRouter will map every request for uwsgi.it to 192.168.0.10:3031.
 
@@ -30,7 +30,7 @@ To now add a second node for uwsgi.it simply run it and subscribe:
 
 .. code-block:: xxx
 
-    uwsgi -s 192.168.0.11:3031 -w myapp -M --subscribe-to 192.168.0.100:2626:uwsgi.it
+    uwsgi --socket 192.168.0.11:3031 --wsgi myapp --master --subscribe-to 192.168.0.100:2626:uwsgi.it
 
 Dead nodes are automatically removed from the pool.
 
@@ -38,27 +38,17 @@ The syntax for ``subscribe2`` is similar but it allows far more control since it
 
 .. code-block:: sh
 
-    uwsgi -s 192.168.0.10:3031 -w myapp -M --subscribe2 server=192.168.0.100:2626,key=uwsgi.it,addr=192.168.0.10:3031
+    uwsgi -s 192.168.0.10:3031 --wsgi myapp --master --subscribe2 server=192.168.0.100:2626,key=uwsgi.it,addr=192.168.0.10:3031
 
-Possible keys are:
+For possibile subscribe2 keys, see below.
 
-  * ``server`` - address (ip:port) of the subscription server we want to connect to
-  * ``key`` - key used for mapping, hostname (FastRouter or HttpRouter) or ip:port (RawRouter)
-  * ``socket`` - TODO
-  * ``addr`` - address to which all requests should be forwared for this subscription
-  * ``weight`` - node weight for load balancing
-  * ``modifier1`` - modifier1 value for our app
-  * ``modifier2`` - modifier2 value for our app
-  * ``sign`` - for secure subscription (see below)
-  * ``check`` - if the specified file exists stop sending subscriptions
-
-The subscription system is currently available for cluster joining (when multicast/broadcast is not available), the Fastrouter and HTTP.
+The subscription system is currently available for cluster joining (when multicast/broadcast is not available), the Fastrouter, the HTTP/HTTPS/SPDY router, the rawrouter and the sslrouter.
 
 That said, you can create an evented/fast_as_hell HTTP load balancer in no time.
 
 .. code-block:: sh
 
-    uwsgi --http :80 --http-subscription-server 192.168.0.100:2626
+    uwsgi --http :80 --http-subscription-server 192.168.0.100:2626 --master
 
 Now simply subscribe your nodes to the HTTP subscription server.
 
@@ -134,7 +124,7 @@ This is the keyval version of --subscribe-to. It supports more tricks and a (gen
 
 .. code-block:: sh
 
-   uwsgi -s 127.*:0 --subscribe2 server=127.0.0.1:7171,key=ubuntu64.local:9090,sign=SHA1:chiavessh001
+   uwsgi --socket 127.*:0 --subscribe2 server=127.0.0.1:7171,key=ubuntu64.local:9090,sign=SHA1:chiavessh001
    
    
 Supported fields are:
@@ -147,4 +137,9 @@ Supported fields are:
 * ``modifier1`` and ``modifier2``
 * ``sign`` <algo>:<file> the signature for the secured system
 * ``check`` it takes a file as argument. If it exists the packet is sent, otherwise it is skipped
-
+* ``sni_key`` set the keyfile to use for SNI proxy management
+* ``sni_crt`` set the crt file to use for SNI proxy management
+* ``sni_ca`` set the ca file to use for SNI proxy management
+* ``algo`` (uWSGI 2.1) set the load balancing algorithm to use (they are pluggable, included are wrr, lrc, wlrc and iphash)
+* ``proto`` (uWSGI 2.1) the protocol to use, by default it is 'uwsgi'
+* ``backup`` (uWSGI 2.1) set the backup level (change meaning based on algo)
