@@ -143,3 +143,11 @@ Supported fields are:
 * ``algo`` (uWSGI 2.1) set the load balancing algorithm to use (they are pluggable, included are wrr, lrc, wlrc and iphash)
 * ``proto`` (uWSGI 2.1) the protocol to use, by default it is 'uwsgi'
 * ``backup`` (uWSGI 2.1) set the backup level (change meaning based on algo)
+
+Notifications
+-------------
+
+When you subscribe to a server, you can ask it to "acknowledge" the acceptance of your request.
+
+Just add ``--subscription-notify-socket <addr>`` pointing to a datagram (unix or udp) address, on which your instance will bind and the subscription server will send ack to.
+
