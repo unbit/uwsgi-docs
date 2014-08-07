@@ -95,3 +95,67 @@ uwsgi-pushover
 * Website: https://github.com/unbit/uwsgi-pushover
 
 Integration with Pushover.net services.
+
+uwsgi-consul
+************
+
+* License: MIT
+* Author: unbit, ultrabug
+* Website: https://github.com/unbit/uwsgi-consul
+
+
+Integration with consul agents (consul.io)
+
+uwsgi-influxdb
+**************
+
+* License: MIT
+* Author: unbit
+* Website: https://github.com/unbit/uwsgi-influxdb
+
+Allows sending metrics to influxdb
+
+uwsgi-opentsdb
+**************
+
+* License: MIT
+* Author: unbit
+* Website: https://github.com/unbit/uwsgi-opentsdb
+
+Allows sending metrics to opentsdb
+
+uwsgi-cares
+***********
+
+* License: MIT
+* Author: unbit
+* Website: https://github.com/unbit/uwsgi-cares
+
+exposes non-blocking dns query via the cares library
+
+uwsgi-ganglia
+**************
+
+* License: MIT
+* Author: unbit
+* Website: https://github.com/unbit/uwsgi-ganglia
+
+Allows sending metrics to ganglia
+
+uwsgi-bonjour
+*************
+
+* License: MIT
+* Author: unbit, 20tab
+* Website: https://github.com/unbit/uwsgi-bonjour
+
+Automatically register domain names in OSX bonjour subsystem
+
+uwsgi-avahi
+***********
+
+* License: MIT
+* Author: 20tab
+* Website: https://github.com/20tab/uwsgi-avahi
+
+Automatically register domain names in avahi subsystem
