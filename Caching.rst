@@ -149,6 +149,12 @@ Set the number of seconds after which msync() is called to flush memory cache
 on disk when in persistent mode.  By default it is disabled leaving the
 decision-making to the kernel.
 
+store_delete || storedelete
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+uwsgi will not start if the existing cache store file does not match the configured items/blocksize.
+If this option is set uwsgi will delete the existing file and create a new one.
+
 node || nodes
 ^^^^^^^^^^^^^
 
