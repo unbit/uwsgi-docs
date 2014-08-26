@@ -159,3 +159,12 @@ uwsgi-avahi
 * Website: https://github.com/20tab/uwsgi-avahi
 
 Automatically register domain names in avahi subsystem
+
+uwsgi-datadog
+*************
+
+* License: MIT
+* Author: unbit
+* Website: https://github.com/unbit/uwsgi-datadog
+
+Automatically send metrics to datadog (https://www.datadoghq.com/)
