@@ -168,3 +168,12 @@ uwsgi-datadog
 * Website: https://github.com/unbit/uwsgi-datadog
 
 Automatically send metrics to datadog (https://www.datadoghq.com/)
+
+uwsgi-apparmor
+**************
+
+* License: MIT
+* Author: unbit
+* Website: https://github.com/unbit/uwsgi-apparmor
+
+Allows setting apparmor profiles for instances
