@@ -6,8 +6,8 @@ ask for more workers from the Emperor.  Broodlord mode alone is not very
 useful. However, when combined with :doc:`Zerg`, :doc:`Idle` and :doc:`Emperor`
 it can be used to implement auto-scaling for your apps.
 
-A simple example
-----------------
+A 'simple' example
+------------------
 
 We'll start apps with a single worker, adding resources on demand.  Broodlord
 mode expects an additional stanza in your config file to be used for zergs.
@@ -64,3 +64,11 @@ You can use the master fifo (with command 'B') To force an instance to ask for r
 .. code-block:: sh
 
    echo B > /var/run/master.fifo
+
+Under the hood (aka: hacking broodlord mode)
+--------------------------------------------
+
+Technically broodlord mode is a simple message sent by a vassal to force the Emperor to spawn another vassal with ':zerg' suffix as the instance name.
+
+Albeit the suffix is ':zerg' this does not mean you need to use zerg mode. A 'zerg' instance could be a completely independent one simply subscribing
+to a router, or binding to a SO_REUSEPORT socket.
