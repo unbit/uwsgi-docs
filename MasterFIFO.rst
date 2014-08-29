@@ -27,6 +27,7 @@ Available commands
 * '0' to '9' - set the fifo slot (see below)
 * '+' - increase the number of workers when in cheaper mode (add ``--cheaper-algo manual`` for full control)
 * '-' - decrease the number of workers when in cheaper mode (add ``--cheaper-algo manual`` for full control)
+* 'B' - ask Emperor for reinforcement (broodlord mode, requires uWSGI >= 2.0.7)
 * 'C' - set cheap mode
 * 'c' - trigger chain reload
 * 'E' - trigger an Emperor rescan
