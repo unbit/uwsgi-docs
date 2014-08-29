@@ -48,3 +48,19 @@ Emperor we need to specify how many zerg instances can be run:
   uwsgi --emperor /etc/vassals --emperor-broodlord 40
 
 This will allow you to run up to 40 additional zerg workers for your apps.
+
+--vassal-sos
+------------
+
+This has been added in 2.0.7, and allows the vassal to ask for reinforcement as soon as all of its workers are busy.
+
+The option takes a value (integer) that is the number of seconds to wait before asking for a new reinforcement.
+
+Manually asking for reinforcement
+---------------------------------
+
+You can use the master fifo (with command 'B') To force an instance to ask for reinforcement by the Emperor
+
+.. code-block:: sh
+
+   echo B > /var/run/master.fifo
