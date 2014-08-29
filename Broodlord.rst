@@ -72,3 +72,21 @@ Technically broodlord mode is a simple message sent by a vassal to force the Emp
 
 Albeit the suffix is ':zerg' this does not mean you need to use zerg mode. A 'zerg' instance could be a completely independent one simply subscribing
 to a router, or binding to a SO_REUSEPORT socket.
+
+This is an example with subscription system
+
+.. code-block:: ini
+
+   [uwsgi]
+   socket = 127.0.0.1:0
+   subscribe2 = server=127.0.0.1:4040,key=foobar.it
+   psgi = app.pl
+   processes = 4
+   vassal-sos = 3
+   
+   [zerg]
+   socket = 127.0.0.1:0
+   subscribe2 = server=127.0.0.1:4040,key=foobar.it
+   psgi = app.pl
+   idle = 60
+   processes = 1
