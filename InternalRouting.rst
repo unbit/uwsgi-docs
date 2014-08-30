@@ -192,6 +192,14 @@ routing variables are also available.
 
 * ``time`` -- returns time/date in various form. The only supported (for now) is time[unix] returning the epoch
 * ``httptime`` -- return http date adding the numeric argument (if specified)to the current time (use empty arg for current server time)
+
+.. code-block:: ini
+  
+     [uwsgi]
+     ; add Date header
+     route-run = addheader:Date ${httptime[]}
+
+
 * ``math`` -- requires matheval support. Example: math[CONTENT_LENGTH+1]
 * ``base64`` -- encode the specified var in base64
 * ``hex`` -- encode the specified var in hex
