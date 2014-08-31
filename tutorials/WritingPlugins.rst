@@ -32,10 +32,43 @@ Plugins are not required to define hooks, they can simply expose functions that 
 Why (and when) plugins ?
 ************************
 
-Albeit uWSGI is able to directly load
+Albeit uWSGI is able to directly load shared libraries (with --dlopen) and call their functions as hooks, sometimes you want to interface with
+uWSGI internal structures. 
 
 The first plugin
 ****************
+
+Our first plugin will be a simple hello world one:
+
+.. code-block:: c
+
+   #include <uwsgi.h>
+   
+   static int foo_init() {
+         uwsgi_log("Hello World\n");
+         return 0;
+   }
+   
+   struct uwsgi_plugin foobar_plugin = {
+           .name = "foobar",
+           .init = foo_init,
+   };
+   
+save it as foobar.c
+
+build it:
+
+.. code-block:: sh
+
+   uwsgi --build-plugin foobar.c
+   
+you will end with a foobar_plugin.so you can load in your uwsgi binary:
+
+.. code-block:: sh
+
+   uwsgi --plugin ./foobar_plugin.so
+   
+if all goes well, you should see "Hello World" on your terminal before uWSGI exiting with an error (as no socket is defined)
 
 The uwsgiplugin.py file
 ***********************
