@@ -186,6 +186,8 @@ Never fear! uWSGI supports various configuration styles. In this quickstart we w
     threads = 2
     stats = 127.0.0.1:9191
 
+A lot better!
+
 Just run it:
 
 .. code-block:: sh
