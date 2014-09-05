@@ -54,10 +54,27 @@ https://github.com/unbit/uwsgi/commit/0324e5965c360dccfb873ffe351dec88ddab59c5
 vassals plugin hooks
 ^^^^^^^^^^^^^^^^^^^^
 
+The plugin have has been extended with two new hooks: vassal and vassal_before_exec.
+
+Both allows to customize a vassal soon after its process has been generated.
+
+The first third-party plugin using it is the 'apparmor' one:
+
+https://github.com/unbit/uwsgi-apparmor
+
+allowing you to apply an apparmor profile to a vassal
 
 
 Broodlord improvements
 ^^^^^^^^^^^^^^^^^^^^^^
 
+The broodlord subsystem has been improved with a new option: --vassal-sos that automatically ask for reinforcement when all of the workers of an instance are busy.
+
+In addition to this a sysadmin can now manually ask for reinforcement sending the 'B' commando to the master fifo of an instance.
+
 Availability
 ************
+
+uWSGI 2.0.7 has been released on 20140905, and you can download it from
+
+http://projects.unbit.it/downloads/uwsgi-2.0.7.tar.gz
