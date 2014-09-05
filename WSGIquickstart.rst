@@ -173,6 +173,20 @@ We suppose the Django project is in ``/home/foobar/myproject``:
 
 (with ``--chdir`` we move to a specific directory). In Django this is required to correctly load modules.
 
+Argh! What the hell is this?! Yes, you're right, you're right... dealing with such long command lines is unpractical, foolish and error-prone.
+Never fear! uWSGI supports various configuration styles. In this quickstart we will use .ini files.
+
+.. code-block:: ini
+
+    [uwsgi]
+    socket = 127.0.0.1:3031
+    chdir = /home/foobar/myproject/
+    wsgi-file = myproject/wsgi.py
+    pythonpath = ..
+    processes = 4
+    threads = 2
+    stats = 127.0.0.1:9191
+
 If the file ``/home/foobar/myproject/myproject/wsgi.py`` (or whatever you have called your project) does not exist, you are very probably
 using an old (< 1.4) version of Django. In such a case you need a little bit more configuration:
 
@@ -180,8 +194,7 @@ using an old (< 1.4) version of Django. In such a case you need a little bit mor
 
    uwsgi --socket 127.0.0.1:3031 --chdir /home/foobar/myproject/ --pythonpath .. --env DJANGO_SETTINGS_MODULE=myproject.settings --module "django.core.handlers.wsgi:WSGIHandler()" --processes 4 --threads 2 --stats 127.0.0.1:9191
 
-Argh! What the hell is this?! Yes, you're right, you're right... dealing with such long command lines is unpractical, foolish and error-prone.
-Never fear! uWSGI supports various configuration styles. In this quickstart we will use .ini files.
+Or, using the .ini file:
 
 .. code-block:: ini
 
