@@ -32,7 +32,7 @@ You have various ways to install uWSGI for Python:
 * via pip
 
   .. code-block:: sh
-    
+
       pip install uwsgi
 
 * using the network installer
@@ -44,7 +44,7 @@ You have various ways to install uWSGI for Python:
   (this will install the uWSGI binary into ``/tmp/uwsgi``, feel free to change it).
 
 * via downloading a source tarball and "making" it
-  
+
   .. code-block:: sh
 
       wget http://projects.unbit.it/downloads/uwsgi-latest.tar.gz
@@ -173,6 +173,25 @@ We suppose the Django project is in ``/home/foobar/myproject``:
 
 (with ``--chdir`` we move to a specific directory). In Django this is required to correctly load modules.
 
+Argh! What the hell is this?! Yes, you're right, you're right... dealing with such long command lines is unpractical, foolish and error-prone.
+Never fear! uWSGI supports various configuration styles. In this quickstart we will use .ini files.
+
+.. code-block:: ini
+
+    [uwsgi]
+    socket = 127.0.0.1:3031
+    chdir = /home/foobar/myproject/
+    wsgi-file = myproject/wsgi.py
+    processes = 4
+    threads = 2
+    stats = 127.0.0.1:9191
+
+Just run it:
+
+.. code-block:: sh
+
+   uwsgi yourfile.ini
+
 If the file ``/home/foobar/myproject/myproject/wsgi.py`` (or whatever you have called your project) does not exist, you are very probably
 using an old (< 1.4) version of Django. In such a case you need a little bit more configuration:
 
@@ -180,8 +199,7 @@ using an old (< 1.4) version of Django. In such a case you need a little bit mor
 
    uwsgi --socket 127.0.0.1:3031 --chdir /home/foobar/myproject/ --pythonpath .. --env DJANGO_SETTINGS_MODULE=myproject.settings --module "django.core.handlers.wsgi:WSGIHandler()" --processes 4 --threads 2 --stats 127.0.0.1:9191
 
-Argh! What the hell is this?! Yes, you're right, you're right... dealing with such long command lines is unpractical, foolish and error-prone.
-Never fear! uWSGI supports various configuration styles. In this quickstart we will use .ini files.
+Or, using the .ini file:
 
 .. code-block:: ini
 
@@ -194,14 +212,6 @@ Never fear! uWSGI supports various configuration styles. In this quickstart we w
    processes = 4
    threads = 2
    stats = 127.0.0.1:9191
-
-A lot better!
-
-Just run it:
-
-.. code-block:: sh
-
-   uwsgi yourfile.ini
 
 Older (< 1.4) Django releases need to set ``env``, ``module`` and the ``pythonpath`` (``..`` allow us to reach
 the ``myproject.settings`` module).
@@ -246,7 +256,7 @@ Again a popular choice. Unzip the web2py source distribution on a directory of c
    module = wsgihandler
    master = true
    processes = 8
-   
+
 .. note::
 
     On recent web2py releases you may need to copy the ``wsgihandler.py`` script out of the ``handlers`` directory.
