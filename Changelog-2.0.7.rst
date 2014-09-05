@@ -17,7 +17,7 @@ Bugfixes
 - fixed fastcgi and scgi protocols error when out of buffer happens
 - fixed solaris/smartos I/O management
 - fixed 2 memory leaks in the rpc subsystem (Riccardo Magliocchetti)
-- fixed raods plugin PUT method (Martin Mlynář)
+- fixed rados plugin PUT method (Martin Mlynář)
 - fixed multiple python mountpoints with multiple threads in cow mode
 - stats UNIX socket is now deleted by vacuum
 - fixed off-by-one corruption in cache LRU mode
