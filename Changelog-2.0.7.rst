@@ -30,14 +30,31 @@ New Features and improvements
 allow calling the spooler from every cpython context
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+At Europython 2014, Ultrabug (a uWSGI contributor and packager) asked for the possibility to spool tasks directly from a greenlet.
+
+Done.
+
 store_delete cache2 option
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Author: goir
+
+The store_delete flag of the --cache2 option, allows you to force the cache engine to automatically remove an invalid
+backing store file.
 
 file logger rotation
 ^^^^^^^^^^^^^^^^^^^^
 
+Author: Riccardo Magliocchetti
+
+The `file` logger has been extended to allow the use of rotation (the same system used by the non-pluggable --logto):
+
+https://github.com/unbit/uwsgi/commit/0324e5965c360dccfb873ffe351dec88ddab59c5
+
 vassals plugin hooks
 ^^^^^^^^^^^^^^^^^^^^
+
+
 
 Broodlord improvements
 ^^^^^^^^^^^^^^^^^^^^^^
