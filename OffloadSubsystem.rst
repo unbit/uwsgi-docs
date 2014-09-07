@@ -3,7 +3,7 @@ The uWSGI offloading subsystem
 
 Offloading is a way to optimize tiny tasks, delegating them to one or more threads.
 
-This threads run such tasks in a non-blocking/evented way allowing for a huge amount of concurrency.
+These threads run such tasks in a non-blocking/evented way allowing for a huge amount of concurrency.
 
 Various component of the uWSGI stack has been made offload-friendly, and the long-term target is to allow
 application code to abuse it.
@@ -51,7 +51,7 @@ Example:
    route = ^/foo http:127.0.0.1:8080
    route = ^/bar http:127.0.0.1:8181
    route = ^/node http:127.0.0.1:9090
-   
+
 Since 1.9.11 the ``cache`` router is offload friendly too.
 
 .. code-block:: ini
@@ -60,7 +60,7 @@ Since 1.9.11 the ``cache`` router is offload friendly too.
    socket = :3031
    offload-threads = 8
    route-run = cache:key=${REQUEST_URI}
-   
+
 As soon as the object is retrieved from the cache, it will be transferred in one of the offload threads.
 
 The Future

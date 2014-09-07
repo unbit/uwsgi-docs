@@ -10,7 +10,7 @@ When uWSGI detects it is running under systemd, the notification system is enabl
 Adding the Emperor to systemd
 *****************************
 
-The best approach to integrate uWSGI apps with your init system is using the :doc:`Emperor<Emperor>`-
+The best approach to integrate uWSGI apps with your init system is using the :doc:`Emperor<Emperor>`.
 
 Your init system will talk only with the Emperor that will rule all of the apps itself.
 

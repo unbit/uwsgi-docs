@@ -5,7 +5,7 @@ The uwsgi (lowercase!) protocol is the native protocol used by the uWSGI server.
 
 It is a binary protocol that can carry any type of data. The first 4 bytes of a uwsgi packet describe the type of the data contained by the packet.
 
-**Every uwsgi request generates an response in the uwsgi format.**
+**Every uwsgi request generates a response in the uwsgi format.**
 
 Even the web server handlers obey this rule, as an HTTP response is a valid uwsgi packet (look at the ``modifier1`` = 72).
 
