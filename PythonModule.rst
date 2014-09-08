@@ -18,7 +18,7 @@ Module-level globals
 
    The number of processes/workers currently running.
 
-.. data:: buffer_size 
+.. data:: buffer_size
 
    The current configured buffer size in bytes.
 
@@ -63,17 +63,17 @@ Cache functions
 .. function:: cache_get(key[, cache_server])
 
    Get a value from the cache.
-   
+
    :param key: The cache key to read.
    :param cache_server: The UNIX/TCP socket where the cache server is listening. Optional.
 
-	
+
 .. function:: cache_set(key, value[, expire, cache_server])
 
    Set a value in the cache.
-   
+
    :param key: The cache key to write.
-   :param write: The cache value to write.
+   :param value: The cache value to write.
    :param expire: Expiry time of the value, in seconds.
    :param cache_server: The UNIX/TCP socket where the cache server is listening. Optional.
 
@@ -152,7 +152,7 @@ SNMP functions
    :param oidnum: An integer containing the oid number target.
    :param value: An integer containing the amount to increase or decrease the counter or gauge. If not specified the default is 1.
 
-   Increases or decreases the counter or gauge by a specific amount. 
+   Increases or decreases the counter or gauge by a specific amount.
 
    .. note:: uWSGI OID tree starts at 1.3.6.1.4.1.35156.17
 
@@ -226,7 +226,7 @@ Advanced methods
 
 
 .. function:: total_requests() -> int
- 
+
    Returns the total number of requests managed so far by the pool of uWSGI workers.
 
 .. function:: get_option()
@@ -310,7 +310,7 @@ Advanced methods
    :param function: A callable that takes a single numeric argument.
 
 .. function:: signal(num)
-   
+
    :param num: the signal number to raise
 
 
@@ -567,16 +567,16 @@ SharedArea functions
    :return: The value read, or ``None`` if the shared area is not enabled or the read request is invalid.
 
 .. function:: sharedarea_writelong(pos, val) -> int
-   
+
    Write a 64-bit (8-byte) long into the uWSGI :doc:`SharedArea`.
-   
+
    :param pos: The position to write the value to.
    :param val: The value to write.
    :type val: long
    :return: The value written, or ``None`` if the shared area is not enabled or the write request is invalid.
 
 .. function:: sharedarea_inclong(pos) -> int
-   
+
    Atomically increment a 64-bit long value in the uWSGI :doc:`SharedArea`.
 
    :param pos: The position of the value.
