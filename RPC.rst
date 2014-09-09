@@ -5,7 +5,7 @@ uWSGI contains a fast, simple, pan-and-cross-language RPC stack.
 
 Although you may fall in love with this subsystem, try to use it only when you need it. There are plenty of higher-level RPC technologies better suited for the vast majority of situations.
 
-That said, the uWSGI RPC subsystem shines with its performance and memory usage. As an example, if you need to split the load of a request to multiple servers, the uWSGI RPC is a great choice, as it allows you to offload tasks with very little effort. 
+That said, the uWSGI RPC subsystem shines with its performance and memory usage. As an example, if you need to split the load of a request to multiple servers, the uWSGI RPC is a great choice, as it allows you to offload tasks with very little effort.
 
 Its biggest limit is in its "typeless" approach.
 
@@ -29,10 +29,10 @@ So let's export a "hello" function on ``.2``.
 .. code-block:: py
 
     import uwsgi
-    
+
     def hello_world():
         return "Hello World"
-    
+
     uwsgi.register_rpc("hello", hello_world)
 
 This uses :py:meth:`uwsgi.register_rpc` to declare a function called "hello" to be exported. We'll start the server with ``--socket :3031``.
@@ -42,14 +42,14 @@ On the caller's side, on ``10.0.0.1``, let's declare the world's (second) simple
 .. code-block:: py
 
     import uwsgi
-    
+
     def application(env, start_response):
-        start_response('200 Ok', [('Content-Type', 'text/html')]
+        start_response('200 Ok', [('Content-Type', 'text/html')])
         return uwsgi.rpc('10.0.0.2:3031', 'hello')
 
 That's it!
 
-What about, let's say, Lua? 
+What about, let's say, Lua?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Glad you asked. If you want to export functions in Lua, simply do:
@@ -59,7 +59,7 @@ Glad you asked. If you want to export functions in Lua, simply do:
     function hello_with_args(arg1, arg2)
         return 'args are '..arg1..' '..arg2
     end
-    
+
     uwsgi.register_rpc('hellolua', hello_with_args)
 
 And in your Python WSGI app:
@@ -67,7 +67,7 @@ And in your Python WSGI app:
 .. code-block:: py
 
     import uwsgi
-    
+
     def application(env, start_response):
         start_response('200 Ok', [('Content-Type', 'text/html')]
         return uwsgi.rpc('10.0.0.2:3031', 'hellolua', 'foo', 'bar')
@@ -115,17 +115,17 @@ As Nginx supports low-level manipulation of the uwsgi packets sent to upstream u
     location /call {
         uwsgi_modifier1 173;
         uwsgi_modifier2 1;
-        
+
         uwsgi_param hellolua foo
         uwsgi_param bar ""
-    
+
         uwsgi_pass 10.0.0.2:3031;
-    
+
         uwsgi_pass_request_headers off;
         uwsgi_pass_request_body off;
     }
 
-Zero size strings will be ignored by the uWSGI array parser, so you can safely use them when the numbers of parameters + function_name is not even. 
+Zero size strings will be ignored by the uWSGI array parser, so you can safely use them when the numbers of parameters + function_name is not even.
 
 Modifier2 is set to 1 to inform that raw strings (HTTP responses in this case) are received. Otherwise the RPC subsystem would encapsulate the output in an uwsgi protocol packet, and nginx isn't smart enough to read those.
 
