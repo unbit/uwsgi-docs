@@ -29,7 +29,7 @@ Basic logging (connected UDP mode)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 With UDP logging you can centralize cluster logging or redirect the persistence
-of logs to another machinei to offload disk I/O. UDP logging works in both
+of logs to another machine to offload disk I/O. UDP logging works in both
 daemonized and interactive modes. UDP logging operaties in connected-socket
 mode, so the UDP server must be available before uWSGI starts.  For a more raw
 approach (working in unconnected mode) see the section on socket logging.
@@ -72,7 +72,7 @@ This is the syntax:
 
 .. code-block:: sh
 
-    --logger <plugin>[:options]"
+    --logger <plugin>[:options]
     --logger "<name> <plugin>[:options]" # The quotes are only required on the command line -- config files don't use them
 
 You may set up as many loggers as you like. Named plugins are used for log
@@ -158,13 +158,13 @@ optional ID to send and the "facility" for the log entry.
 .. code-block:: sh
 
     uwsgi --socket :3031 --logger syslog:uwsgi1234
-    
+
 or
 
 .. code-block:: sh
 
     uwsgi --socket :3031 --logger syslog:uwsgi1234,local6
-    
+
 to send to the local6 facility
 
 
@@ -257,12 +257,12 @@ your logger daemon using a ``ZMQ_PULL`` socket:
 .. code-block:: python
 
     import zmq
-    
+
     ctx = zmq.Context()
-    
+
     puller = ctx.socket(zmq.PULL)
     puller.bind("tcp://192.168.173.18:9191")
-    
+
     while True:
         message = puller.recv()
         print message,
@@ -328,24 +328,24 @@ This plugin, ``foolog.c`` will write your messages in the file specified with
 .. code-block:: c
 
     #include <uwsgi.h>
-    
+
     ssize_t uwsgi_foolog_logger(struct uwsgi_logger *ul, char *message, size_t len) {
-    
+
             struct iovec iov[2];
-    
+
             iov[0].iov_base = "[foo] ";
             iov[0].iov_len = 6;
-    
+
             iov[1].iov_base = message;
             iov[1].iov_len = len;
-    
+
             return writev(uwsgi.original_log_fd, iov, 2);
     }
-    
+
     void uwsgi_foolog_register() {
             uwsgi_register_logger("syslog", uwsgi_syslog_logger);
     }
-    
+
     struct uwsgi_plugin foolog_plugin = {
         .name = "foolog",
         .on_load = uwsgi_foolog_register,
