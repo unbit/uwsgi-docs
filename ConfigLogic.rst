@@ -132,14 +132,14 @@ set to the filename found.
   uwsgi:
     socket: 4040
     processes: 2
-    if-file: config.ru
+    if-dir: config.ru
     rack: %(_)
     endif:
 
 if-opt
 ------
 Check if the given option is set, or has a given value. The context
-placeholder is set to actual value of the option reference.
+placeholder is set to the value of the option reference.
 
 To check if an option was set, pass just the option name to ``if-opt``.
 
@@ -179,6 +179,6 @@ that uWSGI has previously seen. In particular, this means:
   block, you should be ok: any placeholders will later be expanded.
 * If an option is specified multiple times, only the value of the first
   one will be seen by ``if-opt``.
-* Only explicitely set values will be seen, not implicit defaults.
+* Only explicitly set values will be seen, not implicit defaults.
 
 .. seealso:: :doc:`ParsingOrder`

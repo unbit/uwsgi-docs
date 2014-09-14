@@ -129,7 +129,7 @@ An advanced trick: embedding shortcuts in your uWSGI binary
 
 uWSGI's build system allows you to embed files, be they generic files or
 configuration, in the server binary.  Abusing this feature will enable you to
-embed your new option shortcuts to the server binary, automagically allowing
+embed your new option shortcuts into the server binary, automagically allowing
 users to use them.  To embed your shortcuts file, edit your build profile (like
 :file:`buildconf/base.ini`) and set ``embed_config`` to the path of the
 shortcuts file.  Rebuild your server and your new options will be available.

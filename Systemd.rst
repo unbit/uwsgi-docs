@@ -68,7 +68,7 @@ You can stop the Emperor (and all the apps it governs) with
 
 A simple ``emperor.ini`` could look like this (www-data is just an anonymous user)
 
-NOTE: DO NOT daemonize the Emperor (or the master) unless you know what you are doing !!!
+NOTE: DO NOT daemonize the Emperor (or the master) unless you know what you are doing!!!
 
 .. code-block:: ini
 

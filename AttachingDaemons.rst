@@ -24,7 +24,7 @@ their pidfiles are available and the pid contained therein matches a running
 pid. This is the best choice for processes requiring longer persistence, and
 for which a brutal kill could mean loss of data such as a database.
 
-The last category is an superset of the second one. If your process does not
+The last category is a superset of the second one. If your process does not
 support daemonization or writing to pidfile, you can let the master do the
 management.  Very few daemons/applications require this feature, but it could
 be useful for tiny prototype applications or simply poorly designed ones.
@@ -115,7 +115,7 @@ Legion support
 **************
 
 Starting with uWSGI 1.9.9 it's possible to use the :doc:`Legion` subsystem for
-daemon management.  Legion daemons will will be executed only on the legion
+daemon management.  Legion daemons will be executed only on the legion
 lord node, so there will always be a single daemon instance running in each
 legion. Once the lord dies a daemon will be spawned on another node.  To add a
 legion daemon use --legion-attach-daemon, --legion-smart-attach-daemon and

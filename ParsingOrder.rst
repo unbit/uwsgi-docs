@@ -96,7 +96,7 @@ Expanding variables/placeholders
 
 After the internal config tree is assembled, variables and placeholder substitution will be applied.
 
-The first step is substituting all of the $(VALUE) occurence with the value of the environment variable VALUE
+The first step is substituting all of the $(VALUE) occurences with the value of the environment variable VALUE
 
 .. code-block:: ini
 
@@ -123,12 +123,12 @@ The last step is placeholder substitution. A placeholder is a reference to anoth
    foobar = %(socket)
    
 
-the content of foobar will be mapped to the content of socket
+the content of foobar will be mapped to the content of socket.
 
 A note on magic variables
 *************************
 
-Config files, support another form of variables, called 'magic'. As they refer to the config file itself, they will be parsed asap:
+Config files, support another form of variables, called 'magic' variables. As they refer to the config file itself, they will be parsed asap:
 
 
 .. code-block:: ini
@@ -137,4 +137,4 @@ Config files, support another form of variables, called 'magic'. As they refer t
    my_config_file = %p
    
 
-the content of my_config_file will be set to %p value (the current file absolute path) as soon as it is parsed. That means %p (or whatever magic vars you need) will be always consistent in the currently parsing config file.
+The content of my_config_file will be set to %p value (the current file's absolute path) as soon as it is parsed. That means %p (or whatever magic vars you need) will be always be consistent in the currently parsing config file.

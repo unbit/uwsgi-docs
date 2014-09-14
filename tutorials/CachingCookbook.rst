@@ -404,7 +404,7 @@ You can build a better infrastructure using the simple 'notfound' plugin (it wil
 
 You can store file in the cache as gzip too using --load-file-in-cache-gzip
 
-This option does not allow to set the name of the cache item, so to support client with and without gzip support we can use 2 different caches
+This option does not allow to set the name of the cache item, so to support client iwith and without gzip support we can use 2 different caches
 
 .. code-block:: ini
 

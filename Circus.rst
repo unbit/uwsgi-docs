@@ -65,4 +65,4 @@ option.
    port = 8888
 
 This time we have enabled the master process. It will manage the --idle option, shutting down the instance if it is
-inactive for more than 60 seconds
+inactive for more than 60 seconds.

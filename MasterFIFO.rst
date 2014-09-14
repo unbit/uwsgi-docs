@@ -67,7 +67,7 @@ By default ``/tmp/fifo0`` will be allocated, but after sending:
 
    echo 1 > /tmp/fifo0
    
-the ``/tmp/fifo1`` file will be bound
+the ``/tmp/fifo1`` file will be bound.
 
 This is very useful to map FIFO files to specific instance when you (ab)use the 'fork the master' command (the 'f' one).
 
@@ -79,9 +79,9 @@ After sending this command, a new uWSGI instance (inheriting all of the bound so
 
 As we have sent the '1' command before 'f' and 'p' the old instance will now accept commands on /tmp/fifo1 (the slot 1), and the new one will use the default one ('0').
 
-There are lot of tricks you can accomplish, and lot of way to abuse the forking of the master.
+There are lot of tricks you can accomplish, and lots of ways to abuse the forking of the master.
 
-Just take in account that corner-case problems can occur all over the place, especially if you use the most complex features of uWSGI.
+Just take into account that corner-case problems can occur all over the place, especially if you use the most complex features of uWSGI.
 
 Notes
 *****

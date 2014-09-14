@@ -166,7 +166,7 @@ This feature can be (ab)used to reduce the number of configuration files
 required by your application.
 
 Similarly, contents of evironment variables and external text files can
-be included using the `@(file_name)` and `$(ENV_VAR)` syntax. See also
+be included using the `$(ENV_VAR)` and `@(file_name)` syntax. See also
 :doc:`ParsingOrder`.
 
 Placeholders math (from uWSGI 1.9.20-dev)
@@ -223,7 +223,7 @@ the first two items will be evaluated as '29' (not 11 as no math operation has b
 The '@' magic
 -------------
 
-We have already seen we can use the form @(filename) to include the content of a file
+We have already seen we can use the form @(filename) to include the contents of a file
 
 .. code-block:: ini
 

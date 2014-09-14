@@ -15,7 +15,7 @@ Starting the server
 
 Starting an uWSGI server is the role of the system administrator, like starting the Web server. It should not be the role of the Web server to start the uWSGI server -- though you can also do that if it fits your architecture.
 
-How to best start uWSGI services as boot depends on the operating system you use.
+How to best start uWSGI services at boot depends on the operating system you use.
 
 On modern systems the following should hold true. On "classic" operating systems you can use ``init.d``/``rc.d`` scripts, or tools such as Supervisor, Daemontools or :doc:`inetd/xinetd <Inetd>`.
 
@@ -61,7 +61,7 @@ This functionality allows you patch/upgrade the uWSGI server without closing the
 
 When you send the `SIGHUP` to the master process it will try to gracefully stop all the workers, waiting for the completion of any currently running requests.
 
-Then it closes all the eventually opened file descriptor not related to uWSGI.
+Then it closes all the eventually opened file descriptors not related to uWSGI.
 
 Lastly, it binary patches (using ``execve()``) the uWSGI process image with a new one, inheriting all of the previous file descriptors.
 
@@ -110,4 +110,4 @@ When dealing with background processes, you'll need to use the master pidfile ag
 The Master FIFO
 ---------------
 
-Starting from uWSGI 1.9.17 a new management system has been added using unix named pipes (fifo): :doc:`MasterFIFO`
+Starting from uWSGI 1.9.17, a new management system has been added using unix named pipes (fifo): :doc:`MasterFIFO`
