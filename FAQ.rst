@@ -101,8 +101,8 @@ Where are the benchmarks?
 Sorry, we only do "official" benchmarks for regression testing. If benchmarks
 are very important to you, you can search on the mailing list, make your own
 benchmarks or search on Google.  uWSGI gives precedence to machine health, so
-do not expect that your `ab` test with an unrealistic number of concurrent
-connections will be managed flawlessly without tuning.  Some socket and
+do not expect your `ab` test with an unrealistic number of concurrent
+connections to be managed flawlessly without tuning.  Some socket and
 networking knowledge is required if you want to make a valid benchmark (and
 avoid geek rage in your blog comments ;).  Also remember that uWSGI can be
 run in various modes, so avoid comparing it configured in preforking mode
@@ -134,7 +134,7 @@ What is 'Harakiri mode'?
 
 At Unbit we host hundreds of unreliable web apps on our servers. All of them
 run on hardly constrained (at kernel level) environments where having processes
-block due to an implementation error will result on taking down an entire site.
+block due to an implementation error will result in taking down an entire site.
 The harakiri mode has two operational modes:
 
 * one that we define as "raw and a bit unreliable" (used for simple setup without a process manager) 
@@ -147,7 +147,7 @@ a simple call to `alarm()`.
 
 The second one uses a master process shared memory area (via `mmap`) that
 maintains statistics on every worker in the pool. At the start of every
-request, the worker sets a timestamp representing the time after the process
+request, the worker sets a timestamp representing the time after which the process
 will be killed in its dedicated area. This timestamp is zeroed after every
 successful request. If the master process finds a worker with a timestamp in
 the past it will mercilessly kill it.
@@ -189,8 +189,8 @@ Why do you support multiple methods of configuration?
 -----------------------------------------------------
 
 System administration is all about skills and taste. uWSGI tries to give
-sysadmins as much choice as possible for integration with whatever
-infrastructure already available.  Having multiple methods of configuration is
+sysadmins as many choices as possible for integration with whatever
+infrastructure is already available.  Having multiple methods of configuration is
 just one way we achieve this.
 
 What is the best webserver handler?

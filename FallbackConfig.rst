@@ -11,7 +11,7 @@ Simple case
 
 A very common problem is screwing-up the port on which the instance is listening.
 
-To emulate this kind of error we try to bind on port 80 as unprivileged user:
+To emulate this kind of error we try to bind on port 80 as an unprivileged user:
 
 .. code-block:: sh
 
@@ -54,13 +54,13 @@ Your error will be now something like:
    *** Starting uWSGI 1.9.15-dev-a0cb71c (64bit) on [Thu Jul 25 21:55:39 2013] ***
    ...
    
-as you can see the instance has detected the exit code 1, and binary patched itself with a new one (without changing the pid, or calling fork())
+As you can see, the instance has detected the exit code 1 and has binary patched itself with a new config (without changing the pid, or calling fork())
 
 
 Broken apps
 ***********
 
-Another common problem is the inhability to load an application, but instead bringing down the whole site we want to load
+Another common problem is the inability to load an application, but instead of bringing down the whole site we want to load
 an alternate application:
 
 .. code-block:: sh
@@ -72,7 +72,7 @@ Here the key is --need-app. It will call exit(1) if the instance has not been ab
 Multiple fallback levels
 ************************
 
-Your fallback config file can specify a fallback-config directive too, allowing multiple fallback levels. BEWARE OF LOOPS !!!3
+Your fallback config file can specify a fallback-config directive too, allowing multiple fallback levels. BEWARE OF LOOPS!!!
 
 How it works
 ************

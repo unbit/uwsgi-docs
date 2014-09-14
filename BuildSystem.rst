@@ -75,10 +75,10 @@ When you ask uWSGI to load a plugin it simply calls dlopen() and get the uwsgi_p
 
 The vast majority of the uWSGI project is developed as a plugin, this ensure a modular approach to configuration and an obviously saner development style.
 
-The sysadmin is free to embed each plugins in the server binary or to build it as an external shared library.
+The sysadmin is free to embed each plugin in the server binary or to build each plugin as an external shared library.
 
 Embedded plugins are defined in the 'embedded_plugins' directive of the build profile. You can add more embedded plugins
-from command line using UWSGI_EMBED_PLUGINS environment variable (see below).
+from command line using the UWSGI_EMBED_PLUGINS environment variable (see below).
 
 Instead, if you want to build a plugin as a shared library just run uwsgiconfig.py with the --plugin option
 
@@ -88,7 +88,7 @@ Instead, if you want to build a plugin as a shared library just run uwsgiconfig.
    
 this will build the plugin in plugins/psgi to the psgi_plugin.so file
 
-To specify a build profile when you build a plugin you can pass it as additional argument
+To specify a build profile when you build a plugin, you can pass the profile as an additional argument
 
 .. code-block:: sh
 
@@ -111,7 +111,7 @@ UWSGI_EMBED_PLUGINS
 UWSGI_EMBED_CONFIG
 ******************
 
-allows embedding the specified .ini file in the server binary (currently Linux only)
+Allows embedding the specified .ini file in the server binary (currently Linux only)
 
 On startup the server parses the embedded file as soon as possible.
 

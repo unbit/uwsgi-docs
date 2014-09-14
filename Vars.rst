@@ -14,7 +14,7 @@ Set the URL scheme when it cannot be reliably determined. This may be used to fo
 ``UWSGI_SCRIPT``
 ----------------
 
-Load the specified script as a new application mapped to ``SCRIPT_NAME``. The app will be obviously only be loaded once, not on each request.
+Load the specified script as a new application mapped to ``SCRIPT_NAME``. The app will obviously only be loaded once, not on each request.
 
 ::
 
