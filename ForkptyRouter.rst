@@ -28,21 +28,32 @@ The plugin is not builtin by default, so you have to compile it:
 
 .. code-block:: sh
 
-   python uwsgiconfig.py --plugin plugins/forkptyrouter
-   
+	uwsgi --build-plugin plugins/forkptyrouter
+
+or, using the old plugin build system:
+
+.. code-block:: sh
+
+	python uwsgiconfig.py --plugin plugins/forkptyrouter
+
 generally compiling the pty plugin is required too (for client access)
 
 .. code-block:: sh
 
-   python uwsgiconfig.py --plugin plugins/pty
-   
-   
-you can build al in one shot with:
+   uwsgi --build-plugin plugins/pty
+
+or again, using the old build system:
+
+.. code-block:: sh
+
+	python uwsgiconfig.py --plugin plugins/pty
+
+Alternatively, you can build all in one shot with:
 
 .. code-block:: sh
 
    UWSGI_EMBED_PLUGINS=pty,forkptyrouter make
-   
+
 Now you can run the forkptyrouter as a standard gateway (we use UNIX socket as we want a communication channel with jails, and we unshare the uts namespace to give a new hostname)
 
 .. code-block:: ini
@@ -54,13 +65,13 @@ Now you can run the forkptyrouter as a standard gateway (we use UNIX socket as w
    uid = kratos
    gid = kratos
    forkpty-router = /tmp/fpty.socket
-   
+
 and connect with the pty client:
 
 .. code-block:: sh
 
    uwsgi --pty-connect /tmp/fpty.socket
-   
+
 now you have a shell (/bin/sh by default) in the uWSGI instance. Running ``hostname`` will give you 'iaminajail'
 
 The previous example uses raw mode, if you resize the client terminal you will se no updates.
@@ -76,12 +87,12 @@ To use the 'uwsgi' mode add a 'u':
    uid = kratos
    gid = kratos
    forkpty-urouter = /tmp/fpty.socket
-   
+
 
 .. code-block:: sh
 
    uwsgi --pty-uconnect /tmp/fpty.socket
-   
+
 a single instance can expose both protocols on different sockets
 
 .. code-block:: ini
@@ -94,7 +105,7 @@ a single instance can expose both protocols on different sockets
    gid = kratos
    forkpty-router = /tmp/raw.socket
    forkpty-urouter = /tmp/uwsgi.socket
-   
+
 Changing the default command
 ****************************
 
