@@ -177,3 +177,12 @@ uwsgi-apparmor
 * Website: https://github.com/unbit/uwsgi-apparmor
 
 Allows setting apparmor profiles for instances
+
+uwsgi-docker
+************
+
+* License: MIT
+* Author: unbit
+* Website: https://github.com/unbit/uwsgi-docker
+
+Allows running dockerized (https://docker.io) vassals
