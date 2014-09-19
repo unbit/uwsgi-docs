@@ -71,8 +71,53 @@ and connect with the pty client:
 .. code-block:: sh
 
    uwsgi --pty-connect /tmp/fpty.socket
+   
 
 now you have a shell (/bin/sh by default) in the uWSGI instance. Running ``hostname`` will give you 'iaminajail'
+
+Eventually you can avoid using uWSGI to attacj to the pty and instead you can rely on this simple python script:
+
+.. code-block:: py
+
+   import socket
+   import sys
+   import os
+   import select
+   import copy
+   from termios import *
+   import atexit
+   
+   s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+   s.connect(sys.argv[1])
+   
+   tcattr = tcgetattr(0)
+   orig_tcattr = copy.copy(tcattr)
+   atexit.register(tcsetattr, 0, TCSANOW, orig_tcattr)
+   
+   tcattr[0] |= IGNPAR
+   tcattr[0] &= ~(ISTRIP | IMAXBEL | BRKINT | INLCR | IGNCR | ICRNL | IXON | IXANY | IXOFF);
+   tcattr[0] &= ~IUCLC;
+   tcattr[3] &= ~(ICANON | ECHO | ECHOE | ECHOK | ECHONL);
+   tcattr[3] &= ~IEXTEN;
+   tcattr[1] &= ~OPOST;
+   tcattr[6][VMIN] = 1;
+   tcattr[6][VTIME] = 0;
+   
+   tcsetattr(0, TCSANOW, tcattr);
+   
+   while True:
+       (rl, wl, xl) = select.select([0, s], [], [])
+       if s in rl:
+           buf = s.recv(4096)
+           if not buf: break
+           os.write(1, buf)
+       if 0 in rl:
+           buf = os.read(0, 4096)
+           if not buf: break
+           s.send(buf)
+           
+
+
 
 The previous example uses raw mode, if you resize the client terminal you will se no updates.
 
