@@ -13,7 +13,7 @@ Install it, along with ``php-devel`` and you should be able to build the php plu
 
 .. code-block:: sh
 
-    python uwsgiconfig --plugin plugins/php
+    python uwsgiconfig.py --plugin plugins/php
     # You can set the path of the php-config script with UWSGICONFIG_PHPPATH.
     UWSGICONFIG_PHPPATH=/opt/php53/bin/php-config python uwsgiconfig.py --plugin plugins/php
     # or directly specify the directory in which you have installed your php environment
