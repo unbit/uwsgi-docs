@@ -69,6 +69,8 @@ or if you are using a modular build (like the one of your distro)
 .. code-block:: sh
 
    uwsgi --plugins http,psgi --http :8080 --http-modifier1 5 --psgi myapp.pl
+   
+.. note:: Do not use --http when you have a frontend webserver, use --http-socket. Continue reading the quickstart to understand why.
 
 What is that '--http-modifier1 5' thing ???
 *******************************************
@@ -109,6 +111,15 @@ then add a location stanza in your nginx config
 Reload your nginx server, and it should start proxying requests to your uWSGI instance
 
 Note that you do not need to configure uWSGI to set a specific modifier, nginx will do it using the ``uwsgi_modifier1 5;`` directive
+
+If your proxy/webserver/router speaks HTTP, you have to tell uWSGI to natively speak the http protocol (this is different from --http that will spawn a proxy by itself):
+
+.. code-block:: sh
+
+   uwsgi --http-socket 127.0.0.1:3031 --http-socket-modifier1 5 --psgi myapp.pl
+   
+as you can see we needed to specify the modifier1 to use, as the http protocol cannot carry this kind of information
+
 
 Adding concurrency
 ******************
