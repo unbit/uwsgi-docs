@@ -17,6 +17,19 @@ If you'll go to https://address:8443/ with a SPDY-enabled browser, you will see 
 * ``SPDY.version`` -- protocol version (generally ``3``)
 * ``SPDY.stream`` -- stream identifier (an odd number).
 
+Opening privileged ports as non-root user will require `shared-socket` and a slightly different syntax:
+
+.. code-block:: sh
+
+   uwsgi --shared-socket :443 --https2 addr==0,cert=foobart.crt,key=foobar.key,spdy=1 --module werkzeug.testapp:test_app --uid user
+
+Both HTTP and HTTPS can be used at the same time (`=0` and `=1` are references to the privileged ports opened by `shared-socket` commands):
+
+.. code-block:: sh
+
+   uwsgi --shared-socket :80 --shared-socket :443 --http =0 --https2 addr==1,cert=foobart.crt,key=foobar.key,spdy=1 --module werkzeug.testapp:test_app --uid user
+
+
 Notes
 *****
 
