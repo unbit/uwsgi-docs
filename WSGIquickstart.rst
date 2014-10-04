@@ -395,7 +395,7 @@ this will build a uwsgi binary with all the default plugins built-in except the 
 
 Now, from the same dir, we start building python plugins:
 
-.. code-block::sh
+.. code-block:: sh
 
    PYTHON=python3.4 ./uwsgi --build-plugin "plugins/python python34"
    PYTHON=python2.7 ./uwsgi --build-plugin "plugins/python python27"
