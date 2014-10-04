@@ -387,7 +387,7 @@ The best approach would be having a little binary with the language-independent 
 
 From the uwsgi sources directory:
 
-.. code-block::sh
+.. code-block:: sh
 
    make PROFILE=nolang
    
