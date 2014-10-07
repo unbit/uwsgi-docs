@@ -103,7 +103,7 @@ Adding concurrency and monitoring
 
 The first tuning you would like to make is adding concurrency (by default uWSGI starts with a single process and a single thread).
 
-You can add more processes with the ``--processes`` option or more threads with the ``--threads`` options (or you can have both).
+You can add more processes with the ``--processes`` option or more threads with the ``--threads`` option (or you can have both).
 
 .. code-block:: sh
 
@@ -230,7 +230,7 @@ the ``myproject.settings`` module).
 Deploying Flask
 ***************
 
-Flask is popular Python web microframework.
+Flask is a popular Python web microframework.
 
 Save the following example as ``myflaskapp.py``:
 
