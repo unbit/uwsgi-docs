@@ -7,6 +7,13 @@ The PyPy plugin
 
    PyPy_benchmarks
 
+Attention
+^^^^^^^^^
+
+PyPy support will be improving soon. Please see
+http://lists.unbit.it/pipermail/uwsgi/2014-October/007650.html to follow progress.
+
+
 Introduction
 ^^^^^^^^^^^^
 
