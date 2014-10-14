@@ -128,7 +128,7 @@ If "fd" is not specified the output of uwsgi.connection_fd() will be used
 
 The position of arguments is a bit strange, but allows easier integration with POSIX write()
 
-uwsgi.send([fd,] len)
+uwsgi.recv([fd,] len)
 *********************
 
 receive at most "len" bytes from the specified "fd"
