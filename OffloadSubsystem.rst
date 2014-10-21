@@ -5,8 +5,8 @@ Offloading is a way to optimize tiny tasks, delegating them to one or more threa
 
 These threads run such tasks in a non-blocking/evented way allowing for a huge amount of concurrency.
 
-Various component of the uWSGI stack are offload-friendly, and the long-term target is to allow
-application code to abuse it.
+Various components of the uWSGI stack are offload-friendly, and the long-term target is to allow
+application code to abuse them.
 
 
 To start the offloading subsystem just add --offload-threads <n>, where <n> is the number of threads (per-worker) to spawn.
