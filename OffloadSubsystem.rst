@@ -5,7 +5,7 @@ Offloading is a way to optimize tiny tasks, delegating them to one or more threa
 
 These threads run such tasks in a non-blocking/evented way allowing for a huge amount of concurrency.
 
-Various component of the uWSGI stack has been made offload-friendly, and the long-term target is to allow
+Various component of the uWSGI stack are offload-friendly, and the long-term target is to allow
 application code to abuse it.
 
 
