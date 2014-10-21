@@ -19,7 +19,7 @@ The number of offloaded requests is accounted in the "offloaded_requests" metric
 Offloading static files
 ***********************
 
-The first component made offload-aware has been the static file serving system.
+The first offload-aware component is the static file serving system.
 
 When offload threads are available, the whole transfer of the file is delegated to one of those threads, freeing your worker
 suddenly (so it will be ready to accept new requests)
