@@ -31,7 +31,7 @@ First example
 CC and CPP
 **********
 
-This 2 environment variables for uwsgiconfig.py to use an alternative C compiler and C preprocessor.
+These 2 environment variables tell uwsgiconfig.py to use an alternative C compiler and C preprocessor.
 
 If they are not defined the procedure is the following:
 
