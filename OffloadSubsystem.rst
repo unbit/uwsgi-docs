@@ -3,10 +3,10 @@ The uWSGI offloading subsystem
 
 Offloading is a way to optimize tiny tasks, delegating them to one or more threads.
 
-This threads run such tasks in a non-blocking/evented way allowing for a huge amount of concurrency.
+These threads run such tasks in a non-blocking/evented way allowing for a huge amount of concurrency.
 
-Various component of the uWSGI stack has been made offload-friendly, and the long-term target is to allow
-application code to abuse it.
+Various components of the uWSGI stack are offload-friendly, and the long-term target is to allow
+application code to abuse them.
 
 
 To start the offloading subsystem just add --offload-threads <n>, where <n> is the number of threads (per-worker) to spawn.
@@ -19,7 +19,7 @@ The number of offloaded requests is accounted in the "offloaded_requests" metric
 Offloading static files
 ***********************
 
-The first component made offload-aware has been the static file serving system.
+The first offload-aware component is the static file serving system.
 
 When offload threads are available, the whole transfer of the file is delegated to one of those threads, freeing your worker
 suddenly (so it will be ready to accept new requests)
