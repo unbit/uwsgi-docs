@@ -1,12 +1,12 @@
 uWSGI 2.0.8
 ===========
 
-Note: this is the first version with disabled-by-default SSL3, if you need it, you can re-enable with --ssl-enable3 option
+Note: this is the first version with disabled-by-default SSL3, if you need it, you can re-enable with ``--ssl-enable3`` option
 
 Bugfixes
 --------
 
-* fixed php SCRIPT_NAME usage when --php-app is in place
+* fixed php SCRIPT_NAME usage when ``--php-app`` is in place
 * allow "appendn" hook without second argument
 * fix heap corruption in carbon plugin (credits: Nigel Heron)
 * fix getifaddrs() memory management
@@ -37,8 +37,8 @@ fallback to trollius for asyncio plugin
 
 If you build the asyncio plugin for python2, a fallback to the trollius module will be tried. This feature got basically zero coverage, so every report is welcome.
 
-added sweep_on_full, clear_on_full and no_expire to --cache2
-************************************************************
+added sweep_on_full, clear_on_full and no_expire to ``--cache2``
+****************************************************************
 
 Three new options for ``--cache2`` have been added for improving the caching expire strategies:
 
