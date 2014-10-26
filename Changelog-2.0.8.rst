@@ -69,9 +69,11 @@ allows building external plugins as embedded
 The UWSGI_EMBED_PLUGINS environment var has been extended to support remote plugins. As an example you can build a monolithic
 uwsgi binary with the avahi and realtime plugins as:
 
-```sh
- UWSGI_EMBED_PLUGINS="avahi=https://github.com/20tab/uwsgi-avahi,realtime=https://github.com/unbit/uwsgi-realtime" make
-```
+.. code-block:: sh
+
+   UWSGI_EMBED_PLUGINS="avahi=https://github.com/20tab/uwsgi-avahi,realtime=https://github.com/unbit/uwsgi-realtime" make
+
+
 
 automatically manage HTTP_X_FORWARDED_PROTO
 *******************************************
