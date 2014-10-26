@@ -8,15 +8,15 @@ Bugfixes
 
 * fixed php SCRIPT_NAME usage when --php-app is in place
 * allow "appendn" hook without second argument
-* fix heap corruption in carbon plugin
+* fix heap corruption in carbon plugin (credits: Nigel Heron)
 * fix getifaddrs() memory management
 * fixed tcsetattr() usage
-* fixed kevent usage of return value
+* fixed kevent usage of return value (credits: Adriano Di Luzio)
 * ensure PSGI response headers are in the right format
 * fixed attached daemons reload
 * fixed SSL/TLS shutdown
-* fixed mountpoints logic for path not ending with /
-* fixed python3 support in spooler decorators (Adriano Di Luzio)
+* fixed mountpoints logic for path not ending with / (credits: Adriano Di Luzio)
+* fixed python3 support in spooler decorators (credits: Adriano Di Luzio)
 
 New Features
 ------------
@@ -40,8 +40,22 @@ If you build the asyncio plugin for python2, a fallback to the trollius module w
 added sweep_on_full, clear_on_full and no_expire to --cache2
 ************************************************************
 
+Three new options for ``--cache2`` have been added for improving the caching expire strategies:
+
+* sweep_on_full will call a sweep (delete all of the expired items) as soon as the cache became full
+* clear_on_full will completely clear the cache as soon as it is full
+* no_expire forces the cache to not generate a cache sweeper thread, delegating items removal to the two previous options
+
 backported wait-for-fs/mountpoints from 2.1
 *******************************************
+
+``--wait-for-fs <path>`` suspend the uWSGI startup until a file/directory is available
+
+``--wait-for-file <path>`` suspend the uWSGI startup until a file is available
+
+``--wait-for-dir <path>`` suspend the uWSGI startup until a directory is available
+
+``--wait-for-mountpoint <path>`` suspend the uWSGI startup until a mountpoint is available
 
 improved the offload api (backport from 2.1)
 ********************************************
@@ -52,8 +66,18 @@ uWSGI 2.0.8 is compatible with the upcoming https://github.com/unbit/uwsgi-realt
 allows building external plugins as embedded
 ********************************************
 
+The UWSGI_EMBED_PLUGINS environment var has been extended to support remote plugins. As an example you can build a monolithic
+uwsgi binary with the avahi and realtime plugins as:
+
+```sh
+ UWSGI_EMBED_PLUGINS="avahi=https://github.com/20tab/uwsgi-avahi,realtime=https://github.com/unbit/uwsgi-realtime" make
+```
+
 automatically manage HTTP_X_FORWARDED_PROTO
 *******************************************
+
+Albeit a new standard is avavailble in the HTTP world for forwarded sessions (http://tools.ietf.org/html/rfc7239) this release
+adds support for the X-Forwarded-Proto header, automatically setting the request scheme accordingly.
 
 Availability
 ------------
