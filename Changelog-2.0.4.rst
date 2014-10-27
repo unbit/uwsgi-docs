@@ -24,20 +24,19 @@ The experimental asyncio loop engine (CPython >= 3.4)
 
 asyncio (also known as 'tulip') is the new infrastructure for writing non-blocking/async/callback-based code with Python 3.
 
-This plugin (experimental) allows you to use asyncio as the uWSGI loop engine
+This (experimental) plugin allows you to use asyncio as the uWSGI loop engine.
 
 Docs: http://uwsgi-docs.readthedocs.org/en/latest/asyncio.html
 
 httprouter advanced timeout management
 **************************************
 
-The http router got 2 new specific timeout:
+The HTTP router learned 2 new specific timeouts:
 
---http-headers-timeout <n> ; defines the timeout while waiting for http headers
+* `--http-headers-timeout <n>`: defines the timeout while waiting for http headers
+* `--http-connect-timeout <n>`: defines the timeout when connecting to backend instances
 
---http-connect-timeout <n> ; defines the timeout when connecting to backend instances
-
-they should help the sysadmin in improving security and availability
+These should help sysadmins to improve security and availability.
 
 Credits: Łukasz Mierzwa
 
@@ -46,42 +45,41 @@ allow disabling cache warnings in --cache2
 
 Author: Łukasz Mierzwa
 
-the 'ignore_full' keyval option has beed added to cache2. This will disable warnings when a cache is full
+The 'ignore_full' keyval option has been added to cache2. This will disable warnings when a cache is full.
 
 purge LRU cache feature by Yu Zhao (getcwd)
 *******************************************
 
-This new mode allows you to configure a cache to automatically expires least recently used (LRU) items when it is full.
+This new mode allows you to configure a cache to automatically expire the least recently used (LRU) items to make space when it's running out.
 
-Just add purge_lru=1 to your cache2 directive
+Just add `purge_lru=1` into your cache2 directive.
 
 support embedded config on FreeBSD
 **********************************
 
-You can now embed config on FreeBSD systems: 
+You can now embed configuration files into the binary also on FreeBSD systems: 
 
 http://uwsgi-docs.readthedocs.org/en/latest/Embed.html#step-2-embedding-the-config-file
 
-rpc hook
+RPC hook
 ********
 
 Two new hooks have been added:
 
-'rpc' -> call the specified rpc function (fails on error)
+* 'rpc' -> call the specified RPC function (fails on error)
+* 'rpcretry' -> call the specified RPC function (retries on error)
 
-'rpcretry' -> call the specified rpc function (retry on error)
+`setmodifier1` and `setmodifier2` routing actions
+*************************************************
 
+Having to load the 'uwsgi' routing plugin to simply set modifiers was really annoying.
 
-setmodifier1 and setmodifier2 routing actions
-*********************************************
+These two new routing options allow you to dynamically set request modifiers.
 
-having to load the 'uwsgi' routing plugin just for setting modifiers was really annoying. This two routing actions (embedded in the core)
-allows you to dinamically set modifiers.
+`no_headers` option for static router
+*************************************
 
-no_headers option for static router
-***********************************
-
-keyval based static routing action can now avoid to rewrite response headers (useful for X-Sendfile), just add no_headers=1 to your keyval options.
+keyval based static routing actions can now avoid rewriting response headers (useful for X-Sendfile), just add no_headers=1 to your keyval options.
 
 Availability
 ------------

@@ -152,8 +152,8 @@ decision-making to the kernel.
 store_delete || storedelete
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-uwsgi will not start if the existing cache store file does not match the configured items/blocksize.
-If this option is set uwsgi will delete the existing file and create a new one.
+uWSGI, by default, will not start if a cache file exists and the store file does not match the configured items/blocksize.
+Setting this option will make uWSGI delete the existing file upon mismatch and create a new one.
 
 node || nodes
 ^^^^^^^^^^^^^
@@ -257,4 +257,4 @@ cache named "default".
 Monitoring caches
 *****************
 
-The stats server exposes caches informations. There is an ncurses-based tool (https://pypi.python.org/pypi/uwsgicachetop) using that infos for real-time monitoring.
+The stats server exposes cache information. An ncurses based tool (https://pypi.python.org/pypi/uwsgicachetop) exists that uses that information for real-time monitoring.

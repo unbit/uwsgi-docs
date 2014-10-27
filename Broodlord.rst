@@ -49,31 +49,35 @@ Emperor we need to specify how many zerg instances can be run:
 
 This will allow you to run up to 40 additional zerg workers for your apps.
 
---vassal-sos
-------------
+`--vassal-sos`
+--------------
 
-This has been added in 2.0.7, and allows the vassal to ask for reinforcement as soon as all of its workers are busy.
+.. note::
 
-The option takes a value (integer) that is the number of seconds to wait before asking for a new reinforcement.
+   This flag has been added in 2.0.7.
+
+`--vassal-sos` allows the vassal to ask for reinforcement as soon as all of its workers are busy.
+
+The option takes an integer value, the number of seconds to wait between asking for a new reinforcements.
 
 Manually asking for reinforcement
 ---------------------------------
 
-You can use the master fifo (with command 'B') To force an instance to ask for reinforcement by the Emperor
+You can use the master FIFO's "B" command to force an instance to ask for reinforcements from the Emperor.
 
 .. code-block:: sh
 
    echo B > /var/run/master.fifo
 
-Under the hood (aka: hacking broodlord mode)
+Under the hood (or: hacking broodlord mode)
 --------------------------------------------
 
-Technically broodlord mode is a simple message sent by a vassal to force the Emperor to spawn another vassal with ':zerg' suffix as the instance name.
+Technically broodlord mode is a simple message sent by a vassal to "force" the Emperor to spawn another vassal with a ':zerg' suffix in the instance name.
 
-Albeit the suffix is ':zerg' this does not mean you need to use zerg mode. A 'zerg' instance could be a completely independent one simply subscribing
-to a router, or binding to a SO_REUSEPORT socket.
+Even if the suffix is ':zerg' this does not mean you need to use Zerg mode. A 'zerg' instance could be a completely independent one that simply subscribes
+to a router, or binds to a SO_REUSEPORT socket.
 
-This is an example with subscription system
+This is an example with subscription system.
 
 .. code-block:: ini
 

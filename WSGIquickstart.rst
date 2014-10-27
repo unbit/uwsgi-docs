@@ -377,23 +377,24 @@ Offloading is very complex, but its use is transparent to the end user. If you w
 
 When offload threads are enabled, all of the parts that can be optimized will be automatically detected.
 
-Bonus: multiple python versions for the same uWSGI binary
+Bonus: multiple Python versions for the same uWSGI binary
 *********************************************************
 
-As we have seen, uWSGI is composed by a little core and various plugins. Plugins can be embedded in the binary or dynamically loaded. When you build uWSGI for python a series of plugins plus the python one are embedded in the final binary.
-This could be a problem if you want to support multiple python version without building a binary for each one.
+As we have seen, uWSGI is composed of a small core and various plugins. Plugins can be embedded in the binary or loaded dynamically. When you build uWSGI for Python, a series of plugins plus the Python one are embedded in the final binary.
 
-The best approach would be having a little binary with the language-independent features and one plugin for each python version that will be loaded on-demand.
+This could be a problem if you want to support multiple Python versions without building a binary for each one.
 
-From the uwsgi sources directory:
+The best approach would be having a little binary with the language-independent features built in, and one plugin for each Python version that will be loaded on-demand.
+
+In the uWSGI source directory:
 
 .. code-block:: sh
 
    make PROFILE=nolang
    
-this will build a uwsgi binary with all the default plugins built-in except the python one.
+This will build a uwsgi binary with all the default plugins built-in except the Python one.
 
-Now, from the same dir, we start building python plugins:
+Now, from the same directory, we start building Python plugins:
 
 .. code-block:: sh
 
@@ -401,9 +402,9 @@ Now, from the same dir, we start building python plugins:
    PYTHON=python2.7 ./uwsgi --build-plugin "plugins/python python27"
    PYTHON=python2.6 ./uwsgi --build-plugin "plugins/python python26"
 
-you will end with three files: python34_plugin.so, python27_plugin.so, python26_plugin.so that you should copy in the dir you want (by default uWSGI searches for plugins in the current directory).
+You will end up with three files: ``python34_plugin.so``, ``python27_plugin.so``, ``python26_plugin.so``. Copy these into your desired directory. (By default, uWSGI searches for plugins in the current working directory.)
 
-Now in your config files you can simply add (at the top)
+Now in your configurations files you can simply add (at the very top) the `plugins-dir` and `plugin` directives.
 
 .. code-block:: ini
 
@@ -411,10 +412,10 @@ Now in your config files you can simply add (at the top)
    plugins-dir = <path_to_your_plugin_directory>
    plugin = python26
    
-this will load the python26_plugin.so file from the directory in which you copied the plugins.
+This will load the ``python26_plugin.so`` plugin library from the directory into which you copied the plugins.
 
-And now
-*******
+And now...
+**********
 
-You should already be able to go in production with such few concepts, but uWSGI is an enormous project with hundreds of features
+You should already be able to go into production with such few concepts, but uWSGI is an enormous project with hundreds of features
 and configurations. If you want to be a better sysadmin, continue reading the full docs.

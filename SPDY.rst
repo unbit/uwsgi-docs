@@ -17,7 +17,7 @@ If you'll go to https://address:8443/ with a SPDY-enabled browser, you will see 
 * ``SPDY.version`` -- protocol version (generally ``3``)
 * ``SPDY.stream`` -- stream identifier (an odd number).
 
-Opening privileged ports as non-root user will require `shared-socket` and a slightly different syntax:
+Opening privileged ports as a non-root user will require the use of the `shared-socket` option and a slightly different syntax:
 
 .. code-block:: sh
 
@@ -33,7 +33,7 @@ Both HTTP and HTTPS can be used at the same time (`=0` and `=1` are references t
 Notes
 *****
 
-* You need at least OpenSSL 1.x to use SPDY (all of the modern Linux distros should have it).
+* You need at least OpenSSL 1.x to use SPDY (all modern Linux distributions should have it).
 * During uploads, the window size is constantly updated.
 * The ``--http-timeout`` directive is used to set the SPDY timeout. This is the maximum amount of inactivity after the SPDY connection is closed.
 * ``PING`` requests from the browsers are **all** acknowledged.
