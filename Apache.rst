@@ -83,14 +83,14 @@ this will be fixed soon.
 
 .. note::
 
-   mod_proxy_uwsgi is considered stable starting from uWSGI 2.0.6
+   `mod_proxy_uwsgi` is considered stable starting from uWSGI 2.0.6
 
 .. note::
 
   If you want to use this module (and help the uWSGI project), report any bugs
   you find, rather than falling back to the ancient (and ugly) mod_uwsgi
   
-Starting from apache 2.4.9 support for unix sockets has been added. The syntax is pretty simple
+Starting from Apache 2.4.9, support for Unix sockets has been added. The syntax is pretty simple:
 
 .. parsed-literal::
 

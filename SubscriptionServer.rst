@@ -40,7 +40,7 @@ The syntax for ``subscribe2`` is similar but it allows far more control since it
 
     uwsgi -s 192.168.0.10:3031 --wsgi myapp --master --subscribe2 server=192.168.0.100:2626,key=uwsgi.it,addr=192.168.0.10:3031
 
-For possibile subscribe2 keys, see below.
+For a list of the available ``subscribe2`` keys, see below.
 
 The subscription system is currently available for cluster joining (when multicast/broadcast is not available), the Fastrouter, the HTTP/HTTPS/SPDY router, the rawrouter and the sslrouter.
 
@@ -149,14 +149,14 @@ Notifications
 
 When you subscribe to a server, you can ask it to "acknowledge" the acceptance of your request.
 
-Just add ``--subscription-notify-socket <addr>`` pointing to a datagram (unix or udp) address, on which your instance will bind and the subscription server will send ack to.
+Just add ``--subscription-notify-socket <addr>`` pointing to a datagram (Unix or UDP) address, on which your instance will bind and the subscription server will send acknowledgements to.
 
 Mountpoints (uWSGI 2.1)
 -----------------------
 
 Generally you subscribe your apps to specific domains.
 
-Thanks to the mountpoints support introduced in uWSGI 2.1, you can now subscribe each node to specific directory (only one level after the domain name is allowed):
+Thanks to the mountpoint support introduced in uWSGI 2.1, you can now subscribe each node to a specific directory (though only one level after the domain name is allowed):
 
 First of all you need to tell the subscription server to accept (and manage) mountpoint requests:
 
@@ -164,30 +164,15 @@ First of all you need to tell the subscription server to accept (and manage) mou
 
    uwsgi --master --http :8080 --http-subscription-server 127.0.0.1:4040 --subscription-mountpoints
    
-   
-then you can start subscribing to mountpoints
-
+Then you can start subscribing to mountpoints.
    
 .. code-block:: sh
 
    uwsgi --socket 127.0.0.1:0 --subscribe2 server=127.0.0.1:4040,key=mydomain.it/foo
-
-
-.. code-block:: sh
-
    uwsgi --socket 127.0.0.1:0 --subscribe2 server=127.0.0.1:4040,key=mydomain.it/bar
-
-
-.. code-block:: sh
-
    uwsgi --socket 127.0.0.1:0 --subscribe2 server=127.0.0.1:4040,key=mydomain.it/foo
-
-
-.. code-block:: sh
-
    uwsgi --socket 127.0.0.1:0 --subscribe2 server=127.0.0.1:4040,key=mydomain.it
 
+The first and the third instance will answer to all of the requests for /foo, the second will answer for /bar and the last one will manage all of the others.
 
-the first and the third instance will answer to all of the requests for /foo, the second will answer for /bar and the last one will manage all of the others
-
-For the secured subscription system, you only need to use the domain key (you do not need to generate a certificate for each mountpoint)
+For the secured subscription system, you only need to use the domain key (you do not need to generate a certificate for each mountpoint).

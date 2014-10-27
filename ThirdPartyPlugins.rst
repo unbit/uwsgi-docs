@@ -103,7 +103,6 @@ uwsgi-consul
 * Author: unbit, ultrabug
 * Website: https://github.com/unbit/uwsgi-consul
 
-
 Integration with consul agents (consul.io)
 
 uwsgi-influxdb
@@ -113,7 +112,7 @@ uwsgi-influxdb
 * Author: unbit
 * Website: https://github.com/unbit/uwsgi-influxdb
 
-Allows sending metrics to influxdb
+Allows sending metrics to the InfluxDB time series database.
 
 uwsgi-opentsdb
 **************
@@ -122,7 +121,7 @@ uwsgi-opentsdb
 * Author: unbit
 * Website: https://github.com/unbit/uwsgi-opentsdb
 
-Allows sending metrics to opentsdb
+Allows sending metrics to the OpenTSDB monitoring system.
 
 uwsgi-cares
 ***********
@@ -131,7 +130,7 @@ uwsgi-cares
 * Author: unbit
 * Website: https://github.com/unbit/uwsgi-cares
 
-exposes non-blocking dns query via the cares library
+Exposes non-blocking DNS querying via the c-ares asynchronous name resolution library.
 
 uwsgi-ganglia
 **************
@@ -140,7 +139,7 @@ uwsgi-ganglia
 * Author: unbit
 * Website: https://github.com/unbit/uwsgi-ganglia
 
-Allows sending metrics to ganglia
+Allows sending metrics to Ganglia.
 
 uwsgi-bonjour
 *************
@@ -149,7 +148,7 @@ uwsgi-bonjour
 * Author: unbit, 20tab
 * Website: https://github.com/unbit/uwsgi-bonjour
 
-Automatically register domain names in OSX bonjour subsystem
+Automatically register domain names in OSX's Bonjour subsystem.
 
 uwsgi-avahi
 ***********
@@ -158,7 +157,7 @@ uwsgi-avahi
 * Author: 20tab
 * Website: https://github.com/20tab/uwsgi-avahi
 
-Automatically register domain names in avahi subsystem
+Automatically register domain names in the Avahi subsystem.
 
 uwsgi-datadog
 *************
@@ -167,7 +166,7 @@ uwsgi-datadog
 * Author: unbit
 * Website: https://github.com/unbit/uwsgi-datadog
 
-Automatically send metrics to datadog (https://www.datadoghq.com/)
+Automatically send metrics to Datadog (https://www.datadoghq.com/).
 
 uwsgi-apparmor
 **************
@@ -176,7 +175,7 @@ uwsgi-apparmor
 * Author: unbit
 * Website: https://github.com/unbit/uwsgi-apparmor
 
-Allows setting apparmor profiles for instances
+Allows setting Apparmor profiles for instances.
 
 uwsgi-docker
 ************
@@ -185,4 +184,4 @@ uwsgi-docker
 * Author: unbit
 * Website: https://github.com/unbit/uwsgi-docker
 
-Allows running dockerized (https://docker.io) vassals
+Allows running dockerized (https://docker.io) vassals.

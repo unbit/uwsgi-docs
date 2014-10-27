@@ -90,13 +90,13 @@ the 'rados-mount' parameter takes various subparameters:
  - mountpoint: required, the URL prefix on which the RADOS objects will appear.
  - pool: required, the RADOS pool to serve.
  - config: optional, the path to the ceph config file.
- - timeout: optional, set operations timeout
- - allow_put: allow to call the PUT http method to store new objects
- - allow_delete: allow to call the DELETE http method to remove objects
- - allow_mkcol: allow to call MKCOL http method to create new pools
- - allow_propfind: (requires uWSGI 2.1) enable support for the WebDAV PROPFIND method
+ - timeout: optional, set the timeout for operations, in seconds
+ - allow_put: allow calling the ``PUT`` HTTP method to store new objects
+ - allow_delete: allow calling the ``DELETE`` HTTP method to remove objects
+ - allow_mkcol: allow calling ``MKCOL`` HTTP method to create new pools
+ - allow_propfind: (requires uWSGI 2.1) allow calling the WebDAV ``PROPFIND`` method
 
-in this example, your content will be served at http://localhost:9090/rad/list.html, http://localhost:9090/rad/imgs/first.jpeg
+In this example, your content will be served at http://localhost:9090/rad/list.html, http://localhost:9090/rad/imgs/first.jpeg
 and http://localhost:9090/rad/imgs/second.jpeg.
 
 
@@ -119,26 +119,19 @@ HTTP methods
 
 The following methods are supported:
 
-GET -> retrieve a resource
-
-HEAD -> like GET but without body
-
-OPTIONS -> (requires uWSGI 2.1) returns the list of allowed HTTP methods and WebDAV support
-
-PUT -> requires allow_put in mountpoint options, store a resource in ceph: curl -T /etc/services http://localhost:8080/services
-
-MKCOL -> requires allow_mkcol in mountpoint options, creates a new pool: curl -X MKCOL http://localhost:8080/anewpool (the pool 'anewpool' will be created)
-
-DELETE -> requires allow_delete in mountpoint options, removes an object
-
-PROPFIND -> (requires uWSGI 2.1 and allow_propfind mountpoint option). Implements WebDAV PROPFIND method
+* GET -> retrieve a resource
+* HEAD -> like GET but without body
+* OPTIONS -> (requires uWSGI 2.1) returns the list of allowed HTTP methods and WebDAV support
+* PUT -> requires allow_put in mountpoint options, store a resource in ceph: curl -T /etc/services http://localhost:8080/services
+* MKCOL -> requires allow_mkcol in mountpoint options, creates a new pool: curl -X MKCOL http://localhost:8080/anewpool (the pool 'anewpool' will be created)
+* DELETE -> requires allow_delete in mountpoint options, removes an object
+* PROPFIND -> requires allow_propfind in mountpoint options (uWSGI 2.1+), implements WebDAV PROPFIND method
 
 Features
 ^^^^^^^^
 
-multiprocessing is supported
-
-async support is fully functional, the ugreen suspend engine is the only supported one:
+* multiprocessing is supported
+* async support is fully functional, the ugreen suspend engine is the only supported one:
 
 
 .. code-block:: ini
@@ -155,16 +148,10 @@ async support is fully functional, the ugreen suspend engine is the only support
    ; required !!!
    ugreen = true
 
-Notes:
-^^^^^^
+Caching example
+^^^^^^^^^^^^^^^
 
-The plugin automatically enables the mime type engine.
-
-There is no directory index support (it makes no sense in rados/ceph context)
-
-You should drop privileges in your uWSGI instances, so be sure you give the right permissions to the ceph keyring
-
-Caching is highly suggested to improve performance and reduce the load on the Ceph cluster. This is a good example:
+Caching is highly recommended to improve performance and reduce the load on the Ceph cluster. This is a good example:
 
 .. code-block:: ini
 
@@ -192,11 +179,16 @@ Caching is highly suggested to improve performance and reduce the load on the Ce
    processes = 4
    threads = 8
 
-to test caching behaviour, tools like uwsgicachetop (https://pypi.python.org/pypi/uwsgicachetop) could be great.
+To test the caching behaviour, a tool like uwsgicachetop (https://pypi.python.org/pypi/uwsgicachetop) will be very useful. 
 
-More infos about caching are here: http://uwsgi-docs.readthedocs.org/en/latest/tutorials/CachingCookbook.html
+More information about caching here: :doc:`CachingCookbook`
 
-Enabling MKCOL, PUT or DELETE could be a high security risk. Combine them with the internal routing framework for adding authentication/authorization policies
+Security note
+^^^^^^^^^^^^^
+
+Enabling MKCOL, PUT and DELETE may be high security risks.
+
+Combine them with the internal routing framework for adding authentication/authorization policies:
 
 .. code-block:: ini
 
@@ -227,3 +219,11 @@ Enabling MKCOL, PUT or DELETE could be a high security risk. Combine them with t
    ; otherwise break with 403
    route-run = break:403 Forbidden
    
+
+
+Notes
+^^^^^
+
+* The plugin automatically enables the MIME type engine.
+* There is no directory index support. It makes no sense in rados/ceph context.
+* You should drop privileges in your uWSGI instances, so be sure you give the right permissions to the ceph keyring.

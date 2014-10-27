@@ -313,8 +313,8 @@ returns the specified HTTP status code:
    route = ^/bad break:
    route = ^/error break:500
 
-Note: ``break`` doesn't support request vars because it's intended to notify
-browser about the error, not end user. That said, we can tell following code
+Note: ``break`` doesn't support request variables because it's intended to notify
+browser about the error, not the end user. That said, we can tell following code
 will send what it reads to browser (i.e. without ``${REMOTE_ADDR}`` being
 translated to the remote IP address).
 
@@ -323,14 +323,14 @@ translated to the remote IP address).
    [uwsgi]
    route-remote-addr = ^127\.0\.0\.1$ break:403 Forbidden for ip ${REMOTE_ADDR}
 
-If you really want to do wacky stuff, see ``clearheaders``.
+If you really do want to do wacky stuff, see ``clearheaders``.
 
 ``return``/``break-with-status``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Return value: ``BREAK``
 
-``return`` uses uWSGI built-in status code and return both status code and
+``return`` uses uWSGI's built-in status code and returns both status code and
 message body. It's similar to ``break`` but as mentioned above ``break``
 doesn't have the error message body. ``return:403`` is equivalent to following:
 

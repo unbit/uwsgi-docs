@@ -7,7 +7,7 @@ Starting from uWSGI 1.1 (thanks to its new options subsystem) we have a general 
 
 Top-bottom means options are internally ordered as they are parsed, while "expand asap" means to inject the options of a requested config file, interrupting the currently parsed one:
 
-Note that the ``inherit`` option behaves differently from the other inlcude options: It is expanded *after* variable expansion, so any environment variables, external files and placeholders are *not* expanded. Magic variables (*e.g.* ``%n``) are expanded normally.
+Note that the ``inherit`` option behaves differently from the other include options: It is expanded *after* variable expansion, so any environment variables, external files and placeholders are *not* expanded. Magic variables (*e.g.* ``%n``) are expanded normally.
 
 file1.ini (the one requested from the command line)
 
@@ -96,7 +96,7 @@ Expanding variables/placeholders
 
 After the internal config tree is assembled, variables and placeholder substitution will be applied.
 
-The first step is substituting all of the $(VALUE) occurences with the value of the environment variable VALUE
+The first step is substituting all of the $(VALUE) occurrences with the value of the environment variable VALUE.
 
 .. code-block:: ini
 

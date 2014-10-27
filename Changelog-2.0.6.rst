@@ -7,10 +7,10 @@ Changelog [20140701]
 Bugfixes
 ^^^^^^^^
 
-* fixed a memory leak with subscription system
+* fixed a memory leak in the subscription system
 * fixed shortcut for ssl-socket
-* fixed apache2 mod_proxy_uwsgi (it is now considered stable with all mpm engines)
-* fixed SCRIPT_NAME and PATH_TRANSLATED generation in php plugin (thanks Matthijs Kooijman)
+* fixed Apache2 mod_proxy_uwsgi. It is now considered stable with all Apache MPM engines.
+* fixed SCRIPT_NAME and PATH_TRANSLATED generation in the PHP plugin (thanks Matthijs Kooijman)
 * remove the old FIFO socket from the event queue when recreating it (thanks Marko Tiikkaja)
 
 
@@ -22,19 +22,20 @@ The new Rados plugins
 
 Credits: Marcin Deranek
 
-The rados plugin has been improved and stabilized, and now it is considered usable in production.
+The Rados plugin has been improved and stabilized, and now it is considered stable and usable in production.
 
-Async modes and multithreading correctly works, and support for uploading objects (via PUT) and creating new pools (MKCOL)
-has been added.
+Async modes and multithreading correctly work.
 
-Expect webdav support in uWSGI 2.1
+Support for uploading objects (via PUT) and creating new pools (MKCOL) has been added.
+
+Expect WebDAV support in uWSGI 2.1.
 
 Docs have been updated: http://uwsgi-docs.readthedocs.org/en/latest/Rados.html
 
 --if-hostname
 *************
 
-This is a configuration logic for including options only when the specified hostname matches:
+This is configuration logic for including options only when the system's hostname matches a given value.
 
 .. code-block:: ini
 
@@ -47,23 +48,24 @@ This is a configuration logic for including options only when the specified host
      socket = /var/run/foo.socket
    endif = 
    
-Apache2 mod_proxy_uwsgi stabilization
-*************************************
+Apache2 `mod_proxy_uwsgi` stabilization
+***************************************
 
-After literally years of bug reports, and corrupted data, the mod_proxy_uwsgi is now stable, and on modern
-apache2 releases it supports unix sockets too.
+After literally years of bug reports and corrupted data and other general badness, `mod_proxy_uwsgi` is finally stable.
+
+On modern Apache2 releases it supports UNIX sockets too.
 
 Updated docs: http://uwsgi-docs.readthedocs.org/en/latest/Apache.html#mod-proxy-uwsgi
 
 uwsgi[rsize] routing var
 ************************
 
-this routing var (meaningful only in the 'final' chain) exposes the response size of the request
+The new `uwsgi[rsize]` routing variable (meaningful only in the 'final' chain) exposes the response size of the request.
 
-the callint scheme
-******************
+the `callint` scheme
+********************
 
-This scheme allows you to generate blob from functions exposed by your uWSGI instance:
+This scheme allows you to generate blobs from functions exposed by your uWSGI instance:
 
 .. code-block:: ini
 
@@ -74,23 +76,24 @@ This scheme allows you to generate blob from functions exposed by your uWSGI ins
 --fastrouter-fallback-on-no-key
 *******************************
 
-The corerouters fallback procedure requires a valid key (domain name) has been requested. This option forces the various routers
-to trigger the fallback procedure even if a key has not been found.
+The corerouter's fallback procedure requires that a valid key (domain name) has been requested.
 
-php 5.5 opcode caching via --php-sapi-name
+This option forces the various routers to trigger the fallback procedure even if a key has not been found.
+
+PHP 5.5 opcode caching via --php-sapi-name
 ******************************************
 
-For mysterious reasons the opcode caching of php5.5 is not enabled in the embed sapi. This option (set it to 'apache' if you want) allows you to fake the opcode caching engine forcing it to enable itself.
+For mysterious reasons the PHP 5.5+'s opcode caching is not enabled in the "embed" SAPI. This option allows you to fake the SAPI name -- `apache` is a good option -- to force the opcode caching engine to turn on.
 
 Improved chain-reloading
 ************************
 
-Thanks to Marko Tiikkaja the chain reloading procedure correctly works in cheaper modes and it is more verbose.
+Thanks to Marko Tiikkaja, the chain reloading procedure correctly works in cheaper modes and is more verbose.
 
 added 'chdir' keyval to --attach-daemon2
 ****************************************
 
-You can now set where attached daemons need to chdir()
+You can now set where attached daemons need to chdir().
 
 Availability
 ^^^^^^^^^^^^
