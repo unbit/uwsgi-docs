@@ -185,3 +185,12 @@ uwsgi-docker
 * Website: https://github.com/unbit/uwsgi-docker
 
 Allows running dockerized (https://docker.io) vassals.
+
+uwsgi-gif
+*********
+
+* License: MIT
+* Author: unbit
+* Website: https://github.com/unbit/uwsgi-gif
+
+dynamic generation of gif images
