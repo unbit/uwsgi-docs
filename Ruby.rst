@@ -8,7 +8,7 @@ Ruby support
 
 Starting from version 0.9.7-dev a Ruby (Rack/Rails) plugin is officially available. The official modifier number for Ruby apps is 7, so remember to set it in your web server configuration.
 
-Ruby 1.8 and Ruby 1.9 are supported. The plugin can be embedded in the uWSGI core or built as a dynamically loaded plugin.
+The plugin can be embedded in the uWSGI core or built as a dynamically loaded plugin.
 
 Some uWSGI standard features still aren't supported by the plugin, such as:
 
