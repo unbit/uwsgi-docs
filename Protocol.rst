@@ -234,6 +234,11 @@ Packet descriptions
      - size of packet
      - 0, 1, 2, 3
      - Cache operations. 0: read, 1: write, 2: delete, 3: dict_based
+
+   * - 123
+     - size of packet
+     - -
+     - special modifier for signaling corerouters about special conditions
    
    * - 173
      - size of packet
