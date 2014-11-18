@@ -375,7 +375,7 @@ properly.
 It's worth keeping the output of the nginx log running in a terminal window so
 you can easily refer to it while troubleshooting.
 
-Running the Django application with uswgi and nginx
+Running the Django application with uwsgi and nginx
 ---------------------------------------------------
 
 Let's run our Django application:
