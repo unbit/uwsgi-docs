@@ -41,7 +41,7 @@ The uWSGI server responds to the following signals.
 Signal      Description                                                               Convenience command
 ==========  ========================================================================  ===================
 `SIGHUP`    gracefully reload all the workers and the master process                  --reload
-`SIGTERM`   brutally reload all the workers and the master process
+`SIGTERM`   brutally reload all the workers and the master process                    (use --die-on-term to respect the convention of shutting down the instance)
 `SIGINT`    immediately kill the entire uWSGI stack                                   --stop
 `SIGQUIT`   immediately kill the entire uWSGI stack
 `SIGUSR1`   print statistics
@@ -49,8 +49,11 @@ Signal      Description                                                         
 `SIGURG`    restore a snapshot
 `SIGTSTP`   pause/suspend/resume an instance
 `SIGWINCH`  wakeup a worker blocked in a syscall (internal use)
+`SIGFPE`    generate C traceback
+`SIGSEGV`   generate C traceback
 ==========  ========================================================================  ===================
 
+Note: there are better ways to manage your instances than signals, as an example the master-fifo is way more robust.
 
 Reloading the server
 --------------------
