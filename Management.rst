@@ -24,6 +24,7 @@ System         Method
 ============== =========
 Ubuntu         :doc:`Upstart` (the official ``uwsgi`` package, available since Ubuntu 12.04 provides an init.d based solution. Read the README.)
 Debian         :doc:`Upstart`
+Arch Linux     :doc:`Systemd`
 Fedora         :doc:`Systemd`
 OSX            launchd
 Solaris        SMF
