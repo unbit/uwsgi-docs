@@ -86,8 +86,8 @@ If the socket's listen queue has more than ``cheaper_overload`` requests
 waiting to be processed, uWSGI will spawn new workers.  If the backlog is lower
 it will begin killing processes one at a time.
 
-``cheaper`` busyness algorithm
---------------------------
+``busyness`` cheaper algorithm
+------------------------------
 
 .. note:: This algorithm is optional, it is only available if the ``cheaper_busyness`` plugin is compiled and loaded.
 
