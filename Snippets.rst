@@ -238,6 +238,7 @@ now start installing the ruby versions you need
 and install the gems you need (sinatra in this case):
 
 .. code-block:: sh
+
    # set the current ruby env
    rbenv local 1.9.3-p551
    # get the path of the gem binary
