@@ -37,7 +37,7 @@ The uwsgi setup.py file will recognize the PyPy environment and will build a PyP
 
 In the same way, you can execute the setup.py supplied in uWSGI sources:
 
-... code-block:: sh
+.. code-block:: sh
 
     pypy setup.py install
     
