@@ -1,18 +1,7 @@
 The PyPy plugin
 ===============
 
-
-.. toctree::
-   :maxdepth: 1
-
-   PyPy_benchmarks
-
-Attention
-^^^^^^^^^
-
-PyPy support will be improving soon. Please see
-http://lists.unbit.it/pipermail/uwsgi/2014-October/007650.html to follow progress.
-
+Requires uWSGI >= 2.0.9
 
 Introduction
 ^^^^^^^^^^^^
@@ -25,33 +14,13 @@ A new PyPy plugin based on cffi is available since uWSGI 1.9.11. The old slow cp
 
 The plugin is currently supported only on Linux systems. Following releases will support other platforms as well.
 
-The plugin loads ``libpypy-s.so`` on startup, sets the home of the PyPy installation and executes a special Python module
+The plugin loads ``libpypy-c.so`` on startup, sets the home of the PyPy installation and executes a special Python module
 implementing the plugin logic. So yes, most of the plugin is implemented in Python, and theoretically this approach will allow
 writing uWSGI plugins directly in Python in addition to C, C++ and Objective-C.
 
-As of August 2013 all of the required patches to PyPy have been merged, so you can get an official source tarball release.
-Unfortunately you still need to build/translate libpypy-c by yourself, or download the following file (built for ubuntu trusty 64bit):
+As of December 2014 all of the required patches to PyPy have been merged, so you can get an official nightly build (or a stable version released after december 2014)
+and use it with uWSGI.
 
-
-* Linux x86 64-bit: http://projects.unbit.it/downloads/pypy/libpypy-c-x86_64.so
-
-
-In addition to the library you need to obviously download an official binary tarball too.
-
-UPDATE:
-
-As of August 2013, libpypy-c is not automatically build in pypy release tarballs or nightly builds. If you do not want
-to translate the whole tree every time, you can try the "alternative approach" (described below)
-
-Building libpypy-c (if needed)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Get PyPy sources and translate it. This should require no more than 50 minutes, but be sure to have at least 2 gigabytes of free memory on 32-bit systems and 4 gigabytes for 64-bit systems.
-
-.. code-block:: sh
-
-   ./rpython/bin/rpython -Ojit --shared --gcrootfinder=shadowstack pypy/goal/targetpypystandalone
-   
 
 Install uWSGI with PyPy support
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -84,6 +53,12 @@ Or you can build PyPy support as a plugin.
 
 .. code-block:: sh
 
+   uwsgi --build-plugin plugins/pypy
+
+or (old-style)
+
+.. code-block:: sh
+
    python uwsgiconfig.py --plugin plugins/pypy
    
 The PyPy home
@@ -91,7 +66,7 @@ The PyPy home
 
 The uWSGI Python plugin (more exactly the CPython plugin) works by linking in ``libpython``. That means you need to rebuild the plugin for every different version of Python. The PyPy plugin is different, as libpypy-c is loaded on startup and its symbols are resolved at runtime. This allows you to migrate to a different PyPy version on the fly.
 
-The downside of this approach is that you need to inform uWSGI where your PyPy installation is at runtime.
+The "downside" of this approach is that you need to inform uWSGI where your PyPy installation is at runtime.
 
 Supposing your PyPy is in ``/opt/pypy`` you can start uWSGI with:
 
@@ -99,7 +74,7 @@ Supposing your PyPy is in ``/opt/pypy`` you can start uWSGI with:
 
    uwsgi --http-socket :9090 --pypy-home /opt/pypy
   
-With this command line uWSGI will search for ``/opt/pypy/libpypy-c.so`` and if found, it will set that path as the PyPy home.
+With this command line uWSGI will search for ``/opt/pypy/bin/libpypy-c.so`` and if found, it will set that path as the PyPy home.
 
 If your ``libpypy-c.so`` is outside of the PyPy home (and in a directory not reachable by the dynamic linker), you can use the ``--pypy-lib``option.
 
@@ -234,56 +209,6 @@ Options
 * ``pypy-paste`` - load a paste.deploy .ini configuration
 * ``pypy-ini-paste`` - load a paste.deploy .ini configuration and use its [uwsgi] section
 
-The alternative approach
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-The PyPy plugin in uWSGI 1.9.15 has been extended to automatically detect if uWSGI has been called as a shared library
-by the pypy binary itself (via ctypes for example).
-
-This approach (albeit suboptimal) could be useful to test new pypy releases ('til the PyPy guys start building libpypy-c).
-
-To build a uWSGI shared library with the pypy plugin embedded run:
-
-.. code-block:: sh
-
-   UWSGI_PROFILE=pypy UWSGI_AS_LIB=libuwsgi.so make
-   
-you will end with a libuwsgi.so shared library you can load with ctypes:
-
-.. code-block:: py
-
-   #/usr/bin/pypy
-   import sys
-   import ctypes
-   # load the uwsgi library in the global namespace
-   uwsgi = ctypes.CDLL('./libuwsgi.so',mode=ctypes.RTLD_GLOBAL)
-
-   # build command line args
-   argv = (ctypes.c_char_p * (len(sys.argv)+1))()
-   pos = 0
-   for arg in sys.argv:
-       argv[pos] = arg
-       pos+=1
-
-   # inform the uwsgi engine, the passed environ is not safe to overwrite
-   envs = (ctypes.c_char_p * 1)()
-
-   uwsgi.uwsgi_init(len(sys.argv), argv, envs)
-   
-You can now run the script as a standard uwsgi binary:
-
-.. code-block:: sh
-
-   ./fakeuwsgi.py --http-socket :9090 --master --processes 2 --threads 8 --pypy-wsgi myapp
-   
-as you can see there is no need to specify --pypy-home or --pypy-lib as the pypy environment is already available.
-   
-in library mode (under pypy) uWSGI cannot change its process name (under Linux and Solaris, as "environ" is no more valid) and a reload
-could need a bit of help for finding the right commandline. Generally this trick will be more than enough:
-
-.. code-block:: sh
-
-   ./fakeuwsgi.py --http-socket :9090 --master --processes 2 --threads 8 --pypy-wsgi myapp --binary-path ./fakeuwsgi.py
 
 Notes
 ^^^^^
