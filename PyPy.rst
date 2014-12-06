@@ -35,7 +35,17 @@ If you have installed pip in your PyPy home, you can run
   
 The uwsgi setup.py file will recognize the PyPy environment and will build a PyPy-only uWSGI binary.
 
-You can compile manually:
+In the same way, you can execute the setup.py supplied in uWSGI sources:
+
+... code-block:: sh
+
+    pypy setup.py install
+    
+
+(this two approaches will hardcode the pypy home in the uWSGI binary, so you will not need to set pypy-home in your options)
+
+
+Or you can compile manually:
 
 .. code-block:: sh
 
@@ -66,7 +76,7 @@ The PyPy home
 
 The uWSGI Python plugin (more exactly the CPython plugin) works by linking in ``libpython``. That means you need to rebuild the plugin for every different version of Python. The PyPy plugin is different, as libpypy-c is loaded on startup and its symbols are resolved at runtime. This allows you to migrate to a different PyPy version on the fly.
 
-The "downside" of this approach is that you need to inform uWSGI where your PyPy installation is at runtime.
+The "downside" of this approach is that you need to inform uWSGI where your PyPy installation is at runtime (unless you installed uwsgi via pip or with the setup.py script, in such a case the home will be found automatically)
 
 Supposing your PyPy is in ``/opt/pypy`` you can start uWSGI with:
 
