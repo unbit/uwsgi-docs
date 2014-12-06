@@ -79,6 +79,44 @@ Or you can simply copy uwsgi.dll into the ``/bin`` directory of your site direct
 
 The ``mono-index`` option is used to set the file to search when a directory is requested. You can specify it multiple times.
 
+Under the hood: the mono key
+****************************
+
+The previous example should have worked flawlessly, but internally lot of assumptions have been made.
+
+The whole mono plugin relies on the "key" concept. A key is a unique identifier for a .net application. In the example case the key for the application
+is "/usr/share/asp.net-demos". This is a case where the key maps 1:1 with the virtualhost map. To map a virtualhost path to a specific key you can use the form
+
+.. code-block:: ini
+
+   [uwsgi]
+   http = :9090
+   http-modifier1 = 15
+   mono-app = /foobar=/usr/share/asp.net-demos
+
+now the /foobar key maps to the /usr/share/asp.net-demos .net app.
+
+By default the requested key is mapped to the DOCUMENT_ROOT variable. So in this new case /foobar should be the DOCUMENT_ROOT value.
+
+But the uWSGI http router has no concept of DOCUMENT_ROOT so how the previous example could work ? This is because the first loaded app is generally the default one, so the mono plugin, being not able to
+find an app returned the default one.
+
+Using DOCUMENT_ROOT as the key could be quite limiting. So the --mono-key option is available. Let's build a massive virtualhosting stack using uWSGI internal routing
+
+.. code-block:: ini
+
+   [uwsgi]
+   http = :9090
+   http-modifier1 = 15
+   mono-key = MONO_APP
+   route-run = addvar:MONO_APP=/var/www/asp/${HTTP_HOST}
+   
+MONO_APP is not the variable the mono plugin will search for applications (instead of DOCUMENT_ROOT).
+
+Thanks to internal routing we set it (dynamically) to the path of host-specific application root, so a request to example.com
+will map to /var/www/asp/example.com
+
+
 Concurrency and fork() unfriendliness
 **************************************
 
