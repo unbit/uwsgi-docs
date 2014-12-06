@@ -205,3 +205,78 @@ If you want all of the app to be loaded in the same python vm, use the --single-
 Another note: you may find reference to an obscure "modifier1 30" trick. It is deprecated and extremely ugly. uWSGI is able to rewrite request variables in lot of advanced ways
 
 Final note: by default, the first loaded app is mounted as the "default one". That app will be served when no mountpoint matches.
+
+
+rbenv on OSX (should work on other platforms too)
+-------------------------------------------------
+
+install rbenv
+
+.. code-block:: sh
+
+   brew update
+   brew install rbenv ruby-build
+   
+(do not set the magic line in .bash_profile as described in the classic howto, as we want to not clobber the environment, and allow uWSGI to get rid of it)
+
+get a uWSGI tarball and build the 'nolang' version (it is a monolithic one without language plugins compiled in)
+
+.. code-block:: sh
+
+   wget http://projects.unbit.it/downloads/uwsgi-latest.tar.gz
+   tar zxvf uwsgi-latest.tar.gz
+   cd uwsgi-xxx
+   make nolang
+   
+now start installing the ruby versions you need
+
+.. code-block:: sh
+
+   rbenv install 1.9.3-p551
+   rbenv install 2.1.5
+   
+and install the gems you need (sinatra in this case):
+
+.. code-block:: sh
+   # set the current ruby env
+   rbenv local 1.9.3-p551
+   # get the path of the gem binary
+   rbenv which gem
+   # /Users/roberta/.rbenv/versions/1.9.3-p551/bin/gem
+   /Users/roberta/.rbenv/versions/1.9.3-p551/bin/gem install sinatra
+   # from the uwsgi sources directory, build the rack plugin for 1.9.3-p551, naming it rack_193_plugin.so
+   # the trick here is changing PATH to find the right ruby binary during the build procedure
+   PATH=/Users/roberta/.rbenv/versions/1.9.3-p551/bin:$PATH ./uwsgi --build-plugin "plugins/rack rack_193"
+   # set ruby 2.1.5
+   rbenv local 2.1.5
+   rbenv which gem
+   # /Users/roberta/.rbenv/versions/2.1.5/bin/gem
+   /Users/roberta/.rbenv/versions/2.1.5/bin/gem install sinatra
+   PATH=/Users/roberta/.rbenv/versions/2.1.5/bin:$PATH ./uwsgi --build-plugin "plugins/rack rack_215"
+   
+now to switch from one ruby to another, just change the plugin:
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugin = rack_193
+   rack = config.ru
+   http-socket = :9090
+   
+or 
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugin = rack_215
+   rack = config.ru
+   http-socket = :9090
+
+ensure plugins are stored in the current working directory, or set the plugins-dir directive or specify them with absolute path like
+
+.. code-block:: ini
+
+   [uwsgi]
+   plugin = /foobar/rack_215_plugin.so
+   rack = config.ru
+   http-socket = :9090
