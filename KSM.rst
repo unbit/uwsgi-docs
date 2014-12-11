@@ -39,7 +39,7 @@ Enabling KSM support in uWSGI
 
 If you have compiled uWSGI on a kernel with KSM support, you will be able to
 use the ``ksm`` option. This option will instruct uWSGI to register process
-memory mappings (via ``madvice`` syscall) after each request or master cycle.
+memory mappings (via ``madvise`` syscall) after each request or master cycle.
 If no page mapping has changed from the last scan, no expensive syscalls are
 used.
 
