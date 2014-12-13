@@ -1,10 +1,12 @@
 Auto-scaling with Broodlord mode
 ================================
 
-Broodlord (taken from Starcraft, like :doc:`Zerg` mode) is a way for vassals to
-ask for more workers from the Emperor.  Broodlord mode alone is not very
-useful. However, when combined with :doc:`Zerg`, :doc:`Idle` and :doc:`Emperor`
+Broodlord (taken from Starcraft, like :doc:`Zerg` mode) is a way for a vassal to
+ask for "reinforcements" to the Emperor. "Reinforcements" are new vassals spawned on demand generally
+bound on the same socket. Broodlord mode alone is not very useful. However, when combined with :doc:`Zerg`, :doc:`Idle` and :doc:`Emperor`
 it can be used to implement auto-scaling for your apps.
+
+WARNING: If you are looking for a way to dynamically adapt the number of workers of an instance, check the :doc:`Cheaper` mode, Broodlord mode is for spawning totally new instances.
 
 A 'simple' example
 ------------------
