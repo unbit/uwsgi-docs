@@ -66,7 +66,7 @@ Notes:
 - Hard value must be higher then soft value, both values shouldn't be too close to each other.
 - Hard value should be soft + at least average worker memory usage for given app.
 - Soft value is the limiter for cheaper, it won't spawn more workers, but already running workers
-  memory usage might grow, to handle that reload-on-rss can be set to. To set unbreakable barrier
+  memory usage might grow, to handle that reload-on-rss can be set too. To set unbreakable barrier
   for app memory usage cgroups are recommended.
 
 
