@@ -161,7 +161,7 @@ in your stack.
 Seeing it from the "graceful reloading" point of view, preforking extremely
 speeds up things: your app is loaded only one time, and spawning additional
 workers will be really fast. Avoiding disk access for each worker of your
-stack will increase startup times, expecially for frameworks or languages
+stack will decrease startup times, expecially for frameworks or languages
 doing a lot of disk access to find modules.
 
 Unfortunately, the preforking approach forces you to reload the whole stack
