@@ -28,7 +28,7 @@ Create a systemd service file (you can save it as /etc/systemd/system/emperor.uw
    KillSignal=SIGQUIT
    Type=notify
    StandardError=syslog
-   NotifyAccess=main
+   NotifyAccess=all
 
    [Install]
    WantedBy=multi-user.target
