@@ -50,6 +50,7 @@ instructing it to route traffic to the Emperor tuntap unix socket:
 
    [uwsgi]
    ; we need it as the vassal have no way to know it is jailed
+   ; without it post_jail plugin hook would be never executed
    jailed = true
    ; create uwsgi0 tun interface and force it to connect to the Emperor exposed unix socket
    tuntap-device = uwsgi0 /tmp/tuntap.socket
