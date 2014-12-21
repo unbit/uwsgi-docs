@@ -49,6 +49,8 @@ instructing it to route traffic to the Emperor tuntap unix socket:
 .. code-block:: ini
 
    [uwsgi]
+   ; we need it as the vassal have no way to know it is jailed
+   jailed = true
    ; create uwsgi0 tun interface and force it to connect to the Emperor exposed unix socket
    tuntap-device = uwsgi0 /tmp/tuntap.socket
    ; bring up loopback
