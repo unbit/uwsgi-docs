@@ -94,7 +94,7 @@ Starting from Apache 2.4.9, support for Unix sockets has been added. The syntax 
 
 .. parsed-literal::
 
-   ProxyPass / unix:/tmp/uwsgi.sock|uwsgi:
+   ProxyPass / unix:/tmp/uwsgi.sock|uwsgi://
 
 mod_Ruwsgi
 ----------
