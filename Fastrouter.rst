@@ -220,6 +220,38 @@ This means that when there are no nodes subscribed, only your local app will
 respond.  When all of the nodes go down, the fastrouter will return in cheap
 mode. Seeing a pattern? Another step to awesome autoscaling.
 
+
+Post-buffering mode (uWSGI >= 2.0.9)
+------------------------------------
+
+The fastrouter is (by default) a streaming proxy. This means that as soon as the uwsgi packet (read: the request headers) is parsed, it is forwarded to the backend/backends.
+
+Now, if your web-proxy is a streaming-one too (like apache, or the uWSGI http router), your app could be blocked for ages in case of a request with a body. To be more clear:
+
+* the client starts the request sending http headers
+* the web proxy receives it and send to the fastrouter
+* the fastrouter receives it and send to the backend
+* the client starts sending chunks of the request body (like a file upload)
+* the web proxy receives them and forward to the fastrouter
+* the fastrouter receives them and forward to the backend and so on
+
+now, immagine 10 concurrent clients doing this thing and you will end with 10 application server workers (or threads) busy for un undefined amount of time. (note: this problem is amplified by the fact that generally the number of threads/process is very limited, even in async modes you have a limited of concurrent requests but it is generally so high that the problem is not so relevant)
+
+Web-proxies like nginx are "buffered", so they wait til the whole request (and its body) has been read, and then it sends it to the backends.
+
+You can instruct the fastrouter to behave like nginx with the ``--fastrouter-post-buffering <n>`` option, where <n> is the size of the request body after which the body will be stored to disk (as a temporary file) instead of memory:
+
+.. code-block:: ini
+
+   [uwsgi]
+   fastrouter = 127.0.0.1:3031
+   fastrouter-to = /var/run/app.socket
+   fastrouter-post-buffering = 8192
+   
+while put the fastrouter in buffered mode, storing on a temp file every body bigger than 8192 bytes, and on memory everything lower (or equal)
+
+Remember that post-buffering, is not a good-for-all solution (otherwise it would be the default), enabling it breaks websockets, chunked input, upload progress, iceast streaming and so on. Enable it only when needed.
+
 Notes
 -----
 
