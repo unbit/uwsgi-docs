@@ -248,7 +248,7 @@ You can instruct the fastrouter to behave like nginx with the ``--fastrouter-pos
    fastrouter-to = /var/run/app.socket
    fastrouter-post-buffering = 8192
    
-while put the fastrouter in buffered mode, storing on a temp file every body bigger than 8192 bytes, and on memory everything lower (or equal)
+will put the fastrouter in buffered mode, storing on a temp file every body bigger than 8192 bytes, and on memory everything lower (or equal)
 
 Remember that post-buffering, is not a good-for-all solution (otherwise it would be the default), enabling it breaks websockets, chunked input, upload progress, iceast streaming and so on. Enable it only when needed.
 
