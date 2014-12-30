@@ -69,3 +69,4 @@ uWSGI 2.0.9 has been released on 20141230.
 
 You can download it from:
 
+http://projects.unbit.it/downloads/uwsgi-2.0.9.tar.gz
