@@ -57,7 +57,7 @@ active-workers signal target
 
 This is like the 'workers' target, but forward the signal only to non-cheaper workers
 
-httpdump routing action
+httpdumb routing action
 ***********************
 
 The http internal router exposes a new mode called 'httpdumb' that does not change  headers before forwarding the request
