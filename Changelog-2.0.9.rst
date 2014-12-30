@@ -6,7 +6,7 @@ uWSGI 2.0.9
 Bugfixes
 --------
 
-* fixed mod_proxy_uwsgi for non-blocking mode
+* fixed mod_proxy_uwsgi for non-blocking mode (many thanks to Joe cuchac)
 * fixed master-fifo + cheaper
 * fixed leak on error in bind_to_unix (Riccardo Magliocchetti)
 * atexit hooks works in cheaped workers too
