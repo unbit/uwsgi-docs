@@ -1216,6 +1216,8 @@ buffer-size
 
 
 
+Set the max size of a request (request-body excluded), this generally maps to the size of request headers. By default it is 4k. If you receive a bigger request (for example with big cookies or query string) you may need to increase it. It is a security measure too, so adapt to your app needs instead of maxing it out.
+
 memory-report
 *************
 ``argument``: no_argument
@@ -2044,9 +2046,9 @@ die-on-term
 ***********
 ``argument``: no_argument
 
-``parser``: uwsgi_opt_true
+``parser``: uwsgi_opt_deprecated
 
-``help``: exit instead of brutal reload on SIGTERM
+``help``: exit instead of brutal reload on SIGTERM (no more needed)
 
 
 
@@ -2786,6 +2788,26 @@ pidfile2
 
 
 
+safe-pidfile
+************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_str
+
+``help``: create safe pidfile (before privileges drop)
+
+
+
+safe-pidfile2
+*************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_str
+
+``help``: create safe pidfile (after privileges drop)
+
+
+
 chroot
 ******
 ``argument``: required_argument
@@ -3219,6 +3241,16 @@ hook-post-app
 ``parser``: uwsgi_opt_add_string_list
 
 ``help``: run the specified hook after app loading
+
+
+
+hook-post-fork
+**************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_add_string_list
+
+``help``: run the specified hook after each fork
 
 
 
@@ -5380,6 +5412,18 @@ start-unsubscribed
 
 
 
+subscribe-with-modifier1
+************************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_str
+
+``flags``: UWSGI_OPT_MASTER
+
+``help``: force the specififed modifier1 when subscribing
+
+
+
 snmp
 ****
 ``argument``: optional_argument
@@ -7364,6 +7408,16 @@ response-header-collect
 
 
 
+pull-header
+***********
+``argument``: required_argument
+
+``parser``: uwsgi_opt_add_string_list
+
+``help``: store the specified response header in a request var and remove it from the response (syntax: header var)
+
+
+
 check-static
 ************
 ``argument``: required_argument
@@ -9244,7 +9298,7 @@ fastrouter-post-buffering-dir
 
 ``parser``: uwsgi_opt_set_str
 
-``help``: put fastrouter buffered files to the specified directory
+``help``: put fastrouter buffered files to the specified directory (noop, use TMPDIR env)
 
 
 
@@ -10055,6 +10109,16 @@ http-websockets
 ``parser``: uwsgi_opt_true
 
 ``help``: automatically detect websockets connections and put the session in raw mode
+
+
+
+http-chunked-input
+******************
+``argument``: no_argument
+
+``parser``: uwsgi_opt_true
+
+``help``: automatically detect chunked input requests and put the session in raw mode
 
 
 
