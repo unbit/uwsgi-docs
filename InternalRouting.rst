@@ -686,7 +686,6 @@ from the routing subsystem and forward their output to the client.
 
 Plugin: ``rpc``
 
-
 ``rpcret``
 ^^^^^^^^^
 
@@ -709,6 +708,14 @@ client and continues to the next rule.
 ^^^^^^^^^
 
 Plugin: ``rpc``
+
+
+``rpcvar``
+^^^^^^^^^
+
+Plugin: ``rpc``
+
+calls the specified rpc function and assigns its return value to the specified CGI environ variable
 
 
 ``access``
@@ -745,6 +752,12 @@ gridfs
 
 ``chdir``
 ^^^^^^^^^
+
+
+``seturi``
+^^^^^^^^^
+
+updates `REQUEST_URI`
 
 
 ``setapp``
