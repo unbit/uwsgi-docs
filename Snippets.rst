@@ -281,3 +281,78 @@ ensure plugins are stored in the current working directory, or set the plugins-d
    plugin = /foobar/rack_215_plugin.so
    rack = config.ru
    http-socket = :9090
+
+
+Authenticated WebSocket Proxy
+-----------------------------
+
+App server identifies websocket traffic, authenticates/authorizes the user using whatever CGI variables against the
+app's own policies/infrastructure, then offloads/proxies the request to a simple kafka-websocket backend.
+
+First create ``auth_kafka.py``:
+
+.. code-block:: python
+
+   from pprint import pprint
+   
+   def application(environ, start_response):
+       start_response('200 OK', [('Content-Type', 'text/plain')])
+       return ['It Works!']
+   
+   def auth_kafka(request_uri, http_cookie, http_authorization):
+       pprint(locals())
+       return 'true'
+   
+   import uwsgi
+   uwsgi.register_rpc('auth_kafka', auth_kafka)
+   
+Then create ``auth_kafka.ini``:
+
+.. code-block:: ini
+
+   [uwsgi]
+   
+   ; setup
+   http-socket = 127.0.0.1:8000
+   master = true
+   module = auth_kafka
+   
+   ; critical! else worker timeouts apply to proxied websocket connections
+   offload-threads = 2
+   
+   ; match websocket protocol
+   kafka-ws-upgrade-regex = ^[Ww]eb[Ss]ocket$
+   
+   ; DRY place for websocket check
+   is-kafka-ws-request =  regexp:${HTTP_UPGRADE};%(kafka-ws-upgrade-regex)
+   
+   ; location of the kafka-ws server
+   kafka-ws-host = 127.0.0.1:7080
+   
+   ; base endpoint uri for websocket server
+   kafka-ws-endpoint-uri = /v2/broker/
+   
+   ; call auth_kafka(...); if AUTH_KAFKA gets set, request is good!
+   route-if = %(is-kafka-ws-request) rpcvar:AUTH_KAFKA auth_kafka ${REQUEST_URI} ${HTTP_COOKIE} ${HTTP_AUTHORIZATION}
+   
+   ; update request uri to websocket endpoint (rewrite only changes PATH_INFO?)
+   route-if-not = empty:${AUTH_KAFKA} seturi:%(kafka-ws-endpoint-uri)?${QUERY_STRING}
+   
+   ; route the request to our websocket server
+   route-if-not = empty:${AUTH_KAFKA} httpdumb:%(kafka-ws-host)
+   
+Start a "kafka-websocket" server:
+
+.. code-block:: bash
+
+   nc -l -k -p 7080
+   
+Now go to ``http://127.0.0.1:8000`` in a web browser! You should see ``Hello!``. Open chrome inspector or firebug and type:
+
+.. code-block:: javascript
+
+   ws = new WebSocket('ws://127.0.0.1:8000/?subscribe=true')
+   
+You should see this request proxied to your ``nc`` command! This pattern allows the internal network to host a more-or-less
+wide-open/generic kafka -> websocket gateway and delegates auth needs to the app server. Using ``offload-threads`` means
+proxied requests do *NOT* block workers; using ``httpdumb`` prevents mangling the request (``http`` action forces ``HTTP/1.0``)
