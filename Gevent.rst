@@ -107,6 +107,10 @@ uWSGI uses native gevent api, so it does not need monkey patching. That said,
 your code may need it, so remember to call ``gevent.monkey.patch_all()`` at the
 start of your app. As of uWSGI 1.9, the convenience option
 ``--gevent-monkey-patch`` will do that for you.
+Please note that uWSGI does monkey patching before your application **starts**,
+not before your application **loads**. So if you are loading other modules
+while loading your application you may still need to call
+``gevent.monkey.patch_all()`` yourself.
 
 A common example is using ``psycopg2_gevent`` with django. Django will make a
 connection to postgres for each thread (storing it in thread locals).
