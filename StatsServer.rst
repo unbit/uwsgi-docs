@@ -3,7 +3,7 @@ The uWSGI Stats Server
 
 In addition to :doc:`SNMP<SNMP>`, uWSGI also supports a Stats Server mechanism which exports the uWSGI state as a JSON object to a socket.
 
-Simply use the ``stats`` option followed by a valid socket address.
+Simply use the ``stats`` option followed by a valid socket address. If you want the stats served over HTTP you will need to also add the ``stats-http`` option.
 
 .. code-block:: sh
 
@@ -17,6 +17,8 @@ If a client connects to the specified socket it will get a JSON object containin
 .. code-block:: sh
 
     uwsgi --socket :3031 --stats :1717 --module welcome --master --processes 8
+
+
 
 then
 
