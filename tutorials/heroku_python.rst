@@ -57,7 +57,7 @@ The first is required to bind the uWSGI socket to the port requested by the Hero
 
 The second one (--die-on-term) is required to change the default behaviour of uWSGI when it receive a SIGTERM (brutal realod, while Heroku expect a shutdown)
 
-The memory-report option (as we are in a memory contrained environment) is a good thing.
+The memory-report option (as we are in a memory constrained environment) is a good thing.
 
 Remember to track the file
 
