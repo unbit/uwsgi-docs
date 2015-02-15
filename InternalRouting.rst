@@ -203,6 +203,8 @@ routing variables are also available.
 * ``math`` -- requires matheval support. Example: math[CONTENT_LENGTH+1]
 * ``base64`` -- encode the specified var in base64
 * ``hex`` -- encode the specified var in hex
+* ``upper`` -- uppercase the specified var
+* ``lower`` -- lowercase the specified var
 * ``uwsgi`` -- return internal uWSGI information, uwsgi[wid], uwsgi[pid], uwsgi[uuid] and uwsgi[status] are currently supported
 
 Is --route-if not enough? Why --route-uri and friends?
