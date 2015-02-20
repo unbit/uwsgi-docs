@@ -199,7 +199,7 @@ We want to cache all of our requests. Some of them returns images and css, while
 Multiple caches
 ***************
 
-You may want/need to store items in different caches. We can chnage the previous recipe to use three different caches
+You may want/need to store items in different caches. We can change the previous recipe to use three different caches
 for images, css and html responses.
 
 .. code-block:: ini
