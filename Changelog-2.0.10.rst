@@ -21,8 +21,15 @@ New Features
 safeexec hook
 **************
 
-backported --emperor-wrapper-fallback and --emperor-wraper-override
-*******************************************************************
+this is like 'exec' but do not exit on error even if the executed command returns a non-zero value
+
+backported --emperor-wrapper-fallback and --emperor-wrapper-override
+********************************************************************
+
+the --emperor-wrapper-fallback option allows you to specify an alternative binary to execute
+when running a vassal and the default binary_path is not found (or returns an error). (you can specify it multiple times)
+
+The --emperor-wrapper-override is similar but 'overrides' the default wrapper (you can specify it multiple times)
 
 added support for UNIX sockets to rsyslog
 *****************************************
