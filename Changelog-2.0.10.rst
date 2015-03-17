@@ -34,6 +34,13 @@ The --emperor-wrapper-override is similar but 'overrides' the default wrapper (y
 added support for UNIX sockets to rsyslog
 *****************************************
 
+The rsyslog logger can now get a unix socket as address (arguments starting with a slash are recognized as a unix path)
+
+forcecl transformation
+**********************
+
+this transformation works like 'fixcl' but generates the Content-Length header even if Content-Length has been listed for removal.
+
 
 Availability
 ------------
