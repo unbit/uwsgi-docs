@@ -272,6 +272,7 @@ Stable releases
 .. toctree::
    :maxdepth: 1
 
+   Changelog-2.0.10
    Changelog-2.0.9
    Changelog-2.0.8
    Changelog-2.0.7
