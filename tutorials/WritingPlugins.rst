@@ -9,7 +9,7 @@ procedure (described at the end of the tutorial)
 What is an uWSGI plugin?
 ************************
 
-uWSGI plugins are a standard shared libraries (with the classic .so extension) exposing a specific C structure named "uwsgi_plugin".
+uWSGI plugins are standard shared libraries (with the classic .so extension) exposing a specific C structure named "uwsgi_plugin".
 
 This structure exposes a bunch of handy information (like the name of the plugin) and "hooks".
 
