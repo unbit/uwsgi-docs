@@ -11482,7 +11482,7 @@ test
 
 ``parser``: uwsgi_opt_set_str
 
-``help``: test a mdule import
+``help``: test a module import
 
 
 
