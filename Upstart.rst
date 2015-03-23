@@ -16,6 +16,8 @@ A simple script (/etc/init/uwsgi.conf)
     start on runlevel [2345]
     stop on runlevel [06]
     
+    respawn
+    
     exec uwsgi --master --processes 4 --die-on-term --socket :3031 --wsgi-file /var/www/myapp.wsgi
     
 Using the Emperor
@@ -33,6 +35,8 @@ A better approach than init files for each app would be to only start an Emperor
     start on runlevel [2345]
     stop on runlevel [06]
     
+    respawn
+    
     exec uwsgi --emperor /etc/uwsgi
 
 If you want to run the Emperor under the master process (for accessing advanced features) remember to add --die-on-term
@@ -45,6 +49,8 @@ If you want to run the Emperor under the master process (for accessing advanced 
     description "uWSGI Emperor"
     start on runlevel [2345]
     stop on runlevel [06]
+    
+    respawn
     
     exec uwsgi --master --die-on-term --emperor /etc/uwsgi
     
@@ -75,6 +81,8 @@ You do not need to specify the socket in uWSGI as it will be passed to it by Ups
     description "uwsgi tiny instance"
     start on socket PROTO=inet PORT=3031
     stop on runlevel [06]
+    
+    respawn
     
     exec uwsgi --master --processes 4 --die-on-term --wsgi-file /var/www/myapp.wsgi
 
