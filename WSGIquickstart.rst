@@ -64,26 +64,18 @@ no sense for you, just continue reading).
 The first WSGI application
 **************************
 
-Let's start with a simple "Hello World" example (this is for Python 2.x, Python 3.x requires the returned string to be bytes, see lower):
-
-.. code-block:: python
-
-   def application(env, start_response):
-       start_response('200 OK', [('Content-Type','text/html')])
-       return ["Hello World"]
-
-(save it as ``foobar.py``).
-
-As you can see, it is composed of a single Python function. It is called "application" as this is default function
-that the uWSGI Python loader will search for (but you can obviously customize it).
-
-The Python 3.x version is the following:
+Let's start with a simple "Hello World" example:
 
 .. code-block:: python
 
    def application(env, start_response):
        start_response('200 OK', [('Content-Type','text/html')])
        return [b"Hello World"]
+
+(save it as ``foobar.py``).
+
+As you can see, it is composed of a single Python function. It is called "application" as this is default function
+that the uWSGI Python loader will search for (but you can obviously customize it).
 
 Deploy it on HTTP port 9090
 ***************************
