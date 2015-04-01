@@ -125,7 +125,36 @@ You can use the internal routing subsystem too to rewrite request vars. Expecial
 Note: ancient uWSGI versions used to support the so called "uwsgi_modifier1 30" approach. Do not do it. it is a really ugly hack
 
 
+SCRIPT_NAME is a handy convention, but you are allowed to use any "mapping way", as an example the UWSGI_APPID variable can be used to set a key
+in the mountpoints table.
 
+
+.. code-block:: ini
+
+   [uwsgi]
+   socket = 127.0.0.1:3031
+   ; mount apps
+   mount = the_app1=app1.py
+   mount = the_app2=app2.py
+
+
+.. code-block::
+
+   location /app1 {
+    root html;
+    uwsgi_pass uwsgicluster;
+    uwsgi_param UWSGI_APPID the_app1;
+    include uwsgi_params;
+   }
+   
+   location /app2 {
+    root html;
+    uwsgi_pass uwsgicluster;
+    uwsgi_param UWSGI_APPID the_app2;
+    include uwsgi_params;
+   }
+  
+  
 
 
 Static files
