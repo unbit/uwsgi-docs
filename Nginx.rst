@@ -3,24 +3,11 @@ Nginx support
 
 Nginx natively includes support for upstream servers speaking the :doc:`uwsgi protocol<Protocol>` since version 0.8.40.
 
-If you are unfortunate enough to use an older version (that nevertheless is 0.7.63 or newer), you can find a module in the `nginx` directory of the uWSGI distribution.
-
-Building the module (Nginx 0.8.39 and older)
---------------------------------------------
-
-Download a >=0.7.63 release of nginx and untar it at the same level of your uWSGI distribution directory.
-Move yourself into the nginx-0.7.x directory and ``./configure`` nginx to add the uwsgi handler to its module list::
-
-    ./configure --add-module=../uwsgi/nginx/
-
-then ``make`` and ``make install`` it.
-
-If all goes well you can now configure Nginx to pass requests to the uWSGI server.
 
 Configuring Nginx
 -----------------
 
-First of all copy the ``uwsgi_params`` file (available in the `nginx` directory of the uWSGI distribution) into your Nginx configuration directory, then in a `location` directive in your Nginx configuration add::
+Generally you only need to include the uwsgi_params file (included in nginx distribution), and set the address of the uWSGI socket with uwsgi_pass directive
 
     uwsgi_pass unix:///tmp/uwsgi.sock;
     include uwsgi_params;
@@ -109,15 +96,35 @@ You can even configure multiple apps per-location::
     uwsgi_pass uwsgicluster;
     include uwsgi_params;
     uwsgi_param UWSGI_SCRIPT django_wsgi;
-    uwsgi_param SCRIPT_NAME /django;
-    uwsgi_modifier1 30;
   }  
         
 
-The WSGI standard dictates that ``SCRIPT_NAME`` is the variable used to select a specific application.
+Hosting multiple apps in the same process (aka managing SCRIPT_NAME and PATH_INFO)
+----------------------------------------------------------------------------------
 
-The ``uwsgi_modifier1 30`` option sets the uWSGI modifier ``UWSGI_MODIFIER_MANAGE_PATH_INFO``.
-This per-request modifier instructs the uWSGI server to rewrite the PATH_INFO value removing the SCRIPT_NAME from it.
+The WSGI standard dictates that ``SCRIPT_NAME`` is the variable used to select a specific application. Unfortunately
+nginx is not able to rewrite PATH_INFO accordingly to SCRIPT_NAME. For such reason you need to instruct uWSGI to map specific apps
+in the so called "mountpoint" and rewrite SCRIPT_NAME and PATH_INFO automatically:
+
+.. code-block:: ini
+
+   [uwsgi]
+   socket = 127.0.0.1:3031
+   ; mount apps
+   mount = /app1=app1.py
+   mount = /app2=app2.py
+   ; rewrite SCRIPT_NAME and PATH_INFO accordingly
+   manage-script-name = true
+   
+   
+   
+Take in account the app itself (eventually using a WSGI/Rack/PSGI middleware) can rewrite SCRIPT_NAME and PATH_INFO.
+
+You can use the internal routing subsystem too to rewrite request vars. Expecially for dynamic apps it could be a good approach.
+
+Note: ancient uWSGI versions used to support the so called "uwsgi_modifier1 30" approach. Do not do it. it is a really ugly hack
+
+
 
 
 
