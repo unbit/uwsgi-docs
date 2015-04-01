@@ -155,7 +155,27 @@ in the mountpoints table.
    }
   
   
+Remember you can use nginx variables as vars value, so you could implement some form of app routing using the Host header:
 
+.. code-block::
+
+   location / {
+    root html;
+    uwsgi_pass uwsgicluster;
+    uwsgi_param UWSGI_APPID $http_host;
+    include uwsgi_params;
+   }
+   
+   
+now just mount your apps in uWSGI using the domain name as the mount key
+
+.. code-block:: ini
+
+   [uwsgi]
+   socket = 127.0.0.1:3031
+   ; mount apps
+   mount = example.com=app1.py
+   mount = foobar.it=app2.py
 
 Static files
 ------------
