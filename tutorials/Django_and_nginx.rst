@@ -8,7 +8,7 @@ server. It takes you through the steps required to set up Django so that it
 works nicely with uWSGI and nginx. It covers all three components, providing a
 complete stack of web application and server software.
 
-Django_ Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
+Django_ is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
 
 .. _Django: http://djangoproject.com/
 
