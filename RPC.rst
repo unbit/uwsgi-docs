@@ -49,6 +49,26 @@ On the caller's side, on ``10.0.0.1``, let's declare the world's (second) simple
 
 That's it!
 
+You need Perl?
+^^^^^^^^^^^^^^
+
+.. code-block:: perl
+    #!/usr/bin/perl
+
+    sub hello_world {
+        return("hello world -- the time is: ".time());
+        }
+
+    uwsgi::register_rpc("hello",\&hello_world);
+
+Or perhaps you want to call an RPC function from a standalone perl script?
+
+.. code-block:: perl
+    #!/usr/bin/perl
+    use Net::uwsgi;
+    print Dumper(Net::uwsgi::uwsgi_rpc('127.0.0.1:3031','hello'));
+
+
 What about, let's say, Lua?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -104,6 +124,7 @@ The RPC plugin exports a bunch of internal routing actions:
    route = ^/multi rpcnext:part1@192.168.173.100:3031
    route = ^/multi rpcnext:part2@192.168.173.100:3031
    route = ^/multi rpcnext:part3@192.168.173.100:3031
+
 
 Doing RPC from nginx
 --------------------
