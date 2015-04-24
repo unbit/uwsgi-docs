@@ -2556,7 +2556,7 @@ spooler-frequency
 
 ``parser``: uwsgi_opt_set_int
 
-``help``: set spooler frequency
+``help``: set spooler frequency, default 30 seconds
 
 
 
@@ -2566,7 +2566,7 @@ spooler-freq
 
 ``parser``: uwsgi_opt_set_int
 
-``help``: set spooler frequency
+``help``: set spooler frequency, default 30 seconds
 
 
 
