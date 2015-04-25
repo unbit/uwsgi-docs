@@ -145,19 +145,19 @@ For example, if you have a virtualenv in :file:`/opt/pecanenv` containing a Peca
 
   in which case you'll have to set the ``debug`` option in your pecan configuration file to False -- or revert to single process environment.
 
-Using the uwsgi_admin Django app
+Using the django-uwsgi Django app
 --------------------------------
 
-First of all you need to get the ``uwsgi_admin`` app from https://github.com/unbit/uwsgi_django (once it was in the ``django`` directory of the distribution).
+First of all you need to get the ``django_uwsgi`` app from https://github.com/unbit/django-uwsgi (once it was in the ``django`` directory of the distribution).
 
-It plugs into Django's admin app, so if ``uwsgi_admin`` is importable, just add it into your ``INSTALLED_APPS``.
+Install it with ``pip install django-uwsgi`` and add it into your ``INSTALLED_APPS``.
 
 .. code-block:: py
 
     INSTALLED_APPS = (
         # ...
         'django.contrib.admin',
-        'uwsgi_admin',
+        'django_uwsgi',
         # ...
     )
     
@@ -166,10 +166,13 @@ Then modify your ``urls.py`` accordingly. For example:
 .. code-block:: py
 
     # ...
-    url(r'^admin/uwsgi/', include('mysite.uwsgi_admin.urls')),
+    url(r'^admin/uwsgi/', include('django_uwsgi.urls')),
     url(r'^admin/', include(admin.site.urls)),
     # ...
 
-Be sure to place the URL pattern for uwsgi_admin *before* the one for the admin site, or it will never match.
+Be sure to place the URL pattern for django_uwsgi *before* the one for the admin site, or it will never match.
 
 ``/admin/uwsgi/`` will then serve uWSGI statistics and has a button for graceful reloading of the server (when running under a Master). Note that memory usage is reported only when the ``memory-report`` option is enabled.
+
+`Read the documentation for django-uwsgi at rtfd.org <http://django-uwsgi.rtfd.org/>`_
+
