@@ -145,7 +145,7 @@ For example, if you have a virtualenv in :file:`/opt/pecanenv` containing a Peca
 
   in which case you'll have to set the ``debug`` option in your pecan configuration file to False -- or revert to single process environment.
 
-Using the uwsgi_admin Django app
+Using the django-uwsgi Django app
 --------------------------------
 
 First of all you need to get the ``django_uwsgi`` app from https://github.com/unbit/django-uwsgi (once it was in the ``django`` directory of the distribution).
