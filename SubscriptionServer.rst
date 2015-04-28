@@ -52,6 +52,18 @@ That said, you can create an evented/fast_as_hell HTTP load balancer in no time.
 
 Now simply subscribe your nodes to the HTTP subscription server.
 
+You can check the subscription server stats and/or the subscripted nodes through the ``http-stats-server`` option.
+
+.. code-block:: sh
+
+    uwsgi --http :80 --http-subscription-server 192.168.0.100:2626 --http-stats-server 192.168.0.100:5004 --master
+
+You can also forward subscription requests to another server with the option ``http-resubscribe``.
+
+.. code-block:: sh
+
+    uwsgi --http :80 --http-subscription-server 192.168.0.100:2626 --http-resubscribe 192.168.0.101:2627 --master
+
 Securing the Subscription System
 --------------------------------
 
