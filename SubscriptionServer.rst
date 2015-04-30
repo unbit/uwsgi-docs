@@ -52,7 +52,7 @@ That said, you can create an evented/fast_as_hell HTTP load balancer in no time.
 
 Now simply subscribe your nodes to the HTTP subscription server.
 
-You can check the subscription server stats and/or the subscripted nodes through the ``http-stats-server`` option.
+You can check the subscription server stats and/or the subscribed nodes through the ``http-stats-server`` option.
 
 .. code-block:: sh
 
