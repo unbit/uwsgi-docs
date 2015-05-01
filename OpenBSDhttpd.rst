@@ -64,3 +64,25 @@ You can use UNIX domain sockets too, just remember the httpd servers runs chroot
    
        fastcgi socket "/run/uwsgi.socket"
    }
+
+
+If you want to forward only specific paths to uWSGI, you can use a location directive:
+
+.. code-block:: c
+
+   server "default" {
+       listen on 0.0.0.0 port 80
+   
+       location "/foo/*" {
+           fastcgi socket ":3031"
+       }
+       
+       location "/cgi-bin/*" {
+           fastcgi socket ":3032"
+       }
+   }
+   
+Notes
+=====
+
+Currently (may 2015) httpd can connect only to tcp fastcgi sockets bound on address 127.0.0.1 and to unix domain sockets
