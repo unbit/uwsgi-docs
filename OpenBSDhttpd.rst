@@ -13,12 +13,18 @@ The first step to enable it is writing its configuration file ```/etc/httpd.conf
        fastcgi socket ":3031"
    }
 
+then enable and start it with the ```rcctl``` tool:
+
+.. code-block:: sh
+
+   rcctl enable httpd
+   rcctl start httpd
 
 this minimal configuration will spawn a chrooted webserver on port 80, running as user 'www' and forwarding every request
 to the address 127.0.0.1:3031 using the FastCGI protocol.
 
 
-Now you only need to spawn uWSGI on such address:
+Now you only need to spawn uWSGI on the FastCGI address:
 
 .. code-block:: ini
 
