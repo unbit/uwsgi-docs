@@ -5,13 +5,14 @@ Starting from version 5.7 OpenBSD includes a minimal (truly minimal) web server 
 
 The first step to enable it is writing its configuration file ```/etc/httpd.conf```
 
-'''c
-server "default" {
-        listen on 0.0.0.0 port 80
+.. code-block:: c
 
-        fastcgi socket ":3031"
-}
-'''
+   server "default" {
+       listen on 0.0.0.0 port 80
+   
+       fastcgi socket ":3031"
+   }
+
 
 this minimal configuration will spawn a chrooted webserver on port 80, running as user 'www' and forwarding every request
 to the address 127.0.0.1:3031 using the FastCGI protocol.
