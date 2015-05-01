@@ -28,7 +28,7 @@ Now you only need to spawn uWSGI on such address:
    wsgi-file = app.py
 
 
-you can obviously use uWSGI as a full-featured (well effectively it has way more features than every cgi server out there :P) CGI server,
+you can obviously use uWSGI as a full-featured (well, effectively it has way more features than every cgi server out there :P) CGI server,
 just remember to force the modifier1 to the '9' one:
 
 .. code-block:: ini
