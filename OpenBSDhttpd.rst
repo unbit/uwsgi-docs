@@ -3,6 +3,8 @@ Using OpenBSD httpd as proxy
 
 Starting from version 5.7 OpenBSD includes a minimal (truly minimal) web server with FastCGI support
 
+(http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man8/httpd.8?query=httpd&sec=8)
+
 The first step to enable it is writing its configuration file ```/etc/httpd.conf```
 
 .. code-block:: c
