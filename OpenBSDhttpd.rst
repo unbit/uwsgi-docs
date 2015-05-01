@@ -30,7 +30,7 @@ Now you only need to spawn uWSGI on the FastCGI address:
 
    [uwsgi]
    fastcgi-socket = 127.0.0.1:3031
-   ; a simple python app
+   ; a simple python app (eventually remember to load the python plugin)
    wsgi-file = app.py
 
 
@@ -42,7 +42,7 @@ just remember to force the modifier1 to the '9' one:
    [uwsgi]
    fastcgi-socket = 127.0.0.1:3031
    fastcgi-modifier1 = 9
-   ; a simple cgi-bin directory
+   ; a simple cgi-bin directory (eventually remember to load the cgi plugin)
    cgi = /var/www/cgi-bin
 
 now you can place your cgi scripts in /var/www/cgi-bin (remember to give them the executable permission)
