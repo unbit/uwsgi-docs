@@ -215,6 +215,7 @@ Web Server support
    Lighttpd
    Mongrel2
    Nginx
+   OpenBSDhttpd
 
 
 Language support
