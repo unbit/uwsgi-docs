@@ -5,7 +5,7 @@ Starting from version 5.7 OpenBSD includes a minimal (truly minimal) web server 
 
 The first step to enable it is writing its configuration file ```/etc/httpd.conf```
 
-```
+```c
 server "default" {
         listen on 0.0.0.0 port 80
 
