@@ -20,22 +20,41 @@ to the address 127.0.0.1:3031 using the FastCGI protocol.
 
 Now you only need to spawn uWSGI on such address:
 
-```ini
-[uwsgi]
-fastcgi-socket = 127.0.0.1:3031
-; a simple python app
-wsgi-file = app.py
-```
+.. code-block:: ini
+
+   [uwsgi]
+   fastcgi-socket = 127.0.0.1:3031
+   ; a simple python app
+   wsgi-file = app.py
+
 
 you can obviously use uWSGI as a full-featured (well effectively it has way more features than every cgi server out there :P) CGI server,
 just remember to force the modifier1 to the '9' one:
 
-```ini
-[uwsgi]
-fastcgi-socket = 127.0.0.1:3031
-fastcgi-modifier1 = 9
-; a simple cgi-bin directory
-cgi = /var/www/cgi-bin
-```
+.. code-block:: ini
+
+   [uwsgi]
+   fastcgi-socket = 127.0.0.1:3031
+   fastcgi-modifier1 = 9
+   ; a simple cgi-bin directory
+   cgi = /var/www/cgi-bin
 
 now you can place your cgi scripts in /var/www/cgi-bin (remember to give them the executable permission)
+
+You can use UNIX domain sockets too, just remember the httpd servers runs chrooted in /var/www so you have to bind uWSGI sockets in a dir under it:
+
+.. code-block:: ini
+
+   [uwsgi]
+   fastcgi-socket = /var/www/run/uwsgi.socket
+   fastcgi-modifier1 = 9
+   ; a simple cgi-bin directory
+   cgi = /var/www/cgi-bin
+
+.. code-block:: c
+
+   server "default" {
+       listen on 0.0.0.0 port 80
+   
+       fastcgi socket "/run/uwsgi.socket"
+   }
