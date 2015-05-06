@@ -28,9 +28,9 @@ This is the order of chains:
 
 ``response`` it is is applied after the last response header has been generated (just before sending the body)
 
-``final`` it is aplied after the response has been sent to the client
+``final`` it is applied after the response has been sent to the client
 
-The ``request`` chain is (for convention) the 'default' one, so its options are not prefixed, while the others requires a prefix.
+The ``request`` chain is (for convention) the 'default' one, so its options are not prefixed, while the others require a prefix.
 
 Example:
 
@@ -45,8 +45,8 @@ The internal routing table
 
 The internal routing table is a sequence of ''rules'' executed one after
 another (forward jumps are allowed too).  Each rule is composed by a
-''subject'', a ''condition'' and an ''action'' The ''condition'' is generally a
-PCRE regexp applied to the subject, if it matches the action is triggered.
+''subject'', a ''condition'' and an ''action''. The ''condition'' is generally a
+PCRE regexp applied to the subject: if it matches, the action is triggered.
 Subjects are request's variables.  Currently the following subjects are
 supported:
 
@@ -87,10 +87,10 @@ from the subject with a semicolon:
    ; never matches
    route-if = equal:FOO;BAR log:never here
    ; matches
-   route if = regexp:FOO;^F log:starts with F
+   route-if = regexp:FOO;^F log:starts with F
 
 
-Actions are the functions to run if a rule matches. This actions are exported
+Actions are the functions to run if a rule matches. These actions are exported
 by plugins and have a return value.
 
 Action return values
@@ -121,7 +121,7 @@ The first example
    route-uri = ^/foo/(.*)\.jpg$ cache:key=$1.jpg
    route-if = equal:${PATH_INFO};/bad break:500 Internal Server Error
 
-The previous rules, build the following table:
+The previous rules build the following table:
 
 * if the ``HTTP_USER_AGENT`` var contains 'curl' redirect the request to
   http://uwsgi.it (code 302, action returns BREAK)
@@ -160,7 +160,7 @@ You can access a cookie value using the ${cookie[name]} syntax:
    [uwsgi]
    route = ^/foo log:${cookie[foobar]}
 
-this will log the content of the 'foobar' cookie of the current request
+This will log the content of the 'foobar' cookie of the current request
 
 Accessing query string items
 ****************************
@@ -172,7 +172,7 @@ You can access the value of the HTTP query string using the ${qs[name]} syntax:
    [uwsgi]
    route = ^/foo log:${qs[foobar]}
 
-this will log the content of the 'foobar' item of the current request's query string
+This will log the content of the 'foobar' item of the current request's query string
 
 Pluggable routing variables
 ***************************
@@ -190,8 +190,8 @@ routing variables are also available.
      route = ^/images/(.+) addvar:MYFILE=$1.jpg
      route = ^/images/ addheader:Content-Type: ${mime[MYFILE]}
 
-* ``time`` -- returns time/date in various form. The only supported (for now) is time[unix] returning the epoch
-* ``httptime`` -- return http date adding the numeric argument (if specified)to the current time (use empty arg for current server time)
+* ``time`` -- returns time/date in various forms. The only supported (for now) is time[unix] returning the epoch
+* ``httptime`` -- return http date adding the numeric argument (if specified) to the current time (use empty arg for current server time)
 
 .. code-block:: ini
   
@@ -213,7 +213,7 @@ Is --route-if not enough? Why --route-uri and friends?
 This is a good question. You just need to always remember that uWSGI is about
 versatility and *performance*. Gaining cycles is always good. The
 ``--route-if`` option, while versatile, cannot be optimized as all of its parts
-have to be recomputed at every request.  This is obviously very fast, but
+have to be recomputed on every request.  This is obviously very fast, but the
 ``--route-uri`` option (and friends) can be pre-optimized (during startup) to
 directly map to the request memory areas, so if you can use them, you
 definitely should. :)
@@ -256,7 +256,7 @@ labels.
    route-uri = ^/foo/(.*)\.jpg$ cache:key=$1.jpg
    route = .* last:
 
-The example is like the previous one, but we with some differences between
+The example is like the previous one, but with some differences between
 domains. Check the use of "last:", to interrupt the routing table scan. You can
 rewrite the first 2 rules as one:
 
@@ -272,7 +272,7 @@ Collecting response headers
 As we have already seen, each uWSGI request has a set of variables associated. They are generally the CGI vars passed by the webserver, but you can
 extend them with other variables too (check the 'addvar' action).
 
-uWSGI 1.9.16 added a new feature allowing you to store the content of a response header in a request var. This simplify the write of more advanced rules.
+uWSGI 1.9.16 added a new feature allowing you to store the content of a response header in a request var. This makes writing more advanced rules much simpler.
 
 For example you may want to gzip all of the text/html responses:
 
@@ -297,8 +297,8 @@ The available actions
 
 Return value: ``CONTINUE``
 
-Stop the scanning of the internal routing table and continue to the selected
-request handler.
+Stop scanning the internal routing table and continue to the selected request 
+handler.
 
 ``break``
 ^^^^^^^^^
@@ -306,7 +306,7 @@ request handler.
 Return value: ``BREAK``
 
 Stop scanning the internal routing table and close the request. Can optionally
-returns the specified HTTP status code:
+return the specified HTTP status code:
 
 .. code-block:: ini
 
@@ -333,7 +333,7 @@ If you really do want to do wacky stuff, see ``clearheaders``.
 Return value: ``BREAK``
 
 ``return`` uses uWSGI's built-in status code and returns both status code and
-message body. It's similar to ``break`` but as mentioned above ``break``
+message body. It's similar to ``break``, but as mentioned above ``break``
 doesn't have the error message body. ``return:403`` is equivalent to following:
 
 .. code-block:: ini
@@ -374,7 +374,7 @@ Add the specified logvar.
 
 Return value: ``NEXT``
 
-Make a forward jump to the specified label or rule position
+Make a forward jump to the specified label or rule position.
 
 ``addvar``
 ^^^^^^^^^^
@@ -610,7 +610,7 @@ Example: using basicauth for Trac
 ``basicauth-next``
 ^^^^^^^^^^^^^^^^^^
 
-same as ``basicauth`` but returns ``NEXT`` on failed authentication.
+Same as ``basicauth`` but returns ``NEXT`` on failed authentication.
 
 ``ldapauth``
 ^^^^^^^^^^^^
@@ -717,7 +717,7 @@ Plugin: ``rpc``
 
 Plugin: ``rpc``
 
-calls the specified rpc function and assigns its return value to the specified CGI environ variable
+Calls the specified rpc function and assigns its return value to the specified CGI environ variable.
 
 
 ``access``
@@ -759,7 +759,7 @@ gridfs
 ``seturi``
 ^^^^^^^^^
 
-updates `REQUEST_URI`
+Updates `REQUEST_URI`
 
 
 ``setapp``
@@ -927,7 +927,7 @@ Directly transfer the specified filename *without* using acceleration (sendfile,
 ``clearheaders``
 ^^^^^^^^^^^^^^^^
 
-clear the response headers, setting a new HTTP status code, useful for resetting a response
+Clear the response headers, setting a new HTTP status code, useful for resetting a response
 
 .. code-block:: ini
 
@@ -943,4 +943,4 @@ clear the response headers, setting a new HTTP status code, useful for resetting
 ``resetheaders``
 ^^^^^^^^^^^^^^^^
 
-alias for clearheaders
+Alias for clearheaders
