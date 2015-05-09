@@ -104,8 +104,9 @@ You should encode strings or use bytes literals:
 Paste support
 -------------
 
-If you are a user or developer of Paste-compatible frameworks, such as Pylons_ and Turbogears_ or applications using them, you can use the uWSGI ``--paste`` option to conveniently deploy your application.
+If you are a user or developer of Paste-compatible frameworks, such as Pyramid_, Pylons_ and Turbogears_ or applications using them, you can use the uWSGI ``--paste`` option to conveniently deploy your application.
 
+.. _pyramid: http://docs.pylonsproject.org/projects/pyramid/en/latest/
 .. _turbogears: http://turbogears.org
 .. _pylons: http://www.pylonsproject.org 
 
