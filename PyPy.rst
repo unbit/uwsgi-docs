@@ -55,7 +55,7 @@ Or you can use the network installer:
 
 .. code-block:: sh
 
-   curl http://uwsgi.it/install | bash -s pypy /tmp/uwsgi
+   curl https://uwsgi.it/install | bash -s pypy /tmp/uwsgi
    
 This will build a uWSGI + PyPy binary in ``/tmp/uwsgi``.
 
