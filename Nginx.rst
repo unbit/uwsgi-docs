@@ -180,11 +180,11 @@ now just mount your apps in uWSGI using the domain name as the mount key
 Static files
 ------------
 
-For best performance and security, remember to configure Nginx to serve static files instead of letting your poor application handle that instead.
+For best performance and security, remember to configure Nginx to serve static files instead of letting your poor application handle that.
 
 The uWSGI server can serve static files flawlessly but not as quickly and efficiently as a dedicated web server like Nginx.
 
-For example you can the Django ``/media`` path could be mapped like this::
+For example, the Django ``/media`` path could be mapped like this::
 
   location /media {
     alias /var/lib/python-support/python2.6/django/contrib/admin/media;
