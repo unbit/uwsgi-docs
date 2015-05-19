@@ -88,7 +88,8 @@ Now start uWSGI to run an HTTP server/router passing requests to your WSGI appli
 
 That's all.
 
-.. note:: Do not use --http when you have a frontend webserver, use --http-socket. Continue reading the quickstart to understand why.
+.. note:: Do not use --http when you have a frontend webserver or you are doing some form of benchmark, use --http-socket. Continue reading the quickstart to understand why.
+
 
 Adding concurrency and monitoring
 *********************************
