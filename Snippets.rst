@@ -356,3 +356,27 @@ Now go to ``http://127.0.0.1:8000`` in a web browser! You should see ``Hello!``.
 You should see this request proxied to your ``nc`` command! This pattern allows the internal network to host a more-or-less
 wide-open/generic kafka -> websocket gateway and delegates auth needs to the app server. Using ``offload-threads`` means
 proxied requests do *NOT* block workers; using ``httpdumb`` prevents mangling the request (``http`` action forces ``HTTP/1.0``)
+
+
+SELinux and uWSGI
+-----------------
+
+SELinux allows you to isolate web application processes from each other, and limits each program to its purpose only. The applications can be placed into strongly isolated individual sandboxes, separating them from one another and from the underlying operating system. Since SELinux is implemented within the kernel, applications do not need to be specifically written or modified to work under SELinux. There is an `SELinux security policy for web applications  <https://github.com/reinow/sepwebapp>`_ at github well suited for uWSGI. This security policy also supports the uWSGI emperor process running in one domain, and each web application's worker processes running in a separate domain, requiring only minimal privileges for the worker processes even if Linux namespaces are used. Of course, there is no requirement for emperor mode, or Linux namespaces, to use SELinux with uWSGI.
+
+On Linux it is possible to run each vassal with a dedicated view of the filesystems, ipc, uts, networking, pids and uids. Then each vassal can, for example, modify the filesystem layout, networking, and hostname without damaging the main system. With this setup, privileged tasks, like mounting filesystems, setting hostnames, configuring the network, and setting gid and uid of the worker processes can be done before changing the SELinux security context of the vassals' process ensuring that only minimal privileges are required for the worker processes.
+
+First configure, compile and load the SELinux web application security policy. Then, relabel the application files. Further information on how to configure web application policies can be found in the README.md included in the `SELinux security policy for web applications <https://github.com/reinow/sepwebapp>`_. Finally, in each vassall's configuration file, call the setcon function in libselinux to set the web application's SELinux security context:
+
+.. code-block:: ini
+
+	[uwsgi]
+	...
+	hook-as-user = callret:setcon system_u:system_r:webapp_id_t:s0
+
+where id is the identity of the domain. Example, foo is the identity of the webapp_foo_t domain.
+
+It may be required to load libselinux in the uWSGI address space with the --dlopen option:
+
+.. code-block:: ini
+
+	/path/to/uwsgi --dlopen /path/to/libselinux.so
