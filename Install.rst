@@ -78,7 +78,7 @@ profile with:
 
 .. code-block:: sh
 
-   python uwsgiconfig --build <profile>
+   python uwsgiconfig.py --build <profile>
 
 Or you can pass it via an environment variable:
 
