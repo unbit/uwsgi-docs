@@ -6509,6 +6509,16 @@ cheaper-overload
 ``help``: increase workers after specified overload
 
 
+cheaper-idle
+****************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_int
+
+``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_CHEAPER
+
+``help``: decrease workers after specified idle (algo: spare2) (default: 10)
+
 
 cheaper-algo-list
 *****************

@@ -77,6 +77,34 @@ This is the default algorithm.  If all workers are busy for
 ``cheaper_overload`` seconds then uWSGI will spawn new workers. When the load
 is gone it will begin stopping processes one at a time.
 
+
+``spare2`` cheaper algorithm
+----------------------------
+
+This algorithm is similar to spare, but suitable for large scale by increase workers faster and
+decrease workers slower.
+
+When number of idle workers is smaller than number specified by ``cheaper``, it spawns (``cheaper`` -
+number of idle workers) workers.  Maximum workers spawned at once can be limited by ``cheaper-step``.
+For example, ``cheaper`` is 4, there are 2 idle workers and ``cheaper-step`` is 1, it spawns 1 worker.
+
+When number of idle workers is larger than ``cheaper``, it increments internal counter.
+When number of idle workers is smaller than or equal to ``cheaper``, reset the counter.
+When the counter is equal to ``cheaper-idle``, cheap one worker and reset the counter.
+
+Sample configuration:
+
+.. code-block:: ini
+
+   workers = 64          # maximum number of workers
+
+   cheaper-algo = spare2
+   cheaper = 8           # tries to keep 8 idle workers
+   cheaper-initial = 8   # starts with minimal workers
+   cheaper-step = 4      # spawn at most 4 workers at once
+   cheaper-idle = 60     # cheap one worker per minute while idle
+
+
 ``backlog`` cheaper algorithm
 -----------------------------
 
