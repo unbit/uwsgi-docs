@@ -518,8 +518,9 @@ General configuration of nginx is not within the scope of this tutorial though
 you'll probably want it to listen on port 80, not 8000, for a production
 website.
 
-You also ought to consider at having a separate server for non-Django
-serving, of static files for example.
+You should also configure a separate nginx location block for serving non-Django
+files. For example, it's inefficient to serve static files via uWSGI. Instead, 
+serve them directly from Nginx and completely bypass uWSGI.
 
 uWSGI
 ^^^^^
