@@ -235,7 +235,7 @@ Now, if your web-proxy is a streaming-one too (like apache, or the uWSGI http ro
 * the web proxy receives them and forward to the fastrouter
 * the fastrouter receives them and forward to the backend and so on
 
-now, immagine 10 concurrent clients doing this thing and you will end with 10 application server workers (or threads) busy for un undefined amount of time. (note: this problem is amplified by the fact that generally the number of threads/process is very limited, even in async modes you have a limited of concurrent requests but it is generally so high that the problem is not so relevant)
+now, imagine 10 concurrent clients doing this thing and you will end with 10 application server workers (or threads) busy for un undefined amount of time. (note: this problem is amplified by the fact that generally the number of threads/process is very limited, even in async modes you have a limited of concurrent requests but it is generally so high that the problem is not so relevant)
 
 Web-proxies like nginx are "buffered", so they wait til the whole request (and its body) has been read, and then it sends it to the backends.
 
