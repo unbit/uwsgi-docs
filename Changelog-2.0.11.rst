@@ -53,8 +53,19 @@ sor and micros routing vars
 wait-for-socket
 ^^^^^^^^^^^^^^^
 
+This works like wait-for-fs/iface/file/dir
+
+The spawn of the instance is suspended until the specified tcp/unix socket is ready.
+
+You can use it to synchronize vassals spawn (like stopping a vassal until a postgresql server has been spawned)
+
 wait_for hooks
 ^^^^^^^^^^^^^^
 
+
 Availability
 ************
+
+You can download uWSGI 2.0.11 from
+
+http://projects.unbit.it/downloads/uwsgi-2.0.11.tar.gz
