@@ -47,8 +47,16 @@ This action allows you to set SCRIPT_NAME in nginx without bothering to rewrite 
    ; blindly assumes PATH_INFO is clobbered with SCRIPT_NAME
    route-run = fixpathinfo:
 
-sor and micros routing vars
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+uwsgi[sor] and time[micros] routing vars
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This two new vars exposes the start of the current request (in micros) and the current time (again in micros)
+
+.. code-block:: ini
+
+   [uwsgi]
+   route-run = log:request started at ${uwsgi[sor]}
+   route-run = log:current micros time is ${time[micros]}
 
 wait-for-socket
 ^^^^^^^^^^^^^^^
@@ -62,6 +70,13 @@ You can use it to synchronize vassals spawn (like stopping a vassal until a post
 wait_for hooks
 ^^^^^^^^^^^^^^
 
+All of the wait-for-* functions can now be used as a hook:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ; wait for postgres soon after privileges drop
+   hook-as-user = wait_for_socket:127.0.0.1:5432
 
 Availability
 ************
