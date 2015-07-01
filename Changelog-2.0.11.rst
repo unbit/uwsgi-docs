@@ -41,7 +41,7 @@ This routing action assumes the PATH_INFO cgi var has the SCRIPT_NAME part inclu
 
 This action allows you to set SCRIPT_NAME in nginx without bothering to rewrite the PATH_INFO (something nginx cannot afford)
 
-.. code-block: ini
+.. code-block:: ini
 
    [uwsgi]
    ; blindly assumes PATH_INFO is clobbered with SCRIPT_NAME
