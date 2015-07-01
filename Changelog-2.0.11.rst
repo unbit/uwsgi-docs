@@ -28,8 +28,24 @@ New Features
 The mem_collector thread
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
+Evil memory monitors (like --evil-reload-on-rss) are now asynchronously managed by a dedicated thread.
+
+This solves the issue of runaway processes not catched by the master.
+
 fixpathinfo routing action
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This is another step in removing the need of the infamous uwsgi_modifier1 30 relic.
+
+This routing action assumes the PATH_INFO cgi var has the SCRIPT_NAME part included.
+
+This action allows you to set SCRIPT_NAME in nginx without bothering to rewrite the PATH_INFO (something nginx cannot afford)
+
+.. code-block: ini
+
+   [uwsgi]
+   ; blindly assumes PATH_INFO is clobbered with SCRIPT_NAME
+   route-run = fixpathinfo:
 
 sor and micros routing vars
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
