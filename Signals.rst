@@ -59,6 +59,24 @@ These are two simple examples of defining signal table items, in Python and Lua.
     
     # define a single signal table item (signal 1)
     uwsgi.register_signal(1, "worker", hello_signal)
+    
+
+Signals targets
+---------------
+
+The third argument of uwsgi.register_signal is the 'signal targer'.
+
+It instructs the system about 'who' must run the handler. By default the targer is 'worker' that means 'the first available worker'. The followign targets are available:
+
+- workerN (run the signal handler only on worker N)
+- worker/worker0 (the default one, run the signal handler on the first available worker)
+- workers (run the signal handler on all the workers)
+- active-workers (run the signal handlers on all the active [non-cheaped] workers)
+- spooler (run the signal on the first available spooler)
+- mules (run the signal handler on all of the mules)
+- muleN (run the signal handler on mule N)
+- mule/mule0 (run the signal handler on the first available mule)
+- farmN/farm_XXX (run the signal handler in the mule farm N or named XXX)
 
 Raising signals
 ---------------
@@ -75,6 +93,8 @@ At the time of writing the available external events are
 * filesystem modifications
 * timers/rb_timers
 * cron
+
+Other events are exposed via plugins, like https://github.com/unbit/uwsgi-pgnotify raising signal whenever a postgres notification channel is ready.
 
 Filesystem modifications
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -138,13 +158,10 @@ You can combine external events (file monitors, timers...) with this technique t
 
 You can also wait for specific (even registered) signals by passing a signal number to ``signal_wait``.
 
-Todo
-----
+Todo/Known Issues
+-----------------
 
 * Signal table entry cannot be removed (this will be fixed soon)
 * Iterations works only with rb_timers
 * uwsgi.signal_wait() does not work in async mode (will be fixed)
-* Cluster nodes popup/die signals are still not implemented.
-* Bonjour/avahi/MDNS event will be implemented in 0.9.9
-* PostgreSQL notifications will be implemented in 0.9.9
 * Add iterations to file monitoring (to allow one-shot event as timers)
