@@ -41,9 +41,9 @@ The uWSGI server responds to the following signals.
 ==========  ========================================================================  ===================
 Signal      Description                                                               Convenience command
 ==========  ========================================================================  ===================
-`SIGHUP`    gracefully reload all the workers and the master process                  --reload
-`SIGTERM`   brutally reload all the workers and the master process                    (use --die-on-term to respect the convention of shutting down the instance)
-`SIGINT`    immediately kill the entire uWSGI stack                                   --stop
+`SIGHUP`    gracefully reload all the workers and the master process                  ``--reload``
+`SIGTERM`   brutally reload all the workers and the master process                    (use ``--die-on-term`` to respect the convention of shutting down the instance)
+`SIGINT`    immediately kill the entire uWSGI stack                                   ``--stop``
 `SIGQUIT`   immediately kill the entire uWSGI stack
 `SIGUSR1`   print statistics
 `SIGUSR2`   print worker status or wakeup the spooler
