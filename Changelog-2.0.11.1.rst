@@ -15,6 +15,23 @@ New Features
 The unix_signal hook
 ^^^^^^^^^^^^^^^^^^^^
 
+You can now remap UNIX signals to specific functions symbols:
+
+.. code-block:: c
+
+   #include <stdio.h>
+
+   void hello_world(int signum) {
+           printf("Hello World\n");
+   }
+   
+.. code-block:: sh
+
+   gcc -o libhello.so -shared hello.c
+   uwsgi --dlopen ./libhello.so --hook-master-start "unix_signal:1 hello_world" ...
+   
+
+
 Availability
 ************
 
