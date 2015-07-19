@@ -30,7 +30,7 @@ You can now remap UNIX signals to specific functions symbols:
    gcc -o libhello.so -shared hello.c
    uwsgi --dlopen ./libhello.so --hook-master-start "unix_signal:1 hello_world" ...
    
-
+will run the function hello_world whenever signal 1 (SIGHUP) is raised
 
 Availability
 ************
