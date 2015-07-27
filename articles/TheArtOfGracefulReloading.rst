@@ -351,7 +351,7 @@ instance, why not "pause" it? A paused instance is like the standby mode
 of your TV. It consumes very few resources, but you can bring it back very
 quickly.
 
-"Zerg Dance" is the battle-name for the procedure of continuos swapping of
+"Zerg Dance" is the battle-name for the procedure of continuous swapping of
 instances during reloads. Every reload results in a "sleeping" instance and
 a running one. Following reloads destroy the old sleeping instance and
 transform the old running to the sleeping one and so on.
