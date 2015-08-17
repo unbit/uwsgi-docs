@@ -27,4 +27,6 @@ Place your vassals in /etc/uwsgi/vassals ensuring each of them correctly subscri
 
 Now you can start putting 'inactive' subscriptions in the fastrouter, using raw datagrams. An example inactive subscription packets can be something like this in the --subscribe2 way:
 
-addr=127.0.0.1:3036,vassal=one.ini,inactive=1,server=127.0.0.1:4041,key=127.0.0.1:9090
+.. code-block:: sh
+
+   addr=127.0.0.1:3036,vassal=one.ini,inactive=1,server=127.0.0.1:4041,key=127.0.0.1:9090
