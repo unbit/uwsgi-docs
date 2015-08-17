@@ -5,6 +5,6 @@ Spawn an Emperor with a command socket (it is a channel allowing external proces
 
 .. code-block:: ini
 
-[uwsgi]
-emperor = /etc/uwsgi/vassals
-emperor-command-socket = /run/emperor.socket
+   [uwsgi]
+   emperor = /etc/uwsgi/vassals
+   emperor-command-socket = /run/emperor.socket
