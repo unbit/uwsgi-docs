@@ -30,3 +30,6 @@ Now you can start putting 'inactive' subscriptions in the fastrouter, using raw 
 .. code-block:: sh
 
    addr=127.0.0.1:3036,vassal=one.ini,inactive=1,server=127.0.0.1:4041,key=127.0.0.1:9090
+
+this will instruct the fastrouter to map the Host 127.0.0.1:9090 to the inactive uWSGI server that will run on 127.0.0.1:3036 and to run the one.ini vassal at the first request.
+
