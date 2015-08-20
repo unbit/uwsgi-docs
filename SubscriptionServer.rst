@@ -168,13 +168,13 @@ Mountpoints (uWSGI 2.1)
 
 Generally you subscribe your apps to specific domains.
 
-Thanks to the mountpoint support introduced in uWSGI 2.1, you can now subscribe each node to a specific directory (though only one level after the domain name is allowed):
+Thanks to the mountpoint support introduced in uWSGI 2.1, you can now subscribe each node to a specific directory (you need to specify how much levels you want to support):
 
 First of all you need to tell the subscription server to accept (and manage) mountpoint requests:
 
 .. code-block:: sh
 
-   uwsgi --master --http :8080 --http-subscription-server 127.0.0.1:4040 --subscription-mountpoints
+   uwsgi --master --http :8080 --http-subscription-server 127.0.0.1:4040 --subscription-mountpoints 1
    
 Then you can start subscribing to mountpoints.
    
@@ -188,3 +188,5 @@ Then you can start subscribing to mountpoints.
 The first and the third instance will answer to all of the requests for /foo, the second will answer for /bar and the last one will manage all of the others.
 
 For the secured subscription system, you only need to use the domain key (you do not need to generate a certificate for each mountpoint).
+
+If you want to support mountpoints in the form /one/two instead of /one, just pass '2' to --subscription-mountpoints and so on. For performance reason you need to choose how much elements your path can support, and you cannot mix them (read: if --subscription-mountpoints is 2 you can support /one/two or /foo/bar but not /foobar)
