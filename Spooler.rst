@@ -261,6 +261,10 @@ do not be verbose with spooler tasks
 ``spooler-max-tasks=##``
 set the maximum number of tasks to run before recycling a spooler (to help alleviate memory leaks)
 
+``spooler-signal-as-task``
+combined use with ``spooler-max-tasks``. enable this, spooler will treat signal events as task.
+run signal handler will also increase the spooler task count.
+
 ``spooler-harakiri=##``
 set harakiri timeout for spooler tasks, see [harakiri] for more information.
 
