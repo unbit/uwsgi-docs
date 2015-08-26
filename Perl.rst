@@ -120,6 +120,8 @@ This could look sub-optimal (you wil get the new content starting from from the 
 
 If you want to skip specific files from the monitoring, just add them with --perl-auto-reload-ignore
 
+Remember that always modules in %INC are scanned, if you want to monitor your .psgi files, you need to specify them using the classic --touch-reload option
+
 Notes
 -----
 
