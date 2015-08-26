@@ -60,40 +60,40 @@ Cache functions
 ---------------
 
 
-.. function:: cache_get(key[, cache_server])
+.. function:: cache_get(key[, cache_name])
 
    Get a value from the cache.
 
    :param key: The cache key to read.
-   :param cache_server: The UNIX/TCP socket where the cache server is listening. Optional.
+   :param cache_name: The name of the cache in multiple cache mode (can be in the form name@address). Optional.
 
 
-.. function:: cache_set(key, value[, expire, cache_server])
+.. function:: cache_set(key, value[, expire, cache_name])
 
    Set a value in the cache.
 
    :param key: The cache key to write.
    :param value: The cache value to write.
    :param expire: Expiry time of the value, in seconds.
-   :param cache_server: The UNIX/TCP socket where the cache server is listening. Optional.
+   :param cache_name: The name of the cache in multiple cache mode (can be in the form name@address). Optional.
 
 
 .. function:: cache_update(key, value[, expire, cache_server])
 
 
-.. function:: cache_del(key[, cache_server])
+.. function:: cache_del(key[, cache_name])
 
    Delete the given cached value from the cache.
 
    :param key: The cache key to delete.
-   :param cache_server: The UNIX/TCP socket where the cache server is listening. Optional.
+   :param cache_name: The name of the cache in multiple cache mode (can be in the form name@address). Optional.
 
-.. function:: cache_exists(key[, cache_server])
+.. function:: cache_exists(key[, cache_name])
 
    Quickly check whether there is a value in the cache associated with the given key.
 
    :param key: The cache key to check.
-   :param cache_server: The UNIX/TCP socket where the cache server is listening. Optional.
+   :param cache_name: The name of the cache in multiple cache mode (can be in the form name@address). Optional.
 
 .. function:: cache_clear()
 
