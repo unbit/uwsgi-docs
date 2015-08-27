@@ -9,6 +9,8 @@ Configuring Nginx
 
 Generally you only need to include the uwsgi_params file (included in nginx distribution), and set the address of the uWSGI socket with uwsgi_pass directive
 
+::
+
     uwsgi_pass unix:///tmp/uwsgi.sock;
     include uwsgi_params;
 
