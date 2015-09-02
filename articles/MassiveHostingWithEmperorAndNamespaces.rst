@@ -56,8 +56,8 @@ What we want to allow to our users
 - users cannot see the files of the other accounts in the machine
 - users cannot connect to private services (memcached, redis...) of the other accounts in the machine
 - users cannot read/write ipc semaphores, shared memory and message queues of the other accounts in the machine
-- users cannot allocate more memory than the amount they payed for
-- users cannot use more cpu power than the amount they payed for
+- users cannot allocate more memory than the amount they paid for
+- users cannot use more cpu power than the amount they paid for
 
 The Operating System
 ********************
@@ -74,7 +74,7 @@ The "control panel"
 
 This is the thing you need to develop, the more your panel is usable and powerful the more your users will be happy.
 
-Your control panel is probably the thing will make your hosting company successfull.
+Your control panel is probably the thing will make your hosting company successful.
 
 The objective of your control panel is generating "vassal files" (see below). Vassal files can be .ini, xml, yaml and json (unless you have particular reasons to use other formats).
 

@@ -146,7 +146,7 @@ Check this article for more infos: http://uwsgi-docs.readthedocs.org/en/latest/a
 --after-request-call
 ^^^^^^^^^^^^^^^^^^^^
 
-this option allows you to call specific C functions (in chains) after each request. While you should use the framework/interface features for this kind of job, sometimes it is not possibile to execute
+this option allows you to call specific C functions (in chains) after each request. While you should use the framework/interface features for this kind of job, sometimes it is not possible to execute
 code after the logging phase. In such a case feel free to abuse this option.
 
 error pages

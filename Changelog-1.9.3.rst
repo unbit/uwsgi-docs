@@ -66,7 +66,7 @@ In a recent uWSGI maling-list thread, the need to not rely on file system permis
 
 Albeit it is the most secure approach, two new options --immediate-uid and --immediate-gid have been added.
 
-Setting them on top of your vassal file will force the instance to setuid()/setgid() as soon as possibile and without the (theoretical) possibility to override them.
+Setting them on top of your vassal file will force the instance to setuid()/setgid() as soon as possible and without the (theoretical) possibility to override them.
 
 The word "theoretical" here is the key, you always need to remember that a security bug in uWSGI could allow a malicious user to change privileges, so if you really
 care security (or do not trust uWSGI developers ;) always drop privileges before the vassal/instance is spawned (like in standard tyrant mode)
@@ -92,7 +92,7 @@ You can already call rpc function for the routing system (to generate response b
    lua-load = myrpcfunctions.lua
    route = ^/foo/(.+)/call rpc:hello_world ${REMOTE_ADDR} $1
 
-the hello_worls rpc function is defined (and registered) in the myrpcfunctions.lua taking two arguments.
+the hello_world rpc function is defined (and registered) in the myrpcfunctions.lua taking two arguments.
 
 The function is called when the routing regexp matches, and its output sent to the client.
 

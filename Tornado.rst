@@ -17,7 +17,7 @@ As uWSGI is not written with a callback-based programming approach, integrating 
 
 Currently the only supported suspend engine is the "greenlet" one. Stackless python could work too (needs testing).
 
-PyPy is currently not supported (albeit technically possibile thanks to continulets). Drop a mail to Unbit staff if you are interested.
+PyPy is currently not supported (albeit technically possible thanks to continulets). Drop a mail to Unbit staff if you are interested.
 
 Why ?
 *****

@@ -99,7 +99,7 @@ to the filename found.
   [uwsgi]  
   http = :9090
   ; redirect all requests if a file exists
-  if-exists = /tmp/maintainance.txt
+  if-exists = /tmp/maintenance.txt
   route = .* redirect:/offline
   endif =
 

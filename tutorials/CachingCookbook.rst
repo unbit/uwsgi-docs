@@ -131,7 +131,7 @@ Because you did not instruct uWSGI to store the plugin response in the cache. Yo
    ; at each request for / check for a 'myhome' item in the 'mycache' cache
    ; 'route' apply a regexp to the PATH_INFO request var
    route = ^/$ cache:key=myhome,name=mycache
-   ; store each successfull request (200 http status code) for '/' in the 'myhome' item
+   ; store each successful request (200 http status code) for '/' in the 'myhome' item
    route = ^/$ cachestore:key=myhome,name=mycache
 
 Now re-run the test, and you should see requests going down to a range of 100-300 microseconds. The gain depends on various factors, but you should gain at least 60% in response time.
@@ -192,7 +192,7 @@ We want to cache all of our requests. Some of them returns images and css, while
 
    ; fallback to text/html all of the others request
    route = .* cache:key=${REQUEST_URI},name=mycache
-   ; store each successfull request (200 http status code) in the 'mycache' cache using the REQUEST_URI as key
+   ; store each successful request (200 http status code) in the 'mycache' cache using the REQUEST_URI as key
    route = .* cachestore:key=${REQUEST_URI},name=mycache
 
 
@@ -239,7 +239,7 @@ for images, css and html responses.
    ; fallback to text/html all of the others request
    route = .* cache:key=${REQUEST_URI},name=mycache
 
-   ; store each successfull request (200 http status code) in the 'mycache' cache using the REQUEST_URI as key
+   ; store each successful request (200 http status code) in the 'mycache' cache using the REQUEST_URI as key
    route = .* cachestore:key=${REQUEST_URI},name=mycache
    ; store images and stylesheets in the corresponding caches
    route = ^/img/ cachestore:key=${REQUEST_URI},name=images
@@ -294,7 +294,7 @@ We use the previous recipe simply adding different expires to the items.
    ; fallback to text/html all of the others request
    route = .* cache:key=${REQUEST_URI},name=mycache
 
-   ; store each successfull request (200 http status code) in the 'mycache' cache using the REQUEST_URI as key
+   ; store each successful request (200 http status code) in the 'mycache' cache using the REQUEST_URI as key
    route = .* cachestore:key=${REQUEST_URI},name=mycache,expires=60
    ; store images and stylesheets in the corresponding caches
    route = ^/img/ cachestore:key=${REQUEST_URI},name=images,expires=3600
@@ -342,7 +342,7 @@ Then check for HTTP_ACCEPT_ENCODING request header. If it contains the 'gzip' wo
    ; else give it the clear version
    route = ^/$ cache:key=myhome,name=mycache
 
-   ; store each successfull request (200 http status code) for '/' in the 'myhome' item in gzip too
+   ; store each successful request (200 http status code) for '/' in the 'myhome' item in gzip too
    route = ^/$ cachestore:key=myhome,gzip=gzipped_myhome,name=mycache
 
 
@@ -451,7 +451,7 @@ If you authenticate users with http basic auth, you can differentiate caching fo
    ; the following rules are executed only if REMOTE_USER is defined
    route-label = cacheme
    route = ^/$ cache:key=myhome_for_${REMOTE_USER},name=mycache
-   ; store each successfull request (200 http status code) for '/'
+   ; store each successful request (200 http status code) for '/'
    route = ^/$ cachestore:key=myhome_for_${REMOTE_USER},name=mycache
 
 
@@ -482,7 +482,7 @@ You may want to use this session_id as the key
    ; the following rules are executed only if the PHPSESSID cookie is defined
    route-label = cacheme
    route = ^/$ cache:key=myhome_for_${cookie[PHPSESSID]},name=mycache
-   ; store each successfull request (200 http status code) for '/'
+   ; store each successful request (200 http status code) for '/'
    route = ^/$ cachestore:key=myhome_for_${cookie[PHPSESSID]},name=mycache
 
 
@@ -514,7 +514,7 @@ the session id. There is no single solution, but a good example for file-based p
    ; stop if the session file does not exist
    route-if-not = isfile:/var/lib/php5/sessions/sess_${cookie[PHPSESSID]} break:
    route = ^/$ cache:key=myhome_for_${cookie[PHPSESSID]},name=mycache
-   ; store each successfull request (200 http status code) for '/'
+   ; store each successful request (200 http status code) for '/'
    route = ^/$ cachestore:key=myhome_for_${cookie[PHPSESSID]},name=mycache
 
 Caching to files

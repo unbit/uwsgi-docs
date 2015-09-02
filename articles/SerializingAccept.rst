@@ -143,7 +143,7 @@ interfaces) you will see something like that (it is a Linux system):
 
 the SysV semaphore protect your epoll_wait from thundering herd.
 
-So, another problem solved, the world is a such a beatiful place... but ....
+So, another problem solved, the world is a such a beautiful place... but ....
 
 **SysV IPC is not good for application servers :(***
 

@@ -240,7 +240,7 @@ We started the fastrouter with the "--fastrouter 127.0.0.1:9000 --fastrouter-use
         uwsgi_param     UWSGI_FASTROUTER_KEY    $request_uri;
     }
 
-So nginx will route all requests coming to url path /test to the fastrouter by setting UWSGI_FASTROUTER_KEY (basically a "cgi variable") to a user defined string. UWSGI_FASTROUTER_KEY can be anything, you have put something into it that you can use in your plugin to decide where (which gateway) to send the request. In this case I've decided to send the $request_uri to my plugin but you can really put there anything you want. If you don't specify the UWSGI_FASTROUTER_KEY in the nginx config then the fastrouter will use something else instead of it as the fastrouter key (but I think specifiying the UWSGI_FASTROUTER_KEY is highly recommended), more on that in the `Notes section of the fastrouter docs`_.
+So nginx will route all requests coming to url path /test to the fastrouter by setting UWSGI_FASTROUTER_KEY (basically a "cgi variable") to a user defined string. UWSGI_FASTROUTER_KEY can be anything, you have put something into it that you can use in your plugin to decide where (which gateway) to send the request. In this case I've decided to send the $request_uri to my plugin but you can really put there anything you want. If you don't specify the UWSGI_FASTROUTER_KEY in the nginx config then the fastrouter will use something else instead of it as the fastrouter key (but I think specifying the UWSGI_FASTROUTER_KEY is highly recommended), more on that in the `Notes section of the fastrouter docs`_.
 
 .. _Notes section of the fastrouter docs: http://uwsgi-docs.readthedocs.org/en/latest/Fastrouter.html#notes
 

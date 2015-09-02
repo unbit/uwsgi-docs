@@ -112,7 +112,7 @@ Packet descriptions
    * - 22
      - size of code string
      - 0- 255
-     - Raw Code evaluation. The interpreter is choosen by the modifier2. 0 is Python, 5 is Perl.
+     - Raw Code evaluation. The interpreter is chosen by the modifier2. 0 is Python, 5 is Perl.
        It does not return a valid uwsgi response, but a raw string (that may be an HTTP response)
 
    * - 23

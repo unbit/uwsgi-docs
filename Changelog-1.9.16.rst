@@ -57,7 +57,7 @@ This new gateway is the result of tons of headaches while trying to build better
 
 While dealing with uts, ipc, pid and filesystem namespaces is pretty handy, managing networking is a real pain.
 
-We introduced lot of workaroud in uWSGI 1.9.15 (expecially for simplify the veth management) but finally we realized
+We introduced lot of workaroud in uWSGI 1.9.15 (especially to simplify the veth management) but finally we realized
 that those systems do not scale in terms of management.
 
 The TunTap router tries to solve the issue moving the networking part of jailed vassals in user space.
@@ -136,7 +136,7 @@ Log encoders
 
 There are dozens of log engines and storage system nowadays. The original uWSGI approach was developing a plugin for every engine.
 
-While working with logstash and fluentd we realized that most of the logging pluging are reimplementations of teh same concept over and over again.
+While working with logstash and fluentd we realized that most of the logging pluging are reimplementations of the same concept over and over again.
 
 We followed an even more modular approach introducing log encoders:
 

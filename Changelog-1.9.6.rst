@@ -30,7 +30,7 @@ Configuring dynamic apps with internal routing
 
 'Til now, you need to configure your webserver to load apps dinamically.
 
-Three new instructions have been added to load aplication on demand.
+Three new instructions have been added to load application on demand.
 
 Check the example:
 
