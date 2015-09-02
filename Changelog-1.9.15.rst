@@ -347,7 +347,7 @@ Two new exec (and call) hooks are available:
 --wait-for-interface
 ^^^^^^^^^^^^^^^^^^^^
 
-As dealing with the Linux network namespace introduces lot of race conditions (expecially when working with virtual ethernets), this new option
+As dealing with the Linux network namespace introduces lot of race conditions (especially when working with virtual ethernets), this new option
 allows you to pause an instance until a network interface is available.
 
 This is useful when waiting for the emperor to move a veth to the vassal namespace, avoiding the vassal to run commands on the interface before is available

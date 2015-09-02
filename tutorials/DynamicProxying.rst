@@ -41,7 +41,7 @@ step 2: building a routing table
    route-run = rpcvar:MYNODE the_mapper ${HTTP_HOST}
    ; print the MYNODE variable (just for fun)
    route-run = log:${MYNODE}
-   ; proxy the request to the choosen backend node
+   ; proxy the request to the chosen backend node
    route-run = http:${MYNODE}
    
    ; enable offloading for automagic non-blocking behaviour

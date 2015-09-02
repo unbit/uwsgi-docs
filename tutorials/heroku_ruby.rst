@@ -20,7 +20,7 @@ On your local system prepare the structure for your sinatra application
 
 the last command will create a new heroku application (you can check it on the web dashboard).
 
-Next step is creating our Gemfile (this file containes the gem required by the application)
+Next step is creating our Gemfile (this file contains the gem required by the application)
 
 .. code-block:: rb
 

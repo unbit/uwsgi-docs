@@ -71,7 +71,7 @@ A better system, that will fallback to a real uwsgi request would be
 Django cache backend
 --------------------
 
-If you are running Django, there's a ready-to-use application called ``django-uwsgi-cache``. It is maintained by Ionel Cristian Mărieș at https://github.com/ionelmc/django-uwsgi-cache and availabe on pypi.
+If you are running Django, there's a ready-to-use application called ``django-uwsgi-cache``. It is maintained by Ionel Cristian Mărieș at https://github.com/ionelmc/django-uwsgi-cache and available on pypi.
 
 
 .. _caching configuration: https://docs.djangoproject.com/en/dev/topics/cache/?from=olddocs#the-per-site-cache

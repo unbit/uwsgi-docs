@@ -110,7 +110,7 @@ In the ``vassal-defaults.ini``, you write::
 Tyrant mode (secure multi-user hosting)
 ---------------------------------------
 
-The emperor is normally be run as root, setting the UID and GID in each
+The emperor is normally run as root, setting the UID and GID in each
 instance's config. The vassal instance then drops privileges before serving
 requests. In this mode, if your users have access to their own uWSGI
 configuration files, you can't trust them to set the correct ``uid`` and

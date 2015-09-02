@@ -56,7 +56,7 @@ libjvm.so is in /opt/java/lib/jvm/i386, run the build system in that way:
 
 
 After a successful build, you will get the path of the uwsgi.jar file.  That
-jarball containes classes to access the uWSGI API, and you should copy it into
+jarball contains classes to access the uWSGI API, and you should copy it into
 your CLASSPATH or at the very least manually load it from uWSGI's
 configuration.
 

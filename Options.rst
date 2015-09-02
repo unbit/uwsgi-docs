@@ -1838,7 +1838,7 @@ emperor-fork-server-attr
 
 ``parser``: uwsgi_opt_set_str
 
-``help``: set teh vassal's attribute to get when checking for fork-server
+``help``: set the vassal's attribute to get when checking for fork-server
 
 
 
@@ -12588,7 +12588,7 @@ rawrouter-xclient
 
 ``parser``: uwsgi_opt_true
 
-``help``: use the xclient protocol to pass the client addres
+``help``: use the xclient protocol to pass the client address
 
 
 

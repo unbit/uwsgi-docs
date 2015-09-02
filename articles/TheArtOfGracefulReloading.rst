@@ -89,7 +89,7 @@ requests, so first 100 customers will wait during the server warm-up, while
 the others will get an error from the proxy.
 
 This happens because the default size of uWSGI's listen queue is 100 slots.
-Before you ask, it is an average value choosen by the maximum value allowed
+Before you ask, it is an average value chosen by the maximum value allowed
 by default by your kernel.
 
 Each operating system has a default limit (Linux has 128, for example), so
@@ -161,7 +161,7 @@ in your stack.
 Seeing it from the "graceful reloading" point of view, preforking extremely
 speeds up things: your app is loaded only one time, and spawning additional
 workers will be really fast. Avoiding disk access for each worker of your
-stack will decrease startup times, expecially for frameworks or languages
+stack will decrease startup times, especially for frameworks or languages
 doing a lot of disk access to find modules.
 
 Unfortunately, the preforking approach forces you to reload the whole stack

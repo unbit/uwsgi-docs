@@ -89,7 +89,7 @@ The previous example will allows you to write dynamic configs in javascript, whi
    route-run = rpcnext:part3 ${REQUEST_URI} ${REMOTE_ADDR}
    route-run = break:
 
-The previous example generates an HTTP reponse from 3 javascript functions and store it in the uWSGI cache.
+The previous example generates an HTTP response from 3 javascript functions and store it in the uWSGI cache.
 
 Curious about rpcnext ?
 
