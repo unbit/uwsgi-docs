@@ -87,11 +87,18 @@ HTTP Keep-Alive
 ---------------
 
 If your backends set the correct HTTP headers, you can use the
-``http-keepalive`` option.  Your backends will need to set a valid
-``Content-Length`` in each response or use chunked encoding. Simply setting
-"Connection: close" is *not enough*.  Also remember to set "Connection:
-Keep-Alive" in your response. You can automate that using the ``add-header
-"Connection: Keep-Alive"`` option.
+``http-keepalive`` option.  Either your backends will need to set a valid
+``Content-Length`` in each response, or you can use chunked encoding with
+``http-auto-chunked``. Simply setting "Connection: close" is *not enough*.
+Also remember to set "Connection: Keep-Alive" in your response. You can
+automate that using the ``add-header "Connection: Keep-Alive"`` option.
+
+HTTP auto gzip
+-------------
+
+With the ``http-auto-gzip`` option, uWSGI can automatically gzip content if the
+uWSGI-encoding header is set to gzip while ``Content-Length`` and
+``Content-Encoding`` are not set.
 
 Can I use uWSGI's HTTP capabilities in production?
 --------------------------------------------------
@@ -105,5 +112,12 @@ on a CDN, using uWSGI's HTTP capabilities you can definitely avoid configuring
 a full webserver.
 
 .. note:: If you use Amazon's ELB (Elastic Load Balancer) in HTTP mode in
-   front of uWSGI in HTTP mode, a valid ``Content-Length`` *must be set* by the
-   backend.
+   front of uWSGI in HTTP mode, either a valid ``Content-Length`` *must be set*
+   by the backend, or chunked encoding must be used, e.g., with
+   ``http-auto-chunked``. The ELB "health test" may still fail in HTTP mode
+   regardless, in which case a TCP health test can be used instead.
+
+.. note:: In particular, the Django backend does not set ``Content-Length`` by
+   default, while most others do. If running behind ELB, either use chunked
+   encoding as above, or force Django to specify ``Content-Length`` with the
+   "Conditional GET" Django middleware.
