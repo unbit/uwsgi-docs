@@ -58,8 +58,8 @@ Installing via your package distribution is not covered (would be impossible to 
 
 One thing you may want to take into account when testing this quickstart with distro-supplied packages, is that very probably your distribution
 has built uWSGI in modular way (every feature is a different plugin that must be loaded). To complete this quickstart,
-you have to prepend ``--plugin python,http`` to the first series of examples, and ``--plugin python`` when the HTTP router is removed (it could make
-no sense for you, just continue reading).
+you have to prepend ``--plugin python,http`` to the first series of examples, and ``--plugin python`` when the HTTP router is removed (if this
+doesn't make sense to you, just continue reading).
 
 The first WSGI application
 **************************
