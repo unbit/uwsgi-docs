@@ -119,7 +119,7 @@ configuration files, you can't trust them to set the correct ``uid`` and
 unprivileged users are not able to promote themselves to other users.  For this
 case the Tyrant mode is available -- just add the ``emperor-tyrant`` option.
 
-In Tyrant mode the Emperor will run the vassal with the UID/GID of its
+In Tyrant mode the Emperor will run the vassal using the UID/GID of the vassal
 configuration file (or for other Imperial Monitors, by some other method of
 configuration).  If Tyrant mode is used, the vassal configuration files must
 have UID/GID > 0. An error will occur if the UID or GID is zero, or if the UID
