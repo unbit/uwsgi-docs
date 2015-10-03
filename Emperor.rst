@@ -43,7 +43,6 @@ skipped)
 
   [uwsgi]
   chdir = /opt/apps/%n
-  master = true
   threads = 20
   socket = /tmp/sockets/%n.sock
   env = DJANGO_SETTINGS_MODULE=%n.settings
