@@ -24,6 +24,7 @@ Create a systemd service file (you can save it as /etc/systemd/system/emperor.uw
 
    [Service]
    ExecStart=/root/uwsgi/uwsgi --ini /etc/uwsgi/emperor.ini
+   RuntimeDirectory=uwsgi
    Restart=always
    KillSignal=SIGQUIT
    Type=notify
@@ -89,7 +90,13 @@ If you do that, be sure to set a ``--logto`` option in your Emperor configuratio
 Putting sockets in /run/
 ************************
 
-On a modern system, /run/ is mounted as a tmpfs and is the right place to put sockets and pidfiles into. You can have systemd create a uwsgi directory to put them into by creating a systemd-tmpfiles configuration file (you can save it as /etc/tmpfiles.d/emperor.uwsgi.conf):
+On a modern system, /run/ is mounted as a tmpfs and is the right place to put sockets and pidfiles into. To have systemd automatically create a /run/uwsgi/ subdirectory with the correct user/group ownership, as well as cleaning up the directory when the daemon is stopped, add 
+
+.. code-block:: ini
+
+RuntimeDirectory=uwsgi
+
+to the [Service] section of your systemd uwsgi unit file. This is a relatively new systemd feature. For systemd versions that don't support the RuntimeDirectory parameter, create a systemd-tmpfiles configuration file (you can save it as /etc/tmpfiles.d/emperor.uwsgi.conf):
 
 .. code-block:: ini
 
