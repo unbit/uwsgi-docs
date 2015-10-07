@@ -310,13 +310,6 @@ Stable releases
    Changelog-1.9.1
    Changelog-1.9
    
-LTS releases
-------------
-
-.. toctree::
-   :maxdepth: 1
-
-   Changelog-1.4.10
 
 
 Contact
