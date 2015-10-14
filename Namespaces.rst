@@ -1,7 +1,7 @@
 Jailing your apps using Linux Namespaces
 ========================================
 
-If you have a recent Linux kernel (>2.6.26) you can use its support for namespaces.
+If you have a recent Linux kernel (>2.6.26) and you are not on the Itanium architecture you can use the namespaces support.
 
 What are namespaces?
 --------------------
