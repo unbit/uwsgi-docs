@@ -944,3 +944,30 @@ Clear the response headers, setting a new HTTP status code, useful for resetting
 ^^^^^^^^^^^^^^^^
 
 Alias for clearheaders
+
+``xattr``
+^^^^^^^^^
+
+Plugin: ``xattr``
+
+The xattr plugin allows you to reference files extended attributes in the internal routing subsystem:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   route-run = addvar:MYATTR=user.uwsgi.foo.bar
+   route-run = log:The attribute is ${xattr[/tmp/foo:MYATTR]}
+
+
+or (variant with 2 vars)
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   route-run = addvar:MYFILE=/tmp/foo
+   route-run = addvar:MYATTR=user.uwsgi.foo.bar
+   route-run = log:The attribute is ${xattr2[MYFILE:MYATTR]}
+
+It work only on linux platforms.
