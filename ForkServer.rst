@@ -85,7 +85,7 @@ Now create two vassals (one.ini and two.ini) that will `fork()` from the base on
 .. code-block:: ini
 
    [uwsgi]
-   ; one.ini
+   ; two.ini
    http-socket = :8282
    processes = 8
    uid = 1002
