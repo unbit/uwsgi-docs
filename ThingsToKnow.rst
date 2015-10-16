@@ -49,7 +49,7 @@ Things to know (best practices and "issues") READ IT !!!
 
 * If your (Linux) server seems to have lots of idle workers, but performance is still sub-par, you may want to look at the value of the ``ip_conntrack_max`` system variable (``/proc/sys/net/ipv4/ip_conntrack_max``) and increase it to see if it helps.
 
-* Some Linux distributions (read: Debian Etch 4) make a mix of newer kernels with very old userspace. This kind of combination can make the uWSGI build system spit out errors (most notably on ``unshare()``, pthread locking, ``inotify``...). You can force uWSGI to configure itself for an older system prefixing the 'make' (or whatever way you use to build it) with ``CFLAGS="-DOBSOLETE_LINUX_KERNEL"``
+* Some Linux distributions (read: Debian 4 Etch, RHEL / CentOS 5) make a mix of newer kernels with very old userspace. This kind of combination can make the uWSGI build system spit out errors (most notably on ``unshare()``, pthread locking, ``inotify``...). You can force uWSGI to configure itself for an older system prefixing the 'make' (or whatever way you use to build it) with ``CFLAGS="-DOBSOLETE_LINUX_KERNEL"``
 
 * By default, stdin is remapped to ``/dev/null`` on uWSGI startup. If you need a valid stdin (for debugging, piping and so on) add ``--honour-stdin``.
 
