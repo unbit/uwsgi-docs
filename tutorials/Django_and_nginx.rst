@@ -414,7 +414,8 @@ Create a file called ```mysite_uwsgi.ini```::
     # the socket (use the full path to be safe
     socket          = /path/to/your/project/mysite.sock 
     # ... with appropriate permissions - may be needed
-    # chmod-socket    = 664
+    # remember to restart nginx after adding it to group of uwsgi user
+    # chmod-socket    = 660
     # clear environment on exit
     vacuum          = true           
 
@@ -541,3 +542,18 @@ settings)::
     limit-as = 128 # limit the project to 128 MB
     max-requests = 5000 # respawn processes after serving 5000 requests
     daemonize = /var/log/uwsgi/yourproject.log # background the process & log
+
+Django
+^^^^^^
+
+Last but not least, there are a couple of Django defaults worth looking into.
+If you choose to host multiple Django projects with different settings inside
+the same uwsgi environment, e.g. by using the ``mount`` option, the
+standard wsgi.py that comes with Django as a template will need adjustment,
+as it sets, but never overrides the settings location in ``os.environ``.
+
+Another option worth looking into is APPEND_SLASH_ - depending on how
+``urlpatterns`` looks, you will want to investigate methods of redirecting
+unwanted or invalid requests via uwsgi ``route``, via Django or via nginx.
+
+.. _APPEND_SLASH: https://docs.djangoproject.com/en/1.8/ref/settings/#append-slash
