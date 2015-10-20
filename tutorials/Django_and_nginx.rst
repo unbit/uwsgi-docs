@@ -493,9 +493,11 @@ Make uWSGI startup when the system boots
 
 The last step is to make it all happen automatically at system startup time.
 
+For many systems, the easiest (if not the best) way to do this is to use the ``rc.local`` file.
+
 Edit ``/etc/rc.local`` and add::
 
-    /usr/local/bin/uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data
+    /usr/local/bin/uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data --daemonize /var/log/uwsgi-emperor.log
 
 before the line "exit 0".
 
