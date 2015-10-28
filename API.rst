@@ -51,8 +51,8 @@ uwsgi.add_timer(signum, secs)
 
 register a timer raising "signum" every "secs"
 
-uwsgi.add_rb_timer(signum, secs)
-********************************
+uwsgi.add_rb_timer(signum, secs[, iterations])
+**********************************************
 
 register a redblack timer raising "signum" every "secs"
 

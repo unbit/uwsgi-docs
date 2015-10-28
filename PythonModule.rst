@@ -333,11 +333,11 @@ Advanced methods
 .. function:: add_file_monitor()
 
 
-.. function:: add_timer(signum, seconds[, iterations=0])
+.. function:: add_timer(signum, seconds)
 
    :param signum: The signal number to raise.
    :param seconds: The interval at which to raise the signal.
-   :param iterations: How many times to raise the signal. 0 (the default) means infinity.
+
 
 .. function:: add_probe()
 

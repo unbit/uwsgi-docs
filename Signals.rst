@@ -138,8 +138,8 @@ To register a timer, use :meth:`uwsgi.add_timer`. To register an rb_timer, use :
     uwsgi.register_signal(26, "worker", hello_timer)
     uwsgi.register_signal(30, "", oneshot_timer)
     
-    uwsgi.add_timer(26, 2) # never-ending timer every 2 seconds    
-    uwsgi.add_timer(30, 40, 1) # one shot timer after 40 seconds
+    uwsgi.add_rb_timer(26, 2) # never-ending timer every 2 seconds
+    uwsgi.add_rb_timer(30, 40, 1) # one shot timer after 40 seconds
     
 Signal 26 will be raised every 2 seconds and handled by the first available worker.
 Signal 30 will be raised after 40 seconds and executed only once.
