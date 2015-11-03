@@ -46,7 +46,7 @@ The following examples shows the use of aiohttp (requires python 3.5)
       ws = web.WebSocketResponse()
       await ws.prepare(request)
 
-   async for msg in ws:
+      async for msg in ws:
         if msg.tp == web.MsgType.text:
             ws.send_str("Hello, {}".format(msg.data))
         elif msg.tp == web.MsgType.binary:
