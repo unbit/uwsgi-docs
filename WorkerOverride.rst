@@ -5,7 +5,7 @@ Work in progress you need to use this 2.0 branch
 
 https://github.com/unbit/uwsgi/tree/customworker
 
-You can override the code run by each uWSGI worker thank to the "worker" hook exposed to plugins.
+You can override the code run by each uWSGI worker thanks to the "worker" hook exposed to plugins.
 
 Currently the python plugin is the only one exposing it:
 
