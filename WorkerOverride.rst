@@ -23,7 +23,7 @@ Currently the python plugin is the only one exposing it:
    python-worker-override = aioserver.py
    
 
-The python script has access to the uwsgi module so it can access/change its internals.
+The python script has access to the uwsgi module so it can control/change its internals.
 
 The following examples shows the use of aiohttp (requires python 3.5)
 
