@@ -57,14 +57,14 @@ The following examples shows the use of aiohttp (requires python 3.5)
     return ws
     
     async def init(loop, fd):
-    app = web.Application(loop=loop)
-    app.router.add_route('GET', '/echo', wshandler)
-    app.router.add_route('GET', '/{name}', handle)
+       app = web.Application(loop=loop)
+       app.router.add_route('GET', '/echo', wshandler)
+       app.router.add_route('GET', '/{name}', handle)
 
-    srv = await loop.create_server(app.make_handler(),
-                                        sock=socket.fromfd(fd, socket.AF_INET, socket.SOCK_STREAM))
-    print("asyncio server started on uWSGI {0}".format(uwsgi.version))
-    return srv
+       srv = await loop.create_server(app.make_handler(),
+                                      sock=socket.fromfd(fd, socket.AF_INET, socket.SOCK_STREAM))
+       print("asyncio server started on uWSGI {0}".format(uwsgi.version))
+       return srv
 
    def destroy():
       print("destroy worker {0}".format(uwsgi.worker_id()))
