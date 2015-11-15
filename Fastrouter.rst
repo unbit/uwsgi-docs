@@ -45,7 +45,7 @@ mapping to the requested key/hostname.
 
 .. code-block:: sh
 
-    uwsgi --fastrouter 127.0.0.1:3017 --fastrouter-use-base /tmp/sockets/%s/uwsgi.sock
+    uwsgi --fastrouter 127.0.0.1:3017 --fastrouter-use-pattern /tmp/sockets/%s/uwsgi.sock
 
 Requests for ``example.com`` will be mapped to
 ``/tmp/sockets/example.com/uwsgi.sock``.
