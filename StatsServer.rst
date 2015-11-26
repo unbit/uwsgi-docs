@@ -12,13 +12,17 @@ Simply use the ``stats`` option followed by a valid socket address. If you want 
     --stats :5050
     --stats @foobar
 
+and to serve over http
+
+.. code-block:: sh
+
+    --stats-http true
+
 If a client connects to the specified socket it will get a JSON object containing uWSGI internal statistics before the connection ends.
 
 .. code-block:: sh
 
     uwsgi --socket :3031 --stats :1717 --module welcome --master --processes 8
-
-
 
 then
 
