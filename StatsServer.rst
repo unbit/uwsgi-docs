@@ -16,7 +16,7 @@ and to serve over http
 
 .. code-block:: sh
 
-    --stats-http true
+    --stats @foobar --stats-http
 
 If a client connects to the specified socket it will get a JSON object containing uWSGI internal statistics before the connection ends.
 
