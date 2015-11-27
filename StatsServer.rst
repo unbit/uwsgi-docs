@@ -11,12 +11,10 @@ Simply use the ``stats`` option followed by a valid socket address. If you want 
     --stats /tmp/statsock
     --stats :5050
     --stats @foobar
+    # Any of the above socket types can also return stats using HTTP
+    --stats 127.0.0.1:1717  --stats-http
 
 and to serve over http
-
-.. code-block:: sh
-
-    --stats @foobar --stats-http
 
 If a client connects to the specified socket it will get a JSON object containing uWSGI internal statistics before the connection ends.
 
