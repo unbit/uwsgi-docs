@@ -16,7 +16,8 @@ In the ``buildconf`` directory, define your profile -- let's call it flask.ini:
 .. code-block:: ini
 
     [uwsgi]
-    inherit = default
+    inherit = base
+    main_plugin = python
     bin_name = myapp
     embed_files = bootstrap.py,myapp.py
 
