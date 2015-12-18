@@ -34,7 +34,7 @@ daemonized and interactive modes. UDP logging operaties in connected-socket
 mode, so the UDP server must be available before uWSGI starts.  For a more raw
 approach (working in unconnected mode) see the section on socket logging.
 
-To enable conencted UDP mode pass the address of a UDP server to the
+To enable connected UDP mode pass the address of a UDP server to the
 ``--daemonize``/``--logto`` option:
 
 .. code-block:: sh
