@@ -181,6 +181,10 @@ Spooler functions
 
 .. function:: spooler_pid()
 
+.. function:: spooler_get_task(path)
+
+   :param path: The relative or absolute path to the task to read
+
 
 Advanced methods
 ----------------
