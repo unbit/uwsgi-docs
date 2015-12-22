@@ -752,6 +752,30 @@ if-not-hostname
 
 
 
+if-hostname-match
+***********
+``argument``: required_argument
+
+``parser``: uwsgi_opt_logic
+
+``flags``: UWSGI_OPT_IMMEDIATE
+
+``help``: (opt logic) try to match hostname against a regular expression
+
+
+
+if-not-hostname-match
+***************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_logic
+
+``flags``: UWSGI_OPT_IMMEDIATE
+
+``help``: (opt logic) try to match hostname against a regular expression
+
+
+
 if-exists
 *********
 ``argument``: required_argument
