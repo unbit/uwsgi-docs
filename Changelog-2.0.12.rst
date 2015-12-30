@@ -31,7 +31,7 @@ https://github.com/unbit/uwsgi-docs/blob/master/WorkerOverride.rst
 --wsgi-disable-file-wrapper
 ***************************
 
-This option disables the wsgi.file_wrapper optimization of the WSGI standard. In some corner cases this is the only trick to avoid errors.
+This option disables the wsgi.file_wrapper optimization of the WSGI standard. In some corner case this is the only trick to avoid errors.
 
 Official PHP 7 support
 **********************
