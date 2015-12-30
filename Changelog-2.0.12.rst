@@ -53,7 +53,7 @@ https://github.com/unbit/uwsgi/blob/master/t/spooler/read.py
 
 This options for config logic allows you to define options only when a regexp over the hostname matches:
 
-.. code-block::ini
+.. code-block:: ini
 
    [uwsgi]
    if-hostname-match = ^prod
