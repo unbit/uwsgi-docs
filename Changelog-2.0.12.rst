@@ -21,7 +21,7 @@ The custom worker api
 *********************
 
 Finally you are able to override the uWSGI processing model to completely get control of it. This is very similar to what
-you can do in projects like gunicorn (and its integration with tornado or gevent). Obviously native plugins are still the best approach (they allow integration with uWSGI api and states), but in some case you may want to use uWSGI process management facilities and let your app to the rest of the work.
+you can do in projects like gunicorn (and its integration with tornado or gevent). Obviously native plugins are still the best approach (they allow integration with uWSGI api and states), but in some case you may want to use uWSGI process management facilities and let your app do the rest of the work.
 
 Currently only the python plugin supports "overriding" of workers, an aiohttp (asyncio) example module is available:
 
