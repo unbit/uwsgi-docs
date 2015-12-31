@@ -16,6 +16,9 @@ Your init system will talk only with the Emperor that will rule all of the apps 
 
 Create a systemd service file (you can save it as /etc/systemd/system/emperor.uwsgi.service)
 
+.. note::
+   Be careful with some systemd versions (e.g. 215 in Debian Jessie), since SIGQUIT signal will trash the systemd services. Use KillSignal=SIGTERM + "die-on-term" UWSGI option there.
+
 .. code-block:: ini
 
    [Unit]
