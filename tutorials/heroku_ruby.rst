@@ -74,8 +74,6 @@ The minimal setup for heroku is the following (check the comments in the file fo
    rbrequire = bundler/setup
    ; load the application
    rack = config.ru
-   ; when the app receives the TERM signal let's destroy it (instead of brutal reloading)
-   die-on-term = true
 
 but a better setup will be
 
@@ -90,8 +88,6 @@ but a better setup will be
    rbrequire = bundler/setup
    ; load the application
    rack = config.ru
-   ; when the app receives the TERM signal let's destroy it (instead of brutal reloading)
-   die-on-term = true
    ; enable the master process
    master = true
    ; spawn 4 processes to increase concurrency

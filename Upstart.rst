@@ -18,7 +18,7 @@ A simple script (/etc/init/uwsgi.conf)
     
     respawn
     
-    exec uwsgi --master --processes 4 --die-on-term --socket :3031 --wsgi-file /var/www/myapp.wsgi
+    exec uwsgi --master --processes 4 --socket :3031 --wsgi-file /var/www/myapp.wsgi
     
 Using the Emperor
 -----------------
@@ -39,8 +39,6 @@ A better approach than init files for each app would be to only start an Emperor
     
     exec uwsgi --emperor /etc/uwsgi
 
-If you want to run the Emperor under the master process (for accessing advanced features) remember to add --die-on-term
-
 
 .. code-block:: upstart
 
@@ -52,16 +50,7 @@ If you want to run the Emperor under the master process (for accessing advanced 
     
     respawn
     
-    exec uwsgi --master --die-on-term --emperor /etc/uwsgi
-    
-What is --die-on-term?
-----------------------
-
-By default uWSGI maps the SIGTERM signal to "a brutal reload procedure".
-
-However, Upstart uses SIGTERM to completely shutdown processes. ``die-on-term`` inverts the meanings of SIGTERM and SIGQUIT to uWSGI.
-
-The first will shutdown the whole stack, the second one will brutally reload it.
+    exec uwsgi --master --emperor /etc/uwsgi
 
 Socket activation (from Ubuntu 12.04)
 -------------------------------------
@@ -84,5 +73,5 @@ You do not need to specify the socket in uWSGI as it will be passed to it by Ups
     
     respawn
     
-    exec uwsgi --master --processes 4 --die-on-term --wsgi-file /var/www/myapp.wsgi
+    exec uwsgi --master --processes 4 --wsgi-file /var/www/myapp.wsgi
 

@@ -47,15 +47,12 @@ Now we can create our uWSGI configuration file. Basically all of the features ca
    http-socket = :$(PORT)
    master = true
    processes = 4
-   die-on-term = true
    module = werkzeug.testapp:test_app
    memory-report = true
 
-as you can see this is a pretty standard configuration. The only heroku-required options are --http-socket and --die-on-term.
+As you can see this is a pretty standard configuration. The only heroku-required option is `--http-socket`.
 
 The first is required to bind the uWSGI socket to the port requested by the Heroku system (exported via the environment variable PORT we can access with $(PORT))
-
-The second one (--die-on-term) is required to change the default behaviour of uWSGI when it receive a SIGTERM (brutal realod, while Heroku expect a shutdown)
 
 The memory-report option (as we are in a memory constrained environment) is a good thing.
 
