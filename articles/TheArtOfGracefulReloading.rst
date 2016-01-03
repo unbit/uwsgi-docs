@@ -581,8 +581,12 @@ files (like pidfiles or logs) to different paths:
 
     [uwsgi]
     logto = /var/log/%n.log
-    pidfile = /var/run/%n.pid
+    safe-pidfile = /var/run/%n.pid
     ; and so on ...
+
+The ``safe-pidfile`` option works similar to ``pidfile`` but performs the write
+a little later in the loading process. This avoids overwriting the value when
+app loading fails, with the consequent loss of a valid PID number.
 
 Dealing with ultra-lazy apps (like Django)
 ******************************************

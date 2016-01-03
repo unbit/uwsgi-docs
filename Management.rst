@@ -34,7 +34,7 @@ Solaris        SMF
 Signals for controlling uWSGI
 -----------------------------
 
-You can instruct uWSGI to write the master process PID to a file with the ``pidfile`` option.
+You can instruct uWSGI to write the master process PID to a file with the ``safe-pidfile`` option.
 
 The uWSGI server responds to the following signals.
 
