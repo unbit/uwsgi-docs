@@ -45,7 +45,7 @@ Notes
 -----
 
 * Remember to use uWSGI's resource limiting and jailing techniques (namespaces, chroot, capability, unshare....) with your CGI apps to limit the damage they might cause.
-* Asynchronous mode is not at all supported with CGI applications. Each CGI application will block the worker running it.
+* Starting from uWSGI 2.0.2 you can have even more cheap concurrency by using async mode.
 * If not mapped to a helper, each CGI script must have read and execution permissions.
 
 Examples
@@ -155,7 +155,7 @@ Threads are a better choice. Let's configure each worker process to run 20 worke
   cgi-helper = .php=php5-cgi
   
   
-Starting from uWSGI 2.0.2 you can have even more cheap concurrency thanks to async mode support:
+Using async mode to have even more cheap concurrency:
 
 
 .. code-block:: ini
