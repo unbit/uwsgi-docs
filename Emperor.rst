@@ -176,6 +176,9 @@ blacklist, that vassal will be throttled up to a maximum value (tunable via
 3.  Whenever a blacklisted vassal dies, its throttling value is increased by
 the delta (:ref:`OptionEmperorThrottle`).
 
+You can also empty the blacklist by sending the signal SIGURG to the emperor
+process. This will reset the throttle value.
+
 Heartbeat system
 ----------------
 
@@ -325,6 +328,7 @@ Notes
 * Stopping (``SIGINT``/``SIGTERM``/``SIGQUIT``) the Emperor will invoke
   Ragnarok and kill all the vassals.
 * Sending ``SIGHUP`` to the Emperor will reload all vassals.
+* Sending ``SIGURG`` to the Emperor will remove all vassals from the blacklist
 * The emperor should generally not be run with ``--master``, unless master
   features like advanced logging are specifically needed.
 * The emperor should generally be started at server boot time and left alone,
