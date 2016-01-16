@@ -16,13 +16,13 @@ the ``ExtUtils::Embed`` module and its prerequisites are installed before buildi
 
 .. code-block:: sh
 
-    python uwsgiconfig --build psgi
+    python uwsgiconfig.py --build psgi
     # or compile it as a plugin...
-    python uwsgiconfig --plugin plugins/psgi
+    python uwsgiconfig.py --plugin plugins/psgi
     # and if you have not used the default configuration
     # to build the uWSGI core, you have to pass
     # the configuration name you used while doing that:
-    python uwsgiconfig --plugin plugins/psgi core
+    python uwsgiconfig.py --plugin plugins/psgi core
     
 or (as always) you can use the network installer:
 
