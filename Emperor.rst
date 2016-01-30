@@ -29,6 +29,7 @@ Multiple sources of configuration may be monitored by specifying ``--emperor`` m
 
   ImperialMonitors
   EmperorProtocol
+  OnDemandVassals
 
 Special configuration variables
 -------------------------------
@@ -140,13 +141,6 @@ root-capabilities needed to apply the tyrant mode
    emperor = /tmp
    emperor-tyrant = true
    cap = setgid,setuid
-
-On demand vassals (socket activation)
--------------------------------------
-
-Inspired by the venerable xinetd/inetd approach, you can spawn your vassals
-only after the first connection to a specific socket. This feature is available
-as of 1.9.1. Check the changelog for more information: :doc:`Changelog-1.9.1`
 
 
 Loyalty

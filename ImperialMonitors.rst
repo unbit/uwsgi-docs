@@ -76,23 +76,29 @@ run them.
 ``glob://`` -- monitor a shell pattern
 --------------------------------------
 
-``glob://`` is similar to ``dir://``, but a glob expression must be specified::
+``glob://`` is similar to ``dir://``, but a glob expression must be specified:
 
-  uwsgi --emperor "/etc/vassals/domains/*/conf/uwsgi.xml"
-  uwsgi --emperor "/etc/vassals/*.ini"
+.. code-block:: sh
+
+ uwsgi --emperor "/etc/vassals/domains/*/conf/uwsgi.xml"
+ uwsgi --emperor "/etc/vassals/*.ini"
 
 .. note:: Remember to quote the pattern, otherwise your shell will most likely
    interpret it and expand it at invocation time, which is not what you want.
 
 As the Emperor can search for configuration files in subdirectory hierarchies,
-you could have a structure like this::
+you could have a structure like this:
+
+.. code-block:: sh
 
   /opt/apps/app1/app1.xml
   /opt/apps/app1/...all the app files...
   /opt/apps/app2/app2.ini
   /opt/apps/app2/...all the app files...
 
-and run uWSGI with::
+and run uWSGI with:
+
+.. code-block:: sh
 
   uwsgi --emperor /opt/apps/app*/app*.*
 
@@ -101,7 +107,7 @@ and run uWSGI with::
 ------------------------------------------------------
 
 You can specify a query to run against a PostgreSQL database. Its result must
-be a list of 3 to 5 fields defining a vassal:
+be a list of 3 to 6 fields defining a vassal:
 
 1. The instance name, including a valid uWSGI config file extension. (Such as
    ``django-001.ini``)
@@ -111,6 +117,9 @@ be a list of 3 to 5 fields defining a vassal:
    (seconds since the epoch).
 4. The UID of the vassal instance. Required in :ref:`Tyrant` mode only.
 5. The GID of the vassal instance. Required in :ref:`Tyrant` mode only.
+6. Socket for on demand vassal activation. If specified, vassal will be run
+   in on demand mode. If ommited or empty, vassal will be run normally. Go to
+   :doc:`OnDemandVassals` for more information.
 
 .. code-block:: sh
 
@@ -132,13 +141,17 @@ be a list of 3 to 5 fields defining a vassal:
 This will scan all of the documents in the ``emperor.vassals`` collection
 having the field ``enabled`` set to 1.  An Emperor-compliant document must
 define three fields: ``name``, ``config`` and ``ts``. In :ref:`Tyrant` mode, 2
-more fields are required.
+more fields are required. There is also optional ``socket`` field for on
+demand vassal mode.
 
 * ``name`` (string) is the name of the vassal (remember to give it a valid extension, like .ini)
 * ``config`` (multiline string) is the vassal config in the format described by the ``name``'s extension.
 * ``ts`` (date) is the timestamp of the config (Note: MongoDB internally stores the timestamp in milliseconds.)
 * ``uid`` (number) is the UID to run the vassal as. Required in :ref:`Tyrant` mode only.
 * ``gid`` (number) is the GID to run the vassal as. Required in :ref:`Tyrant` mode only.
+* ``socket`` (string) Socket for on demand vassal activation. If specified,
+  vassal will be run in on demand mode. If ommited or empty, vassal will be run
+  normally. Go to :doc:`OnDemandVassals` for more information.
 
 ``amqp://`` -- Use an AMQP compliant message queue to announce events
 ---------------------------------------------------------------------
@@ -227,13 +240,16 @@ The Emperor binds itself to a ZeroMQ PULL socket, ready to receive commands.
    uwsgi --plugin emperor_zeromq --emperor zmq://tcp://127.0.0.1:5252
 
 Each command is a multipart message sent over a PUSH zmq socket.  A command is
-composed by at least 2 parts: ``command`` and ``name`` ``command`` is the
-action to execute, while ``name`` is the name of the vassal.  3 optional parts
+composed by at least 2 parts: ``command`` and ``name``. ``command`` is the
+action to execute, while ``name`` is the name of the vassal. 4 optional parts
 can be specified.
 
 * ``config`` (a string containing the vassal config)
 * ``uid`` (the user id to drop priviliges to in case of tyrant mode)
 * ``gid`` (the group id to drop priviliges to in case of tyrant mode)
+* ``socket`` (socket for on demand vassal activation. If specified,
+  vassal will be run in on demand mode. If ommited or empty, vassal will be run
+  normally. Go to :doc:`OnDemandVassals` for more information)
 
 There are 2 kind of commands (for now):
 
