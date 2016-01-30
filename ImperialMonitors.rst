@@ -141,7 +141,8 @@ be a list of 3 to 6 fields defining a vassal:
 This will scan all of the documents in the ``emperor.vassals`` collection
 having the field ``enabled`` set to 1.  An Emperor-compliant document must
 define three fields: ``name``, ``config`` and ``ts``. In :ref:`Tyrant` mode, 2
-more fields are required.
+more fields are required. There is also optional ``socket`` field for on
+demand vassal mode.
 
 * ``name`` (string) is the name of the vassal (remember to give it a valid extension, like .ini)
 * ``config`` (multiline string) is the vassal config in the format described by the ``name``'s extension.
