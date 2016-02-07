@@ -24,7 +24,8 @@ Create a systemd service file (you can save it as /etc/systemd/system/emperor.uw
 
    [Service]
    ExecStart=/root/uwsgi/uwsgi --ini /etc/uwsgi/emperor.ini
-   RuntimeDirectory=uwsgi # Requires systemd version 211 or newer
+   # Requires systemd version 211 or newer
+   RuntimeDirectory=uwsgi
    Restart=always
    KillSignal=SIGQUIT
    Type=notify
