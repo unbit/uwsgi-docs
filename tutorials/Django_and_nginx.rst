@@ -538,7 +538,7 @@ look at for a deployment in production include (listed here with example
 settings)::
 
     env = DJANGO_SETTINGS_MODULE=mysite.settings # set an environment variable
-    pidfile = /tmp/project-master.pid # create a pidfile
+    safe-pidfile = /tmp/project-master.pid # create a pidfile
     harakiri = 20 # respawn processes taking more than 20 seconds
     limit-as = 128 # limit the project to 128 MB
     max-requests = 5000 # respawn processes after serving 5000 requests
