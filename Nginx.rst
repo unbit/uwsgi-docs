@@ -122,7 +122,7 @@ in the so called "mountpoint" and rewrite SCRIPT_NAME and PATH_INFO automaticall
    
 Take in account the app itself (eventually using a WSGI/Rack/PSGI middleware) can rewrite SCRIPT_NAME and PATH_INFO.
 
-You can use the internal routing subsystem too to rewrite request vars. Expecially for dynamic apps it could be a good approach.
+You can use the internal routing subsystem too to rewrite request vars. Especially for dynamic apps it could be a good approach.
 
 Note: ancient uWSGI versions used to support the so called "uwsgi_modifier1 30" approach. Do not do it. it is a really ugly hack
 

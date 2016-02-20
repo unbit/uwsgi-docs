@@ -118,7 +118,7 @@ be a list of 3 to 6 fields defining a vassal:
 4. The UID of the vassal instance. Required in :ref:`Tyrant` mode only.
 5. The GID of the vassal instance. Required in :ref:`Tyrant` mode only.
 6. Socket for on demand vassal activation. If specified, vassal will be run
-   in on demand mode. If ommited or empty, vassal will be run normally. Go to
+   in on demand mode. If omitted or empty, vassal will be run normally. Go to
    :doc:`OnDemandVassals` for more information.
 
 .. code-block:: sh
@@ -150,7 +150,7 @@ demand vassal mode.
 * ``uid`` (number) is the UID to run the vassal as. Required in :ref:`Tyrant` mode only.
 * ``gid`` (number) is the GID to run the vassal as. Required in :ref:`Tyrant` mode only.
 * ``socket`` (string) Socket for on demand vassal activation. If specified,
-  vassal will be run in on demand mode. If ommited or empty, vassal will be run
+  vassal will be run in on demand mode. If omitted or empty, vassal will be run
   normally. Go to :doc:`OnDemandVassals` for more information.
 
 ``amqp://`` -- Use an AMQP compliant message queue to announce events
@@ -248,7 +248,7 @@ can be specified.
 * ``uid`` (the user id to drop priviliges to in case of tyrant mode)
 * ``gid`` (the group id to drop priviliges to in case of tyrant mode)
 * ``socket`` (socket for on demand vassal activation. If specified,
-  vassal will be run in on demand mode. If ommited or empty, vassal will be run
+  vassal will be run in on demand mode. If omitted or empty, vassal will be run
   normally. Go to :doc:`OnDemandVassals` for more information)
 
 There are 2 kind of commands (for now):

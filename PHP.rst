@@ -173,7 +173,7 @@ A more extreme example that mixes :doc:`CGI <CGI>` with PHP using :doc:`internal
     auto-procname = true
     procname-prefix-spaced = [unbit.it]
     
-    ; run with at least 2 processes but increase upto 8 when needed
+    ; run with at least 2 processes but increase up to 8 when needed
     master = true
     processes = 8
     cheaper = 2
@@ -302,7 +302,7 @@ ForkServer (uWSGI >= 2.1)
 
 The PHP plugin has been extended to support a fork-server so you can have a pool of php base instances from which vassals can `fork()`. This means you can share the opcode cache and do other tricks.
 
-Thanks to the vassal attributes in uWSGI 2.1 we can choose from wich parent a vassal will call fork().
+Thanks to the vassal attributes in uWSGI 2.1 we can choose from which parent a vassal will call fork().
 
 .. note::
 
