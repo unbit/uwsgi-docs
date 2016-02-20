@@ -91,7 +91,7 @@ If your backends set the correct HTTP headers, you can use the
 ``Content-Length`` in each response, or you can use chunked encoding with
 ``http-auto-chunked``. Simply setting "Connection: close" is *not enough*.
 Also remember to set "Connection: Keep-Alive" in your response. You can
-automate that using the ``add-header "Connection: Keep-Alive"`` option.
+automate that using the ``add-header = Connection: Keep-Alive`` option.
 
 Since uWSGI 2.1 (master branch) you can use the ``http11-socket`` option.
 ``http11-socket`` may replace the ``add-header`` and ``http-keepalive`` options
