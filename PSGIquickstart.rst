@@ -38,7 +38,7 @@ Note for distro packages
 You distribution very probably contains a uWSGI package set. Those uWSGI packages tend to be highly modulars, so in addition to the core you need to install
 the required plugins. Plugins must be loaded in your configs. In the learning phase we strongly suggest to not use distribution packages to easily follow documentation and tutorials.
 
-Once you feel confortable with the "uWSGI way" you can choose the best approach for your deployments.
+Once you feel comfortable with the "uWSGI way" you can choose the best approach for your deployments.
 
 Your first PSGI app
 *******************
