@@ -1,10 +1,6 @@
 Overriding Workers
 ==================
 
-Work in progress you need to use this 2.0 branch
-
-https://github.com/unbit/uwsgi/tree/customworker
-
 You can override the code run by each uWSGI worker thanks to the "worker" hook exposed to plugins.
 
 Currently the python plugin is the only one exposing it:
@@ -21,7 +17,7 @@ Currently the python plugin is the only one exposing it:
    processes = 4
    ; load a python script as the worker code
    python-worker-override = aioserver.py
-   
+
 
 The python script has access to the uwsgi module so it can control/change its internals.
 
@@ -54,8 +50,8 @@ The following examples shows the use of aiohttp (requires python 3.5)
         elif msg.tp == web.MsgType.close:
             break
 
-    return ws
-    
+      return ws
+
     async def init(loop, fd):
        app = web.Application(loop=loop)
        app.router.add_route('GET', '/echo', wshandler)
