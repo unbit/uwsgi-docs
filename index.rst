@@ -6,7 +6,7 @@ The uWSGI project aims at developing a full stack for building hosting services.
 Application servers (for various programming languages and protocols), proxies, process managers and monitors are all implemented
 using a common api and a common configuration style.
 
-Thanks to its pluggable architecture it can be extended to support more platforms and languages. 
+Thanks to its pluggable architecture it can be extended to support more platforms and languages.
 
 Currently, you can write plugins in C, C++ and Objective-C.
 
@@ -81,9 +81,10 @@ Table of Contents
    LogFormat
    LogEncoders
    Hooks
+   WorkerOverride
    Glossary
    ThirdPartyPlugins
-   
+
 Tutorials
 =========
 
@@ -98,7 +99,7 @@ Tutorials
    tutorials/ReliableFuse
    tutorials/DynamicProxying
    tutorials/GraphiteAndMetrics
-   
+
 
 Articles
 ========
@@ -111,15 +112,15 @@ Articles
    articles/TheArtOfGracefulReloading
    articles/FunWithPerlEyetoyRaspberrypi
    articles/OffloadingWebsocketsAndSSE
-   
-   
+
+
 
 uWSGI Subsystems
 ================
 
 .. toctree::
    :maxdepth: 1
-   
+
    AlarmSubsystem
    Caching
    WebCaching
@@ -197,16 +198,16 @@ Async and loop engines
    Tornado
    uGreen
    asyncio
-   
+
 
 
 
 Web Server support
 ==================
-   
+
 .. toctree::
    :maxdepth: 1
- 
+
    Apache
    Cherokee
    HTTP
@@ -220,10 +221,10 @@ Web Server support
 
 Language support
 ==================
-   
+
 .. toctree::
    :maxdepth: 2
- 
+
    Python
    PyPy
    PHP
@@ -310,7 +311,7 @@ Stable releases
    Changelog-1.9.2
    Changelog-1.9.1
    Changelog-1.9
-   
+
 
 
 Contact
