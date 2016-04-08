@@ -5,7 +5,7 @@ Available from uWSGI 1.9.16, stable from uWSGI 2.0.6
 
 official modifier1: 28
 
-Authors: Javier Guerra, Marcin Deranek, Roberto De Ioris
+Authors: Javier Guerra, Marcin Deranek, Roberto De Ioris, Sokolov Yura aka funny_falcon
 
 The 'rados' plugin allows you to serve objects stored in a Ceph cluster directly using the librados API.
 
@@ -95,6 +95,8 @@ the 'rados-mount' parameter takes various subparameters:
  - allow_delete: allow calling the ``DELETE`` HTTP method to remove objects
  - allow_mkcol: allow calling ``MKCOL`` HTTP method to create new pools
  - allow_propfind: (requires uWSGI 2.1) allow calling the WebDAV ``PROPFIND`` method
+ - buffer_size: maximum buffer size for ``GET`` requests in bytes (min 8192, max 16777216, default to 131072)
+ - put_buffer_size: maximum buffer size for ``PUT`` requests (default to buffer_size)
 
 In this example, your content will be served at http://localhost:9090/rad/list.html, http://localhost:9090/rad/imgs/first.jpeg
 and http://localhost:9090/rad/imgs/second.jpeg.
@@ -227,3 +229,5 @@ Notes
 * The plugin automatically enables the MIME type engine.
 * There is no directory index support. It makes no sense in rados/ceph context.
 * You should drop privileges in your uWSGI instances, so be sure you give the right permissions to the ceph keyring.
+* If you use it for getting/storing large objects, consider increasing ``buffer_size``. 4194304 is very performant value, 1048576 is also good, if you wish to conserve memory.
+* PUT into Erasure coded pools is supported. ``put_buffer_size`` is automatically adjusted to satisfy pool alignment requirements.
