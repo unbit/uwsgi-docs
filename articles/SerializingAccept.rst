@@ -253,7 +253,7 @@ agree with its conclusions, but it does not matter now, you can continue hating
 uWSGI safely or making funny jokes about its naming choices or the number of
 options).
 
-http://justcramer.com/2013/06/27/serving-python-web-applications/
+http://cramer.io/2013/06/27/serving-python-web-applications
 
 The problem David faced was such a strong thundering herd that its response
 time was damaged by it (non constant performance was the main result of its
