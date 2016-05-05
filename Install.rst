@@ -4,8 +4,7 @@ Installing uWSGI
 Installing from a distribution package
 --------------------------------------
 
-.. seealso:: See the :doc:`Download` page for a list of known distributions
-   shipping uWSGI.
+uWSGI is available as a package in several OS/distributions.
 
 Installing from source
 ----------------------
