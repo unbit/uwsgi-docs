@@ -131,3 +131,18 @@ Then disable the service and enable the socket unit.
 
    # systemctl disable emperor.uwsgi.service
    # systemctl enable emperor.uwsgi.socket
+   
+When using Systemd socket activation, you do not need to specify any socket in your uWSGI configuration;
+the instance will inherit the socket from Systemd.
+
+To have uWSGI serve HTTP (instead of the binary uwsgi protocol) under Systemd socket activation,
+set ``protocol`` to ``http``; for instance, in an INI, do this:
+
+.. code-block:: ini
+   
+   [uwsgi]
+   protocol = http
+   wsgi = ...
+   ...
+   
+   
