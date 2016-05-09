@@ -163,7 +163,7 @@ need to be removed manually by the user. The same user that could allocate
 hundreds of those objects and fill your limited SysV IPC memory.
 
 One of the most common problems in the Apache world caused by the SysV ipc
-usage is the leakage when you brutally kills Apache instances (yes, you should
+usage is the leakage when you brutally kill Apache instances (yes, you should
 never do it, but you don't have a choice if you are so brave/fool to host
 unreliable PHP apps in your webserver process).
 
