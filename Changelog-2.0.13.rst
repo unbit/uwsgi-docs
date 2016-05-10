@@ -19,6 +19,7 @@ Changes
 - Add HTTP/2 support to apache 2 proxy (Michael Fladischer, OGAWA Hirofumi)
 - Fix apache mod proxy compilation with apache 2.4.20 (Mathieu Arnold)
 - Default to clang as default compiler on MacOS X (Riccardo Magliocchetti)
+- Added --cgi-close-stdin-on-eof (Roberto De Ioris)
 
 
 Availability
