@@ -1,7 +1,7 @@
 Running uWSGI instances with Circus
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Circus (http://circus.readthedocs.org/en/0.7/) is a process manager written in
+Circus (https://circus.readthedocs.io/en/0.7/) is a process manager written in
 Python. It is very similar to projects like Supervisor, but with several
 additional features.  Although most, if not all, of it's functionalities have a
 counterpart in uWSGI, Circus can be used as a library allowing you to build

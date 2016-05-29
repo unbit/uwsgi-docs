@@ -313,7 +313,7 @@ Emperor ZMQ plugin
 
 A new imperial monitor has been added allowing vassals to be governed over zeromq messages:
 
-http://uwsgi-docs.readthedocs.org/en/latest/ImperialMonitors.html#zmq-zeromq
+https://uwsgi-docs.readthedocs.io/en/latest/ImperialMonitors.html#zmq-zeromq
 
 Total introspection via the stats server
 ****************************************

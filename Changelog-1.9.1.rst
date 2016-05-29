@@ -134,7 +134,7 @@ New routing conditions
 
 New routing conditions have been added (equal,startswith,endswith,regexp) check the updated docs:
 
-http://uwsgi-docs.readthedocs.org/en/latest/InternalRouting.html#the-internal-routing-table
+https://uwsgi-docs.readthedocs.io/en/latest/InternalRouting.html#the-internal-routing-table
 
 The 'V' magic var
 *****************

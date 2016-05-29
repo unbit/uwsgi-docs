@@ -6,7 +6,7 @@ Intro
 
 This tutorial assumes that you are familiar with the usage and purpose of the uwsgi fastrouter and you are facing an edge-case (like "Darth Vader wearing a t-shirt with your face") so you have to use some kind of code-driven "configuration". The fastrouter documentation page recommends `the --fastrouter-use-code-string commandline argument of uwsgi`_ to solve such terribly complicated routing problems by executing your own code/logic for each request to decide which gateway to send it to. The official documentation (at the previous link) shows an example where a python script provides the routing logic and the doc states that you can use any uwsgi-supported language to configure the fastrouter (although my uwsgi-2.0.3 seems to have the code_string feature only in its python and ruby plugins if I'm right...). This tutorial shows you how to write and compile a C++ plugin that contains the routing logic for the fastrouter. This document can also serve a partial/basic C++ plugin tutorial.
 
-.. _the --fastrouter-use-code-string commandline argument of uwsgi: http://uwsgi-docs.readthedocs.org/en/latest/Fastrouter.html#way-5-fastrouter-use-code-string
+.. _the --fastrouter-use-code-string commandline argument of uwsgi: https://uwsgi-docs.readthedocs.io/en/latest/Fastrouter.html#way-5-fastrouter-use-code-string
 
 To make things a bit more complicated I will do the development of this plugin on windows using a cygwin environment. In case of such a simple plugin this involves only 1-2 extra steps compared to building on linux, I will comment the differences. For production I'm using "original" Debian and Ubuntu distros so my examples work there for sure.
 
@@ -225,7 +225,7 @@ The extra argument of the --fastrouter-use-code-string is "251::". This is basic
 
 Note that I've chosen 251 as the modifier of my plugin because based on my research modifier 1 has a lot to do with `The uwsgi Protocol`_ and moreover if you take a look at the plugins/example or plugins/cplusplus example plugins in the uwsgi source dir then you will see that those are using modifier1=250 and 251 seems to be a free id. Note that I've also tried 0 as the modifier1 that is the default modifier1 used by uwsgi and its very first plugin: the python plugin. This seems to work and it seems that this registers our plugin with modifier1=0 by "overriding the python plugin" but I wanted to be polite so I've chosen modifier=251.
 
-.. _The uwsgi Protocol: http://uwsgi-docs.readthedocs.org/en/latest/Protocol.html
+.. _The uwsgi Protocol: https://uwsgi-docs.readthedocs.io/en/latest/Protocol.html
 
 Programming the routing logic in our plugin
 ===========================================
@@ -242,7 +242,7 @@ We started the fastrouter with the "--fastrouter 127.0.0.1:9000 --fastrouter-use
 
 So nginx will route all requests coming to url path /test to the fastrouter by setting UWSGI_FASTROUTER_KEY (basically a "cgi variable") to a user defined string. UWSGI_FASTROUTER_KEY can be anything, you have put something into it that you can use in your plugin to decide where (which gateway) to send the request. In this case I've decided to send the $request_uri to my plugin but you can really put there anything you want. If you don't specify the UWSGI_FASTROUTER_KEY in the nginx config then the fastrouter will use something else instead of it as the fastrouter key (but I think specifying the UWSGI_FASTROUTER_KEY is highly recommended), more on that in the `Notes section of the fastrouter docs`_.
 
-.. _Notes section of the fastrouter docs: http://uwsgi-docs.readthedocs.org/en/latest/Fastrouter.html#notes
+.. _Notes section of the fastrouter docs: https://uwsgi-docs.readthedocs.io/en/latest/Fastrouter.html#notes
 
 With the above fastrouter + nginx config when the fastrouter receives a request from nginx it calls the ``CodeString()`` function of our plugin to ask for the gateway address to use for that request.
 

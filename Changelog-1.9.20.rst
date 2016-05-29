@@ -51,7 +51,7 @@ Simple math in configuration files
 
 As seen before, we have removed matheval support in favor of a simplified interface:
 
-http://uwsgi-docs.readthedocs.org/en/latest/Configuration.html#placeholders-math-from-uwsgi-1-9-20-dev
+https://uwsgi-docs.readthedocs.io/en/latest/Configuration.html#placeholders-math-from-uwsgi-1-9-20-dev
 
 For example, now you can automatically set the number of threads to:
 

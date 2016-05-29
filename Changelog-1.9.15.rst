@@ -247,7 +247,7 @@ A new python loader (--pecan) has been added for the pecan WSGI framework
 
 http://pecanpy.org/
 
-https://uwsgi-docs.readthedocs.org/en/latest/Python.html#pecan-support
+https://uwsgi-docs.readthedocs.io/en/latest/Python.html#pecan-support
 
 UWSGI_REMOVE_INCLUDES
 *********************

@@ -107,7 +107,7 @@ We want to add the ``ring-core`` package to our dependencies (it contains a set 
 
    (defproject helloworld "0.1.0-SNAPSHOT"
   :description "My second uWSGI ring app"
-  :url "https://uwsgi-docs.readthedocs.org/en/latest/Ring.html"
+  :url "https://uwsgi-docs.readthedocs.io/en/latest/Ring.html"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.Clojure/Clojure "1.4.0"] [ring/ring-core "1.2.0-beta1"]])

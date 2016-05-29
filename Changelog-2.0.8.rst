@@ -35,7 +35,7 @@ This custom hook allows you to call actions after each `fork()`.
 fallback to trollius for asyncio plugin
 ***************************************
 
-If you build the asyncio plugin for python2, a fallback to the `trollius <http://trollius.readthedocs.org/>`_ module will be tried.
+If you build the asyncio plugin for python2, a fallback to the `trollius <https://trollius.readthedocs.io/>`_ module will be tried.
 
 This feature has gotten basically zero test coverage, so every report (bug or success alike) is welcome.
 

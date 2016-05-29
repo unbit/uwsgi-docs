@@ -81,7 +81,7 @@ Gzip caching
 
 The cachestore routing function can now directly store items in gzip format.
 
-Check the CachingCookbook: http://uwsgi-docs.readthedocs.org/en/latest/tutorials/CachingCookbook.html
+Check the CachingCookbook: https://uwsgi-docs.readthedocs.io/en/latest/tutorials/CachingCookbook.html
 
 --skip-atexit
 ^^^^^^^^^^^^^

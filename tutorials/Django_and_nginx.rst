@@ -530,7 +530,7 @@ uWSGI
 uWSGI supports multiple ways to configure it. See `uWSGI's documentation`_ and
 `examples`_.
 
-.. _uWSGI's documentation: https://uwsgi-docs.readthedocs.org
+.. _uWSGI's documentation: https://uwsgi-docs.readthedocs.io
 .. _examples: http://projects.unbit.it/uwsgi/wiki/Example
 
 Some uWSGI options have been mentioned in this tutorial; others you ought to
