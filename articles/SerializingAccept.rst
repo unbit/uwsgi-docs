@@ -456,7 +456,7 @@ I have to admit, I am not a big fan of supervisord. It is a good software
 without doubts, but I consider the Emperor and the --attach-daemon facilities a
 better approach to the deployment problems. In addition to this, if you want to
 have a "scriptable"/"extendable" process supervisor I think Circus
-(http://circus.readthedocs.org/) is a lot more fun and capable (the first thing
+(https://circus.readthedocs.io/) is a lot more fun and capable (the first thing
 I have done after implementing socket activation in the uWSGI Emperor was
 making a pull request [merged, if you care] for the same feature in Circus).
 

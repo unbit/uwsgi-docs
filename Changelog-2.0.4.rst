@@ -26,7 +26,7 @@ asyncio (also known as 'tulip') is the new infrastructure for writing non-blocki
 
 This (experimental) plugin allows you to use asyncio as the uWSGI loop engine.
 
-Docs: http://uwsgi-docs.readthedocs.org/en/latest/asyncio.html
+Docs: https://uwsgi-docs.readthedocs.io/en/latest/asyncio.html
 
 httprouter advanced timeout management
 **************************************
@@ -59,7 +59,7 @@ support embedded config on FreeBSD
 
 You can now embed configuration files into the binary also on FreeBSD systems: 
 
-http://uwsgi-docs.readthedocs.org/en/latest/Embed.html#step-2-embedding-the-config-file
+https://uwsgi-docs.readthedocs.io/en/latest/Embed.html#step-2-embedding-the-config-file
 
 RPC hook
 ********

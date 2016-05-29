@@ -33,14 +33,14 @@ Improved PyPy support for Linux
 
 The PyPy team have started building libpypy-c.so in their official releases. Now using pypy with uWSGI should be way easier:
 
-http://uwsgi-docs.readthedocs.org/en/latest/PyPy.html
+https://uwsgi-docs.readthedocs.io/en/latest/PyPy.html
 
 Fastrouter post-buffering
 *************************
 
 The fastrouter got post-buffering:
 
-http://uwsgi-docs.readthedocs.org/en/latest/Fastrouter.html#post-buffering-mode-uwsgi-2-0-9
+https://uwsgi-docs.readthedocs.io/en/latest/Fastrouter.html#post-buffering-mode-uwsgi-2-0-9
 
 Perl uwsgi::opt
 ***************

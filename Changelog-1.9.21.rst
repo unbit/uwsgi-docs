@@ -141,7 +141,7 @@ The chain reloading subsystem has been improved to take in account when a worker
 
 This specific state is announced to the Emperor too.
 
-Check this article for more infos: http://uwsgi-docs.readthedocs.org/en/latest/articles/TheArtOfGracefulReloading.html
+Check this article for more infos: https://uwsgi-docs.readthedocs.io/en/latest/articles/TheArtOfGracefulReloading.html
 
 --after-request-call
 ^^^^^^^^^^^^^^^^^^^^

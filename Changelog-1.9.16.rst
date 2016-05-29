@@ -129,7 +129,7 @@ Author: Łukasz Mierzwa
 
 This new check allows control of dynamic process spawning based on the RSS usage:
 
-http://uwsgi-docs.readthedocs.org/en/latest/Cheaper.html#setting-memory-limits
+https://uwsgi-docs.readthedocs.io/en/latest/Cheaper.html#setting-memory-limits
 
 Log encoders
 ^^^^^^^^^^^^

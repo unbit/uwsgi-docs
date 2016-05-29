@@ -30,7 +30,7 @@ Support for uploading objects (via PUT) and creating new pools (MKCOL) has been 
 
 Expect WebDAV support in uWSGI 2.1.
 
-Docs have been updated: http://uwsgi-docs.readthedocs.org/en/latest/Rados.html
+Docs have been updated: https://uwsgi-docs.readthedocs.io/en/latest/Rados.html
 
 --if-hostname
 *************
@@ -55,7 +55,7 @@ After literally years of bug reports and corrupted data and other general badnes
 
 On modern Apache2 releases it supports UNIX sockets too.
 
-Updated docs: http://uwsgi-docs.readthedocs.org/en/latest/Apache.html#mod-proxy-uwsgi
+Updated docs: https://uwsgi-docs.readthedocs.io/en/latest/Apache.html#mod-proxy-uwsgi
 
 uwsgi[rsize] routing var
 ************************

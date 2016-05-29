@@ -235,7 +235,7 @@ It could be hard to understand why an application server should check for mountp
 
 In the same way understanding how writing filesystem in userspace was silly few years ago.
 
-So, check the article about managing Fuse filesystem with uWSGI: http://uwsgi-docs.readthedocs.org/en/latest/tutorials/ReliableFuse.html
+So, check the article about managing Fuse filesystem with uWSGI: https://uwsgi-docs.readthedocs.io/en/latest/tutorials/ReliableFuse.html
 
 Preliminary libffi plugin
 ^^^^^^^^^^^^^^^^^^^^^^^^^
