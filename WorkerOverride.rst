@@ -77,9 +77,12 @@ The following examples shows the use of aiohttp (requires python 3.5)
    # spawn a handler for every uWSGI socket
    for fd in uwsgi.sockets:
       loop.run_until_complete(init(loop, fd))
+   uwsgi.accepting()
    loop.run_forever()
 
 
 In the example (taken from the official aiohttp docs) we see the uwsgi.sockets list (holding the list of uWSGI sockets file descriptors), and the override of SIGINT and SIGHUP to support reloading (SIGHUP should be adapted to support waiting for all the queued requests)
+
+:py:func:`uwsgi.accepting()` is called to notify the master that the worker is accepting requests, this is required for touch-chain-reload to work.
 
 The script should be extended to call uwsgi.log(...) after every request and to (eventually) update some metrics
