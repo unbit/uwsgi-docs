@@ -209,6 +209,15 @@ Advanced methods
 
 
 
+.. function:: accepting(accepting=True)
+
+   Set the accepting flag of the current worker to the value. This is
+   required when using `Overriding Workers`_ and touch-chain-reload at
+   the same time.
+
+   .. seealso:: :doc:`WorkerOverride`
+
+
 .. function:: reload()
 
    Gracefully reload the uWSGI server stack.
