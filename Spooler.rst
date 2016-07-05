@@ -176,6 +176,23 @@ To add an external spooler directory use the ``--spooler-external <directory>`` 
 
 The spooler locking subsystem will avoid any messes that you might think could occur.
 
+.. code-block:: ini
+
+   [uwsgi]
+   spooler-external = /var/spool/uwsgi/external
+   ...
+
+.. code-block:: py
+
+   # python
+   import uwsgi
+   uwsgi.spool({'foo': 'bar',  'spooler': '/var/spool/uwsgi/external'})
+   # or
+   uwsgi.spool(foo='bar', spooler='/var/spool/uwsgi/external')
+   # for python3 use bytes instead of strings !!!
+
+
+
 Networked spoolers
 ------------------
 
