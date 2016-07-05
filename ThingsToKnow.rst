@@ -56,3 +56,7 @@ Things to know (best practices and "issues") READ IT !!!
 * You can easily add non-existent options to your config files (as placeholders, custom options, or app-related configuration items). This is a really handy feature, but can lead to headaches on typos. The strict mode (--strict) will disable this feature, and only valid uWSGI options are tolerated.
 
 * Some plugins (most notably Python and Perl) have code auto-reloading facilities. Although they might sound very appealing, you MUST use them only under development as they are really heavy-weight. For example the Python --py-autoreload option will scan your whole module tree at every check cycle.
+
+* ``wsgi.file_wrapper`` is an optimization of the WSGI standard. In some corner case it can raise an error.
+  For example when returning an in-memory bytes buffer (`io.Bytesio <https://docs.python.org/3/library/io.html#io.BytesIO>`_) in Python 3.5.
+  See this `issue <https://github.com/unbit/uwsgi/issues/1126>`_. You can disable it by setting the option ``wsgi-disable-file-wrapper`` to ``true``.
