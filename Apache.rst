@@ -79,7 +79,12 @@ SetEnv directive and load balance requests using mod_proxy_balancer.
 Pay attention to the last slash in the member/node definition. It is optional
 for non-empty SCRIPT_NAME/mountpoints but required for apps mounted in the root
 of the domain.  Currently the module lacks the ability to set modifiers, though
-this will be fixed soon.
+this will be fixed soon. An alternative is to set the plugin you want to use as
+the first one (0):
+
+.. parsed-literal::
+
+   plugins = 0:php
 
 .. note::
 
