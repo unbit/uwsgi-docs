@@ -10,7 +10,7 @@ When uWSGI detects it is running under systemd, the notification system is enabl
 Adding the Emperor to systemd
 *****************************
 
-The best approach to integrate uWSGI apps with your init system is using the :doc:`Emperor<Emperor>`.
+One approach to integrate uWSGI apps with your init system is using the :doc:`Emperor<Emperor>`.
 
 Your init system will talk only with the Emperor that will rule all of the apps itself.
 
@@ -145,4 +145,75 @@ set ``protocol`` to ``http``; for instance, in an INI, do this:
    wsgi = ...
    ...
    
-   
+One service per app in systemd
+******************************
+
+Another approach is to let systemd handle starting individual apps while taking
+advantage of systemd template unit files, and of course socket activation. Each
+app will run under its own user.
+
+``/etc/systemd/system/uwsgi-app@.socket``:
+
+.. code-block:: ini
+
+  [Unit]
+  Description=Socket for uWSGI app %i
+
+  [Socket]
+  ListenStream=/var/run/uwsgi/%i.socket
+  SocketUser=www-%i
+  SocketGroup=www-data
+  SocketMode=0660
+
+  [Install]
+  WantedBy=sockets.target
+
+``/etc/systemd/system/uwsgi-app@.service``:
+
+.. code-block:: ini
+
+  [Unit]
+  Description=%i uWSGI app
+  After=syslog.target
+
+  [Service]
+  ExecStart=/usr/bin/uwsgi \
+          --ini /etc/uwsgi/apps-available/%i.ini \
+          --socket /var/run/uwsgi/%i.socket
+  User=www-%i
+  Group=www-data
+  Restart=on-failure
+  KillSignal=SIGQUIT
+  Type=notify
+  StandardError=syslog
+  NotifyAccess=all
+
+Now, adding a new app to your system is a matter of creating the appropriate
+user and enabling the socket and the service. For instance, if one were to
+configure cgit:
+
+.. code-block:: sh
+
+  adduser www-cgit --disabled-login --disabled-password \
+    --ingroup www-data --home /var/lib/www/cgit --shell /bin/false
+  systemctl enable uwsgi-app@cgit.socket
+  systemctl enable uwsgi-app@cgit.service
+  systemctl start uwsgi-app@cgit.socket
+
+Then configure the ini file ``/etc/uwsgi/apps-available/cgit.ini``:
+
+.. code-block:: ini
+
+  [uwsgi]
+  master = True
+  cheap = True
+  idle = 600
+  die-on-idle = True # If app is not used often, it will exit and be launched
+                     # again by systemd requested by users.
+
+  manage-script-name = True
+
+  plugins = 0:cgi
+  cgi = /usr/lib/cgit/cgit.cgi
+
+And last, if applicable, configure your HTTP server the usual way.
