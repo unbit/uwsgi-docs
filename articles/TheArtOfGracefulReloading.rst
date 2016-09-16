@@ -13,7 +13,7 @@ the master process enabled.
 What is a "graceful reload"?
 ****************************
 
-During the life-cycle of your webapp you will reload it hundreds of time.
+During the life-cycle of your webapp you will reload it hundreds of times.
 
 You need reloading for code updates, you need reloading for changes in the
 uWSGI configuration, you need reloading to reset the state of your app.
