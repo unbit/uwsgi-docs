@@ -77,7 +77,7 @@ For example:
 
    [uwsgi]
    ; every two hours
-   cron = -1 -2 -1 -1 -1 /usr/bin/backup_my_home --recursive
+   cron = 0 -2 -1 -1 -1 /usr/bin/backup_my_home --recursive
 
 Legion crons
 ************
@@ -91,7 +91,7 @@ crons only if it is the Lord of the specified Legion:
    legion = mycluster 225.1.1.1:1717 100 bf-cbc:hello
    legion-node = mycluster 225.1.1.1:1717
    ; every two hours
-   legion-cron = mycluster -1 -2 -1 -1 -1 /usr/bin/backup_my_home --recursive
+   legion-cron = mycluster 0 -2 -1 -1 -1 /usr/bin/backup_my_home --recursive
 
 Unique crons
 ************
