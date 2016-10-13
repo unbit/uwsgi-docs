@@ -5,7 +5,7 @@ This is the list of officially supported operating systems and platforms.
 
 
 * Linux 2.6/3.x
-* FreeBSD >= 7
+* FreeBSD
 * NetBSD
 * OpenBSD
 * DragonFlyBSD
