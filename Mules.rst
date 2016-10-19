@@ -57,13 +57,14 @@ Basic usage
 Giving a brain to mules
 -----------------------
 
-As mentioned before, mules can be programmed. To give custom logic to a mule, pass the name of a script to the ``mule`` option.
+As mentioned before, mules can be programmed. To give custom logic to a mule, give the ``mule`` option a path to
+a script (it must end in ".py") or a "package.module:callable" value.
 
 .. code-block:: sh
 
-    uwsgi --socket :3031 --mule=somaro.py --mule --mule --mule
+    uwsgi --socket :3031 --mule=somaro.py --mule=mypkg.myapp:run_mule --mule --mule
 
-This will run 4 mules, 3 in signal-only mode and one running :file:`somaro.py`.
+This will run 4 mules, 2 in signal-only mode, one running :file:`somaro.py` and one running `mypkg.myapp:run_mule`.
 
 .. code-block:: py
 
