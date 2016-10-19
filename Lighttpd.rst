@@ -15,7 +15,7 @@ Modify your lighttpd.conf configuration file:
   server.modules += ( "mod_scgi" )
   scgi.protocol = "uwsgi"
   scgi.server = (
-    "/" => (( "host" => "127.0.0.1", "port" => 3031 )),
+    "/" => (( "host" => "127.0.0.1", "port" => 3031, "check-local" => "disable" )),
   )
 
 Further doc on configuring lighttpd and Python WSGI can be found at
