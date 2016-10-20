@@ -485,6 +485,15 @@ skip-atexit
 ``help``: skip atexit hooks (ignored by the master)
 
 
+skip-atexit
+***********
+``argument``: no_argument
+
+``parser``: uwsgi_opt_true
+
+``help``: skip atexit teardown (ignored by the master)
+
+
 
 set
 ***
