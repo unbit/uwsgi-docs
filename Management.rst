@@ -19,16 +19,17 @@ How to best start uWSGI services at boot depends on the operating system you use
 
 On modern systems the following should hold true. On "classic" operating systems you can use ``init.d``/``rc.d`` scripts, or tools such as Supervisor, Daemontools or :doc:`inetd/xinetd <Inetd>`.
 
-============== =========
-System         Method
-============== =========
-Ubuntu         :doc:`Upstart` (the official ``uwsgi`` package, available since Ubuntu 12.04 provides an init.d based solution. Read the README.)
-Debian         :doc:`Systemd`
-Arch Linux     :doc:`Systemd`
-Fedora         :doc:`Systemd`
-OSX            launchd
-Solaris        SMF
-============== =========
+=============== =========
+System          Method
+=============== =========
+Ubuntu < 15.04  :doc:`Upstart` (the official ``uwsgi`` package, available since Ubuntu 12.04 provides an init.d based solution. Read the README.)
+Ubuntu >= 15.04 :doc:`Systemd`
+Debian          :doc:`Systemd`
+Arch Linux      :doc:`Systemd`
+Fedora          :doc:`Systemd`
+OSX             launchd
+Solaris         SMF
+=============== =========
 
 
 Signals for controlling uWSGI
