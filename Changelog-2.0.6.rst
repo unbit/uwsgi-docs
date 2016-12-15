@@ -102,4 +102,4 @@ uWSGI 2.0.6 has been released on 20140701
 
 You can download it from
 
-http://projects.unbit.it/downloads/uwsgi-2.0.6.tar.gz
+https://projects.unbit.it/downloads/uwsgi-2.0.6.tar.gz

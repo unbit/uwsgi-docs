@@ -83,4 +83,4 @@ Availability
 
 uWSGI 2.0.8 has been released on 20141026. Download it from:
 
-http://projects.unbit.it/downloads/uwsgi-2.0.8.tar.gz
+https://projects.unbit.it/downloads/uwsgi-2.0.8.tar.gz

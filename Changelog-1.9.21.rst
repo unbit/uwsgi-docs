@@ -186,4 +186,4 @@ Availability
 
 uWSGI 1.9.21 has been released on December 11th 2013 and can be downloaded at:
 
-http://projects.unbit.it/downloads/uwsgi-1.9.21.tar.gz
+https://projects.unbit.it/downloads/uwsgi-1.9.21.tar.gz

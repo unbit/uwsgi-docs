@@ -149,4 +149,4 @@ Availability
 
 uWSGI 1.9.3 has been released on 20130328 and can be downloaded from:
 
-http://projects.unbit.it/downloads/uwsgi-1.9.3.tar.gz
+https://projects.unbit.it/downloads/uwsgi-1.9.3.tar.gz

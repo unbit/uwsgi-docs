@@ -47,7 +47,7 @@ You have various ways to install uWSGI for Python:
 
   .. code-block:: sh
 
-      wget http://projects.unbit.it/downloads/uwsgi-latest.tar.gz
+      wget https://projects.unbit.it/downloads/uwsgi-latest.tar.gz
       tar zxvf uwsgi-latest.tar.gz
       cd <dir>
       make

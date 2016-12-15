@@ -58,7 +58,7 @@ Download latest stable uWSGI tarball
 
 .. code-block:: sh
 
-   wget http://projects.unbit.it/downloads/uwsgi-latest.tar.gz
+   wget https://projects.unbit.it/downloads/uwsgi-latest.tar.gz
    
 explode it, and from the created directory run:
 

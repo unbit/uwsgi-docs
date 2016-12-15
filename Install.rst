@@ -52,7 +52,7 @@ You can also use pip to install uWSGI (it will build a binary with python suppor
    # Install the latest stable release:
    pip install uwsgi
    # ... or if you want to install the latest LTS (long term support) release,
-   pip install http://projects.unbit.it/downloads/uwsgi-lts.tar.gz
+   pip install https://projects.unbit.it/downloads/uwsgi-lts.tar.gz
 
 Or you can use ruby gems (it will build a binary with ruby/rack support).
 

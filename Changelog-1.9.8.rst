@@ -15,4 +15,4 @@ Bugfixes
 Availability
 ************
 
-You can download uWSGi 1.9.8 from http://projects.unbit.it/downloads/uwsgi-1.9.8.tar.gz
+You can download uWSGi 1.9.8 from https://projects.unbit.it/downloads/uwsgi-1.9.8.tar.gz

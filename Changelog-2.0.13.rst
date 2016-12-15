@@ -25,4 +25,4 @@ Changes
 Availability
 ------------
 
-You can download uWSGI 2.0.13 from http://projects.unbit.it/downloads/uwsgi-2.0.13.tar.gz
+You can download uWSGI 2.0.13 from https://projects.unbit.it/downloads/uwsgi-2.0.13.tar.gz

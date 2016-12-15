@@ -154,4 +154,4 @@ Availability
 
 uWSGI 1.9.13 will be available 22th June 2013 at this url:
 
-http://projects.unbit.it/downloads/uwsgi-1.9.13.tar.gz
+https://projects.unbit.it/downloads/uwsgi-1.9.13.tar.gz

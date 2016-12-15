@@ -194,4 +194,4 @@ Availability
 
 uWSGI 1.9.11 will be available since 20130526 at:
 
-http://projects.unbit.it/downloads/uwsgi-1.9.11.tar.gz
+https://projects.unbit.it/downloads/uwsgi-1.9.11.tar.gz

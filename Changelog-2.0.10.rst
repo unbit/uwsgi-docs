@@ -47,4 +47,4 @@ Availability
 
 You can download uWSGI 2.0.10 from
 
-http://projects.unbit.it/downloads/uwsgi-2.0.10.tar.gz
+https://projects.unbit.it/downloads/uwsgi-2.0.10.tar.gz

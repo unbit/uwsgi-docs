@@ -122,4 +122,4 @@ Availability
 
 uWSGI 2.0 has been released on 20131230 and can be downloaded from:
 
-http://projects.unbit.it/downloads/uwsgi-2.0.tar.gz
+https://projects.unbit.it/downloads/uwsgi-2.0.tar.gz
