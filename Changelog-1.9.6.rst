@@ -299,4 +299,4 @@ Availability
 
 uWSGI 1.9.6 will be available since 20130409 at this url:
 
-http://projects.unbit.it/downloads/uwsgi-1.9.6.tar.gz
+https://projects.unbit.it/downloads/uwsgi-1.9.6.tar.gz

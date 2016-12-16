@@ -170,7 +170,7 @@ Of course you can skip this step if you are working with a new uwsgi binary. Oth
 
 .. code:: bash
 
-    ~$ wget http://projects.unbit.it/downloads/uwsgi-2.0.3.tar.gz
+    ~$ wget https://projects.unbit.it/downloads/uwsgi-2.0.3.tar.gz
     ~$ tar xvf uwsgi-2.0.3.tar.gz
     ~$ cd uwsgi-2.0.3
     ~/uwsgi-2.0.3$

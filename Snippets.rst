@@ -223,7 +223,7 @@ get a uWSGI tarball and build the 'nolang' version (it is a monolithic one witho
 
 .. code-block:: sh
 
-   wget http://projects.unbit.it/downloads/uwsgi-latest.tar.gz
+   wget https://projects.unbit.it/downloads/uwsgi-latest.tar.gz
    tar zxvf uwsgi-latest.tar.gz
    cd uwsgi-xxx
    make nolang

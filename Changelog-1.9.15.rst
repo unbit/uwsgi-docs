@@ -387,4 +387,4 @@ Availability
 
 uWSGI 1.9.15 has been released on August 29th 2013. You can download it from:
 
-http://projects.unbit.it/downloads/uwsgi-1.9.15.tar.gz
+https://projects.unbit.it/downloads/uwsgi-1.9.15.tar.gz

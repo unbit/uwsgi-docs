@@ -441,13 +441,13 @@ and install uWSGI system-wide::
     sudo pip install uwsgi
                                                              
     # Or install LTS (long term support).
-    pip install http://projects.unbit.it/downloads/uwsgi-lts.tar.gz
+    pip install https://projects.unbit.it/downloads/uwsgi-lts.tar.gz
 
 The uWSGI wiki describes several `installation procedures`_. Before installing
 uWSGI system-wide, it's worth considering which version to choose and the most
 apppropriate way of installing it.
 
-.. _installation procedures: http://projects.unbit.it/uwsgi/wiki/Install
+.. _installation procedures: https://projects.unbit.it/uwsgi/wiki/Install
  
 Check again that you can still run uWSGI just like you did before:
     
@@ -531,7 +531,7 @@ uWSGI supports multiple ways to configure it. See `uWSGI's documentation`_ and
 `examples`_.
 
 .. _uWSGI's documentation: https://uwsgi-docs.readthedocs.io
-.. _examples: http://projects.unbit.it/uwsgi/wiki/Example
+.. _examples: https://projects.unbit.it/uwsgi/wiki/Example
 
 Some uWSGI options have been mentioned in this tutorial; others you ought to
 look at for a deployment in production include (listed here with example

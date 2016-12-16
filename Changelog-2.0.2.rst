@@ -44,7 +44,7 @@ Many thanks to Ævar Arnfjörð Bjarmason of booking.com for having discovered t
 Availability
 ************
 
-uWSGI 2.0.2 can be downloaded from: http://projects.unbit.it/downloads/uwsgi-2.0.2.tar.gz
+uWSGI 2.0.2 can be downloaded from: https://projects.unbit.it/downloads/uwsgi-2.0.2.tar.gz
 
 
 

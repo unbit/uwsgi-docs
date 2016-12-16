@@ -65,4 +65,4 @@ This options for config logic allows you to define options only when a regexp ov
 Availability
 ------------
 
-You can download uWSGI 2.0.12 from http://projects.unbit.it/downloads/uwsgi-2.0.12.tar.gz
+You can download uWSGI 2.0.12 from https://projects.unbit.it/downloads/uwsgi-2.0.12.tar.gz

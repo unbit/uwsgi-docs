@@ -86,6 +86,6 @@ Availability
 
 uWSGI 2.0.4 has been released on 20140422, you can download it from:
 
-http://projects.unbit.it/downloads/uwsgi-2.0.4.tar.gz
+https://projects.unbit.it/downloads/uwsgi-2.0.4.tar.gz
 
 

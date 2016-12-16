@@ -185,4 +185,4 @@ Availability
 
 Download uWSGI 1.9.14 from
 
-http://projects.unbit.it/downloads/uwsgi-1.9.14.tar.gz
+https://projects.unbit.it/downloads/uwsgi-1.9.14.tar.gz

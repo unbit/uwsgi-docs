@@ -18,4 +18,4 @@ uWSGI 1.4.10 has been released 20130823
 
 You can download it from:
 
-http://projects.unbit.it/downloads/uwsgi-1.4.10.tar.gz
+https://projects.unbit.it/downloads/uwsgi-1.4.10.tar.gz

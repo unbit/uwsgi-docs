@@ -308,7 +308,7 @@ mapping storage.
 
 .. _Lincoln Loop: http://lincolnloop.com/
 
-.. _`a draft about massive Emperor + Fastrouter deployment`: http://projects.unbit.it/uwsgi/raw-attachment/wiki/Emperor/lincolnloop.pdf
+.. _`a draft about massive Emperor + Fastrouter deployment`: https://projects.unbit.it/uwsgi/raw-attachment/wiki/Emperor/lincolnloop.pdf
 
 Notes
 -----
