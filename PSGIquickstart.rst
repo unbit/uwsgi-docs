@@ -239,7 +239,7 @@ You can even pipe configs (using the dash to force reading from stdin):
    perl myjsonconfig_generator.pl | uwsgi --json -
 
 Accessing uWSGI options within application code
-******************
+***********************************************
 
 uWSGI options can be accessed within application code via ``uwsgi::opt``.
 
