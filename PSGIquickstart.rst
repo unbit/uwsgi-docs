@@ -238,6 +238,15 @@ You can even pipe configs (using the dash to force reading from stdin):
 
    perl myjsonconfig_generator.pl | uwsgi --json -
 
+Accessing uWSGI options within application code
+***********************************************
+
+uWSGI options can be accessed within application code via ``uwsgi::opt``.
+
+.. code-block:: pl
+
+   my $uwsgi_opt = uwsgi::opt;
+   print $uwsgi_opt->{'http'};
 
 Automatically starting uWSGI on boot
 ************************************
