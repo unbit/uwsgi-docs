@@ -47,12 +47,20 @@ To pass custom variables use the ``SetEnv`` directive:
   
   SetEnv UWSGI_SCRIPT yourapp
 
+For example:
+
+.. parsed-literal::
+
+   <Location /myapp>
+       SetHandler uwsgi-handler
+      uWSGISocket /run/uwsgi/app/myapp/socket
+   </Location>
 
 mod_proxy_uwsgi
 ---------------
 
 
-This is the latest module and probably the best bet for the future.  It is a
+This is the latest module but may have issues.  It is a
 "proxy" module, so you will get all of the features exported by mod_proxy.  It
 is fully "apache api compliant" so it should be easy to integrate with the
 available modules.  Using it is easy; just remember to load mod_proxy and
@@ -101,6 +109,13 @@ Starting from Apache 2.4.9, support for Unix sockets has been added. The syntax 
 
   ProxyPass / unix:/var/lib/uwsgi/app1.sock|uwsgi://uwsgi-uds-app1/
   ProxyPass / unix:/var/lib/uwsgi/app2.sock|uwsgi://uwsgi-uds-app2/
+
+.. note::
+
+  Unix domain sockets may not work for anything but the base URL with
+  `mod_proxy_uwsgi`.  The alternative is to use `mod_uwsgi` or TCP
+  sockets.  Apache logs the error: "AH00898: DNS lookup failure
+  for: hello returned by /myapp/hello".
 
 .. note::
 
