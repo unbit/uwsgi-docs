@@ -60,11 +60,11 @@ mod_proxy_uwsgi
 ---------------
 
 
-This is the latest module but may have issues.  It is a
-"proxy" module, so you will get all of the features exported by mod_proxy.  It
-is fully "apache api compliant" so it should be easy to integrate with the
-available modules.  Using it is easy; just remember to load mod_proxy and
-mod_proxy_uwsgi modules in your apache config.
+This is the latest module and probably the best bet for the future (Apache
+2.4.13+).  It is a "proxy" module, so you will get all of the features exported
+by mod_proxy.  It is fully "apache api compliant" so it should be easy to
+integrate with the available modules.  Using it is easy; just remember to
+load mod_proxy and mod_proxy_uwsgi modules in your apache config.
 
 .. parsed-literal::
 
@@ -112,10 +112,10 @@ Starting from Apache 2.4.9, support for Unix sockets has been added. The syntax 
 
 .. note::
 
-  Unix domain sockets may not work for anything but the base URL with
-  `mod_proxy_uwsgi`.  The alternative is to use `mod_uwsgi` or TCP
-  sockets.  Apache logs the error: "AH00898: DNS lookup failure
-  for: hello returned by /myapp/hello".
+  Unix domain sockets may not work before Apache version 2.4.13,
+  including Ubuntu 16.04.  The alternative is to use `mod_uwsgi` or TCP
+  sockets.  Apache logs the error: "AH00898: DNS lookup failure for: hello
+  returned by /myapp/hello".
 
 .. note::
 
