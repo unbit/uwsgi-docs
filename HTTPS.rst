@@ -2,7 +2,7 @@ HTTPS support (from 1.3)
 ============================
 
 Use the ``https <socket>,<certificate>,<key>`` option. This option may be
-specified multiple times.  First generate your server key, certificate signing
+specified multiple times. First generate your server key, certificate signing
 request, and self-sign the certificate using the OpenSSL toolset:
 
 .. note:: You'll want a real SSL certificate for production use.
@@ -27,6 +27,10 @@ uWSGI will bind to 443 on any IP, then drop privileges to those of ``roberto``,
 and use the shared socket 0 (``=0``) for HTTPS.
 
 .. note:: The =0 syntax is currently undocumented.
+
+.. note:: In order to use `https` option be sure that you have OpenSSL
+   development headers installed (e.g. libssl-dev on Debian). Install them
+   and rebuild uWSGI so the build system will automatically detect it.
 
 Setting SSL/TLS ciphers
 -----------------------
@@ -53,7 +57,7 @@ Client certificate authentication
 ---------------------------------
 
 The ``https`` option can also take an optional 5th argument. You can use it to
-specify a CA certificate to authenticate your clients with.  Generate your CA
+specify a CA certificate to authenticate your clients with. Generate your CA
 key and certificate (this time the key will be 4096 bits and
 password-protected)::
 
