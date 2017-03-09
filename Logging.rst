@@ -150,9 +150,9 @@ address:
 Logging to syslog
 -----------------
 
-``logsyslog`` plugin -- embedded by default
+``syslog`` plugin -- embedded by default
 
-The ``logsyslog`` plugin routes logs to Unix standard syslog. You may pass an
+The ``syslog`` plugin routes logs to Unix standard syslog. You may pass an
 optional ID to send and the "facility" for the log entry.
 
 .. code-block:: sh
@@ -171,10 +171,10 @@ to send to the local6 facility
 Logging to remote syslog
 ------------------------
 
-``logrsyslog`` plugin -- embedded by default
+``rsyslog`` plugin -- embedded by default
 
 
-The ``logrsyslog`` plugin routes logs to Unix standard syslog residing on a
+The ``rsyslog`` plugin routes logs to Unix standard syslog residing on a
 remote server. In addtition to the address+port of the remote syslog server,
 you may pass an optional ID to send as the "facility" parameter for the log
 entry.
