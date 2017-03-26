@@ -12,6 +12,7 @@ Changes
 - avoid time overflow in request logs during (even minimal) clock skew
 - fixed python logger with python3
 - fixed catch-exceptions with python3
+- backported dpn't clone $env->{'psgix.io'} on "PSGI cancel" 
 
 Availability
 ------------
