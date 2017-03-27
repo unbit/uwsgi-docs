@@ -1,7 +1,7 @@
 uWSGI 2.0.15
 ============
 
-[20170326]
+[20170330]
 
 Maintenance release
 
