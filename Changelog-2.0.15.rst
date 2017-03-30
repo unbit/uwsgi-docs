@@ -16,7 +16,7 @@ Unfortunately there are still 2 unfixed long standing bugs in this release:
 Changes
 -------
 
-- workaround for the cheat allocator for avoiding crashes with newrelic (see Issues notes)
+- workaround for the holy allocator for avoiding crashes with newrelic (see Issues notes)
 - avoid time overflow in request logs during (even minimal) clock skew
 - fixed python logger with python3
 - fixed catch-exceptions with python3
