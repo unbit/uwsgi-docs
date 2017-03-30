@@ -11,7 +11,7 @@ Issues
 Unfortunately there are still 2 unfixed long standing bug in this release:
 
 - suwsgi protocol behind nginx does not work reliably when a request body is sent by the client (https://github.com/unbit/uwsgi/issues/1490). As we cannot reproduce it in uWSGI itself, we will start checking in the nginx module too
-- There are reports of the "holy" wsgi env allocator crashing on specific conditions, this release includes a bunch of workaround but they could not be enough
+- There are reports of the "holy" wsgi env allocator crashing on specific conditions, this release includes a bunch of workarounds but they could not be enough
 
 Changes
 -------
