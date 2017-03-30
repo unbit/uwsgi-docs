@@ -5,10 +5,18 @@ uWSGI 2.0.15
 
 Maintenance release
 
+Issues
+------
+
+Unfortunately there are still 2 unfixed long standing bug in this release:
+
+- suwsgi protocol behind nginx does not work reliably when a request body is sent by the client (https://github.com/unbit/uwsgi/issues/1490). As we cannot reproduce it in uWSGI itself, we will start checking in the nginx module too
+- There are reports of the "holy" wsgi env allocator crashing on specific conditions, this release includes a bunch of workaround bit they could not be enough
+
 Changes
 -------
 
-- workaround for the cheat allocator for avoiding crashes with newrelic
+- workaround for the cheat allocator for avoiding crashes with newrelic (see Issues notes)
 - avoid time overflow in request logs during (even minimal) clock skew
 - fixed python logger with python3
 - fixed catch-exceptions with python3
