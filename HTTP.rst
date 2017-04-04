@@ -101,6 +101,14 @@ rules are respected. This is not a smart http 1.1 parser (to avoid parsing the
 whole response) but assumes the developer is generating the right headers.
 ``http11-socket`` has been added to support RTSP protocol for video streaming.
 
+Since uWSGI 2.1 (master branch) you can use the ``http11-socket`` option.
+``http11-socket`` may replace the ``add-header`` and ``http-keepalive`` options
+(but it doesn't touch tcp stuff as so ``so-keepalive`` does).
+Once set the server will try to maintain the connection opened if a bunch of
+rules are respected. This is not a smart http 1.1 parser (to avoid parsing the
+whole response) but assumes the developer is generating the right headers.
+``http11-socket`` has been added to support RTSP protocol for video streaming.
+
 HTTP auto gzip
 -------------
 
