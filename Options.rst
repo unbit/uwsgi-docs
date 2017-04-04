@@ -4585,7 +4585,32 @@ post-buffering
 
 ``parser``: uwsgi_opt_set_64bit
 
-``help``: enable post buffering
+``help``: enable post buffering and set buffer size
+
+Setting this parameter to positive value activates buffering of POST bodies. Size of the buffer is defined by post-buffering-bufsize option. Also, one can define the size by setting post-buffering to value greater than post-buffering-bufsize.
+
+Examples:
+
+* POST buffering is activated, buffer set to default value (8192 bytes)
+post-buffering=1
+
+* POST buffering is activated, buffer set 64KB
+post-buffering=65536
+
+* POST buffering is activated, buffer set 64KB
+post-buffering=1
+post-buffering-bufsize=65536
+
+Following examples demonstrate edge cases in configuring buffer size.
+It's recommended to avoid using them:
+
+* POST buffering is activated, buffer set 128KB
+--post-buffering=131072
+--post-buffering-bufsize=65536
+
+* POST buffering is activated, buffer set to 8K
+--post-buffering=4096
+--post-buffering-bufsize=8096 (this's also the default value)
 
 
 
@@ -4595,7 +4620,7 @@ post-buffering-bufsize
 
 ``parser``: uwsgi_opt_set_64bit
 
-``help``: set buffer size for read() in post buffering mode
+``help``: set buffer size for read() in post buffering mode. Default size is 8K.
 
 
 
