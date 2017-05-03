@@ -262,6 +262,20 @@ Symlink to this file from /etc/nginx/sites-enabled so nginx can see it:
 .. code-block:: bash
 
     sudo ln -s ~/path/to/your/mysite/mysite_nginx.conf /etc/nginx/sites-enabled/
+    
+On some distributions, nginx may use the ``/etc/nginx/conf.d`` directory by default for loading configuration files. To enable the ``sites-enabled`` directory, open the ``nginx.conf`` file for editing:
+
+.. code-block:: bash
+
+    sudo vim /etc/nginx/nginx.conf
+    
+Below the line ``include /etc/nginx/conf.d/*.conf;`` add:
+
+.. code-block:: bash
+
+    include /etc/nginx/sites-enabled/*.conf;
+    
+If you are not using the ``conf.d`` directory, you can remove its line from the ``nginx.conf`` file you are editing.
 
 Deploying static files
 ^^^^^^^^^^^^^^^^
@@ -291,7 +305,7 @@ Restart nginx:
     sudo /etc/init.d/nginx restart
 
 To check that media files are being served correctly, add an image called
-``media.png`` to the ``/path/to/your/project/project/media directory``, then
+``media.png`` to the ``/path/to/your/project/project/media`` directory, then
 visit http://example.com:8000/media/media.png - if this works, you'll know at
 least that nginx is serving files correctly.
 
