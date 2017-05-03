@@ -207,7 +207,7 @@ For example:
    cheaper-busyness-min = 25
 
 If average worker busyness is under 25% for 20 checks in a row, executed every
-10 seconds (total of 200 seconds), tone worker will be stopped. The idle cycles
+10 seconds (total of 200 seconds), one worker will be stopped. The idle cycles
 counter will be reset if average busyness jumps above ``cheaper-busyness-max``
 and we spawn new workers. If during idle cycle counting the average busyness
 jumps above ``cheaper-busyness-min`` but still below ``cheaper-busyness-max``,
