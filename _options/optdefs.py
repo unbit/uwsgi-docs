@@ -571,7 +571,7 @@ def python_options():
         s.o("py-tracebacker", str, "enable the uWSGI Python tracebacker")
         s.o(("py-auto-reload", "py-autoreload", "python-auto-reload", "python-autoreload"), int, "Monitor Python modules' modification times to trigger reload (use only in development)")
         s.o("py-auto-reload-ignore", [str], "ignore the specified module during auto-reload scan")
-        s.o(("wsgi-env-behaviour", "wsgi-env-behavior"), str, "set the strategy for allocating/deallocating the WSGI env")
+        s.o(("wsgi-env-behaviour", "wsgi-env-behavior"), str, "set the strategy for allocating/deallocating the WSGI env, can be: \"cheat\" or \"holy\"")
         s.o("start_response-nodelay", True, "send WSGI http headers as soon as possible (PEP violation)")
         s.o("python-version", True, "report python version")
     return config

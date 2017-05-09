@@ -11981,8 +11981,9 @@ wsgi-env-behaviour
 
 ``parser``: uwsgi_opt_set_str
 
-``help``: set the strategy for allocating/deallocating the WSGI env
+``help``: set the strategy for allocating/deallocating the WSGI env, can be: "cheat" or "holy"
 
+``reference``: :doc:`articles/WSGIEnvBehaviour`
 
 
 wsgi-env-behavior
@@ -11991,9 +11992,9 @@ wsgi-env-behavior
 
 ``parser``: uwsgi_opt_set_str
 
-``help``: set the strategy for allocating/deallocating the WSGI env
+``help``: set the strategy for allocating/deallocating the WSGI env, can be: "cheat" or "holy"
 
-
+``reference``: :doc:`articles/WSGIEnvBehaviour`
 
 start_response-nodelay
 **********************
