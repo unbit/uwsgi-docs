@@ -10,7 +10,7 @@ works, you should read the various quickstarts and tutorials.
 
 Each option has the following attributes:
 
-* argument: it is the struct option (used by getopt()/getopt_long()) has_arg element. Can be 'required', 'no_argument' or 'optional_argument'
+* argument: it is the struct option (used by getopt()/getopt_long()) has_arg element. Can be 'required_argument', 'no_argument' or 'optional_argument'
 * shortcut: some option can be specified with the short form (a dash followed by a single letter)
 * parser: this is how uWSGI parses the parameter. There are dozens of way, the most common are 'uwsgi_opt_set_str' when it takes a simple string, 'uwsgi_opt_set_int' when it takes a 32bit number, 'uwsgi_opt_add_string_list' when the parameter can be specified multiple times to build a list.
 * help: the help message, the same you get from ``uwsgi --help``
@@ -11981,8 +11981,9 @@ wsgi-env-behaviour
 
 ``parser``: uwsgi_opt_set_str
 
-``help``: set the strategy for allocating/deallocating the WSGI env
+``help``: set the strategy for allocating/deallocating the WSGI env, can be: "cheat" or "holy"
 
+``reference``: :doc:`articles/WSGIEnvBehaviour`
 
 
 wsgi-env-behavior
@@ -11991,9 +11992,9 @@ wsgi-env-behavior
 
 ``parser``: uwsgi_opt_set_str
 
-``help``: set the strategy for allocating/deallocating the WSGI env
+``help``: set the strategy for allocating/deallocating the WSGI env, can be: "cheat" or "holy"
 
-
+``reference``: :doc:`articles/WSGIEnvBehaviour`
 
 start_response-nodelay
 **********************
