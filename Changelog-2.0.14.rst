@@ -13,7 +13,7 @@ Changes
 - PSGI/Perl cache api fixes (Alexander Demenshin)
 - Correctly decode PATH_INFo in router_rewrite plugin (Ben Hearsum)
 - add uwsgi.accepting() for chain-reload + worker-override combo (enkore)
-- fixed workers killing when in cheaper modes (shoham-stratoscale)
+- fixed workers killing when in cheaper modes (Shoham Peller)
 - added --cgi-safe option (nnnn20430)
 - Implemented graceful reload for COROAE plugin (aleksey-mashanov)
 - Added --php-fallback2, --php-fallback-qs (Felicity unixwitch)
