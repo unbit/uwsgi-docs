@@ -85,7 +85,7 @@ Subscription system and SNI
 
 uWSGI 2.0 added support for SNI in the subscription system.
 
-The https/spdy router and the sslrouter can dinamically load certificates and keys from the paths specified in a subscription packet:
+The https/spdy router and the sslrouter can dynamically load certificates and keys from the paths specified in a subscription packet:
 
 .. code-block:: sh
 
