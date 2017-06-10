@@ -88,21 +88,21 @@ Example: web2py + spooler + timer
 First of all define your spooler and timer functions (we will call it :file:``mytasks.py``)
 
 .. code-block:: py
-    
+
     from uwsgidecorators import *
-    
+
     @spool
     def a_long_task(args):
         print(args)
-        
+
     @spool
     def a_longer_task(args)
         print("longer.....")
-    
+
     @timer(3)
     def three_seconds(signum):
         print("3 seconds elapsed")
-    
+
     @timer(10, target='spooler')
     def ten_seconds_in_the_spooler(signum):
         print("10 seconds elapsed in the spooler")
@@ -145,14 +145,16 @@ uwsgidecorators API reference
       @postfork
       def reconnect_to_db():
           myfoodb.connect()
-      
+
       @postfork
       def hello_world():
           print("Hello World")
 
-.. function:: spool(func)
+.. function:: spool(func, pass_arguments=False)
 
-   The uWSGI :doc:`spooler<Spooler>` can be very useful. Compared to Celery or other queues it is very "raw". The ``spool`` decorator will help!
+   The uWSGI :doc:`spooler<Spooler>` can be very useful. Compared to
+   Celery or other queues it is very "raw". The ``spool`` decorator will
+   help!
 
    .. code-block:: py
 
@@ -161,22 +163,58 @@ uwsgidecorators API reference
           print(arguments)
           for i in xrange(0, 10000000):
               time.sleep(0.1)
-      
+
       @spool
       def a_longer_task(args):
           print(args)
           for i in xrange(0, 10000000):
               time.sleep(0.5)
-      
+
       # enqueue the tasks
-      a_long_long_task.spool(foo='bar',hello='world')
+      a_long_long_task.spool(foo='bar', hello='world')
       a_longer_task.spool({'pippo':'pluto'})
 
-   The functions will automatically return ``uwsgi.SPOOL_OK`` so they will be executed one time independently by their return status.
+   .. warning::
+      On Python3, only ``bytes`` type arguments are allowed. See below for
+      another way of passing arguments.
+
+   When ``pass_arguments`` is set to ``True``, arguments can be of any type
+   supported by the :mod:`pickle` module. The following arguments have
+   a special meaning:
+
+    * ``spooler``: specify the **absolute** path of the spooler that has to
+      manage this task
+
+    * ``at``: unix time at which the task must be executed (read: the task
+      will not be run until the ``at`` time is passed)
+
+    * ``priority``: this will be the subdirectory in the spooler directory
+      in which the task will be placed, you can use that trick to give
+      a good-enough prioritization to tasks (for better approach use
+      multiple spoolers)
+
+   .. warning::
+      On Python3, the special arguments ``spooler``, ``at``,
+      ``priority`` and ``body`` **must** be ``bytes``.
+
+   .. code-block:: py
+
+      @spool(pass_arguments=True)
+      def some_task(*args, **kwargs):
+          print(args)
+          print(kwargs)
+          for i in xrange(0, 10000000):
+              time.sleep(0.5)
+
+      # enqueue the task
+      some_task.spool(id=42, foo=['bar', 'baz'], func=min, at=str(1497023151))
+
+   The functions will automatically return ``uwsgi.SPOOL_OK`` so they will
+   be executed one time independently by their return status.
 
 .. XXX: What does the above mean?
 
-.. function:: spoolforever(func)
+.. function:: spoolforever(func, pass_arguments=False)
 
    Use ``spoolforever`` when you want to continuously execute a spool task.
    A ``@spoolforever`` task will always return ``uwsgi.SPOOL_RETRY``.
@@ -188,33 +226,98 @@ uwsgidecorators API reference
          print(args)
          for i in xrange(0, 10000000):
              time.sleep(0.5)
-     
+
      # enqueue the task
      a_longer_task.spool({'pippo':'pluto'})
 
+   .. warning::
+      On Python3, only ``bytes`` type arguments are allowed. See below for
+      another way of passing arguments.
+
+   When ``pass_arguments`` is set to ``True``, arguments can be of any type
+   supported by the :mod:`pickle` module. The following arguments have
+   a special meaning:
+
+    * ``spooler``: specify the **absolute** path of the spooler that has to
+      manage this task
+
+    * ``at``: unix time at which the task must be executed (read: the task
+      will not be run until the ``at`` time is passed)
+
+    * ``priority``: this will be the subdirectory in the spooler directory
+      in which the task will be placed, you can use that trick to give
+      a good-enough prioritization to tasks (for better approach use
+      multiple spoolers)
+
+   .. warning::
+      On Python3, the special arguments ``spooler``, ``at``,
+      ``priority`` and ``body`` **must** be ``bytes``.
+
+   .. code-block:: py
+
+     @spoolforever(pass_arguments=True)
+     def a_longer_task(*args):
+         print(args)
+         for i in xrange(0, 10000000):
+             time.sleep(0.5)
+
+     # enqueue the task
+     a_longer_task.spool('pluto', 42)
 
 
-.. function:: spoolraw(func)
+.. function:: spoolraw(func, pass_arguments=False)
 
   Advanced users may want to control the return value of a task.
 
-
    .. code-block:: py
-      
+
       @spoolraw
       def a_controlled_task(args):
           if args['foo'] == 'bar':
               return uwsgi.SPOOL_OK
           return uwsgi.SPOOL_RETRY
-      
+
       a_controlled_task.spool(foo='bar')
+
+   .. warning::
+      On Python3, only ``bytes`` type arguments are allowed. See below for
+      another way of passing arguments.
+
+   When ``pass_arguments`` is set to ``True``, arguments can be of any type
+   supported by the :mod:`pickle` module. The following arguments have
+   a special meaning:
+
+    * ``spooler``: specify the **absolute** path of the spooler that has to
+      manage this task
+
+    * ``at``: unix time at which the task must be executed (read: the task
+      will not be run until the ``at`` time is passed)
+
+    * ``priority``: this will be the subdirectory in the spooler directory
+      in which the task will be placed, you can use that trick to give
+      a good-enough prioritization to tasks (for better approach use
+      multiple spoolers)
+
+   .. warning::
+      On Python3, the special arguments ``spooler``, ``at``,
+      ``priority`` and ``body`` **must** be ``bytes``.
+
+   .. code-block:: py
+
+      @spoolraw(pass_arguments=True)
+      def a_controlled_task(**kwargs):
+          if kwargs['foo'] == 'bar':
+              return uwsgi.SPOOL_OK
+          return uwsgi.SPOOL_RETRY
+
+      a_controlled_task.spool(foo='bar', age=42)
 
 .. function:: rpc("name", func)
 
    uWSGI :doc:`RPC` is the fastest way to remotely call functions in applications hosted in uWSGI instances. You can easily define exported functions with the @rpc decorator.
 
    .. code-block:: py
-      
+
       @rpc('helloworld')
       def ciao_mondo_function():
           return "Hello World"
@@ -224,7 +327,7 @@ uwsgidecorators API reference
    You can register signals for the :doc:`signal framework<Signals>` in one shot.
 
    .. code-block:: py
-      
+
        @signal(17)
        def my_signal(num):
            print("i am signal %d" % num)
@@ -234,7 +337,7 @@ uwsgidecorators API reference
    Execute a function at regular intervals.
 
    .. code-block:: py
-      
+
       @timer(3)
       def three_seconds(num):
           print("3 seconds elapsed")
@@ -247,7 +350,7 @@ uwsgidecorators API reference
 
 .. function:: cron(min, hour, day, mon, wday, func)
 
-      
+
    Easily register functions for the :doc:`CronInterface`.
 
    .. code-block:: py
@@ -344,7 +447,7 @@ uwsgidecorators API reference
     You may also specify a mule ID or mule farm to run the function on. Please remember to register your function with a uwsgi import configuration option.
 
     .. code-block:: py
-    
+
         @mulefunc(3)
         def on_three():
             print "I'm running on mule 3."
