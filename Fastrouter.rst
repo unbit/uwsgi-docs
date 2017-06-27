@@ -15,7 +15,7 @@ Multiple addresses are supported as well.
 
 .. code-block:: sh
 
-    uwsgi --fastrouter 127.0.0.1:3017 --fastrouter /tmp/uwsgi.sock --fastrouter @foobar
+    uwsgi --plugin fastrouter --fastrouter 127.0.0.1:3017 --fastrouter /tmp/uwsgi.sock --fastrouter @foobar
 
 .. note:: This is the most useless Fastrouter setup in the world.
 
@@ -32,7 +32,7 @@ name of the requested host in a specified directory.
 
 .. code-block:: sh
 
-    uwsgi --fastrouter 127.0.0.1:3017 --fastrouter-use-base /tmp/sockets/
+    uwsgi --plugin fastrouter --fastrouter 127.0.0.1:3017 --fastrouter-use-base /tmp/sockets/
 
 If you receive a request for ``example.com`` the fastrouter will forward the
 request to ``/tmp/sockets/example.com``.
@@ -45,7 +45,7 @@ mapping to the requested key/hostname.
 
 .. code-block:: sh
 
-    uwsgi --fastrouter 127.0.0.1:3017 --fastrouter-use-pattern /tmp/sockets/%s/uwsgi.sock
+    uwsgi --plugin fastrouter --fastrouter 127.0.0.1:3017 --fastrouter-use-pattern /tmp/sockets/%s/uwsgi.sock
 
 Requests for ``example.com`` will be mapped to
 ``/tmp/sockets/example.com/uwsgi.sock``.
@@ -68,7 +68,7 @@ Then run your Fastrouter-enabled server, telling it to run the script first.
 
 .. code-block:: sh
 
-    uwsgi --fastrouter 127.0.0.1:3017 --fastrouter-use-cache --cache 100 --file foobar.py
+    uwsgi --plugin fastrouter --fastrouter 127.0.0.1:3017 --fastrouter-use-cache --cache 100 --file foobar.py
 
 Way 4: --fastrouter-subscription-server
 ---------------------------------------
@@ -79,7 +79,7 @@ announce themselves and subscribe to the fastrouter.
 
 .. code-block:: sh
 
-    uwsgi --fastrouter 127.0.0.1:3017 --fastrouter-subscription-server 192.168.0.100:7000
+    uwsgi --plugin fastrouter --fastrouter 127.0.0.1:3017 --fastrouter-subscription-server 192.168.0.100:7000
     
 This will spawn a subscription server on address 192.168.0.100 port 7000
 
@@ -135,7 +135,7 @@ uWSGI-supported language (like Python or Lua) and define your mapping function.
 
 .. code-block:: sh
 
-    uwsgi --fastrouter 127.0.0.1:3017 --fastrouter-use-code-string 0:mapper.py:get
+    uwsgi --plugin fastrouter --fastrouter 127.0.0.1:3017 --fastrouter-use-code-string 0:mapper.py:get
 
 This will instruct the fastrouter to load the script ``mapper.py`` using plugin
 (modifier1) 0 and call the 'get' global, passing it the key.  In the previous
@@ -170,7 +170,7 @@ a more advanced system, for fun!
 
 .. code-block:: sh
 
-    uwsgi --fastrouter 127.0.0.1:3017 --fastrouter-use-code-string 0:megamapper.py:get
+    uwsgi --plugin fastrouter --fastrouter 127.0.0.1:3017 --fastrouter-use-code-string 0:megamapper.py:get
 
 With only few lines we have implemented round-robin load-balancing with a
 fallback node. Pow!  You could add some form of node monitoring, starting
