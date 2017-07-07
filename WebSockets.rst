@@ -87,7 +87,7 @@ This is slightly more "raw", but supports things like chunked input.
 
 * Haproxy works fine.
 
-* nginx >= 1.4 works fine and without additional configuration.
+* nginx >= 1.4 using the ``uwsgi_pass`` directive needs no additional config.
 
 Language support
 ****************
