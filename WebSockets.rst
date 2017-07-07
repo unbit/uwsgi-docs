@@ -87,7 +87,8 @@ This is slightly more "raw", but supports things like chunked input.
 
 * Haproxy works fine.
 
-* nginx >= 1.4 works fine and without additional configuration.
+* nginx needs a special location setting to correctly pass the HTTP Upgrade and Connection headers: https://nginx.org/en/docs/http/websocket.html
+
 
 Language support
 ****************
