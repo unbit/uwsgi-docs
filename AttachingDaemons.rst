@@ -136,7 +136,7 @@ Managing **celery beat**:
    legion-smart-attach-daemon = mylegion /tmp/celery-beat.pid celery beat --pidfile=/tmp/celery-beat.pid
    
    
---attach-daemon2
+``--attach-daemon2``
 ****************
 
 This option has been added in uWSGI 2.0 and allows advanced configurations. It is a keyval option, and it accepts the following keys:
