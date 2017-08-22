@@ -18,7 +18,7 @@ facility.  The syntax is
     uwsgi.add_cron(signal, minute, hour, day, month, weekday)
 
 The last 5 arguments work similarly to a standard crontab, but instead of "*",
-use -1, and instead of "*/2", "*/3", etc. use -2 and -3, etc.
+use -1, and instead of "\*/2", "\*/3", etc. use -2 and -3, etc.
 
 .. code-block:: py
 
@@ -49,7 +49,7 @@ Notes
 
 * ``day`` and ``weekday`` are ORed as the original crontab specifications.
 * By default, you can define up to 64 signal-based cron jobs per master. This
-value may be increased in :file:`uwsgi.h`.
+  value may be increased in :file:`uwsgi.h`.
 
 Option-based cron
 -----------------
