@@ -120,6 +120,18 @@ Logging to files
 .. code-block::
 
     uwsgi --socket :3031 --logger file:/tmp/uwsgi.log
+ 
+You can optionally configure automatig log rotation:
+
+.. code-block::
+
+    uwsgi --socket :3031 --logger file:logfile=/tmp/uwsgi.log,maxsize=2000000
+
+This will rotate the log file once it reaches 2 million bytes. The new name
+will be the original log file with the extension replaced with a timestamp.
+
+You can also specify the `backupname` instead of allowing uWSGI to autogenerate
+one.
 
 Logging to sockets
 ------------------
