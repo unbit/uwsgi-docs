@@ -41,6 +41,11 @@ workers it will spawn ``cheaper-step`` of them. This is useful if you have a
 high maximum number of workers -- in the event of a sudden load spike it would
 otherwise take a lot of time to spawn enough workers one by one.
 
+Note: Worker is notified by uWSGI before being cheaped. Worker should finish until
+timeout is reached (this is configured by ``worker-reload-mercy`` configuration parameter).
+Otherwise, uWSGI kills the worker. Killing worker in the middle of serving request can cause
+errors or partial responses to the client.
+
 Setting memory limits
 ---------------------
 
