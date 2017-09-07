@@ -194,8 +194,12 @@ For example, the Django ``/media`` path could be mapped like this::
 
 Some applications need to pass control to the UWSGI server only if the requested filename does not exist::
 
-  if (!-f $request_filename) {
+  location @process_in_app {
     uwsgi_pass uwsgicluster;
+  }
+  
+  location /on-the-fly {
+    try_files $uri $uri/ @process_in_app;
   }
 
 
