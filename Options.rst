@@ -2635,7 +2635,7 @@ farm
 
 ``flags``: UWSGI_OPT_MASTER
 
-``help``: add a mule farm
+``help``: add a mule farm (syntax: <farm_name>:<mule_id>[,<mule_id> ...])
 
 
 

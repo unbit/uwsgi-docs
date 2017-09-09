@@ -469,7 +469,13 @@ Advanced methods
 
    Send a message to a mule.
 
-.. function:: farm_msg()
+
+.. function:: farm_msg(farm_name, string)
+
+   :param farm_name: The name of the farm to send the message to.
+   :param string: The bytestring message to send.
+
+   Send a message to a mule farm.
 
 
 .. function:: mule_get_msg()
@@ -481,8 +487,17 @@ Advanced methods
 
 .. function:: farm_get_msg()
 
+   :return: A mule message, once one is received.
+
+   Block until a mule message is received and return it. Only messages sent to the mule's configured farm will be received. This can be called from multiple threads in the same programmed mule.
+
 
 .. function:: in_farm()
+
+   :return: ``True`` if the mule is a member of a farm, ``False`` otherwise.
+   :rtype: bool
+
+   Indicate whether the mule is a member of a farm.
 
 
 .. function:: ready()

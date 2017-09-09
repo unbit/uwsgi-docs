@@ -91,7 +91,7 @@ This will run 4 mules, 2 in signal-only mode, one running :file:`somaro.py` and 
     if __name__ == '__main__':
         loop1()
 
-So as you can see from the example, you can use :py:meth:`mule_get_msg` to receive messages in a programmed mule. Multiple threads in the same programmed mule can wait for messages.
+So as you can see from the example, you can use :py:meth:`uwsgi.mule_get_msg` to receive messages in a programmed mule. Multiple threads in the same programmed mule can wait for messages.
 
 If you want to block a mule to wait on an uWSGI signal instead of a message you can use :py:meth:`uwsgi.signal_wait`.
 
@@ -104,3 +104,21 @@ Use :py:meth:`uwsgi.mule_msg` to send a message to a programmed mule. Mule messa
     uwsgi.mule_msg("ciuchino", 1)
 
 As you can spawn an unlimited number of mules, you may need some form of synchronization -- for example if you are developing a task management subsystem and do not want two mules to be able to start the same task simultaneously. You're in luck -- see :doc:`Locks`.
+
+Organizing mules
+----------------
+
+Messages are eligible to be received by all programmed mules. They can be limited to specified groups of mules by creating mule farms using the ``farm`` option:
+
+.. code-block:: sh
+
+    uwsgi --socket :3031 --mule=feed.py --mule=feed.py --mule=wallow.py --farm=busy:1,2 --farm=idle:3
+
+This will run three mules, where the mules 1 and 2, running ``feed.py``, are members of the ``busy`` farm, and mule 3, running ``wallow.py`` is the sole member of the ``idle`` farm. Messages are retrieved exactly as in ``somaro.py`` above but using :py:meth:`uwsgi.farm_get_msg` in place of :py:meth:`uwsgi.mule_get_msg`. Use :py:meth:`uwsgi.farm_msg` to send a message to a mule in a specified farm:
+
+.. code-block:: py
+
+    # Send the string "eat stuff" to farm "busy"
+    uwsgi.farm_msg("busy", "eat stuff")
+
+As with mules, :doc:`Locks` can be used to ensure only a single mule in a farm receives a given message to that farm.
