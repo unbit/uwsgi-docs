@@ -125,7 +125,7 @@ a full webserver.
    ``http-auto-chunked``. The ELB "health test" may still fail in HTTP mode
    regardless, in which case a TCP health test can be used instead.
 
-.. note:: In particular, the Django backend does not set ``Content-Length`` by
-   default, while most others do. If running behind ELB, either use chunked
-   encoding as above, or force Django to specify ``Content-Length`` with the
-   "Conditional GET" Django middleware.
+.. note:: In particular, the Django backend before Django 1.11 does not set
+   ``Content-Length`` by default, while most others do. If running behind ELB,
+   either use chunked encoding as above, or force Django to specify
+   ``Content-Length`` with the ["Conditional GET" Django middleware](https://docs.djangoproject.com/en/1.10/ref/middleware/#django.middleware.http.ConditionalGetMiddleware).
