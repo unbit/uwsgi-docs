@@ -128,4 +128,4 @@ a full webserver.
 .. note:: In particular, the Django backend does not set ``Content-Length`` by
    default, while most others do. If running behind ELB, either use chunked
    encoding as above, or force Django to specify ``Content-Length`` with the
-   "Conditional GET" Django middleware.
+   ``CommonMiddleware`` (``ConditionalGetMiddleware`` in Django < 1.11)
