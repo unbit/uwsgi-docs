@@ -87,15 +87,16 @@ HTTP Keep-Alive
 ---------------
 
 If your backends set the correct HTTP headers, you can use the
-``http-keepalive`` option.  Either your backends will need to set a valid
+``http-keepalive`` option.  Your backends must either set a valid
 ``Content-Length`` in each response, or you can use chunked encoding with
 ``http-auto-chunked``. Simply setting "Connection: close" is *not enough*.
+
 Also remember to set "Connection: Keep-Alive" in your response. You can
 automate that using the ``add-header = Connection: Keep-Alive`` option.
 
 Since uWSGI 2.1 (master branch) you can use the ``http11-socket`` option.
 ``http11-socket`` may replace the ``add-header`` and ``http-keepalive`` options
-(but it doesn't touch tcp stuff as so ``so-keepalive`` does).
+(but it doesn't touch tcp stuff as ``so-keepalive`` does).
 Once set the server will try to maintain the connection opened if a bunch of
 rules are respected. This is not a smart http 1.1 parser (to avoid parsing the
 whole response) but assumes the developer is generating the right headers.
@@ -105,7 +106,7 @@ HTTP auto gzip
 -------------
 
 With the ``http-auto-gzip`` option, uWSGI can automatically gzip content if the
-uWSGI-encoding header is set to gzip while ``Content-Length`` and
+``uWSGI-Encoding`` header is set to `gzip` while ``Content-Length`` and
 ``Content-Encoding`` are not set.
 
 Can I use uWSGI's HTTP capabilities in production?
