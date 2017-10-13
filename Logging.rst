@@ -117,13 +117,13 @@ Logging to files
 
 ``logfile`` plugin -- embedded by default.
 
-.. code-block::
+.. code-block:: sh
 
     uwsgi --socket :3031 --logger file:/tmp/uwsgi.log
  
 You can optionally configure automatig log rotation:
 
-.. code-block::
+.. code-block:: sh
 
     uwsgi --socket :3031 --logger file:logfile=/tmp/uwsgi.log,maxsize=2000000
 
