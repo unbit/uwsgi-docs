@@ -71,7 +71,7 @@ Integration with proxies
 
 If you plan to put uWSGI behind a proxy/router be sure it supports chunked input requests (or generally raw HTTP requests).
 
-When using the uWSGI HTTP router just add --http-raw-body to support chunked input.
+When using the uWSGI HTTP router just add ``--http-raw-body`` to support chunked input.
 
 HAProxy works out of the box.
 
