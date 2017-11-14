@@ -66,7 +66,7 @@ A Web Server Gateway Interface - WSGI - does this job. WSGI_ is a Python standar
 .. _WSGI: http://wsgi.org/
 
 uWSGI is a WSGI implementation. In this tutorial we will set up uWSGI so that it
-creates a Unix socket, and serves responses to the web server via the WSGI
+creates a Unix socket, and serves responses to the web server via the uwsgi
 protocol. At the end, our complete stack of components will look like this::
 
     the web client <-> the web server <-> the socket <-> uwsgi <-> Django
