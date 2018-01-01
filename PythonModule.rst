@@ -3,7 +3,7 @@ The uwsgi Python module
 
 The uWSGI server automagically adds a ``uwsgi`` module into your Python apps.
 
-This is useful for configuring the uWSGI server, use its internal functions and get statistics (as well as detecting whether you're actually running under uWSGI).
+This is useful for configuring the uWSGI server, use its internal functions and get statistics (as well as detecting whether you're actually running under uWSGI; if you attempt to ``import uwsgi`` and receive an ImportError you're not running under uWSGI).
 
 .. note:: Many of these functions are currently woefully undocumented.
 
