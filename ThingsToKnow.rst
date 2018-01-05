@@ -6,7 +6,7 @@ Things to know (best practices and "issues") READ IT !!!
   TL/DR: if you plan to expose uWSGI directly to the public, use ``--http``, if you want to proxy it behind a webserver speaking http with backends, use ``--http-socket``.
   .. seealso:: :doc:`HTTP`
 
-* Til uWSGI 2.1, by default, sending the ``SIGTERM`` signal to uWSGI means "brutally reload the stack" while the convention is to shut an application down on ``SIGTERM``. To shutdown uWSGI use ``SIGINT`` or ``SIGQUIT`` instead.
+* Till uWSGI 2.1, by default, sending the ``SIGTERM`` signal to uWSGI means "brutally reload the stack" while the convention is to shut an application down on ``SIGTERM``. To shutdown uWSGI use ``SIGINT`` or ``SIGQUIT`` instead.
   If you absolutely can not live with uWSGI being so disrespectful towards ``SIGTERM``, by all means enable the ``die-on-term`` option. Fortunately, this bad choice has been fixed in uWSGI 2.1
 
 * If you plan to host multiple applications do yourself a favor and check the :doc:`Emperor` docs.
