@@ -115,7 +115,7 @@ For example, here's :file:`funnyapp.ini`.
   processes = 4
   master = 1
 
-``%n`` will be replaced with the name of the config file, sans extension, so the result in this case will be
+``%n`` will be replaced with the name of the config file, without extension, so the result in this case will be
 
 .. code-block:: ini
 
