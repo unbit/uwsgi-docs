@@ -27,7 +27,18 @@ Changes
 - plugins/router_xmldir: fixup invalid locale check (Riccardo Magliocchetti)
 - Add ssl-verify-depth flag to set the max Client CA chain length (Paul Tagliamonte)
 - Allow to override build date (Bernhard M. Wiedemann)
-- Python 3 plugin: set thread name as unicode (Jyrki Muukkonen)
+- Python 3 plugin: improved thread names handling (Jyrki Muukkonen, Mark Meyer)
+- Added uwsgi_resolve_ip for redis host (ahmbas)
+- plugins/gevent: Fix signal handlers (Maslov Alexander)
+- Write x509 DER to the uwsgi buffer (Paul Tagliamonte)
+- plugin/http: Fix compilation (Melvyn Sopacua)
+- Fixed emperor throttling system  (Jeremy Hiatt)
+- Fix application loading without Plack after excluding "." from @INC in new Perl versions (Anton Petrusevich)
+- Fix MULE MSG QUEUE IS FULL message hint (Eugene Tataurov)
+- Build System: support k_minor has a _xxx suffix (TOGO Li)
+- Fixed drop-after-* options (Robert DeRose)
+- Add mule_send_msg success indicator (Josh Tiras)
+- Properly check item size in uwsgi_queue_push (Josh Tiras)
 
 Availability
 ------------
