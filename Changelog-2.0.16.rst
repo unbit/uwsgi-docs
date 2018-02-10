@@ -39,6 +39,11 @@ Changes
 - Fixed drop-after-* options (Robert DeRose)
 - Add mule_send_msg success indicator (Josh Tiras)
 - Properly check item size in uwsgi_queue_push (Josh Tiras)
+- FastRouter / HTTP Router can now have a 'fallback' key configured
+- HTTP Router now supports `post-buffer`, just like FastRouter
+- Fix handling of `env` in embedded dict in Python plugin (could cause segfaults in single thread mode)
+- Add support for Brotli (.br) with `--static-gzip`
+- Back-ported HTTP/1.1 support (--http11-socket) from 2.1
 
 Availability
 ------------
