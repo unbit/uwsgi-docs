@@ -85,6 +85,19 @@ With the following log format you will be able to access code-defined logvars:
 
    uwsgi --logformat 'worker id = %(worker_id) for request "%(method) %(uri) %(proto)" test = %(foo)'
 
+uWSGI default logging
+*********************
+
+To generate uWSGI-compatible logs:
+
+.. code-block:: ini
+
+   [uwsgi]
+   ...
+   log-format = [pid: %(pid)|app: -|req: -/-] %(addr) (%(user)) {%(vars) vars in %(pktsize) bytes} [%(ctime)] %(method) %(uri) => generated %(rsize) bytes in %(msecs) msecs (%(proto) %(status)) %(headers) headers in %(hsize) bytes (%(switches) switches on core %(core))
+
+   ...
+
 Apache-style combined request logging
 *************************************
 
