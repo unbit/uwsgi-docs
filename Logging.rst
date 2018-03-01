@@ -121,7 +121,7 @@ Logging to files
 
     uwsgi --socket :3031 --logger file:/tmp/uwsgi.log
  
-You can optionally configure automatig log rotation:
+You can optionally configure automatic log rotation:
 
 .. code-block:: sh
 
