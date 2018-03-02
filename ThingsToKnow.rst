@@ -1,7 +1,7 @@
 Things to know (best practices and "issues") READ IT !!!
 ========================================================
 
-* Obviously, never expose a socket speaking the uwsgi protocol to the public network unless you know what you are doing. That channel allows for dynamic loading of application (read: arbitrary execution of code). The protocol is meant to be sanitized/validated by a proxy like nginx, apache, the uWSGI routers...
+* Obviously, never expose a socket speaking the uwsgi protocol to the public network unless you know what you are doing. That channel allows for dynamic loading of applications (read: arbitrary execution of code). The protocol is meant to be sanitized/validated by a proxy like nginx, apache, the uWSGI routers...
 
 * The ``http`` and ``http-socket`` options are entirely different beasts.
   The first one spawns an additional process forwarding requests to a series of workers (think about it as a form of shield, at the same level of apache or nginx), while the second one sets workers to natively speak the http protocol.
