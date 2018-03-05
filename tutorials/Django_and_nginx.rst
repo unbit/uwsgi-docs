@@ -168,7 +168,7 @@ If you haven't already done so, make sure that your ``mysite`` project actually 
 
     python manage.py runserver 0.0.0.0:8000
 
-And if it that works, run it using uWSGI::
+And if that works, run it using uWSGI::
 
     uwsgi --http :8000 --module mysite.wsgi
 
@@ -194,7 +194,7 @@ Install nginx
     sudo apt-get install nginx  
     sudo /etc/init.d/nginx start    # start nginx
 
-And now check that the nginx is serving by visiting it in a web browser on port
+And now check that nginx is serving by visiting it in a web browser on port
 80 - you should get a message from nginx: "Welcome to nginx!". That means these
 components of the full stack are working together::
 
@@ -214,7 +214,7 @@ https://github.com/nginx/nginx/blob/master/conf/uwsgi_params
 Copy it into your project directory. In a moment we will tell nginx to refer to
 it.
 
-Now create a file called mysite_nginx.conf, and put this in it::
+Now create a file called mysite_nginx.conf in the /etc/nginx/sites-available/ directory, and put this in it::
 
     # mysite_nginx.conf
 
@@ -229,7 +229,7 @@ Now create a file called mysite_nginx.conf, and put this in it::
         # the port your site will be served on
         listen      8000;
         # the domain name it will serve for
-        server_name .example.com; # substitute your machine's IP address or FQDN
+        server_name example.com; # substitute your machine's IP address or FQDN
         charset     utf-8;
    
         # max upload size
