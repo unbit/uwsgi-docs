@@ -73,7 +73,7 @@ This symbol is a uwsgi_plugin C struct defining the hooks of the plugin.
 
 When you ask uWSGI to load a plugin it simply calls dlopen() and get the uwsgi_plugin struct via dlsym().
 
-The vast majority of the uWSGI project is developed as a plugin.  This structure ensures a modular approach to configuration and, obviously, a more sane development style.
+The vast majority of the uWSGI project is developed as a plugin. This structure ensures a modular approach to configuration and a saner development style.
 
 The sysadmin is free to embed each plugin in the server binary or to build each plugin as an external shared library.
 
