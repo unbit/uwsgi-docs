@@ -78,7 +78,7 @@ Cache functions
    :param cache_name: The name of the cache in multiple cache mode (can be in the form name@address). Optional.
 
 
-.. function:: cache_update(key, value[, expire, cache_server])
+.. function:: cache_update(key, value[, expire, cache_name])
 
    Update a value in the cache. This always sets the key, whether it was already set before or not and whether it has expired or not.
 
