@@ -61,7 +61,7 @@ These are simple functions called for generating the logvar value:
 * ``%(ioerr)`` -> number of write and read errors for the request (since 1.9.21)
 * ``%(tmsecs)`` -> timestamp of the start of the request in milliseconds since the epoch (since 1.9.21)
 * ``%(tmicros)`` -> timestamp of the start of the request in microseconds since the epoch (since 1.9.21)
-* ``%(var.XXX)`` -> the content of request variable XXX (like var.PATH_INFO, available from 1.9.21)
+* ``%(var.XXX)`` -> the content of request variable XXX (like var.PATH_INFO or var.HTTP_X_MY_HEADER for headers from request, available from 1.9.21)
 
 User-defined logvars
 ********************
