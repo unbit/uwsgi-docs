@@ -293,18 +293,18 @@ First create ``auth_kafka.py``:
 
 .. code-block:: python
 
-   from pprint import pprint
+   from uwsgidecorators import rpc
    
    def application(environ, start_response):
        start_response('200 OK', [('Content-Type', 'text/plain')])
        return ['It Works!']
    
+   @rpc('auth_kafka')
    def auth_kafka(request_uri, http_cookie, http_authorization):
-       pprint(locals())
-       return 'true'
-   
-   import uwsgi
-   uwsgi.register_rpc('auth_kafka', auth_kafka)
+       if user_is_authorized(...):
+           return b'true'
+       # Else don't return anything!   
+
    
 Then create ``auth_kafka.ini``:
 
