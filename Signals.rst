@@ -64,9 +64,9 @@ These are two simple examples of defining signal table items, in Python and Lua.
 Signals targets
 ---------------
 
-The third argument of uwsgi.register_signal is the 'signal targer'.
+The third argument of uwsgi.register_signal is the 'signal target'.
 
-It instructs the system about 'who' must run the handler. By default the targer is 'worker' that means 'the first available worker'. The followign targets are available:
+It instructs the system about 'who' must run the handler. By default the target is 'worker' that means 'the first available worker'. The following targets are available:
 
 - workerN (run the signal handler only on worker N)
 - worker/worker0 (the default one, run the signal handler on the first available worker)
@@ -162,6 +162,6 @@ Todo/Known Issues
 -----------------
 
 * Signal table entry cannot be removed (this will be fixed soon)
-* Iterations works only with rb_timers
+* Iterations work only with rb_timers
 * uwsgi.signal_wait() does not work in async mode (will be fixed)
 * Add iterations to file monitoring (to allow one-shot event as timers)
