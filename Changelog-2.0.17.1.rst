@@ -10,7 +10,7 @@ Changes
 -------
 
 - Fixed memory leak in HTTPS_CLIENT_CERTIFICATE
-- TLSv1 is not disabled by default (you can re-enable it with ssl-enable-tlsv1 at your own risk)
+- TLSv1 is now disabled by default (you can re-enable it with ssl-enable-tlsv1 at your own risk)
 - Improved daemons throttle system
 - Add "secs" log formatting variable (André Cruz)
 - Improved snprintf() usage to be OpenBSD-friendly (Henrik, http://50hz.ws/)
