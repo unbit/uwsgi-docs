@@ -34,6 +34,7 @@ These are simple functions called for generating the logvar value:
 * ``%(status)`` -> HTTP response status code
 * ``%(micros)`` -> response time in microseconds
 * ``%(msecs)`` -> response time in milliseconds
+* ``%(secs)`` -> response time in seconds
 * ``%(time)`` -> timestamp of the start of the request
 * ``%(ctime)`` -> ctime of the start of the request
 * ``%(epoch)`` -> the current time in Unix format
