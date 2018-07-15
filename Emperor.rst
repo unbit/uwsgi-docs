@@ -71,13 +71,13 @@ Starting from 1.9.19 you can pass options using the ``--vassal-set`` facility
    emperor = /etc/uwsgi/vassals
    vassal-set = processes=8
    vassal-set = enable-metrics=1
-   
+
 this will add ``--set processes=8`` and ``--set enable-metrics=1`` to each vassal
 
 You can force the Emperor to pass options to uWSGI instances using environment
 variables too.  Every environment variable of the form ``UWSGI_VASSAL_xxx`` will be
 rewritten in the new instance as ``UWSGI_xxx``, with the usual
-:ref:`configuration implications<ConfigEnv>`.  
+:ref:`configuration implications<ConfigEnv>`.
 
 For example::
 
@@ -187,7 +187,7 @@ vassal, add the :ref:`OptionHeartbeat` option.
 
   If all of your workers are stuck handling perfectly legal requests such as
   slow, large file uploads, the Emperor will trigger a reload as if the workers
-  are hung.  The reload triggered is a graceful one, so you can be able to tune
+  are hung.  The reload triggered is a graceful one, so you will be able to tune
   your config/timeout/mercy for sane behaviour.
 
 .. TODO: Clarify the above admonition
@@ -206,7 +206,7 @@ For example if you want to run each vassals in a new namespace:
    [uwsgi]
    emperor = /etc/uwsgi/vassals
    emperor-use-clone = fs,net,ipc,pid,uts
-   
+
 now each vassal will be able to modify the filesystem layout, networking, hostname and so on without damaging the main system.
 
 A couple of helper daemons are included in the uWSGI distribution to simplify management of jailed vassals. Most notably :doc:`TunTapRouter` allows full user-space networking in jails, while
@@ -219,7 +219,7 @@ It is not needed to unshare all of the subsystem in your vassals, sometimes you 
    [uwsgi]
    emperor = /etc/uwsgi/vassals
    emperor-use-clone = fs,ipc,pid,uts
-   
+
 a vassal could be:
 
 .. code-block:: ini
@@ -315,7 +315,7 @@ Notes
 
 * At startup, the emperor ``chdir()`` to the vassal dir. All vassal instances will start from here.
 * If the uwsgi binary is not in your system path you can force its path with ``binary-path``::
-    
+
     ./uwsgi --emperor /opt/apps --binary-path /opt/uwsgi/uwsgi
 
 * Sending ``SIGUSR1`` to the emperor will print vassal status in its log.
