@@ -347,7 +347,12 @@ uWSGI development is sponsored by the Italian ISP `Unbit <http://unbit.it/>`_ an
 
 We will give credit to everyone who wants to sponsor new features.
 
-Check http://unbit.it/uwsgi_donate for the donation link. You can also donate via `GitTip <https://www.gittip.com/unbit/>`_.
+Check http://unbit.it/uwsgi_donate for the donation link.
+
+Sponsors
+========
+
+https://www.pythonanywhere.com/
 
 Indices and tables
 ==================
