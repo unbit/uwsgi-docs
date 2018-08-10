@@ -5,7 +5,7 @@ Unfortunately you cannot live without serving static files via some protocol (HT
 
 Fortunately uWSGI has a wide series of options and micro-optimizations for serving static files.
 
-Generally your webserver of choice (Nginx, Mongrel2, etc. will serve static files efficiently and quickly and will simply forward dynamic requests to uWSGI backend nodes.
+Generally your webserver of choice (Nginx, Mongrel2, etc.) will serve static files efficiently and quickly and will simply forward dynamic requests to uWSGI backend nodes.
 
 The uWSGI project has ISPs and PaaS (that is, the hosting market) as the main target, where generally you would want to avoid
 generating disk I/O on a central server and have each user-dedicated area handle (and account for) that itself. More importantly still, you want to allow customers to customize the way they serve static assets without bothering your system administrator(s).
