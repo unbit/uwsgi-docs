@@ -353,6 +353,7 @@ Sponsors
 ========
 
 https://www.pythonanywhere.com/
+https://lincolnloop.com/
 
 Indices and tables
 ==================
