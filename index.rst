@@ -30,7 +30,7 @@ Loop engines (implement events and concurrency, components can be run in prefork
 .. note::
 
   uWSGI is a very active project with a fast release cycle. For this reason the code and the documentation may not always be in sync.
-  We try to make our best to have good documentation but it is a hard work. Sorry for that.
+  We try our best to have good documentation, but it is a hard work. Sorry for that.
   If you are in trouble, the mailing list is the best source for help regarding uWSGI.
   Contributors for documentation (in addition to code) are always welcome.
 
