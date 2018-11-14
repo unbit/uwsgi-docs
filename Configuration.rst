@@ -165,7 +165,7 @@ via :py:data:`uwsgi.opt`.
 This feature can be (ab)used to reduce the number of configuration files
 required by your application.
 
-Similarly, contents of evironment variables and external text files can
+Similarly, contents of environment variables and external text files can
 be included using the `$(ENV_VAR)` and `@(file_name)` syntax. See also
 :doc:`ParsingOrder`.
 
