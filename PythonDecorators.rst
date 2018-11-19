@@ -471,5 +471,5 @@ uwsgidecorators API reference
         # or the alternative lower level api
 
         uwsgi.set_user_harakiri(30) # you have 30 seconds. fight!
-        slow_func()
+        slow_function()
         uwsgi.set_user_harakiri(0) # clear the timer, all is well
