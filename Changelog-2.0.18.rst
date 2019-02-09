@@ -1,7 +1,7 @@
 uWSGI 2.0.18
 ============
 
-[UNRELEASED]
+[20190209]
 
 Maintenance release
 
