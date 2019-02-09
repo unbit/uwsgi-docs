@@ -20,6 +20,7 @@ Changes
 - Fix compilation warnings with gcc-8 (Riccardo Magliocchetti, Ruslan Bilovol #1819)
 - Fix spooler python references (Brett Rosen)
 - Don't generate build warnings in systemd_logger (Chris Mayo)
+- Fix segmentation fault during worker shutdown (Allan Feldman, #1651)
 
 
 Availability
