@@ -6,6 +6,7 @@ Things to know (best practices and "issues") READ IT !!!
 * The ``http`` and ``http-socket`` options are entirely different beasts.
   The first one spawns an additional process forwarding requests to a series of workers (think about it as a form of shield, at the same level of apache or nginx), while the second one sets workers to natively speak the http protocol.
   TL/DR: if you plan to expose uWSGI directly to the public, use ``--http``, if you want to proxy it behind a webserver speaking http with backends, use ``--http-socket``.
+  
   .. seealso:: :doc:`HTTP`
 
 * Till uWSGI 2.1, by default, sending the ``SIGTERM`` signal to uWSGI means "brutally reload the stack" while the convention is to shut an application down on ``SIGTERM``. To shutdown uWSGI use ``SIGINT`` or ``SIGQUIT`` instead.
