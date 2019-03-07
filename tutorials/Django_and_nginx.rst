@@ -321,7 +321,7 @@ to check. And this is our stack::
 
     the web client <-> the web server <-> the socket <-> uWSGI <-> Python
 
-Meanwhile, you can try to have a look at the uswgi output at
+Meanwhile, you can try to have a look at the uwsgi output at
 http://example.com:8001 - but quite probably, it won't work because your browser
 speaks http, not uWSGI, though you should see output from uWSGI in your
 terminal.
@@ -418,7 +418,7 @@ Create a file called ```mysite_uwsgi.ini```::
     # clear environment on exit
     vacuum          = true           
 
-And run uswgi using this file:
+And run uwsgi using this file:
 
 .. code-block:: bash
 
