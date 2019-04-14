@@ -467,8 +467,7 @@ vassal.
 .. code-block:: bash
 
     # create a directory for the vassals
-    sudo mkdir /etc/uwsgi
-    sudo mkdir /etc/uwsgi/vassals
+    sudo mkdir -p /etc/uwsgi/vassals
     # symlink from the default config directory to your config file
     sudo ln -s /path/to/your/mysite/mysite_uwsgi.ini /etc/uwsgi/vassals/
     # run the emperor
