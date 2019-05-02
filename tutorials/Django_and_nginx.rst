@@ -402,7 +402,7 @@ Create a file called ```mysite_uwsgi.ini```::
     # the base directory (full path)
     chdir           = /path/to/your/project 
     # Django's wsgi file
-    module          = project.wsgi
+    module          = mysite.wsgi
     # the virtualenv (full path) 
     home            = /path/to/virtualenv
 
