@@ -276,7 +276,7 @@ Example::
 INI files
 ---------
 
-.INI files are a standard de-facto configuration format used by many
+.INI files are a de facto standard configuration format used by many
 applications. It consists of ``[section]``\ s and ``key=value`` pairs.
 
 An example uWSGI INI configuration:
