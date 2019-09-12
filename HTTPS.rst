@@ -98,3 +98,23 @@ Then configure uWSGI for certificate client authentication
 
 .. note:: If you don't want the client certificate authentication to be
    mandatory, remove the '!' before ca.crt in the https options.
+
+If your client certificates are signed by intermediate certificates
+rather than directly by a CA, you will need to set the
+``ssl-verify-depth`` option to a value large enough to accomodate
+the whole certificate chain.  For example
+
+.. code-block:: ini
+
+  [uwsgi]
+  master = true
+  shared-socket = 0.0.0.0:443
+  uid = www-data
+  gid = www-data
+  ssl-verify-depth = 8
+  https = =0,foobar.crt,foobar.key,HIGH,!ca.crt
+  http-to = /tmp/uwsgi.sock
+
+.. note:: Due to an order dependency in configuration parsing, the
+   ``ssl-verify-depth`` option must be specified *before* the
+   ``https`` option.
