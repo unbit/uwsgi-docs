@@ -261,7 +261,7 @@ Symlink to this file from /etc/nginx/sites-enabled so nginx can see it:
 
 .. code-block:: bash
 
-    sudo ln -s ~/path/to/your/mysite/mysite_nginx.conf /etc/nginx/sites-enabled/
+    sudo ln -s /etc/nginx/sites-available/mysite_nginx.conf /etc/nginx/sites-enabled/
 
 Deploying static files
 ^^^^^^^^^^^^^^^^
