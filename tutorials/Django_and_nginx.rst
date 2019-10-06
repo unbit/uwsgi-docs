@@ -214,7 +214,7 @@ https://github.com/nginx/nginx/blob/master/conf/uwsgi_params
 Copy it into your project directory. In a moment we will tell nginx to refer to
 it.
 
-Now create a file called mysite_nginx.conf in the /etc/nginx/sites-available/ directory, and put this in it::
+Now create a file called mysite_nginx.conf in your project directory, and put this in it::
 
     # mysite_nginx.conf
 
