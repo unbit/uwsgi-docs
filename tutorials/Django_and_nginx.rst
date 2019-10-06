@@ -211,10 +211,13 @@ You will need the ``uwsgi_params`` file, which is available in the ``nginx``
 directory of the uWSGI distribution, or from
 https://github.com/nginx/nginx/blob/master/conf/uwsgi_params
 
-Copy it into your project directory. In a moment we will tell nginx to refer to
+On debian based distributions (at least) the ``uwsgi_params`` file is already
+included so there's no need to use the
+project one, otherwise
+copy it into your project directory. In a moment we will tell nginx to refer to
 it.
 
-Now create a file called mysite_nginx.conf in your project directory, and put this in it::
+Now create a file called mysite_nginx.conf in the /etc/nginx/sites-available/  directory, and put this in it::
 
     # mysite_nginx.conf
 
