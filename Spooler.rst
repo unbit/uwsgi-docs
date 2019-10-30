@@ -41,14 +41,24 @@ Spool files
 
 Spool files are serialized hashes/dictionaries of strings. The spooler will parse them and pass the resulting hash/dictionary to the spooler function (see below).
 
-The serialization format is the same used for the 'uwsgi' protocol, so you are limited to 64k (even if there is a trick for passing bigger values, see the 'body' magic key below). The modifier1
-for spooler packets is the 17, so a {'hello' => 'world'} hash will be encoded as:
+The serialization format is the same used for the 'uwsgi' protocol, so you are limited to 64k (even if there is a trick for passing bigger values, see the 'body' magic key below). 
+
+Example: a {'hello' => 'world'} hash will be encoded as:
 
 ========= ============== ==============
 header    key1           value1
 ========= ============== ==============
 17|14|0|0 |5|0|h|e|l|l|o |5|0|w|o|r|l|d
 ========= ============== ==============
+
+The header contains packet metadata. The first byte is the type of packet, called "modifier1"; for spool files this is 17. The second two bytes are the length of the packet, a uint16: Here it's |14|0|, or 14. The last byte of the header is not used for spool files.
+
+The packet serialization scheme for spool files is as follows: The keys and values are serialized as alternating strings, prepended with a 2-byte uint16 indicating the length of that string. In the example above,
+
+* "hello" is 5 bytes long, hence the first two bytes are "|5|0|", followed by "hello"
+* "world" is 5 bytes long, hence the first bytes are "|5|0|", followed by "world
+
+As noted above, the maximum length of a packet is 64k bytes. However, information may follow the packet. Any data so-stored is considered to be "body" data by uWSGI, and will be added in the output dictionary under the "body" key.
 
 A locking system allows you to safely manually remove spool files if something goes wrong, or to move them between spooler directories.
 
