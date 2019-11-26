@@ -75,7 +75,7 @@ and connect with the pty client:
 
 now you have a shell (/bin/sh by default) in the uWSGI instance. Running ``hostname`` will give you 'iaminajail'
 
-Eventually you can avoid using uWSGI to attacj to the pty and instead you can rely on this simple python script:
+Eventually you can avoid using uWSGI to attach to the pty and instead you can rely on this simple python script:
 
 .. code-block:: py
 
