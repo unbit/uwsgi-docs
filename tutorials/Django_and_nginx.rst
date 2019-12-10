@@ -295,6 +295,11 @@ To check that media files are being served correctly, add an image called
 visit http://example.com:8000/media/media.png - if this works, you'll know at
 least that nginx is serving files correctly.
 
+If this does not work, check to make sure the Django server is running. If it still does not work, you may need to add the following to mysite/settings.py so Django can locate your media files.
+.. code-block:: Python
+	MEDIA_URL = '/media/'
+	MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 It is worth not just restarting nginx, but actually stopping and then starting
 it again, which will inform you if there is a problem, and where it is.
 
