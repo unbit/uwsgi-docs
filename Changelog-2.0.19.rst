@@ -24,6 +24,7 @@ Changes
 - Improve yaml parsing with libyaml (Arne Welzel, #2097)
 - Add smart-daemon2 option to notify daemon of master reloading (Eduardo Felipe Castegnaro)
 - Do not chroot multiple times when root (Arne Welzel)
+- Support io.BytesIO with wsgi.file_wrapper (Arne Welzel, #1126)
 
 
 Availability
