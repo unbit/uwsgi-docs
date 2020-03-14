@@ -25,6 +25,7 @@ Changes
 - Add smart-daemon2 option to notify daemon of master reloading (Eduardo Felipe Castegnaro)
 - Do not chroot multiple times when root (Arne Welzel)
 - Support io.BytesIO with wsgi.file_wrapper (Arne Welzel, #1126)
+- Add websocket continuation frames support (Timi, #1350)
 
 
 Availability
