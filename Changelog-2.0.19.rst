@@ -26,6 +26,7 @@ Changes
 - Do not chroot multiple times when root (Arne Welzel)
 - Support io.BytesIO with wsgi.file_wrapper (Arne Welzel, #1126)
 - Add websocket continuation frames support (Timi, #1350)
+- Fix compilation with gevent 1.5.0 (Vytautas Liuolia)
 
 
 Availability
