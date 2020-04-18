@@ -27,6 +27,8 @@ Changes
 - Support io.BytesIO with wsgi.file_wrapper (Arne Welzel, #1126)
 - Add websocket continuation frames support (Timi, #1350)
 - Fix compilation with gevent 1.5.0 (Vytautas Liuolia)
+- Fix PSGI plugin build with gcc 10 (Jorge Gallegos)
+- Get rid of paste.script dependency in pypy/python plugins (Thomas De Schampheleire)
 
 
 Availability
