@@ -29,6 +29,7 @@ Changes
 - Fix compilation with gevent 1.5.0 (Vytautas Liuolia)
 - Fix PSGI plugin build with gcc 10 (Jorge Gallegos)
 - Get rid of paste.script dependency in pypy/python plugins (Thomas De Schampheleire)
+- Improve performance for santitizing file descriptors with cgi plugin (Natanael Copa, #2053)
 
 
 Availability
