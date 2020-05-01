@@ -30,6 +30,7 @@ Changes
 - Fix PSGI plugin build with gcc 10 (Jorge Gallegos)
 - Get rid of paste.script dependency in pypy/python plugins (Thomas De Schampheleire)
 - Improve performance for santitizing file descriptors with cgi plugin (Natanael Copa, #2053)
+- Fix offload-threads with honour-range (Liss Tarnell)
 
 
 Availability
