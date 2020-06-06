@@ -31,6 +31,9 @@ Changes
 - Get rid of paste.script dependency in pypy/python plugins (Thomas De Schampheleire)
 - Improve performance for santitizing file descriptors with cgi plugin (Natanael Copa, #2053)
 - Fix offload-threads with honour-range (Liss Tarnell)
+- Fix logging packet size length overflow (Pawel Marokwsi)
+- Fix possible deadlock in install (Jacob Tolar)
+- Fix parsing of http port for ipv6 (Cyril Baÿ)
 
 
 Availability
