@@ -34,6 +34,9 @@ Changes
 - Fix logging packet size length overflow (Pawel Marokwsi)
 - Fix possible deadlock in install (Jacob Tolar)
 - Fix parsing of http port for ipv6 (Cyril Baÿ)
+- Fix impossibility of determining the end of the chunked stream with psgi plugin (ols)
+- Fix parsing of http-socket port for ipv6 (Daniel Holth)
+- Add chunked request decoding to the CGI plugin (Robert Schindler)
 
 
 Availability
