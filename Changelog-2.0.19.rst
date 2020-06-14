@@ -37,6 +37,7 @@ Changes
 - Fix impossibility of determining the end of the chunked stream with psgi plugin (ols)
 - Fix parsing of http-socket port for ipv6 (Daniel Holth)
 - Add chunked request decoding to the CGI plugin (Robert Schindler)
+- Add add max-worker-lifetime-delta to reload workers with a delta (Marcin Lulek , #2020)
 
 
 Availability
