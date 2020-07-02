@@ -18,7 +18,7 @@ Step1: Ceph cluster and content
 If you want to try a minimal Ceph instalation, you can follow this guide: http://ceph.com/docs/master/start/. note that
 you only need the OSD and MON daemons, the MDS are needed only for CephFS filesystems.
 
-Once you get it running, you should have a configuration file (by default on /etc/ceph/ceph.con), and should be able to use the `rados` utility.
+Once you get it running, you should have a configuration file (by default on /etc/ceph/ceph.conf), and should be able to use the `rados` utility.
 
 .. code-block:: sh
 
