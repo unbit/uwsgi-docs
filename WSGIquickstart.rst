@@ -146,7 +146,7 @@ Now we can spawn uWSGI to natively speak the uwsgi protocol:
 If you'll run ``ps aux``, you will see one process less. The HTTP router has been removed as our "workers" (the processes assigned to uWSGI)
 natively speak the uwsgi protocol.
 
-If your proxy/webserver/router speaks HTTP, you have to tell uWSGI to natively speak the http protocol (this is different from --http that will spawn a proxy by itself):
+If your proxy/webserver/router speaks HTTP, you have to tell uWSGI to natively speak the http protocol (this is different from ``--http`` that will spawn a proxy by itself):
 
 .. code-block:: sh
 
