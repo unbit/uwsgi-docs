@@ -214,6 +214,24 @@ uwsgidecorators API reference
 
 .. XXX: What does the above mean?
 
+.. function:: task(func)
+
+   A ``spool`` shortcut which sets `pass_arguments` to ``True``, so you
+   can use postionnal or keyword arguments at ease.
+
+   .. code-block:: py
+
+   @task
+   def some_task(*args, **kwargs):
+       print(args)
+       print(kwargs)
+       for i in xrange(0, 10000000):
+           time.sleep(0.5)
+
+   # enqueue the task
+   some_task.spool(id=42, foo=['bar', 'baz'], func=min, at=str(1497023151))
+
+
 .. function:: spoolforever(func, pass_arguments=False)
 
    Use ``spoolforever`` when you want to continuously execute a spool task.
@@ -256,6 +274,23 @@ uwsgidecorators API reference
    .. code-block:: py
 
      @spoolforever(pass_arguments=True)
+     def a_longer_task(*args):
+         print(args)
+         for i in xrange(0, 10000000):
+             time.sleep(0.5)
+
+     # enqueue the task
+     a_longer_task.spool('pluto', 42)
+
+
+.. function:: forever(func)
+
+   A ``spoolforever`` shortcut which sets `pass_arguments` to ``True``, so you
+   can use postionnal or keyword arguments at ease.
+
+   .. code-block:: py
+
+     @forever
      def a_longer_task(*args):
          print(args)
          for i in xrange(0, 10000000):
@@ -311,6 +346,23 @@ uwsgidecorators API reference
           return uwsgi.SPOOL_RETRY
 
       a_controlled_task.spool(foo='bar', age=42)
+
+
+.. function:: raw(func)
+
+   A ``spoolraw`` shortcut which sets `pass_arguments` to ``True``, so you
+   can use postionnal or keyword arguments at ease.
+
+   .. code-block:: py
+
+      @raw
+      def a_controlled_task(**kwargs):
+          if kwargs['foo'] == 'bar':
+              return uwsgi.SPOOL_OK
+          return uwsgi.SPOOL_RETRY
+
+      a_controlled_task.spool(foo='bar', age=42)
+
 
 .. function:: rpc("name", func)
 
