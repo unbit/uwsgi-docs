@@ -112,6 +112,9 @@ When dealing with background processes, you'll need to use the master pidfile ag
     # or for convenience...
     uwsgi --stop /tmp/project-master.pid
 
+If you're running uwsgi in docker and you stop the container, docker sends a SIGTERM, which results in the action described in the table above.
+If you want the docker shutdown to gracefully stop uwsgi you should read over https://github.com/unbit/uwsgi/issues/849#issuecomment-118869386
+
 The Master FIFO
 ---------------
 
