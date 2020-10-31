@@ -10,7 +10,7 @@ To build uWSGI you need a C compiler (gcc and clang are supported) and the Pytho
 
 As we are building an uWSGI binary with Ruby support we need the Ruby development headers too (the ``ruby-dev`` package on Debian-based distributions).
 
-You can build uWSGI manually -- all of these are equivalent:
+You can build uWSGI manually:
 
 .. code-block:: sh
 
@@ -19,12 +19,7 @@ You can build uWSGI manually -- all of these are equivalent:
    make PROFILE=rack
    python uwsgiconfig.py --build rack
    
-But if you are lazy, you can download, build and install an uWSGI + Ruby binary in a single shot:
 
-.. code-block:: sh
-
-   curl http://uwsgi.it/install | bash -s rack /tmp/uwsgi
-   
 Or in a more "Ruby-friendly" way:
 
 .. code-block:: sh

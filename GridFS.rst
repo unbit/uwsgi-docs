@@ -27,15 +27,6 @@ Or you can build it as plugin:
 
    python uwsgiconfig.py --plugin plugins/gridfs
 
-For a fast installation of a monolithic build you can use the network
-installer:
-
-.. code-block:: sh
-
-   curl http://uwsgi.it/install | bash -s gridfs /tmp/uwsgi
-
-This will install a gridfs enabled uwsgi binary.
-
 
 Standalone quickstart
 *********************

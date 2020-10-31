@@ -52,13 +52,6 @@ or
 
    python uwsgiconfig.py --build rados
    
-or use the installer
-
-.. code-block:: sh
-
-   # this will create a binary called /tmp/radosuwsgi that you will use instead of 'uwsgi'
-   curl http://uwsgi.it/install | bash -s rados /tmp/radosuwsgi
-
 Obviously you can build rados support as plugin
 
 .. code-block:: sh
