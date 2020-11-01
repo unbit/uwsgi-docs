@@ -24,13 +24,7 @@ that is the same as
 
    UWSGI_PROFILE=psgi make
    
-or using the network installer:
 
-.. code-block:: sh
-
-   curl http://uwsgi.it/install | bash -s psgi /tmp/uwsgi
-   
-that will create a uWSGI binary in /tmp/uwsgi (feel free to change the path to whatever you want)
 
 Note for distro packages
 ************************
@@ -152,13 +146,6 @@ To build a uWSGI binary with ``coroae`` support just run
 
    UWSGI_PROFILE=coroae make
    
-or
-
-.. code-block:: sh
-
-   curl http://uwsgi.it/install | bash -s coroae /tmp/uwsgi
-   
-you will end with a uWSGI binary including both the ``psgi`` and ``coroae`` plugins.
 
 Now run your application in Coro::AnyEvent mode:
 

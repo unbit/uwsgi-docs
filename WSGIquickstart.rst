@@ -35,14 +35,6 @@ You have various ways to install uWSGI for Python:
 
       pip install uwsgi
 
-* using the network installer
-
-  .. code-block:: sh
-
-      curl http://uwsgi.it/install | bash -s default /tmp/uwsgi
-
-  (this will install the uWSGI binary into ``/tmp/uwsgi``, feel free to change it).
-
 * via downloading a source tarball and "making" it
 
   .. code-block:: sh

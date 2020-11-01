@@ -51,13 +51,6 @@ Or you can compile manually:
 
    UWSGI_PROFILE=pypy make
    
-Or you can use the network installer:
-
-.. code-block:: sh
-
-   curl https://uwsgi.it/install | bash -s pypy /tmp/uwsgi
-   
-This will build a uWSGI + PyPy binary in ``/tmp/uwsgi``.
 
 Or you can build PyPy support as a plugin.
 

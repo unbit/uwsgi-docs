@@ -20,12 +20,7 @@ from sources directory:
 
    make lua
    
-with the installer (the resulting binary will be in /tmp/uwsgi)
 
-.. code-block:: sh
-
-   curl http://uwsgi.it/install | bash -s lua /tmp/uwsgi
-   
 or you can build it as a plugin
 
 .. code-block:: sh
