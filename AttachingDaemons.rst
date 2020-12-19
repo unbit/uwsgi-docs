@@ -114,7 +114,7 @@ the namespace.
 Legion support
 **************
 
-Starting with uWSGI 1.9.9 it's possible to use the :doc:`Legion` subsystem for
+Starting with uWSGI 1.9.9 it's possible to use the :doc:`Legion` for
 daemon management.  Legion daemons will be executed only on the legion
 lord node, so there will always be a single daemon instance running in each
 legion. Once the lord dies a daemon will be spawned on another node.  To add a
