@@ -1,0 +1,6 @@
+*.bat
+*.pyc
+_build
+_wiki
+_ml
+*.sublime*
