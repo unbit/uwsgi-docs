@@ -39,7 +39,7 @@ These are simple functions called for generating the logvar value:
 * ``%(ctime)`` -> ctime of the start of the request
 * ``%(epoch)`` -> the current time in Unix format
 * ``%(size)`` -> response body size + response headers size (since 1.4.5)
-* ``%(ltime) -> human-formatted (Apache style)`` request time (since 1.4.5)
+* ``%(ltime)`` -> human-formatted (Apache style) request time (since 1.4.5)
 * ``%(hsize)`` -> response headers size (since 1.4.5)
 * ``%(rsize)`` -> response body size (since 1.4.5)
 * ``%(cl)`` -> request content body size (since 1.4.5)
@@ -57,6 +57,7 @@ These are simple functions called for generating the logvar value:
 * ``%(modifier1)`` -> modifier1 of the request (since 1.4.6)
 * ``%(modifier2)`` -> modifier2 of the request (since 1.4.6)
 * ``%(metric.XXX)`` -> access the XXX metric value (see :doc:`Metrics`)
+* ``%(ftime)`` -> formatted request time defined by ``logdate``. Requires ``logformat-strftime = true``  (since 1.9.15)
 * ``%(rerr)`` -> number of read errors for the request (since 1.9.21)
 * ``%(werr)`` -> number of write errors for the request (since 1.9.21)
 * ``%(ioerr)`` -> number of write and read errors for the request (since 1.9.21)
