@@ -21,6 +21,9 @@ Changes
 - Support 7 in weekedays as an alias for sunday to match crontab behaviour (Riccardo Magliocchetti)
 - Document http-timeout default of 60 seconds (Etienne H)
 - Add option to override python sys.executable using py-executable config
+- Allow specifying an iteration to uwsgi::add_rb_timer (Luciano Rocha)
+- Allow to compile with Python versions with minor version with 2+ digits (Cyrille Pontvieux)
+- Take into account new naming for LIBPL since python 3.6 (ilrico)
 
 Availability
 ------------
