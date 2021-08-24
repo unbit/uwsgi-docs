@@ -177,9 +177,7 @@ app will run under its own user.
   After=syslog.target
 
   [Service]
-  ExecStart=/usr/bin/uwsgi \
-          --ini /etc/uwsgi/apps-available/%i.ini \
-          --socket /var/run/uwsgi/%i.socket
+  ExecStart=/usr/bin/uwsgi --ini /etc/uwsgi/apps-available/%i.ini
   User=www-%i
   Group=www-data
   Restart=on-failure
