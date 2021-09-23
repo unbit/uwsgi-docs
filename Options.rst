@@ -2201,6 +2201,16 @@ max-worker-lifetime
 
 
 
+max-worker-lifetime-delta
+*******************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_64bit
+
+``help``: add (worker_id * delta) to the max_worker_lifetime value of each worker
+
+
+
 socket-timeout
 **************
 ``argument``: required_argument
