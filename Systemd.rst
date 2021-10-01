@@ -23,7 +23,6 @@ Create a systemd service file (you can save it as /etc/systemd/system/emperor.uw
 
    [Unit]
    Description=uWSGI Emperor
-   After=syslog.target
 
    [Service]
    ExecStart=/root/uwsgi/uwsgi --ini /etc/uwsgi/emperor.ini
@@ -174,7 +173,6 @@ app will run under its own user.
 
   [Unit]
   Description=%i uWSGI app
-  After=syslog.target
 
   [Service]
   ExecStart=/usr/bin/uwsgi \
