@@ -1,7 +1,7 @@
 uWSGI 2.0.20
 ============
 
-20211006
+Released 20211006
 
 Maintenance release
 
