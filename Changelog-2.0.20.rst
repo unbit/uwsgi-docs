@@ -1,9 +1,11 @@
 uWSGI 2.0.20
 ============
 
-[UNRELEASED]
+20211006
 
 Maintenance release
+
+Special Note: this is the last version with GPL2+linking_exception license. Following versions will be under MIT.
 
 
 Changes
@@ -24,6 +26,7 @@ Changes
 - Allow specifying an iteration to uwsgi::add_rb_timer (Luciano Rocha)
 - Allow to compile with Python versions with minor version with 2+ digits (Cyrille Pontvieux)
 - Take into account new naming for LIBPL since python 3.6 (ilrico)
+- Official support for Python 3.10
 
 Availability
 ------------
