@@ -26,6 +26,7 @@ Changes
 - Allow specifying an iteration to uwsgi::add_rb_timer (Luciano Rocha)
 - Allow to compile with Python versions with minor version with 2+ digits (Cyrille Pontvieux)
 - Take into account new naming for LIBPL since python 3.6 (ilrico)
+- Added missing HTTP status codes messages (James Brown)
 - Official support for Python 3.10
 
 Availability
