@@ -187,6 +187,9 @@ app will run under its own user.
   Type=notify
   StandardError=syslog
   NotifyAccess=all
+  
+  [Install]
+  WantedBy=multi-user.target
 
 Now, adding a new app to your system is a matter of creating the appropriate
 user and enabling the socket and the service. For instance, if one were to
