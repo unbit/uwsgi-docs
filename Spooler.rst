@@ -157,7 +157,7 @@ Some keys have a special meaning:
 * 'spooler' => specify the ABSOLUTE path of the spooler that has to manage this task
 * 'at' => unix time at which the task must be executed (read: the task will not be run until the 'at' time is passed)
 * 'priority' => this will be the subdirectory in the spooler directory in which the task will be placed, you can use that trick to give a good-enough prioritization to tasks (for better approach use multiple spoolers)
-* 'body' => use this key for objects bigger than 64k, the blob will be appended to the serialzed uwsgi packet and passed back to the spooler function as the 'body' argument
+* 'body' => use this key for objects bigger than 64k, the blob will be appended to the serialized uwsgi packet and passed back to the spooler function as the 'body' argument
 
 .. note::
 
