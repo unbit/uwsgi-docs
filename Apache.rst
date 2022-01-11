@@ -20,32 +20,41 @@ Options
 .. note::
    
    All of the options can be set per-host or per-location.
-
+   Don't forget to use ``SetHandler uwsgi-handler``.
 
 **uWSGISocket <path> [timeout]**   Absolute path and optional timeout in seconds of uwsgi server socket.
 
-**uWSGISocket2 <path>**            Absolute path of failover uwsgi server socket
+**uWSGISocket2 <path>**            Absolute path of failover uwsgi server socket.
 
-**uWSGIServer <host:port>**        Address and port of an UWSGI server (e.g. localhost:4000)
+**uWSGIServer <host:port>**        Address and port of an UWSGI server (e.g. localhost:4000).
 
-**uWSGIModifier1 <int>**           Set uWSGI modifier1  
+**uWSGIModifier1 <int>**           Set uWSGI modifier1.
 
-**uWSGIModifier2 <int>**           Set uWSGI modifier2
+**uWSGIModifier2 <int>**           Set uWSGI modifier2.
 
-**uWSGIForceScriptName <value>**   Force ``SCRIPT_NAME`` (app name)
+**uWSGIForceScriptName <value>**   Force ``SCRIPT_NAME`` (app name).
 
-**uWSGIForceCGIMode <on/off>**     Force uWSGI CGI mode for perfect integration with apache filters
+**uWSGIForceCGIMode <on/off>**     Force uWSGI CGI mode for perfect integration with apache filters.
 
-**uWSGIForceWSGIScheme <value>**   Force the WSGI scheme var (set by default to "http")
+**uWSGIForceWSGIScheme <value>**   Force the WSGI scheme var (set by default to "http").
 
-**uWSGIMaxVars  <int>**            Set the maximum allowed number of uwsgi protocol variables (default 128)
+**uWSGIMaxVars  <int>**            Set the maximum allowed number of uwsgi protocol variables (default 128).
 
 
 To pass custom variables use the ``SetEnv`` directive:
 
 ..
   
-  SetEnv UWSGI_SCRIPT yourapp
+   SetEnv UWSGI_SCRIPT yourapp
+
+Example of app accessed via uwsgi server socket:
+
+.. parsed-literal::
+
+   <Location "/app/*">
+      SetHandler uwsgi-handler
+      uWSGISocket /var/lib/uwsgi/app.sock 30
+   </Location>
 
 
 mod_proxy_uwsgi
