@@ -51,7 +51,7 @@ until the file is completely transferred.
 
 Wouldn't it be cool if you could tell another thread to send the file for you, so you will be able to manage another request?
 
-Offloading is exactly this: it will give you one ore more threads for doing simple and slow task for you. Which kind of tasks? All of those that can be managed
+Offloading is exactly this: it will give you one or more threads for doing simple and slow tasks for you. Which kind of tasks? All of those that can be managed
 in a non-blocking way, so a single thread can manage thousand of transfers for you.
 
 You can see it as the DMA engine in your computer, your CPU will program the DMA to transfer memory from a controller to the RAM, and then will be freed to accomplish another task while the DMA works in background.
