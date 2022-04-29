@@ -14,6 +14,7 @@ Changes
 - add uwsgi fork hooks to update internal interpreter state in python plugin (Tahir Butt)
 - Properly call `.close()` as mandated by WSGI specs in python plugin (Florian Apolloner)
 - Fix compilation with PHP 8.1 (Riccardo Magliocchetti)
+- Fix memory corruption for uwsgi_cache_* in php plugin (aszlig)
 
 Availability
 ------------
