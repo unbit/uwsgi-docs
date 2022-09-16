@@ -120,6 +120,11 @@ Starting from Apache 2.4.9, support for Unix sockets has been added. The syntax 
   the firstly declared unix domain socket will get a worker and the secondly
   declared app will have no worker and won't be reachable. A workaround this
   apache limitation (bug?) is to use different hostnames.
+  
+.. note::
+ 
+   The socket file should not be placed in ``/tmp``-like folders. See for
+   instance systemd's `PrivateTmp <https://systemd.io/TEMPORARY_DIRECTORIES/>`_.
 
 mod_Ruwsgi
 ----------
