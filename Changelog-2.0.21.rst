@@ -23,6 +23,7 @@ Changes
 - make dev version PEP-0440 compliant (joshua.biagio)
 - Add Python 3.11 support (Victor Stinner)
 - Ensure to link against rt when statically linking the python plugin to libpython (Denis Dowling)
+- Refactor CI to run tests in parallel (Nicola Martino)
 
 Availability
 ------------
