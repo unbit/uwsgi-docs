@@ -75,7 +75,7 @@ uwsgi binary with the Avahi and realtime plugins as:
 Automatically manage HTTP_X_FORWARDED_PROTO
 *******************************************
 
-Albeit a new standard is avavailble in the HTTP world for forwarded sessions (http://tools.ietf.org/html/rfc7239) this release
+Albeit a new standard is available in the HTTP world for forwarded sessions (http://tools.ietf.org/html/rfc7239) this release
 adds support for the X-Forwarded-Proto header, automatically setting the request scheme accordingly.
 
 Availability
