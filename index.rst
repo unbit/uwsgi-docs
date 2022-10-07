@@ -1,3 +1,9 @@
+.. note::
+
+  The project is in maintenance mode (only bugfixes and updates for new languages apis).
+  Do not expect quick answers on github issues and/or pull requests (sorry for that)
+  A big thanks to all of the users and contributors since 2009.
+  
 The uWSGI project
 =================
 
