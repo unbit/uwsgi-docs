@@ -1,7 +1,7 @@
 uWSGI 2.0.21
 ============
 
-Released UNRELEASED
+Released 20221024
 
 Maintenance release
 
@@ -24,6 +24,7 @@ Changes
 - Add Python 3.11 support (Victor Stinner)
 - Ensure to link against rt when statically linking the python plugin to libpython (Denis Dowling)
 - Refactor CI to run tests in parallel (Nicola Martino)
+- Add missing parens in plugins/coroae/uwsgiconfig.py (Eleksir)
 
 Availability
 ------------
