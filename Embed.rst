@@ -72,7 +72,8 @@ And add it to the build profile as a config file.
 .. code-block:: ini
 
     [uwsgi]
-    inherit = default
+    inherit = base
+    main_plugin = python
     bin_name = myapp
     embed_files = bootstrap.py,myapp.py
     embed_config = flaskconfig.ini
