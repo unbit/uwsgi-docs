@@ -38,6 +38,13 @@ uWSGI supports loading configuration files over several methods other than simpl
 
 .. note::
 
+  If the configuration file type is not specified in the parameter list (e.g. --ini, --xml, etc.),
+  uwsgi tries to deduce the file type from the filename extension.
+  If the extension is not a supported file type,
+  uwsgi displays the message "unable to load configuration from..." and exits.
+
+.. note::
+
   More esoteric file sources, such as the :doc:`Emperor<Emperor>`, embedded
   configuration (in two flavors), dynamic library symbols and ELF sections
   could also be used.
