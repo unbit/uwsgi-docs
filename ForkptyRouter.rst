@@ -4,7 +4,7 @@ The Forkpty Router
 Dealing with containers is now a common deployment pattern. One of the most annoying tasks when dealing with jails/namespaces
 is 'attaching' to already running instances.
 
-The forkpty router aims at simplifyng the process giving a pseudoterminal server to your uWSGI instances.
+The forkpty router aims at simplifying the process giving a pseudoterminal server to your uWSGI instances.
 
 A client connect to the socket exposed by the forkpty router and get a new pseudoterminal connected to a process (generally a shell, but can be whatever you want)
 
