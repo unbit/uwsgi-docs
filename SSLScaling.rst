@@ -1,5 +1,5 @@
-Scaling SSL connections (uWSGI 1.9)
-===================================
+Scaling SSL connections (uWSGI 1.9 & openssl < 1.1)
+===================================================
 
 Distributing SSL servers in a cluster is a hard topic. The biggest problem is sharing SSL sessions between different nodes.
 
