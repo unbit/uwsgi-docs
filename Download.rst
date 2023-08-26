@@ -7,7 +7,7 @@ These are the current versions of uWSGI.
 Release                   Date        Link
 ========================  ==========  ===================================================
 Unstable/Development      \-          https://github.com/unbit/uwsgi/
-Stable/LTS                2021-10-06  https://projects.unbit.it/downloads/uwsgi-2.0.20.tar.gz
+Stable                2023-07-22      `uwsgi-2.0.22.tar.gz <https://files.pythonhosted.org/packages/a7/4e/c4d5559b3504bb65175a759392b03cac04b8771e9a9b14811adf1151f02f/uwsgi-2.0.22.tar.gz>`_
 DOCS                      \-          https://github.com/unbit/uwsgi-docs/
 ========================  ==========  ===================================================
 
