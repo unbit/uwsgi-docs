@@ -359,7 +359,7 @@ harakiri-graceful-timeout
 ``help``: interval between graceful harakiri attempt and a sigkill. To control the timeout for the worker to attempt a graceful shutdown
 
 harakiri-graceful-signal
-*************************
+************************
 ``argument``: required_argument
 
 ``parser``: uwsgi_opt_set_int
@@ -367,7 +367,7 @@ harakiri-graceful-signal
 ``help``: use this signal instead of sigterm for graceful harakiri attempts. To choose which signal to use for graceful harakiri (default: SIGTERM)
 
 harakiri-queue-threshold
-*************************
+************************
 ``argument``: required_argument
 
 ``parser``: uwsgi_opt_set_int
