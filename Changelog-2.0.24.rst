@@ -10,7 +10,7 @@ Changes
 
 - properly init cache for purge_lru (Alexandre Rossi)
 - fix linking with php8 (Remi Collet)
-- remove unused libraries to fix compilation (László Károlyi)
+- remove unused variables to fix compilation (László Károlyi)
 - fix function parameter type to avoid overflow in harakiri (Shai Bentov)
 - fix socket queue stats for ipv6 (Riccardo Magliocchetti)
 - fixup -Wformat-signedness warnings (Riccardo Magliocchetti)
