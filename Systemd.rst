@@ -174,25 +174,19 @@ app will run under its own user.
   Description=%i uWSGI app
 
   [Service]
-  ExecStart=/usr/bin/uwsgi \
-          --ini /etc/uwsgi/apps-available/%i.ini \
-          --socket /var/run/uwsgi/%i.socket
+  ExecStart=/usr/bin/uwsgi --ini /etc/uwsgi/apps-available/%i.ini
   User=www-%i
   Group=www-data
-  Restart=on-failure
+  DynamicUser=yes
+  StateDirectory=uwsgi/%i
   KillSignal=SIGQUIT
   Type=notify
-  StandardError=syslog
-  NotifyAccess=all
 
-Now, adding a new app to your system is a matter of creating the appropriate
-user and enabling the socket and the service. For instance, if one were to
-configure cgit:
+Now, adding a new app to your system is a matter of enabling the socket and
+the service. For instance, if one were to configure cgit:
 
 .. code-block:: sh
 
-  adduser www-cgit --disabled-login --disabled-password \
-    --ingroup www-data --home /var/lib/www/cgit --shell /bin/false
   systemctl enable uwsgi-app@cgit.socket
   systemctl enable uwsgi-app@cgit.service
   systemctl start uwsgi-app@cgit.socket
@@ -214,3 +208,12 @@ Then configure the ini file ``/etc/uwsgi/apps-available/cgit.ini``:
   cgi = /usr/lib/cgit/cgit.cgi
 
 And last, if applicable, configure your HTTP server the usual way.
+
+Some services might need write access outside of their StateDirectory, but
+this is denied by ``systemd`` when using ``DynamicUser``. If this is the case,
+an override can grant such access, for instance in
+``/etc/systemd/system/uwsgi-app\@nextcloud.service.d/override.conf``:
+
+.. code-block:: ini
+    [Service]
+    ReadWritePaths=/srv/nextcloud/data
