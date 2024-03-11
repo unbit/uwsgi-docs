@@ -102,6 +102,14 @@ and run uWSGI with:
 
   uwsgi --emperor /opt/apps/app*/app*.*
 
+Additional imperial monitors
+============================
+
+.. warning::
+
+    :doc:`Broodlord` needs additional workers (:doc:`Zerg`) configuration to
+    live on the filesystem. See `uWSGI issue 2166
+    <https://github.com/unbit/uwsgi/issues/2166>`_ for more details.
 
 ``pg://`` -- scan a PostgreSQL table for configuration
 ------------------------------------------------------
