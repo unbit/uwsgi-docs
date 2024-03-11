@@ -87,7 +87,7 @@ logto option.
 The flock trick
 ***************
 
-As the apache mod_fcgi/mod_fastcgi/mod_fcgid implemenetations are very flaky on process management, you can easily end with lot of copies
+As the apache mod_fcgi/mod_fastcgi/mod_fcgid implementations are very flaky on process management, you can easily end with lot of copies
 of the same process running. The flock trick avoid that. Just remember that the flock option is very special as you cannot use
 placeholder or other advanced techniques with it. You can only specify the absolute path of the file to lock.
 
