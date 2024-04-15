@@ -333,33 +333,8 @@ Stable releases
 
 
 
-Contact
-=======
-
-================== =
-IRC                #uwsgi @ irc.freenode.org.
-Twitter            https://twitter.com/unbit
-Commercial support http://unbit.com/
-================== =
-
-.
-
-Commercial support
-==================
-
-You can buy commercial support from http://unbit.com
-
-Donate
-======
-
-uWSGI development is maintained by `Unbit <http://unbit.it/>`_ . You can buy commercial support and licensing. If you are not an Unbit customer, or you cannot/do not want to buy a commercial uWSGI license, consider making a donation. Obviously please feel free to ask for new features in your donation.
-
-We will give credit to everyone who wants to sponsor new features.
-
-Check http://unbit.it/uwsgi_donate for the donation link.
-
-Sponsors
-========
+Past Sponsors
+=============
 
 https://www.pythonanywhere.com/
 
