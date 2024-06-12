@@ -190,8 +190,8 @@ routing variables are also available.
      route = ^/images/(.+) addvar:MYFILE=$1.jpg
      route = ^/images/ addheader:Content-Type: ${mime[MYFILE]}
 
-* ``time`` -- returns time/date in various forms. The only supported (for now) is time[unix] returning the epoch
-* ``httptime`` -- return http date adding the numeric argument (if specified) to the current time (use empty arg for current server time)
+* ``time`` -- returns time/date in various forms. The time[unix] returns the epoch. Starting from uWSGI version 2.0.11, the time[micros] provides microsseconds precision
+* ``httptime`` -- return http date adding the numeric argument (if specified) to the current time (use empty arg for current server time).
 
 .. code-block:: ini
   
@@ -205,7 +205,7 @@ routing variables are also available.
 * ``hex`` -- encode the specified var in hex
 * ``upper`` -- uppercase the specified var
 * ``lower`` -- lowercase the specified var
-* ``uwsgi`` -- return internal uWSGI information, uwsgi[wid], uwsgi[pid], uwsgi[uuid] and uwsgi[status] are currently supported
+* ``uwsgi`` -- return internal uWSGI information, uwsgi[wid], uwsgi[pid], uwsgi[uuid] and uwsgi[status] are supported. After uWSGI version 2.0.11, uwsgi[sor] became available with the timestamp of the start-of-request.
 
 Is --route-if not enough? Why --route-uri and friends?
 ******************************************************
