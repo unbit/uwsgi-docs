@@ -104,7 +104,7 @@ MIME types
 
 Your HTTP/SPDY/whateveryouwant responses for static files should always return the correct mime type for the specific file to let user agents handle them correctly.
 
-By default uWSGI builds its list of MIME types from the ``/etc/mime.types`` file. You can load additional files with the ``--mime-file``
+By default uWSGI builds its list of MIME types from the ``/etc/mime.types`` file on linux and ``/etc/apache2/mime.types`` on macOS. In the event this does not work or you need to load additional files, use ``--mime-file``
 option.
 
 .. code-block:: sh
