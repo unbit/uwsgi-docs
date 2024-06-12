@@ -27,8 +27,20 @@ then
     nc 127.0.0.1 1717
     # or for convenience...
     uwsgi --connect-and-read 127.0.0.1:1717
+    # or if you prefer curl
+    curl http://localhost:1717/
 
-will return something like this:
+will return the statistics data. The keys are:
+
++---------------------------+------+---------+---------------------------------------------------------------------------------------+
+| Key                       | Type | Range   | Description                                                                           |
++===========================+======+=========+=======================================================================================+
+| workers.[].requests       | INT  | 0 - ... | amount of requests since this worker was started (ignoring restarts)                  |
++---------------------------+------+---------+---------------------------------------------------------------------------------------+
+| workers.[].delta_requests | INT  | 0 - ... | amount of requests since this worker was (re-)started (on a restart this resets to 0) |
++---------------------------+------+---------+---------------------------------------------------------------------------------------+
+
+Example:
 
 .. code-block:: js
 
@@ -54,153 +66,8 @@ will return something like this:
           "exceptions": 0,
           "chdir": ""
         }]
-      }, {
-        "id": 2,
-        "pid": 31760,
-        "requests": 0,
-        "exceptions": 0,
-        "status": "idle",
-        "rss": 0,
-        "vsz": 0,
-        "running_time": 0,
-        "last_spawn": 1317235041,
-        "respawn_count": 1,
-        "tx": 0,
-        "avg_rt": 0,
-        "apps": [{
-          "id": 0,
-          "modifier1": 0,
-          "mountpoint": "",
-          "requests": 0,
-          "exceptions": 0,
-          "chdir": ""
-        }]
-      }, {
-        "id": 3,
-        "pid": 31761,
-        "requests": 0,
-        "exceptions": 0,
-        "status": "idle",
-        "rss": 0,
-        "vsz": 0,
-        "running_time": 0,
-        "last_spawn": 1317235041,
-        "respawn_count": 1,
-        "tx": 0,
-        "avg_rt": 0,
-        "apps": [{
-          "id": 0,
-          "modifier1": 0,
-          "mountpoint": "",
-          "requests": 0,
-          "exceptions": 0,
-          "chdir": ""
-        }]
-      }, {
-        "id": 4,
-        "pid": 31762,
-        "requests": 0,
-        "exceptions": 0,
-        "status": "idle",
-        "rss": 0,
-        "vsz": 0,
-        "running_time": 0,
-        "last_spawn": 1317235041,
-        "respawn_count": 1,
-        "tx": 0,
-        "avg_rt": 0,
-        "apps": [{
-          "id": 0,
-          "modifier1": 0,
-          "mountpoint": "",
-          "requests": 0,
-          "exceptions": 0,
-          "chdir": ""
-        }]
-      }, {
-        "id": 5,
-        "pid": 31763,
-        "requests": 0,
-        "exceptions": 0,
-        "status": "idle",
-        "rss": 0,
-        "vsz": 0,
-        "running_time": 0,
-        "last_spawn": 1317235041,
-        "respawn_count": 1,
-        "tx": 0,
-        "avg_rt": 0,
-        "apps": [{
-          "id": 0,
-          "modifier1": 0,
-          "mountpoint": "",
-          "requests": 0,
-          "exceptions": 0,
-          "chdir": ""
-        }]
-      }, {
-        "id": 6,
-        "pid": 31764,
-        "requests": 0,
-        "exceptions": 0,
-        "status": "idle",
-        "rss": 0,
-        "vsz": 0,
-        "running_time": 0,
-        "last_spawn": 1317235041,
-        "respawn_count": 1,
-        "tx": 0,
-        "avg_rt": 0,
-        "apps": [{
-          "id": 0,
-          "modifier1": 0,
-          "mountpoint": "",
-          "requests": 0,
-          "exceptions": 0,
-          "chdir": ""
-        }]
-      }, {
-        "id": 7,
-        "pid": 31765,
-        "requests": 0,
-        "exceptions": 0,
-        "status": "idle",
-        "rss": 0,
-        "vsz": 0,
-        "running_time": 0,
-        "last_spawn": 1317235041,
-        "respawn_count": 1,
-        "tx": 0,
-        "avg_rt": 0,
-        "apps": [{
-          "id": 0,
-          "modifier1": 0,
-          "mountpoint": "",
-          "requests": 0,
-          "exceptions": 0,
-          "chdir": ""
-        }]
-      }, {
-        "id": 8,
-        "pid": 31766,
-        "requests": 0,
-        "exceptions": 0,
-        "status": "idle",
-        "rss": 0,
-        "vsz": 0,
-        "running_time": 0,
-        "last_spawn": 1317235041,
-        "respawn_count": 1,
-        "tx": 0,
-        "avg_rt": 0,
-        "apps": [{
-          "id": 0,
-          "modifier1": 0,
-          "mountpoint": "",
-          "requests": 0,
-          "exceptions": 0,
-          "chdir": ""
-        }]
+      },
+      ...]
       }]
     }
         
