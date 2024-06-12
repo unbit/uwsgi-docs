@@ -44,7 +44,7 @@ Things to know (best practices and "issues") READ IT !!!
 
 * Do not build plugins using a different config file than used to build the uWSGI binary itself -- unless you like pain or know *exactly* what you are doing.
 
-* By default uWSGI allocates a very small buffer (4096 bytes) for the headers of each request. If you start receiving "invalid request block size" in your logs, it could mean you need a bigger buffer. Increase it (up to 65535) with the ``buffer-size`` option. 
+* By default uWSGI allocates a very small buffer (4096 bytes) for the headers and query-string of each request. If you start receiving "invalid request block size" in your logs, it could mean you need a bigger buffer. Increase it (up to 65535) with the ``buffer-size`` option. The default ``buffer-size`` will most-likely need to be increased in situations where you have both client-side session data (large cookies create large headers) and enable single-sign-on or "signed request" systems like ``oAuth`` (numerous large headers and potentially long query-string arguments).
 
   .. note::
 
