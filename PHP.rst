@@ -229,6 +229,7 @@ Preliminary support for some of the uWSGI API has been added in 1.1. This is the
 * uwsgi_cache_set($key, $value)
 * uwsgi_cache_update($key, $value)
 * uwsgi_cache_del($key)
+* uwsgi_disconnect()
 
 Yes, this means you can call Python functions from PHP using RPC.
 
