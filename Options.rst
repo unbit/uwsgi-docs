@@ -10,13 +10,14 @@ works, you should read the various quickstarts and tutorials.
 
 Each option has the following attributes:
 
-* argument: it is the struct option (used by getopt()/getopt_long()) has_arg element. Can be 'required_argument', 'no_argument' or 'optional_argument'
+* argument: it is the struct option (used by getopt()/getopt_long()) has_arg element. Can be 'required', 'no_argument' or 'optional_argument'
 * shortcut: some option can be specified with the short form (a dash followed by a single letter)
 * parser: this is how uWSGI parses the parameter. There are dozens of way, the most common are 'uwsgi_opt_set_str' when it takes a simple string, 'uwsgi_opt_set_int' when it takes a 32bit number, 'uwsgi_opt_add_string_list' when the parameter can be specified multiple times to build a list.
 * help: the help message, the same you get from ``uwsgi --help``
 * reference: a link to a documentation page that gives better understanding and context of an option
 
-You can add more detailed infos to this page, editing https://github.com/unbit/uwsgi-docs/blob/master/optdefs.pl (please, double check it before sending a pull request)
+You can add more detailed infos to this page, editing https://github.com/unbit/uwsgi-docs/blob/master/generate_options.py (please, double check it before sending a pull request)
+
 
 uWSGI core
 ==========
@@ -329,7 +330,6 @@ thunder-lock
 ``reference``: :doc:`articles/SerializingAccept`
 
 
-
 harakiri
 ********
 ``argument``: required_argument
@@ -349,6 +349,36 @@ harakiri-verbose
 ``parser``: uwsgi_opt_true
 
 ``help``: enable verbose mode for harakiri
+
+
+
+harakiri-graceful-timeout
+*************************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_int
+
+``help``: interval between graceful harakiri attempt and a sigkill
+
+
+
+harakiri-graceful-signal
+************************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_int
+
+``help``: use this signal instead of sigterm for graceful harakiri attempts
+
+
+
+harakiri-queue-threshold
+************************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_int
+
+``help``: only trigger harakiri if queue is greater than this threshold
 
 
 
@@ -485,8 +515,9 @@ skip-atexit
 ``help``: skip atexit hooks (ignored by the master)
 
 
-skip-atexit
-***********
+
+skip-atexit-teardown
+********************
 ``argument``: no_argument
 
 ``parser``: uwsgi_opt_true
@@ -556,7 +587,6 @@ declare-option
 ``help``: declare a new uWSGI custom option
 
 ``reference``: :doc:`CustomOptions`
-
 
 
 declare-option2
@@ -762,7 +792,7 @@ if-not-hostname
 
 
 if-hostname-match
-***********
+*****************
 ``argument``: required_argument
 
 ``parser``: uwsgi_opt_logic
@@ -774,7 +804,7 @@ if-hostname-match
 
 
 if-not-hostname-match
-***************
+*********************
 ``argument``: required_argument
 
 ``parser``: uwsgi_opt_logic
@@ -793,7 +823,7 @@ if-exists
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
-``help``: (opt logic) check for file/directory existance
+``help``: (opt logic) check for file/directory existence
 
 
 
@@ -805,7 +835,7 @@ if-not-exists
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
-``help``: (opt logic) check for file/directory existance
+``help``: (opt logic) check for file/directory existence
 
 
 
@@ -817,7 +847,7 @@ ifexists
 
 ``flags``: UWSGI_OPT_IMMEDIATE
 
-``help``: (opt logic) check for file/directory existance
+``help``: (opt logic) check for file/directory existence
 
 
 
@@ -1211,6 +1241,8 @@ listen
 
 ``parser``: uwsgi_opt_set_int
 
+``flags``: UWSGI_OPT_IMMEDIATE
+
 ``help``: set the socket listen queue size
 
 
@@ -1243,7 +1275,7 @@ buffer-size
 
 ``shortcut``: -b
 
-``parser``: uwsgi_opt_set_64bit
+``parser``: uwsgi_opt_set_16bit
 
 ``help``: set internal buffer size
 
@@ -1373,7 +1405,7 @@ enable-threads
 
 ``parser``: uwsgi_opt_true
 
-``help``: enable threads
+``help``: enable threads (stub option this is true by default)
 
 
 
@@ -1471,7 +1503,7 @@ single-interpreter
 
 need-app
 ********
-``argument``: no_argument
+``argument``: optional_argument
 
 ``parser``: uwsgi_opt_true
 
@@ -1512,7 +1544,6 @@ emperor
 ``reference``: :doc:`Emperor`
 
 
-
 The Emperor is a special uWSGI instance aimed at governing other uWSGI instances (named: vassals). By default it is configured to monitor a directory containing valid uWSGI config files, whenever a file is created a new instance is spawned, when the file is touched the instance is reloaded, when the file is removed the instance is destroyed. It can be extended to support more paradigms
 
 emperor-proxy-socket
@@ -1532,6 +1563,26 @@ emperor-wrapper
 ``parser``: uwsgi_opt_set_str
 
 ``help``: set a binary wrapper for vassals
+
+
+
+emperor-wrapper-override
+************************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_add_string_list
+
+``help``: set a binary wrapper for vassals to try before the default one
+
+
+
+emperor-wrapper-fallback
+************************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_add_string_list
+
+``help``: set a binary wrapper for vassals to try as a last resort
 
 
 
@@ -1612,16 +1663,6 @@ emperor-tyrant-nofollow
 ``parser``: uwsgi_opt_true
 
 ``help``: do not follow symlinks when checking for uid/gid in Tyrant mode
-
-
-
-emperor-tyrant-initgroups
-*************************
-``argument``: no_argument
-
-``parser``: uwsgi_opt_true
-
-``help``: add additional groups set via initgroups() in Tyrant mode
 
 
 
@@ -1785,33 +1826,13 @@ emperor-use-clone
 
 
 
-emperor-use-fork-server
-***********************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_set_str
-
-``help``: connect to the specified fork server instead of using plain fork() for new vassals
-
-
-
-vassal-fork-base
-****************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_add_string_list
-
-``help``: use plain fork() for the specified vassal (instead of a fork-server)
-
-
-
-emperor-subreaper
-*****************
+emperor-graceful-shutdown
+*************************
 ``argument``: no_argument
 
 ``parser``: uwsgi_opt_true
 
-``help``: force the Emperor to be a sub-reaper (if supported)
+``help``: use vassals graceful shutdown during ragnarok
 
 
 
@@ -1842,56 +1863,6 @@ vassal-cap
 ``parser``: uwsgi_opt_set_emperor_cap
 
 ``help``: set vassals capability
-
-
-
-emperor-collect-attribute
-*************************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_add_string_list
-
-``help``: collect the specified vassal attribute from imperial monitors
-
-
-
-emperor-collect-attr
-********************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_add_string_list
-
-``help``: collect the specified vassal attribute from imperial monitors
-
-
-
-emperor-fork-server-attr
-************************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_set_str
-
-``help``: set the vassal's attribute to get when checking for fork-server
-
-
-
-emperor-wrapper-attr
-********************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_set_str
-
-``help``: set the vassal's attribute to get when checking for fork-wrapper
-
-
-
-emperor-chdir-attr
-******************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_set_str
-
-``help``: set the vassal's attribute to get when checking for chdir
 
 
 
@@ -2025,16 +1996,6 @@ heartbeat
 
 
 
-zeus
-****
-``argument``: required_argument
-
-``parser``: uwsgi_opt_set_str
-
-``help``: enable Zeus mode
-
-
-
 reload-mercy
 ************
 ``argument``: required_argument
@@ -2079,9 +2040,9 @@ die-on-term
 ***********
 ``argument``: no_argument
 
-``parser``: uwsgi_opt_deprecated
+``parser``: uwsgi_opt_true
 
-``help``: exit instead of brutal reload on SIGTERM (no more needed)
+``help``: exit instead of brutal reload on SIGTERM
 
 
 
@@ -2171,23 +2132,13 @@ max-requests
 
 
 
-max-requests-delta
-******************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_set_64bit
-
-``help``: add (worker_id * delta) to the max_requests value of each worker
-
-
-
 min-worker-lifetime
 *******************
 ``argument``: required_argument
 
 ``parser``: uwsgi_opt_set_64bit
 
-``help``: number of seconds worker must run before being reloaded (default is 60)
+``help``: number of seconds worker must run before being reloaded (default is 10)
 
 
 
@@ -2198,6 +2149,16 @@ max-worker-lifetime
 ``parser``: uwsgi_opt_set_64bit
 
 ``help``: reload workers after the specified amount of seconds (default is disabled)
+
+
+
+max-worker-lifetime-delta
+*************************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_int
+
+``help``: add (worker_id * delta) seconds to the max_worker_lifetime value of each worker
 
 
 
@@ -2274,7 +2235,6 @@ sharedarea
 ``help``: create a raw shared memory area of specified pages (note: it supports keyval too)
 
 ``reference``: :doc:`SharedArea`
-
 
 
 safe-fd
@@ -2589,7 +2549,7 @@ spooler-frequency
 
 ``parser``: uwsgi_opt_set_int
 
-``help``: set spooler frequency, default 30 seconds
+``help``: set spooler frequency
 
 
 
@@ -2599,7 +2559,7 @@ spooler-freq
 
 ``parser``: uwsgi_opt_set_int
 
-``help``: set spooler frequency, default 30 seconds
+``help``: set spooler frequency
 
 
 
@@ -2635,7 +2595,7 @@ farm
 
 ``flags``: UWSGI_OPT_MASTER
 
-``help``: add a mule farm (syntax: <farm_name>:<mule_id>[,<mule_id> ...])
+``help``: add a mule farm
 
 
 
@@ -3017,26 +2977,6 @@ setns-preopen
 
 
 
-fork-socket
-***********
-``argument``: required_argument
-
-``parser``: uwsgi_opt_set_str
-
-``help``: suspend the execution after early initialization and fork() at every unix socket connection
-
-
-
-fork-server
-***********
-``argument``: required_argument
-
-``parser``: uwsgi_opt_set_str
-
-``help``: suspend the execution after early initialization and fork() at every unix socket connection
-
-
-
 jailed
 ******
 ``argument``: no_argument
@@ -3404,56 +3344,6 @@ hook-as-emperor
 ``parser``: uwsgi_opt_add_string_list
 
 ``help``: run the specified hook in the emperor after the vassal has been started
-
-
-
-hook-as-on-demand-vassal
-************************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_add_string_list
-
-``help``: run the specified hook whenever a vassal enters on-demand mode
-
-
-
-hook-as-on-config-vassal
-************************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_add_string_list
-
-``help``: run the specified hook whenever the emperor detects a config change for an on-demand vassal
-
-
-
-hook-as-emperor-before-vassal
-*****************************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_add_string_list
-
-``help``: run the specified hook before the new vassal is spawned
-
-
-
-hook-as-vassal-before-drop
-**************************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_add_string_list
-
-``help``: run the specified hook into vassal, before dropping its privileges
-
-
-
-hook-as-emperor-setns
-*********************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_add_string_list
-
-``help``: run the specified hook in the emperor entering vassal namespace
 
 
 
@@ -3877,6 +3767,26 @@ wait-for-fs-timeout
 
 
 
+wait-for-socket
+***************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_add_string_list
+
+``help``: wait for the specified socket to be ready before loading apps
+
+
+
+wait-for-socket-timeout
+***********************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_int
+
+``help``: set the timeout for wait-for-socket
+
+
+
 call-asap
 *********
 ``argument``: required_argument
@@ -3983,7 +3893,7 @@ call-as-vassal1
 
 ``parser``: uwsgi_opt_add_string_list
 
-``help``: call the specified function before exec()ing the vassal
+``help``: call the specified function(char *) before exec()ing the vassal
 
 
 
@@ -4013,7 +3923,7 @@ call-as-emperor1
 
 ``parser``: uwsgi_opt_add_string_list
 
-``help``: call the specified function in the emperor after the vassal has been started
+``help``: call the specified function(char *) in the emperor after the vassal has been started
 
 
 
@@ -4237,6 +4147,16 @@ socket-rcvbuf
 
 
 
+shutdown-sockets
+****************
+``argument``: no_argument
+
+``parser``: uwsgi_opt_true
+
+``help``: force calling shutdown() in addition to close() when sockets are destroyed
+
+
+
 limit-as
 ********
 ``argument``: required_argument
@@ -4302,6 +4222,16 @@ evil-reload-on-rss
 ``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_MEMORY
 
 ``help``: force the master to reload a worker if its rss memory is higher than specified megabytes
+
+
+
+mem-collector-freq
+******************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_int
+
+``help``: set the memory collector frequency when evil reloads are in place
 
 
 
@@ -4382,6 +4312,30 @@ touch-workers-reload
 ``flags``: UWSGI_OPT_MASTER
 
 ``help``: trigger reload of (only) workers if the specified file is modified/touched
+
+
+
+touch-mules-reload
+******************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_add_string_list
+
+``flags``: UWSGI_OPT_MASTER
+
+``help``: reload mules if the specified file is modified/touched
+
+
+
+touch-spoolers-reload
+*********************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_add_string_list
+
+``flags``: UWSGI_OPT_MASTER
+
+``help``: reload spoolers if the specified file is modified/touched
 
 
 
@@ -4585,7 +4539,7 @@ post-buffering
 
 ``parser``: uwsgi_opt_set_64bit
 
-``help``: enable post buffering
+``help``: set size in bytes after which will buffer to disk instead of memory
 
 
 
@@ -4832,7 +4786,6 @@ metrics-no-cores
 ``reference``: :doc:`Metrics`
 
 
-
 Do not expose metrics of async cores.
 
 udp
@@ -4956,7 +4909,6 @@ stats-no-cores
 ``reference``: :doc:`Metrics`
 
 
-
 Do not expose the information about cores in the stats server.
 
 stats-no-metrics
@@ -4970,7 +4922,6 @@ stats-no-metrics
 ``help``: do not include metrics in stats output
 
 ``reference``: :doc:`Metrics`
-
 
 
 Do not expose the metrics at all in the stats server.
@@ -5040,30 +4991,6 @@ subscription-notify-socket
 ``flags``: UWSGI_OPT_MASTER
 
 ``help``: set the notification socket for subscriptions
-
-
-
-subscription-mountpoints
-************************
-``argument``: no_argument
-
-``parser``: uwsgi_opt_true
-
-``flags``: UWSGI_OPT_MASTER
-
-``help``: enable mountpoints support for subscription system
-
-
-
-subscription-mountpoint
-***********************
-``argument``: no_argument
-
-``parser``: uwsgi_opt_true
-
-``flags``: UWSGI_OPT_MASTER
-
-``help``: enable mountpoints support for subscription system
 
 
 
@@ -5147,7 +5074,7 @@ legion-skew-tolerance
 
 ``flags``: UWSGI_OPT_MASTER
 
-``help``: set the clock skew tolerance of legion subsystem (default 30 seconds)
+``help``: set the clock skew tolerance of legion subsystem (default 60 seconds)
 
 
 
@@ -5487,6 +5414,16 @@ ssl-verbose
 
 
 
+ssl-verify-depth
+****************
+``argument``: optional_argument
+
+``parser``: uwsgi_opt_set_int
+
+``help``: set maximum certificate verification depth
+
+
+
 ssl-sessions-use-cache
 **********************
 ``argument``: optional_argument
@@ -5568,6 +5505,26 @@ ssl-enable3
 ``parser``: uwsgi_opt_true
 
 ``help``: enable SSLv3 (insecure)
+
+
+
+ssl-enable-sslv3
+****************
+``argument``: no_argument
+
+``parser``: uwsgi_opt_true
+
+``help``: enable SSLv3 (insecure)
+
+
+
+ssl-enable-tlsv1
+****************
+``argument``: no_argument
+
+``parser``: uwsgi_opt_true
+
+``help``: enable TLSv1 (insecure)
 
 
 
@@ -5682,16 +5639,6 @@ async
 ``parser``: uwsgi_opt_set_int
 
 ``help``: enable async mode with specified cores
-
-
-
-disable-async-warn-on-queue-full
-********************************
-``argument``: no_argument
-
-``parser``: uwsgi_opt_false
-
-``help``: Disable printing 'async queue is full' warning messages.
 
 
 
@@ -5987,7 +5934,7 @@ alarm-freq
 
 ``parser``: uwsgi_opt_set_int
 
-``help``: tune the anti-loop alam system (default 3 seconds)
+``help``: tune the anti-loop alarm system (default 3 seconds)
 
 
 
@@ -6397,7 +6344,7 @@ drop-after-init
 
 ``parser``: uwsgi_opt_true
 
-``help``: run privileges drop after plugin initialization
+``help``: run privileges drop after plugin initialization, superseded by drop-after-apps
 
 
 
@@ -6407,7 +6354,7 @@ drop-after-apps
 
 ``parser``: uwsgi_opt_true
 
-``help``: run privileges drop after apps loading
+``help``: run privileges drop after apps loading, superseded by master-as-root
 
 
 
@@ -6541,16 +6488,6 @@ cheaper-overload
 
 ``help``: increase workers after specified overload
 
-
-cheaper-idle
-****************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_set_int
-
-``flags``: UWSGI_OPT_MASTER | UWSGI_OPT_CHEAPER
-
-``help``: decrease workers after specified idle (algo: spare2) (default: 10)
 
 
 cheaper-algo-list
@@ -7911,18 +7848,6 @@ env
 
 
 
-ienv
-****
-``argument``: required_argument
-
-``parser``: uwsgi_opt_set_env
-
-``flags``: UWSGI_OPT_IMMEDIATE
-
-``help``: set environment variable (IMMEDIATE version)
-
-
-
 envdir
 ******
 ``argument``: required_argument
@@ -8659,6 +8584,16 @@ version
 
 
 
+response-headers-limit
+**********************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_int
+
+``help``: set response header maximum size (default: 64k)
+
+
+
 
 plugin: airbrake
 ================
@@ -8810,7 +8745,7 @@ carbon-idle-avg
 
 ``parser``: uwsgi_opt_set_str
 
-``help``: average values source during idle period (no requests), can be "last", "zero", "none" (default is last)
+``help``: average values source during idle period (no requests), can be \"last\", \"zero\", \"none\" (default is last)
 
 
 
@@ -8977,12 +8912,122 @@ cgi-async-max-attempts
 
 
 
+cgi-close-stdin-on-eof
+**********************
+``argument``: no_argument
+
+``parser``: uwsgi_opt_true
+
+``help``: close STDIN on input EOF
+
+
+
+cgi-safe
+********
+``argument``: required_argument
+
+``parser``: uwsgi_opt_add_string_list
+
+``help``: skip security checks if the cgi file is under the specified path
+
+
+
 
 plugin: cheaper_backlog2
 ========================
 
 plugin: cheaper_busyness
 ========================
+cheaper-busyness-max
+********************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_64bit
+
+``help``: set the cheaper busyness high percent limit, above that value worker is considered loaded (default 50)
+
+
+
+cheaper-busyness-min
+********************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_64bit
+
+``help``: set the cheaper busyness low percent limit, below that value worker is considered idle (default 25)
+
+
+
+cheaper-busyness-multiplier
+***************************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_64bit
+
+``help``: set initial cheaper multiplier, worker needs to be idle for cheaper-overload*multiplier seconds to be cheaped (default 10)
+
+
+
+cheaper-busyness-penalty
+************************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_64bit
+
+``help``: penalty for respawning workers to fast, it will be added to the current multiplier value if worker is cheaped and than respawned back too fast (default 2)
+
+
+
+cheaper-busyness-verbose
+************************
+``argument``: no_argument
+
+``parser``: uwsgi_opt_true
+
+``help``: enable verbose log messages from busyness algorithm
+
+
+
+cheaper-busyness-backlog-alert
+******************************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_int
+
+``help``: spawn emergency worker(s) if any time listen queue is higher than this value (default 33)
+
+
+
+cheaper-busyness-backlog-multiplier
+***********************************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_64bit
+
+``help``: set cheaper multiplier used for emergency workers (default 3)
+
+
+
+cheaper-busyness-backlog-step
+*****************************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_int
+
+``help``: number of emergency workers to spawn at a time (default 1)
+
+
+
+cheaper-busyness-backlog-nonzero
+********************************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_64bit
+
+``help``: spawn emergency worker(s) if backlog is > 0 for more then N seconds (default 60)
+
+
+
 
 plugin: clock_monotonic
 =======================
@@ -9152,7 +9197,6 @@ fastrouter
 ``help``: run the fastrouter on the specified port
 
 ``reference``: :doc:`Fastrouter`
-
 
 
 fastrouter-processes
@@ -9445,13 +9489,13 @@ fastrouter-fallback-on-no-key
 
 
 
-fastrouter-force-key
-********************
+fastrouter-subscription-fallback-key
+************************************
 ``argument``: required_argument
 
-``parser``: uwsgi_opt_set_str
+``parser``: uwsgi_opt_corerouter_fallback_key
 
-``help``: skip uwsgi parsing and directly set a key
+``help``: key to use for fallback fastrouter
 
 
 
@@ -10085,13 +10129,23 @@ http-subscription-server
 
 
 
+http-subscription-fallback-key
+******************************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_corerouter_fallback_key
+
+``help``: key to use for fallback http handler
+
+
+
 http-timeout
 ************
 ``argument``: required_argument
 
 ``parser``: uwsgi_opt_set_int
 
-``help``: set internal http socket timeout
+``help``: set internal http socket timeout (default: 60 seconds)
 
 
 
@@ -10345,26 +10399,6 @@ http-manage-source
 
 
 
-http-enable-proxy-protocol
-**************************
-``argument``: optional_argument
-
-``parser``: uwsgi_opt_true
-
-``help``: manage PROXY protocol requests
-
-
-
-http-backend-http
-*****************
-``argument``: no_argument
-
-``parser``: uwsgi_opt_true
-
-``help``: use plain http protocol instead of uwsgi for backend nodes
-
-
-
 http-manage-rtsp
 ****************
 ``argument``: no_argument
@@ -10375,13 +10409,13 @@ http-manage-rtsp
 
 
 
-0x1f
-****
-``argument``: 0x8b
+http-enable-proxy-protocol
+**************************
+``argument``: optional_argument
 
-``shortcut``: -Z_DEFLATED
+``parser``: uwsgi_opt_true
 
-``help``: 0
+``help``: manage PROXY protocol requests
 
 
 
@@ -10910,7 +10944,27 @@ php-fallback
 
 ``parser``: uwsgi_opt_set_str
 
-``help``: run the specified php script when the request one does not exist
+``help``: run the specified php script when the requested one does not exist
+
+
+
+php-fallback2
+*************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_str
+
+``help``: run the specified php script relative to the document root when the requested one does not exist
+
+
+
+php-fallback-qs
+***************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_set_str
+
+``help``: php-fallback with QUERY_STRING set
 
 
 
@@ -10931,6 +10985,16 @@ php-var
 ``parser``: uwsgi_opt_add_string_list
 
 ``help``: add/overwrite a CGI variable at each request
+
+
+
+php-constant
+************
+``argument``: required_argument
+
+``parser``: uwsgi_opt_add_string_list
+
+``help``: define a php constant for each request
 
 
 
@@ -10989,30 +11053,6 @@ php-sapi-name
 ``argument``: required_argument
 
 ``parser``: uwsgi_opt_set_str
-
-``help``: hack the sapi name (required for enabling zend opcode cache)
-
-
-
-early-php
-*********
-``argument``: no_argument
-
-``parser``: uwsgi_opt_early_php
-
-``flags``: UWSGI_OPT_IMMEDIATE
-
-``help``: initialize an early perl interpreter shared by all loaders
-
-
-
-early-php-sapi-name
-*******************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_set_str
-
-``flags``: UWSGI_OPT_IMMEDIATE
 
 ``help``: hack the sapi name (required for enabling zend opcode cache)
 
@@ -11189,42 +11229,6 @@ perl-no-plack
 ``parser``: uwsgi_opt_true
 
 ``help``: force the use of do instead of Plack::Util::load_psgi
-
-
-
-early-perl
-**********
-``argument``: required_argument
-
-``parser``: uwsgi_opt_early_perl
-
-``flags``: UWSGI_OPT_IMMEDIATE
-
-``help``: initialize an early perl interpreter shared by all loaders
-
-
-
-early-psgi
-**********
-``argument``: required_argument
-
-``parser``: uwsgi_opt_early_psgi
-
-``flags``: UWSGI_OPT_IMMEDIATE
-
-``help``: load a psgi app soon after uWSGI initialization
-
-
-
-early-perl-exec
-***************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_early_exec
-
-``flags``: UWSGI_OPT_IMMEDIATE
-
-``help``: load a perl script soon after uWSGI initialization
 
 
 
@@ -11981,10 +11985,12 @@ wsgi-env-behaviour
 
 ``parser``: uwsgi_opt_set_str
 
-``help``: set the strategy for allocating/deallocating the WSGI env, can be: "cheat" or "holy"
+``help``: set the strategy for allocating/deallocating the WSGI env
 
 ``reference``: :doc:`articles/WSGIEnvBehaviour`
 
+
+set the strategy for allocating/deallocating the WSGI env
 
 wsgi-env-behavior
 *****************
@@ -11992,9 +11998,10 @@ wsgi-env-behavior
 
 ``parser``: uwsgi_opt_set_str
 
-``help``: set the strategy for allocating/deallocating the WSGI env, can be: "cheat" or "holy"
+``help``: set the strategy for allocating/deallocating the WSGI env
 
 ``reference``: :doc:`articles/WSGIEnvBehaviour`
+
 
 start_response-nodelay
 **********************
@@ -12033,6 +12040,16 @@ wsgi-accept-buffers
 ``parser``: uwsgi_opt_true
 
 ``help``: accept CPython buffer-compliant objects as WSGI response in addition to string/bytes
+
+
+
+wsgi-disable-file-wrapper
+*************************
+``argument``: no_argument
+
+``parser``: uwsgi_opt_true
+
+``help``: disable wsgi.file_wrapper feature
 
 
 
@@ -12078,63 +12095,43 @@ py-call-osafterfork
 
 
 
-early-python
-************
+py-call-uwsgi-fork-hooks
+************************
 ``argument``: no_argument
 
-``parser``: uwsgi_early_python
+``parser``: uwsgi_opt_true
 
-``flags``: UWSGI_OPT_IMMEDIATE
-
-``help``: load the python VM as soon as possible (useful for the fork server)
+``help``: call pre and post hooks when uswgi forks to update the internal interpreter state of CPython
 
 
 
-early-pyimport
-**************
+python-worker-override
+**********************
 ``argument``: required_argument
 
-``parser``: uwsgi_early_python_import
+``parser``: uwsgi_opt_set_str
 
-``flags``: UWSGI_OPT_IMMEDIATE
-
-``help``: import a python module in the early phase
+``help``: override worker with the specified python script
 
 
 
-early-python-import
-*******************
+py-executable
+*************
 ``argument``: required_argument
 
-``parser``: uwsgi_early_python_import
+``parser``: uwsgi_opt_set_str
 
-``flags``: UWSGI_OPT_IMMEDIATE
-
-``help``: import a python module in the early phase
+``help``: override sys.executable value
 
 
 
-early-pythonpath
-****************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_pythonpath
-
-``flags``: UWSGI_OPT_IMMEDIATE
-
-``help``: add directory (or glob) to pythonpath (immediate version)
-
-
-
-early-python-path
+py-sys-executable
 *****************
 ``argument``: required_argument
 
-``parser``: uwsgi_opt_pythonpath
+``parser``: uwsgi_opt_set_str
 
-``flags``: UWSGI_OPT_IMMEDIATE
-
-``help``: add directory (or glob) to pythonpath (immediate version)
+``help``: override sys.executable value
 
 
 
@@ -12622,7 +12619,7 @@ rawrouter-xclient
 
 ``parser``: uwsgi_opt_true
 
-``help``: use the xclient protocol to pass the client address
+``help``: use the xclient protocol to pass the client addres
 
 
 
@@ -12727,6 +12724,9 @@ plugin: router_cache
 
 plugin: router_expires
 ======================
+
+plugin: router_fcgi
+===================
 
 plugin: router_hash
 ===================
