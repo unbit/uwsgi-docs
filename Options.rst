@@ -6337,7 +6337,7 @@ log-big
 
 ``parser``: uwsgi_opt_set_64bit
 
-``help``: log requestes bigger than the specified size
+``help``: log requestes whose response sizes are bigger than the specified size
 
 
 
