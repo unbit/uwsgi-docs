@@ -7589,7 +7589,7 @@ mimefile
 
 ``flags``: UWSGI_OPT_MIME
 
-``help``: set mime types file path (default /etc/apache2/mime.types)
+``help``: set mime types file path (macOS default /etc/apache2/mime.types; linux default /etc/mime.types)
 
 
 
@@ -7601,31 +7601,7 @@ mime-file
 
 ``flags``: UWSGI_OPT_MIME
 
-``help``: set mime types file path (default /etc/apache2/mime.types)
-
-
-
-mimefile
-********
-``argument``: required_argument
-
-``parser``: uwsgi_opt_add_string_list
-
-``flags``: UWSGI_OPT_MIME
-
-``help``: set mime types file path (default /etc/mime.types)
-
-
-
-mime-file
-*********
-``argument``: required_argument
-
-``parser``: uwsgi_opt_add_string_list
-
-``flags``: UWSGI_OPT_MIME
-
-``help``: set mime types file path (default /etc/mime.types)
+``help``: set mime types file path (macOS default /etc/apache2/mime.types; linux default /etc/mime.types)
 
 
 
