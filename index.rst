@@ -230,6 +230,7 @@ Language support
 
    Python
    PyPy
+   CFFI
    PHP
    Perl
    Ruby
@@ -295,7 +296,7 @@ Stable releases
    Changelog-2.0.17
    Changelog-2.0.16
    Changelog-2.0.15
-   Changelog-2.0.14 
+   Changelog-2.0.14
    Changelog-2.0.13.1
    Changelog-2.0.13
    Changelog-2.0.12
