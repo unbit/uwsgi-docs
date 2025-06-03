@@ -12078,6 +12078,16 @@ py-call-osafterfork
 
 
 
+py-call-uwsgi-fork-hooks
+************************
+``argument``: no_argument
+
+``parser``: uwsgi_opt_true
+
+``help``: call pre and post hooks when uswgi forks to update the internal interpreter state of CPython
+
+
+
 early-python
 ************
 ``argument``: no_argument
