@@ -2177,7 +2177,7 @@ max-requests-delta
 
 ``parser``: uwsgi_opt_set_64bit
 
-``help``: add (worker_id * delta) to the max_requests value of each worker
+``help``: add (worker_id * delta) to the max_requests value of each worker (this is not available for uwsgi <= 2.0.x)
 
 
 
