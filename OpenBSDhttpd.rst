@@ -11,8 +11,8 @@ The first step to enable it is writing its configuration file ```/etc/httpd.conf
 
    server "default" {
        listen on 0.0.0.0 port 80
-   
-       fastcgi socket ":3031"
+
+       fastcgi socket tcp 127.0.0.1 3031
    }
 
 then enable and start it with the ```rcctl``` tool:
@@ -22,8 +22,7 @@ then enable and start it with the ```rcctl``` tool:
    rcctl enable httpd
    rcctl start httpd
 
-this minimal configuration will spawn a chrooted webserver on port 80, running as user 'www' and forwarding every request
-to the address 127.0.0.1:3031 using the FastCGI protocol.
+this minimal configuration will spawn a chrooted webserver on port 80, running as user 'www' and forwarding every request to the address 127.0.0.1:3031 using the FastCGI protocol.
 
 
 Now you only need to spawn uWSGI on the FastCGI address:
@@ -63,7 +62,7 @@ You can use UNIX domain sockets too, just remember the httpd servers runs chroot
 
    server "default" {
        listen on 0.0.0.0 port 80
-   
+
        fastcgi socket "/run/uwsgi.socket"
    }
 
@@ -74,17 +73,12 @@ If you want to forward only specific paths to uWSGI, you can use a location dire
 
    server "default" {
        listen on 0.0.0.0 port 80
-   
+
        location "/foo/*" {
-           fastcgi socket ":3031"
+           fastcgi socket tcp 127.0.0.1 3031
        }
-       
+
        location "/cgi-bin/*" {
-           fastcgi socket ":3032"
+           fastcgi socket tcp 128.0.0.1 3032
        }
    }
-   
-Notes
-=====
-
-Currently (may 2015) httpd can connect only to tcp fastcgi sockets bound on address 127.0.0.1 and to unix domain sockets
