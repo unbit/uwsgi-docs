@@ -96,6 +96,7 @@ def core_options():
         """)
         s.o("min-worker-lifetime", int, "A worker cannot be destroyed/reloaded unless it has been alive for N seconds (default 60). This is an anti-fork-bomb measure", since="1.9")
         s.o("max-worker-lifetime", int, "Reload workers after this many seconds. Disabled by default.", since="1.9")
+        s.o("max-worker-lifetime-delta", int, "Staggers worker reloads by adding (worker_id * delta) seconds to the max_worker_lifetime value of each worker. Disabled by default.", since="2.0.19")
         s.o("limit-as", int, "limit process address space (vsz) (in megabytes)", help="""
         Limits the address space usage of each uWSGI (worker) process using POSIX/UNIX ``setrlimit()``.
         For example, ``limit-as 256`` will disallow uWSGI processes to grow over 256MB of address space.
