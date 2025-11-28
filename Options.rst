@@ -2171,16 +2171,6 @@ max-requests
 
 
 
-max-requests-delta
-******************
-``argument``: required_argument
-
-``parser``: uwsgi_opt_set_64bit
-
-``help``: add (worker_id * delta) to the max_requests value of each worker
-
-
-
 min-worker-lifetime
 *******************
 ``argument``: required_argument
