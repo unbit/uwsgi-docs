@@ -246,8 +246,11 @@ Now create a file called mysite_nginx.conf in the /etc/nginx/sites-available/ di
    
         # Finally, send all non-media requests to the Django server.
         location / {
-            uwsgi_pass  django;
-            include     /path/to/your/mysite/uwsgi_params; # the uwsgi_params file you installed
+            # If using http proxy
+            proxy_pass http://django;
+            # else if using sockets
+            # uwsgi_pass  django;
+            # include     /path/to/your/mysite/uwsgi_params; # the uwsgi_params file you installed
         }
     }
 
