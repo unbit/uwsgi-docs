@@ -38,7 +38,7 @@ You can use the application dictionary mechanism to avoid setting up your applic
 
 
 Passing this Python module name (that is, it should be importable and without the ``.py`` extension) to uWSGI's ``module`` / ``wsgi`` option, uWSGI will search the ``uwsgi.applications`` dictionary for the URL prefix/callable mappings.
-  
+
 The value of every item can be a callable, or its name as a string.
 
 .. TODO: Where is the string looked up from?
@@ -51,7 +51,10 @@ Virtualenv support
 `virtualenv <virtualenvwww_>`_ is a mechanism that lets you isolate one (or more) Python applications' libraries (and interpreters, when not using uWSGI) from each other.
 Virtualenvs should be used by any respectable modern Python application.
 
+.. seealso:: :ref:`LocalPython`
+
 .. _virtualenvwww: http://www.virtualenv.org/
+
 
 Quickstart
 ^^^^^^^^^^
@@ -70,7 +73,7 @@ Quickstart
     $ ./myenv/bin/pip install -r requirements.txt
 
 3. Copy your WSGI module into this new environment (under :file:`lib/python2.{x}` if you do not want to modify your ``PYTHONPATH``).
-  
+
   .. note:: It's common for many deployments that your application will live outside the virtualenv. How to configure this is not quite documented yet, but it's probably very easy.
   .. TODO: Document that.
 
@@ -84,7 +87,7 @@ Quickstart
 Python 3
 --------
 
-The WSGI specification was updated for Python 3 as PEP3333_. 
+The WSGI specification was updated for Python 3 as PEP3333_.
 
 One major change is that applications are required to respond only with ``bytes`` instances, not (Unicode) strings, back to the WSGI stack.
 
@@ -108,7 +111,7 @@ If you are a user or developer of Paste-compatible frameworks, such as Pyramid_,
 
 .. _pyramid: http://docs.pylonsproject.org/projects/pyramid/en/latest/
 .. _turbogears: http://turbogears.org
-.. _pylons: http://www.pylonsproject.org 
+.. _pylons: http://www.pylonsproject.org
 
 For example, if you have a virtualenv in :file:`/opt/tg2env` containing a Turbogears app called ``addressbook`` configured in :file:`/opt/tg2env/addressbook/development.ini`::
 
@@ -161,7 +164,7 @@ Install it with ``pip install django-uwsgi`` and add it into your ``INSTALLED_AP
         'django_uwsgi',
         # ...
     )
-    
+
 Then modify your ``urls.py`` accordingly. For example:
 
 .. code-block:: py
@@ -177,3 +180,26 @@ Be sure to place the URL pattern for django_uwsgi *before* the one for the admin
 
 `Read the documentation for django-uwsgi at rtfd.org <http://django-uwsgi.rtfd.org/>`_
 
+.. _LocalPython:
+
+Using uWSGI with local builds of Python
+---------------------------------------
+
+uWSGI is often available as an OS package. E.g., in Debian and derivatives, it can be installed with:
+
+.. code-block:: sh
+
+  sudo apt install uwsgi
+
+Such packages will have been compiled for use with the system Python environment and will only work with Python modules running under the system interpreter or, if using a :ref:`virtualenv <Virtualenv>`, in a virtualenv created with the system interpreter.
+
+If uWSGI is installed into a virtualenv, e.g.:
+
+.. code-block:: sh
+
+  . venv/bin/activate
+  pip install uwsgi
+
+The instance of uWSGI will only work with Python modules running under the Python interpreter which was used for creating the virtualenv, and other virtualenvs created with the same interpreter.
+
+These limitations become important on systems that use locally built versions of Python. For instance, in systems using `pyenv <https://github.com/pyenv/pyenv>`_, the system uWSGI cannot be used with any modules running either directly under the locally built Python environments or under virtualenvs created with those. E.g., for Debian and derivatives, this means that *a uWSGI* ``.ini`` *file with* ``venv`` *pointing to a local virtualenv cannot be installed in* ``/etc/uwsgi/vassals``.
