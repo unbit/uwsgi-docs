@@ -103,7 +103,13 @@ The first step is substituting all of the $(VALUE) occurrences with the value of
    [uwsgi]
    foobar = $(PATH)
    
-foobar value will be the content of shell's PATH variable
+foobar value will be the content of shell's PATH variable.
+
+You can also specify a fallback value for environment variable:
+
+1. `$(VARIABLE:-DEFAULT)` will evaluate to default if VARIABLE isn't set or empty
+
+2. `$(VARIABLE-DEFAULT)` will evaluate to default only if VARIABLE isn't set
 
 The second step will expand text files embraced in @(FILENAME)
 
