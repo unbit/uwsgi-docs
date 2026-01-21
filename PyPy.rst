@@ -220,3 +220,28 @@ Notes
 * The PyPy plugin is generally somewhat more "orthodox" from a Python programmer point of view, while the CPython one may be a little blasphemous in many areas. We have been able to make that choice as we do not need backward compatibility with older uWSGI releases.
 * The uWSGI API is still incomplete.
 * The WSGI loader does not update the uWSGI internal application list, so things like ``--need-app`` will not work. The server will report "dynamic mode" on startup even if the app has been successfully loaded. This will be fixed soon.
+
+PyPy3 + Django 2.x with uWSGI
+^^^^^^^^^^^^
+
+Download https://github.com/operasoftware/uwsgi-pypy-python3
+or https://github.com/gralance/uwsgi-pypy-python3 (just forked from operasoftware/uwsgi-pypy-python3)
+and copy the pypy_setup.py into your project.
+
+Install pypy3 and find the location of your pypy3
+
+Here is an example that works in ubuntu 18.04, please change the dir according to your environment.
+
+
+.. code-block:: sh
+
+    [uwsgi]
+    # You should set chdir to the folder of manage.py
+    pypy-wsgi = <project name>.wsgi:application # your wsgi instance, should be in wsgi.py
+    pypy-wsgi-file = /<project dir>/<project name>/wsgi.py # MUST have
+    pypy-home = /usr/local/lib/pypy3 # location of pypy3
+    pypy-lib = /usr/local/lib/pypy3/bin/libpypy3-c.so # NOT libpypy-c.so
+    pypy-setup = /<project dir>/<project name>/uwsgi/pypy_setup.py # the pypy_setup.py
+    master = 1
+    processes = %k
+    threads = 2
