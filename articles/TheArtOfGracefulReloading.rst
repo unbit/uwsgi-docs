@@ -252,8 +252,6 @@ Cons:
 Chain reloading (lazy apps)
 ***************************
 
-Requires ``--lazy-apps`` option.
-
 To trigger it:
 
 * write ``c`` to :doc:`../MasterFIFO`
