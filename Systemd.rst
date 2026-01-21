@@ -30,7 +30,7 @@ Create a systemd service file (you can save it as /etc/systemd/system/emperor.uw
    Restart=always
    KillSignal=SIGQUIT
    Type=notify
-   StandardError=syslog
+   StandardError=journal
    NotifyAccess=all
 
    [Install]
@@ -85,7 +85,7 @@ If you want to allow each vassal to run under different privileges, remove the `
 Logging
 *******
 
-Using the previous service file all of the Emperor messages go to the syslog. You can avoid it by removing the ``StandardError=syslog`` directive.
+Using the previous service file all of the Emperor messages go to the journal. You can avoid it by removing the ``StandardError=journal`` directive.
 
 If you do that, be sure to set a ``--logto`` option in your Emperor configuration, otherwise all of your logs will be lost!
 
@@ -182,7 +182,7 @@ app will run under its own user.
   Restart=on-failure
   KillSignal=SIGQUIT
   Type=notify
-  StandardError=syslog
+  StandardError=journal
   NotifyAccess=all
 
 Now, adding a new app to your system is a matter of creating the appropriate
